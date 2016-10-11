@@ -1,0 +1,24 @@
+[
+  {
+    "Parent": null,
+    "Controller": null,
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "administrators",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      },
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "developers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ]
+  }
+]

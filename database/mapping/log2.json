@@ -1,0 +1,389 @@
+{
+  "log": {
+    "properties": {
+      "callerFilePath": {
+        "type": "string"
+      },
+      "callerLineNumber": {
+        "type": "long"
+      },
+      "callerMemberName": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "computer": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "details": {
+        "type": "string"
+      },
+      "exception": {
+        "properties": {
+          "CLR_SafeSerializationManager_RealType": {
+            "type": "string",
+            "index": "not_analyzed"
+          },
+          "ClassName": {
+            "type": "string",
+            "index": "not_analyzed"
+          },
+          "Data": {
+            "type": "object"
+          },
+          "ExceptionMethod": {
+            "type": "string",
+            "index": "not_analyzed"
+          },
+          "Exceptions": {
+            "properties": {
+              "ClassName": {
+                "type": "string",
+                "index": "not_analyzed"
+              },
+              "FileNotFound_FileName": {
+                "type": "string",
+                "index": "not_analyzed"
+              },
+              "FileNotFound_FusionLog": {
+                "type": "string",
+                "index": "not_analyzed"
+              },
+              "HResult": {
+                "type": "long"
+              },
+              "Message": {
+                "type": "string"
+              },
+              "RemoteStackIndex": {
+                "type": "long"
+              }
+            }
+          },
+          "HResult": {
+            "type": "long"
+          },
+          "InnerException": {
+            "properties": {
+              "ClassName": {
+                "type": "string",
+                "index": "not_analyzed"
+              },
+              "Data": {
+                "type": "object"
+              },
+              "ExceptionMethod": {
+                "type": "string"
+              },
+              "HResult": {
+                "type": "long"
+              },
+              "InnerException": {
+                "properties": {
+                  "ClassName": {
+                    "type": "string"
+                  },
+                  "Data": {
+                    "type": "object"
+                  },
+                  "ExceptionMethod": {
+                    "type": "string"
+                  },
+                  "HResult": {
+                    "type": "long"
+                  },
+                  "Message": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                  },
+                  "RemoteStackIndex": {
+                    "type": "long"
+                  },
+                  "Source": {
+                    "type": "string"
+                  },
+                  "StackTraceString": {
+                    "type": "string"
+                  }
+                }
+              },
+              "Message": {
+                "type": "string"
+              },
+              "RemoteStackIndex": {
+                "type": "long"
+              },
+              "Source": {
+                "type": "string"
+              },
+              "StackTraceString": {
+                "type": "string"
+              }
+            }
+          },
+          "Message": {
+            "type": "string"
+          },
+          "ObjectName": {
+            "type": "string"
+          },
+          "ParamName": {
+            "type": "string"
+          },
+          "RemoteStackIndex": {
+            "type": "long"
+          },
+          "SafeSerializationManager": {
+            "properties": {
+              "m_serializedStates": {
+                "properties": {
+                  "_errors": {
+                    "properties": {
+                      "description": {
+                        "type": "string"
+                      },
+                      "element": {
+                        "properties": {
+                          "displayName": {
+                            "type": "string"
+                          },
+                          "origin": {
+                            "properties": {
+                              "displayName": {
+                                "type": "string"
+                              },
+                              "origin": {
+                                "properties": {
+                                  "displayName": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "exception": {
+                        "properties": {
+                          "CLR_SafeSerializationManager_RealType": {
+                            "type": "string"
+                          },
+                          "ClassName": {
+                            "type": "string"
+                          },
+                          "ExceptionMethod": {
+                            "type": "string"
+                          },
+                          "HResult": {
+                            "type": "long"
+                          },
+                          "RemoteStackIndex": {
+                            "type": "long"
+                          },
+                          "SafeSerializationManager": {
+                            "properties": {
+                              "m_serializedStates": {
+                                "properties": {
+                                  "_errors": {
+                                    "properties": {
+                                      "description": {
+                                        "type": "string"
+                                      },
+                                      "element": {
+                                        "properties": {
+                                          "displayName": {
+                                            "type": "string"
+                                          },
+                                          "origin": {
+                                            "properties": {
+                                              "displayName": {
+                                                "type": "string"
+                                              },
+                                              "origin": {
+                                                "properties": {
+                                                  "displayName": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "exception": {
+                                        "properties": {
+                                          "ClassName": {
+                                            "type": "string"
+                                          },
+                                          "Element": {
+                                            "properties": {
+                                              "displayName": {
+                                                "type": "string"
+                                              },
+                                              "origin": {
+                                                "properties": {
+                                                  "displayName": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "ExceptionMethod": {
+                                            "type": "string"
+                                          },
+                                          "HResult": {
+                                            "type": "long"
+                                          },
+                                          "InnerException": {
+                                            "properties": {
+                                              "ClassName": {
+                                                "type": "string"
+                                              },
+                                              "ExceptionMethod": {
+                                                "type": "string"
+                                              },
+                                              "HResult": {
+                                                "type": "long"
+                                              },
+                                              "InnerException": {
+                                                "properties": {
+                                                  "ClassName": {
+                                                    "type": "string"
+                                                  },
+                                                  "ExceptionMethod": {
+                                                    "type": "string"
+                                                  },
+                                                  "FileNotFound_FileName": {
+                                                    "type": "string"
+                                                  },
+                                                  "FileNotFound_FusionLog": {
+                                                    "type": "string"
+                                                  },
+                                                  "HResult": {
+                                                    "type": "long"
+                                                  },
+                                                  "Message": {
+                                                    "type": "string"
+                                                  },
+                                                  "RemoteStackIndex": {
+                                                    "type": "long"
+                                                  },
+                                                  "Source": {
+                                                    "type": "string"
+                                                  },
+                                                  "StackTraceString": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              },
+                                              "Message": {
+                                                "type": "string"
+                                              },
+                                              "RemoteStackIndex": {
+                                                "type": "long"
+                                              },
+                                              "Source": {
+                                                "type": "string"
+                                              },
+                                              "StackTraceString": {
+                                                "type": "string"
+                                              },
+                                              "TypeName": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          },
+                                          "Message": {
+                                            "type": "string"
+                                          },
+                                          "RemoteStackIndex": {
+                                            "type": "long"
+                                          },
+                                          "Source": {
+                                            "type": "string"
+                                          },
+                                          "StackTraceString": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Source": {
+                            "type": "string"
+                          },
+                          "StackTraceString": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Source": {
+            "type": "string"
+          },
+          "StackTraceString": {
+            "type": "string"
+          },
+          "TypeLoadAssemblyName": {
+            "type": "string"
+          },
+          "TypeLoadClassName": {
+            "type": "string"
+          },
+          "TypeLoadResourceID": {
+            "type": "long"
+          },
+          "Types": {
+            "type": "string"
+          },
+          "_httpCode": {
+            "type": "long"
+          }
+        }
+      },
+      "id": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "keywords": {
+        "type": "string"
+      },
+      "log": {
+        "type": "string"
+      },
+      "message": {
+        "type": "string"
+      },
+      "operation": {
+        "type": "string"
+      },
+      "otherInfo": {
+        "type": "object"
+      },
+      "severity": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "source": {
+        "type": "string"
+      },
+      "time": {
+        "type": "date"
+      },
+      "user": {
+        "type": "string",
+        "index": "not_analyzed"
+      }
+    }
+  }
+}

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <title>WorkflowDefinition</title>
+      <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(171, 178, 191); overflow: auto; background-color: rgb(40, 44, 52); }
+.markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
+.markdown-preview:not([data-use-github-style]) h1, .markdown-preview:not([data-use-github-style]) h2, .markdown-preview:not([data-use-github-style]) h3, .markdown-preview:not([data-use-github-style]) h4, .markdown-preview:not([data-use-github-style]) h5, .markdown-preview:not([data-use-github-style]) h6 { line-height: 1.2; margin-top: 1.5em; margin-bottom: 0.5em; color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) h1 { font-size: 2.4em; font-weight: 300; }
+.markdown-preview:not([data-use-github-style]) h2 { font-size: 1.8em; font-weight: 400; }
+.markdown-preview:not([data-use-github-style]) h3 { font-size: 1.5em; font-weight: 500; }
+.markdown-preview:not([data-use-github-style]) h4 { font-size: 1.2em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) h5 { font-size: 1.1em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) h6 { font-size: 1em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) strong { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) del { color: rgb(124, 135, 156); }
+.markdown-preview:not([data-use-github-style]) a, .markdown-preview:not([data-use-github-style]) a code { color: rgb(82, 139, 255); }
+.markdown-preview:not([data-use-github-style]) img { max-width: 100%; }
+.markdown-preview:not([data-use-github-style]) > p { margin-top: 0px; margin-bottom: 1.5em; }
+.markdown-preview:not([data-use-github-style]) > ul, .markdown-preview:not([data-use-github-style]) > ol { margin-bottom: 1.5em; }
+.markdown-preview:not([data-use-github-style]) blockquote { margin: 1.5em 0px; font-size: inherit; color: rgb(124, 135, 156); border-color: rgb(75, 83, 98); border-width: 4px; }
+.markdown-preview:not([data-use-github-style]) hr { margin: 3em 0px; border-top-width: 2px; border-top-style: dashed; border-top-color: rgb(75, 83, 98); background: none; }
+.markdown-preview:not([data-use-github-style]) table { margin: 1.5em 0px; }
+.markdown-preview:not([data-use-github-style]) th { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) th, .markdown-preview:not([data-use-github-style]) td { padding: 0.66em 1em; border: 1px solid rgb(75, 83, 98); }
+.markdown-preview:not([data-use-github-style]) code { color: rgb(255, 255, 255); background-color: rgb(58, 63, 75); }
+.markdown-preview:not([data-use-github-style]) pre.editor-colors { margin: 1.5em 0px; padding: 1em; font-size: 0.92em; border-radius: 3px; background-color: rgb(49, 54, 63); }
+.markdown-preview:not([data-use-github-style]) kbd { color: rgb(255, 255, 255); border-width: 1px 1px 2px; border-style: solid; border-color: rgb(75, 83, 98) rgb(75, 83, 98) rgb(62, 68, 81); background-color: rgb(58, 63, 75); }
+.markdown-preview[data-use-github-style] { font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif; line-height: 1.6; word-wrap: break-word; padding: 30px; font-size: 16px; color: rgb(51, 51, 51); overflow: scroll; background-color: rgb(255, 255, 255); }
+.markdown-preview[data-use-github-style] > :first-child { margin-top: 0px !important; }
+.markdown-preview[data-use-github-style] > :last-child { margin-bottom: 0px !important; }
+.markdown-preview[data-use-github-style] a:not([href]) { color: inherit; text-decoration: none; }
+.markdown-preview[data-use-github-style] .absent { color: rgb(204, 0, 0); }
+.markdown-preview[data-use-github-style] .anchor { position: absolute; top: 0px; left: 0px; display: block; padding-right: 6px; padding-left: 30px; margin-left: -30px; }
+.markdown-preview[data-use-github-style] .anchor:focus { outline: none; }
+.markdown-preview[data-use-github-style] h1, .markdown-preview[data-use-github-style] h2, .markdown-preview[data-use-github-style] h3, .markdown-preview[data-use-github-style] h4, .markdown-preview[data-use-github-style] h5, .markdown-preview[data-use-github-style] h6 { position: relative; margin-top: 1em; margin-bottom: 16px; font-weight: bold; line-height: 1.4; }
+.markdown-preview[data-use-github-style] h1 .octicon-link, .markdown-preview[data-use-github-style] h2 .octicon-link, .markdown-preview[data-use-github-style] h3 .octicon-link, .markdown-preview[data-use-github-style] h4 .octicon-link, .markdown-preview[data-use-github-style] h5 .octicon-link, .markdown-preview[data-use-github-style] h6 .octicon-link { display: none; color: rgb(0, 0, 0); vertical-align: middle; }
+.markdown-preview[data-use-github-style] h1:hover .anchor, .markdown-preview[data-use-github-style] h2:hover .anchor, .markdown-preview[data-use-github-style] h3:hover .anchor, .markdown-preview[data-use-github-style] h4:hover .anchor, .markdown-preview[data-use-github-style] h5:hover .anchor, .markdown-preview[data-use-github-style] h6:hover .anchor { padding-left: 8px; margin-left: -30px; text-decoration: none; }
+.markdown-preview[data-use-github-style] h1:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h2:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h3:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h4:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h5:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h6:hover .anchor .octicon-link { display: inline-block; }
+.markdown-preview[data-use-github-style] h1 tt, .markdown-preview[data-use-github-style] h2 tt, .markdown-preview[data-use-github-style] h3 tt, .markdown-preview[data-use-github-style] h4 tt, .markdown-preview[data-use-github-style] h5 tt, .markdown-preview[data-use-github-style] h6 tt, .markdown-preview[data-use-github-style] h1 code, .markdown-preview[data-use-github-style] h2 code, .markdown-preview[data-use-github-style] h3 code, .markdown-preview[data-use-github-style] h4 code, .markdown-preview[data-use-github-style] h5 code, .markdown-preview[data-use-github-style] h6 code { font-size: inherit; }
+.markdown-preview[data-use-github-style] h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238); }
+.markdown-preview[data-use-github-style] h1 .anchor { line-height: 1; }
+.markdown-preview[data-use-github-style] h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238); }
+.markdown-preview[data-use-github-style] h2 .anchor { line-height: 1; }
+.markdown-preview[data-use-github-style] h3 { font-size: 1.5em; line-height: 1.43; }
+.markdown-preview[data-use-github-style] h3 .anchor { line-height: 1.2; }
+.markdown-preview[data-use-github-style] h4 { font-size: 1.25em; }
+.markdown-preview[data-use-github-style] h4 .anchor { line-height: 1.2; }
+.markdown-preview[data-use-github-style] h5 { font-size: 1em; }
+.markdown-preview[data-use-github-style] h5 .anchor { line-height: 1.1; }
+.markdown-preview[data-use-github-style] h6 { font-size: 1em; color: rgb(119, 119, 119); }
+.markdown-preview[data-use-github-style] h6 .anchor { line-height: 1.1; }
+.markdown-preview[data-use-github-style] p, .markdown-preview[data-use-github-style] blockquote, .markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol, .markdown-preview[data-use-github-style] dl, .markdown-preview[data-use-github-style] table, .markdown-preview[data-use-github-style] pre { margin-top: 0px; margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] hr { height: 4px; padding: 0px; margin: 16px 0px; border: 0px none; background-color: rgb(231, 231, 231); }
+.markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol { padding-left: 2em; }
+.markdown-preview[data-use-github-style] ul.no-list, .markdown-preview[data-use-github-style] ol.no-list { padding: 0px; list-style-type: none; }
+.markdown-preview[data-use-github-style] ul ul, .markdown-preview[data-use-github-style] ul ol, .markdown-preview[data-use-github-style] ol ol, .markdown-preview[data-use-github-style] ol ul { margin-top: 0px; margin-bottom: 0px; }
+.markdown-preview[data-use-github-style] li > p { margin-top: 16px; }
+.markdown-preview[data-use-github-style] dl { padding: 0px; }
+.markdown-preview[data-use-github-style] dl dt { padding: 0px; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; }
+.markdown-preview[data-use-github-style] dl dd { padding: 0px 16px; margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] blockquote { padding: 0px 15px; color: rgb(119, 119, 119); border-left-width: 4px; border-left-style: solid; border-left-color: rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] blockquote > :first-child { margin-top: 0px; }
+.markdown-preview[data-use-github-style] blockquote > :last-child { margin-bottom: 0px; }
+.markdown-preview[data-use-github-style] table { display: block; width: 100%; overflow: auto; word-break: keep-all; }
+.markdown-preview[data-use-github-style] table th { font-weight: bold; }
+.markdown-preview[data-use-github-style] table th, .markdown-preview[data-use-github-style] table td { padding: 6px 13px; border: 1px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] table tr { border-top-width: 1px; border-top-style: solid; border-top-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255); }
+.markdown-preview[data-use-github-style] table tr:nth-child(2n) { background-color: rgb(248, 248, 248); }
+.markdown-preview[data-use-github-style] img { max-width: 100%; box-sizing: border-box; }
+.markdown-preview[data-use-github-style] .emoji { max-width: none; }
+.markdown-preview[data-use-github-style] span.frame { display: block; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.frame > span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0px 0px; overflow: hidden; border: 1px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] span.frame span img { display: block; float: left; }
+.markdown-preview[data-use-github-style] span.frame span span { display: block; padding: 5px 0px 0px; clear: both; color: rgb(51, 51, 51); }
+.markdown-preview[data-use-github-style] span.align-center { display: block; overflow: hidden; clear: both; }
+.markdown-preview[data-use-github-style] span.align-center > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: center; }
+.markdown-preview[data-use-github-style] span.align-center span img { margin: 0px auto; text-align: center; }
+.markdown-preview[data-use-github-style] span.align-right { display: block; overflow: hidden; clear: both; }
+.markdown-preview[data-use-github-style] span.align-right > span { display: block; margin: 13px 0px 0px; overflow: hidden; text-align: right; }
+.markdown-preview[data-use-github-style] span.align-right span img { margin: 0px; text-align: right; }
+.markdown-preview[data-use-github-style] span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.float-left span { margin: 13px 0px 0px; }
+.markdown-preview[data-use-github-style] span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.float-right > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: right; }
+.markdown-preview[data-use-github-style] code, .markdown-preview[data-use-github-style] tt { padding: 0.2em 0px; margin: 0px; font-size: 85%; border-radius: 3px; background-color: rgba(0, 0, 0, 0.0392157); }
+.markdown-preview[data-use-github-style] code::before, .markdown-preview[data-use-github-style] tt::before, .markdown-preview[data-use-github-style] code::after, .markdown-preview[data-use-github-style] tt::after { letter-spacing: -0.2em; content: " "; }
+.markdown-preview[data-use-github-style] code br, .markdown-preview[data-use-github-style] tt br { display: none; }
+.markdown-preview[data-use-github-style] del code { text-decoration: inherit; }
+.markdown-preview[data-use-github-style] pre > code { padding: 0px; margin: 0px; font-size: 100%; word-break: normal; white-space: pre; border: 0px; background: transparent; }
+.markdown-preview[data-use-github-style] .highlight { margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] .highlight pre, .markdown-preview[data-use-github-style] pre { padding: 16px; overflow: auto; font-size: 85%; line-height: 1.45; border-radius: 3px; background-color: rgb(247, 247, 247); }
+.markdown-preview[data-use-github-style] .highlight pre { margin-bottom: 0px; word-break: normal; }
+.markdown-preview[data-use-github-style] pre { word-wrap: normal; }
+.markdown-preview[data-use-github-style] pre code, .markdown-preview[data-use-github-style] pre tt { display: inline; max-width: initial; padding: 0px; margin: 0px; overflow: initial; line-height: inherit; word-wrap: normal; border: 0px; background-color: transparent; }
+.markdown-preview[data-use-github-style] pre code::before, .markdown-preview[data-use-github-style] pre tt::before, .markdown-preview[data-use-github-style] pre code::after, .markdown-preview[data-use-github-style] pre tt::after { content: normal; }
+.markdown-preview[data-use-github-style] kbd { display: inline-block; padding: 3px 5px; font-size: 11px; line-height: 10px; color: rgb(85, 85, 85); vertical-align: middle; border-style: solid; border-width: 1px; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(187, 187, 187); border-radius: 3px; box-shadow: rgb(187, 187, 187) 0px -1px 0px inset; background-color: rgb(252, 252, 252); }
+.markdown-preview[data-use-github-style] a { color: rgb(51, 122, 183); }
+.markdown-preview[data-use-github-style] code { color: inherit; }
+.markdown-preview[data-use-github-style] pre.editor-colors { padding: 0.8em 1em; margin-bottom: 1em; font-size: 0.85em; border-radius: 4px; overflow: auto; }
+.scrollbars-visible-always .markdown-preview pre.editor-colors::shadow .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors::shadow .horizontal-scrollbar { visibility: hidden; }
+.scrollbars-visible-always .markdown-preview pre.editor-colors:hover::shadow .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors:hover::shadow .horizontal-scrollbar { visibility: visible; }
+.bracket-matcher .region {
+  border-bottom: 1px dotted lime;
+  position: absolute;
+}
+
+.spell-check-misspelling .region {
+  border-bottom: 2px dotted rgba(255, 51, 51, 0.75);
+}
+
+pre.editor-colors,
+.host {
+  background-color: #282c34;
+  color: #abb2bf;
+}
+pre.editor-colors .line.cursor-line,
+.host .line.cursor-line {
+  background-color: rgba(153, 187, 255, 0.04);
+}
+pre.editor-colors .invisible,
+.host .invisible {
+  color: #abb2bf;
+}
+pre.editor-colors .cursor,
+.host .cursor {
+  border-left: 2px solid #528bff;
+}
+pre.editor-colors .selection .region,
+.host .selection .region {
+  background-color: #3e4451;
+}
+pre.editor-colors .bracket-matcher .region,
+.host .bracket-matcher .region {
+  border-bottom: 1px solid #528bff;
+  box-sizing: border-box;
+}
+pre.editor-colors .invisible-character,
+.host .invisible-character {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .indent-guide,
+.host .indent-guide {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .wrap-guide,
+.host .wrap-guide {
+  background-color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .gutter .line-number,
+.host .gutter .line-number {
+  color: #636d83;
+  -webkit-font-smoothing: antialiased;
+}
+pre.editor-colors .gutter .line-number.cursor-line,
+.host .gutter .line-number.cursor-line {
+  color: #abb2bf;
+  background-color: #2c313a;
+}
+pre.editor-colors .gutter .line-number.cursor-line-no-selection,
+.host .gutter .line-number.cursor-line-no-selection {
+  background-color: transparent;
+}
+pre.editor-colors .gutter .line-number .icon-right,
+.host .gutter .line-number .icon-right {
+  color: #abb2bf;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before,
+.host .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before {
+  bottom: -3px;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed::after,
+.host .gutter:not(.git-diff-icon) .line-number.git-line-removed::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 25px;
+  border-bottom: 1px dotted rgba(224, 82, 82, 0.5);
+  pointer-events: none;
+}
+pre.editor-colors .gutter .line-number.folded,
+.host .gutter .line-number.folded,
+pre.editor-colors .gutter .line-number:after,
+.host .gutter .line-number:after,
+pre.editor-colors .fold-marker:after,
+.host .fold-marker:after {
+  color: #abb2bf;
+}
+.comment {
+  color: #5c6370;
+  font-style: italic;
+}
+.comment .markup.link {
+  color: #5c6370;
+}
+.entity.name.type {
+  color: #e5c07b;
+}
+.entity.other.inherited-class {
+  color: #98c379;
+}
+.keyword {
+  color: #c678dd;
+}
+.keyword.control {
+  color: #c678dd;
+}
+.keyword.operator {
+  color: #abb2bf;
+}
+.keyword.other.special-method {
+  color: #61afef;
+}
+.keyword.other.unit {
+  color: #d19a66;
+}
+.storage {
+  color: #c678dd;
+}
+.storage.type.annotation,
+.storage.type.primitive {
+  color: #c678dd;
+}
+.storage.modifier.package,
+.storage.modifier.import {
+  color: #abb2bf;
+}
+.constant {
+  color: #d19a66;
+}
+.constant.variable {
+  color: #d19a66;
+}
+.constant.character.escape {
+  color: #56b6c2;
+}
+.constant.numeric {
+  color: #d19a66;
+}
+.constant.other.color {
+  color: #56b6c2;
+}
+.constant.other.symbol {
+  color: #56b6c2;
+}
+.variable {
+  color: #e06c75;
+}
+.variable.interpolation {
+  color: #be5046;
+}
+.variable.parameter {
+  color: #abb2bf;
+}
+.string {
+  color: #98c379;
+}
+.string.regexp {
+  color: #56b6c2;
+}
+.string.regexp .source.ruby.embedded {
+  color: #e5c07b;
+}
+.string.other.link {
+  color: #e06c75;
+}
+.punctuation.definition.comment {
+  color: #5c6370;
+}
+.punctuation.definition.method-parameters,
+.punctuation.definition.function-parameters,
+.punctuation.definition.parameters,
+.punctuation.definition.separator,
+.punctuation.definition.seperator,
+.punctuation.definition.array {
+  color: #abb2bf;
+}
+.punctuation.definition.heading,
+.punctuation.definition.identity {
+  color: #61afef;
+}
+.punctuation.definition.bold {
+  color: #e5c07b;
+  font-weight: bold;
+}
+.punctuation.definition.italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.punctuation.section.embedded {
+  color: #be5046;
+}
+.punctuation.section.method,
+.punctuation.section.class,
+.punctuation.section.inner-class {
+  color: #abb2bf;
+}
+.support.class {
+  color: #e5c07b;
+}
+.support.type {
+  color: #56b6c2;
+}
+.support.function {
+  color: #56b6c2;
+}
+.support.function.any-method {
+  color: #61afef;
+}
+.entity.name.function {
+  color: #61afef;
+}
+.entity.name.class,
+.entity.name.type.class {
+  color: #e5c07b;
+}
+.entity.name.section {
+  color: #61afef;
+}
+.entity.name.tag {
+  color: #e06c75;
+}
+.entity.other.attribute-name {
+  color: #d19a66;
+}
+.entity.other.attribute-name.id {
+  color: #61afef;
+}
+.meta.class {
+  color: #e5c07b;
+}
+.meta.class.body {
+  color: #abb2bf;
+}
+.meta.method-call,
+.meta.method {
+  color: #abb2bf;
+}
+.meta.definition.variable {
+  color: #e06c75;
+}
+.meta.link {
+  color: #d19a66;
+}
+.meta.require {
+  color: #61afef;
+}
+.meta.selector {
+  color: #c678dd;
+}
+.meta.separator {
+  background-color: #373b41;
+  color: #abb2bf;
+}
+.meta.tag {
+  color: #abb2bf;
+}
+.underline {
+  text-decoration: underline;
+}
+.none {
+  color: #abb2bf;
+}
+.invalid.deprecated {
+  color: #523d14 !important;
+  background-color: #e0c285 !important;
+}
+.invalid.illegal {
+  color: #ffffff !important;
+  background-color: #e05252 !important;
+}
+.markup.bold {
+  color: #d19a66;
+  font-weight: bold;
+}
+.markup.changed {
+  color: #c678dd;
+}
+.markup.deleted {
+  color: #e06c75;
+}
+.markup.italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.markup.heading {
+  color: #e06c75;
+}
+.markup.heading .punctuation.definition.heading {
+  color: #61afef;
+}
+.markup.link {
+  color: #c678dd;
+}
+.markup.inserted {
+  color: #98c379;
+}
+.markup.quote {
+  color: #d19a66;
+}
+.markup.raw {
+  color: #98c379;
+}
+.source.cs .keyword.operator {
+  color: #c678dd;
+}
+.source.css .property-name,
+.source.css .property-value {
+  color: #828997;
+}
+.source.css .property-name.support,
+.source.css .property-value.support {
+  color: #abb2bf;
+}
+.source.gfm .markup {
+  -webkit-font-smoothing: auto;
+}
+.source.gfm .link .entity {
+  color: #61afef;
+}
+.source.ini .keyword.other.definition.ini {
+  color: #e06c75;
+}
+.source.java .storage.modifier.import {
+  color: #e5c07b;
+}
+.source.java .storage.type {
+  color: #e5c07b;
+}
+.source.java-properties .meta.key-pair {
+  color: #e06c75;
+}
+.source.java-properties .meta.key-pair > .punctuation {
+  color: #abb2bf;
+}
+.source.js .keyword.operator {
+  color: #56b6c2;
+}
+.source.js .keyword.operator.delete,
+.source.js .keyword.operator.in,
+.source.js .keyword.operator.of,
+.source.js .keyword.operator.instanceof,
+.source.js .keyword.operator.new,
+.source.js .keyword.operator.typeof,
+.source.js .keyword.operator.void {
+  color: #c678dd;
+}
+.source.json .meta.structure.dictionary.json > .string.quoted.json {
+  color: #e06c75;
+}
+.source.json .meta.structure.dictionary.json > .string.quoted.json > .punctuation.string {
+  color: #e06c75;
+}
+.source.json .meta.structure.dictionary.json > .value.json > .string.quoted.json,
+.source.json .meta.structure.array.json > .value.json > .string.quoted.json,
+.source.json .meta.structure.dictionary.json > .value.json > .string.quoted.json > .punctuation,
+.source.json .meta.structure.array.json > .value.json > .string.quoted.json > .punctuation {
+  color: #98c379;
+}
+.source.json .meta.structure.dictionary.json > .constant.language.json,
+.source.json .meta.structure.array.json > .constant.language.json {
+  color: #56b6c2;
+}
+.source.ruby .constant.other.symbol > .punctuation {
+  color: inherit;
+}
+.source.python .keyword.operator.logical.python {
+  color: #c678dd;
+}
+.source.python .variable.parameter {
+  color: #d19a66;
+}
+</style>
+  </head>
+  <body class='markdown-preview' data-use-github-style><h1 id="workflowdefinition">WorkflowDefinition</h1>
+<h2 id="overview">Overview</h2>
+<p><code>WorkflowDefinition</code> represent the core work that your app needs to do, while <code>EntityDefinition</code> represents set of data definition for you app.<code>WorkflowDefinition</code> is much richer in terms of capabilities and complexities. It used primarily to build a <code>state-machine</code> for your application, which could represent a long running process with the ability to be persisted and de-hydrated when the moment comes.</p>
+<h2 id="variables">Variables</h2>
+<p><code>WorkflowDefinition</code> is just a simple object with attributes, or fields, but we call them <code>Variable</code>. The <code>Variables</code> holds the user state of an <code>instance</code>.These are normally things that goes into your <code>ScreenActivity</code> forms, as well as other states variables such loop counter etc.</p>
+<p><code>Variables</code> are the things that your workflow interact with. Lets walk through an example for a workflow to process a referral request for specialist, in a traditional code development, we might write something like</p>
+<pre class="editor-colors lang-csharp"><div class="line"><span class="source cs"><span class="meta class cs"><span class="storage modifier cs"><span>public</span></span><span>&nbsp;</span><span class="meta class identifier cs"><span class="storage modifier cs"><span>class</span></span><span>&nbsp;</span><span class="entity name type class cs"><span>ProcessReferral</span></span></span><span>&nbsp;</span><span>:</span><span>&nbsp;</span><span class="storage type cs"><span>Workflow</span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span class="punctuation section class begin cs"><span>{</span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment line double-slash cs"><span>//</span><span>&nbsp;a&nbsp;member&nbsp;to&nbsp;hold&nbsp;the&nbsp;patient&nbsp;object</span><span>&nbsp;</span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta property cs"><span class="storage modifier cs"><span>public</span></span><span>&nbsp;</span><span class="meta method return-type cs"><span>Patient&nbsp;</span></span><span class="meta method identifier cs"><span class="entity name function cs"><span>Patient</span></span></span><span class="meta method body cs"><span class="punctuation section property begin cs"><span>{</span></span><span class="keyword other cs"><span>set</span></span><span>;</span><span class="keyword other cs"><span>get</span></span><span>;</span></span><span class="punctuation section property end cs"><span>}</span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;</span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment line double-slash cs"><span>//</span><span>&nbsp;a&nbsp;member&nbsp;for&nbsp;the&nbsp;requested&nbsp;specialist</span><span>&nbsp;</span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta property cs"><span class="storage modifier cs"><span>public</span></span><span>&nbsp;</span><span class="meta method return-type cs"><span class="storage type cs"><span>string</span></span><span>&nbsp;</span></span><span class="meta method identifier cs"><span class="entity name function cs"><span>Specialist</span></span></span><span class="meta method body cs"><span class="punctuation section property begin cs"><span>{</span></span><span class="keyword other cs"><span>set</span></span><span>;</span><span class="keyword other cs"><span>get</span></span><span>;</span></span><span class="punctuation section property end cs"><span>}</span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;</span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment line double-slash cs"><span>//</span><span>..&nbsp;other&nbsp;members&nbsp;and&nbsp;methods</span><span>&nbsp;</span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;</span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;</span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="punctuation section class end cs"><span>}</span></span></span></span></div></pre>
+<p>So all your variables will be written as public field in your <code>Workflow</code> class, in which you will manipulate these <code>Variables</code> as <code>Activities</code> are executed.</p>
+<p><a href="Variable.html">See more about variables here</a></p>
+<h2 id="activities">Activities</h2>
+<p><code>Variables</code> to lets you define states for your <code>Workflow</code>, and <code>Activity</code> is the way you define <code>Operation</code> for your <code>Workflow</code>. If we were to illustrate a <code>Workflow</code> with traditional code approach. This is what we have</p>
+<pre class="editor-colors lang-csharp"><div class="line"><span class="source cs"><span class="meta class cs"><span class="storage modifier cs"><span>public</span></span><span>&nbsp;</span><span class="meta class identifier cs"><span class="storage modifier cs"><span>class</span></span><span>&nbsp;</span><span class="entity name type class cs"><span>ProcessReferral</span></span></span><span>&nbsp;</span><span>:</span><span>&nbsp;</span><span class="storage type cs"><span>Workflow</span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span class="punctuation section class begin cs"><span>{</span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment line double-slash cs"><span>//</span><span>&nbsp;a&nbsp;member&nbsp;to&nbsp;hold&nbsp;the&nbsp;patient&nbsp;object</span><span>&nbsp;</span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta property cs"><span class="storage modifier cs"><span>public</span></span><span>&nbsp;</span><span class="meta method return-type cs"><span>Patient&nbsp;</span></span><span class="meta method identifier cs"><span class="entity name function cs"><span>Patient</span></span></span><span class="meta method body cs"><span class="punctuation section property begin cs"><span>{</span></span><span class="keyword other cs"><span>set</span></span><span>;</span><span class="keyword other cs"><span>get</span></span><span>;</span></span><span class="punctuation section property end cs"><span>}</span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;</span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment line double-slash cs"><span>//</span><span>&nbsp;a&nbsp;member&nbsp;for&nbsp;the&nbsp;requested&nbsp;specialist</span><span>&nbsp;</span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta property cs"><span class="storage modifier cs"><span>public</span></span><span>&nbsp;</span><span class="meta method return-type cs"><span class="storage type cs"><span>string</span></span><span>&nbsp;</span></span><span class="meta method identifier cs"><span class="entity name function cs"><span>Specialist</span></span></span><span class="meta method body cs"><span class="punctuation section property begin cs"><span>{</span></span><span class="keyword other cs"><span>set</span></span><span>;</span><span class="keyword other cs"><span>get</span></span><span>;</span></span><span class="punctuation section property end cs"><span>}</span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;</span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment line double-slash cs"><span>//</span><span>&nbsp;a&nbsp;member&nbsp;for&nbsp;the&nbsp;specialist</span><span>&nbsp;</span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta property cs"><span class="storage modifier cs"><span>public</span></span><span>&nbsp;</span><span class="meta method return-type cs"><span class="storage type cs"><span>string</span></span><span>&nbsp;</span></span><span class="meta method identifier cs"><span class="entity name function cs"><span>Specialist</span></span></span><span class="meta method body cs"><span class="punctuation section property begin cs"><span>{</span></span><span class="keyword other cs"><span>set</span></span><span>;</span><span class="keyword other cs"><span>get</span></span><span>;</span></span><span class="punctuation section property end cs"><span>}</span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;</span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment line double-slash cs"><span>//</span><span>&nbsp;a&nbsp;member&nbsp;for&nbsp;the&nbsp;specialist&nbsp;response</span><span>&nbsp;</span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta property cs"><span class="storage modifier cs"><span>public</span></span><span>&nbsp;</span><span class="meta method return-type cs"><span class="storage type cs"><span>string</span></span><span>&nbsp;</span></span><span class="meta method identifier cs"><span class="entity name function cs"><span>Response</span></span></span><span class="meta method body cs"><span class="punctuation section property begin cs"><span>{</span></span><span class="keyword other cs"><span>set</span></span><span>;</span><span class="keyword other cs"><span>get</span></span><span>;</span></span><span class="punctuation section property end cs"><span>}</span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;</span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment line double-slash cs"><span>//</span><span>&nbsp;The&nbsp;actual&nbsp;workflow</span><span>&nbsp;</span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta method cs"><span class="storage modifier cs"><span>public</span></span><span>&nbsp;</span><span class="storage type cs"><span>void</span></span><span>&nbsp;</span><span class="meta method identifier cs"><span class="entity name function cs"><span>Start</span></span><span>(</span><span>)</span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span class="meta method cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta method body cs"><span class="punctuation section method begin cs"><span>{</span></span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span class="meta method cs"><span class="meta method body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="constant language cs"><span>this</span></span><span>.</span><span class="meta method-call cs"><span class="meta method cs"><span>SendEmailToSpecialist</span></span><span class="punctuation definition method-parameters begin cs"><span>(</span></span><span class="punctuation definition method-parameters end cs"><span>)</span></span></span><span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment line double-slash cs"><span>//</span><span>&nbsp;1</span><span>&nbsp;</span></span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span class="meta method cs"><span class="meta method body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword control cs"><span>await</span></span><span>&nbsp;</span><span class="constant language cs"><span>this</span></span><span>.</span><span class="meta method-call cs"><span class="meta method cs"><span>InitSpecialistConfirmation</span></span><span class="punctuation definition method-parameters begin cs"><span>(</span></span><span class="punctuation definition method-parameters end cs"><span>)</span></span></span><span>;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment line double-slash cs"><span>//</span><span>&nbsp;2</span><span>&nbsp;</span></span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span class="meta method cs"><span class="meta method body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword control cs"><span>if</span></span><span>(</span><span class="constant language cs"><span>this</span></span><span>.Response&nbsp;==&nbsp;</span><span class="string quoted double cs"><span class="punctuation definition string begin cs"><span>&quot;</span></span><span>Yes</span><span class="punctuation definition string end cs"><span>&quot;</span></span></span><span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment line double-slash cs"><span>//</span><span>&nbsp;</span></span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span class="meta method cs"><span class="meta method body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="constant language cs"><span>this</span></span><span>.</span><span class="meta method-call cs"><span class="meta method cs"><span>CreateAppointmentActivity</span></span><span class="punctuation definition method-parameters begin cs"><span>(</span></span><span class="punctuation definition method-parameters end cs"><span>)</span></span></span><span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment line double-slash cs"><span>//</span><span>&nbsp;3</span><span>&nbsp;</span></span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span class="meta method cs"><span class="meta method body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword control cs"><span>else</span></span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span class="meta method cs"><span class="meta method body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="constant language cs"><span>this</span></span><span>.</span><span class="meta method-call cs"><span class="meta method cs"><span>EmailPatientDeclined</span></span><span class="punctuation definition method-parameters begin cs"><span>(</span></span><span class="punctuation definition method-parameters end cs"><span>)</span></span></span><span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment line double-slash cs"><span>//</span><span>&nbsp;3</span><span>&nbsp;</span></span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span class="meta method cs"><span class="meta method body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="punctuation section method end cs"><span>}</span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;</span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment line double-slash cs"><span>//</span><span>&nbsp;send&nbsp;email&nbsp;activity</span><span>&nbsp;</span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta method cs"><span class="storage modifier cs"><span>public</span></span><span>&nbsp;</span><span class="storage type cs"><span>void</span></span><span>&nbsp;</span><span class="meta method identifier cs"><span class="entity name function cs"><span>SendEmailToSpecialist</span></span><span>(</span><span>)</span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span class="meta method cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta method body cs"><span class="punctuation section method begin cs"><span>{</span></span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span class="meta method cs"><span class="meta method body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="storage type var cs"><span>var</span></span><span>&nbsp;smtp&nbsp;=&nbsp;</span><span class="storage modifier cs"><span>new</span></span><span>&nbsp;</span><span class="meta method-call cs"><span class="meta method cs"><span>SmtpClient</span></span><span class="punctuation definition method-parameters begin cs"><span>(</span></span><span class="punctuation definition method-parameters end cs"><span>)</span></span></span><span>;</span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span class="meta method cs"><span class="meta method body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;smtp.</span><span class="meta method-call cs"><span class="meta method cs"><span>Send</span></span><span class="punctuation definition method-parameters begin cs"><span>(</span></span><span>to:</span><span class="constant language cs"><span>this</span></span><span>.Specialist</span><span class="punctuation definition seperator parameter cs"><span>,</span></span><span>subject:&nbsp;</span><span class="string quoted double cs"><span class="punctuation definition string begin cs"><span>&quot;</span></span><span>&nbsp;Referral&nbsp;request&nbsp;for&nbsp;</span><span class="punctuation definition string end cs"><span>&quot;</span></span></span><span>&nbsp;+&nbsp;</span><span class="constant language cs"><span>this</span></span><span>.Patient.FullName</span><span class="punctuation definition seperator parameter cs"><span>,</span></span><span>&nbsp;body:</span><span class="string quoted double cs"><span class="punctuation definition string begin cs"><span>&quot;</span></span><span>...</span><span class="punctuation definition string end cs"><span>&quot;</span></span></span><span class="punctuation definition method-parameters end cs"><span>)</span></span></span><span>;</span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span class="meta method cs"><span class="meta method body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="punctuation section method end cs"><span>}</span></span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;</span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;</span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment line double-slash cs"><span>//</span><span>..&nbsp;other&nbsp;members&nbsp;and&nbsp;methods</span><span>&nbsp;</span></span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;</span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;</span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="meta class body cs"><span>&nbsp;</span></span></span></span></div><div class="line"><span class="source cs"><span class="meta class cs"><span class="punctuation section class end cs"><span>}</span></span></span></span></div></pre>
+<p>As you can see, <code>Activities</code> is nothing more than a function to perform an <code>Operation</code>, what it differs between the normal class is, it&#39;s ability to be persisted between activities.</p>
+<p><code>Rx Developer</code> <code>WorkflowDesigner</code> on the hand lets you forget about writing the code altogether, instead it will help generate the codes for you. The benefits of using <code>WorkflowDesigner</code> are tremendous, the code are tested to be robust, less chances for bugs, it also encapsulate the developers from the inner working of a state machince and let you focus on your actual business needs.</p>
+<p>Core concepts of <code>Workflow</code> is a series of <code>Activities</code> it contains, these activities are generally can be divided into 2 categories</p>
+<ul>
+<li>System Activity</li>
+<li>Human Activity</li>
+</ul>
+<p>An <code>Activity</code> is a unit of work performed by the Workflow engine, it&#39;s like a method in your <code>EntityDefinition</code>, except that it could be persisted when it&#39;s done,befor continuing for the <code>NextActivity</code></p>
+<h3 id="system-activity">System Activity</h3>
+<p>Represent set of <code>Activities</code> executed by the workflow engine</p>
+<h3 id="human-activity">Human Activity</h3>
+<p>Represent set of <code>Activities</code> performed by human or external system. <code>ScreenActivity</code> and <code>ReceiveActivity</code> are the most common one.</p>
+<h3 id="asynchronous-activity">Asynchronous Activity</h3>
+<p>There are other aspects in <code>Activity</code> execution, what we call it&#39;s <code>Asynchronous</code>. This is a behaviour that some activities have which allow them to be initiated and at some point of time in the future, be executed. Most of human <code>Activity</code> are at the same time <code>Asynchronous</code>, i.e. they get initiated before it could be executed. Take <code>ScreenActivity</code> for example, it will not be executed directly, but initiated when it turns to execute. What happen is, in the initializing process, emails and notification will be sent to the <code>performers</code> for the task. Once the email sent, the <code>performer</code> will have a link point for the execution, the moment he clicks the submit button, the <code>Activity</code> is executed.</p>
+<h2 id="properties">Properties</h2>
+<table class="table table-condensed table-bordered">
+    <thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>ActivityCollection</td><td> - The list of activities for you Workflow, use the designer to add or remove activities </td></tr>
+<tr><td>VariableDefinitionCollection</td><td> - The list of variables available to your workflow</td></tr>
+<tr><td>WorkflowDefinitionId</td><td> - The primary identity for your workflow, this is auto assigned and it will be embedded within your workflow</td></tr>
+<tr><td>Name</td><td> - The name of your workflow </td></tr>
+<tr><td>Note</td><td> - Any note for developers used only</td></tr>
+<tr><td>IsActive</td><td> - Is it running or not</td></tr>
+<tr><td>SchemaStoreId</td><td> - A default empty schema is provided, you should replace this schema with your own</td></tr>
+<tr><td>Version</td><td> - Version is an internal identification number for your workflow. It used primarily when you have breaking changes to your workflow and there are existing one still running.</td></tr>
+<tr><td>WorkflowTypeName</td><td> - Internal use</td></tr>
+<tr><td>CodeNamespace</td><td> - Internal use</td></tr>
+</tbody></table>
+
+
+
+<h2 id="see-also">See also</h2>
+<p><a href="workflow-pending-tasks.html">Pending tasks in workflow</a>
+<br>
+<a href="workflow-form.html">Workflow form for your ReceiveActivity</a></p></body>
+</html>

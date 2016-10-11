@@ -1,0 +1,12 @@
+{
+   "pendingtask": {
+      "properties": {
+         "WorkflowId": { "type": "string", "index": "not_analyzed"},
+         "WorkflowDefinitionId": { "type": "string", "index": "not_analyzed"},
+         "ActivityName": { "type": "string", "index": "not_analyzed"},
+         "ActivityWebId":{ "type": "string", "index": "not_analyzed"},
+         "Type":{ "type": "string", "index": "not_analyzed"},
+         "Correlations":{ "type": "string", "index": "not_analyzed"}
+      }
+   }
+}

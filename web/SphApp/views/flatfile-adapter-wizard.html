@@ -1,0 +1,97 @@
+﻿
+<section class="view-model-modal" id="flat-file-adapter-wizard-dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" data-bind="click : cancelClick">&times;</button>
+                <h3>Flat File Schema Wizard</h3>
+            </div>
+            <div class="modal-body" data-bind="with: adapter">
+
+                <form class="form-horizontal" id="flat-file-adapter-wizard-dialog-form">
+
+                    <div data-bind="visible: $root.page() === 1">
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-6">
+                                <div class="checkbox">
+                                    <label>
+                                        <input data-bind="checked: IsPositional" id="positional" type="radio" name="IsPositional"/>
+                                        By relative position
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-6">
+                                <div class="checkbox">
+                                    <label>
+                                        <input data-bind="checked: $root.isDelimiter" id="is-delimiter" type="radio" name="IsPositional"/>
+                                        By delimiter symbol
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div data-bind="visible: $root.page() === 2">
+                        <div class="form-group">
+                            <label for="delimiter" class="col-sm-2 control-label">Child Delimiter</label>
+
+                            <div class="col-sm-6">
+                                <input type="text" data-bind="value: Delimiter"
+                                       required="" readonly="readonly"
+                                       class="form-control" id="delimiter">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="escape-char" class="col-sm-2 control-label">Escape Character</label>
+
+                            <div class="col-sm-6">
+                                <input type="text" data-bind="value: EscapeCharacted"
+                                       required
+                                       readonly="readonly"
+                                       class="form-control" id="escape-char">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-6">
+                                <div class="checkbox">
+                                    <label>
+                                        <input data-bind="checked: IsTagIdentifier" id="login-operation" type="checkbox"
+                                               name="IsTagIdentifier" />
+                                        Record has a tag identitfier
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tag" class="col-sm-2 control-label">Tag</label>
+
+                            <div class="col-sm-6">
+                                <input type="text" data-bind="value: Tag"
+                                       class="form-control" id="tag">
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div data-bind="visible: $root.page() === 3"></div>
+                    <div data-bind="visible: $root.page() === 4"></div>
+                    <div data-bind="visible: $root.page() === 5"></div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <input data-dismiss="modal" type="submit" class="btn btn-default" value="&lt; Back" data-bind="click: backClick, enable : backEnable"/>
+                <input data-dismiss="modal" type="submit" class="btn btn-default" value="Next &gt;" data-bind="click: nextClick, enable : nextEnable"/>
+                <input form="flat-file-adapter-wizard-dialog-form" data-dismiss="modal" type="submit" class="btn btn-default" value="OK" data-bind="click: okClick, enable : okEnable"/>
+                <a href="#" class="btn btn-default" data-dismiss="modal" data-bind="click : cancelClick">Cancel</a>
+            </div>
+        </div>
+    </div>
+</section>
