@@ -162,8 +162,9 @@ Invoke-WebRequest -Method Put -Body "" -Uri $esindex  -ContentType "application/
 Get-ChildItem -Filter *.json -Path .\database\mapping `
 | %{
     $mappingUri = $esindex + "/" + $_.Name.ToLowerInvariant().Replace(".json", "") + "/_mapping"
-    Write-Debug "Creating elastic search mapping for $mappingUri"
-    Invoke-WebRequest -Method PUT -Uri $mappingUri -InFile $_.FullName -ContentType "application/javascript"
+    Write-Host "Creating elastic search mapping for $mappingUri"
+    $response = Invoke-WebRequest -Method PUT -Uri $mappingUri -InFile $_.FullName -ContentType "application/javascript"
+    Write-Host $response.StatusCode
 }
 
 Get-ChildItem -Filter *.template -Path .\database\mapping `
@@ -173,8 +174,9 @@ Get-ChildItem -Filter *.template -Path .\database\mapping `
     $templateContent = Get-Content $_.FullName
     $templateJson = $templateContent.Replace("<<application_name>>", $ApplicationName.ToLowerInvariant());
 
-    Write-Debug "Creating elasticsearch index template for $templateName"
-    Invoke-WebRequest -Method PUT -Uri $templateUri -ContentType "application/javascript" -Body $templateJson
+    Write-Host "Creating elasticsearch index template for $templateName"
+    $response = Invoke-WebRequest -Method PUT -Uri $templateUri -ContentType "application/javascript" -Body $templateJson
+    Write-Host ""
 }
 
 
