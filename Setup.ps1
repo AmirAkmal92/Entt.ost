@@ -1,12 +1,12 @@
 ﻿Param(
        [string]$WorkingCopy = ".",
-       [string]$ApplicationName = "",
-       [string]$Port = 0,
-       [string]$SqlServer = "Projects",
-       [string]$DatabaseName = $ApplicationName,
+       [string]$ApplicationName = "Ost",
+       [string]$Port = 50230,
+       [string]$SqlServer = "ProjectsV13",
+       [string]$DatabaseName = "Ost",
        [string]$RabbitMqUserName = "guest",
        [string]$RabbitMqPassword = "guest",
-       [string]$RabbitMqBase = "",
+       [string]$RabbitMqBase = "$PWD\rabbitmq_base",
        [string]$ElasticSearchHost = "http://localhost:9200",
        [string]$ElasticSearchUserName = "",
        [string]$ElasticSearchPassword = "",
@@ -143,11 +143,19 @@ Get-ChildItem -Filter *.sql -Path $WorkingCopy\database\Table `
 
 
 #Rabbitmqctl
+Start-Process -FilePath  .\rabbitmq_server\sbin\rabbitmq-server.bat -WindowStyle Normal
+Write-Host "Waiting for the rabbitmq to starts"
+sleep -Seconds 30
+
 & .\rabbitmq_server\sbin\rabbitmqctl.bat add_vhost "$ApplicationName"
 & .\rabbitmq_server\sbin\rabbitmqctl.bat set_permissions -p "$ApplicationName" $RabbitMqUserName ".*" ".*" ".*"
 & .\rabbitmq_server\sbin\rabbitmq-plugins.bat enable "rabbitmq_management"
 
 #elastic search mappings
+Start-Process -FilePath .\elasticsearch\bin\elasticsearch.bat -WindowStyle Normal
+Write-Host "Waiting for elasticsearch to starts"
+sleep -Seconds 30
+
 $esindex = $ElasticSearchHost + "/" + $ApplicationName.ToLowerInvariant() + "_sys"
 Invoke-WebRequest -Method Put -Body "" -Uri $esindex  -ContentType "application/javascript"
 

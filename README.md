@@ -4,3 +4,25 @@ Clone the repository to your desired location, normally I would go and do
 ```
 git clone https://bespoke.visualstudio.com/DefaultCollection/pos.entt/_git/entt.ost c:\project\work\entt.ost
 ```
+
+Extract the package from my OneDrive [https://1drv.ms/u/s!AnfOLTS4EYc4g5lmE6o_C-BED4DZTQ](Download 10324-01) 
+
+, since web already been extracted you may want to leave it out , except you still need to copy web/bin
+
+
+Now run `Setup.ps1` , use the "-" to override any setup parameters
+
+make sure you have setup your `ERLANG_HOME` and your `JAVA_HOME` correctly
+
+
+## verify your installation
+
+## RabbitmMQ
+Go to http://localhost:15672, see if the broker is running
+
+## SQL Server 
+Use LINQPad in utils to connect to your localdb\ProjectsV13  and see if there's `Ost` database created, check there are tables with Sph schemas and dbo for aspnet* objects
+
+
+# Elasticsearch
+Go to http://localhost:9200/_cat/indices, you see at least `ost_sys`
