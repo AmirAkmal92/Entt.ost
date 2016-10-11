@@ -1,0 +1,78 @@
+{
+  "name": "core",
+  "description": "Development on local machines",
+  "isEnabled": true,
+  "environment": "dev",
+  "subscriberConfigs": [
+    {
+      "instancesCount": 1,
+      "prefetchCount": 1,
+      "priority": 0,
+      "queueName": "Bespoke.Sph.ElasticSearch.CustomEntityIndexerSubscriber",
+      "fullName": "Bespoke.Sph.ElasticSearch.CustomEntityIndexerSubscriber",
+      "assembly": "subscriber.elasticsearch.indexer"
+    },
+    {
+      "instancesCount": 1,
+      "prefetchCount": 1,
+      "priority": 0,
+      "queueName": "system_asset_es_indexer",
+      "fullName": "Bespoke.Sph.ElasticSearch.SystemAssetIndexerSubscriber",
+      "assembly": "subscriber.elasticsearch.indexer"
+    },
+    {
+      "instancesCount": 1,
+      "prefetchCount": 1,
+      "priority": 0,
+      "queueName": "WorkflowFormSubscriber",
+      "fullName": "subscriber.entities.WorkflowFormSubscriber",
+      "assembly": "subscriber.entities"
+    },
+    {
+      "instancesCount": 1,
+      "prefetchCount": 1,
+      "priority": 0,
+      "queueName": "trigger_subs",
+      "fullName": "Bespoke.Sph.CustomTriggers.TriggerSubscriber",
+      "assembly": "subscriber.trigger"
+    },
+    {
+      "instancesCount": 1,
+      "prefetchCount": 1,
+      "priority": 0,
+      "queueName": "watcher_queue",
+      "fullName": "Bespoke.Sph.WathersSubscribers.WatcherSubscriber",
+      "assembly": "subscriber.watcher"
+    },
+    {
+      "instancesCount": 1,
+      "prefetchCount": 1,
+      "priority": 0,
+      "queueName": "child_workflow_monitor",
+      "fullName": "Bespoke.Sph.WorkflowsExecution.ChildWorkflowMonitorSubscriber",
+      "assembly": "subscriber.workflow"
+    },
+    {
+      "instancesCount": 1,
+      "prefetchCount": 1,
+      "priority": 0,
+      "queueName": "workflow_terminated",
+      "fullName": "Bespoke.Sph.WorkflowsExecution.WorkflowInstantTerminatedSubscriber",
+      "assembly": "subscriber.workflow"
+    },
+    {
+      "instancesCount": 1,
+      "prefetchCount": 1,
+      "priority": 0,
+      "queueName": "workflow_execution",
+      "fullName": "Bespoke.Sph.WorkflowsExecution.WorkflowSubscriber",
+      "assembly": "subscriber.workflow"
+    }
+  ],
+  "createdBy": "erymuzuan",
+  "id": "core",
+  "createdDate": "2016-10-07T00:00:00+08:00",
+  "changedBy": "erymuzuan",
+  "changedDate": "2016-10-07T00:00:00+08:00",
+  "webId": "dev"
+}

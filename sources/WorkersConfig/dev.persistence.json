@@ -1,0 +1,22 @@
+{
+  "name": "persistence",
+  "description": "Development on local machines",
+  "isEnabled": true,
+  "environment": "dev",
+  "subscriberConfigs": [
+    {
+      "instancesCount": 4,
+      "prefetchCount": 2,
+      "priority": 3,
+      "queueName": "persistence",
+      "fullName": "Bespoke.Sph.Persistence.PersistenceContextSubscriber",
+      "assembly": "subscriber.persistence"
+    }
+  ],
+  "createdBy": "erymuzuan",
+  "id": "persistence",
+  "createdDate": "2016-10-07T00:00:00+08:00",
+  "changedBy": "erymuzuan",
+  "changedDate": "2016-10-07T00:00:00+08:00",
+  "webId": "dev"
+}

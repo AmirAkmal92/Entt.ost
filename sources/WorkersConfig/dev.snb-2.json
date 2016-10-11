@@ -1,0 +1,13 @@
+{
+  "SubscriberConfigs": [],
+  "Name": "snb2",
+  "Description": "What ever",
+  "IsEnabled": false,
+  "Environment": "dev",
+  "CreatedBy": null,
+  "Id": "dev.snb-2",
+  "CreatedDate": "0001-01-01T00:00:00",
+  "ChangedBy": null,
+  "ChangedDate": "0001-01-01T00:00:00",
+  "WebId": null
+}
