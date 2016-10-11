@@ -1,0 +1,43 @@
+{
+  "$type": "Bespoke.Sph.Domain.EntityView, domain.sph",
+  "ViewColumnCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ViewColumn, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "ConditionalFormattingCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "Performer": {
+    "$type": "Bespoke.Sph.Domain.Performer, domain.sph",
+    "UserProperty": null,
+    "Value": null,
+    "IsPublic": false,
+    "WebId": null
+  },
+  "RouteParameterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.RouteParameter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "IconClass": null,
+  "IconStoreId": null,
+  "EntityDefinitionId": "address-book",
+  "Name": "All AddressBooks",
+  "Route": "address-book-all",
+  "Note": null,
+  "IsPublished": false,
+  "Visibilty": null,
+  "TileColour": null,
+  "CountMessage": null,
+  "Entity": "AddressBook",
+  "Partial": null,
+  "Template": null,
+  "DisplayOnDashboard": false,
+  "Endpoint": null,
+  "CreatedBy": "admin",
+  "Id": "address-book-all",
+  "CreatedDate": "2016-10-11T10:54:53.9068465+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-10-11T10:54:53.9068465+08:00",
+  "WebId": "b29077e0-3193-48be-ab6b-f7df849d812b"
+}

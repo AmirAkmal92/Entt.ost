@@ -1,0 +1,70 @@
+{
+  "$type": "Bespoke.Sph.Domain.EntityForm, domain.sph",
+  "FormDesign": {
+    "$type": "Bespoke.Sph.Domain.FormDesign, domain.sph",
+    "FormElementCollection": {
+      "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FormElement, domain.sph]], domain.sph",
+      "$values": []
+    },
+    "Name": null,
+    "Description": null,
+    "ConfirmationText": null,
+    "ImageStoreId": null,
+    "LabelColLg": null,
+    "LabelColMd": null,
+    "LabelColSm": null,
+    "LabelColXs": null,
+    "InputColLg": null,
+    "InputColMd": null,
+    "InputColSm": null,
+    "InputColXs": null,
+    "WebId": null
+  },
+  "Rules": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "RouteParameterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.RouteParameter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "FormLayoutCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FormLayout, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "EntityDefinitionId": "address-book",
+  "Name": "AddressBook details",
+  "Route": "address-book-details",
+  "Note": null,
+  "IsAllowedNewItem": false,
+  "IconClass": null,
+  "IconStoreId": null,
+  "IsPublished": false,
+  "IsDefault": true,
+  "IsWatchAvailable": false,
+  "IsEmailAvailable": false,
+  "IsPrintAvailable": false,
+  "IsAuditTrailAvailable": false,
+  "IsRemoveAvailable": false,
+  "IsImportAvailable": false,
+  "IsExportAvailable": false,
+  "Operation": null,
+  "Entity": "AddressBook",
+  "Partial": null,
+  "Caption": null,
+  "Layout": null,
+  "OperationSuccessMesage": null,
+  "OperationSuccessNavigateUrl": null,
+  "OperationSuccessCallback": null,
+  "OperationFailureCallback": null,
+  "OperationMethod": null,
+  "DeleteOperation": null,
+  "DeleteOperationSuccessMesage": null,
+  "DeleteOperationSuccessNavigateUrl": null,
+  "CreatedBy": "admin",
+  "Id": "address-book-details",
+  "CreatedDate": "2016-10-11T10:54:53.9068465+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-10-11T10:54:53.9068465+08:00",
+  "WebId": "20c7265a-ad7d-4aa2-8e2f-58271f1d99b5"
+}
