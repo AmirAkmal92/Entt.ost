@@ -34,6 +34,7 @@ got to your `config/applicationHost.config` , now find the line when it says
 <sites...
 
 
-</sites>`
+</sites>
+```
 
 there should be an entry fo `web.ost` that point to your `PWD\web` with binding to port 50230
