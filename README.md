@@ -10,6 +10,24 @@ Extract the package from my OneDrive [Download 10324-01](https://1drv.ms/u/s!Anf
 , since web already been extracted you may want to leave it out , except you still need to copy web/bin
 
 
+## Edit Elasticsearch config manually
+
+Now edit `elasticsearch\config\elasticsearch.yml`
+
+ ```yaml
+ 
+cluster.name={yourmachinename}_ost
+node.name={your-machinename}_ost_001
+
+ndex.number_of_shards: 1
+index.number_of_replicas: 0
+
+
+http.port: 9200
+
+```
+
+
 Now run `Setup.ps1` , use the "-" to override any setup parameters
 
 make sure you have setup your `ERLANG_HOME` and your `JAVA_HOME` correctly
