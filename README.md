@@ -1,4 +1,4 @@
-# Installation guide
+# OST Installation guide
 
 Clone the repository to your desired location, normally I would go and do
 ```
