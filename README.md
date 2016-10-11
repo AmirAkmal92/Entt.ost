@@ -26,3 +26,14 @@ Use LINQPad in utils to connect to your localdb\ProjectsV13  and see if there's 
 
 # Elasticsearch
 Go to http://localhost:9200/_cat/indices, you see at least `ost_sys`
+
+
+# IIS
+got to your `config/applicationHost.config` , now find the line when it says 
+```
+<sites...
+
+
+</sites>`
+
+there should be an entry fo `web.ost` that point to your `PWD\web` with binding to port 50230
