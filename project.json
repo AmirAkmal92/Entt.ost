@@ -1,0 +1,9 @@
+﻿{
+  "elasticsearchIndexNumberOfReplicas": 0,
+  "elasticsearchIndexNumberOfShards": 1,
+  "elasticsearchNodeName": "node_WS27_Ost",
+  "elasticsearchClusterName": "cluster_WS27_Ost",
+  "applicationName": "Ost",
+  "sqlLocalDbName": "ProjectsV13",
+  "updateUri": "http://alpha.reactivedeveloper.com/updates"
+}
