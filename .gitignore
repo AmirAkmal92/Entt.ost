@@ -1,5 +1,6 @@
 utils/
 data/
+config/
 tools/
 subscribers/
 web/bin/
