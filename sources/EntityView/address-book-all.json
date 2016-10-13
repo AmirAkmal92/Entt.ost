@@ -2,7 +2,93 @@
   "$type": "Bespoke.Sph.Domain.EntityView, domain.sph",
   "ViewColumnCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ViewColumn, domain.sph]], domain.sph",
-    "$values": []
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
+        "ConditionalFormattingCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Path": "ReferenceNo",
+        "Header": "Reference No",
+        "Sort": "",
+        "IsLinkColumn": true,
+        "FormRoute": "address-book-update",
+        "IconCssClass": "",
+        "IconStoreId": "",
+        "Format": "text:{0}",
+        "RouteValueField": "",
+        "WebId": "91a3c519-ea80-4e75-c42f-7722ed0bb504"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
+        "ConditionalFormattingCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Path": "GroupAddress",
+        "Header": "Group",
+        "Sort": "",
+        "IsLinkColumn": false,
+        "FormRoute": null,
+        "IconCssClass": "",
+        "IconStoreId": "",
+        "Format": "text:{0}",
+        "RouteValueField": "",
+        "WebId": "6e81190c-3e0e-4259-9811-dfb279317664"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
+        "ConditionalFormattingCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Path": "Address.CompanyName",
+        "Header": "Company Name",
+        "Sort": "",
+        "IsLinkColumn": false,
+        "FormRoute": null,
+        "IconCssClass": "",
+        "IconStoreId": "",
+        "Format": "text:{0}",
+        "RouteValueField": "",
+        "WebId": "57e19838-00ad-4ed0-c5fe-3bc95afb8f3c"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
+        "ConditionalFormattingCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Path": "Address.Email",
+        "Header": "Email",
+        "Sort": "",
+        "IsLinkColumn": false,
+        "FormRoute": null,
+        "IconCssClass": "",
+        "IconStoreId": "",
+        "Format": "text:{0}",
+        "RouteValueField": "",
+        "WebId": "4b128f11-ce0e-4a7c-f760-9636c839299f"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
+        "ConditionalFormattingCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Path": "ContactPerson",
+        "Header": "Contact Person",
+        "Sort": "",
+        "IsLinkColumn": false,
+        "FormRoute": null,
+        "IconCssClass": "",
+        "IconStoreId": "",
+        "Format": "text:{0}",
+        "RouteValueField": "",
+        "WebId": "15fc2399-0448-4de9-ccb9-565dc9133bde"
+      }
+    ]
   },
   "ConditionalFormattingCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
@@ -10,9 +96,9 @@
   },
   "Performer": {
     "$type": "Bespoke.Sph.Domain.Performer, domain.sph",
-    "UserProperty": null,
+    "UserProperty": "",
     "Value": null,
-    "IsPublic": false,
+    "IsPublic": true,
     "WebId": null
   },
   "RouteParameterCollection": {
@@ -25,19 +111,19 @@
   "Name": "All AddressBooks",
   "Route": "address-book-all",
   "Note": null,
-  "IsPublished": false,
+  "IsPublished": true,
   "Visibilty": null,
-  "TileColour": null,
+  "TileColour": "bblue",
   "CountMessage": null,
   "Entity": "AddressBook",
   "Partial": null,
   "Template": null,
   "DisplayOnDashboard": false,
-  "Endpoint": null,
+  "Endpoint": "default",
   "CreatedBy": "admin",
   "Id": "address-book-all",
   "CreatedDate": "2016-10-11T10:54:53.9068465+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-11T10:54:53.9068465+08:00",
+  "ChangedDate": "2016-10-13T16:34:56.5083771+08:00",
   "WebId": "b29077e0-3193-48be-ab6b-f7df849d812b"
 }

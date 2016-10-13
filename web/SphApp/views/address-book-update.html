@@ -1,0 +1,163 @@
+<h1 data-i18n="Address Book Update">Address Book Update</h1>
+<div id="error-list" class="row" data-bind="visible:errors().length">
+    <!-- ko foreach : errors -->
+    <div class="col-sm-8 col-sm-offset-2 alert alert-dismissable alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <i class="fa fa-exclamation"></i>
+        <span data-bind="text:Message"></span>
+    </div>
+    <div class="col-sm-2"></div>
+    <!-- /ko-->
+</div>
+<div class="row">
+    <div class="col-sm-8">
+<form class="form-horizontal" data-bind="with : entity" id="address-book-update-form">
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Reference No" for="211bd818-bd04-4fbd-baff-2ee192359aa7" class="col-md-4">Reference No</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: ReferenceNo"
+                   id="211bd818-bd04-4fbd-baff-2ee192359aa7" type="text" name="ReferenceNo" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Group Address" for="fc4cd0ee-c563-4bcc-bb7e-912adbe963e9" class="col-md-4">Group Address</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: GroupAddress"
+                   id="fc4cd0ee-c563-4bcc-bb7e-912adbe963e9" type="text" name="GroupAddress" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Company Name" for="508a96c8-f2d0-45eb-dd40-bdd5f09db275" class="col-md-4">Company Name</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Address().CompanyName"
+                   id="508a96c8-f2d0-45eb-dd40-bdd5f09db275" type="text" name="Address.CompanyName" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Premise No / Mailbox" for="11c30a42-5941-4f93-c355-4f91f8a6c55b" class="col-md-4">Premise No / Mailbox</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Address().PremiseNoMailbox"
+                   id="11c30a42-5941-4f93-c355-4f91f8a6c55b" type="text" name="Address.PremiseNoMailbox" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Block" for="d6020dbc-4972-4899-c306-a3b55ae84fe4" class="col-md-4">Block</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Address().Block"
+                   id="d6020dbc-4972-4899-c306-a3b55ae84fe4" type="text" name="Address.Block" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Building Name" for="97d6b4b2-e3bc-4bd9-a263-4850768d7b2f" class="col-md-4">Building Name</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Address().BuildingName"
+                   id="97d6b4b2-e3bc-4bd9-a263-4850768d7b2f" type="text" name="Address.BuildingName" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Road Name" for="26848bee-8f31-4234-be2c-bf9149f51a7a" class="col-md-4">Road Name</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Address().RoadName"
+                   id="26848bee-8f31-4234-be2c-bf9149f51a7a" type="text" name="Address.RoadName" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Area / Village / Garden Name" for="fcee14a2-d25e-4282-a3dd-2ea820e89e74" class="col-md-4">Area / Village / Garden Name</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Address().AreaVillageGardenName"
+                   id="fcee14a2-d25e-4282-a3dd-2ea820e89e74" type="text" name="Address.AreaVillageGardenName" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Sub District" for="0cce0263-bbe4-446f-80cd-7be4c9a6c169" class="col-md-4">Sub District</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Address().SubDistrict"
+                   id="0cce0263-bbe4-446f-80cd-7be4c9a6c169" type="text" name="Address.SubDistrict" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="District" for="f9eb2656-0b2c-4301-9ca4-52cf4481baa7" class="col-md-4">District</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Address().District"
+                   id="f9eb2656-0b2c-4301-9ca4-52cf4481baa7" type="text" name="Address.District" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n=" Postcode" for="3a6a3ce4-e373-4d24-f72c-d8e835d83da7" class="col-md-4"> Postcode</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Address().Postcode"
+                   id="3a6a3ce4-e373-4d24-f72c-d8e835d83da7" type="text" name="Address.Postcode" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n=" State" for="22050248-2993-47aa-fcd7-c8325aa1978b" class="col-md-4"> State</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Address().State"
+                   id="22050248-2993-47aa-fcd7-c8325aa1978b" type="text" name="Address.State" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="City" for="0f38e59c-8fd0-40ba-d23c-9980ea90d4f2" class="col-md-4">City</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Address().City"
+                   id="0f38e59c-8fd0-40ba-d23c-9980ea90d4f2" type="text" name="Address.City" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Country" for="9baf3219-9a04-4896-a025-60ca3df6878a" class="col-md-4">Country</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Address().Country"
+                   id="9baf3219-9a04-4896-a025-60ca3df6878a" type="text" name="Address.Country" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Phone Number" for="41816424-2e81-4378-c1da-74e1735ea06d" class="col-md-4">Phone Number</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Address().PhoneNumber"
+                   id="41816424-2e81-4378-c1da-74e1735ea06d" type="text" name="Address.PhoneNumber" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Fax Number" for="6d5fc27b-d0fe-4657-c406-6632a70b172d" class="col-md-4">Fax Number</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Address().FaxNumber"
+                   id="6d5fc27b-d0fe-4657-c406-6632a70b172d" type="text" name="Address.FaxNumber" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Email" for="65e3998e-c363-4810-8ff0-3adb59d00976" class="col-md-4">Email</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Address().Email"
+                   id="65e3998e-c363-4810-8ff0-3adb59d00976" type="text" name="Address.Email" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Contact Person" for="50809955-2bf4-435b-cc57-3c8b55a72d13" class="col-md-4">Contact Person</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: ContactPerson"
+                   id="50809955-2bf4-435b-cc57-3c8b55a72d13" type="text" name="ContactPerson" />
+        </div>
+    </div>
+</form>
+    </div>
+    <div class="col-sm-4">
+    </div>
+</div>
