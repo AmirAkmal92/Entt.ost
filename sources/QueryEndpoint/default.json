@@ -1,0 +1,31 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "AddressBookDefaultQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "Default",
+  "Route": "",
+  "IsReturnSource": "",
+  "Entity": "AddressBook",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "addressbooks",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "default",
+  "CreatedDate": "2016-10-13T16:20:50.7932076+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-10-13T16:33:10.4803284+08:00",
+  "WebId": "45c90c88-c60c-4824-c314-a4a191b96d81"
+}
