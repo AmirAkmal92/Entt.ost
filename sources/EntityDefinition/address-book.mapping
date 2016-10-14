@@ -1,0 +1,35 @@
+{
+    "addressbook":{
+        "properties":{
+            "CreatedBy": {"type": "string", "index":"not_analyzed"},
+            "ChangedBy": {"type": "string", "index":"not_analyzed"},
+            "WebId": {"type": "string", "index":"not_analyzed"},
+            "CreatedDate": {"type": "date"},
+            "ChangedDate": {"type": "date"},
+             "ReferenceNo":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "GroupAddress":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+    "Address":{
+        "type":  "object",
+        "properties":{
+             "CompanyName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "PremiseNoMailbox":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Block":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "BuildingName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "RoadName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "AreaVillageGardenName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "SubDistrict":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "District":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Postcode":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "State":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "City":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Country":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "PhoneNumber":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "FaxNumber":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Email":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+             "ContactPerson":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+}

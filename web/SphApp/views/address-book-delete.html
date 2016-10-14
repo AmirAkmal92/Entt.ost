@@ -1,0 +1,91 @@
+<h1 data-i18n="Address Book Delete">Address Book Delete</h1>
+<div id="error-list" class="row" data-bind="visible:errors().length">
+    <!-- ko foreach : errors -->
+    <div class="col-sm-8 col-sm-offset-2 alert alert-dismissable alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <i class="fa fa-exclamation"></i>
+        <span data-bind="text:Message"></span>
+    </div>
+    <div class="col-sm-2"></div>
+    <!-- /ko-->
+</div>
+<div class="row">
+    <div class="col-sm-8">
+<form class="form-horizontal" data-bind="with : entity" id="address-book-delete-form">
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Reference No</label>
+        <span class="col-md-8" data-bind="text: ReferenceNo"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Group Address</label>
+        <span class="col-md-8" data-bind="text: GroupAddress"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Company Name</label>
+        <span class="col-md-8" data-bind="text: Address().CompanyName"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Premise No / Mailbox</label>
+        <span class="col-md-8" data-bind="text: Address().PremiseNoMailbox"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Block</label>
+        <span class="col-md-8" data-bind="text: Address().Block"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Building Name</label>
+        <span class="col-md-8" data-bind="text: Address().BuildingName"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Road Name</label>
+        <span class="col-md-8" data-bind="text: Address().RoadName"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Area / Village / Garden Name</label>
+        <span class="col-md-8" data-bind="text: Address().AreaVillageGardenName"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Sub District</label>
+        <span class="col-md-8" data-bind="text: Address().SubDistrict"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">District</label>
+        <span class="col-md-8" data-bind="text: Address().District"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4"> Postcode</label>
+        <span class="col-md-8" data-bind="text: Address().Postcode"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4"> State</label>
+        <span class="col-md-8" data-bind="text: Address().State"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">City</label>
+        <span class="col-md-8" data-bind="text: Address().City"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Country</label>
+        <span class="col-md-8" data-bind="text: Address().Country"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Phone Number</label>
+        <span class="col-md-8" data-bind="text: Address().PhoneNumber"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Fax Number</label>
+        <span class="col-md-8" data-bind="text: Address().FaxNumber"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Email</label>
+        <span class="col-md-8" data-bind="text: Address().Email"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Contact Person</label>
+        <span class="col-md-8" data-bind="text: ContactPerson"></span>
+    </div>
+</form>
+    </div>
+    <div class="col-sm-4">
+    </div>
+</div>

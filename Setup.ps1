@@ -204,7 +204,7 @@ $connectionString = "Data Source=(localdb)\$SqlServer;Initial Catalog=$DatabaseN
 [Environment]::SetEnvironmentVariable("RX_$ApplicationName" + "_RabbitMqPassword", "$RabbitMqPassword", "User")
  
  
-$taskscheduler = $WorkingCopy   + "\schedulers\scheduler.delayactivity.exe"       
+$taskscheduler = "$WorkingCopy\schedulers\scheduler.delayactivity.exe"       
 [Environment]::SetEnvironmentVariable("RX_$ApplicationName" + "_TaskScheduler", "$taskscheduler", "User")
 
 
