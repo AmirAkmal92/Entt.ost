@@ -1,0 +1,40 @@
+{
+  "$type": "Bespoke.Sph.Domain.OperationEndpoint, domain.sph",
+  "EntityPermissionCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.EntityPermission, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "Rules": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "SetterActionChildCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.SetterActionChild, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "PatchPathCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.PatchSetter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "ReferencedAssemblyCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ReferencedAssembly, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "Name": "DefaultConsignment",
+  "Route": "defaultconsignment",
+  "IsHttpPut": false,
+  "IsHttpPatch": false,
+  "IsHttpPost": false,
+  "IsHttpDelete": false,
+  "Note": "",
+  "Entity": "Consignment",
+  "Resource": "",
+  "IsPublished": false,
+  "IsConflictDetectionEnabled": false,
+  "CreatedBy": "admin",
+  "Id": "consignment-default-consignment",
+  "CreatedDate": "2016-10-19T17:42:07.4661554+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-10-19T17:42:07.4661554+08:00",
+  "WebId": "dbd10320-6c70-4f0d-b367-7f8e674040df"
+}

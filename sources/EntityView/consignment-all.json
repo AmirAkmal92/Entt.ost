@@ -1,0 +1,43 @@
+{
+  "$type": "Bespoke.Sph.Domain.EntityView, domain.sph",
+  "ViewColumnCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ViewColumn, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "ConditionalFormattingCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "Performer": {
+    "$type": "Bespoke.Sph.Domain.Performer, domain.sph",
+    "UserProperty": null,
+    "Value": null,
+    "IsPublic": false,
+    "WebId": null
+  },
+  "RouteParameterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.RouteParameter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "IconClass": null,
+  "IconStoreId": null,
+  "EntityDefinitionId": "consignment",
+  "Name": "All Consignments",
+  "Route": "consignment-all",
+  "Note": null,
+  "IsPublished": false,
+  "Visibilty": null,
+  "TileColour": null,
+  "CountMessage": null,
+  "Entity": "Consignment",
+  "Partial": null,
+  "Template": null,
+  "DisplayOnDashboard": false,
+  "Endpoint": null,
+  "CreatedBy": "admin",
+  "Id": "consignment-all",
+  "CreatedDate": "2016-10-19T17:20:56.9989189+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-10-19T17:20:56.9989189+08:00",
+  "WebId": "040673d2-01bc-4a22-9470-212d89b18306"
+}
