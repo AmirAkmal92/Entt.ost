@@ -5,7 +5,7 @@ Clone the repository to your desired location, normally I would go and do
 git clone https://bespoke.visualstudio.com/DefaultCollection/pos.entt/_git/entt.ost c:\project\work\entt.ost
 ```
 
-Extract the package from my OneDrive [Download 10324-01](https://1drv.ms/u/s!AnfOLTS4EYc4g5lmE6o_C-BED4DZTQ) 
+Extract the package from my OneDrive [Download 10327-01](https://dl.dropboxusercontent.com/u/72555618/rx-developers/sph.package.1.0.10327-01.7z) 
 
 , since web already been extracted you may want to leave it out , except you still need to copy web/bin
 

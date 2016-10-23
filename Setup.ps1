@@ -1,5 +1,5 @@
 ﻿Param(
-       [string]$WorkingCopy = ".",
+       [string]$WorkingCopy = "$PWD",
        [string]$ApplicationName = "Ost",
        [string]$Port = 50230,
        [string]$SqlServer = "ProjectsV13",
@@ -157,13 +157,13 @@ Write-Host "Waiting for elasticsearch to starts"
 sleep -Seconds 30
 
 $esindex = $ElasticSearchHost + "/" + $ApplicationName.ToLowerInvariant() + "_sys"
-Invoke-WebRequest -Method Put -Body "" -Uri $esindex  -ContentType "application/javascript"
+Invoke-WebRequest -Method Put -Body "" -Uri $esindex  -ContentType "application/javascript" -UseBasicParsing
 
 Get-ChildItem -Filter *.json -Path .\database\mapping `
 | %{
     $mappingUri = $esindex + "/" + $_.Name.ToLowerInvariant().Replace(".json", "") + "/_mapping"
     Write-Host "Creating elastic search mapping for $mappingUri"
-    $response = Invoke-WebRequest -Method PUT -Uri $mappingUri -InFile $_.FullName -ContentType "application/javascript"
+    $response = Invoke-WebRequest -Method PUT -Uri $mappingUri -InFile $_.FullName -ContentType "application/javascript" -UseBasicParsing
     Write-Host $response.StatusCode
 }
 
@@ -172,10 +172,9 @@ Get-ChildItem -Filter *.template -Path .\database\mapping `
     $templateName = $_.Name.ToLowerInvariant().Replace(".template", "")
     $templateUri = "$ElasticSearchHost/_template/$templateName"
     $templateContent = Get-Content $_.FullName
-    $templateJson = $templateContent.Replace("<<application_name>>", $ApplicationName.ToLowerInvariant());
 
     Write-Host "Creating elasticsearch index template for $templateName"
-    $response = Invoke-WebRequest -Method PUT -Uri $templateUri -ContentType "application/javascript" -Body $templateJson
+    $response = Invoke-WebRequest -Method PUT -Uri $templateUri -ContentType "application/javascript" -Body $templateContent -UseBasicParsing
     Write-Host ""
 }
 

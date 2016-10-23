@@ -1,0 +1,1 @@
+& "D:\Program Files (x86)\Microsoft VS Code\Code.exe" $PWD

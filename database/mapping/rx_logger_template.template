@@ -1,7 +1,7 @@
 {
-  "template": "<<application_name>>_logs_*",
+  "template": "ost_logs_*",
   "aliases": {
-    "<<application_name>>_logs": {}
+    "ost_logs": {}
   },
   "settings": {
     "number_of_shards": 1

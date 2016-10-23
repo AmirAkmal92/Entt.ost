@@ -1,0 +1,32 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "exclude": [
+        "node_modules", "control.center", "elasticsearch", "rabbitmq_server", "rabbitmq_base"
+    ],
+      "files.exclude": {
+        "**/.git": true,         // this is a default value
+        "**/.DS_Store": true,    // this is a default value
+
+        "**/node_modules": true, // this excludes all folders 
+                                 // named "node_modules" from 
+                                 // the explore tree
+
+        "node_modules": true ,  
+                                "config" : true,
+                                "web/bin" : true,
+                                "data" : true,
+                                "tools" : true,
+                                ".nuget" : true,
+                                "packages" : true,
+                                "output" : true,
+                                "schedulers" : true,
+                                "control.center" : true,
+                                "elasticsearch" : true,
+                                "subscribers.host" : true,
+                                "subscribers" : true,
+                                "rabbitmq_server" :true,
+                                "rabbitmq_base" :true,
+                                "IIS Express" :true
+
+    }
+}
