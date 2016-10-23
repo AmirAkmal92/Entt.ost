@@ -23,4 +23,5 @@ ControlCenter.bat
 *.pdb
 *.sln
 *.tmp
-10325/
+103*/
+103*.ps1
