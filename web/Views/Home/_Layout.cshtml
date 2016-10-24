@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>OST POS | @ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="@Url.Content("/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("/Content/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+    @*<link rel="shortcut icon" href="favicon.ico" />*@
+    <meta name="description" content="Online Shipping Tool, Pos Malaysia Berhad" />
+    <style>
+        body {
+            padding-top: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <br />
+        @RenderBody()
+    </div>
+
+    <script src="@Url.Content("/Scripts/jquery-2.2.0.min.js")"></script>
+    <script src="@Url.Content("/Scripts/bootstrap.min.js")"></script>
+</body>
+</html>

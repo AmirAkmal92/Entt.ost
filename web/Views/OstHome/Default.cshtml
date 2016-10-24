@@ -1,0 +1,47 @@
+﻿@using System.Configuration
+@using System.Web.Mvc.Html
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OST POS</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <link href="@Url.Content("/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("/Content/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("/Content/external/kendo.common.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("/Content/external/kendo.default.min.css")" rel="stylesheet" type="text/css" />
+
+    @*<link rel="shortcut icon" href="favicon.ico" />*@
+    <meta name="description" content="Online Shipping Tool, Pos Malaysia Berhad" />
+</head>
+<body>
+
+    <div class="container">
+        <h1>OST<small> Online Shipping Tool</small></h1>
+        <i class="fa fa-envelope"></i> Pos Malaysia Berhad
+
+        <div class="page-content-wrapper">
+            <div id="applicationHost" class="page-content">
+
+            </div>
+        </div>
+    </div>
+
+    <script src="/Scripts/__vendor.dev.min.js"></script>
+    <script src="~/SphApp/objectbuilders.js"></script>
+    <script src="/Scripts/__vendor.js"></script>
+    <script src="/Scripts/__core.js"></script>
+    <script src="/SphApp/schemas/__domain.js"></script>
+    <script src="/SphApp/prototypes/prototypes.js"></script>
+    <script src="/SphApp/partial/__partial.js"></script>
+    <script src="/kendo/js/kendo.custom.min.js"></script>
+
+    <script type="text/javascript" src="/sph/entitydefinition/schemas"></script>
+    <script type="text/javascript" src="/Scripts/require.js" data-main="SphApp/main.custom"></script>
+</body>
+</html>
