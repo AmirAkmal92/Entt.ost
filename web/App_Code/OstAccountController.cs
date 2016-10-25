@@ -14,6 +14,23 @@ namespace web.sph.App_Code
     [RoutePrefix("ost-account")]
     public class OstAccountController : Controller
     {
+
+        [Route("logout")]
+        public async Task<ActionResult> Logoff()
+        {
+            HttpContext.GetOwinContext().Authentication.SignOut();
+            try
+            {
+                var logger = ObjectBuilder.GetObject<ILogger>();
+                await logger.LogAsync(new LogEntry { Log = EventLog.Security, Message = "Logoff" });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return Redirect("/");
+        }
+
         [AllowAnonymous]
         [Route("login")]
         public ActionResult Login()
