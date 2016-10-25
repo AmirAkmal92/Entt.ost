@@ -1,0 +1,53 @@
+{
+  "$type": "Bespoke.Sph.Domain.Designation, domain.sph",
+  "RoleCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": [
+      "customer",
+      "customers"
+    ]
+  },
+  "Owner": {
+    "$type": "Bespoke.Sph.Domain.Owner, domain.sph",
+    "Address": {
+      "$type": "Bespoke.Sph.Domain.Address, domain.sph",
+      "UnitNo": "",
+      "Floor": "",
+      "Block": "",
+      "Street": "",
+      "City": "",
+      "Postcode": "",
+      "State": "",
+      "Country": "",
+      "WebId": null
+    },
+    "Name": "",
+    "TelephoneNo": "",
+    "FaxNo": "",
+    "Email": "",
+    "WebId": null
+  },
+  "SearchableEntityCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": [
+      "AddressBook"
+    ]
+  },
+  "Name": "No contract customer",
+  "Description": "",
+  "IsActive": false,
+  "StartModule": "customer-home",
+  "EnforceStartModule": true,
+  "IsSearchVisible": true,
+  "IsMessageVisible": true,
+  "IsHelpVisible": false,
+  "HelpUri": "",
+  "Title": "",
+  "Option": 0,
+  "CreatedBy": "admin",
+  "Id": "no-contract-customer",
+  "CreatedDate": "2016-10-25T09:26:51.9783165+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-10-25T09:28:25.0300007+08:00",
+  "WebId": "f3751878-ef95-4ca0-93cf-7ef1c8e58730"
+}
