@@ -1,0 +1,114 @@
+{
+  "$type": "Bespoke.Sph.Domain.FormDialog, domain.sph",
+  "FormDesign": {
+    "$type": "Bespoke.Sph.Domain.FormDesign, domain.sph",
+    "FormElementCollection": {
+      "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FormElement, domain.sph]], domain.sph",
+      "$values": [
+        {
+          "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
+          "DefaultValue": null,
+          "AutoCompletionEntity": null,
+          "AutoCompletionField": null,
+          "AutoCompletionQuery": null,
+          "IsPathIsRequired": true,
+          "TypeName": "TextBox",
+          "FieldValidation": {
+            "$type": "Bespoke.Sph.Domain.FieldValidation, domain.sph",
+            "IsRequired": false,
+            "Pattern": null,
+            "Mode": "",
+            "Message": null,
+            "Min": null,
+            "Max": null,
+            "MinLength": null,
+            "MaxLength": null,
+            "WebId": null
+          },
+          "Name": null,
+          "Label": "Address  Block",
+          "Tooltip": null,
+          "Path": "Address.Block",
+          "IsRequired": false,
+          "Size": "input-large",
+          "CssClass": "",
+          "Visible": "true",
+          "Enable": "true",
+          "ElementId": "b353c800-c477-4377-c54b-403ce70e40d0",
+          "HelpText": null,
+          "UseDisplayTemplate": false,
+          "ToolboxIconClass": null,
+          "IsUniqueName": false,
+          "LabelColLg": null,
+          "LabelColMd": null,
+          "LabelColSm": null,
+          "LabelColXs": null,
+          "InputColLg": null,
+          "InputColMd": null,
+          "InputColSm": null,
+          "InputColXs": null,
+          "WebId": "b4f36103-ad53-479d-81aa-e4c037e90aad"
+        }
+      ]
+    },
+    "Name": "",
+    "Description": "",
+    "ConfirmationText": "",
+    "ImageStoreId": "",
+    "LabelColLg": null,
+    "LabelColMd": null,
+    "LabelColSm": null,
+    "LabelColXs": null,
+    "InputColLg": null,
+    "InputColMd": null,
+    "InputColSm": null,
+    "InputColXs": null,
+    "WebId": null
+  },
+  "DialogButtonCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.DialogButton, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.DialogButton, domain.sph",
+        "Text": "OK",
+        "IsDefault": true,
+        "IsCancel": false,
+        "CreatedBy": null,
+        "Id": null,
+        "CreatedDate": "0001-01-01T00:00:00",
+        "ChangedBy": null,
+        "ChangedDate": "0001-01-01T00:00:00",
+        "WebId": "e51a4332-5072-4bb9-8f74-c06660045c8d"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DialogButton, domain.sph",
+        "Text": "Cancel",
+        "IsDefault": false,
+        "IsCancel": true,
+        "CreatedBy": null,
+        "Id": null,
+        "CreatedDate": "0001-01-01T00:00:00",
+        "ChangedBy": null,
+        "ChangedDate": "0001-01-01T00:00:00",
+        "WebId": "fbe2e925-5707-490c-c480-ddbfea57bba3"
+      }
+    ]
+  },
+  "Rules": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "Title": "Address dialog",
+  "IsAllowCancel": false,
+  "Entity": "AddressBook",
+  "MemberPath": ".",
+  "Route": "address-dialog",
+  "IsPublished": true,
+  "Note": "",
+  "CreatedBy": "admin",
+  "Id": "address-dialog",
+  "CreatedDate": "2016-10-25T10:56:25.6523927+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-10-25T10:57:18.198574+08:00",
+  "WebId": "ed5464dd-b46a-4d3c-9943-ebac9ff667ba"
+}

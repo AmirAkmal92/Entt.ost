@@ -1,6 +1,6 @@
-define(["services/datacontext", "services/logger", "plugins/router", "services/chart", objectbuilders.config, "services/_ko.list"],
+define(["services/datacontext", "services/logger", "plugins/router", "services/chart", objectbuilders.config, "services/_ko.list", "partial/address-book-all"],
 
-function(context, logger, router, chart, config, koList) {
+function(context, logger, router, chart, config, koList, partial) {
 
     var isBusy = ko.observable(false),
         query = "/api/addressbooks/",
@@ -32,6 +32,7 @@ function(context, logger, router, chart, config, koList) {
         activate: activate,
         attached: attached,
         list: list,
+        partial : partial,
         toolbar: {
             commands: ko.observableArray([])
         }
