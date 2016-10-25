@@ -15,8 +15,9 @@
     <div data-bind="visible:true" class="form-group">
         <label data-i18n="Reference No" for="211bd818-bd04-4fbd-baff-2ee192359aa7" class="col-md-4">Reference No</label>
         <div class="col-md-8">
-            <input class="form-control input-large"
+            <input required class="form-control input-large"
                    data-bind="value: ReferenceNo"
+                    data-rule-required="true" 
                    id="211bd818-bd04-4fbd-baff-2ee192359aa7" type="text" name="ReferenceNo" />
         </div>
     </div>
@@ -39,8 +40,9 @@
     <div data-bind="visible:true" class="form-group">
         <label data-i18n="Premise No / Mailbox" for="11c30a42-5941-4f93-c355-4f91f8a6c55b" class="col-md-4">Premise No / Mailbox</label>
         <div class="col-md-8">
-            <input class="form-control input-large"
+            <input required class="form-control input-large"
                    data-bind="value: Address().PremiseNoMailbox"
+                    data-rule-required="true" 
                    id="11c30a42-5941-4f93-c355-4f91f8a6c55b" type="text" name="Address.PremiseNoMailbox" />
         </div>
     </div>
@@ -79,24 +81,27 @@
     <div data-bind="visible:true" class="form-group">
         <label data-i18n="Sub District" for="0cce0263-bbe4-446f-80cd-7be4c9a6c169" class="col-md-4">Sub District</label>
         <div class="col-md-8">
-            <input class="form-control input-large"
+            <input required class="form-control input-large"
                    data-bind="value: Address().SubDistrict"
+                    data-rule-required="true" 
                    id="0cce0263-bbe4-446f-80cd-7be4c9a6c169" type="text" name="Address.SubDistrict" />
         </div>
     </div>
     <div data-bind="visible:true" class="form-group">
         <label data-i18n="District" for="f9eb2656-0b2c-4301-9ca4-52cf4481baa7" class="col-md-4">District</label>
         <div class="col-md-8">
-            <input class="form-control input-large"
+            <input required class="form-control input-large"
                    data-bind="value: Address().District"
+                    data-rule-required="true" 
                    id="f9eb2656-0b2c-4301-9ca4-52cf4481baa7" type="text" name="Address.District" />
         </div>
     </div>
     <div data-bind="visible:true" class="form-group">
         <label data-i18n=" Postcode" for="3a6a3ce4-e373-4d24-f72c-d8e835d83da7" class="col-md-4"> Postcode</label>
         <div class="col-md-8">
-            <input class="form-control input-large"
+            <input required class="form-control input-large"
                    data-bind="value: Address().Postcode"
+                    data-rule-required="true" 
                    id="3a6a3ce4-e373-4d24-f72c-d8e835d83da7" type="text" name="Address.Postcode" />
         </div>
     </div>
