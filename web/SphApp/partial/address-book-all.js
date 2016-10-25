@@ -1,35 +1,6 @@
 // PLEASE WAIT WHILE YOUR SCRIPT IS LOADING
-define([objectbuilders.datacontext, objectbuilders.app,  "services/logger"], function(context, app, logger){
+define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "services/logger"], function(context, app, router, logger){
     var selectedAddresses = ko.observableArray(),
-        rootList = null,
-        activate = function(list){
-            rootList = list;
-            var tcs = new $.Deferred();
-            setTimeout(function(){
-                tcs.resolve(true);
-            }, 500);
-
-            return tcs.promise();
-
-
-        },
-        attached  = function(view){
-        
-        },
-        addAddress = function(){
-            var address = new bespoke.Ost_addressBook.domain.AddressBook();
-            require(['viewmodels/address-dialog' , 'durandal/app'], function (dialog, app2) {
-                dialog.entity(address);
-                app2.showDialog(dialog)
-                    .done(function (result) {
-                        if (!result) return;
-                        if (result === "OK") {
-                            
-                        
-                        }
-                });
-            });
-        },
         removeAddresses = function(){
             console.log(ko.toJS(rootList));
             var tcs = $.Deferred();
@@ -53,11 +24,83 @@ define([objectbuilders.datacontext, objectbuilders.app,  "services/logger"], fun
 
             return tcs.promise();
 
+        },
+        exportToCsv = function(){
+            var tcs = new $.Deferred();
+            require(['viewmodels/export.addresses.dialog' , 'durandal/app'], function (dialog, app2) {
+              
+                app2.showDialog(dialog)
+                    .done(function (result) {
+                        tcs.resolve(result);
+                        if (!result) return;
+                        if (result === "OK") {
+                            var uri = "";
+                            for(var opt in dialog.options()){
+                                if(ko.isObservable(dialog.options()[opt])){
+                                    uri += opt + "="+ ko.unwrap(dialog.options()[opt]) + "&"
+                                }
+                            }
+                            window.open("/address-books/csv?" + uri);
+
+                        }
+                });
+            });
+
+            return tcs.promise();
+        },    
+        addCommand = {
+            command : function(){
+                return router.navigate("address-book-create/0");
+            },
+            caption : "Add new address",
+            icon : "fa fa-plus-circle"
+        },
+        removeCommand = {
+            command : removeAddresses,
+            enable : ko.computed(function(){
+                return selectedAddresses().length > 0;
+            }),
+            caption : "Remove address",
+            icon : "fa fa-trash-o"
+        },
+        exportToCsvCommand = {
+            command : exportToCsv,
+            caption : "Export to csv",
+            icon : "fa fa-file-o"
+        },
+        commands = ko.observableArray([ addCommand, removeCommand, exportToCsvCommand]),
+        rootList = null,
+        activate = function(list){
+            rootList = list;
+            var tcs = new $.Deferred();
+            setTimeout(function(){
+                tcs.resolve(true);
+            }, 500);
+
+            return tcs.promise();
+        },
+        attached  = function(view){
+        
+        },
+        addAddress = function(){
+            var address = new bespoke.Ost_addressBook.domain.AddressBook();
+            require(['viewmodels/address-dialog' , 'durandal/app'], function (dialog, app2) {
+                dialog.entity(address);
+                app2.showDialog(dialog)
+                    .done(function (result) {
+                        if (!result) return;
+                        if (result === "OK") {
+                            
+                        
+                        }
+                });
+            });
         };
 
     return {
         selectedAddresses : selectedAddresses,
         removeAddresses : removeAddresses,
+        commands : commands,
         activate : activate,
         attached : attached,
         addAddress : addAddress

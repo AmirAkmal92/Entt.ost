@@ -1,0 +1,215 @@
+<!-- use dialog-form code snippet  to create a template for your -->
+
+<section class="view-model-modal" id="ID">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" data-bind="click : cancelClick">&times;</button>
+                <h3>Export addresses</h3>
+            </div>
+            <div class="modal-body" data-bind="with: options">
+                <p>
+                    This will create a CSV ( comma seperated values) fil containing all of the contacts in your Address Book
+                </p>
+                <p>
+                    Select Colums for export : (Select None)
+                </p>
+                <form class="form-horizontal" id="ID-form" >
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked: contactName" id="contac-name" type="checkbox" name="IsContactName"/>
+                                    ContactName
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked: contactPerson" id="ContactPerson" type="checkbox" name="ContactPerson"/>
+                                    ContactPerson
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked: premiseNoMailbox" id="PremiseNoMailbox" type="checkbox" name="PremiseNoMailbox"/>
+                                    PremiseNoMailbox
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked: state" id="state" type="checkbox" name="State"/>
+                                    State
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked: addressGroup" name="addressGroup" id="addressGroup" type="checkbox"/>
+                                    addressGroup
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked: referenceNo" name="referenceNo" id="referenceNo" type="checkbox"/>
+                                    referenceNo
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked: gpsLocation" name="gpsLocation" id="gpsLocation" type="checkbox"/>
+                                    gpsLocation
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked: email" name="email" id="email" type="checkbox"/>
+                                    Email
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked: faxNumber" name="faxNumber" id="faxNumber" type="checkbox"/>
+                                    faxNumber
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked: phoneNo" name="phoneNo" id="phoneNo" type="checkbox"/>
+                                    phoneNo
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked: country" name="country" id="country" type="checkbox"/>
+                                    Country
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked: districtCity" name="districtCity" id="districtCity" type="checkbox"/>
+                                    districtCity
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked: subDistrict" name="subDistrict" id="subDistrict" type="checkbox"/>
+                                    subDistrict
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked: areaVillage" name="areaVillage" id="areaVillage" type="checkbox"/>
+                                    areaVillage
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked: roadNam" name="roadNam" id="roadNam" type="checkbox"/>
+                                    roadNam
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked:buildingName " name="buildingName" id="buildingName" type="checkbox"/>
+                                    buildingName
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input data-bind="checked: block" name="block" id="block" type="checkbox"/>
+                                    block
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <input form="ID-form" data-dismiss="modal" type="submit" class="btn btn-primary" value="OK" data-bind="click: okClick" />
+                <a href="#" class="btn btn-default" data-dismiss="modal" data-bind="click : cancelClick">Cancel</a>
+            </div>
+        </div>
+    </div>
+</section>

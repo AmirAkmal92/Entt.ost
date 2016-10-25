@@ -4,6 +4,7 @@ function(context, logger, router, chart, config, koList, partial) {
 
     var isBusy = ko.observable(false),
         query = "/api/addressbooks/",
+        commands = ko.observableArray([]),
         partial = partial || {},
         list = ko.observableArray([]),
         map = function(v) {
@@ -14,8 +15,10 @@ function(context, logger, router, chart, config, koList, partial) {
         },
         activate = function() {
             if (typeof partial.activate === "function") {
+                
                 return partial.activate(list);
             }
+
             return true;
         },
         attached = function(view) {
@@ -23,6 +26,12 @@ function(context, logger, router, chart, config, koList, partial) {
                 partial.attached(view);
             }
         };
+
+        if(_(ko.unwrap(partial.commands)).isArray()){
+            _(ko.unwrap(partial.commands)).each(function(v){
+                commands.push(v);
+            });
+        }
 
     var vm = {
         query: query,
@@ -34,7 +43,7 @@ function(context, logger, router, chart, config, koList, partial) {
         list: list,
         partial : partial,
         toolbar: {
-            commands: ko.observableArray([])
+            commands: commands
         }
     };
 

@@ -1,4 +1,3 @@
-<h1>All AddressBooks</h1>
 <div class="row">
     <div class="col-md-11 col-lg-11 -col-sm-12">
         <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list}">
@@ -19,7 +18,7 @@
                     </td>
                     <td>
                         <a data-bind="attr : {href:'#address-book-update' + '/' + Id, title:'Reference No' }">
-                                                        <span data-bind="text:ReferenceNo"></span>
+                            <span data-bind="text:ReferenceNo"></span>
                         </a>
                     </td>
                     <td data-bind="text:GroupAddress"></td>
@@ -31,17 +30,5 @@
         </table>
         <img src="/Images/spinner-md.gif" alt="loading" class="absolute-center" data-bind="visible: isBusy" />
     </div>
-</div>
-
-    <div class="row">
-        <a href="/ost#address-book-create/0" title="Add new address to your address book" 
-        data-bind2="click: partial.addAddress" class="btn btn-link">
-            <i class="fa fa-plus"></i>
-            Add new address
-        </a>
-
-         <button class="btn btn-danger" data-bind="enable : $root.partial.selectedAddresses().length, command : $root.partial.removeAddresses">
-                        <i class="fa fa-minus-circle" style="margin-right: 5px"></i>
-                        Remove
-                    </button>
-    </div>
+</div> 
+<div class="clearfix"> </div>
