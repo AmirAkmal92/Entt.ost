@@ -1,6 +1,6 @@
 <h1>All AddressBooks</h1>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-11 col-lg-11 -col-sm-12">
         <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list}">
             <thead>
                 <tr>
@@ -28,3 +28,11 @@
         <img src="/Images/spinner-md.gif" alt="loading" class="absolute-center" data-bind="visible: isBusy" />
     </div>
 </div>
+
+    <div class="row">
+        <a href="javascript:;" title="Add new address to your address book" 
+        data-bind="click: partial.addAddress" class="btn btn-link">
+            <i class="fa fa-plus"></i>
+            Add new address
+        </a>
+    </div>

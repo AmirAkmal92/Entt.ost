@@ -105,8 +105,8 @@
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.RouteParameter, domain.sph]], domain.sph",
     "$values": []
   },
-  "IconClass": null,
-  "IconStoreId": null,
+  "IconClass": "fa fa-bookmark-o",
+  "IconStoreId": "0bc75356-2a39-4aeb-aeef-cf84c6d2b95c",
   "EntityDefinitionId": "address-book",
   "Name": "All AddressBooks",
   "Route": "address-book-all",
@@ -116,14 +116,14 @@
   "TileColour": "bblue",
   "CountMessage": null,
   "Entity": "AddressBook",
-  "Partial": null,
-  "Template": null,
+  "Partial": "partial/address-book-all",
+  "Template": "View without chart",
   "DisplayOnDashboard": false,
   "Endpoint": "default",
   "CreatedBy": "admin",
   "Id": "address-book-all",
   "CreatedDate": "2016-10-11T10:54:53.9068465+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-13T16:34:56.5083771+08:00",
+  "ChangedDate": "2016-10-25T10:56:30.2997593+08:00",
   "WebId": "b29077e0-3193-48be-ab6b-f7df849d812b"
 }
