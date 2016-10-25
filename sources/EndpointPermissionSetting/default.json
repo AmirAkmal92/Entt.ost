@@ -27,7 +27,7 @@
   },
   {
     "Parent": "AddressBook",
-    "Controller": "AddressBookDefaultQueryEndpoint",
+    "Controller": null,
     "Action": null,
     "Id": null,
     "Claims": [
@@ -42,6 +42,82 @@
     "IsInherited": false,
     "HasParent": true,
     "HasAction": false,
+    "HasController": true
+  },
+  {
+    "Parent": "System",
+    "Controller": "RxSystemApi",
+    "Action": "EntityForm",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": false,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "System",
+    "Controller": "RxSystemApi",
+    "Action": "Watcher",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": false,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "System",
+    "Controller": "RxSystemApi",
+    "Action": "Message",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": false,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "System",
+    "Controller": "RxSystemApi",
+    "Action": "UserProfile",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": false,
+    "HasAction": true,
     "HasController": true
   }
 ]

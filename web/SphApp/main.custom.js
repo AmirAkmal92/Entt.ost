@@ -6353,7 +6353,7 @@ define('viewmodels/messages', [objectbuilders.datacontext, objectbuilders.config
                   unread(lo.rows);
 
                   if (typeof $.connection !== "function") {
-                      return $.getScript("/scripts/jquery.signalR-2.1.2.min.js");
+                      return $.getScript("/scripts/jquery.signalR-2.2.0.min.js");
                   }
                   return Task.fromResult(true);
               });
@@ -6517,15 +6517,16 @@ define('viewmodels/search', ['durandal/system', 'services/logger', objectbuilder
 /// <reference path="../../Scripts/_task.js" />
 /// <reference path="../../Scripts/jquery-2.2.0.intellisense.js" />
 
-define('viewmodels/shell.custom', ["durandal/system", "services/system", "plugins/router", "services/logger", "services/datacontext", objectbuilders.config, objectbuilders.cultures, "viewmodels/messages"],
+define('viewmodels/shell.custom', [ "durandal/system", "services/system", "plugins/router", "services/logger", "services/datacontext", objectbuilders.config, objectbuilders.cultures, "viewmodels/messages"],
     function (system, system2, router, logger, context, config, cultures, messagesConfig) {
 
-        var activate = function () {
-            return router.map(config.routes)
-                .buildNavigationModel()
-                .mapUnknownRoutes("viewmodels/not.found", "not.found")
-                .activate();
-        },
+        var activeItem = ko.observable({caption : "Test 123"}),
+            activate = function () {
+                return router.map(config.routes)
+                    .buildNavigationModel()
+                    .mapUnknownRoutes("viewmodels/not.found", "not.found")
+                    .activate();
+            },
             attached = function (view) {
                 $(document).on("click", "a#rx-context-help", function (e) {
                     e.preventDefault();
@@ -6625,13 +6626,24 @@ define('viewmodels/shell.custom', ["durandal/system", "services/system", "plugin
                 return tcs.promise();
             };
 
+            router.activeItem.subscribe(function(r){
+                var rt = _(config.routes).find(function(v){
+                    return ko.unwrap(v.moduleId) === r.__moduleId__;
+                });
+                if(rt){
+                    activeItem(rt);
+                }
+
+            });
+
         var shell = {
             config: config,
             activate: activate,
             attached: attached,
             router: router,
             printCommand: print,
-            emailCommand: email
+            emailCommand: email,
+            activeItem : activeItem
         };
 
         return shell;

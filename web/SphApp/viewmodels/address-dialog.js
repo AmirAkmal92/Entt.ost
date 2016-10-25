@@ -2,7 +2,7 @@ define(["plugins/dialog", objectbuilders.datacontext, objectbuilders.system],
 
 function(dialog, context, system) {
 
-    var item = ko.observable(new bespoke.Ost_addressBook.domain.AddressBook(system.guid())),
+    var entity = ko.observable(new bespoke.Ost_addressBook.domain.AddressBook(system.guid())),
         errors = ko.observableArray(),
         activate = function() {
             // activation, you can also return a promise
@@ -26,7 +26,7 @@ function(dialog, context, system) {
         cancelClick: cancelClick,
         activate: activate,
         attached: attached,
-        item: item,
+        entity: entity,
         errors: errors
     };
 

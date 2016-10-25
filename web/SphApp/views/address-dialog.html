@@ -2,23 +2,24 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" data-bind="click : cancelClick">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" data-bind="click : cancelClick">&times;</button>
                 <h3>Address dialog</h3>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" data-bind="with : item" id="address-dialog-form">
-                    <div data-bind="visible:true" class="form-group">
-                        <label data-i18n="Address  Block" for="b353c800-c477-4377-c54b-403ce70e40d0" class="col-md-4">Address  Block</label>
-                        <div class="col-md-8">
-                            <input class="form-control input-large" data-bind="value: Address().Block" id="b353c800-c477-4377-c54b-403ce70e40d0" type="text"
-                                name="Address.Block" />
-                        </div>
-                    </div>
-                </form>
+<form class="form-horizontal" data-bind="with : entity" id="address-dialog-form">
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Address  Block" for="b353c800-c477-4377-c54b-403ce70e40d0" class="col-md-4">Address  Block</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Address().Block"
+                   id="b353c800-c477-4377-c54b-403ce70e40d0" type="text" name="Address.Block" />
+        </div>
+    </div>
+</form>
             </div>
             <div class="modal-footer">
-                <button form="address-dialog-form" data-dismiss="modal" class="btn btn-default" data-bind="command: okClick">OK</button>
-                <a href="#" class="btn btn-default" data-dismiss="modal" data-bind="click : cancelClick">Cancel</a>
+                        <button form="address-dialog-form" data-dismiss="modal" class="btn btn-default" data-bind="command: okClick">OK</button>
+                        <a href="#" class="btn btn-default" data-dismiss="modal" data-bind="click : cancelClick">Cancel</a>
             </div>
         </div>
     </div>
