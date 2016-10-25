@@ -15,7 +15,7 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Metronic Admin Theme #1 | Bootstrap Form Controls</title>
+        <title>POS EazySender</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="Preview page of Metronic Admin Theme #1 for bootstrap inputs, input groups, custom checkboxes and radio controls and more" name="description" />
@@ -36,14 +36,35 @@
         <link href="../assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
         <link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
-        <link rel="shortcut icon" href="favicon.ico" /> </head>
-    <!-- END HEAD -->
+        <link rel="shortcut icon" href="favicon.ico" /> 
+        
         <link href="@Url.Content("/Content/font-awesome.min.css")" rel="stylesheet" type="text/css" />
         <link href="@Url.Content("/Content/external/kendo.common.min.css")" rel="stylesheet" type="text/css" />
         <link href="@Url.Content("/Content/external/kendo.default.min.css")" rel="stylesheet" type="text/css" />
 
         @*<link rel="shortcut icon" href="favicon.ico" />*@
         <meta name="description" content="Online Shipping Tool, Pos Malaysia Berhad" />
+
+        <style>
+            div.modalBlockout{
+                opacity: 0.5;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-color: #5d5f5f;
+                left: 0;
+                top: 0;
+            }
+
+            div.modalHost {
+                position: absolute;
+                top: 250px;
+                left : 250px;
+            }
+        </style>
+        
+        </head>
+    <!-- END HEAD -->
 
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md">
         <div class="page-wrapper">
@@ -362,12 +383,12 @@
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                     <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
-                                    <span class="username username-hide-on-mobile"> Nick </span>
+                                    <span class="username username-hide-on-mobile"> @User.Identity.Name </span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
-                                        <a href="page_user_profile_1.html">
+                                        <a href="ost#user.profile">
                                             <i class="icon-user"></i> My Profile </a>
                                     </li>
                                     <li>
@@ -427,49 +448,9 @@
                     <div class="page-content">
                         <!-- BEGIN PAGE HEADER-->
                  
-                        <!-- BEGIN PAGE BAR -->
-                        <div class="page-bar">
-                            <ul class="page-breadcrumb">
-                                <li>
-                                    <a href="index.html">Home</a>
-                                    <i class="fa fa-circle"></i>
-                                </li>
-                                <li>
-                                    <span>Form Stuff</span>
-                                </li>
-                            </ul>
-                            <div class="page-toolbar">
-                                <div class="btn-group pull-right">
-                                    <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
-                                        <i class="fa fa-angle-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-bell"></i> Action</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-shield"></i> Another action</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-user"></i> Something else here</a>
-                                        </li>
-                                        <li class="divider"> </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-bag"></i> Separated link</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END PAGE BAR -->
+                    
                         <!-- BEGIN PAGE TITLE-->
-                        <h1 class="page-title"> Bootstrap Form Controls
-                            <small>bootstrap inputs, input groups, custom checkboxes and radio controls and more</small>
-                        </h1>
+                       
                         <!-- END PAGE TITLE-->
                         <!-- END PAGE HEADER-->
                         <div class="page-content-wrapper">
