@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "role": "customers",
+    "groupName": null,
+    "route": "customer-home",
+    "moduleId": "viewmodels/customer-home",
+    "title": "OST Home",
+    "nav": true,
+    "icon": "fa fa-braille",
+    "caption": "OST Home",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
+  }
+]
