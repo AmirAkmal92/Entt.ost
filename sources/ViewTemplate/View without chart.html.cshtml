@@ -1,0 +1,49 @@
+<h3 class="page-title">
+	@Model.View.Name
+	<small>@Model.View.Note</small>
+</h3>
+<div class="row">
+    <table class="table table-striped" data-bind="filter : {path:'tbody>tr'}, searchPaging :{ query: query, map : map, entity : '@Model.Definition.Name', list:list}">
+        <thead>
+            <tr>
+                @foreach(var col in Model.View.ViewColumnCollection)
+                {
+                	<th>@col.Header</th>
+                }
+            </tr>
+        </thead>
+        <tbody data-bind="foreach :list">
+            <tr data-bind="@Raw(Model.View.GenerateConditionalFormattingBinding())">
+                @foreach(var col in Model.View.ViewColumnCollection)
+                {
+                    if(string.IsNullOrWhiteSpace(col.RouteValueField)){
+                        col.RouteValueField = "Id";
+                    }
+		                var format = string.IsNullOrWhiteSpace(col.Format) ? "text:{0}": col.Format;
+		                var binding = string.Format(col.Format, col.Path);
+		                if(col.IsLinkColumn)
+										{
+			                <td>
+			                    <a data-bind="attr : {href:'#@col.FormRoute' + '/' + @col.RouteValueField, title:'@col.Header' }">
+			                        @if(!string.IsNullOrWhiteSpace(col.IconCssClass))
+			                        {
+			                        <i class="@col.IconCssClass"></i>
+			                        }
+			                        @if(!string.IsNullOrWhiteSpace(col.IconStoreId))
+			                        {
+			                        <img src="/sph/image/store/@col.IconStoreId" alt="@col.Header" />
+			                        }
+			                        <span data-bind="@binding"></span>
+			                    </a>
+			                </td>
+		                }
+		                else
+										{
+		                	<td data-bind="@binding"></td>
+		                }
+                }
+            </tr>
+        </tbody>
+    </table>
+    <img src="/assets/global/img/loading-spinner-default.gif" alt="loading" class="absolute-center" data-bind="visible: isBusy" />
+</div>

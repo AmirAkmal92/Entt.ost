@@ -1,0 +1,6 @@
+{
+  "Name" :"View without chart",
+  "ViewModelType" : "EntityView",
+  "Note" :"Standard view without charts panel",
+  "Id" :"view-without-chart"
+}

@@ -1,0 +1,118 @@
+﻿/// <reference path="Scripts/jquery-2.1.1.intellisense.js" />
+/// <reference path="Scripts/knockout-3.2.0.debug.js" />
+/// <reference path="Scripts/knockout.mapping-latest.debug.js" />
+/// <reference path="Scripts/require.js" />
+/// <reference path="Scripts/underscore.js" />
+/// <reference path="Scripts/moment.js" />
+/// <reference path="../services/datacontext.js" />
+/// <reference path="../schemas/trigger.workflow.g.js" />
+/// <reference path="../../Scripts/bootstrap.js" />
+
+@{
+
+    var vmPartial = "";
+    if(!string.IsNullOrWhiteSpace(Model.PartialArg)){
+        vmPartial = "partial : partial,"
+    }
+}
+
+define(["services/datacontext", "services/logger", "plugins/router", "services/chart", objectbuilders.config @Raw(Model.PartialPath)],
+    function (context, logger, router, chart,config @Model.PartialArg) {
+
+        var isBusy = ko.observable(false),
+            view = ko.observable(),
+            list = ko.observableArray([]),
+            map = function(v) {
+                if (typeof partial !== "undefined" && typeof partial.map === "function") {
+                    return partial.map(v);
+                }
+                return v;
+            },
+            entity = ko.observable(new bespoke.sph.domain.EntityDefinition()),
+            query = ko.observable(),
+            activate = function (@Model.Routes) {
+                query({
+                    "query": {
+                        "filtered": {
+                            "filter": @Raw(Model.FilterDsl)
+                        }
+                    },
+                    "sort" : @Raw(Model.SortDsl)
+                });
+                var edQuery = String.format("Name eq '{0}'", '@Model.Definition.Name'),
+                  tcs = new $.Deferred(),
+                  formsQuery = String.format("EntityDefinitionId eq '@(Model.Definition.Id)' and IsPublished eq 1 and IsAllowedNewItem eq 1"),
+                  viewQuery = String.format("EntityDefinitionId eq '@(Model.Definition.Id)'"),
+                  edTask = context.loadOneAsync("EntityDefinition", edQuery),
+                  formsTask = context.loadAsync("EntityForm", formsQuery),
+                  viewTask = context.loadOneAsync("EntityView", viewQuery);
+
+
+                $.when(edTask, viewTask, formsTask)
+                 .done(function (b, vw,formsLo) {
+                     entity(b);
+                     view(vw);
+                     var formsCommands = _(formsLo.itemCollection).map(function (v) {
+                         return {
+                             caption: v.Name(),
+                             command: function () {
+                                 window.location = '#' + v.Route() + '/0';
+                                 return Task.fromResult(0);
+                             },
+                             icon: v.IconClass()
+                         };
+                     });
+                     vm.toolbar.commands(formsCommands);
+
+                     @if (!string.IsNullOrWhiteSpace(Model.PartialArg))
+                     {
+                         <text>
+                         if(typeof partial !== "undefined" && typeof partial.activate === "function"){
+                             var pt = partial.activate(list);
+                             if(typeof pt.done === "function"){
+                                 pt.done(tcs.resolve);
+                             }else{
+                                 tcs.resolve(true);
+                             }
+                         }
+                         </text>
+                     }
+                     else
+                     {
+                         @:tcs.resolve(true);
+                       }
+
+                 });
+
+                return tcs.promise();
+            },
+            attached = function (view) {
+                @if (!string.IsNullOrWhiteSpace(Model.PartialArg))
+                {
+                    <text>
+                    if(typeof partial !== "undefined" && typeof partial.attached === "function"){
+                        partial.attached(view);
+                    }
+                    </text>
+                }
+            };
+
+        var vm = {
+            @Raw(vmPartial)
+            config: config,
+            view: view,
+            isBusy: isBusy,
+            map: map,
+            entity: entity,
+            activate: activate,
+            attached: attached,
+            list: list,
+            query: query,
+            toolbar: {
+                commands: ko.observableArray([])
+            }
+        };
+
+        return vm;
+
+    });
