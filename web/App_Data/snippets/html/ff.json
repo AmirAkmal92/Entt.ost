@@ -1,0 +1,6 @@
+{
+  "lang": "html",
+  "title": "ff",
+  "note": "input type form group",
+  "code": "<div class=\"form-group\">\n    <label for=\"${1:ID}\" class=\"col-lg-2 control-label\">${2:LABEL}</label>\n    <div class=\"col-lg-6\">\n      <input type=\"${3:TYPE}\" data-bind=\"$binding$: ${4:PROPERTY}\" \n\t\t\t${5:REQUIRED} pattern=\"${6:PATTERN}\" \n\t\t\tplaceholder=\"${7:PLACE_HOLDER}\"\n\t\t\tclass=\"form-control\" id=\"${1:ID}\">\n    </div>\n</div>"
+}

@@ -1,0 +1,60 @@
+﻿@using System.Web.Mvc.Html
+@using Bespoke.Sph.Domain
+@model Bespoke.Sph.Domain.ListView
+
+@{
+    var originalPath = Model.Path.ToEmptyString().Replace("().", ".");
+    if (string.IsNullOrWhiteSpace(Model.Enable))
+    {
+        Model.Enable = "true";
+    }
+}
+
+<div data-bind="visible:@Html.Raw(Model.Visible)">
+    <table class="table table-condensed table-striped">
+        <thead>
+            <tr>
+                @foreach (var col in Model.ListViewColumnCollection)
+                {
+                    <th data-i18n="@col.Label">@col.Label</th>
+                }
+                <th></th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach :@Model.Path.ConvertJavascriptObjectToFunction()">
+            <tr>
+                @foreach (var col in Model.ListViewColumnCollection)
+                {
+                    var col1 = col;
+                    col.Input.Path = col.Path;
+                    if (string.IsNullOrWhiteSpace(col.Input.Visible))
+                    {
+                        col.Input.Visible = "true";
+                    }
+                    if (string.IsNullOrWhiteSpace(col.Input.Enable))
+                    {
+                        col.Input.Enable = "true";
+                    }
+                    col.Input.IsCompact = true;
+                    col.Input.ElementId = string.Empty;
+                    col.Input.IsUniqueName = true;
+
+                    <td>
+                        @(col1.Input.UseDisplayTemplate ? Html.DisplayFor(f => col1.Input) : Html.EditorFor(f => col1.Input))
+
+                    </td>
+                }
+                <td>
+                    <a title="remove" href="#" data-bind="click : $parent.removeChildItem.call($parent,$parent.@Model.Path.ConvertJavascriptObjectToFunction(), $data)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a data-i18n="@Model.Label" class="btn btn-link" data-bind="click : addChildItem(@Model.Path.ConvertJavascriptObjectToFunction(), @Model.ChildItemType)">
+        <i class="fa fa-plus-circle"></i>
+        @Model.Label
+    </a>
+
+</div>

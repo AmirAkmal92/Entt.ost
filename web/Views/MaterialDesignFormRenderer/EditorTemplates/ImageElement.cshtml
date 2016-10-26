@@ -1,0 +1,19 @@
+﻿@model Bespoke.Sph.Domain.ImageElement
+@{
+    var path = $"'/sph/image/store/' + {this.Model.Path}()";
+    var width = Model.Width.HasValue ? "width=\"" + Model.Width.Value + "\"": string.Empty;
+    var height = Model.Height.HasValue ? "height=\"" + Model.Height.Value + "\"" : string.Empty;
+    
+    if (string.IsNullOrWhiteSpace(Model.Enable))
+    {
+        Model.Enable = "true";
+    }
+}
+
+
+
+@if (!Model.IsCompact)
+{
+    <label data-i18n="@Model.Label" class="col-md-@(Model.LabelColMd ?? 4)">@Model.Label</label>
+}
+<img data-test="xxx" alt="@Model.Label" title="@Model.Tooltip" @Html.Raw(width)   @Html.Raw(height)  data-bind="attr : {'src':@Html.Raw(path)}, visible:@Html.Raw(Model.Visible)" />

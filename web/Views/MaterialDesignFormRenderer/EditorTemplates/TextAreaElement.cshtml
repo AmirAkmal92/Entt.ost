@@ -1,0 +1,29 @@
+﻿@using Bespoke.Sph.Domain
+@model Bespoke.Sph.Domain.TextAreaElement
+@{
+    var originalPath = Model.Path.ToEmptyString().Replace("().", ".");
+    if (string.IsNullOrWhiteSpace(Model.Enable))
+    {
+        Model.Enable = "true";
+    }
+}
+@if (Model.IsCompact)
+{
+
+    <textarea class="@(Model.CssClass + " form-control "+ Model.Size)"
+              title="@Model.Tooltip" data-bind="@(Html.Raw(Model.GetKnockoutBindingExpression()))"
+              id="@Model.ElementId" name="@originalPath"></textarea>
+}
+else
+{
+
+    <div class="form-group" data-bind="visible:@Html.Raw(Model.Visible)">
+        <label data-i18n="@Model.Label" for="@Model.ElementId" class="@Model.LabelCssClass">@Model.Label</label>
+        <div class="@Model.InputPanelCssClass">
+            <textarea class="@(Model.CssClass + " form-control "+ Model.Size)"
+                      title="@Model.Tooltip" data-bind="@(Html.Raw(Model.GetKnockoutBindingExpression()))"
+                      id="@Model.ElementId" name="@originalPath"></textarea>
+        </div>
+    </div>
+
+}

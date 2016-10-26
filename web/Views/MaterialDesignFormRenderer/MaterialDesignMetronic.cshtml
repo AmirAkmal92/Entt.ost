@@ -1,0 +1,28 @@
+@using System.Web.Mvc.Html
+@model Bespoke.Sph.Web.ViewModels.FormRendererViewModel
+
+@{
+
+    Layout = null;
+    var caption = string.IsNullOrWhiteSpace(Model.Form.Caption) ? Model.Form.Name : Model.Form.Caption;
+
+}
+@*@Html.Partial("_ErrorList")*@
+
+<div class="row">
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption font-green">
+                <i class="icon-pin font-green"></i>
+                <span class="caption-subject bold uppercase"> @Model.Form.Caption</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-8">
+        @Html.Partial("_MaterialDesignFormContent")
+    </div>
+
+</div>

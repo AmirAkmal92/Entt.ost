@@ -1,0 +1,32 @@
+﻿@model Bespoke.Sph.Domain.DownloadLink
+@if (string.IsNullOrWhiteSpace(Model.Enable))
+{
+    Model.Enable = "true";
+}
+@{
+    var path = $"'/sph/binarystore/get/' + {Model.Path}()";
+    if (Model.IsTransformTemplate)
+    {
+        path = $"'/sph/documenttemplate/transform?entity={Model.Entity}&templateId={Model.TemplateId}&id=' + {Model.Path}()";
+    }
+}
+
+@if (Model.IsCompact)
+{
+    <a data-bind="attr : {'href':@Html.Raw(path)}, visible:@Model.Visible" download>
+        @Model.Label
+    </a>
+}
+else
+{
+
+    <div class="form-group" data-bind="visible:@Html.Raw(Model.Visible)">
+        <label data-i18n="@Model.Label" for="@Model.ElementId" class=""></label>
+        <div class="@Model.InputPanelCssClass">
+            <a data-i18n="@Model.Label" id="@Model.ElementId" data-bind="attr : {'href':@Html.Raw(path)}, visible:@Model.Visible" download>
+                @Model.Label
+            </a>
+        </div>
+    </div>
+}
+

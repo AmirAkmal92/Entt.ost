@@ -1,0 +1,8 @@
+﻿@model Bespoke.Sph.Domain.FormElement
+@if (string.IsNullOrWhiteSpace(Model.Enable))
+{
+    Model.Enable = "true";
+}
+<div class="alert alert-danger">
+    <strong>There's no EditorTemplate for @Model.GetType().Name</strong>
+</div>

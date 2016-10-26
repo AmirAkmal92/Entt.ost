@@ -1,0 +1,33 @@
+﻿@using Bespoke.Sph.Domain
+@model Bespoke.Sph.Domain.CheckBox
+@{
+    var originalPath = Model.Path.ToEmptyString().Replace("().", ".");
+    if (string.IsNullOrWhiteSpace(Model.Enable))
+    {
+        Model.Enable = "true";
+    }
+}
+@if (Model.IsCompact)
+{
+    <label class="checkbox" data-bind="visible:@Html.Raw(Model.Visible)">
+        <input data-i18n="@Model.Label" data-bind="@(Html.Raw(Model.GetKnockoutBindingExpression()))" id="@Model.Path" title="@Model.Tooltip" type="checkbox" name="@originalPath" />
+        @Model.Label
+    </label>
+}
+else
+{
+
+    <div class="form-group" data-bind="visible:@Html.Raw(Model.Visible)">
+        <div class="col-md-offset-@(@Model.LabelColMd ?? 4) @Model.InputPanelCssClass">
+            <div class="checkbox">
+                <label class="checkbox">
+                    <input data-bind="@(Html.Raw(Model.GetKnockoutBindingExpression()))" id="@Model.Path" title="@Model.Tooltip" type="checkbox"
+                           name="@originalPath"/>
+                    <span data-i18n="@Model.Label">@Model.Label</span>
+                    
+                </label>
+            </div>
+        </div>
+    </div>
+}
+

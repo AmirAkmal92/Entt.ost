@@ -22,30 +22,6 @@
           "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
           "$values": []
         },
-        "Name": "CompanyName",
-        "AllowMultiple": false,
-        "DefaultValue": null,
-        "WebId": "ebd1800e-acf9-4ce1-cc55-0e1b24fa2096"
-      },
-      {
-        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-        "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
-        "IsNotIndexed": false,
-        "IsAnalyzed": false,
-        "IsFilterable": false,
-        "IsExcludeInAll": false,
-        "Boost": 0,
-        "FullName": null,
-        "PropertyAttribute": null,
-        "MemberCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "FieldPermissionCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
-          "$values": []
-        },
         "Name": "PremiseNoMailbox",
         "AllowMultiple": false,
         "DefaultValue": null,
@@ -54,12 +30,12 @@
       {
         "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
         "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
+        "IsNullable": true,
         "IsNotIndexed": false,
         "IsAnalyzed": false,
         "IsFilterable": false,
         "IsExcludeInAll": false,
-        "Boost": 0,
+        "Boost": 2,
         "FullName": null,
         "PropertyAttribute": null,
         "MemberCollection": {
@@ -83,7 +59,7 @@
         "IsAnalyzed": false,
         "IsFilterable": false,
         "IsExcludeInAll": false,
-        "Boost": 0,
+        "Boost": 3,
         "FullName": null,
         "PropertyAttribute": null,
         "MemberCollection": {
@@ -107,7 +83,7 @@
         "IsAnalyzed": false,
         "IsFilterable": false,
         "IsExcludeInAll": false,
-        "Boost": 0,
+        "Boost": 2,
         "FullName": null,
         "PropertyAttribute": null,
         "MemberCollection": {
@@ -131,7 +107,7 @@
         "IsAnalyzed": false,
         "IsFilterable": false,
         "IsExcludeInAll": false,
-        "Boost": 0,
+        "Boost": 4,
         "FullName": null,
         "PropertyAttribute": null,
         "MemberCollection": {
@@ -150,12 +126,12 @@
       {
         "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
         "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
+        "IsNullable": true,
         "IsNotIndexed": false,
         "IsAnalyzed": false,
         "IsFilterable": false,
         "IsExcludeInAll": false,
-        "Boost": 0,
+        "Boost": 2,
         "FullName": null,
         "PropertyAttribute": null,
         "MemberCollection": {
@@ -179,7 +155,7 @@
         "IsAnalyzed": false,
         "IsFilterable": false,
         "IsExcludeInAll": false,
-        "Boost": 0,
+        "Boost": 4,
         "FullName": null,
         "PropertyAttribute": null,
         "MemberCollection": {
@@ -203,7 +179,7 @@
         "IsAnalyzed": false,
         "IsFilterable": false,
         "IsExcludeInAll": false,
-        "Boost": 0,
+        "Boost": 5,
         "FullName": null,
         "PropertyAttribute": null,
         "MemberCollection": {
@@ -227,7 +203,7 @@
         "IsAnalyzed": false,
         "IsFilterable": false,
         "IsExcludeInAll": false,
-        "Boost": 0,
+        "Boost": 2,
         "FullName": null,
         "PropertyAttribute": null,
         "MemberCollection": {
@@ -251,7 +227,7 @@
         "IsAnalyzed": false,
         "IsFilterable": false,
         "IsExcludeInAll": false,
-        "Boost": 0,
+        "Boost": 3,
         "FullName": null,
         "PropertyAttribute": null,
         "MemberCollection": {
@@ -275,7 +251,7 @@
         "IsAnalyzed": false,
         "IsFilterable": false,
         "IsExcludeInAll": false,
-        "Boost": 0,
+        "Boost": 1,
         "FullName": null,
         "PropertyAttribute": null,
         "MemberCollection": {
@@ -290,78 +266,6 @@
         "AllowMultiple": false,
         "DefaultValue": null,
         "WebId": "ad7add83-8ec5-4e8a-b8a1-78111b5ec965"
-      },
-      {
-        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-        "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
-        "IsNotIndexed": false,
-        "IsAnalyzed": false,
-        "IsFilterable": false,
-        "IsExcludeInAll": false,
-        "Boost": 0,
-        "FullName": null,
-        "PropertyAttribute": null,
-        "MemberCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "FieldPermissionCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "Name": "PhoneNumber",
-        "AllowMultiple": false,
-        "DefaultValue": null,
-        "WebId": "6ee29204-10aa-4cb1-9404-1191907f9f80"
-      },
-      {
-        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-        "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
-        "IsNotIndexed": false,
-        "IsAnalyzed": false,
-        "IsFilterable": false,
-        "IsExcludeInAll": false,
-        "Boost": 0,
-        "FullName": null,
-        "PropertyAttribute": null,
-        "MemberCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "FieldPermissionCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "Name": "FaxNumber",
-        "AllowMultiple": false,
-        "DefaultValue": null,
-        "WebId": "fea64179-9c38-4d63-cfb9-341dba6bd405"
-      },
-      {
-        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-        "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
-        "IsNotIndexed": false,
-        "IsAnalyzed": false,
-        "IsFilterable": false,
-        "IsExcludeInAll": false,
-        "Boost": 0,
-        "FullName": null,
-        "PropertyAttribute": null,
-        "MemberCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "FieldPermissionCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "Name": "Email",
-        "AllowMultiple": false,
-        "DefaultValue": null,
-        "WebId": "000dc853-632b-4456-e550-2d61065f9fb8"
       }
     ]
   },
@@ -374,6 +278,6 @@
   "Id": "address",
   "CreatedDate": "2016-10-12T17:20:42.1818553+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-12T18:01:06.5913256+08:00",
+  "ChangedDate": "2016-10-26T11:49:42.1952911+08:00",
   "WebId": "06395558-5baf-4019-de9f-31c82eaf1e47"
 }

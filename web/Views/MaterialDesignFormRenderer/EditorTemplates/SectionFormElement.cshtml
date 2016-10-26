@@ -1,0 +1,7 @@
+﻿@model Bespoke.Sph.Domain.SectionFormElement
+@if (string.IsNullOrWhiteSpace(Model.Enable))
+{
+    Model.Enable = "true";
+}
+<h2 data-i18n="@Model.Label" data-bind="visible:@Html.Raw(Model.Visible)">@Model.Label</h2>
+

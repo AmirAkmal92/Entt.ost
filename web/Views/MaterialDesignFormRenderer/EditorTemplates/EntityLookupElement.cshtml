@@ -1,0 +1,57 @@
+﻿@using Bespoke.Sph.Domain
+@model Bespoke.Sph.Domain.EntityLookupElement
+@{
+    if (string.IsNullOrWhiteSpace(Model.Enable))
+    {
+        Model.Enable = "true";
+    }
+    
+    var columns = string.Join(",", Model.LookupColumnCollection.Select(c => $"'{c}'"));
+    Console.WriteLine(columns);
+}
+
+
+@if (Model.IsCompact)
+{
+
+    <a class="btn btn-link"
+       data-bind="tooltip :'@Model.Tooltip',lookup : {entity: '@Model.Entity', member : '@Model.ValueMemberPath', value : @Model.Path.ConvertJavascriptObjectToFunction(), columns : [@Html.Raw(columns)]}"
+       id="@Model.ElementId">
+        <!-- ko text :@Model.DisplayMemberPath -->
+        <!-- /ko -->
+        <i class="fa fa-search"></i>
+    </a>
+}
+else
+{
+    <div data-bind="visible:@Html.Raw(Model.Visible)" class="form-group">
+        <label data-i18n="@Model.Label" for="@Model.ElementId" class="@Model.LabelCssClass">@Model.Label</label>
+
+        <script type="text/json" id="@($"filter-{Model.ElementId}")">
+            
+        </script>
+
+
+        <div class="@Model.InputPanelCssClass">
+            <a class="btn btn-link" 
+               data-bind="tooltip :'@Model.Tooltip',lookup : {entity: '@Model.Entity', member : '@Model.ValueMemberPath', value : @Model.Path.ConvertJavascriptObjectToFunction(), columns : [@Html.Raw(columns)]}"
+               id="@Model.ElementId">
+                @if (!string.IsNullOrWhiteSpace(Model.DisplayTemplate))
+                {
+                    @Html.Raw(Model.DisplayTemplate);
+                }
+                else
+                {
+                     <!-- ko text: @Model.DisplayMemberPath -->
+                     <!-- /ko -->
+                }
+                <i class="fa fa-search"></i>
+            </a>
+        </div>
+        @if (!string.IsNullOrWhiteSpace(Model.HelpText))
+        {
+            <span class="help-block">@Model.HelpText</span>
+        }
+    </div>
+
+}

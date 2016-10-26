@@ -1,0 +1,30 @@
+﻿@using Bespoke.Sph.Domain
+@model Bespoke.Sph.Domain.WebsiteFormElement
+@{
+    var originalPath = Model.Path.ToEmptyString().Replace("().", ".");
+    if (string.IsNullOrWhiteSpace(Model.Enable))
+    {
+        Model.Enable = "true";
+    }
+}
+
+
+@if (Model.IsCompact)
+{
+    <input class="@(Model.CssClass + " form-control "+ Model.Size)"
+           title="@Model.Tooltip"
+           data-bind="@(Html.Raw(Model.GetKnockoutBindingExpression()))"
+           id="@Model.ElementId" type="url" name="@Model.Path" />
+
+}
+else
+{
+    <div class="control-group" data-bind="visible:@Html.Raw(Model.Visible)">
+        <label data-i18n="@Model.Label" for="@Model.ElementId" class="@Model.LabelCssClass">@Model.Label</label>
+        <div class="@Model.InputPanelCssClass">
+            <input class="@(Model.CssClass + " form-control "+ Model.Size)"
+                   title="@Model.Tooltip"
+                   data-bind="@(Html.Raw(Model.GetKnockoutBindingExpression()))" id="@Model.ElementId" type="url" name="@originalPath" />
+        </div>
+    </div>
+}

@@ -1,0 +1,49 @@
+{
+  "$type": "Bespoke.Sph.Domain.TransformDefinition, domain.sph",
+  "MapCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Map, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "FirstName",
+        "TypeName": "",
+        "Destination": "ContactPerson",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "fd71eecf-0699-495e-be94-bf509e018371"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "EMailAddress",
+        "TypeName": "",
+        "Destination": "ReferenceNo",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "9a0fa16c-5f35-40e4-8ab1-ac7be40c5d6e"
+      }
+    ]
+  },
+  "FunctoidCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Functoid, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "InputCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.MethodArg, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "ReferencedAssemblyCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ReferencedAssembly, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "Name": "OutlookContact_to_AddressBook",
+  "Description": "#5139",
+  "InputTypeName": "Bespoke.Ost.OutlookContacts.Domain.OutlookContact, Ost.OutlookContact",
+  "OutputTypeName": "Bespoke.Ost.AddressBooks.Domain.AddressBook, Ost.AddressBook",
+  "IsPublished": false,
+  "CreatedBy": "admin",
+  "Id": "outlook-contact-to-address-book",
+  "CreatedDate": "2016-10-26T11:46:00.5775524+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-10-26T11:46:38.353391+08:00",
+  "WebId": "1e7e57a7-d936-4f47-88c6-28922ec409ce"
+}

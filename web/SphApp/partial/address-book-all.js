@@ -25,6 +25,25 @@ define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "servi
             return tcs.promise();
 
         },
+        importContacts = function(){
+            var tcs = new $.Deferred();
+            require(['viewmodels/import.contacts.dialog' , 'durandal/app'], function (dialog, app2) {
+              
+                app2.showDialog(dialog)
+                    .done(function (result) {
+                        tcs.resolve(result);
+                        if (!result) return;
+                        if (result === "OK") {
+                            var storeId = ko.unwrap(dialog.item().storeId);
+                            context.post("{}", "address-books/" + storeId).done(function(result){
+                                console.log(result);
+                            });
+                        }
+                }); 
+            });
+
+            return tcs.promise();
+        },
         exportToCsv = function(){
             var tcs = new $.Deferred();
             require(['viewmodels/export.addresses.dialog' , 'durandal/app'], function (dialog, app2) {
@@ -63,12 +82,17 @@ define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "servi
             caption : "Remove address",
             icon : "fa fa-trash-o"
         },
+        importCommand = {
+            command : importContacts,
+            caption : "Import contacts",
+            icon : "fa fa-upload"
+        },
         exportToCsvCommand = {
             command : exportToCsv,
             caption : "Export to csv",
             icon : "fa fa-file-o"
         },
-        commands = ko.observableArray([ addCommand, removeCommand, exportToCsvCommand]),
+        commands = ko.observableArray([ addCommand, removeCommand, importCommand, exportToCsvCommand]),
         rootList = null,
         activate = function(list){
             rootList = list;

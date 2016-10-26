@@ -17,6 +17,18 @@ namespace web.sph.App_Code
     [RoutePrefix("address-books")]
     public class CustomAddressBookController : BaseApiController
     {
+        [HttpPost]
+        [Route("{storeId:guid}")]
+        public async Task<IHttpActionResult> ImportContacts(string storeId)
+        {
+            var store = ObjectBuilder.GetObject<IBinaryStore>();
+            var csv = await store.GetContentAsync(storeId);
+
+            // write code use mapping , from port to import the data
+
+            return Ok(csv);
+        }
+
         [HttpGet]
         [Route("csv")]
         public async Task<HttpResponseMessage> DownloadCsv(

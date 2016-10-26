@@ -1,0 +1,67 @@
+@using Bespoke.Sph.Domain
+@model Bespoke.Sph.Domain.TabControl
+
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        @for (int i = 0; i < Model.TabPanelCollection.Count; i++)
+        {
+            var tab = Model.TabPanelCollection[i];
+            var id = $"{tab.PartialView}-{i:00}";
+            if (i == 0)
+            {
+
+                <li class="active">
+                    <a href="#@id" data-toggle="tab">@tab.Header</a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="#@id" data-toggle="tab">@tab.Header</a>
+                </li>
+            }
+        }
+
+    </ul>
+    <div class="tab-content">
+
+        @for (int i = 0; i < Model.TabPanelCollection.Count; i++)
+        {
+            var tab = Model.TabPanelCollection[i];
+            var id = $"{tab.PartialView}-{i:00}";
+            var defaultPath = tab.Path == "." || string.IsNullOrWhiteSpace(tab.Path);
+            var dbw = defaultPath ? null : $"data-bind=\"with: {tab.Path.ConvertJavascriptObjectToFunction()}\"";
+
+
+
+            if (i == 0)
+            {
+
+                <div id="@id" class="tab-pane active" @Html.Raw(dbw)>
+                    <form class="form-horizontal" id="@($"{tab.PartialView}-form-{i:00}")">
+                        <!-- ko compose : {view : '@(tab.PartialView).html'}-->
+                        <!-- /ko -->
+                    </form>
+                </div>
+            }
+            else
+            {
+                <div id="@id" class="tab-pane" @Html.Raw(dbw)>
+
+                    <form class="form-horizontal" id="@($"{tab.PartialView}-form-{i:00}")">
+                        <!-- ko compose : {view : '@(tab.PartialView).html'}-->
+                        <!-- /ko -->
+                    </form>
+
+                </div>
+
+            }
+
+        }
+
+
+
+    </div>
+</div>
+
+

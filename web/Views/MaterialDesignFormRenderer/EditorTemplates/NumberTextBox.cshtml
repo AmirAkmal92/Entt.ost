@@ -1,0 +1,31 @@
+﻿@using Bespoke.Sph.Domain
+@model Bespoke.Sph.Domain.NumberTextBox
+@{
+    var originalPath = Model.Path.ToEmptyString().Replace("().", ".");
+    if (string.IsNullOrWhiteSpace(Model.Enable))
+    {
+        Model.Enable = "true";
+    }
+}
+@if (Model.IsCompact)
+{
+    <input step="@Model.Step" class="@(Model.CssClass + " form-control "+ Model.Size)"
+           title="@Model.Tooltip" data-bind="@(Html.Raw(Model.GetKnockoutBindingExpression()))"
+           id="@Model.ElementId" type="number" name="@originalPath" />
+}
+else
+{
+
+    <div class="form-group" data-bind="visible:@Html.Raw(Model.Visible)">
+        <label data-i18n="@Model.Label" for="@Model.ElementId" class="@Model.LabelCssClass">@Model.Label</label>
+        <div class="@Model.InputPanelCssClass">
+            <input step="@Model.Step" class="@(Model.CssClass + " form-control "+ Model.Size)"
+                   title="@Model.Tooltip" data-bind="@(Html.Raw(Model.GetKnockoutBindingExpression()))"
+                   id="@Model.ElementId" type="number" name="@originalPath" />
+        </div>
+        @if (!string.IsNullOrWhiteSpace(Model.HelpText))
+        {
+            <span class="help-block">@Model.HelpText</span>
+        }
+    </div>
+}  

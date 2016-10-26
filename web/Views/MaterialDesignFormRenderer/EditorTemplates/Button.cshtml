@@ -1,0 +1,16 @@
+﻿@using Bespoke.Sph.Domain
+@model Bespoke.Sph.Domain.Button
+@if (string.IsNullOrWhiteSpace(Model.Enable))
+{
+    Model.Enable = "true";
+}
+@{
+    var command = Model.UseClick ? "click" : "command";
+    var operation = (Model.OperationMethod + Model.Operation + "Command").ToCamelCase();
+    var handler = string.IsNullOrWhiteSpace(operation) ? Model.CommandName : operation;
+    if (string.IsNullOrWhiteSpace(Model.Operation) && string.IsNullOrWhiteSpace(Model.CommandName))
+    {
+        handler = ("delete" + Model.DeleteOperation + "Command").ToCamelCase();
+    }
+}
+<button data-bind="@command : $root.@handler, visible :@Model.Visible, enable: @Model.Enable" class="@Model.CssClass">@Model.Label</button>
