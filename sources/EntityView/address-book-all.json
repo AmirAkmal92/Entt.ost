@@ -108,7 +108,7 @@
   "IconClass": "fa fa-bookmark-o",
   "IconStoreId": "0bc75356-2a39-4aeb-aeef-cf84c6d2b95c",
   "EntityDefinitionId": "address-book",
-  "Name": "All AddressBooks",
+  "Name": "My address book",
   "Route": "address-book-all",
   "Note": null,
   "IsPublished": true,
