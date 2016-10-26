@@ -4,6 +4,7 @@
         "node_modules", "control.center", "elasticsearch", "rabbitmq_server", "rabbitmq_base"
     ],
       "files.exclude": {
+        "**/*.user": true,     
         "**/.git": true,         // this is a default value
         "**/.DS_Store": true,    // this is a default value
 
@@ -14,6 +15,8 @@
         "node_modules": true ,  
                                 "config" : true,
                                 "web/bin" : true,
+                                "web.identity.server/bin" : true,
+                                "web.identity.server/obj" : true,
                                 "data" : true,
                                 "tools" : true,
                                 ".nuget" : true,

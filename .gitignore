@@ -25,3 +25,6 @@ ControlCenter.bat
 *.tmp
 103*/
 103*.ps1
+/web.identity.server/bin
+/web.identity.server/obj/Debug
+*.user
