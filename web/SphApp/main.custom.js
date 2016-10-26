@@ -1604,7 +1604,7 @@ define('durandal/binder', ['durandal/system', 'knockout'], function (system, ko)
                 system.log(e.message);
             }
             console.error(e.message);
-            toastr.error(e.message);
+            //toastr.error(e.message);
         }
     }
 
