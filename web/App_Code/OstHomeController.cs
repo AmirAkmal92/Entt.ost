@@ -9,10 +9,11 @@ namespace web.sph.App_Code
     [RoutePrefix("ost")]
     public class OstHomeController : Controller
     {
-        [Authorize]
         [Route("")]
         public ActionResult Index()
         {
+            if(!User.Identity.IsAuthenticated)
+                return RedirectToAction("Login", "OstAccount");
             return View("Default");
         }
 
