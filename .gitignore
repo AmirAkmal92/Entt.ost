@@ -21,7 +21,6 @@ ControlCenter.bat
 *.dll
 *.log
 *.pdb
-*.sln
 *.tmp
 103*/
 103*.ps1
