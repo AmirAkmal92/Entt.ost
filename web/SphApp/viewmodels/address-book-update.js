@@ -101,7 +101,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
                 return app.showMessage("Your contact has been deleted", "Reactive Developer platform showcase", ["OK"]);
             })
                 .then(function(result) {
-                router.navigate("address-book-all");
+                router.navigate("address-book-home/-");
             });
         },
 
@@ -135,7 +135,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
             })
                 .then(function(result) {
                 if (result) {
-                    router.navigate("address-book-all");
+                    router.navigate("address-book-home/-");
                 }
             });
         };

@@ -1,0 +1,18 @@
+<ul class="sub-menu">
+    <li class="nav-item start ">
+        <a href="/ost#address-book-home/-" class="nav-link ">
+            <i class="icon-users"></i>
+            <span class="title">All contacts</span>
+            <span class="badge badge-success" data-bind="text: contactsCount">852</span>
+        </a>
+    </li>
+    <!-- ko foreach : groups -->
+    <li class="nav-item start ">
+        <a href="/ost#address-book-home/**" data-bind="attr : {'href' : '/ost#/address-book-home/' + group}" class="nav-link ">
+            <i class="icon-users"></i>
+            <span class="title" data-bind="text : group"></span>
+            <span class="badge badge-success" data-bind="text: count"></span>
+        </a>
+    </li>
+    <!-- /ko -->
+</ul>

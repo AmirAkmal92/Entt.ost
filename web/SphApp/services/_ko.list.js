@@ -224,7 +224,7 @@ define([objectbuilders.datacontext, objectbuilders.logger], function (context, l
                 },
                 pageChanged = function (page, size) {
                     startLoad();
-                    var url = query + "?page=" + (page || 1) + "&size=" + (size || 20);
+                    var url = ko.unwrap(query) + "?page=" + (page || 1) + "&size=" + (size || 20);
                     if (executedQuery) url += "&q=" + executedQuery;
                     return $.getJSON(url)
                          .then(function (lo) {
@@ -235,8 +235,8 @@ define([objectbuilders.datacontext, objectbuilders.logger], function (context, l
                 search = function (page, size) {
                     var tcs1 = new $.Deferred();
                     startLoad();
-                    var url = query + "?page=" + (page || 1) + "&size=" + (size || 20);
-                    if (query.indexOf("?") > -1) url = query + "&page=" + (page || 1) + "&size=" + (size || 20);
+                    var url = ko.unwrap(query) + "?page=" + (page || 1) + "&size=" + (size || 20);
+                    if (ko.unwrap(query).indexOf("?") > -1) url = ko.unwrap(query) + "&page=" + (page || 1) + "&size=" + (size || 20);
                     if (executedQuery) url += "&q=" + executedQuery;
                     $.getJSON(url)
                         .then(function (lo) {

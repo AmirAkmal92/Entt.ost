@@ -12,5 +12,20 @@
     "showWhenLoggedIn": false,
     "isAdminPage": false,
     "startPageRoute": null
+  },
+  
+  {
+    "role": "customers",
+    "groupName": "Address Books",
+    "route": "address-book-home/:group",
+    "moduleId": "viewmodels/address-book-home",
+    "title": "Address Book",
+    "nav": true,
+    "icon": "fa fa-low-vision",
+    "caption": "Address Book",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
   }
 ]

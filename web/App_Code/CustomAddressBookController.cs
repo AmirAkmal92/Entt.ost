@@ -28,24 +28,27 @@ namespace web.sph.App_Code
 
             // write code use mapping , from port to import the data
             var port = new Bespoke.Ost.ReceivePorts.OutlookCsvContact(ObjectBuilder.GetObject<ILogger>());
-
-            var text = Encoding.Default.GetString(csv.Content);
-            var lines = text.Split(new[] { "\r\n", "\r" }, StringSplitOptions.RemoveEmptyEntries);
             var map = new Bespoke.Ost.Integrations.Transforms.OutlookContactToAddressBook();
 
+            var text = Encoding.Default.GetString(csv.Content);
+            var lines = from t in text.Split(new[] { "\r\n", "\r" }, StringSplitOptions.RemoveEmptyEntries)
+                        where !t.StartsWith("First Name,") // ignore the label
+                        let fields = t.Split(new[] { "," }, StringSplitOptions.None).Take(88)
+                        select string.Join(",", fields);
+
+
             // TODO :the mapping could have been simpler, if we the source is just the port type
-            var tasks = from cl in port.Process(lines)
-                        where null != cl
-                        let ot = cl.ToJson().DeserializeFromJson<Bespoke.Ost.OutlookContacts.Domain.OutlookContact>()
-                        select map.TransformAsync(ot);
+            var outlookContacts = from cl in port.Process(lines)
+                                  where null != cl
+                                  select cl.ToJson().DeserializeFromJson<Bespoke.Ost.OutlookContacts.Domain.OutlookContact>();
 
             var errors = new List<object>();
             var context = new SphDataContext();
-            foreach (var t in tasks)
+            foreach (var t in outlookContacts)
             {
                 try
                 {
-                    var contact = await t;
+                    var contact = await map.TransformAsync(t);
                     contact.Id = Guid.NewGuid().ToString();
                     using (var session = context.OpenSession())
                     {
@@ -53,9 +56,9 @@ namespace web.sph.App_Code
                         await session.SubmitChanges("ImportContacts", new Dictionary<string, object> { { "username", User.Identity.Name } });
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    errors.Add(new { });
+                    errors.Add(new { message = e.Message, contact = t });
                 }
 
             }
@@ -65,7 +68,7 @@ namespace web.sph.App_Code
 
         [HttpGet]
         [Route("group-options")]
-        public async Task<IHttpActionResult> GetGroupOptions()
+        public async Task<IHttpActionResult> GetGroupOptions([FromUri(Name = "count")]bool withCount = false)
         {
 
             var repos = ObjectBuilder.GetObject<IReadonlyRepository<AddressBook>>();
@@ -93,7 +96,14 @@ namespace web.sph.App_Code
             var json = JObject.Parse(response);
             var buckets = json.SelectToken("$.aggregations.groups.buckets");
 
+            if (withCount)
+            {
+                var groups = from b in buckets
+                           select new { @group = b.SelectToken("key").Value<string>(), count = b.SelectToken("doc_count").Value<string>() };
+                return Ok(groups);
+            }
             var keys = buckets.Select(b => b.SelectToken("key").Value<string>()).ToList();
+
             if (keys.Count == 0)
                 keys.AddRange(new[] { "Customers", "Gold", "Silver", "Family" });
 
