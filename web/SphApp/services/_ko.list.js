@@ -21,7 +21,7 @@ define([objectbuilders.datacontext, objectbuilders.logger], function (context, l
 </div>
 
 */
-    var intiFilter = function (element, options, search) {
+    var initQueryFilter = function (element, options, search) {
         var path = options.path,
             placeholder =  options.placeholder || "Filter....",
             tooltip = options.tooltip || "Type to filter current page or type and [ENTER] to apply _all in remote query",
@@ -45,13 +45,13 @@ define([objectbuilders.datacontext, objectbuilders.logger], function (context, l
 
         $form.submit(function (e) {
             e.preventDefault();
-            var filter = $filterInput.val().toLowerCase(),
+            var filter = $filterInput.val(),
                 tcs = new $.Deferred();
             if (!filter) {
                 return tcs.promise();
             }
             if (typeof search === "function") {
-                return search("_all:" + filter);
+                return search(filter);
             }
             return tcs.promise();
         });
@@ -63,10 +63,10 @@ define([objectbuilders.datacontext, objectbuilders.logger], function (context, l
                 filter = $filterInput.val().toLowerCase();
             $rows.each(function () {
                 var $tr = $(this),
-                    text = $tr.text().toLowerCase().trim();
+                    text = $tr.text().trim().toLowerCase();
                 if (!text) {
                     $("input", $tr).each(function (i, v) { text += " " + $(v).val() });
-                    text = text.toLowerCase().trim();
+                    text = text.trim().toLowerCase();
                 }
                 if (text.indexOf(filter) > -1) {
                     $tr.show();
@@ -271,7 +271,7 @@ define([objectbuilders.datacontext, objectbuilders.logger], function (context, l
                 filter = ko.unwrap(value.filter) || {};
 
             //exposed the search function
-            intiFilter(element, { path: filter.path || 'tbody>tr', placeholder : filterPlaceholder, tooltip : filterTooltip }, filterAndSearch);
+            initQueryFilter(element, { path: filter.path || 'tbody>tr', placeholder : filterPlaceholder, tooltip : filterTooltip }, filterAndSearch);
 
             $element.after($pagerPanel).after($spinner)
                 .fadeTo("slow", 0.33);
@@ -300,7 +300,7 @@ define([objectbuilders.datacontext, objectbuilders.logger], function (context, l
                     viewModel.toolbar.commands.push({
                         command: function () {
                             executedQuery = "";
-                            return pageChanged(1, 20);
+                            return filterAndSearch();
                         },
                         caption: "Reload",
                         icon: "fa fa-refresh",
