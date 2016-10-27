@@ -3,7 +3,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/c
 function(context, logger, router, chart, config, koList, partial) {
 
     var isBusy = ko.observable(false),
-        query = "/api/addressbooks/",
+        query = "/api/address-books/",
         commands = ko.observableArray([]),
         partial = partial || {},
         list = ko.observableArray([]),

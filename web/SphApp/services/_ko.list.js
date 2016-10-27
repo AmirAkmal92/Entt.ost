@@ -196,11 +196,13 @@ define([objectbuilders.datacontext, objectbuilders.logger], function (context, l
                     if (map) {
                         items = _(items).map(map);
                     }
+                    
+                    if (ko.isObservable(list) && typeof list.push === "function") {
+                        list.removeAll();
+                        list(items);
+                    }
                     if (typeof list === "string") {
                         viewModel[list](items);
-                    }
-                    if (typeof list === "function") {
-                        list(items);
                     }
                 },
                 pageChanged = function (page, size) {
@@ -280,6 +282,7 @@ define([objectbuilders.datacontext, objectbuilders.logger], function (context, l
                 if (!reloadCommand) {
                     viewModel.toolbar.commands.push({
                         command: function () {
+                            executedQuery = "";
                             return pageChanged(1, 20);
                         },
                         caption: "Reload",
