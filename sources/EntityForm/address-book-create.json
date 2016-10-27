@@ -67,7 +67,7 @@
           },
           "Name": null,
           "Label": "Reference No",
-          "Tooltip": null,
+          "Tooltip": "",
           "Path": "ReferenceNo",
           "IsRequired": false,
           "Size": "input-large",
@@ -658,13 +658,22 @@
           "WebId": "dc4d26a0-b3e7-4d68-a3cb-115f1f9d480f"
         },
         {
-          "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
-          "DefaultValue": null,
-          "AutoCompletionEntity": null,
-          "AutoCompletionField": null,
-          "AutoCompletionQuery": null,
+          "$type": "Bespoke.Sph.Domain.ComboBox, domain.sph",
+          "ComboBoxItemCollection": {
+            "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ComboBoxItem, domain.sph]], domain.sph",
+            "$values": []
+          },
+          "ComboBoxLookup": {
+            "$type": "Bespoke.Sph.Domain.ComboBoxLookup, domain.sph",
+            "Entity": "Country",
+            "ValuePath": "Name",
+            "DisplayPath": "Name",
+            "Query": null,
+            "IsComputedQuery": false,
+            "WebId": null
+          },
           "IsPathIsRequired": true,
-          "TypeName": "TextBox",
+          "TypeName": "ComboBox",
           "FieldValidation": {
             "$type": "Bespoke.Sph.Domain.FieldValidation, domain.sph",
             "IsRequired": false,
@@ -682,11 +691,11 @@
           "Tooltip": null,
           "Path": "Address.Country",
           "IsRequired": false,
-          "Size": "input-large",
-          "CssClass": "",
+          "Size": null,
+          "CssClass": null,
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "9baf3219-9a04-4896-a025-60ca3df6878a",
+          "ElementId": "countryDropDown",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -699,7 +708,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "c2248fd4-89ab-408c-f195-1ee313eed5da"
+          "WebId": "1afae99c-4b21-4a5e-c77d-40e05016c317"
         },
         {
           "$type": "Bespoke.Sph.Domain.SectionFormElement, domain.sph",
@@ -934,6 +943,6 @@
   "Id": "address-book-create",
   "CreatedDate": "2016-10-11T10:54:53.9068465+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-26T12:53:32.5282608+08:00",
+  "ChangedDate": "2016-10-27T08:12:50.833825+08:00",
   "WebId": "20c7265a-ad7d-4aa2-8e2f-58271f1d99b5"
 }

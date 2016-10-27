@@ -146,17 +146,17 @@ namespace web.sph.App_Code
                 if (country)
                     csv.Append($@"""{adr.Address.Country}"",");
                 if (phoneNo)
-                    csv.Append($@"""{adr.Address.PhoneNumber}"",");
+                    csv.Append($@"""{adr.ContactInformation.PhoneNumber}"",");
                 if (faxNumber)
-                    csv.Append($@"""{adr.Address.FaxNumber}"",");
+                    csv.Append($@"""{adr.ContactInformation.FaxNumber}"",");
                 if (email)
-                    csv.Append($@"""{adr.Address.Email}"",");
+                    csv.Append($@"""{adr.ContactInformation.EmailAddress}"",");
                 if (gpsLocation)
-                    csv.Append($@"""{adr.GroupAddress}"",");
+                    csv.Append($@"""{adr.Groups}"",");
                 if (referenceNo)
                     csv.Append($@"""{adr.ReferenceNo}"",");
                 if (addressGroup)
-                    csv.Append($@"""{adr.GroupAddress}"",");
+                    csv.Append($@"""{adr.Groups}"",");
 
                 csv.AppendLine();
             }

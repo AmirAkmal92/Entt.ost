@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-11 col-lg-11 -col-sm-12">
-        <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list}">
+        <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list, enableReload : true}">
             <thead>
                 <tr>
                     <th></th>
@@ -21,9 +21,9 @@
                             <span data-bind="text:ReferenceNo"></span>
                         </a>
                     </td>
-                    <td data-bind="text:GroupAddress"></td>
-                    <td data-bind="text:Address.CompanyName"></td>
-                    <td data-bind="text:Address.Email"></td>
+                    <td data-bind="text:Groups"></td>
+                    <td data-bind="text:CompanyName"></td>
+                    <td data-bind="text:ContactInformation.EmailAddress"></td>
                     <td data-bind="text:ContactPerson"></td>
                 </tr>
             </tbody>
