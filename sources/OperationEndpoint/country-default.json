@@ -1,0 +1,56 @@
+{
+  "$type": "Bespoke.Sph.Domain.OperationEndpoint, domain.sph",
+  "EntityPermissionCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.EntityPermission, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "Rules": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "SetterActionChildCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.SetterActionChild, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.SetterActionChild, domain.sph",
+        "Path": "Id",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.DocumentField, domain.sph",
+          "XPath": "",
+          "NamespacePrefix": "",
+          "TypeName": "",
+          "Path": "Abbreviation",
+          "Name": "Abbreviation",
+          "Note": "Abbreviation",
+          "WebId": "f3741554-ce46-4ae4-cc5f-ca1990bd8010"
+        },
+        "WebId": "bfa2e289-aaa1-4b15-f4fc-ba29c66c74cc"
+      }
+    ]
+  },
+  "PatchPathCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.PatchSetter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "ReferencedAssemblyCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ReferencedAssembly, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "Name": "Default",
+  "Route": "",
+  "IsHttpPut": true,
+  "IsHttpPatch": false,
+  "IsHttpPost": true,
+  "IsHttpDelete": true,
+  "Note": "",
+  "Entity": "Country",
+  "Resource": "countries",
+  "IsPublished": true,
+  "IsConflictDetectionEnabled": false,
+  "CreatedBy": "admin",
+  "Id": "country-default",
+  "CreatedDate": "2016-10-27T07:43:01.8865278+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-10-27T07:47:58.5817766+08:00",
+  "WebId": "56d279e3-55e7-4120-8434-8e238aa54bb0"
+}

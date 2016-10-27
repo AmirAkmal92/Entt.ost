@@ -30,6 +30,44 @@ namespace web.sph.App_Code
         }
 
         [HttpGet]
+        [Route("group-options")]
+        public async Task<IHttpActionResult> GetGroupOptions()
+        {
+
+            var repos = ObjectBuilder.GetObject<IReadonlyRepository<AddressBook>>();
+            var query = $@"
+{{
+   ""query"": {{
+      ""term"": {{
+         ""CreatedBy"": {{
+            ""value"": ""{User.Identity.Name}""
+         }}
+      }}
+   }},
+   ""aggs"": {{
+      ""groups"": {{
+         ""terms"": {{
+            ""field"": ""Groups""
+         }}
+      }}
+   }},
+   ""size"": 0
+}}";
+
+
+            var response = await repos.SearchAsync(query);
+            var json = JObject.Parse(response);
+            var buckets = json.SelectToken("$.aggregations.groups.buckets");
+
+            var keys = buckets.Select(b => b.SelectToken("key").Value<string>()).ToList();
+            if (keys.Count == 0)
+                keys.AddRange(new[] { "Customers", "Gold", "Silver", "Family" });
+
+
+            return Ok(keys);
+        }
+
+        [HttpGet]
         [Route("csv")]
         public async Task<HttpResponseMessage> DownloadCsv(
         [FromUri(Name = "contactName")] bool contactName = true,
@@ -146,17 +184,17 @@ namespace web.sph.App_Code
                 if (country)
                     csv.Append($@"""{adr.Address.Country}"",");
                 if (phoneNo)
-                    csv.Append($@"""{adr.Address.PhoneNumber}"",");
+                    csv.Append($@"""{adr.ContactInformation.PhoneNumber}"",");
                 if (faxNumber)
-                    csv.Append($@"""{adr.Address.FaxNumber}"",");
+                    csv.Append($@"""{adr.ContactInformation.FaxNumber}"",");
                 if (email)
-                    csv.Append($@"""{adr.Address.Email}"",");
+                    csv.Append($@"""{adr.ContactInformation.EmailAddress}"",");
                 if (gpsLocation)
-                    csv.Append($@"""{adr.GroupAddress}"",");
+                    csv.Append($@"""{adr.Groups}"",");
                 if (referenceNo)
                     csv.Append($@"""{adr.ReferenceNo}"",");
                 if (addressGroup)
-                    csv.Append($@"""{adr.GroupAddress}"",");
+                    csv.Append($@"""{adr.Groups}"",");
 
                 csv.AppendLine();
             }

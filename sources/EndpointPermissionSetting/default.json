@@ -42,7 +42,7 @@
     "IsInherited": false,
     "HasParent": true,
     "HasAction": false,
-    "HasController": true
+    "HasController": false
   },
   {
     "Parent": "System",
@@ -59,7 +59,7 @@
       }
     ],
     "IsInherited": false,
-    "HasParent": false,
+    "HasParent": true,
     "HasAction": true,
     "HasController": true
   },
@@ -78,7 +78,7 @@
       }
     ],
     "IsInherited": false,
-    "HasParent": false,
+    "HasParent": true,
     "HasAction": true,
     "HasController": true
   },
@@ -97,7 +97,7 @@
       }
     ],
     "IsInherited": false,
-    "HasParent": false,
+    "HasParent": true,
     "HasAction": true,
     "HasController": true
   },
@@ -116,7 +116,7 @@
       }
     ],
     "IsInherited": false,
-    "HasParent": false,
+    "HasParent": true,
     "HasAction": true,
     "HasController": true
   },
@@ -137,6 +137,63 @@
     "IsInherited": false,
     "HasParent": true,
     "HasAction": false,
-    "HasController": false
+    "HasController": true
+  },
+  {
+    "Parent": "Country",
+    "Controller": "CountryDefaultOperationEndpoint",
+    "Action": "PostDefault",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "Country",
+    "Controller": "CountryServiceContract",
+    "Action": "OdataApi",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "System",
+    "Controller": "List",
+    "Action": "Index",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": true,
+    "HasController": true
   }
 ]

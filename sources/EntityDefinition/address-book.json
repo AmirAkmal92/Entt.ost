@@ -30,10 +30,10 @@
       {
         "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
         "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
+        "IsNullable": true,
         "IsNotIndexed": false,
-        "IsAnalyzed": false,
-        "IsFilterable": false,
+        "IsAnalyzed": true,
+        "IsFilterable": true,
         "IsExcludeInAll": false,
         "Boost": 5,
         "FullName": null,
@@ -56,8 +56,8 @@
         "TypeName": "System.String, mscorlib",
         "IsNullable": false,
         "IsNotIndexed": false,
-        "IsAnalyzed": false,
-        "IsFilterable": false,
+        "IsAnalyzed": true,
+        "IsFilterable": true,
         "IsExcludeInAll": false,
         "Boost": 3,
         "FullName": null,
@@ -514,6 +514,6 @@
   "Id": "address-book",
   "CreatedDate": "2016-10-11T10:54:53.9068465+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-26T11:52:25.344201+08:00",
+  "ChangedDate": "2016-10-27T08:39:36.2926363+08:00",
   "WebId": "26a50087-d1d9-4cd3-8b85-cab9c3bf2dc3"
 }

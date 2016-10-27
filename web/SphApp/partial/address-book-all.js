@@ -72,7 +72,7 @@ define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "servi
                 return router.navigate("address-book-create/0");
             },
             caption : "Add new address",
-            icon : "fa fa-plus-circle"
+            icon : "fa fa-plus label label-info"
         },
         removeCommand = {
             command : removeAddresses,
@@ -80,17 +80,18 @@ define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "servi
                 return selectedAddresses().length > 0;
             }),
             caption : "Remove address",
-            icon : "fa fa-trash-o"
+            icon : "fa fa-trash-o  label label-danger",
+            class : "btn btn-danger"
         },
         importCommand = {
             command : importContacts,
             caption : "Import contacts",
-            icon : "fa fa-upload"
+            icon : "fa fa-upload icon-default"
         },
         exportToCsvCommand = {
             command : exportToCsv,
             caption : "Export to csv",
-            icon : "fa fa-file-o"
+            icon : "fa fa-file-o icon-default"
         },
         commands = ko.observableArray([ addCommand, removeCommand, importCommand, exportToCsvCommand]),
         rootList = null,

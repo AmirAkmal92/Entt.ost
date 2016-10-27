@@ -1,0 +1,38 @@
+@using System.Web.Mvc.Html
+@using Bespoke.Sph.Domain
+@model Bespoke.Sph.Web.ViewModels.FormRendererViewModel
+@{
+
+    Layout = null;
+    var formId = @Model.Form.Route + "-form";
+}
+
+<form class="form-horizontal" data-bind="with : entity" id="@formId">
+    <div class="form-body">
+        @foreach (var fe in Model.Form.FormDesign.FormElementCollection)
+        {
+            var fe1 = fe;
+            fe1.Path = fe1.Path.ConvertJavascriptObjectToFunction();
+            var button = fe1 as Button;
+            if (null != button && button.IsToolbarItem)
+            {
+                // toolbar button
+                continue;
+            }
+
+            var type = fe1.GetType().Name;
+            var template = $"~/Views/EntityFormRenderer/{(fe.UseDisplayTemplate ? "Display" : "Editor")}Templates/{type}.cshtml";
+            var file = this.Server.MapPath(template);
+            if (System.IO.File.Exists(file))
+            {
+                var html = Html.Partial(template, fe1);
+                @(Html.Raw(html))
+                continue;
+            }
+
+           
+            @(fe.UseDisplayTemplate ? Html.DisplayFor(f => fe1) : Html.EditorFor(f => fe1))
+
+        }
+    </div>
+</form>
