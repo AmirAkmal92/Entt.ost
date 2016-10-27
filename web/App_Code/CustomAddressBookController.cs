@@ -1,4 +1,5 @@
 using System;
+using System.Activities.Expressions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -18,16 +19,75 @@ namespace web.sph.App_Code
     public class CustomAddressBookController : BaseApiController
     {
 
-        
+
         [HttpPut]
         [Route("groups/{group}/{newName}")]
-        public async Task<IHttpActionResult> ChangeGroupName( string group,string newName)
+        public async Task<IHttpActionResult> ChangeGroupName(string group, string newName)
         {
-            await Task.Delay(500);
-            return Ok(new {message = $"{group} has been renamed to {newName}"});
+            var list = new List<string>();
+            var rows = int.MaxValue;
+            var page = 0;
+            const int size = 50;
+            var repos = ObjectBuilder.GetObject<IReadonlyRepository<AddressBook>>();
+            var query = $@"{{
+   ""query"": {{
+      ""bool"": {{
+         ""must"": [
+            {{
+               ""term"": {{
+                  ""CreatedBy"": {{
+                     ""value"": ""{User.Identity.Name}""
+                  }}
+               }}
+            }},            
+            {{
+               ""term"": {{
+                  ""Groups"": {{
+                     ""value"": ""{group}""
+                  }}
+               }}
+            }}
+         ]
+      }}
+   }},
+   ""fields"": []
+}}";
+            while (list.Count < rows)
+            {
+                page++;
+
+                var queryString = $"from={size * (page - 1)}&size={size}";
+
+                var response = await repos.SearchAsync(query, queryString);
+                var json = JObject.Parse(response);
+                var addresses = from f in json.SelectToken("$.hits.hits")
+                                select f.SelectToken("_id").Value<string>();
+
+                list.AddRange(addresses);
+                rows = json.SelectToken("$.hits.total").Value<int>();
+            }
+
+            var sql = ObjectBuilder.GetObject<IRepository<AddressBook>>();
+            var context = new SphDataContext();
+            foreach (var id in list)
+            {
+                var contact = await sql.LoadOneAsync(id);
+                // TODO : removeAll, doesn seem to work
+                contact.Groups.RemoveAll(x => x.Equals(group, StringComparison.InvariantCultureIgnoreCase));
+                var nn = contact.Groups.Any(x => x.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
+                if (!nn)
+                    contact.Groups.Add(newName);
+
+                using (var session = context.OpenSession())
+                {
+                    session.Attach(contact);
+                    await session.SubmitChanges("RenameGroup", new Dictionary<string, object> { { "username", User.Identity.Name } });
+                }
+            }
+            return Ok(new { message = $"{group} has been renamed to {newName}, there are {list.Count} changes made" });
 
         }
-        
+
         [HttpPost]
         [Route("groups/{group}/{id:guid}")]
         public async Task<IHttpActionResult> AddContactToGroup(string id, string group)
@@ -36,8 +96,8 @@ namespace web.sph.App_Code
             var context = new SphDataContext();
 
             var contact = await repos.LoadOneAsync(id);
-            if(null == contact) return NotFound($"Contact with Id {id} is not found");
-            if(contact.Groups.Contains(group))
+            if (null == contact) return NotFound($"Contact with Id {id} is not found");
+            if (contact.Groups.Contains(group))
                 return Ok(new { message = $"{contact.CompanyName} is already in {group}" });
 
             contact.Groups.Add(group);
@@ -47,7 +107,7 @@ namespace web.sph.App_Code
                 await session.SubmitChanges("AddGroup", new Dictionary<string, object> { { "username", User.Identity.Name } });
             }
 
-            return Ok(new {message = $"{contact.CompanyName} has been added to {group}"});
+            return Ok(new { message = $"{contact.CompanyName} has been added to {group}" });
 
         }
 
@@ -133,7 +193,7 @@ namespace web.sph.App_Code
             if (withCount)
             {
                 var groups = from b in buckets
-                           select new { @group = b.SelectToken("key").Value<string>(), count = b.SelectToken("doc_count").Value<string>() };
+                             select new { @group = b.SelectToken("key").Value<string>(), count = b.SelectToken("doc_count").Value<string>() };
                 return Ok(groups);
             }
             var keys = buckets.Select(b => b.SelectToken("key").Value<string>()).ToList();

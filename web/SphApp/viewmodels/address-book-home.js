@@ -21,7 +21,7 @@ function(context, logger, router, chart, config, koList, partial) {
             }
             if (typeof partial.activate === "function") {
                 
-                return partial.activate(list);
+                return partial.activate(list, group);
             }
 
             return true;

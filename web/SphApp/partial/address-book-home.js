@@ -1,6 +1,8 @@
 // PLEASE WAIT WHILE YOUR SCRIPT IS LOADING
-define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "services/logger", "viewmodels/_address-book-groups"], function(context, app, router, logger,contactGroups){
-    var selectedAddresses = ko.observableArray(),
+define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "services/logger", "viewmodels/_address-book-groups", "services/app"], 
+ function(context, app, router, logger,contactGroups, app2){
+    var groupName = ko.observable(),
+        selectedAddresses = ko.observableArray(),
         removeAddresses = function(){
             var tcs = $.Deferred();
             app.showMessage(`Are you sure you want to remove ${selectedAddresses().length} address(es), this action cannot be undone`, "OST", ["Yes", "No"])
@@ -65,6 +67,22 @@ define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "servi
             });
 
             return tcs.promise();
+        },
+        renameGroup = function(){
+
+              return app2.prompt("Rename your group", ko.unwrap(groupName))
+                                    .then(function (result) {
+                                        if (result) {
+                                          return context.put("{}", "/address-books/groups/" + ko.unwrap(groupName) + "/" + result);  // pg.name(result);
+                                        }
+                                        return Task.fromResult({});
+                                    }).then(function(result){
+                                        if(result.message){
+                                            logger.info(result.message);
+                                            return contactGroups.activate();
+                                        }
+                                        return Task.fromResult({});
+                                    });
         },    
         addCommand = {
             command : function(){
@@ -87,15 +105,21 @@ define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "servi
             caption : "Import contacts",
             icon : "fa fa-upload icon-default"
         },
+        renameGroupCommand = {
+            command : renameGroup,
+            caption : "Rename group",
+            icon : "fa fa-pencil icon-default"
+        },
         exportToCsvCommand = {
             command : exportToCsv,
             caption : "Export to csv",
             icon : "fa fa-file-o icon-default"
         },
-        commands = ko.observableArray([ addCommand, removeCommand, importCommand, exportToCsvCommand]),
+        commands = ko.observableArray([ addCommand, removeCommand, importCommand, exportToCsvCommand, renameGroupCommand]),
         rootList = null,
-        activate = function(list){
+        activate = function(list, grpName){
             rootList = list;
+            groupName(grpName);
             var tcs = new $.Deferred();
             setTimeout(function(){
                 tcs.resolve(true);
