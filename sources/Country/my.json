@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "Malaysia",
+  "Abbreviation": "my",
+  "Region": "Asia",
+  "CreatedBy": "osman",
+  "Id": "my",
+  "CreatedDate": "2016-10-27T08:10:07.9194862+08:00",
+  "ChangedBy": "osman",
+  "ChangedDate": "2016-10-27T08:10:07.9164988+08:00",
+  "WebId": "6c1374dc-76df-4b31-aa3a-26dfd3f22780"
+}
