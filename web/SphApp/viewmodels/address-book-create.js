@@ -1,9 +1,9 @@
 define([objectbuilders.datacontext, objectbuilders.logger, objectbuilders.router,
 objectbuilders.system, objectbuilders.validation, objectbuilders.eximp,
 objectbuilders.dialog, objectbuilders.watcher, objectbuilders.config,
-objectbuilders.app],
+objectbuilders.app, 'partial/address-book-create'],
 
-function(context, logger, router, system, validation, eximp, dialog, watcher, config, app) {
+function(context, logger, router, system, validation, eximp, dialog, watcher, config, app, partial) {
 
     var entity = ko.observable(new bespoke.Ost_addressBook.domain.AddressBook(system.guid())),
         errors = ko.observableArray(),

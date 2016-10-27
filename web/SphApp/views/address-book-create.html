@@ -46,7 +46,17 @@
         <div class="form-control-focus"> </div>
         <span class="help-block"></span>
     </div>
-</div><h2 data-i18n="Address" data-bind="visible:true">Address</h2>
+</div><div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Groups" class="col-md-3 control-label" for="groupsSelect">Groups</label>
+    <div class="col-md-9">
+        <select class="form-control" multiple data-bind="options : $root.partial.groupOptions"
+                name="Groups" id="groupsSelect">
+        </select>
+        <div class="form-control-focus"> </div>
+        <span class="help-block">Add contact to the groups</span>
+    </div>
+</div>
+<h2 data-i18n="Address" data-bind="visible:true">Address</h2>
 <div class="form-group form-md-line-input" data-bind="visible:true">
     <label data-i18n="Premise No / Mailbox" class="col-md-3 control-label" for="11c30a42-5941-4f93-c355-4f91f8a6c55b">Premise No / Mailbox</label>
     <div class="col-md-9">

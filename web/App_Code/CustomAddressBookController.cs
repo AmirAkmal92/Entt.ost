@@ -30,6 +30,44 @@ namespace web.sph.App_Code
         }
 
         [HttpGet]
+        [Route("group-options")]
+        public async Task<IHttpActionResult> GetGroupOptions()
+        {
+
+            var repos = ObjectBuilder.GetObject<IReadonlyRepository<AddressBook>>();
+            var query = $@"
+{{
+   ""query"": {{
+      ""term"": {{
+         ""CreatedBy"": {{
+            ""value"": ""{User.Identity.Name}""
+         }}
+      }}
+   }},
+   ""aggs"": {{
+      ""groups"": {{
+         ""terms"": {{
+            ""field"": ""Groups""
+         }}
+      }}
+   }},
+   ""size"": 0
+}}";
+
+
+            var response = await repos.SearchAsync(query);
+            var json = JObject.Parse(response);
+            var buckets = json.SelectToken("$.aggregations.groups.buckets");
+
+            var keys = buckets.Select(b => b.SelectToken("key").Value<string>()).ToList();
+            if (keys.Count == 0)
+                keys.AddRange(new[] { "Customers", "Gold", "Silver", "Family" });
+
+
+            return Ok(keys);
+        }
+
+        [HttpGet]
         [Route("csv")]
         public async Task<HttpResponseMessage> DownloadCsv(
         [FromUri(Name = "contactName")] bool contactName = true,

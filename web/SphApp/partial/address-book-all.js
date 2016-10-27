@@ -93,12 +93,7 @@ define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "servi
             caption : "Export to csv",
             icon : "fa fa-file-o icon-default"
         },
-        reloadCommand = {
-            command : exportToCsv,
-            caption : "Refresh",
-            icon : "fa fa-refresh icon-default"
-        },
-        commands = ko.observableArray([ addCommand, removeCommand, importCommand, exportToCsvCommand, reloadCommand]),
+        commands = ko.observableArray([ addCommand, removeCommand, importCommand, exportToCsvCommand]),
         rootList = null,
         activate = function(list){
             rootList = list;
