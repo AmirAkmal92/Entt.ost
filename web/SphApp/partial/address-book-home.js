@@ -1,8 +1,7 @@
 // PLEASE WAIT WHILE YOUR SCRIPT IS LOADING
-define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "services/logger"], function(context, app, router, logger){
+define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "services/logger", "viewmodels/_address-book-groups"], function(context, app, router, logger,contactGroups){
     var selectedAddresses = ko.observableArray(),
         removeAddresses = function(){
-            console.log(ko.toJS(rootList));
             var tcs = $.Deferred();
             app.showMessage(`Are you sure you want to remove ${selectedAddresses().length} address(es), this action cannot be undone`, "OST", ["Yes", "No"])
                 .done(function(dialogResult) {
@@ -102,6 +101,7 @@ define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "servi
                 tcs.resolve(true);
             }, 500);
 
+            contactGroups.activate();// pretty good channce when user comes here, he updated something
             return tcs.promise();
         },
         attached  = function(view){
