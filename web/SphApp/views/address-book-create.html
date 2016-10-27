@@ -138,15 +138,15 @@
     </div>
 </div>
 <div class="form-group form-md-line-input" data-bind="visible:true">
-    <label data-i18n=" Postcode" class="col-md-3 control-label" for="3a6a3ce4-e373-4d24-f72c-d8e835d83da7"> Postcode</label>
+    <label data-i18n=" Postcode" class="col-md-3 control-label" for="postcode"> Postcode</label>
     <div class="col-md-9">
         <input class="input-large form-control" required type="text"
                placeholder=""
                data-bind="value: Address().Postcode"
                 data-rule-required="true" 
-               id="3a6a3ce4-e373-4d24-f72c-d8e835d83da7" name="Address.Postcode">
+               id="postcode" name="Address.Postcode">
         <div class="form-control-focus"> </div>
-        <span class="help-block"></span>
+        <span class="help-block">For Malaysia , Postcode must be 5 digits </span>
     </div>
 </div>
 <div class="form-group form-md-line-input" data-bind="visible:true">
@@ -207,12 +207,12 @@
     </div>
 </div>
 <div class="form-group form-md-line-input" data-bind="visible:true">
-    <label data-i18n="Email" class="col-md-3 control-label" for="65e3998e-c363-4810-8ff0-3adb59d00976">Email</label>
+    <label data-i18n="Email Address" class="col-md-3 control-label" for="1bf7d985-fb31-4b26-d6b6-99ab5af177b1">Email Address</label>
     <div class="col-md-9">
-        <input class="input-large form-control"  type="text"
+        <input class="input-large form-control"  type="email"
                placeholder=""
-               data-bind="value: ContactInformation().EmailAddress"
-               id="65e3998e-c363-4810-8ff0-3adb59d00976" name="ContactInformation.EmailAddress">
+               data-bind="value: ContactInformation().EmailAddress, visible :true, enable: true"
+               id="1bf7d985-fb31-4b26-d6b6-99ab5af177b1" name="ContactInformation.EmailAddress">
         <div class="form-control-focus"> </div>
         <span class="help-block"></span>
     </div>

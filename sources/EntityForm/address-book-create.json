@@ -595,8 +595,8 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "3a6a3ce4-e373-4d24-f72c-d8e835d83da7",
-          "HelpText": null,
+          "ElementId": "postcode",
+          "HelpText": "For Malaysia , Postcode must be 5 digits ",
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
           "IsUniqueName": false,
@@ -880,13 +880,9 @@
           "WebId": "922a5559-aeb4-43b2-a457-e7f00c66cc87"
         },
         {
-          "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
-          "DefaultValue": null,
-          "AutoCompletionEntity": null,
-          "AutoCompletionField": null,
-          "AutoCompletionQuery": null,
+          "$type": "Bespoke.Sph.Domain.EmailFormElement, domain.sph",
           "IsPathIsRequired": true,
-          "TypeName": "TextBox",
+          "TypeName": "EmailFormElement",
           "FieldValidation": {
             "$type": "Bespoke.Sph.Domain.FieldValidation, domain.sph",
             "IsRequired": false,
@@ -900,7 +896,7 @@
             "WebId": null
           },
           "Name": null,
-          "Label": "Email",
+          "Label": "Email Address",
           "Tooltip": null,
           "Path": "ContactInformation.EmailAddress",
           "IsRequired": false,
@@ -908,7 +904,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "65e3998e-c363-4810-8ff0-3adb59d00976",
+          "ElementId": "1bf7d985-fb31-4b26-d6b6-99ab5af177b1",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -921,7 +917,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "6a04c4ee-5815-4699-9fdc-654ec2877cf4"
+          "WebId": "1f6145f4-8253-445d-c290-bdaf13e16bef"
         }
       ]
     },
@@ -984,6 +980,6 @@
   "Id": "address-book-create",
   "CreatedDate": "2016-10-11T10:54:53.9068465+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-27T10:26:26.7388392+08:00",
+  "ChangedDate": "2016-10-27T11:14:55.2735902+08:00",
   "WebId": "20c7265a-ad7d-4aa2-8e2f-58271f1d99b5"
 }
