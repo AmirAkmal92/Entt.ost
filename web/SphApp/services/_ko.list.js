@@ -189,7 +189,7 @@ define([objectbuilders.datacontext, objectbuilders.logger], function (context, l
                 logger = require("services/logger"),
                 cultures = require(objectbuilders.cultures),
                 $pagerPanel = $("<div></div>"),
-                $spinner = $("<img src=\"/assets/layouts/layout/img/loading.gif\" alt=\"loading\" class=\"pull-right\" />"),
+                $spinner = $("<img src=\"/assets/layouts/layout/img/loading.gif\" alt=\"loading\" class=\"absolute-center\" />"),
                 startLoad = function () {
                     $spinner.show();
                     $element.fadeTo("fast", 0.33);
