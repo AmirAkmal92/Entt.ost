@@ -12,12 +12,16 @@ define([objectbuilders.datacontext], function (context) {
 
         },
         attached = function (view) {
-            var groupsSelect = $(view).find("#groupsSelect");
-            groupsSelect.select2({tags: true})
-             .val(addressBook.Groups())
-             .change(function () {
-                addressBook.Groups(groupsSelect.val());
-              });
+            setTimeout(function(){
+                var groupsSelect = $(view).find("#groupsSelect");
+                groupsSelect.select2({tags: true})
+                .change(function () {
+                    addressBook.Groups(groupsSelect.val());
+                });
+                setTimeout(function(){
+                    groupsSelect.val(addressBook.Groups()).trigger("change");
+                }, 200);
+            },300);
         };
 
     return {
