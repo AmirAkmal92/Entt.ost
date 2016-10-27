@@ -84,6 +84,16 @@ namespace web.sph.App_Code
                     await session.SubmitChanges("RenameGroup", new Dictionary<string, object> { { "username", User.Identity.Name } });
                 }
             }
+            // wait a little until it's processed , max 10 seconds
+            for (var i = 0; i < 100; i++)
+            {
+                await Task.Delay(100);
+                var response = await repos.SearchAsync(query, "from=0&size=1");
+                var json = JObject.Parse(response);
+                rows = json.SelectToken("$.hits.total").Value<int>();
+                if (rows == 0) break;
+            }
+            
             return Ok(new { message = $"{group} has been renamed to {newName}, there are {list.Count} changes made" });
 
         }

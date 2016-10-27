@@ -69,20 +69,23 @@ define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "servi
             return tcs.promise();
         },
         renameGroup = function(){
-
-              return app2.prompt("Rename your group", ko.unwrap(groupName))
-                                    .then(function (result) {
-                                        if (result) {
-                                          return context.put("{}", "/address-books/groups/" + ko.unwrap(groupName) + "/" + result);  // pg.name(result);
-                                        }
-                                        return Task.fromResult({});
-                                    }).then(function(result){
-                                        if(result.message){
-                                            logger.info(result.message);
-                                            return contactGroups.activate();
-                                        }
-                                        return Task.fromResult({});
-                                    });
+            var newGroupName = "-";
+            return app2.prompt("Rename your group", ko.unwrap(groupName))
+                    .then(function (result) {
+                        if (result) {
+                            newGroupName = result;
+                            return context.put("{}", "/address-books/groups/" + ko.unwrap(groupName) + "/" + result); 
+                        }
+                        return Task.fromResult({});
+                    }).then(function(result){
+                        if(result.message){
+                            logger.info(result.message);                                
+                            return contactGroups.activate();
+                        }
+                        return Task.fromResult({});
+                    }).then(function(){
+                        return router.navigate("address-book-home/" +  newGroupName);
+                    });
         },    
         addCommand = {
             command : function(){
@@ -108,7 +111,10 @@ define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "servi
         renameGroupCommand = {
             command : renameGroup,
             caption : "Rename group",
-            icon : "fa fa-pencil icon-default"
+            icon : "fa fa-pencil icon-default",
+            enable : ko.computed(function(){
+                return ko.unwrap(groupName) !== "-";
+            })
         },
         exportToCsvCommand = {
             command : exportToCsv,
@@ -178,6 +184,18 @@ define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "servi
                 });
             });
         };
+
+        groupName.subscribe(function(gp){
+            if(!gp || gp === "-"){
+                commands.remove(renameGroupCommand);
+                return;
+            }
+
+            if(commands().indexOf(renameGroupCommand) > -1){
+                return;
+            }
+            commands.push(renameGroupCommand);
+        });
 
     return {
         selectedAddresses : selectedAddresses,
