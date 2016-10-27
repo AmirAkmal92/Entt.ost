@@ -105,7 +105,40 @@ define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "servi
             return tcs.promise();
         },
         attached  = function(view){
-        
+            rootList.subscribe(function(){
+
+            $("a.contact-item").draggable({
+                helper: "clone",
+                start: function(e, ui){
+                    $(ui.helper).css({"background-color": "gray", "padding" : "5px", "color": "black"});
+                    }
+                });
+
+            }, "arrayChange", null);
+
+            var makeGroupDroppable = function(){
+
+                $("li.address-book-group").droppable({
+                        accept: "a.contact-item",
+                        hoverClass: "drop-contact",
+                        drop: function( event, ui ) {
+                            
+                            var group = ko.dataFor(this).group,
+                                id = ui.draggable.data("id");
+                            return context.post("{}", "/address-books/groups/" + ko.unwrap(group) + "/" + id)
+                                .then(function(result){
+                                    logger.info(result.message);
+                                    return contactGroups.activate();
+                                }).then(function(){
+                                    makeGroupDroppable();
+                                });
+
+                        }
+                });
+
+            };
+            setTimeout(makeGroupDroppable, 1500);
+            contactGroups.groups.subscribe(function(){setTimeout(makeGroupDroppable, 500);}, "arrayChange", null);
         },
         addAddress = function(){
             var address = new bespoke.Ost_addressBook.domain.AddressBook();

@@ -17,7 +17,7 @@
                         <input type="checkbox" data-bind="checked : $root.partial.selectedAddresses, value:$data" />
                     </td>
                     <td>
-                        <a data-bind="attr : {href:'#address-book-update' + '/' + Id, title:'Reference No' }">
+                        <a class="contact-item" data-bind="attr : {href:'#address-book-update' + '/' + Id , 'data-id' : Id}" title="To add to a group drag it to the group panel on the left">
                             <i class="icon-user"></i>
                             <span data-bind="text:ReferenceNo"></span>
                         </a>

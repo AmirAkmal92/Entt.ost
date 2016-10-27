@@ -30,6 +30,7 @@ function(context, logger, router, chart, config, koList, partial) {
             if (typeof partial.attached === "function") {
                 partial.attached(view);
             }
+
         };
 
         if(_(ko.unwrap(partial.commands)).isArray()){

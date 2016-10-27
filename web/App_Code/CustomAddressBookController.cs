@@ -17,6 +17,40 @@ namespace web.sph.App_Code
     [RoutePrefix("address-books")]
     public class CustomAddressBookController : BaseApiController
     {
+
+        
+        [HttpPut]
+        [Route("groups/{group}/{newName}")]
+        public async Task<IHttpActionResult> ChangeGroupName( string group,string newName)
+        {
+            await Task.Delay(500);
+            return Ok(new {message = $"{group} has been renamed to {newName}"});
+
+        }
+        
+        [HttpPost]
+        [Route("groups/{group}/{id:guid}")]
+        public async Task<IHttpActionResult> AddContactToGroup(string id, string group)
+        {
+            var repos = ObjectBuilder.GetObject<IRepository<AddressBook>>();
+            var context = new SphDataContext();
+
+            var contact = await repos.LoadOneAsync(id);
+            if(null == contact) return NotFound($"Contact with Id {id} is not found");
+            if(contact.Groups.Contains(group))
+                return Ok(new { message = $"{contact.CompanyName} is already in {group}" });
+
+            contact.Groups.Add(group);
+            using (var session = context.OpenSession())
+            {
+                session.Attach(contact);
+                await session.SubmitChanges("AddGroup", new Dictionary<string, object> { { "username", User.Identity.Name } });
+            }
+
+            return Ok(new {message = $"{contact.CompanyName} has been added to {group}"});
+
+        }
+
         [HttpPost]
         [Route("{storeId:guid}")]
         public async Task<IHttpActionResult> ImportContacts(string storeId)
