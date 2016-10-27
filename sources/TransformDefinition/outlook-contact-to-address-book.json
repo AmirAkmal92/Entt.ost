@@ -20,6 +20,132 @@
         "SourceTypeName": "",
         "DestinationTypeName": "",
         "WebId": "9a0fa16c-5f35-40e4-8ab1-ac7be40c5d6e"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "Company",
+        "TypeName": "",
+        "Destination": "CompanyName",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "04f7bdae-a793-4001-84e9-2602f4896cc8"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "BusinessState",
+        "TypeName": "",
+        "Destination": "Address.State",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "df2ffdeb-75d0-46d8-ad41-42546279551b"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "BusinessCountry",
+        "TypeName": "",
+        "Destination": "Address.Country",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "15ae136c-aac9-46a2-ef20-63666b41becd"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "BusinessCity",
+        "TypeName": "",
+        "Destination": "Address.City",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "c97b4bda-864e-4d04-d15c-67cd40862780"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "BusinessPostalCode",
+        "TypeName": "",
+        "Destination": "Address.Postcode",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "6427200b-5814-4e38-8d1c-eca54a834ca0"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "BusinessAddress",
+        "TypeName": "",
+        "Destination": "Address.Block",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "8cb02520-85bb-4029-e7ac-400ff2256d26"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "BusinessAddress",
+        "TypeName": "",
+        "Destination": "Address.PremiseNoMailbox",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "35039f1d-1202-4fa5-eb07-6dfcdfac3912"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "BusinessAddress",
+        "TypeName": "",
+        "Destination": "Address.BuildingName",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "2951425f-878f-4773-a1cd-58d5e1a3e4e1"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "BusinessStreet",
+        "TypeName": "",
+        "Destination": "Address.RoadName",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "6a2d3071-3167-4eef-8af6-8688b7bc2495"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "BusinessStreet2",
+        "TypeName": "",
+        "Destination": "Address.AreaVillageGardenName",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "53f458dc-646f-4b49-f7a3-8693fb04b8b7"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "BusinessStreet3",
+        "TypeName": "",
+        "Destination": "Address.District",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "0a15a6f1-f960-456c-c35f-65e80be616fb"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "EMailAddress",
+        "TypeName": "",
+        "Destination": "ContactInformation.EmailAddress",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "16427e38-233c-498b-8ce9-c5180ce915e6"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "PrimaryPhone",
+        "TypeName": "",
+        "Destination": "ContactInformation.PhoneNumber",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "7c6fea08-3f06-40f5-aece-cc84aa3db022"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "HomeFax",
+        "TypeName": "",
+        "Destination": "ContactInformation.FaxNumber",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "15e50112-20bf-4bc1-9311-fa5d47fb4763"
       }
     ]
   },
@@ -39,11 +165,11 @@
   "Description": "#5139",
   "InputTypeName": "Bespoke.Ost.OutlookContacts.Domain.OutlookContact, Ost.OutlookContact",
   "OutputTypeName": "Bespoke.Ost.AddressBooks.Domain.AddressBook, Ost.AddressBook",
-  "IsPublished": false,
+  "IsPublished": true,
   "CreatedBy": "admin",
   "Id": "outlook-contact-to-address-book",
   "CreatedDate": "2016-10-26T11:46:00.5775524+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-26T11:46:38.353391+08:00",
+  "ChangedDate": "2016-10-27T12:55:24.6409223+08:00",
   "WebId": "1e7e57a7-d936-4f47-88c6-28922ec409ce"
 }

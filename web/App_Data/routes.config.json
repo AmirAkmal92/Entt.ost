@@ -6,7 +6,7 @@
     "moduleId": "viewmodels/customer-home",
     "title": "OST Home",
     "nav": true,
-    "icon": "fa fa-braille",
+    "icon": "fa fa-low-vision",
     "caption": "OST Home",
     "settings": null,
     "showWhenLoggedIn": false,

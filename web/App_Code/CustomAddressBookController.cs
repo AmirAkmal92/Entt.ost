@@ -23,10 +23,44 @@ namespace web.sph.App_Code
         {
             var store = ObjectBuilder.GetObject<IBinaryStore>();
             var csv = await store.GetContentAsync(storeId);
+            if (null == csv)
+                return NotFound($"Cannot outlook csv in {storeId}");
 
             // write code use mapping , from port to import the data
+            var port = new Bespoke.Ost.ReceivePorts.OutlookCsvContact(ObjectBuilder.GetObject<ILogger>());
 
-            return Ok(csv);
+            var text = Encoding.Default.GetString(csv.Content);
+            var lines = text.Split(new[] { "\r\n", "\r" }, StringSplitOptions.RemoveEmptyEntries);
+            var map = new Bespoke.Ost.Integrations.Transforms.OutlookContactToAddressBook();
+
+            // TODO :the mapping could have been simpler, if we the source is just the port type
+            var tasks = from cl in port.Process(lines)
+                        where null != cl
+                        let ot = cl.ToJson().DeserializeFromJson<Bespoke.Ost.OutlookContacts.Domain.OutlookContact>()
+                        select map.TransformAsync(ot);
+
+            var errors = new List<object>();
+            var context = new SphDataContext();
+            foreach (var t in tasks)
+            {
+                try
+                {
+                    var contact = await t;
+                    contact.Id = Guid.NewGuid().ToString();
+                    using (var session = context.OpenSession())
+                    {
+                        session.Attach(contact);
+                        await session.SubmitChanges("ImportContacts", new Dictionary<string, object> { { "username", User.Identity.Name } });
+                    }
+                }
+                catch (Exception)
+                {
+                    errors.Add(new { });
+                }
+
+            }
+
+            return Ok(new { errors });
         }
 
         [HttpGet]
