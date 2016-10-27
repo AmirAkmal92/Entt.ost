@@ -1,5 +1,4 @@
 using System;
-using System.Activities.Expressions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -93,7 +92,7 @@ namespace web.sph.App_Code
                 rows = json.SelectToken("$.hits.total").Value<int>();
                 if (rows == 0) break;
             }
-            
+
             return Ok(new { message = $"{group} has been renamed to {newName}, there are {list.Count} changes made" });
 
         }
@@ -116,7 +115,8 @@ namespace web.sph.App_Code
                 session.Attach(contact);
                 await session.SubmitChanges("AddGroup", new Dictionary<string, object> { { "username", User.Identity.Name } });
             }
-
+            // wait until the worker process it
+            await Task.Delay(500);
             return Ok(new { message = $"{contact.CompanyName} has been added to {group}" });
 
         }

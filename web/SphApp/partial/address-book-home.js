@@ -160,6 +160,12 @@ define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "servi
                                     logger.info(result.message);
                                     return contactGroups.activate();
                                 }).then(function(){
+                                    var contact = _(ko.unwrap(rootList)).find(function(v){
+                                        return ko.unwrap(v.Id) === id;
+                                    });
+                                    if(contact){
+                                        contact.Groups.push(ko.unwrap(group));
+                                    }
                                     makeGroupDroppable();
                                 });
 
@@ -195,11 +201,16 @@ define([objectbuilders.datacontext, objectbuilders.app,"plugins/router",  "servi
                 return;
             }
             commands.push(renameGroupCommand);
-        });
+        }),
+        map = function(v){
+            v.Groups = ko.observableArray(v.Groups);
+            return v;
+        };
 
     return {
         selectedAddresses : selectedAddresses,
         removeAddresses : removeAddresses,
+        map : map,
         commands : commands,
         activate : activate,
         attached : attached,
