@@ -266,6 +266,30 @@
         "AllowMultiple": false,
         "DefaultValue": null,
         "WebId": "ad7add83-8ec5-4e8a-b8a1-78111b5ec965"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+        "TypeName": "System.String, mscorlib",
+        "IsNullable": false,
+        "IsNotIndexed": false,
+        "IsAnalyzed": false,
+        "IsFilterable": false,
+        "IsExcludeInAll": false,
+        "Boost": 0,
+        "FullName": null,
+        "PropertyAttribute": null,
+        "MemberCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "FieldPermissionCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": "GpsLocation",
+        "AllowMultiple": false,
+        "DefaultValue": null,
+        "WebId": "ccbf3049-3dd8-4dcf-ca80-926178a0d59f"
       }
     ]
   },
@@ -278,6 +302,6 @@
   "Id": "address",
   "CreatedDate": "2016-10-12T17:20:42.1818553+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-26T11:49:42.1952911+08:00",
+  "ChangedDate": "2016-10-28T16:56:21.4831663+08:00",
   "WebId": "06395558-5baf-4019-de9f-31c82eaf1e47"
 }

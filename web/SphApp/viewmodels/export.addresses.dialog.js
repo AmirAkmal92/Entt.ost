@@ -1,12 +1,12 @@
 define(["plugins/dialog"],
     function (dialog) {
         var options = ko.observable({
-            contactName: ko.observable(false),
+            companyName: ko.observable(false),
             contactPerson: ko.observable(false),
             premiseNoMailbox: ko.observable(false),
             block: ko.observable(false),
             buildingName: ko.observable(false),
-            roadNam: ko.observable(false),
+            roadName: ko.observable(false),
             areaVillage: ko.observable(false),
             subDistrict: ko.observable(false),
             districtCity: ko.observable(false),

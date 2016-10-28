@@ -33,7 +33,7 @@
                data-bind="value: CompanyName"
                id="508a96c8-f2d0-45eb-dd40-bdd5f09db275" name="CompanyName">
         <div class="form-control-focus"> </div>
-        <span class="help-block">The customer name</span>
+        <span class="help-block">The company name</span>
     </div>
 </div>
 <div class="form-group form-md-line-input" data-bind="visible:true">
@@ -179,6 +179,17 @@
                 class="form-control"
                 name="Address.Country" id="countryDropDown">
         </select>
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="GpsLocation" class="col-md-3 control-label" for="0f38e59c-8fd0-40ba-d23c-9980ea90d4f2">GPS Location</label>
+    <div class="col-md-9">
+        <input class="input-large form-control"  type="text"
+               placeholder=""
+               data-bind="value: Address().GpsLocation"
+               id="2ec16a8a-cd69-4c90-ac90-72af29cb6860" name="Address.GpsLocation">
         <div class="form-control-focus"> </div>
         <span class="help-block"></span>
     </div>
