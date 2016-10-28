@@ -1,0 +1,31 @@
+﻿@using Bespoke.Sph.Domain
+@model Bespoke.Sph.Domain.ComboBox
+@{
+    var required = Model.IsRequired ? "required" : null;
+    var originalPath = Model.Path.ToEmptyString().Replace("().", ".");
+    if (string.IsNullOrWhiteSpace(Model.Enable))
+    {
+        Model.Enable = "true";
+    }
+
+    var @cssClass = $@"{Model.CssClass} {Model.Size} form-control".Trim();
+}
+
+<div class="form-group form-md-line-input" data-bind="visible:@Html.Raw(Model.Visible)">
+    <label data-i18n="@Model.Label" class="col-md-3 control-label" for="@Model.ElementId">@Model.Label</label>
+    <div class="col-md-9">
+        <select @required
+                data-bind="@(Html.Raw(Model.GetKnockoutBindingExpression()))"
+                class="@Html.Raw(cssClass)"
+                name="@originalPath" id="@Model.ElementId">
+            @foreach (var op in Model.ComboBoxItemCollection)
+            {
+                <option value="@Html.Raw(op.Value)" data-i18n="@op.Caption">@op.Caption</option>
+            }
+        </select>
+        <div class="form-control-focus"> </div>
+        <span class="help-block">@Model.HelpText</span>
+    </div>
+</div>
+
+

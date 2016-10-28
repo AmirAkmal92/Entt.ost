@@ -6,8 +6,8 @@ Param(
      )
 
 if($Debug -ne $false){
-  & .\subscribers.host\workers.console.runner.exe /log:console /config:$config /v:Ost /debug 
+   Start-Process -FilePath .\subscribers.host\workers.console.runner.exe -ArgumentList @( "/log:console", "/config:$config", "/v:Ost",  "/debug" )
 }else{
-   & .\subscribers.host\workers.console.runner.exe /log:console /v:Ost /config:$config
+   Start-Process -FilePath .\subscribers.host\workers.console.runner.exe -ArgumentList @( "/log:console", "/config:$config", "/v:Ost" )
 }
     

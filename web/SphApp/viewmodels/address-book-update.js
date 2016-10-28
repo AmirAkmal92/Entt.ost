@@ -1,7 +1,7 @@
 define([objectbuilders.datacontext, objectbuilders.logger, objectbuilders.router,
 objectbuilders.system, objectbuilders.validation, objectbuilders.eximp,
 objectbuilders.dialog, objectbuilders.watcher, objectbuilders.config,
-objectbuilders.app, 'partial/address-book-create'],
+objectbuilders.app, 'partial/address-book-update'],
 
 function(context, logger, router, system, validation, eximp, dialog, watcher, config, app, partial) {
 
@@ -16,14 +16,14 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
         activate = function(entityId) {
             id(entityId);
             var tcs = new $.Deferred();
-            context.loadOneAsync("EntityForm", "Route eq 'address-book-create'")
+            context.loadOneAsync("EntityForm", "Route eq 'address-book-update'")
                 .then(function(f) {
                 form(f);
                 return watcher.getIsWatchingAsync("AddressBook", entityId);
             })
                 .then(function(w) {
                 watching(w);
-                return $.getJSON("i18n/" + config.lang + "/address-book-create");
+                return $.getJSON("i18n/" + config.lang + "/address-book-update");
             })
                 .then(function(n) {
                 i18n = n[0];
@@ -72,7 +72,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
             var data = ko.mapping.toJSON(entity),
                 tcs = new $.Deferred();
 
-            context.post(data, "/api/address-books/", headers)
+            context.put(data, "/api/address-books/" + ko.unwrap(entity().Id) + "", headers)
                 .fail(function(response) {
                 var result = response.responseJSON;
                 errors.removeAll();
@@ -95,10 +95,19 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
                 tcs.resolve(result);
             });
             return tcs.promise();
+        }, remove = function() {
+            return context.sendDelete("/api/address-books/" + ko.unwrap(entity().Id))
+                .then(function(result) {
+                return app.showMessage("Your contact has been deleted", "Reactive Developer platform showcase", ["OK"]);
+            })
+                .then(function(result) {
+                router.navigate("address-book-home/-");
+            });
         },
+
         attached = function(view) {
             // validation
-            validation.init($('#address-book-create-form'), form());
+            validation.init($('#address-book-update-form'), form());
 
             if (typeof partial.attached === "function") {
                 partial.attached(view);
@@ -119,7 +128,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
             return defaultCommand()
                 .then(function(result) {
                 if (result.success) {
-                    return app.showMessage("Address Book Created", ["OK"]);
+                    return app.showMessage("Your contact has been updated", ["OK"]);
                 } else {
                     return Task.fromResult(false);
                 }
@@ -139,6 +148,10 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
         entity: entity,
         errors: errors,
         toolbar: {
+            removeCommand: remove,
+            canExecuteRemoveCommand: ko.computed(function() {
+                return entity().Id();
+            }),
             saveCommand: saveCommand,
             canExecuteSaveCommand: ko.computed(function() {
                 if (typeof partial.canExecuteSaveCommand === "function") {

@@ -1,9 +1,9 @@
-define(["services/datacontext", "services/logger", "plugins/router", "services/chart", objectbuilders.config, "services/_ko.list", "partial/address-book-all"],
+define(["services/datacontext", "services/logger", "plugins/router", "services/chart", objectbuilders.config, "services/_ko.list", "partial/address-book-home"],
 
 function(context, logger, router, chart, config, koList, partial) {
 
     var isBusy = ko.observable(false),
-        query = "/api/addressbooks/",
+        query = ko.observable("/api/address-books/"),
         commands = ko.observableArray([]),
         partial = partial || {},
         list = ko.observableArray([]),
@@ -13,10 +13,15 @@ function(context, logger, router, chart, config, koList, partial) {
             }
             return v;
         },
-        activate = function() {
+        activate = function(group) {
+
+            query("/api/address-books/?q=Groups:" + group);
+            if(group === "-"){
+                query("/api/address-books/");
+            }
             if (typeof partial.activate === "function") {
                 
-                return partial.activate(list);
+                return partial.activate(list, group);
             }
 
             return true;
@@ -25,6 +30,7 @@ function(context, logger, router, chart, config, koList, partial) {
             if (typeof partial.attached === "function") {
                 partial.attached(view);
             }
+
         };
 
         if(_(ko.unwrap(partial.commands)).isArray()){

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "France",
+  "Abbreviation": "fr",
+  "Region": "Europe",
+  "CreatedBy": "osman",
+  "Id": "fr",
+  "CreatedDate": "2016-10-27T08:11:43.4786066+08:00",
+  "ChangedBy": "osman",
+  "ChangedDate": "2016-10-27T08:11:43.475603+08:00",
+  "WebId": "f3da6a07-791d-4f24-efb6-823932df4174"
+}

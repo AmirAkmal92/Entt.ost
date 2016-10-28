@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption font-green">
+                <i class="icon-pin font-green"></i>
+                <span class="caption-subject bold uppercase"> Add new country</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-8">
+<form class="form-horizontal" data-bind="with : entity" id="add-country-form">
+    <div class="form-body">
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Name" class="col-md-3 control-label" for="c4a9e927-a9e4-4f00-c034-fa7f5f7d7712">Name</label>
+    <div class="col-md-9">
+        <input class="input-large form-control"  type="text"
+               placeholder=""
+               data-bind="value: Name"
+               id="c4a9e927-a9e4-4f00-c034-fa7f5f7d7712" name="Name">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Abbreviation" class="col-md-3 control-label" for="b866455e-6cf7-4740-cd78-c98f4913fb65">Abbreviation</label>
+    <div class="col-md-9">
+        <input class="input-large form-control"  type="text"
+               placeholder=""
+               data-bind="value: Abbreviation"
+               id="b866455e-6cf7-4740-cd78-c98f4913fb65" name="Abbreviation">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Region" class="col-md-3 control-label" for="4e372f2c-7309-4eb7-a0fb-1c08d32c58a4">Region</label>
+    <div class="col-md-9">
+        <select 
+                data-bind="value: Region, enable :true"
+                class="input-large form-control"
+                name="Region" id="4e372f2c-7309-4eb7-a0fb-1c08d32c58a4">
+                <option value="Asia" data-i18n="Asia">Asia</option>
+                <option value="Europe" data-i18n="Europe">Europe</option>
+                <option value="North Americal" data-i18n="North America">North America</option>
+                <option value="MMEA" data-i18n="MMEA">MMEA</option>
+        </select>
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+    </div>
+</form>
+    </div>
+</div>

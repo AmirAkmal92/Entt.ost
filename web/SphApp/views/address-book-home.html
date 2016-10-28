@@ -1,0 +1,41 @@
+<div class="mt-element-ribbon bg-grey-steel pull-right" style="    position: absolute;
+    top: 2px;
+    right: 7px;">
+    <div class="ribbon ribbon-right ribbon-color-success uppercase" data-bind="text: partial.groupName">Ribbon</div>
+</div>
+<div class="row">
+    <div class="col-md-11 col-lg-11 -col-sm-12">
+        <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list, enableReload : true , filterPlaceholder : 'Search your contacts...', filterTooltip :'Press Enter to execute search'}">
+            <thead>
+                <tr>
+                    <th>
+                        <a href="javascript:;" id="select-all">Select all</a>
+                    </th>
+                    <th>Reference No</th>
+                    <th>Group</th>
+                    <th>Company Name</th>
+                    <th>Email</th>
+                    <th>Contact Person</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach :list">
+                <tr data-bind="">
+                    <td>
+                        <input class="contact-checked" type="checkbox" data-bind="checked : $root.partial.selectedAddresses, value:$data" />
+                    </td>
+                    <td>
+                        <a class="contact-item" data-bind="attr : {href:'#address-book-update' + '/' + Id , 'data-id' : Id}" title="To add to a group drag it to the group panel on the left">
+                            <i class="icon-user"></i>
+                            <span data-bind="text:ReferenceNo"></span>
+                        </a>
+                    </td>
+                    <td data-bind="text:Groups"></td>
+                    <td data-bind="text:CompanyName"></td>
+                    <td data-bind="text:ContactInformation.EmailAddress"></td>
+                    <td data-bind="text:ContactPerson"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="clearfix"> </div>
