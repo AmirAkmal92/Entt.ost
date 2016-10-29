@@ -1,0 +1,43 @@
+{
+  "$type": "Bespoke.Sph.Domain.EntityView, domain.sph",
+  "ViewColumnCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ViewColumn, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "ConditionalFormattingCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "Performer": {
+    "$type": "Bespoke.Sph.Domain.Performer, domain.sph",
+    "UserProperty": null,
+    "Value": null,
+    "IsPublic": false,
+    "WebId": null
+  },
+  "RouteParameterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.RouteParameter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "IconClass": null,
+  "IconStoreId": null,
+  "EntityDefinitionId": "consigment-request",
+  "Name": "All ConsigmentRequests",
+  "Route": "consigment-request-all",
+  "Note": null,
+  "IsPublished": false,
+  "Visibilty": null,
+  "TileColour": null,
+  "CountMessage": null,
+  "Entity": "ConsigmentRequest",
+  "Partial": null,
+  "Template": null,
+  "DisplayOnDashboard": false,
+  "Endpoint": null,
+  "CreatedBy": "admin",
+  "Id": "consigment-request-all",
+  "CreatedDate": "2016-10-29T07:26:06.8492482+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-10-29T07:26:06.8492482+08:00",
+  "WebId": "a61e2016-f40d-47e2-a0c7-43cd6f838fce"
+}
