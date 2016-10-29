@@ -1,0 +1,38 @@
+@using System.Web.Mvc.Html 
+@model Bespoke.Sph.Web.ViewModels.FormRendererViewModel 
+@{ 
+    Layout = null; 
+    var caption = string.IsNullOrWhiteSpace(Model.Form.Caption)? Model.Form.Name : Model.Form.Caption; 
+}
+<div class="mt-element-step">
+<div class="row step-line">
+
+	<div class="col-md-3 mt-step-col first done">
+		<div class="mt-step-number bg-dark font-grey">1</div>
+		<div class="mt-step-title uppercase font-grey-cascade">Sender</div>
+		<div class="mt-step-content font-grey-cascade">Sender information</div>
+	</div>
+	<div class="col-md-3 mt-step-col">
+		<div class="mt-step-number bg-dark font-grey">2</div>
+		<div class="mt-step-title uppercase font-grey-cascade">Receiver</div>
+		<div class="mt-step-content font-grey-cascade">Receiver information</div>
+	</div>
+	<div class="col-md-3 mt-step-col">
+		<div class="mt-step-number bg-dark font-grey">3</div>
+		<div class="mt-step-title uppercase font-grey-cascade">Custom</div>
+		<div class="mt-step-content font-grey-cascade">Custome Declaration</div>
+	</div>
+    
+	<div class="col-md-3 mt-step-col last">
+		<div class="mt-step-number bg-dark font-grey">3</div>
+		<div class="mt-step-title uppercase font-grey-cascade">Summary</div>
+		<div class="mt-step-content font-grey-cascade">Your Consignment</div>
+	</div>
+</div>
+</div>
+<div class="row">
+	<div class="col-sm-8">
+		@Html.Partial("_MaterialDesignFormContent")
+	</div>
+
+</div>
