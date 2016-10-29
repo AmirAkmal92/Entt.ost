@@ -7,20 +7,6 @@
 /// <reference path="../../../core.sph/Scripts/jquery-2.2.0.intellisense.js" />
 
 define([objectbuilders.datacontext, objectbuilders.logger], function (context, logger) {
-
-/* 
-
-<div class="input-group">
-    <div class="input-icon">
-        <i class="fa fa-lock fa-fw"></i>
-        <input id="newpassword" class="form-control" type="text" name="password" placeholder="password"> </div>
-        <span class="input-group-btn">
-        <button id="genpassword" class="btn btn-success" type="button"><i class="fa fa-arrow-left fa-fw"></i> Random</button>
-        </span>
-    </div>
-</div>
-
-*/
     var initQueryFilter = function (element, options, search) {
         var path = options.path,
             placeholder =  options.placeholder || "Filter....",
