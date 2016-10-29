@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div class="form-group form-md-line-input" data-bind="visible:true">
+        <label data-i18n="Service" class="col-md-3 control-label" for="serviceCode">Service</label>
+        <div class="col-md-9">
+
+            <div class="mt-element-list">
+                <div class="mt-list-head list-todo red">
+                    <div class="list-head-title-container">
+                        <h3 class="list-title">Select your service</h3>
+                    </div>
+                </div>
+                <div class="mt-list-container list-todo" id="accordion1" role="tablist" aria-multiselectable="true">
+                    <div class="list-todo-line"></div>
+                    <ul data-bind="foreach :$root.partial.products">
+                        <li class="mt-list-item">
+                            <div class="list-todo-icon bg-white">
+                                <i class="fa fa-database"></i>
+                            </div>
+                            <div class="list-todo-item dark">
+                                <a class="list-toggle-container collapsed" data-toggle="collapse" data-parent="#accordion1" onclick=" " href="#task-1" aria-expanded="false">
+                                    <div class="list-toggle done uppercase">
+                                        <div class="list-toggle-title bold" data-bind="text:Name"></div>
+                                        <div class="badge badge-default pull-right bold" data-bind="text:Code">3</div>
+                                    </div>
+                                </a>
+                                <div class="task-list panel-collapse collapse" id="task-1" aria-expanded="false" style="height: 0px;">
+                                    <ul>
+                                        <li class="task-list-item done">
+                                            <div class="task-icon">
+                                                <a href="javascript:;">
+                                                    <i class="fa fa-database"></i>
+                                                </a>
+                                            </div>
+                                            <div class="task-status">
+                                                <a class="done" href="javascript:;">
+                                                    <i class="fa fa-check"></i>
+                                                </a>
+                                                <a class="pending" href="javascript:;">
+                                                    <i class="fa fa-close"></i>
+                                                </a>
+                                            </div>
+                                            <div class="task-content">
+                                                <h4 class="uppercase bold">
+                                                    <a href="javascript:;">Database Optimization</a>
+                                                </h4>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum gravida mauris, a tincidunt dolor porttitor eu. </p>
+                                            </div>
+                                        </li>
+                                        <li class="task-list-item">
+                                            <div class="task-icon">
+                                                <a href="javascript:;">
+                                                    <i class="fa fa-table"></i>
+                                                </a>
+                                            </div>
+                                            <div class="task-status">
+                                                <a class="done" href="javascript:;">
+                                                    <i class="fa fa-check"></i>
+                                                </a>
+                                                <a class="pending" href="javascript:;">
+                                                    <i class="fa fa-close"></i>
+                                                </a>
+                                            </div>
+                                            <div class="task-content">
+                                                <h4 class="uppercase bold">
+                                                    <a href="javascript:;">Table Sorting</a>
+                                                </h4>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum gravida mauris, a tincidunt dolor porttitor eu. </p>
+                                            </div>
+                                        </li>
+                                        <li class="task-list-item">
+                                            <div class="task-icon">
+                                                <a href="javascript:;">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                            </div>
+                                            <div class="task-status">
+                                                <a class="done" href="javascript:;">
+                                                    <i class="fa fa-check"></i>
+                                                </a>
+                                                <a class="pending" href="javascript:;">
+                                                    <i class="fa fa-close"></i>
+                                                </a>
+                                            </div>
+                                            <div class="task-content">
+                                                <h4 class="uppercase bold">
+                                                    <a href="javascript:;">Data Entry</a>
+                                                </h4>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum gravida mauris, a tincidunt dolor porttitor eu. </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="task-footer bg-grey">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <a class="task-trash" href="javascript:;">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <a class="task-add" href="javascript:;">
+                                                    <i class="fa fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group form-md-line-input" data-bind="visible:true">
+        <label data-i18n="Item Category" class="col-md-3 control-label" for="itemCategory">Item Category</label>
+        <div class="col-md-9">
+            <select required
+                    data-bind="value: Product().ItemCategory, options : $root.partial.categories, optionsCaption : '[Select Item Category]', enable :true"
+                    class="form-control"
+                    name="Product.ItemCategory" id="itemCategory"></select>
+            <div class="form-control-focus"> </div>
+            <span class="help-block">Tell us the product category for your consignment</span>
+        </div>
+    </div>
+</body>
+</html>

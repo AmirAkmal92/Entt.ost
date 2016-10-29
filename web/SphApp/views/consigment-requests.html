@@ -1,0 +1,33 @@
+<h1>My consignment request</h1>
+<div class="row">
+    <div class="col-md-8">
+        <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list}">
+            <thead>
+                <tr>
+                    <th>ReferenceNo</th>
+                    <th>Date From</th>
+                    <th>Date To</th>
+                    <th>Service</th>
+                    <th>Item</th>
+                    <th>Weight</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach :list">
+                <tr data-bind="">
+                    <td>
+                        <a data-bind="attr : {href:'#consignment-request-summary' + '/' + Id, title:'ReferenceNo' }">
+                            <i class="fa fa-braille"></i>
+                                                        <span data-bind="text:ReferenceNo"></span>
+                        </a>
+                    </td>
+                    <td data-bind="date:DateFrom"></td>
+                    <td data-bind="date:DateTo"></td>
+                    <td data-bind="date:Product.Name"></td>
+                    <td data-bind="text:Product.ItemCategory"></td>
+                    <td data-bind="text:Weight"></td>
+                </tr>
+            </tbody>
+        </table>
+        <img src="/Images/spinner-md.gif" alt="loading" class="absolute-center" data-bind="visible: isBusy" />
+    </div>
+</div>

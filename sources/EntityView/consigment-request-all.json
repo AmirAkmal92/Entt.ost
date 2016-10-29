@@ -2,7 +2,110 @@
   "$type": "Bespoke.Sph.Domain.EntityView, domain.sph",
   "ViewColumnCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ViewColumn, domain.sph]], domain.sph",
-    "$values": []
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
+        "ConditionalFormattingCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Path": "ReferenceNo",
+        "Header": "ReferenceNo",
+        "Sort": "",
+        "IsLinkColumn": true,
+        "FormRoute": "consignment-request-summary",
+        "IconCssClass": "fa fa-braille",
+        "IconStoreId": "",
+        "Format": "text:{0}",
+        "RouteValueField": "Id",
+        "WebId": "cc2bada5-4f83-4704-8424-be6a5cbc9c79"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
+        "ConditionalFormattingCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Path": "DateFrom",
+        "Header": "Date From",
+        "Sort": "",
+        "IsLinkColumn": false,
+        "FormRoute": null,
+        "IconCssClass": "",
+        "IconStoreId": "",
+        "Format": "date:{0}",
+        "RouteValueField": "",
+        "WebId": "6fd1569e-033a-449f-e805-d736edbee5f3"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
+        "ConditionalFormattingCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Path": "DateTo",
+        "Header": "Date To",
+        "Sort": "",
+        "IsLinkColumn": false,
+        "FormRoute": null,
+        "IconCssClass": "",
+        "IconStoreId": "",
+        "Format": "date:{0}",
+        "RouteValueField": "",
+        "WebId": "5de31a82-5790-4fff-bf24-7e4f354df018"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
+        "ConditionalFormattingCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Path": "Product.Name",
+        "Header": "Service",
+        "Sort": "",
+        "IsLinkColumn": false,
+        "FormRoute": null,
+        "IconCssClass": "",
+        "IconStoreId": "",
+        "Format": "date:{0}",
+        "RouteValueField": "",
+        "WebId": "946c18f3-8ff1-4082-c3c6-73c7c33e0947"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
+        "ConditionalFormattingCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Path": "Product.ItemCategory",
+        "Header": "Item",
+        "Sort": "",
+        "IsLinkColumn": false,
+        "FormRoute": null,
+        "IconCssClass": "",
+        "IconStoreId": "",
+        "Format": "text:{0}",
+        "RouteValueField": "",
+        "WebId": "f010c369-5525-4248-f44e-155b65423391"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
+        "ConditionalFormattingCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Path": "Weight",
+        "Header": "Weight",
+        "Sort": "",
+        "IsLinkColumn": false,
+        "FormRoute": null,
+        "IconCssClass": "",
+        "IconStoreId": "",
+        "Format": "text:{0}",
+        "RouteValueField": "",
+        "WebId": "a3cfa7e8-e745-4efd-9a4f-1f2e862fe6b0"
+      }
+    ]
   },
   "ConditionalFormattingCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
@@ -10,8 +113,8 @@
   },
   "Performer": {
     "$type": "Bespoke.Sph.Domain.Performer, domain.sph",
-    "UserProperty": null,
-    "Value": null,
+    "UserProperty": "Roles",
+    "Value": "customers",
     "IsPublic": false,
     "WebId": null
   },
@@ -19,25 +122,25 @@
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.RouteParameter, domain.sph]], domain.sph",
     "$values": []
   },
-  "IconClass": null,
-  "IconStoreId": null,
+  "IconClass": "fa fa-birthday-cake",
+  "IconStoreId": "603e50d1-5c39-4493-914c-28626639652a",
   "EntityDefinitionId": "consigment-request",
-  "Name": "All ConsigmentRequests",
-  "Route": "consigment-request-all",
-  "Note": null,
-  "IsPublished": false,
+  "Name": "My consignment request",
+  "Route": "consigment-requests",
+  "Note": "Consigment request all of them",
+  "IsPublished": true,
   "Visibilty": null,
-  "TileColour": null,
+  "TileColour": "blightblue",
   "CountMessage": null,
   "Entity": "ConsigmentRequest",
-  "Partial": null,
+  "Partial": "partial/consigment-requests",
   "Template": null,
-  "DisplayOnDashboard": false,
-  "Endpoint": null,
+  "DisplayOnDashboard": true,
+  "Endpoint": "consigment-request-default",
   "CreatedBy": "admin",
   "Id": "consigment-request-all",
   "CreatedDate": "2016-10-29T07:26:06.8492482+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-29T07:26:06.8492482+08:00",
+  "ChangedDate": "2016-10-29T17:58:38.7669307+08:00",
   "WebId": "a61e2016-f40d-47e2-a0c7-43cd6f838fce"
 }

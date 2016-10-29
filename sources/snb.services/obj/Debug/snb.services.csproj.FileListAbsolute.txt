@@ -1,0 +1,5 @@
+F:\project\work\entt.ost\sources\snb.services\bin\Debug\snb.services.dll
+F:\project\work\entt.ost\sources\snb.services\bin\Debug\snb.services.pdb
+F:\project\work\entt.ost\sources\snb.services\obj\Debug\snb.services.csprojResolveAssemblyReference.cache
+F:\project\work\entt.ost\sources\snb.services\obj\Debug\snb.services.dll
+F:\project\work\entt.ost\sources\snb.services\obj\Debug\snb.services.pdb

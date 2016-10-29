@@ -1,0 +1,79 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "ConsigmentRequestDefaultQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "CreatedBy",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.FunctionField, domain.sph",
+          "CodeNamespace": "ff8fac7d19",
+          "Script": "ObjectBuilder.GetObject<IDirectoryService>().CurrentUserName",
+          "Name": "Current User",
+          "Note": "",
+          "WebId": "8fac7d19-0138-43d6-97a0-5d5375f5ad44"
+        },
+        "WebId": "f88940cd-a70a-4043-8d36-f1924e227a1f"
+      }
+    ]
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Sort, domain.sph",
+        "Path": "CreatedDate",
+        "Direction": "Desc",
+        "WebId": "4e5b091c-4629-4cc8-ab32-1e202594bf94"
+      }
+    ]
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": [
+      "Sender.ContactPerson",
+      "Id",
+      "ReferenceNo",
+      "Weight",
+      "Receivers.ContactPerson",
+      "Sender.Address.Country",
+      "Sender.Address.State",
+      "Sender.Address.City",
+      "Sender.Address.GeoLocation.Lat",
+      "Sender.Address.GeoLocation.Long",
+      "Receivers.Address.Country",
+      "Receivers.Address.City",
+      "Receivers.Address.State",
+      "Receivers.Address.GeoLocation.Long",
+      "Receivers.Address.GeoLocation.Lat",
+      "Product.Name",
+      "Product.ItemCategory",
+      "Product.Weight",
+      "DateFrom",
+      "DateTo",
+      "Payment.Status",
+      "Payment.Date",
+      "Payment.TotalPrice",
+      "Payment.ReceiptNo",
+      "CurrentStep"
+    ]
+  },
+  "CacheProfile": "",
+  "Name": "Default",
+  "Route": "",
+  "IsReturnSource": "",
+  "Entity": "ConsigmentRequest",
+  "Note": "all consignments request created by current users",
+  "IsPublished": true,
+  "Resource": "consignment-requests",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "consigment-request-default",
+  "CreatedDate": "2016-10-29T17:01:29.0577169+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-10-29T17:59:14.3940962+08:00",
+  "WebId": "183a85aa-1ed2-4784-8f26-1d9124e6d07c"
+}
