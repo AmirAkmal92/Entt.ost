@@ -6,7 +6,8 @@ define([objectbuilders.datacontext], function(context){
             rootEntity = entity;
             return context.get("snb-services/products")
                     .then(function(list){
-                        products(list);
+                        var list2 = list.map(v => ko.mapping.fromJS(v));
+                        products(list2);
                         return context.get("snb-services/item-categories");
                     })
                     .then(categories);

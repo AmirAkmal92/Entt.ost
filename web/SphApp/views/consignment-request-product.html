@@ -97,13 +97,13 @@
                                 </a>
                             </div>
                             <div class="list-todo-item" data-bind="css : {'green-meadow': ko.unwrap($root.entity().Product().Code) === Code, 'blue-steel': ko.unwrap($root.entity().Product().Code) !== Code}">
-                                <a class="list-toggle-container collapsed" data-toggle="collapse" data-parent="#accordion1" data-bind="attr :{href :'#product-'+ Code}" onclick=" " aria-expanded="false">
+                                <a class="list-toggle-container collapsed" data-toggle="collapse" data-parent="#accordion1" data-bind="attr :{href :'#product-'+ ko.unwrap(Code)}" onclick=" " aria-expanded="false">
                                     <div class="list-toggle done uppercase">
                                         <div class="list-toggle-title bold" data-bind="text:Name"></div>
                                         <div class="badge badge-default pull-right bold" data-bind="text:Code"></div>
                                     </div>
                                 </a>
-                                <div class="task-list panel-collapse collapse" data-bind="attr :{id : 'product-' + Code}"  aria-expanded="false" style="height: 0px;">
+                                <div class="task-list panel-collapse collapse" data-bind="attr :{id : 'product-' + ko.unwrap(Code)}"  aria-expanded="false" style="height: 0px;">
                                     <ul>
                                         <li class="task-list-item done">
                                             <div class="task-icon">
@@ -179,9 +179,11 @@
                                                         </div>
                                                         <span class="badge" style="margin-top:-20px" data-bind="money: Value">12</span></li>
                                                         <!-- ko foreach: UserInputs -->
-                                                        <div class="">
-                                                            <label class="control-label" data-bind="text: Name"></label>
-                                                            <input class="input-small form-control" data-bind="value:Value" type="number"/>
+                                                        <div class="form-group form-md-line-input" data-bind="visible : $parent.IsSelected">
+                                                            <label class="col-md-3 control-label" data-bind="text: Name"></label>
+                                                            <div class="col-md-9">
+                                                                <input class="input-small form-control" data-bind="value:Value" type="number"/>
+                                                            </div>
                                                         </div>
                                                         <!-- /ko -->
                                                  </ul>
