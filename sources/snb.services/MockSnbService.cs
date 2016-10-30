@@ -45,7 +45,7 @@ namespace Bespoke.PostEntt.Ost.Services
             return Task.FromResult((weight ?? 1.0m) * (length ?? 1.01m) * (width ?? 1.03m));
         }
 
-        public async Task<decimal?> CalculateValueAddedServiceAsync(Product product, ValueAddedService vas)
+        public async Task<decimal?> CalculateValueAddedServiceAsync(QuotationRequest request, Product product, ValueAddedService vas)
         {
             await Task.Delay(2000);
             if(string.IsNullOrWhiteSpace(vas.Formula))

@@ -5,12 +5,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
+using Microsoft.CodeAnalysis.Scripting;
 
 namespace Bespoke.PostEntt.Ost.Services
 {
     public class SqlSnbService : ISnbService
     {
-        
+
         // ReSharper disable once ClassNeverInstantiated.Local
         [DebuggerDisplay("{Code}:{Name}")]
         private class SnbSurcharge
@@ -148,13 +150,37 @@ namespace Bespoke.PostEntt.Ost.Services
             return Task.FromResult((weight ?? 1.0m) * (length ?? 1.01m) * (width ?? 1.03m));
         }
 
-        public async Task<decimal?> CalculateValueAddedServiceAsync(Product product, ValueAddedService vas)
+        public async Task<decimal?> CalculateValueAddedServiceAsync(QuotationRequest request, Product product, ValueAddedService vas)
         {
 
-            await Task.Delay(2000);
-            if (string.IsNullOrWhiteSpace(vas.Formula))
-                return new Random(DateTime.Now.Second).Next(DateTime.Now.Millisecond);
-            return vas.Formula.Length + DateTime.Now.Second;
+            var userInputs = string.Join("\r\n", vas.UserInputs.Select(x => $"public const decimal {x.Name} = {x.Value}m;"));
+            var options = ScriptOptions.Default
+                .WithImports("System")
+                .WithImports("System.Math");
+
+            var script = CSharpScript
+                .Create<decimal>($@"
+using System;
+public class CalcHost
+{{
+    const string ITEM_CATEGORY_NAME = ""{request.ItemCategory}"";
+    const bool IS_INTERNATIONAL = {(request.ReceiverCountry != "MY"? "true" : "false")};
+    {userInputs}
+    // TODO : like BASE_RATE and stuff
+    public decimal Evaluate()
+    {{
+        {vas.Formula}    
+    }}
+}}
+
+").ContinueWith(@"
+    var calc = new CalcHost();    
+").ContinueWith(@"
+    return calc.Evaluate();
+").WithOptions(options);
+            
+            var result = await script.RunAsync();
+            return (decimal?)result.ReturnValue;
         }
     }
 }

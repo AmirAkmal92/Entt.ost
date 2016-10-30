@@ -1,4 +1,4 @@
-define([objectbuilders.system, "viewmodels/consigment-request-details"], function(system , step1){
+define([objectbuilders.system, "viewmodels/consigment-request-details" , "services/_google.places.api"], function(system , step1, googlePlacesApi){
     var receiver = ko.observable(new bespoke.Ost_consigmentRequest.domain.Receiver(system.guid())),
         activate = function(con){
             
@@ -38,6 +38,8 @@ define([objectbuilders.system, "viewmodels/consigment-request-details"], functio
               return markup;
         },
         attached  = function(view){
+
+            googlePlacesApi.attached(view);
             
             $("#receiver-company-name").select2({
                   ajax: {
