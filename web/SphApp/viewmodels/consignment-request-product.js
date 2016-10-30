@@ -106,6 +106,15 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
 
         },
 
+        findProductsAsync = function() {
+            return context.get("snb-services/products")
+                .then(function(list) {
+                // edit the = > back to => , the beatifier fucked up the ES2015 syntax
+                var list2 = list.map(v => ko.mapping.fromJS(v));
+                partial.products(list2);
+            });
+        },
+
         compositionComplete = function() {
             $("[data-i18n]").each(function(i, v) {
                 var $label = $(v),
@@ -138,6 +147,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
         compositionComplete: compositionComplete,
         entity: entity,
         errors: errors,
+        findProductsAsync: findProductsAsync,
         toolbar: {
             saveCommand: saveCommand,
             canExecuteSaveCommand: ko.computed(function() {

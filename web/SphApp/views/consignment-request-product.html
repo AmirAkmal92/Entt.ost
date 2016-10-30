@@ -38,15 +38,41 @@
 <form class="form-horizontal" data-bind="with : entity" id="consignment-request-product-form">
     <div class="form-body">
 <h4 data-i18n="Volume &amp; Weight" data-bind="visible:true">Volume &amp; Weight</h4>
+  <div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Item Category" class="col-md-3 control-label" for="itemCategory">Item Category</label>
+    <div class="col-md-9">
+        <select required
+                data-bind="value: Product().ItemCategory, options : $root.partial.categories, optionsCaption : '[Select Item Category]', enable :true"
+                class="form-control"
+                name="Product.ItemCategory" id="itemCategory"></select>
+        <div class="form-control-focus"> </div>
+        <span class="help-block">Tell us the product category for your consignment</span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Weight" class="col-md-3 control-label" for="6465286c-a3af-46de-e7d8-0499b6bf7cf4">Weight</label>
+    <div class="col-md-9">
+        <input class="form-control" required type="text"
+               placeholder=""
+               data-bind="value: Product().Weight"
+                data-rule-number="true"  data-rule-required="true" 
+ data-rule-min="0"
+ data-rule-max="100"
+               id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Product.Weight">
+        <div class="form-control-focus"> </div>
+        <span class="help-block">Weight in Kilogram</span>
+    </div>
+</div>
 <div class="form-group form-md-line-input" data-bind="visible:true">
     <label data-i18n="Width" class="col-md-3 control-label" for="61040711-a759-4cf8-ea32-47b1cdee2f44">Width</label>
     <div class="col-md-9">
         <input class="form-control"  type="text"
                placeholder=""
                data-bind="value: Product().Volume().Width"
+                data-rule-number="true" 
                id="61040711-a759-4cf8-ea32-47b1cdee2f44" name="Product.Volume.Width">
         <div class="form-control-focus"> </div>
-        <span class="help-block"></span>
+        <span class="help-block">Width in cm</span>
     </div>
 </div>
 <div class="form-group form-md-line-input" data-bind="visible:true">
@@ -55,9 +81,10 @@
         <input class="form-control"  type="text"
                placeholder=""
                data-bind="value: Product().Volume().Length"
+                data-rule-number="true" 
                id="38c9d5fd-8458-4ce4-9575-da6edf8b0c9d" name="Product.Volume.Length">
         <div class="form-control-focus"> </div>
-        <span class="help-block"></span>
+        <span class="help-block">Length  in cm</span>
     </div>
 </div>
 <div class="form-group form-md-line-input" data-bind="visible:true">
@@ -66,23 +93,18 @@
         <input class="form-control"  type="text"
                placeholder=""
                data-bind="value: Product().Volume().Height"
+                data-rule-number="true" 
                id="a044e320-f819-4adf-fc9d-f130079818fe" name="Product.Volume.Height">
         <div class="form-control-focus"> </div>
-        <span class="help-block"></span>
+        <span class="help-block">Height  in cm</span>
     </div>
 </div>
-<div class="form-group form-md-line-input" data-bind="visible:true">
-    <label data-i18n="Weight" class="col-md-3 control-label" for="6465286c-a3af-46de-e7d8-0499b6bf7cf4">Weight</label>
-    <div class="col-md-9">
-        <input class="form-control"  type="text"
-               placeholder=""
-               data-bind="value: Product().Weight"
-               id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Product.Weight">
-        <div class="form-control-focus"> </div>
-        <span class="help-block"></span>
-    </div>
-</div><h4 data-i18n="Services Available" data-bind="visible:true">Services Available</h4>
-    <div class="form-group form-md-line-input" >
+<button data-bind="command : $root.findProductsAsync, visible :true, enable: true" class="btn btn-success pull-right">
+        <i class="fa fa-search"></i>
+    Find the right service
+</button>
+<h4 data-i18n="Services Available" data-bind="visible:true">Services Available</h4>
+  <div class="form-group form-md-line-input" >
         <label data-i18n="Service" class="col-md-3 control-label" for="serviceCode">Service</label>
         <div class="col-md-9">
 
@@ -136,7 +158,7 @@
                                         <li class="task-list-item">
                                             <div class="task-icon">
                                                 <a href="javascript:;">
-                                                    <i class=" icon-credit-card fa-2x"></i>
+                                                    <i class="icon-credit-card fa-2x"></i>
                                                 </a>
                                             </div>
                                             <div class="task-content">
@@ -212,17 +234,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="form-group form-md-line-input" data-bind="visible:true">
-        <label data-i18n="Item Category" class="col-md-3 control-label" for="itemCategory">Item Category</label>
-        <div class="col-md-9">
-            <select required
-                    data-bind="value: Product().ItemCategory, options : $root.partial.categories, optionsCaption : '[Select Item Category]', enable :true"
-                    class="form-control"
-                    name="Product.ItemCategory" id="itemCategory"></select>
-            <div class="form-control-focus"> </div>
-            <span class="help-block">Tell us the product category for your consignment</span>
         </div>
     </div>
 <h4 data-i18n="Price &amp; Others" data-bind="visible:true">Price &amp; Others</h4>
