@@ -8,5 +8,6 @@ namespace Bespoke.PostEntt.Ost.Services
         Task<IEnumerable<Product>> GetProductAsync();
         Task<IEnumerable<string>> GetItemCategoriesAsync();
         Task<decimal> CalculateRate(string code, decimal? weight, decimal? length, decimal? width, decimal? height);
+        Task<decimal?> CalculateValueAddedServiceAsync(Product product, ValueAddedService surcharge);
     }
 }

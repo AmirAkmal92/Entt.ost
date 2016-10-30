@@ -10,14 +10,7 @@ namespace Bespoke.PostEntt.Ost.Services
 {
     public class SqlSnbService : ISnbService
     {
-
-        // ReSharper disable once ClassNeverInstantiated.Local
-        [DebuggerDisplay("{Name}")]
-        private class SnbUserInput
-        {
-            public virtual string Name { get; set; }
-            public virtual decimal Value { get; set; }
-        }
+        
         // ReSharper disable once ClassNeverInstantiated.Local
         [DebuggerDisplay("{Code}:{Name}")]
         private class SnbSurcharge
@@ -81,7 +74,7 @@ namespace Bespoke.PostEntt.Ost.Services
 
         public async Task<IEnumerable<Product>> GetProductAsync()
         {
-            var sql = $"SELECT * FROM [dbo].[Product] WHERE [SbuName] = 'PosLaju' AND [Status] <> 2 AND [ValidFrom] <= GETDATE() AND [ValidTo] >= GETDATE()";
+            var sql = "SELECT * FROM [dbo].[Product] WHERE [SbuName] = \'PosLaju\' AND [Status] <> 2 AND [ValidFrom] <= GETDATE() AND [ValidTo] >= GETDATE()";
             using (var conn = new SqlConnection(ConnectionString))
             {
                 await conn.OpenAsync();
@@ -94,8 +87,8 @@ namespace Bespoke.PostEntt.Ost.Services
                 foreach (var product in list)
                 {
                     product.Initialize();
-                    var validServices = new List<ValueAddService>();
-                    foreach (var v in product.ValueAddServices)
+                    var validServices = new List<ValueAddedService>();
+                    foreach (var v in product.ValueAddedServices)
                     {
                         var db = vas.SingleOrDefault(x => x.Code == v.Code);
                         if (null == db) continue;
@@ -111,8 +104,8 @@ namespace Bespoke.PostEntt.Ost.Services
 
                         validServices.Add(v);
                     }
-                    product.ValueAddServices.Clear();
-                    product.ValueAddServices.AddRange(validServices);
+                    product.ValueAddedServices.Clear();
+                    product.ValueAddedServices.AddRange(validServices);
 
                     var validSurcharges = new List<Surcharge>();
                     foreach (var sc in product.Surcharges)
@@ -140,7 +133,7 @@ namespace Bespoke.PostEntt.Ost.Services
 
         public async Task<IEnumerable<string>> GetItemCategoriesAsync()
         {
-            var sql = $"SELECT [Name] FROM [dbo].[ItemCategory]";
+            var sql = "SELECT [Name] FROM [dbo].[ItemCategory]";
             using (var conn = new SqlConnection(ConnectionString))
             {
                 await conn.OpenAsync();
@@ -153,6 +146,15 @@ namespace Bespoke.PostEntt.Ost.Services
         public Task<decimal> CalculateRate(string code, decimal? weight, decimal? length, decimal? width, decimal? height)
         {
             return Task.FromResult((weight ?? 1.0m) * (length ?? 1.01m) * (width ?? 1.03m));
+        }
+
+        public async Task<decimal?> CalculateValueAddedServiceAsync(Product product, ValueAddedService vas)
+        {
+
+            await Task.Delay(2000);
+            if (string.IsNullOrWhiteSpace(vas.Formula))
+                return new Random(DateTime.Now.Second).Next(DateTime.Now.Millisecond);
+            return vas.Formula.Length + DateTime.Now.Second;
         }
     }
 }

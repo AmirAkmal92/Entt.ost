@@ -176,7 +176,7 @@
                                         </li>
                                         <!-- /ko -->
 
-                                        <!-- ko if : ko.unwrap(ValueAddServices).length > 0 -->
+                                        <!-- ko if : ko.unwrap(ValueAddedServices).length > 0 -->
                                         <li class="task-list-item">
                                             <div class="task-icon">
                                                 <a href="javascript:;">
@@ -188,7 +188,7 @@
                                                     <a href="javascript:;">Value added services</a>
                                                 </h4>
 
-                                                <ul class="list-group" data-bind="foreach: ValueAddServices">
+                                                <ul class="list-group" data-bind="foreach: ValueAddedServices">
                                                     <li class="list-group-item">
                                                         <div class="md-checkbox">
                                                             <input type="checkbox" data-bind="checked : IsSelected, attr :{ id :ko.unwrap($parent.Code) + '-' + ko.unwrap(Code)}" class="md-check">
@@ -198,8 +198,9 @@
                                                              <span class="box"></span> 
                                                             <!-- ko text : Name -->
                                                             <!-- /ko --> </label>
+                                                            <i class="fa fa-spin fa-circle-o-notch" data-bind="visible: isBusy"></i>
                                                         </div>
-                                                        <span class="badge" style="margin-top:-20px" data-bind="money: Value">12</span></li>
+                                                        <span class="badge" style="margin-top:-20px" data-bind="text: Value"></span></li>
                                                         <!-- ko foreach: UserInputs -->
                                                         <div class="form-group form-md-line-input" data-bind="visible : $parent.IsSelected">
                                                             <label class="col-md-3 control-label" data-bind="text: Name"></label>
@@ -216,15 +217,10 @@
 
                                         <li class="task-list-item">
                                             <div class="task-icon">
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-money fa-2x"></i>
-                                                </a>
                                             </div>
                                             <div class="task-content">
-                                                <h4 class="uppercase bold">
-                                                    <a href="javascript:;">The Damage to your bottom line</a>
-                                                </h4>
-                                                <p>RM 5.00</p>
+                                                <button class="btn btn-info" data-bind2="command : $root.partial.r">Recalculate the price</button>
+                                                <label class="btn red btn-outline btn-circle btn-md active pull-right" data-bind2="money : TotalCost">RM 46.56</label>
                                             </div>
                                         </li>
                                     </ul>

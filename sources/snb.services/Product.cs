@@ -7,14 +7,14 @@ using Newtonsoft.Json;
 namespace Bespoke.PostEntt.Ost.Services
 {
     [DebuggerDisplay("{Code}:{Name}")]
-    public class ValueAddService
+    public class ValueAddedService
     {
-        public ValueAddService()
+        public ValueAddedService()
         {
 
         }
 
-        public ValueAddService(ProductValueAddedService snbVas)
+        public ValueAddedService(ProductValueAddedService snbVas)
         {
             this.Code = snbVas.Code;
             this.Name = snbVas.Name;
@@ -108,9 +108,9 @@ namespace Bespoke.PostEntt.Ost.Services
         public bool IsInternational { get; set; }
         public string GstCode { get; set; }
         public string Sla { get; set; }
-
+        public decimal? TotalCost { get; set; }
         public IList<Surcharge> Surcharges { get; } = new List<Surcharge>();
-        public IList<ValueAddService> ValueAddServices { get; } = new List<ValueAddService>();
+        public IList<ValueAddedService> ValueAddedServices { get; } = new List<ValueAddedService>();
 
         public void Initialize()
         {
@@ -121,7 +121,7 @@ namespace Bespoke.PostEntt.Ost.Services
                 var text = this.SerializedValueAddedServices.Replace("SalesBilling.Domain.Entities.Pricing.Events.ProductValueAddedService, SalesBilling.Domain", "Bespoke.PostEntt.Ost.Services.ProductValueAddedService, snb.services");
 
                 var list = ServiceStack.Text.TypeSerializer.DeserializeFromString<List<ProductValueAddedService>>(text);
-                this.ValueAddServices.AddRange(list.Select(x => new ValueAddService(x)));
+                this.ValueAddedServices.AddRange(list.Select(x => new ValueAddedService(x)));
             }
 
             if (!string.IsNullOrWhiteSpace(this.SerializedSurcharges))

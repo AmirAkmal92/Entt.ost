@@ -4,10 +4,26 @@ using Bespoke.PostEntt.Ost.Services;
 using Bespoke.Sph.Domain;
 using Bespoke.Sph.WebApi;
 
-
+public class CalculateValueAddedServiceViewModel
+{
+    public Product Product { get; set; }
+    public ValueAddedService ValueAddedService { get; set; }
+}
 [RoutePrefix("snb-services")]
 public class SnbServicesController : BaseApiController
 {
+    
+    [HttpPost]
+    [Route("calculate-value-added-service")]
+    public async Task<IHttpActionResult> CalculateSurchargeAsync([FromBody]CalculateValueAddedServiceViewModel vm)
+    {
+        var snb = ObjectBuilder.GetObject<ISnbService>();
+        var value = await snb.CalculateValueAddedServiceAsync(vm.Product, vm.ValueAddedService);
+
+        return Ok(value);
+    }
+
+
     [HttpGet]
     [Route("products")]
     public async Task<IHttpActionResult> GetProductsAsync()
@@ -17,6 +33,8 @@ public class SnbServicesController : BaseApiController
 
         return Ok(products);
     }
+
+
     [HttpGet]
     [Route("item-categories")]
     public async Task<IHttpActionResult> GetItemCategoriesAsync()

@@ -110,7 +110,29 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
             return context.get("snb-services/products")
                 .then(function(list) {
                 // edit the = > back to => , the beatifier fucked up the ES2015 syntax
-                var list2 = list.map(v => ko.mapping.fromJS(v));
+                var list2 = list.map(function(v){
+
+                        var po = ko.mapping.fromJS(v);
+                        _(ko.unwrap(po.ValueAddedServices)).each(function(vas){
+                            vas.isBusy = ko.observable(false);
+                            vas.IsSelected.subscribe(function(selected){
+                                if(selected){
+                                    vas.isBusy(true);
+                                    var vm = {product : v , valueAddedService : vas};
+                                    context.post(ko.mapping.toJSON(vm), "/snb-services/calculate-value-added-service")
+                                        .done(function(result){
+                                            vas.Value(result);
+                                            vas.isBusy(false);
+                                        });
+                                }else{
+                                    vas.Value(0);
+                                }
+                            })
+                        });
+
+                        return po;
+
+                });
                 partial.products(list2);
             });
         },
