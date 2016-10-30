@@ -1,8 +1,9 @@
 define([objectbuilders.datacontext], function(context){
     var products = ko.observableArray(),
         categories = ko.observableArray(),
+        rootEntity = null,
         activate = function(entity){
-            
+            rootEntity = entity;
             return context.get("snb-services/products")
                     .then(function(list){
                         products(list);
@@ -14,13 +15,17 @@ define([objectbuilders.datacontext], function(context){
         },
         attached  = function(view){
         
+        },
+        selectProduct = function(prd){
+            rootEntity.Product().Code(prd.Code);
         };
 
     return {
         activate : activate,
         attached : attached,
         products : products,
-        categories : categories
+        categories : categories,
+        selectProduct : selectProduct
     };
 
 });

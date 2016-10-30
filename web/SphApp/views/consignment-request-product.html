@@ -82,28 +82,25 @@
         <span class="help-block"></span>
     </div>
 </div><h4 data-i18n="Services Available" data-bind="visible:true">Services Available</h4>
-    <div class="form-group form-md-line-input" data-bind="visible:true">
+    <div class="form-group form-md-line-input" >
         <label data-i18n="Service" class="col-md-3 control-label" for="serviceCode">Service</label>
         <div class="col-md-9">
 
             <div class="mt-element-list">
-                <div class="mt-list-head list-todo">
-                    <div class="list-head-title-container">
-                        <h3 class="list-title">Select your service</h3>
-                    </div>
-                </div>
                 <div class="mt-list-container list-todo" id="accordion1" role="tablist" aria-multiselectable="true">
                     <div class="list-todo-line"></div>
                     <ul data-bind="foreach :$root.partial.products">
                         <li class="mt-list-item">
                             <div class="list-todo-icon bg-white">
-                                <i class="icon-check"></i>
+                                <a href="javascript:;" data-bind="click : $root.partial.selectProduct">
+                                    <i class="icon-check" style="font-size:28px"></i>
+                                </a>
                             </div>
-                            <div class="list-todo-item blue-steel">
+                            <div class="list-todo-item" data-bind="css : {'green-meadow': ko.unwrap($root.entity().Product().Code) === Code, 'blue-steel': ko.unwrap($root.entity().Product().Code) !== Code}">
                                 <a class="list-toggle-container collapsed" data-toggle="collapse" data-parent="#accordion1" data-bind="attr :{href :'#product-'+ Code}" onclick=" " aria-expanded="false">
                                     <div class="list-toggle done uppercase">
                                         <div class="list-toggle-title bold" data-bind="text:Name"></div>
-                                        <div class="badge badge-default pull-right bold" data-bind="text:Code">3</div>
+                                        <div class="badge badge-default pull-right bold" data-bind="text:Code"></div>
                                     </div>
                                 </a>
                                 <div class="task-list panel-collapse collapse" data-bind="attr :{id : 'product-' + Code}"  aria-expanded="false" style="height: 0px;">
@@ -118,7 +115,7 @@
                                                 <h4 class="uppercase bold">
                                                     <a href="javascript:;">Service Guarantee</a>
                                                 </h4>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum gravida mauris, a tincidunt dolor porttitor eu. </p>
+                                                <p data-bind="text : Description">Next business day </p>
                                             </div>
                                         </li>
                                         <li class="task-list-item">
@@ -131,20 +128,79 @@
                                                 <h4 class="uppercase bold">
                                                     <a href="javascript:;">Commitment Date</a>
                                                 </h4>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum gravida mauris, a tincidunt dolor porttitor eu. </p>
+                                                <p>Shipped it today by 4:00 pm  and reach your package will be deliverd by 4 Nov 2016</p>
                                             </div>
                                         </li>
+
+                                        <!-- ko if : ko.unwrap(Surcharges).length > 0 -->
                                         <li class="task-list-item">
                                             <div class="task-icon">
                                                 <a href="javascript:;">
-                                                    <i class="fa fa-dollar fa-2x"></i>
+                                                    <i class=" icon-credit-card fa-2x"></i>
                                                 </a>
                                             </div>
                                             <div class="task-content">
                                                 <h4 class="uppercase bold">
-                                                    <a href="javascript:;">Cost</a>
+                                                    <a href="javascript:;">Surcharge</a>
+                                                </h4> 
+
+                                                <ul class="list-group" data-bind="foreach: Surcharges">
+                                                    <li class="list-group-item">
+                                                            <!-- ko text : Name -->
+                                                            <!-- /ko -->
+                                                         <span class="badge" data-bind="money: Value">12</span></li>
+                                                 </ul>
+                                            </div>
+                                        </li>
+                                        <!-- /ko -->
+
+                                        <!-- ko if : ko.unwrap(ValueAddServices).length > 0 -->
+                                        <li class="task-list-item">
+                                            <div class="task-icon">
+                                                <a href="javascript:;">
+                                                    <i class="icon-present fa-2x"></i>
+                                                </a>
+                                            </div>
+                                            <div class="task-content">
+                                                <h4 class="uppercase bold">
+                                                    <a href="javascript:;">Value added services</a>
                                                 </h4>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum gravida mauris, a tincidunt dolor porttitor eu. </p>
+
+                                                <ul class="list-group" data-bind="foreach: ValueAddServices">
+                                                    <li class="list-group-item">
+                                                        <div class="md-checkbox">
+                                                            <input type="checkbox" data-bind="checked : IsSelected, attr :{ id :ko.unwrap($parent.Code) + '-' + ko.unwrap(Code)}" class="md-check">
+                                                            <label data-bind="attr :{ for :ko.unwrap($parent.Code) + '-' + ko.unwrap(Code)}">
+                                                                <span class="inc"></span>
+                                                                <span class="check"></span>
+                                                             <span class="box"></span> 
+                                                            <!-- ko text : Name -->
+                                                            <!-- /ko --> </label>
+                                                        </div>
+                                                        <span class="badge" style="margin-top:-20px" data-bind="money: Value">12</span></li>
+                                                        <!-- ko foreach: UserInputs -->
+                                                        <div class="">
+                                                            <label class="control-label" data-bind="text: Name"></label>
+                                                            <input class="input-small form-control" data-bind="value:Value" type="number"/>
+                                                        </div>
+                                                        <!-- /ko -->
+                                                 </ul>
+
+                                           </div>
+                                        </li>
+                                        <!-- /ko -->
+
+                                        <li class="task-list-item">
+                                            <div class="task-icon">
+                                                <a href="javascript:;">
+                                                    <i class="fa fa-money fa-2x"></i>
+                                                </a>
+                                            </div>
+                                            <div class="task-content">
+                                                <h4 class="uppercase bold">
+                                                    <a href="javascript:;">The Damage to your bottom line</a>
+                                                </h4>
+                                                <p>RM 5.00</p>
                                             </div>
                                         </li>
                                     </ul>
