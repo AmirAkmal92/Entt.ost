@@ -39,16 +39,62 @@
                                 </form>
                                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
                             </li>
-                            <li class="nav-item start"  id="contact-group-list">
-                                <a href="/ost#address-book-home/-" class="nav-link nav-toggle">
-                                    <i class="icon-user-follow"></i>
-                                    <span class="title">Address Books</span>
-                                    <span class="arrow"></span>
-                                </a>                                
-                                <!-- ko compose : {view : '_address-book-groups' }-->
-                                                             
-                                <!--/ko-->
+
+                            <li class="heading">
+                                <h3 class="uppercase">Address Book</h3>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="/ost#address-book-home/- javascript:;" class="ajaxify nav-link nav-toggle">
+                                    <i class="fa fa-book ajaxify nav-link nav-toggle"></i>
+                                    <span class="title">All Address</span>
+                                    <span class="arrow open"></span>
+                                </a>
+
+
+
+                                <ul class="sub-menu">
+
+
+                                    <li class="nav-item" id="contact-group-list">
+                                        <a href="/ost#address-book-home/-" class="ajaxify nav-link nav-toggle">
+                                            <i class="icon-user-follow"></i>
+                                            <span class="title">Manage Address</span>
+                                            <span class="ajaxify badge badge-info" data-bind="text: contactsCount">852</span>
+                                        </a>
+                                        <!-- ko compose : {view : '_address-book-groups' }-->
+                                        <!--/ko-->
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="/ost#address-book-home/-" class="ajaxify nav-link nav-toggle">
+                                    <i class="fa fa-group"></i>
+                                    <span class="title">All Group Address</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+
+
+                                <ul class="sub-menu">
+                                    <li class="nav-item" id="contact-group-list">
+                                        <a href="/ost#address-book-home/-" class="nav-link nav-toggle">
+                                            <i class="fa fa-gear"></i>
+                                            <span class="title">Manage Group</span>
+                                        </a>
+                                        <!-- ko compose : {view : '_address-book-groups' }-->
+                                        <!--/ko-->
+                                    </li>
+                                    <li class="nav-item" id="contact-group-list">
+                                        <a class="nav-link">
+                                            <input type="text" value="Add Group" style="border:0px;background-color:transparent;width:150px" />
+                                            <span class="badge badge-warning" data-bind="click: addGroup">+</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
                             <li class="heading">
                                 <h3 class="uppercase">Consignments</h3>
                             </li>
@@ -59,7 +105,7 @@
                                     <span class="arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
-                                    <li class="nav-item  ">
+                                    <li class="nav-item ">
                                         <a href="/ost#consigment-requests" class="nav-link ">
                                             <span class="title">New</span>
                                         </a>
@@ -74,15 +120,15 @@
                                             <span class="title">Last 6 month</span>
                                         </a>
                                     </li>
-                                  
+
                                 </ul>
-                                
-                                
+
+
                             </li>
-                     
+
                         </ul>
-                        <!-- END SIDEBAR MENU -->
-                        <!-- END SIDEBAR MENU -->
-                    </div>
+                                <!-- END SIDEBAR MENU -->
+                                <!-- END SIDEBAR MENU -->
+</div>
                     <!-- END SIDEBAR -->
                 </div>
