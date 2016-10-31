@@ -69,14 +69,22 @@ namespace Bespoke.PostEntt.Ost.Services
             public string GeneralLedgerName { get; set; }
             public string GstCode { get; set; }
             public bool? IsGst { get; set; }
-            // ReSharper restore UnusedAutoPropertyAccessor.Local
-            // ReSharper restore UnusedMember.Local
         }
-
-
-        public async Task<IEnumerable<Product>> GetProductAsync()
+        // ReSharper disable once ClassNeverInstantiated.Local
+        private class SnbItemCategory
         {
-            var sql = "SELECT * FROM [dbo].[Product] WHERE [SbuName] = \'PosLaju\' AND [Status] <> 2 AND [ValidFrom] <= GETDATE() AND [ValidTo] >= GETDATE()";
+            public Guid Id { get; set; }
+            public string PrsCode { get; set; }
+
+        }
+        // ReSharper restore UnusedAutoPropertyAccessor.Local
+        // ReSharper restore UnusedMember.Local
+
+
+        public async Task<IEnumerable<Product>> GetProductAsync(SuggestProductModel model)
+        {
+            var international = (model.Country == "MY" || model.Country == "Malaysia") ? "0" : "1";
+            string sql = $"SELECT * FROM [dbo].[Product] WHERE [SbuName] = \'PosLaju\' AND [Status] <> 2 AND [ValidFrom] <= GETDATE() AND [ValidTo] >= GETDATE() AND [IsInternational] = {international}";
             using (var conn = new SqlConnection(ConnectionString))
             {
                 await conn.OpenAsync();
@@ -84,6 +92,8 @@ namespace Bespoke.PostEntt.Ost.Services
                 // TODO : read the value add services
                 var vas = (await conn.QueryAsync<SnbValuedAddedService>("SELECT * FROM [dbo].[ValueAddedService] WHERE [SbuName] = 'PosLaju' AND [ValidFrom] <= GETDATE() AND [ValidTo] >= GETDATE()")).ToList();
                 var surcharges = (await conn.QueryAsync<SnbSurcharge>("SELECT * FROM [dbo].[Surcharge] WHERE [SbuName] = 'PosLaju' AND [ValidFrom] <= GETDATE() AND [ValidTo] >= GETDATE()")).ToList();
+                var categoryId = await conn.ExecuteScalarAsync<Guid>("SELECT [Id] FROM [dbo].[ItemCategory] WHERE [Name]=@Category", model);
+
 
                 var products = new List<Product>();
                 foreach (var product in list)
@@ -124,8 +134,9 @@ namespace Bespoke.PostEntt.Ost.Services
                     product.Surcharges.Clear();
                     product.Surcharges.AddRange(validSurcharges);
 
-
-                    products.Add(product);
+                    // 
+                    if (product.ItemCategories.Contains(categoryId))
+                        products.Add(product);
                 }
                 return products;
             }
@@ -164,7 +175,7 @@ using System;
 public class CalcHost
 {{
     const string ITEM_CATEGORY_NAME = ""{request.ItemCategory}"";
-    const bool IS_INTERNATIONAL = {(request.ReceiverCountry != "MY"? "true" : "false")};
+    const bool IS_INTERNATIONAL = {(request.ReceiverCountry != "MY" ? "true" : "false")};
     {userInputs}
     // TODO : like BASE_RATE and stuff
     public decimal Evaluate()
@@ -178,7 +189,7 @@ public class CalcHost
 ").ContinueWith(@"
     return calc.Evaluate();
 ").WithOptions(options);
-            
+
             var result = await script.RunAsync();
             return (decimal?)result.ReturnValue;
         }

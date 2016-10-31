@@ -67,7 +67,14 @@ namespace Bespoke.PostEntt.Ost.Services
         public string Name { get; set; }
         public decimal? Value { get; set; }
     }
+    // ReSharper disable once ClassNeverInstantiated.Local
+    [DebuggerDisplay("{Id}:{PrsCode}")]
+    public class SnbItemCategory
+    {
+        public Guid Id { get; set; }
+        public string PrsCode { get; set; }
 
+    }
     [DebuggerDisplay("{Code}:{Name}")]
     public class ProductSurcharge
     {
@@ -109,6 +116,7 @@ namespace Bespoke.PostEntt.Ost.Services
         public string GstCode { get; set; }
         public string Sla { get; set; }
         public decimal? TotalCost { get; set; }
+        public IList<Guid> ItemCategories { get; } = new List<Guid>();
         public IList<Surcharge> Surcharges { get; } = new List<Surcharge>();
         public IList<ValueAddedService> ValueAddedServices { get; } = new List<ValueAddedService>();
 
@@ -132,7 +140,18 @@ namespace Bespoke.PostEntt.Ost.Services
                 this.Surcharges.AddRange(list.Select(x => new Surcharge(x)));
             }
 
+            if (!string.IsNullOrWhiteSpace(this.SerializedItemCategories))
+            {
+                // [{__type:"SalesBilling.Domain.Entities.Pricing.ProductItemCategory, SalesBilling.Domain",Id:fa3e95f99eb64fec976bf293321da8ee,PrsCode:}]
+                var text = this.SerializedItemCategories.Replace("SalesBilling.Domain.Entities.Pricing.ProductItemCategory, SalesBilling.Domain", "Bespoke.PostEntt.Ost.Services.SnbItemCategory, snb.services");
+                var list = ServiceStack.Text.TypeSerializer.DeserializeFromString<List<SnbItemCategory>>(text);
+                this.ItemCategories.AddRange(list.Select(x => x.Id));
+            }
+
         }
+
+ 
+
 
         [JsonIgnore]
         public string SerializedInputConstraints { get; set; }
