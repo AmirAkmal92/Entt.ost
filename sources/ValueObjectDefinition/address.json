@@ -266,6 +266,74 @@
         "AllowMultiple": false,
         "DefaultValue": null,
         "WebId": "ad7add83-8ec5-4e8a-b8a1-78111b5ec965"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.ComplexMember, domain.sph",
+        "EmptyField": "",
+        "TypeName": "GeoLocation",
+        "FullName": null,
+        "PropertyAttribute": null,
+        "MemberCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+          "$values": [
+            {
+              "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+              "TypeName": "System.Decimal, mscorlib",
+              "IsNullable": false,
+              "IsNotIndexed": false,
+              "IsAnalyzed": false,
+              "IsFilterable": false,
+              "IsExcludeInAll": false,
+              "Boost": 0,
+              "FullName": null,
+              "PropertyAttribute": null,
+              "MemberCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "FieldPermissionCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "Name": "Lat",
+              "AllowMultiple": false,
+              "DefaultValue": null,
+              "WebId": "3f533f4d-0121-4178-9d31-3a89a00c71bc"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+              "TypeName": "System.Decimal, mscorlib",
+              "IsNullable": false,
+              "IsNotIndexed": false,
+              "IsAnalyzed": false,
+              "IsFilterable": false,
+              "IsExcludeInAll": false,
+              "Boost": 0,
+              "FullName": null,
+              "PropertyAttribute": null,
+              "MemberCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "FieldPermissionCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "Name": "Long",
+              "AllowMultiple": false,
+              "DefaultValue": null,
+              "WebId": "6bfc0e2b-b9a7-456b-a16e-139d3531cf85"
+            }
+          ]
+        },
+        "FieldPermissionCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": "GeoLocation",
+        "AllowMultiple": false,
+        "DefaultValue": null,
+        "WebId": "6068dcbe-70c7-4ae7-e074-42d49524cc08"
       }
     ]
   },
@@ -278,6 +346,6 @@
   "Id": "address",
   "CreatedDate": "2016-10-12T17:20:42.1818553+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-26T11:49:42.1952911+08:00",
+  "ChangedDate": "2016-10-29T11:14:17.5977728+08:00",
   "WebId": "06395558-5baf-4019-de9f-31c82eaf1e47"
 }

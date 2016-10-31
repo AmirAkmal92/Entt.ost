@@ -459,6 +459,30 @@
               "AllowMultiple": false,
               "DefaultValue": null,
               "WebId": "ad7add83-8ec5-4e8a-b8a1-78111b5ec965"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+              "TypeName": "System.String, mscorlib",
+              "IsNullable": false,
+              "IsNotIndexed": false,
+              "IsAnalyzed": false,
+              "IsFilterable": false,
+              "IsExcludeInAll": false,
+              "Boost": 0,
+              "FullName": null,
+              "PropertyAttribute": null,
+              "MemberCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "FieldPermissionCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "Name": "GpsLocation",
+              "AllowMultiple": false,
+              "DefaultValue": null,
+              "WebId": "ccbf3049-3dd8-4dcf-ca80-926178a0d59f"
             }
           ]
         },
@@ -473,6 +497,54 @@
         "AllowMultiple": false,
         "DefaultValue": null,
         "WebId": "dae07991-5563-4457-8885-b3cdc0c44926"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+        "TypeName": "System.String, mscorlib",
+        "IsNullable": false,
+        "IsNotIndexed": false,
+        "IsAnalyzed": false,
+        "IsFilterable": false,
+        "IsExcludeInAll": false,
+        "Boost": 0,
+        "FullName": null,
+        "PropertyAttribute": null,
+        "MemberCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "FieldPermissionCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": "Avatar",
+        "AllowMultiple": false,
+        "DefaultValue": null,
+        "WebId": "387bcfee-6508-4e38-ead7-d4654b3fbc6c"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+        "TypeName": "System.String, mscorlib",
+        "IsNullable": false,
+        "IsNotIndexed": false,
+        "IsAnalyzed": false,
+        "IsFilterable": false,
+        "IsExcludeInAll": false,
+        "Boost": 0,
+        "FullName": null,
+        "PropertyAttribute": null,
+        "MemberCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "FieldPermissionCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": "AvatarStoreId",
+        "AllowMultiple": false,
+        "DefaultValue": null,
+        "WebId": "937e3834-177a-409e-c28b-9ac12dd9b9b9"
       }
     ]
   },
@@ -514,6 +586,6 @@
   "Id": "address-book",
   "CreatedDate": "2016-10-11T10:54:53.9068465+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-27T08:39:36.2926363+08:00",
+  "ChangedDate": "2016-10-29T11:12:30.3451576+08:00",
   "WebId": "26a50087-d1d9-4cd3-8b85-cab9c3bf2dc3"
 }

@@ -1,0 +1,99 @@
+<div class="mt-element-step">
+    <div class="mt-element-step">
+        <div class="row step-background-thin">
+            <div class="col-md-2 bg-grey-steel mt-step-col ">
+                <div class="mt-step-number">1</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Sender</div>
+                <div class="mt-step-content font-grey-cascade">Sender information</div>
+            </div>
+            <div class="col-md-2 bg-grey-steel mt-step-col ">
+                <div class="mt-step-number">2</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Receiver</div>
+                <div class="mt-step-content font-grey-cascade">Receiver Information</div>
+            </div>
+            <div class="col-md-2 bg-grey-steel mt-step-col ">
+                <div class="mt-step-number">3</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Product</div>
+                <div class="mt-step-content font-grey-cascade">Consignment product</div>
+            </div>
+            <div class="col-md-2 bg-grey-steel mt-step-col ">
+                <div class="mt-step-number">4</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Custom</div>
+                <div class="mt-step-content font-grey-cascade">Custom Declaration</div>
+            </div>
+            <div class="col-md-2 bg-grey-steel mt-step-col  active">
+                <div class="mt-step-number">5</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Summary</div>
+                <div class="mt-step-content font-grey-cascade">Consignment summary</div>
+            </div>
+        </div>
+    </div>
+</div>
+<h1 class="page-title">
+    Consignment Request Summary
+    <small>Consignment list</small>
+</h1>
+<div class="row">
+    <div class="col-sm-8">
+<form class="form-horizontal" data-bind="with : entity" id="consignment-request-summary-form">
+    <div class="form-body">
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Date From" class="col-md-3 control-label" for="5740eb59-8d0d-4cc5-91a7-096e7be84a74">Date From</label>
+    <div class="col-md-9">
+        <input class="form-control"  type="text"
+               placeholder=""
+               data-bind="kendoDate: DateFrom, enable :true"
+               id="5740eb59-8d0d-4cc5-91a7-096e7be84a74" name="DateFrom">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Date To" class="col-md-3 control-label" for="79cc5446-bc88-4612-b204-bde33f148cd0">Date To</label>
+    <div class="col-md-9">
+        <input class="form-control"  type="text"
+               placeholder=""
+               data-bind="kendoDate: DateTo, enable :true"
+               id="79cc5446-bc88-4612-b204-bde33f148cd0" name="DateTo">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Company Name" class="col-md-3 control-label" for="27d2c008-f7a5-40b2-de67-3054df67ce7a">Company Name</label>
+    <div class="col-md-9">
+        <input class="form-control"  type="text"
+               placeholder=""
+               data-bind="value: CompanyName"
+               id="27d2c008-f7a5-40b2-de67-3054df67ce7a" name="CompanyName">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div data-bind="visible:true">
+    <span> Receivers</span>
+    <table class="table table-condensed table-striped">
+        <thead>
+            <tr>
+                    <th>Name</th>
+                    <th>Service</th>
+                    <th>Payment method</th>
+                    <th>Weight</th>
+                    <th>Receiver State</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach :Receivers">
+            <tr>
+                    <td data-bind="text:CompanyName"></td>
+                    <td data-bind="text:$root.entity().Product().Name"></td>
+                    <td data-bind="text:$root.entity().Product().Name"></td>
+                    <td data-bind="text:$root.entity().Product().Weight"></td>
+                    <td data-bind="text:Address().State"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    </div>
+</form>
+    </div>
+</div>

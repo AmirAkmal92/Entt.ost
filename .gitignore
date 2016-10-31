@@ -27,3 +27,5 @@ ControlCenter.bat
 /web.identity.server/bin
 /web.identity.server/obj/Debug
 *.user
+/sources/snb.services/bin/Debug
+/sources/snb.services/obj/Debug

@@ -13,7 +13,6 @@
     "isAdminPage": false,
     "startPageRoute": null
   },
-  
   {
     "role": "customers",
     "groupName": "Address Books",
@@ -23,6 +22,20 @@
     "nav": true,
     "icon": "fa fa-low-vision",
     "caption": "Address Book",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
+  },
+  {
+    "role": "customers",
+    "groupName": null,
+    "route": "create-consignment",
+    "moduleId": "viewmodels/create-consignment",
+    "title": "Create consignment",
+    "nav": true,
+    "icon": "fa fa-shopping-cart",
+    "caption": "Create consignment",
     "settings": null,
     "showWhenLoggedIn": false,
     "isAdminPage": false,

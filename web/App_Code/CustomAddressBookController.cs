@@ -17,8 +17,6 @@ namespace web.sph.App_Code
     [RoutePrefix("address-books")]
     public class CustomAddressBookController : BaseApiController
     {
-
-
         [HttpPut]
         [Route("groups/{group}/{newName}")]
         public async Task<IHttpActionResult> ChangeGroupName(string group, string newName)
@@ -202,14 +200,19 @@ namespace web.sph.App_Code
 
             if (withCount)
             {
-                var groups = from b in buckets
-                             select new { @group = b.SelectToken("key").Value<string>(), count = b.SelectToken("doc_count").Value<string>() };
+                var groups = buckets.Select(b =>
+                             new
+                             {
+                                 @group = b.SelectToken("key").Value<string>(),
+                                 count = b.SelectToken("doc_count").Value<string>()
+                             }).OrderBy(x => x.group).ToList();
+
                 return Ok(groups);
             }
             var keys = buckets.Select(b => b.SelectToken("key").Value<string>()).ToList();
 
             if (keys.Count == 0)
-                keys.AddRange(new[] { "Customers", "Gold", "Silver", "Family" });
+                keys.AddRange(new[] { "Sender", "Receiver" });
 
 
             return Ok(keys);
@@ -218,12 +221,12 @@ namespace web.sph.App_Code
         [HttpGet]
         [Route("csv")]
         public async Task<HttpResponseMessage> DownloadCsv(
-        [FromUri(Name = "contactName")] bool contactName = true,
+        [FromUri(Name = "companyName")] bool companyName = true,
         [FromUri(Name = "contactPerson")]bool contactPerson = true,
         [FromUri(Name = "premiseNoMailbox")]bool premiseNoMailbox = true,
         [FromUri(Name = "block")]bool block = true,
         [FromUri(Name = "buildingName")]bool buildingName = true,
-        [FromUri(Name = "roadName")]bool roadNam = true,
+        [FromUri(Name = "roadName")]bool roadName = true,
         [FromUri(Name = "areaVillage")]bool areaVillage = true,
         [FromUri(Name = "subDistrict")]bool subDistrict = true,
         [FromUri(Name = "districtCity")]bool districtCity = true,
@@ -270,8 +273,8 @@ namespace web.sph.App_Code
             var csv = new StringBuilder();
 
             // headers
-            if (contactName)
-                csv.Append(@"""contactName"",");
+            if (companyName)
+                csv.Append(@"""companyName"",");
             if (contactPerson)
                 csv.Append(@"""ContactPerson"",");
             if (premiseNoMailbox)
@@ -280,7 +283,7 @@ namespace web.sph.App_Code
                 csv.Append(@"""Address.Block"",");
             if (buildingName)
                 csv.Append(@"""Address.BuildingName"",");
-            if (roadNam)
+            if (roadName)
                 csv.Append(@"""Address.RoadName"",");
             if (areaVillage)
                 csv.Append(@"""Address.AreaVillageGardenName"",");
@@ -299,7 +302,7 @@ namespace web.sph.App_Code
             if (email)
                 csv.Append(@"""Address.Email"",");
             if (gpsLocation)
-                csv.Append($@"""GroupAddress"",");
+                csv.Append($@"""Address.GpsLocation"",");
             if (referenceNo)
                 csv.Append(@"""ReferenceNo"",");
             if (addressGroup)
@@ -309,9 +312,9 @@ namespace web.sph.App_Code
 
             foreach (var adr in list)
             {
-                if (contactName)
-                    csv.Append(@""""",");
-                if (contactName)
+                if (companyName)
+                    csv.Append($@"""{adr.CompanyName}"",");
+                if (contactPerson)
                     csv.Append($@"""{adr.ContactPerson}"",");
                 if (premiseNoMailbox)
                     csv.Append($@"""{adr.Address.PremiseNoMailbox}"",");
@@ -319,7 +322,7 @@ namespace web.sph.App_Code
                     csv.Append($@"""{adr.Address.Block}"",");
                 if (buildingName)
                     csv.Append($@"""{adr.Address.BuildingName}"",");
-                if (roadNam)
+                if (roadName)
                     csv.Append($@"""{adr.Address.RoadName}"",");
                 if (areaVillage)
                     csv.Append($@"""{adr.Address.AreaVillageGardenName}"",");
@@ -338,7 +341,7 @@ namespace web.sph.App_Code
                 if (email)
                     csv.Append($@"""{adr.ContactInformation.EmailAddress}"",");
                 if (gpsLocation)
-                    csv.Append($@"""{adr.Groups}"",");
+                    csv.Append($@"""{adr.Address.GpsLocation}"",");
                 if (referenceNo)
                     csv.Append($@"""{adr.ReferenceNo}"",");
                 if (addressGroup)

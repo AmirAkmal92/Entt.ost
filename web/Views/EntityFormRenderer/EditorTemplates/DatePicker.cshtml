@@ -1,28 +1,47 @@
 ﻿@using Bespoke.Sph.Domain
 @model Bespoke.Sph.Domain.DatePicker
 @{
+    var required = (Model.IsRequired || Model.FieldValidation.IsRequired) ? "required" : null;
+    var maxLength = Model.FieldValidation.MaxLength;
+    var pattern = (string.IsNullOrWhiteSpace(Model.FieldValidation.Pattern) ? null : Model.FieldValidation.Pattern);
     var originalPath = Model.Path.ToEmptyString().Replace("().", ".");
-    if (string.IsNullOrWhiteSpace(Model.Enable))
+    var @cssClass = $@"{Model.CssClass} {Model.Size} form-control".Trim();
+}
+@if (string.IsNullOrWhiteSpace(Model.Enable))
+{
+    Model.Enable = "true";
+}
+
+@functions
+{
+
+    public static IHtmlString @Attribute(string value, string attr)
     {
-        Model.Enable = "true";
+        if (string.IsNullOrWhiteSpace(value))
+            return new HtmlString("");
+        return new HtmlString($"{attr}=\"{value}\"");
     }
-}
-@if (Model.IsCompact)
-{
 
-    <input class="@(Model.CssClass + " form-control " + Model.Size)"
-           data-bind="@(Html.Raw(Model.GetKnockoutBindingExpression()))" id="@Model.ElementId" type="text"
-           name="@originalPath" />
-}
-else
-{
+    public static IHtmlString @Attribute(int? value, string attr)
+    {
+        if (null == value)
+            return new HtmlString("");
+        return new HtmlString($"{attr}=\"{value}\"");
+    }
 
-    <div class="form-group" data-bind="visible : @Model.Visible">
-        <label data-i18n="@Model.Label" for="@Model.ElementId" class="@Model.LabelCssClass">@Model.Label</label>
-        <div class="@Model.InputPanelCssClass">
-            <input class="@(Model.CssClass + " form-control " + Model.Size)"
-                   data-bind="@(Html.Raw(Model.GetKnockoutBindingExpression()))" id="@Model.ElementId" type="text"
-                   name="@originalPath" />
-        </div>
+
+}
+
+
+<div class="form-group form-md-line-input" data-bind="visible:@Html.Raw(Model.Visible)">
+    <label data-i18n="@Model.Label" class="col-md-3 control-label" for="@Model.ElementId">@Model.Label</label>
+    <div class="col-md-9">
+        <input class="@cssClass" @required type="text"
+               placeholder="@Model.Tooltip"
+               data-bind="@(Html.Raw(Model.GetKnockoutBindingExpression()))"
+               @Attribute(Model.ElementId, "id") name="@originalPath">
+
+        <div class="form-control-focus"> </div>
+        <span class="help-block">@Model.HelpText</span>
     </div>
-}
+</div>
