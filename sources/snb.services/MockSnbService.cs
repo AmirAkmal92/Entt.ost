@@ -7,7 +7,7 @@ namespace Bespoke.PostEntt.Ost.Services
 {
     public class MockSnbService : ISnbService
     {
-        public Task<IEnumerable<Product>> GetProductAsync()
+        public Task<IEnumerable<Product>> GetProductAsync(SuggestProductModel m)
         {
             var products = new[]
             {
@@ -48,7 +48,7 @@ namespace Bespoke.PostEntt.Ost.Services
         public async Task<decimal?> CalculateValueAddedServiceAsync(QuotationRequest request, Product product, ValueAddedService vas)
         {
             await Task.Delay(2000);
-            if(string.IsNullOrWhiteSpace(vas.Formula))
+            if (string.IsNullOrWhiteSpace(vas.Formula))
                 return new Random(DateTime.Now.Second).Next(DateTime.Now.Millisecond);
             return vas.Formula.Length;
         }

@@ -39,11 +39,29 @@ public class SnbServicesController : BaseApiController
 
 
     [HttpGet]
-    [Route("products")]
-    public async Task<IHttpActionResult> GetProductsAsync()
+    [Route("products/{category}")]
+    public async Task<IHttpActionResult> GetProductsAsync(string category,
+        [FromUri(Name = "from")]string originPostcode,
+        [FromUri(Name = "to")]string destinationPostcode,
+        [FromUri(Name = "weight")]decimal? weight,
+        [FromUri(Name = "country")]string destinationCountry = "MY",
+        [FromUri(Name = "length")]decimal? length = null,
+        [FromUri(Name = "width")]decimal? width = null,
+        [FromUri(Name = "height")]decimal? height = null)
     {
+        var model = new SuggestProductModel
+        {
+            Category = category,
+            OriginPostcode = originPostcode,
+            Country = destinationCountry,
+            DestinationPostcode = destinationPostcode,
+            Height = height,
+            Length = length,
+            Weight = weight,
+            Width = width
+        };
         var snb = ObjectBuilder.GetObject<ISnbService>();
-        var products = await snb.GetProductAsync();
+        var products = await snb.GetProductAsync(model);
 
         return Ok(products);
     }

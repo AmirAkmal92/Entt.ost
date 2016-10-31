@@ -340,8 +340,8 @@ namespace web.sph.App_Code
                     csv.Append($@"""{adr.ContactInformation.FaxNumber}"",");
                 if (email)
                     csv.Append($@"""{adr.ContactInformation.EmailAddress}"",");
-                if (gpsLocation)
-                    csv.Append($@"""{adr.Address.GpsLocation}"",");
+               /* if (gpsLocation)
+                    csv.Append($@"""{adr.Address.GpsLocation}"",");*/
                 if (referenceNo)
                     csv.Append($@"""{adr.ReferenceNo}"",");
                 if (addressGroup)
