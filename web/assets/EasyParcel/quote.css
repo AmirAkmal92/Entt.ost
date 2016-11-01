@@ -1,0 +1,185 @@
+/* CSS Document */
+#QuoteAndBook{
+	clear:both;
+}
+#QuoteAndBook a{
+	cursor:pointer;
+}
+#QuoteAndBook #tooltip{
+	position:absolute;
+	background-color:#0066CC;
+	width:200px; height:80px;
+	display:none;
+}
+#QuoteAndBook .row{
+	clear:both; padding-top:2px;
+}
+#QuoteAndBook #dropbox{
+	/*background-color:#eee;
+	width:935px; padding:0px 15px 15px 15px;
+	border:1px solid #ccc;
+	margin-top:2px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;*/
+}
+#QuoteAndBook .step{
+	/*width:220px; height:70px;*/
+	margin-right:2px;
+	/*float:left;*/
+	text-align:center;
+	vertical-align:middle;
+	font-size:14px !important;
+	/*display:table;*/
+}
+#QuoteAndBook .step_small{
+
+	width:50px; height:70px;
+	float:left;
+	vertical-align:middle;
+	font-size:12px;
+	/*display:table;*/
+}
+
+
+
+#QuoteAndBook .step span ,#QuoteAndBook .step_small span{
+	display:table-cell;
+	vertical-align:middle;
+	text-align:center;
+	padding:0px 0px 0px 0px;
+}
+#QuoteAndBook .step_first{
+	
+}
+#QuoteAndBook .step_none{
+	display:none;
+}
+#QuoteAndBook .step_new{
+	background-position:-260px 0px;
+}
+#QuoteAndBook .step_done{
+	background-position:0px 0px;
+}
+#QuoteAndBook .end{
+	background-position:-260px 0px;
+}
+#QuoteAndBook .step_end{
+	background-position:-220px 0px;
+	-webkit-border-top-right-radius: 15px;
+	-webkit-border-bottom-right-radius: 15px;
+	-moz-border-radius-topright: 15px;
+	-moz-border-radius-bottomright: 15px;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+
+#QuoteAndBook .step_del {
+	
+	background-position:-480px 0px;
+	-webkit-border-top-right-radius: 15px;
+	-webkit-border-bottom-right-radius: 15px;
+	-moz-border-radius-topright: 15px;
+	-moz-border-radius-bottomright: 15px;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	cursor:pointer;background-color:#f00;
+}
+
+#QuoteAndBook .step_large{
+	width:50px; height:70px;
+	background-color:green;
+	
+	vertical-align:middle;
+	margin-left : 2px;
+	font-size:12px;
+	display:table;
+}
+
+#QuoteAndBook .step_copy {
+	
+	
+	-webkit-border-top-right-radius: 15px;
+	-webkit-border-bottom-right-radius: 15px;
+	-moz-border-radius-topright: 15px;
+	-moz-border-radius-bottomright: 15px;
+	cursor:pointer;
+	background-color:green;
+}
+
+#QuoteAndBook .dropbox-select{
+	/*background-color:#bbb;*/
+}
+#TEMP{
+	display:none;
+}
+
+#QuickQuote{
+	position:relative;
+	clear:both;
+	padding:0px 10px 10px 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	margin-top: 35px;
+	margin-bottom: 15px;
+}
+
+.NewDetail{
+	margin-bottom:5px;
+	background-color:#fff;
+	padding:10px 5px 5px 20px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+.NewDetail .input-half{
+	width:300px;
+}
+.NewDetail .input-full{
+	width:620px;
+}
+.quote_list, .Courier_List_Sort{
+	list-style:none;
+
+}
+.quote_list li, .Courier_List_Sort li{
+	background-color:#fff;
+	clear:both;
+	height:70px;
+	margin:3px;
+	padding:15px 5px 5px 20px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	color:#000;
+}
+
+a:hover{color:#000;}
+
+.quote_list li div, .Courier_List_Sort li div{
+	float:left;
+	padding:2px;
+}
+.quote_list li .Courier_Img, .Courier_List_Sort li .Courier_Img{
+	width:80px;
+}
+.quote_list li .Courier_Serv, .Courier_List_Sort li .Courier_Serv{
+	width:320px;
+}
+.quote_list li .Courier_info, .Courier_List_Sort li .Courier_info{
+	width:140px;
+}
+.quote_list li .Courier_Type, .Courier_List_Sort li .Courier_Type{
+	width:100px;
+}
+.quote_list li .Courier_Price, .Courier_List_Sort li .Courier_Price{
+	width:70px;
+}
+.quote_list li .Courier_Name, .Courier_List_Sort li .Courier_Name{
+	width:0px;
+	display:none;
+}
+.quote_list li .Courier_Btn, .Courier_List_Sort li .Courier_Btn{
+	width:50px;
+}
