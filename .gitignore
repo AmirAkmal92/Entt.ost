@@ -29,3 +29,4 @@ ControlCenter.bat
 *.user
 /sources/snb.services/bin/Debug
 /sources/snb.services/obj/Debug
+version.json

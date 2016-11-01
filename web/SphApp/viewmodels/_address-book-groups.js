@@ -4,7 +4,7 @@ define(['services/datacontext', 'services/logger', 'plugins/router'],
     function (context, logger, router) {
 
         var isBusy = ko.observable(false),
-            groupName = ko.observable("<Add new group>"),
+            groupName = ko.observable("Add Group"),
             contactsCount = ko.observable(".."),
             groups = ko.observableArray(),
             activate = function () {
@@ -18,7 +18,7 @@ define(['services/datacontext', 'services/logger', 'plugins/router'],
             },
             addGroup = function(){
                 groups.push({group : ko.observable(groupName()), count : ko.observable(0) });
-                groupName("<Add new group>");
+                groupName("Add Group");
             };
 
         var vm = {
