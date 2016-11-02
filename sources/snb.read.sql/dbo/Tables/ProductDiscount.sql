@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[ProductDiscount] (
+    [Id]                      UNIQUEIDENTIFIER NOT NULL,
+    [SerializedAccountIds]    NVARCHAR (4000)  NULL,
+    [SerializedDiscountTiers] NVARCHAR (4000)  NULL,
+    [ValidFrom]               DATETIME2 (7)    NULL,
+    [ValidTo]                 DATETIME2 (7)    NULL,
+    [ProductId]               UNIQUEIDENTIFIER NULL,
+    [ProductCode]             NVARCHAR (4000)  NULL,
+    [ItemCategoryId]          UNIQUEIDENTIFIER NULL,
+    [ItemCategoryName]        NVARCHAR (4000)  NULL,
+    [ApplyType]               INT              NULL,
+    [IsAllAccount]            BIT              NULL,
+    [UseNetUsage]             BIT              NULL,
+    [UseWeight]               BIT              NULL,
+    [UseItemCount]            BIT              NULL,
+    [Status]                  INT              NULL,
+    [CreatedOn]               DATETIME2 (7)    NULL,
+    [CreatedById]             UNIQUEIDENTIFIER NULL,
+    [CreatedByName]           NVARCHAR (4000)  NULL,
+    [SubmittedOn]             DATETIME2 (7)    NULL,
+    [SubmittedById]           UNIQUEIDENTIFIER NULL,
+    [SubmittedByName]         NVARCHAR (4000)  NULL,
+    [VerifiedOn]              DATETIME2 (7)    NULL,
+    [VerifiedById]            UNIQUEIDENTIFIER NULL,
+    [VerifiedByName]          NVARCHAR (4000)  NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

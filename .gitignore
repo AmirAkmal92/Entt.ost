@@ -31,3 +31,5 @@ ControlCenter.bat
 /sources/snb.services/obj/Debug
 version.json
 env.ost.*.ps1
+/sources/snb.read.sql/bin/Debug
+/sources/snb.read.sql/obj/Debug

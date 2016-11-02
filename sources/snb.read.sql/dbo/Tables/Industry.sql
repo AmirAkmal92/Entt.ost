@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Industry] (
+    [Id]   UNIQUEIDENTIFIER NOT NULL,
+    [Name] NVARCHAR (4000)  NULL,
+    [Code] NVARCHAR (4000)  NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
