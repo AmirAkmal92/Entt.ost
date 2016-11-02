@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[DisputeType] (
+    [Id]   UNIQUEIDENTIFIER NOT NULL,
+    [Name] NVARCHAR (4000)  NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

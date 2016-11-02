@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>snb.read.sql</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{fd6782d5-ed5c-4f16-ba61-2821c1be120e}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>snb.read.sql</RootNamespace>
+    <AssemblyName>snb.read.sql</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="Bespoke\" />
+    <Folder Include="Bespoke\Tables\" />
+    <Folder Include="Dispute\" />
+    <Folder Include="Dispute\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="Snapshots" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Surcharge.sql" />
+    <Build Include="dbo\Tables\TerminationReason.sql" />
+    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\UserGroup.sql" />
+    <Build Include="dbo\Tables\UserLogin.sql" />
+    <Build Include="dbo\Tables\ValueAddedService.sql" />
+    <Build Include="dbo\Tables\VirtualBankAccount.sql" />
+    <Build Include="dbo\Tables\ZoneDefinition.sql" />
+    <Build Include="Bespoke\Tables\Attachment.sql" />
+    <Build Include="dbo\Tables\ZoneGroup.sql" />
+    <Build Include="Bespoke\Tables\Comment.sql" />
+    <Build Include="dbo\Tables\ZoneItem.sql" />
+    <Build Include="Bespoke\Tables\Log.sql" />
+    <Build Include="Dispute\Tables\NoteDocument.sql" />
+    <Build Include="dbo\Tables\_zoneNames.sql" />
+    <Build Include="dbo\Tables\AcceptanceOrigin.sql" />
+    <Build Include="dbo\Tables\Account.sql" />
+    <Build Include="dbo\Tables\Account_201605131815.sql" />
+    <Build Include="dbo\Tables\Account_201608230729.sql" />
+    <Build Include="dbo\Tables\AccountPickupLocation.sql" />
+    <Build Include="dbo\Tables\Bank.sql" />
+    <Build Include="dbo\Tables\Bill.sql" />
+    <Build Include="dbo\Tables\BillingJob.sql" />
+    <Build Include="dbo\Tables\Branch.sql" />
+    <Build Include="dbo\Tables\BusinessCluster.sql" />
+    <Build Include="dbo\Tables\CompanyDirector.sql" />
+    <Build Include="dbo\Tables\Compensation.sql" />
+    <Build Include="dbo\Tables\CompensationAttachment.sql" />
+    <Build Include="dbo\Tables\CompensationAttachment_20160614.sql" />
+    <Build Include="dbo\Tables\CompensationAttachmentType.sql" />
+    <Build Include="dbo\Tables\CompensationTrail.sql" />
+    <Build Include="dbo\Tables\CompensationTrail_20160614.sql" />
+    <Build Include="dbo\Tables\CompensationType.sql" />
+    <Build Include="dbo\Tables\Consignment.sql" />
+    <Build Include="dbo\Tables\ConsignmentRemark.sql" />
+    <Build Include="dbo\Tables\Country.sql" />
+    <Build Include="dbo\Tables\CreditNoteBatch.sql" />
+    <Build Include="dbo\Tables\CreditNoteBatchTrail.sql" />
+    <Build Include="dbo\Tables\CreditOfficer.sql" />
+    <Build Include="dbo\Tables\Currency.sql" />
+    <Build Include="dbo\Tables\DepositAcceptance.sql" />
+    <Build Include="dbo\Tables\DisputeType.sql" />
+    <Build Include="dbo\Tables\GeneralLedger.sql" />
+    <Build Include="dbo\Tables\Industry.sql" />
+    <Build Include="dbo\Tables\Invoice.sql" />
+    <Build Include="dbo\Tables\ItemCategory.sql" />
+    <Build Include="dbo\Tables\Lane.sql" />
+    <Build Include="dbo\Tables\Memo.sql" />
+    <Build Include="dbo\Tables\Note.sql" />
+    <Build Include="dbo\Tables\NoteConsignment.sql" />
+    <Build Include="dbo\Tables\NoteTrail.sql" />
+    <Build Include="dbo\Tables\Payment.sql" />
+    <Build Include="dbo\Tables\PmiLicense.sql" />
+    <Build Include="dbo\Tables\PosterPartner.sql" />
+    <Build Include="dbo\Tables\Product.sql" />
+    <Build Include="dbo\Tables\ProductDiscount.sql" />
+    <Build Include="dbo\Tables\ProductDiscountTrail.sql" />
+    <Build Include="dbo\Tables\PublishedRate.sql" />
+    <Build Include="dbo\Tables\Rebate.sql" />
+    <Build Include="dbo\Tables\RebateTrail.sql" />
+    <Build Include="dbo\Tables\Region.sql" />
+    <Build Include="dbo\Tables\Registration.sql" />
+    <Build Include="dbo\Tables\Registration_asat_20160506.sql" />
+    <Build Include="dbo\Tables\Registration_Error.sql" />
+    <Build Include="dbo\Tables\Registration_noserializedrate.sql" />
+    <Build Include="dbo\Tables\RegistrationTrail.sql" />
+    <Build Include="dbo\Tables\RequiredDocument.sql" />
+    <Build Include="dbo\Tables\SalesOrder.sql" />
+    <Build Include="dbo\Tables\SalesPersonnel.sql" />
+    <Build Include="dbo\Tables\Sbu.sql" />
+    <Build Include="dbo\Tables\ServiceProvider.sql" />
+    <Build Include="dbo\Tables\SettingsStore.sql" />
+    <Build Include="dbo\Tables\SpecialRate.sql" />
+    <Build Include="dbo\Tables\State.sql" />
+    <Build Include="dbo\Tables\SupportingDocument.sql" />
+    <Build Include="dbo\Views\AccountBill.sql" />
+    <Build Include="dbo\Views\CompanyHistory.sql" />
+    <Build Include="dbo\Views\SalesOrderConsignment.sql" />
+    <Build Include="dbo\Views\StatementItem.sql" />
+    <Build Include="dbo\Views\uv_AverageRevperItem.sql" />
+    <Build Include="dbo\Views\uv_ContractCustomerSales.sql" />
+    <Build Include="dbo\Views\uv_ContractCustomerSaleswithItemCategory.sql" />
+    <Build Include="dbo\Views\uv_NewContractCustomer.sql" />
+    <Build Include="dbo\Views\uv_SummaryBillingTransaction.sql" />
+    <Build Include="dbo\Views\uv_AverageRevperItem_SDD.sql" />
+    <Build Include="dbo\Views\uv_GetServicesCharges.sql" />
+    <Build Include="dbo\Views\uv_AverageRevperItem_No_GST.sql" />
+    <Build Include="Security\snbuser.sql" />
+    <Build Include="Security\snb.sql" />
+    <Build Include="Security\POS_halimatun.ahmad.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="dbo\Functions\GetAddOn.sql" />
+    <Build Include="dbo\Functions\GetAddOn_ServiceCharges.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AverageRevPerItem.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AverageRevPerItemCurrMonth.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AverageRevPerItemPrevMonth.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AverageRevPerItemPrevYear.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ContractCustomerSales.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ContractCustomerSaleswithItemCategory.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ContractCustomerSaleswithItemCategoryAgeing.sql" />
+    <Build Include="dbo\Stored Procedures\usp_NewContractCustomer.sql" />
+    <Build Include="dbo\Stored Procedures\usp_NewContractCustomerCurrMonth.sql" />
+    <Build Include="dbo\Stored Procedures\usp_SummaryBillingTransaction.sql" />
+    <Build Include="dbo\Stored Procedures\usp_SummaryProductandPPL.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AverageRevPerItem_SDD.sql" />
+    <Build Include="dbo\Stored Procedures\usp_GetServiceCharges.sql" />
+    <Build Include="Security\Bespoke.sql" />
+    <Build Include="Security\Dispute.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Snapshots\snb.read.sql_20161102_14-48-15.dacpac" />
+  </ItemGroup>
+</Project>

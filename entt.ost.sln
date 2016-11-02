@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web(1)", "web\", "{06BAB0C7-0303-4119-8ECA-7B8A10BFB699}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web", "web\", "{06BAB0C7-0303-4119-8ECA-7B8A10BFB699}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
 		ProjectReferences = "{43024ea4-592b-4154-8e7b-af6a30cda6ae}|snb.services.dll;"
@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web.identity.server", "web.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "snb.services", "sources\snb.services\snb.services.csproj", "{43024EA4-592B-4154-8E7B-AF6A30CDA6AE}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "snb.read.sql", "sources\snb.read.sql\snb.read.sql.sqlproj", "{FD6782D5-ED5C-4F16-BA61-2821C1BE120E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,12 @@ Global
 		{43024EA4-592B-4154-8E7B-AF6A30CDA6AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43024EA4-592B-4154-8E7B-AF6A30CDA6AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43024EA4-592B-4154-8E7B-AF6A30CDA6AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD6782D5-ED5C-4F16-BA61-2821C1BE120E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD6782D5-ED5C-4F16-BA61-2821C1BE120E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD6782D5-ED5C-4F16-BA61-2821C1BE120E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FD6782D5-ED5C-4F16-BA61-2821C1BE120E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD6782D5-ED5C-4F16-BA61-2821C1BE120E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD6782D5-ED5C-4F16-BA61-2821C1BE120E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
