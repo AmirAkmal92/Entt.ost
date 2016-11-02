@@ -14,11 +14,11 @@ html, body {
 	
 }
 .arrow {
-	background: #cc3366 url(../../../../../Source/img/arrow.gif) right center no-repeat !important;
+	background: #cc3366 url(/assets/EasyParcel/images) right center no-repeat !important;
 	text-align: center;
 }
 .arrow2 {
-	background: #FF6699 url(../../../../../Source/img/arrow-2.gif) right center no-repeat !important;
+	background: #FF6699 url(/assets/EasyParcel/images/arrow-2.gif) right center no-repeat !important;
 	text-align: center;
 }
 .outer-grid-wrapper {
@@ -240,7 +240,7 @@ html, body {
 
 /* Contact Us Page */
 .adam_support {
-	background-image: url("../images/adam-support.png");
+	background-image: url("images/adam-support.png");
 	background-position: right bottom;
 	background-repeat: no-repeat;
 }
