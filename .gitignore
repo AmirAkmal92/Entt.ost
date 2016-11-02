@@ -30,3 +30,4 @@ ControlCenter.bat
 /sources/snb.services/bin/Debug
 /sources/snb.services/obj/Debug
 version.json
+env.ost.*.ps1
