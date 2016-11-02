@@ -5,7 +5,7 @@ Clone the repository to your desired location, normally I would go and do
 git clone https://bespoke.visualstudio.com/DefaultCollection/pos.entt/_git/entt.ost c:\project\work\entt.ost
 ```
 
-Extract the package from my OneDrive [Download 10327-01](https://dl.dropboxusercontent.com/u/72555618/rx-developers/sph.package.1.0.10327-01.7z) 
+Extract the package from my OneDrive [Download 10332](https://1drv.ms/u/s!AnfOLTS4EYc4g5s3blltwHm5h_0tPw) 
 
 , since web already been extracted you may want to leave it out , except you still need to copy web/bin
 
@@ -42,7 +42,7 @@ Go to http://localhost:15672, see if the broker is running
 Use LINQPad in utils to connect to your localdb\ProjectsV13  and see if there's `Ost` database created, check there are tables with Sph schemas and dbo for aspnet* objects
 
 
-# Elasticsearch
+## Elasticsearch
 Go to http://localhost:9200/_cat/indices, you see at least `ost_sys`
 
 
@@ -56,3 +56,13 @@ got to your `config/applicationHost.config` , now find the line when it says
 ```
 
 there should be an entry fo `web.ost` that point to your `PWD\web` with binding to port 50230
+
+
+## Building
+
+Once set up, you can use `RebuildAll.ps1` script to invoke `tool\sph.builder.exe`, where it would clean the solutions, build all the dll and deploy to web\bin and subscribers folder
+
+
+## Customize your setting
+`RebuildAll.ps1` and `RunControlCenter.ps1` use `env.ost.ps1` to set the default environment variable for your app, to custom the setting, do not edit `env.ost.ps1` but create a new file, called
+`env.ost.<computer-name>.ps` to get the `computer-name` variable run `$env:COMPUTERNAME` in your powershell
