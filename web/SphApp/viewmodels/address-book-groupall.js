@@ -15,7 +15,7 @@ function(context, logger, router, chart, config, koList, partial) {
         },
         activate = function(group) {
 
-            query("/api/address-books/?q=Groups:" + group);
+            query("/api/address-books/?q=Groups:\"" + group + "\"");
             if(group === "-"){
                 query("/api/address-books/");
             }
