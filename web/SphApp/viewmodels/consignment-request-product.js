@@ -63,6 +63,66 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
 
         },
 
+        attached = function(view) {
+            // validation
+            validation.init($('#consignment-request-product-form'), form());
+
+            if (typeof partial.attached === "function") {
+                partial.attached(view);
+            }
+
+        },
+
+        findProductsAsync = function() {
+
+            var cons = ko.toJS(entity);
+            return context.get("snb-services/products/?from=" + cons.Sender.Address.Postcode + "&to=" + cons.Receivers[0].Address.Postcode + "&country=" + cons.Receivers[0].Address.Country + "&weight=" + cons.Product.Weight + "&height=" + cons.Product.Volume.Height + "&length=" + cons.Product.Volume.Length + "&width=" + cons.Product.Volume.Width)
+                .then(function(list) {
+                // edit the = > back to => , the beatifier fucked up the ES2015 syntax
+                var list2 = list.map(function(v) {
+
+                    var po = ko.mapping.fromJS(v);
+                    _(ko.unwrap(po.ValueAddedServices)).each(function(vas) {
+                        vas.isBusy = ko.observable(false);
+                        var evaluateValue = function() {
+
+                            vas.isBusy(true);
+                            var vm = {
+                                product: v,
+                                valueAddedService: vas,
+                                request: entity
+                            };
+                            context.post(ko.mapping.toJSON(vm), "/snb-services/calculate-value-added-service")
+                                .done(function(result) {
+                                vas.Value(result);
+                                vas.isBusy(false);
+                            });
+                        };
+
+                        if (ko.unwrap(vas.UserInputs).length === 0) {
+                            vas.IsSelected.subscribe(function(selected) {
+                                if (selected) {
+                                    evaluateValue();
+                                } else {
+                                    vas.Value(0);
+                                }
+                            });
+
+                        } else {
+                            _(ko.unwrap(vas.UserInputs)).each(function(uv) {
+                                uv.Value.subscribe(evaluateValue);
+                            });
+
+                        }
+                    });
+
+                    return po;
+
+                });
+                partial.products(list2);
+            });
+        },
+
         addReceiversCommand = function() {
 
             if (!validation.valid()) {
@@ -96,88 +156,20 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
             });
             return tcs.promise();
         },
-        attached = function(view) {
-            // validation
-            validation.init($('#consignment-request-product-form'), form());
-
-            if (typeof partial.attached === "function") {
-                partial.attached(view);
-            }
-
-        },
-
-        findProductsAsync = function() {
-            var cons = ko.toJS(entity);
-            return context.get("snb-services/products/?from=" + cons.Sender.Address.Postcode + "&to=" + cons.Receivers[0].Address.Postcode
-                + "&country=" + cons.Receivers[0].Address.Country 
-                + "&weight=" + cons.Product.Weight
-                + "&height=" + cons.Product.Volume.Height
-                + "&length=" + cons.Product.Volume.Length
-                + "&width=" + cons.Product.Volume.Width
-                )
-                .then(function(list) {
-                // edit the = > back to => , the beatifier fucked up the ES2015 syntax
-                var list2 = list.map(function(v){
-
-                        var po = ko.mapping.fromJS(v);
-                        _(ko.unwrap(po.ValueAddedServices)).each(function(vas){
-                            vas.isBusy = ko.observable(false);
-                            var evaluateValue = function(){
-
-                                vas.isBusy(true);   
-                                var vm = {product : v , valueAddedService : vas, request : entity};
-                                context.post(ko.mapping.toJSON(vm), "/snb-services/calculate-value-added-service")
-                                    .done(function(result){
-                                        vas.Value(result);
-                                        vas.isBusy(false);
-                                    });
-                            };
-
-                            if(ko.unwrap(vas.UserInputs).length === 0){
-                                    vas.IsSelected.subscribe(function(selected){
-                                        if(selected){
-                                            evaluateValue();                                       
-                                        }else{
-                                            vas.Value(0);
-                                        }
-                                    });
-
-                            }else{
-                                _(ko.unwrap(vas.UserInputs)).each(function(uv){
-                                    uv.Value.subscribe(evaluateValue);
-                                });
-
-                            }
-                        });
-
-                        return po;
-
-                });
-                partial.products(list2);
+        putAddReceiversCommand = function() {
+            return addReceiversCommand()
+                .then(function(result) {
+                if (result) {
+                    router.navigate("consignment-request-custom-declaration/" + entity().Id());
+                }
             });
         },
-
         compositionComplete = function() {
             $("[data-i18n]").each(function(i, v) {
                 var $label = $(v),
                     text = $label.data("i18n");
                 if (i18n && typeof i18n[text] === "string") {
                     $label.text(i18n[text]);
-                }
-            });
-        },
-        saveCommand = function() {
-            return addReceiversCommand()
-                .then(function(result) {
-                if (result.success) {
-                    return app.showMessage("OK done", ["OK"]);
-                } else {
-                    return Task.fromResult(false);
-                }
-            })
-                .then(function(result) {
-                if (result) {
-                    router.navigate("consignment-request-custom-declaration/" + entity().Id());
                 }
             });
         };
@@ -190,14 +182,8 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
         entity: entity,
         errors: errors,
         findProductsAsync: findProductsAsync,
+        putAddReceiversCommand: putAddReceiversCommand,
         toolbar: {
-            saveCommand: saveCommand,
-            canExecuteSaveCommand: ko.computed(function() {
-                if (typeof partial.canExecuteSaveCommand === "function") {
-                    return partial.canExecuteSaveCommand();
-                }
-                return true;
-            }),
 
         }, // end toolbar
 
