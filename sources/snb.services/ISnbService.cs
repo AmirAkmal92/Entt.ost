@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Bespoke.PostEntt.Ost.Services
@@ -13,11 +14,21 @@ namespace Bespoke.PostEntt.Ost.Services
 
     public class SuggestProductModel
     {
-        public string Category { get; set; }
+        private decimal? _weight;
         public string OriginPostcode { get; set; }
         public string DestinationPostcode { get; set; }
         public string Country { get; set; }
-        public decimal? Weight { get; set; }
+
+        public decimal? Weight
+        {
+            get
+            {
+                var volumetric = (Width ?? 0)*(Length ?? 0)*(Height ?? 0)/5000;
+                return Math.Max(_weight ?? 0, volumetric);
+            }
+            set { _weight = value; }
+        }
+
         public decimal? Width { get; set; }
         public decimal? Length { get; set; }
         public decimal? Height { get; set; }

@@ -39,9 +39,8 @@ public class SnbServicesController : BaseApiController
 
 
     [HttpGet]
-    [Route("products/{category}")]
-    public async Task<IHttpActionResult> GetProductsAsync(string category,
-        [FromUri(Name = "from")]string originPostcode,
+    [Route("products/")]
+    public async Task<IHttpActionResult> GetProductsAsync( [FromUri(Name = "from")]string originPostcode,
         [FromUri(Name = "to")]string destinationPostcode,
         [FromUri(Name = "weight")]decimal? weight,
         [FromUri(Name = "country")]string destinationCountry = "MY",
@@ -51,7 +50,6 @@ public class SnbServicesController : BaseApiController
     {
         var model = new SuggestProductModel
         {
-            Category = category,
             OriginPostcode = originPostcode,
             Country = destinationCountry,
             DestinationPostcode = destinationPostcode,

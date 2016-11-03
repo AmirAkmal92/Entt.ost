@@ -38,17 +38,8 @@
 <form class="form-horizontal" data-bind="with : entity" id="consignment-request-product-form">
     <div class="form-body">
 <h4 data-i18n="Volume &amp; Weight" data-bind="visible:true">Volume &amp; Weight</h4>
-  <div class="form-group form-md-line-input" data-bind="visible:true">
-    <label data-i18n="Item Category" class="col-md-3 control-label" for="itemCategory">Item Category</label>
-    <div class="col-md-9">
-        <select required
-                data-bind="value: Product().ItemCategory, options : $root.partial.categories, optionsCaption : '[Select Item Category]', enable :true"
-                class="form-control"
-                name="Product.ItemCategory" id="itemCategory"></select>
-        <div class="form-control-focus"> </div>
-        <span class="help-block">Tell us the product category for your consignment</span>
-    </div>
-</div>
+
+
 <div class="form-group form-md-line-input" data-bind="visible:true">
     <label data-i18n="Weight" class="col-md-3 control-label" for="6465286c-a3af-46de-e7d8-0499b6bf7cf4">Weight</label>
     <div class="col-md-9">
@@ -154,27 +145,7 @@
                                             </div>
                                         </li>
 
-                                        <!-- ko if : ko.unwrap(Surcharges).length > 0 -->
-                                        <li class="task-list-item">
-                                            <div class="task-icon">
-                                                <a href="javascript:;">
-                                                    <i class="icon-credit-card fa-2x"></i>
-                                                </a>
-                                            </div>
-                                            <div class="task-content">
-                                                <h4 class="uppercase bold">
-                                                    <a href="javascript:;">Surcharge</a>
-                                                </h4> 
-
-                                                <ul class="list-group" data-bind="foreach: Surcharges">
-                                                    <li class="list-group-item">
-                                                            <!-- ko text : Name -->
-                                                            <!-- /ko -->
-                                                         <span class="badge" data-bind="money: Value">12</span></li>
-                                                 </ul>
-                                            </div>
-                                        </li>
-                                        <!-- /ko -->
+                            
 
                                         <!-- ko if : ko.unwrap(ValueAddedServices).length > 0 -->
                                         <li class="task-list-item">

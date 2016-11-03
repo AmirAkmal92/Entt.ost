@@ -116,6 +116,9 @@ namespace Bespoke.PostEntt.Ost.Services
         public string GstCode { get; set; }
         public string Sla { get; set; }
         public decimal? TotalCost { get; set; }
+        public double? MinWeight { get; set; }
+        public double? MaxWeight { get; set; }
+        public string DeliverySla { get; set; }
         public IList<Guid> ItemCategories { get; } = new List<Guid>();
         public IList<Surcharge> Surcharges { get; } = new List<Surcharge>();
         public IList<ValueAddedService> ValueAddedServices { get; } = new List<ValueAddedService>();
