@@ -63,4 +63,11 @@ GO
 
 UPDATE [dbo].[ValueAddedService]
 SET [Ost] = 1
-WHERE [Code] IN ('V11', 'V08','V02','V01')
+WHERE [Code] IN ('V11', 'V01')
+
+
+GO
+
+UPDATE [dbo].[ValueAddedService]
+SET [Ost] = 0
+WHERE [Code] NOT IN ('V11', 'V01')
