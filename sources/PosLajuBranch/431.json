@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "8192",
+  "Name": "Kota Tinggi",
+  "PostcodeFrom": "81900",
+  "PostcodeTo": "81919",
+  "Email": "plkt_kp@poslaju.com.my",
+  "PickupId": "431",
+  "CreatedBy": "admin",
+  "Id": "431",
+  "CreatedDate": "2016-11-03T10:52:05.8034469+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:05.8004487+08:00",
+  "WebId": "562c95ca-84d5-417c-8e1a-a3319b44b03a"
+}

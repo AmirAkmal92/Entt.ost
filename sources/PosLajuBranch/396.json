@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "7214",
+  "Name": "Bahau",
+  "PostcodeFrom": "72500",
+  "PostcodeTo": "72500",
+  "Email": "plbahau.kp@poslaju.com.my",
+  "PickupId": "396",
+  "CreatedBy": "admin",
+  "Id": "396",
+  "CreatedDate": "2016-11-03T10:52:05.5114436+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:05.5094491+08:00",
+  "WebId": "c0f8bd47-b429-43ec-bd30-402acb2dbc84"
+}

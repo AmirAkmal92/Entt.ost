@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "4715",
+  "Name": "Puchong",
+  "PostcodeFrom": "47100",
+  "PostcodeTo": "47199",
+  "Email": "plpuchong_pickup@pos.com.my",
+  "PickupId": "386",
+  "CreatedBy": "admin",
+  "Id": "386",
+  "CreatedDate": "2016-11-03T10:52:05.3814425+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:05.3744453+08:00",
+  "WebId": "7513fa08-02d4-450f-8f7e-143244ef21b3"
+}

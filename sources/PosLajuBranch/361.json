@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "9346",
+  "Name": "Kuching Utara",
+  "PostcodeFrom": "95050",
+  "PostcodeTo": "95050",
+  "Email": "plkuching_pickup@pos.com.my",
+  "PickupId": "361",
+  "CreatedBy": "admin",
+  "Id": "361",
+  "CreatedDate": "2016-11-03T10:52:04.7674345+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:04.7574348+08:00",
+  "WebId": "4e9eea50-6936-4716-82e0-c6c4e6f8f044"
+}

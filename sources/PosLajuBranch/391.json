@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "1851",
+  "Name": "Machang",
+  "PostcodeFrom": "18500",
+  "PostcodeTo": "18500",
+  "Email": "plmachang_kp@poslaju.com.my",
+  "PickupId": "391",
+  "CreatedBy": "admin",
+  "Id": "391",
+  "CreatedDate": "2016-11-03T10:52:05.4184434+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:05.4174432+08:00",
+  "WebId": "5d2f2cdc-8303-459f-9588-0af69148061c"
+}

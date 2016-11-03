@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "8302",
+  "Name": "Batu Pahat",
+  "PostcodeFrom": "83000",
+  "PostcodeTo": "83099",
+  "Email": "KPPoslajuBatuPahat@pos.com.my",
+  "PickupId": "330",
+  "CreatedBy": "admin",
+  "Id": "330",
+  "CreatedDate": "2016-11-03T10:52:03.9954226+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:03.9864227+08:00",
+  "WebId": "9889b995-c338-4cae-8d0a-9dc17e96da10"
+}

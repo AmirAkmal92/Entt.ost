@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "8800",
+  "Name": "Kota Kinabalu",
+  "PostcodeFrom": "88000",
+  "PostcodeTo": "88200",
+  "Email": "KPPoslajukotakinabalu@pos.com.my",
+  "PickupId": "356",
+  "CreatedBy": "admin",
+  "Id": "356",
+  "CreatedDate": "2016-11-03T10:52:04.6534329+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:04.6394324+08:00",
+  "WebId": "1413dc14-aa2d-4e36-80cf-b9c65fd9e920"
+}

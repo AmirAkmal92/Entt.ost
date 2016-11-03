@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "4100",
+  "Name": "Klang",
+  "PostcodeFrom": "41000",
+  "PostcodeTo": "42000",
+  "Email": "KPPoslajuKelang@pos.com.my",
+  "PickupId": "279",
+  "CreatedBy": "admin",
+  "Id": "279",
+  "CreatedDate": "2016-11-03T10:52:02.8924108+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:02.8904079+08:00",
+  "WebId": "8e58ba5d-a6ee-4922-bb89-4a78a1b34e01"
+}

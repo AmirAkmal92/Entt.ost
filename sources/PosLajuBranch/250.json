@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "1500",
+  "Name": "Kota Bharu",
+  "PostcodeFrom": "16100",
+  "PostcodeTo": "16100",
+  "Email": "KPPoslajuKotaBharu@pos.com.my",
+  "PickupId": "250",
+  "CreatedBy": "admin",
+  "Id": "250",
+  "CreatedDate": "2016-11-03T10:52:02.3414015+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:02.3354014+08:00",
+  "WebId": "c16fb155-c676-443a-9f6b-701896590592"
+}

@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "7500",
+  "Name": "Melaka",
+  "PostcodeFrom": "75000",
+  "PostcodeTo": "75999",
+  "Email": "KPPoslajuMelaka@pos.com.my",
+  "PickupId": "338",
+  "CreatedBy": "admin",
+  "Id": "338",
+  "CreatedDate": "2016-11-03T10:52:04.1224296+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:04.1194256+08:00",
+  "WebId": "4e439484-aa63-4e11-b7af-4b46533e4da2"
+}

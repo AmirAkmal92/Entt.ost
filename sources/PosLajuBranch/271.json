@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "4000",
+  "Name": "Shah Alam",
+  "PostcodeFrom": "40000",
+  "PostcodeTo": "40999",
+  "Email": "KPPoslajuShahAlam@pos.com.my",
+  "PickupId": "271",
+  "CreatedBy": "admin",
+  "Id": "271",
+  "CreatedDate": "2016-11-03T10:52:02.7404068+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:02.7394148+08:00",
+  "WebId": "6ef26850-b401-4c32-bcc3-dd6afcec3647"
+}

@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "607",
+  "Name": "Jitra",
+  "PostcodeFrom": "6100",
+  "PostcodeTo": "6149",
+  "Email": "poslajujitra@poslaju.com.my",
+  "PickupId": "381",
+  "CreatedBy": "admin",
+  "Id": "381",
+  "CreatedDate": "2016-11-03T10:52:05.293442+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:05.285441+08:00",
+  "WebId": "2807db25-9013-480e-a68c-6bb6221860af"
+}

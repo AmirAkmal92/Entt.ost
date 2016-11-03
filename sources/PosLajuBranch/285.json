@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "4300",
+  "Name": "Kajang",
+  "PostcodeFrom": "43000",
+  "PostcodeTo": "43099",
+  "Email": "KPPoslajuBBBangi@pos.com.my",
+  "PickupId": "285",
+  "CreatedBy": "admin",
+  "Id": "285",
+  "CreatedDate": "2016-11-03T10:52:02.9734121+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:02.9714124+08:00",
+  "WebId": "0ca4909c-1e39-48e5-99fa-1126b7158a09"
+}

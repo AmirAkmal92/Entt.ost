@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "8700",
+  "Name": "Labuan",
+  "PostcodeFrom": "87000",
+  "PostcodeTo": "87000",
+  "Email": "KPPoslajuLabuan@pos.com.my",
+  "PickupId": "357",
+  "CreatedBy": "admin",
+  "Id": "357",
+  "CreatedDate": "2016-11-03T10:52:04.6804331+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:04.6684326+08:00",
+  "WebId": "a3039143-25f4-4e3b-8124-1712331b2c11"
+}

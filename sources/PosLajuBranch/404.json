@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "8901",
+  "Name": "Keningau",
+  "PostcodeFrom": "89000",
+  "PostcodeTo": "89049",
+  "Email": "poslaju.keningau@poslaju.com.my",
+  "PickupId": "404",
+  "CreatedBy": "admin",
+  "Id": "404",
+  "CreatedDate": "2016-11-03T10:52:05.5934468+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:05.5914454+08:00",
+  "WebId": "9f49aeea-b237-41a5-b5d1-614a65498a6e"
+}

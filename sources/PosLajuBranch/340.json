@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "100",
+  "Name": "Kangar",
+  "PostcodeFrom": "1000",
+  "PostcodeTo": "1999",
+  "Email": "KPPoslajuKangar@pos.com.my",
+  "PickupId": "340",
+  "CreatedBy": "admin",
+  "Id": "340",
+  "CreatedDate": "2016-11-03T10:52:04.1664267+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:04.1644262+08:00",
+  "WebId": "6cd22693-952b-426b-85d4-111ff88234a6"
+}

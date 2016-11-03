@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "2400",
+  "Name": "Chukai",
+  "PostcodeFrom": "24000",
+  "PostcodeTo": "24000",
+  "Email": "poslajuchukai@poslaju.com.my",
+  "PickupId": "384",
+  "CreatedBy": "admin",
+  "Id": "384",
+  "CreatedDate": "2016-11-03T10:52:05.3624421+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:05.3554431+08:00",
+  "WebId": "f1230fc2-ae5c-41a0-86e3-d6a98b888f7d"
+}

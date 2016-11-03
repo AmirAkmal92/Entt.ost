@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "5009",
+  "Name": "Kuala Lumpur",
+  "PostcodeFrom": "54000",
+  "PostcodeTo": "54999",
+  "Email": "KPPoslajuKL@pos.com.my",
+  "PickupId": "303",
+  "CreatedBy": "admin",
+  "Id": "303",
+  "CreatedDate": "2016-11-03T10:52:03.2834136+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:03.2704145+08:00",
+  "WebId": "a6bf9d02-3738-4eac-bdfa-7538d179e056"
+}

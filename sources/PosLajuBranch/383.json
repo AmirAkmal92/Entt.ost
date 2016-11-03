@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "3300",
+  "Name": "Kuala Kangsar",
+  "PostcodeFrom": "33000",
+  "PostcodeTo": "33000",
+  "Email": "poslajukkangsar@poslaju.com.my",
+  "PickupId": "383",
+  "CreatedBy": "admin",
+  "Id": "383",
+  "CreatedDate": "2016-11-03T10:52:05.3434425+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:05.3254437+08:00",
+  "WebId": "d6b7dff5-f053-43a9-88cc-d2c9928215fb"
+}

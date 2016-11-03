@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "3591",
+  "Name": "Tanjung Malim",
+  "PostcodeFrom": "35950",
+  "PostcodeTo": "35950",
+  "Email": "poslajutgmalim@poslaju.com.my",
+  "PickupId": "399",
+  "CreatedBy": "admin",
+  "Id": "399",
+  "CreatedDate": "2016-11-03T10:52:05.5494437+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:05.5464442+08:00",
+  "WebId": "fec421c3-0c0a-42f2-ab12-28d886e3d06a"
+}

@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "9800",
+  "Name": "Miri",
+  "PostcodeFrom": "98000",
+  "PostcodeTo": "98000",
+  "Email": "KPPoslajuMiri@pos.com.my",
+  "PickupId": "370",
+  "CreatedBy": "admin",
+  "Id": "370",
+  "CreatedDate": "2016-11-03T10:52:05.1034397+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:05.0854382+08:00",
+  "WebId": "c9d03280-593a-4b57-814d-a3e781899e41"
+}

@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "2510",
+  "Name": "Kuantan ",
+  "PostcodeFrom": "25000",
+  "PostcodeTo": "25999",
+  "Email": "plkuantan_pickup@pos.com.my",
+  "PickupId": "385",
+  "CreatedBy": "admin",
+  "Id": "385",
+  "CreatedDate": "2016-11-03T10:52:05.3684428+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:05.3674421+08:00",
+  "WebId": "79edf4bc-e2cf-48d8-981d-fe2f9c5d9f0c"
+}

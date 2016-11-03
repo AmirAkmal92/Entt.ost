@@ -1,0 +1,15 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "8151",
+  "Name": "Pekan Nanas",
+  "PostcodeFrom": "81550",
+  "PostcodeTo": "81599",
+  "Email": "poslaju.jpn@pos.com.my",
+  "PickupId": "323",
+  "CreatedBy": "admin",
+  "Id": "323",
+  "CreatedDate": "2016-11-03T10:52:03.8684221+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:52:03.8634218+08:00",
+  "WebId": "80d7cd05-a8f6-4eb1-a274-9bac8cb98611"
+}
