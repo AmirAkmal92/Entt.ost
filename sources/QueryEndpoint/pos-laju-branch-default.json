@@ -1,0 +1,38 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "PosLajuBranchDefaultQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Sort, domain.sph",
+        "Path": "FromNumber",
+        "Direction": "Asc",
+        "WebId": "f41e118f-6af3-45ac-c492-8a96d8db9831"
+      }
+    ]
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "default",
+  "Route": "",
+  "IsReturnSource": "",
+  "Entity": "PosLajuBranch",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "pos-laju-branches",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "pos-laju-branch-default",
+  "CreatedDate": "2016-11-03T10:25:39.0023962+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-03T10:26:09.4677161+08:00",
+  "WebId": "3eb76c1e-2a58-438b-ab1e-6867fabb06d0"
+}
