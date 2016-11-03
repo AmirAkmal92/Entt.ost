@@ -89,8 +89,6 @@
     <Build Include="dbo\Tables\_zoneNames.sql" />
     <Build Include="dbo\Tables\AcceptanceOrigin.sql" />
     <Build Include="dbo\Tables\Account.sql" />
-    <Build Include="dbo\Tables\Account_201605131815.sql" />
-    <Build Include="dbo\Tables\Account_201608230729.sql" />
     <Build Include="dbo\Tables\AccountPickupLocation.sql" />
     <Build Include="dbo\Tables\Bank.sql" />
     <Build Include="dbo\Tables\Bill.sql" />
@@ -183,5 +181,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Snapshots\snb.read.sql_20161102_14-48-15.dacpac" />
+    <None Include="snb.read.sql.publish.xml" />
   </ItemGroup>
 </Project>
