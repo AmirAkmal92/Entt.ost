@@ -11,8 +11,8 @@
     [CreatedOn]            DATETIME2 (7)    NULL,
     [StateId]              UNIQUEIDENTIFIER NULL,
     [BillingPostingStatus] INT              NULL,
-    [FromDate]             SMALLDATETIME    NULL,
-    [ToDate]               SMALLDATETIME    NULL,
+    [FromDate]             DATETIME2    NULL,
+    [ToDate]               DATETIME2    NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 

@@ -39,6 +39,7 @@
 	[Ost]				BIT					NULL,
 	[MinWeight]			FLOAT			NULL
     PRIMARY KEY CLUSTERED ([Id] ASC), 
-    [MaxWeight] FLOAT NULL
+    [MaxWeight] FLOAT NULL, 
+    [DeliverySla] VARCHAR(255) NULL
 );
 

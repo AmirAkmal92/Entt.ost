@@ -84,7 +84,25 @@ namespace Bespoke.PostEntt.Ost.Services
         public async Task<IEnumerable<Product>> GetProductAsync(SuggestProductModel model)
         {
             var international = (model.Country == "MY" || model.Country == "Malaysia") ? "0" : "1";
-            string sql = $"SELECT * FROM [dbo].[Product] WHERE [SbuName] = \'PosLaju\' AND [Status] <> 2 AND [ValidFrom] <= GETDATE() AND [ValidTo] >= GETDATE() AND [IsInternational] = {international}";
+            string sql = $@"
+SELECT 
+    * 
+FROM 
+    [dbo].[Product] 
+WHERE 
+    [Ost] = 1
+AND 
+    [Status] <> 2 
+AND 
+    [ValidFrom] <= GETDATE() 
+AND 
+    [ValidTo] >= GETDATE() 
+AND 
+    [IsInternational] = {international}
+AND
+    [MinWeight] <= {model.Weight}
+AND
+    [MaxWeight] >= {model.Weight}";
             using (var conn = new SqlConnection(ConnectionString))
             {
                 await conn.OpenAsync();
@@ -92,7 +110,6 @@ namespace Bespoke.PostEntt.Ost.Services
                 // TODO : read the value add services
                 var vas = (await conn.QueryAsync<SnbValuedAddedService>("SELECT * FROM [dbo].[ValueAddedService] WHERE [SbuName] = 'PosLaju' AND [ValidFrom] <= GETDATE() AND [ValidTo] >= GETDATE()")).ToList();
                 var surcharges = (await conn.QueryAsync<SnbSurcharge>("SELECT * FROM [dbo].[Surcharge] WHERE [SbuName] = 'PosLaju' AND [ValidFrom] <= GETDATE() AND [ValidTo] >= GETDATE()")).ToList();
-                var categoryId = await conn.ExecuteScalarAsync<Guid>("SELECT [Id] FROM [dbo].[ItemCategory] WHERE [Name]=@Category", model);
 
 
                 var products = new List<Product>();
@@ -134,9 +151,8 @@ namespace Bespoke.PostEntt.Ost.Services
                     product.Surcharges.Clear();
                     product.Surcharges.AddRange(validSurcharges);
 
-                    // 
-                    if (product.ItemCategories.Contains(categoryId))
-                        products.Add(product);
+
+                    products.Add(product);
                 }
                 return products;
             }

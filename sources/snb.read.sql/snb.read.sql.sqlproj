@@ -70,6 +70,7 @@
     <Folder Include="dbo\Functions\" />
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="Snapshots" />
+    <Folder Include="_data-update" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Surcharge.sql" />
@@ -89,8 +90,6 @@
     <Build Include="dbo\Tables\_zoneNames.sql" />
     <Build Include="dbo\Tables\AcceptanceOrigin.sql" />
     <Build Include="dbo\Tables\Account.sql" />
-    <Build Include="dbo\Tables\Account_201605131815.sql" />
-    <Build Include="dbo\Tables\Account_201608230729.sql" />
     <Build Include="dbo\Tables\AccountPickupLocation.sql" />
     <Build Include="dbo\Tables\Bank.sql" />
     <Build Include="dbo\Tables\Bill.sql" />
@@ -100,7 +99,6 @@
     <Build Include="dbo\Tables\CompanyDirector.sql" />
     <Build Include="dbo\Tables\Compensation.sql" />
     <Build Include="dbo\Tables\CompensationAttachment.sql" />
-    <Build Include="dbo\Tables\CompensationAttachment_20160614.sql" />
     <Build Include="dbo\Tables\CompensationAttachmentType.sql" />
     <Build Include="dbo\Tables\CompensationTrail.sql" />
     <Build Include="dbo\Tables\CompensationTrail_20160614.sql" />
@@ -183,5 +181,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Snapshots\snb.read.sql_20161102_14-48-15.dacpac" />
+    <None Include="snb.read.sql.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="_data-update\update.product.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="snb.read.sql.refactorlog" />
   </ItemGroup>
 </Project>

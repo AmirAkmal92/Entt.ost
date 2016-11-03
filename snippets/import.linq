@@ -1,7 +1,7 @@
 <Query Kind="Program">
-  <Reference Relative="..\subscribers.host\domain.sph.dll">C:\project\work\entt.ost\subscribers.host\domain.sph.dll</Reference>
-  <Reference Relative="..\subscribers.host\Newtonsoft.Json.dll">C:\project\work\entt.ost\subscribers.host\Newtonsoft.Json.dll</Reference>
-  <Reference Relative="..\output\Ost.AddressBook.dll">C:\project\work\entt.ost\output\Ost.AddressBook.dll</Reference>
+  <Reference Relative="..\subscribers.host\domain.sph.dll">F:\project\work\entt.ost\subscribers.host\domain.sph.dll</Reference>
+  <Reference Relative="..\subscribers.host\Newtonsoft.Json.dll">F:\project\work\entt.ost\subscribers.host\Newtonsoft.Json.dll</Reference>
+  <Reference Relative="..\output\Ost.AddressBook.dll">F:\project\work\entt.ost\output\Ost.AddressBook.dll</Reference>
   <Reference>&lt;RuntimeDirectory&gt;\System.Net.Http.dll</Reference>
   <Namespace>Bespoke.Sph.Domain</Namespace>
   <Namespace>System.Net.Http</Namespace>
@@ -11,7 +11,7 @@
 
 void Main()
 {
-	var files = Directory.GetFiles(@"C:\temp\lhdn\21", "*.txt", SearchOption.AllDirectories);
+	var files = Directory.GetFiles(@"E:\temp\lhdn\21", "*.txt", SearchOption.AllDirectories);
 	foreach (var txt in files)
 	{
 		DoWork(txt).Wait();
@@ -82,13 +82,14 @@ private static async Task RegisterAll(List<Bespoke.Ost.AddressBooks.Domain.Addre
 }
 private static async Task Register(Bespoke.Ost.AddressBooks.Domain.AddressBook contact)
 {
-	//var token = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoib3NtYW4iLCJyb2xlcyI6WyJjdXN0b21lciIsImN1c3RvbWVycyJdLCJlbWFpbCI6MTQ4MzE0MjQwMCwic3ViIjoiMDQ1NmRmNDAtNjllZS00ZDRmLTgyYmMtZWMzYzg2YzY2N2Q4IiwibmJmIjoxNDkzNTE3OTYxLCJpYXQiOjE0Nzc4Nzk1NjEsImV4cCI6MTQ4MzE0MjQwMCwiYXVkIjoiT3N0In0.O_23hvYF9K-8jBB_53TTkp6u_8Lw0-0TQx7mwdi21Ho";
-	var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoicm9kaW4iLCJyb2xlcyI6WyJjdXN0b21lciIsImN1c3RvbWVycyJdLCJlbWFpbCI6MTQ4MTMyODAwMCwic3ViIjoiMmNiNWE2ZjMtZGM0Ni00NDIxLTlkZTEtY2QyYjU3NjVhN2E4IiwibmJmIjoxNDkzNTMxMzM2LCJpYXQiOjE0Nzc4OTI5MzYsImV4cCI6MTQ4MTMyODAwMCwiYXVkIjoiT3N0In0.Eh7tzB3ne71fryo0hY0pMhHYLBza4q9pMF0IWh3iqvE";
+	var home = System.Environment.GetEnvironmentVariable("RX_OST_HOME");
+	var baseUrl = System.Environment.GetEnvironmentVariable("RX_OST_BaseUrl");
+	var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoib3NtYW4iLCJyb2xlcyI6WyJjdXN0b21lciIsImN1c3RvbWVycyJdLCJlbWFpbCI6MTQ4MzE0MjQwMCwic3ViIjoiMDQ1NmRmNDAtNjllZS00ZDRmLTgyYmMtZWMzYzg2YzY2N2Q4IiwibmJmIjoxNDkzNTE3OTYxLCJpYXQiOjE0Nzc4Nzk1NjEsImV4cCI6MTQ4MzE0MjQwMCwiYXVkIjoiT3N0In0.O_23hvYF9K-8jBB_53TTkp6u_8Lw0-0TQx7mwdi21Ho";
 	using (var client = new HttpClient())
 	{
 
 		contact.Groups.Add("Snb");
-		var request = new HttpRequestMessage(HttpMethod.Post, new Uri("http://localhost:50230/api/address-books"));
+		var request = new HttpRequestMessage(HttpMethod.Post, new Uri($"{baseUrl}/api/address-books"));
 		var json = new StringContent(contact.ToJson());
 		request.Content = json;
 		request.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
@@ -96,7 +97,6 @@ private static async Task Register(Bespoke.Ost.AddressBooks.Domain.AddressBook c
 
 		try
 		{
-
 			var response = await client.SendAsync(request);
 			Console.Write(".");
 		}
