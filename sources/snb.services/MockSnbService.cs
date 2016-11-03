@@ -7,7 +7,7 @@ namespace Bespoke.PostEntt.Ost.Services
 {
     public class MockSnbService : ISnbService
     {
-        public Task<IEnumerable<Product>> GetProductAsync(SuggestProductModel m)
+        public Task<IEnumerable<Product>> GetProductAsync(SuggestProductModel m, IValueAddedServicesRules rules)
         {
             var products = new[]
             {

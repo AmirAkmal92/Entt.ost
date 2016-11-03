@@ -6,7 +6,7 @@ namespace Bespoke.PostEntt.Ost.Services
 {
     public interface ISnbService
     {
-        Task<IEnumerable<Product>> GetProductAsync(SuggestProductModel model);
+        Task<IEnumerable<Product>> GetProductAsync(SuggestProductModel model, IValueAddedServicesRules rules);
         Task<IEnumerable<string>> GetItemCategoriesAsync();
         Task<decimal> CalculateRate(string code, decimal? weight, decimal? length, decimal? width, decimal? height);
         Task<decimal?> CalculateValueAddedServiceAsync(QuotationRequest request, Product product, ValueAddedService surcharge);

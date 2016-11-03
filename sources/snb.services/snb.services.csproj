@@ -92,8 +92,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodedValuedAddedServicesRule.cs" />
     <Compile Include="ConfigurationManager.cs" />
     <Compile Include="ISnbService.cs" />
+    <Compile Include="IValueAddedServicesRules.cs" />
     <Compile Include="ListExtensions.cs" />
     <Compile Include="MockSnbService.cs" />
     <Compile Include="Product.cs" />

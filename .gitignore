@@ -33,3 +33,4 @@ version.json
 env.ost.*.ps1
 /sources/snb.read.sql/bin/Debug
 /sources/snb.read.sql/obj/Debug
+/docs/~$Poscode New.new.xlsx
