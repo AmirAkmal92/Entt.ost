@@ -71,6 +71,7 @@ define([objectbuilders.config], function(config){
                     if(!contact){
                         return;
                     }
+                    request.Sender().Address().PremiseNoMailbox(contact.Address.PremiseNoMailbox);
                     request.Sender().CompanyName(contact.CompanyName);
                     request.Sender().Address().AreaVillageGardenName(contact.Address.AreaVillageGardenName);
                     request.Sender().Address().Block(contact.Address.Block);

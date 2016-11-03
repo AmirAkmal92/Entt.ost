@@ -78,6 +78,7 @@ define([objectbuilders.system, "viewmodels/consigment-request-details" , "servic
                     if(!contact){
                         return;
                     }
+                    receiver().Address().PremiseNoMailbox(contact.Address.PremiseNoMailbox);
                     receiver().CompanyName(contact.CompanyName);
                     receiver().Address().AreaVillageGardenName(contact.Address.AreaVillageGardenName);
                     receiver().Address().Block(contact.Address.Block);
