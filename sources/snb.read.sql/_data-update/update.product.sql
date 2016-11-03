@@ -60,3 +60,7 @@ MaxWeight = 30,
 WHERE [Code] = 'PMI2004'
 
 GO
+
+UPDATE [dbo].[ValueAddedService]
+SET [Ost] = 1
+WHERE [Code] IN ('V11', 'V08','V02','V01')

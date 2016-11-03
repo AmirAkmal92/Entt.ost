@@ -81,7 +81,7 @@ namespace Bespoke.PostEntt.Ost.Services
         // ReSharper restore UnusedMember.Local
 
 
-        public async Task<IEnumerable<Product>> GetProductAsync(SuggestProductModel model)
+        public async Task<IEnumerable<Product>> GetProductAsync(SuggestProductModel model, IValueAddedServicesRules rules)
         {
             var international = (model.Country == "MY" || model.Country == "Malaysia") ? "0" : "1";
             string sql = $@"
@@ -108,7 +108,7 @@ AND
                 await conn.OpenAsync();
                 var list = await conn.QueryAsync<Product>(sql);
                 // TODO : read the value add services
-                var vas = (await conn.QueryAsync<SnbValuedAddedService>("SELECT * FROM [dbo].[ValueAddedService] WHERE [SbuName] = 'PosLaju' AND [ValidFrom] <= GETDATE() AND [ValidTo] >= GETDATE()")).ToList();
+                var vas = (await conn.QueryAsync<SnbValuedAddedService>("SELECT * FROM [dbo].[ValueAddedService] WHERE [Ost] = 1 AND [ValidFrom] <= GETDATE() AND [ValidTo] >= GETDATE()")).ToList();
                 var surcharges = (await conn.QueryAsync<SnbSurcharge>("SELECT * FROM [dbo].[Surcharge] WHERE [SbuName] = 'PosLaju' AND [ValidFrom] <= GETDATE() AND [ValidTo] >= GETDATE()")).ToList();
 
 
@@ -131,7 +131,9 @@ AND
                         var userInputs = ServiceStack.Text.TypeSerializer.DeserializeFromString<List<UserInput>>(text);
                         v.UserInputs.AddRange(userInputs);
 
-                        validServices.Add(v);
+                        var valid = await rules.Validate(model, product, v);
+                        if (valid)
+                            validServices.Add(v);
                     }
                     product.ValueAddedServices.Clear();
                     product.ValueAddedServices.AddRange(validServices);

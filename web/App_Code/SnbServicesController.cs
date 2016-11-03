@@ -59,7 +59,7 @@ public class SnbServicesController : BaseApiController
             Width = width
         };
         var snb = ObjectBuilder.GetObject<ISnbService>();
-        var products = await snb.GetProductAsync(model);
+        var products = await snb.GetProductAsync(model, new CodedValueAddedServicesRule.CodedValuedAddedServicesRule());
 
         return Ok(products);
     }
