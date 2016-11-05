@@ -8,13 +8,13 @@ namespace Bespoke.PostEntt.Ost.Services
     {
         Task<IEnumerable<Product>> GetProductAsync(SuggestProductModel model, IValueAddedServicesRules rules);
         Task<IEnumerable<string>> GetItemCategoriesAsync();
-        Task<decimal> CalculateRate(string code, decimal? weight, decimal? length, decimal? width, decimal? height);
-        Task<decimal?> CalculateValueAddedServiceAsync(QuotationRequest request, Product product, ValueAddedService surcharge);
+        Task<decimal?> CalculateValueAddedServiceAsync(QuotationRequest request, Product product, ValueAddedService valueAddedService);
+        Task<PublishedRate> CalculatePublishedRateAsync(QuotationRequest request, Product product, IEnumerable<ValueAddedService> valueAddedServices);
     }
 
     public class SuggestProductModel
     {
-        private decimal? _weight;
+        private decimal? m_weight;
         public string OriginPostcode { get; set; }
         public string DestinationPostcode { get; set; }
         public string Country { get; set; }
@@ -23,10 +23,10 @@ namespace Bespoke.PostEntt.Ost.Services
         {
             get
             {
-                var volumetric = (Width ?? 0)*(Length ?? 0)*(Height ?? 0)/5000;
-                return Math.Max(_weight ?? 0, volumetric);
+                var volumetric = (Width ?? 0) * (Length ?? 0) * (Height ?? 0) / 5000;
+                return Math.Max(m_weight ?? 0, volumetric);
             }
-            set { _weight = value; }
+            set { m_weight = value; }
         }
 
         public decimal? Width { get; set; }

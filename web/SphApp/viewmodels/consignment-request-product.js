@@ -78,47 +78,50 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
             var cons = ko.toJS(entity);
             return context.get("snb-services/products/?from=" + cons.Sender.Address.Postcode + "&to=" + cons.Receivers[0].Address.Postcode + "&country=" + cons.Receivers[0].Address.Country + "&weight=" + cons.Product.Weight + "&height=" + cons.Product.Volume.Height + "&length=" + cons.Product.Volume.Length + "&width=" + cons.Product.Volume.Width)
                 .then(function(list) {
-                // edit the = > back to => , the beatifier fucked up the ES2015 syntax
-                var list2 = list.map(function(v) {
+                    // edit the = > back to => , the beatifier fucked up the ES2015 syntax
+                    var list2 = list.map(function(v) {
 
-                    var po = ko.mapping.fromJS(v);
-                    _(ko.unwrap(po.ValueAddedServices)).each(function(vas) {
-                        vas.isBusy = ko.observable(false);
-                        var evaluateValue = function() {
+                        var po = ko.mapping.fromJS(v);
+                        _(ko.unwrap(po.ValueAddedServices)).each(function(vas) {
+                            vas.isBusy = ko.observable(false);
+                            var evaluateValue = function() {
 
-                            vas.isBusy(true);
-                            var vm = {
-                                product: v,
-                                valueAddedService: vas,
-                                request: entity
+                                vas.isBusy(true);
+                                var vm = {
+                                    product: v,
+                                    valueAddedService: vas,
+                                    request: entity
+                                };
+                                context.post(ko.mapping.toJSON(vm), "/snb-services/calculate-value-added-service")
+                                    .done(function(result) {
+                                    vas.Value(result);
+                                    vas.isBusy(false);
+                                });
                             };
-                            context.post(ko.mapping.toJSON(vm), "/snb-services/calculate-value-added-service")
-                                .done(function(result) {
-                                vas.Value(result);
-                                vas.isBusy(false);
-                            });
-                        };
 
-                        if (ko.unwrap(vas.UserInputs).length === 0) {
-                            vas.IsSelected.subscribe(function(selected) {
-                                if (selected) {
-                                    evaluateValue();
-                                } else {
-                                    vas.Value(0);
-                                }
-                            });
+                            if (ko.unwrap(vas.UserInputs).length === 0) {
+                                vas.IsSelected.subscribe(function(selected) {
+                                    if (selected) {
+                                        evaluateValue();
+                                    } else {
+                                        vas.Value(0);
+                                    }
+                                });
 
-                        } else {
-                            _(ko.unwrap(vas.UserInputs)).each(function(uv) {
-                                uv.Value.subscribe(evaluateValue);
-                            });
+                            } else {
+                                _(ko.unwrap(vas.UserInputs)).each(function(uv) {
+                                    uv.Value.subscribe(evaluateValue);
+                                });
 
-                        }
+                            }
+                        });
+
+                        po.TotalCost = ko.observable();
+                        // TODO -> go and get the rate
+                        partial.recalculatePrice(po)();
+                        return po;
+
                     });
-
-                    return po;
-
-                });
                 partial.products(list2);
             });
         },

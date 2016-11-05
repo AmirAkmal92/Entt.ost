@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
+using Newtonsoft.Json.Linq;
 
 namespace Bespoke.PostEntt.Ost.Services
 {
     public class SqlSnbService : ISnbService
     {
-
+        private HttpClient m_snbWebAppClient;
+        public SqlSnbService()
+        {
+            m_snbWebAppClient = new HttpClient { BaseAddress = new Uri(ConfigurationManager.GetEnvironmentVariable("SnbWebApp")) };
+        }
         // ReSharper disable once ClassNeverInstantiated.Local
         [DebuggerDisplay("{Code}:{Name}")]
         private class SnbSurcharge
@@ -160,8 +167,6 @@ AND
             }
         }
 
-
-
         public async Task<IEnumerable<string>> GetItemCategoriesAsync()
         {
             var sql = "SELECT [Name] FROM [dbo].[ItemCategory]";
@@ -210,6 +215,32 @@ public class CalcHost
 
             var result = await script.RunAsync();
             return (decimal?)result.ReturnValue;
+        }
+
+
+        public async Task<PublishedRate> CalculatePublishedRateAsync(QuotationRequest request, Product product, IEnumerable<ValueAddedService> valueAddedServices)
+        {
+            var url = new StringBuilder();
+            url.Append("/calculator/CalculateRate2");
+            url.Append($"?ProductCode={product.Code}");
+            url.Append($"&SenderPostCode={request.SenderPostcode}&SenderCountryCode=MY&ReceiverPostCode={request.ReceiverPostcode}&ReceiverCountryCode={request.ReceiverCountry}");
+            url.Append($"&ActualWeight={request.Weight}&Width={request.Width}&Height={request.Height}&Length={request.Length}");
+            url.Append($"&surcharge_S01=S01&surcharge_S03=S03&surcharge_S05=S05"); // 3 surcharge wajib
+            
+            foreach (var v in valueAddedServices)
+            {
+                url.Append($"&vas_{v.Code}={v.Code}");
+                foreach (var p in v.UserInputs)
+                {
+                    url.Append($"&{v.Code}_{p.Name}={p.Value}");
+                }
+            }
+
+            var response = await m_snbWebAppClient.GetStringAsync(url.ToString());
+            var json = JObject.Parse(response);
+
+            var rate = new PublishedRate(json);
+            return rate;
         }
     }
 }

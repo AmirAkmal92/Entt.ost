@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Bespoke.PostEntt.Ost.Services;
 using Bespoke.Sph.Domain;
@@ -74,18 +75,20 @@ public class SnbServicesController : BaseApiController
 
         return Ok(categories);
     }
-    [HttpGet]
-    [Route("{code}/price")]
-    public async Task<IHttpActionResult> EstimatePrice(
-        string code, 
-        [FromUri(Name = "weight")]decimal? weight,
-        [FromUri(Name = "length")]decimal? length = null,
-        [FromUri(Name = "width")]decimal? width = null, 
-        [FromUri(Name = "height")]decimal? height = null)
-    {
-        var snb = ObjectBuilder.GetObject<ISnbService>();
-        var categories = await snb.CalculateRate(code, weight, length, width, height);
 
-        return Ok(categories);
+    [HttpPost]
+    [Route("calculate-published-rate")]
+    public async Task<IHttpActionResult> EstimatePrice(CalculatePublishedRateViewModel model)
+    {
+        var snb = ObjectBuilder.GetObject<ISnbService>();        
+        var rate = await snb.CalculatePublishedRateAsync(model.Request, model.Product, model.ValueAddedServices);
+        return Ok(rate);
     }
+}
+
+public class CalculatePublishedRateViewModel
+{
+    public QuotationRequest Request { get; set; }
+    public Product Product { get; set; }
+    public IEnumerable<ValueAddedService> ValueAddedServices { get; set; }
 }

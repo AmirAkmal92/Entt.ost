@@ -189,8 +189,8 @@
                                             <div class="task-icon">
                                             </div>
                                             <div class="task-content">
-                                                <button class="btn btn-info" data-bind2="command : $root.partial.r">Recalculate the price</button>
-                                                <label class="btn red btn-outline btn-circle btn-md active pull-right" data-bind2="money : TotalCost">RM 46.56</label>
+                                                <button class="btn btn-info" data-bind="command : $root.partial.recalculatePrice.call($root.partial, $data)">Recalculate the price</button>
+                                                <label class="btn red btn-outline btn-circle btn-md active pull-right" data-bind="text : 'RM ' + ko.unwrap(TotalCost)">RM 46.56</label>
                                             </div>
                                         </li>
                                     </ul>

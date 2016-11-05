@@ -52,5 +52,11 @@ namespace Bespoke.PostEntt.Ost.Services
                 return new Random(DateTime.Now.Second).Next(DateTime.Now.Millisecond);
             return vas.Formula.Length;
         }
+
+        public Task<PublishedRate> CalculatePublishedRateAsync(QuotationRequest request, Product product, IEnumerable<ValueAddedService> valueAddedServices)
+        {
+            //
+            throw new NotImplementedException();
+        }
     }
 }

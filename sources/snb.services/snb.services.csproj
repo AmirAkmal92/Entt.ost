@@ -100,6 +100,7 @@
     <Compile Include="MockSnbService.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublishRateViewModel.cs" />
     <Compile Include="QuotationRequest.cs" />
     <Compile Include="SqlSnbService.cs" />
   </ItemGroup>
