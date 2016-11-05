@@ -1,0 +1,31 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "AddressLookupDefaultQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "default",
+  "Route": "",
+  "IsReturnSource": "",
+  "Entity": "AddressLookup",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "address-lookups",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "address-lookup-default",
+  "CreatedDate": "2016-11-05T16:13:25.7748053+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2016-11-05T16:13:57.3893507+08:00",
+  "WebId": "803e35eb-05d0-40b6-c019-c45bfe7d0b18"
+}
