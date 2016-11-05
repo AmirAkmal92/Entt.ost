@@ -4,6 +4,8 @@ using System.Web.Http;
 using Bespoke.PostEntt.Ost.Services;
 using Bespoke.Sph.Domain;
 using Bespoke.Sph.WebApi;
+using System.Linq;
+using System;
 using Product = Bespoke.PostEntt.Ost.Services.Product;
 
 public class CalculateValueAddedServiceViewModel
@@ -59,8 +61,26 @@ public class SnbServicesController : BaseApiController
             Weight = weight,
             Width = width
         };
+
+        var request = new QuotationRequest{
+            SenderPostcode = originPostcode,
+            ReceiverCountry = destinationCountry,
+            ReceiverPostcode = destinationPostcode,
+            Height = height,
+            Length = length,
+            Weight = weight,
+            Width = width
+        };
+
         var snb = ObjectBuilder.GetObject<ISnbService>();
-        var products = await snb.GetProductAsync(model, new CodedValueAddedServicesRule.CodedValuedAddedServicesRule());
+        var products = (await snb.GetProductAsync(model, new CodedValueAddedServicesRule.CodedValuedAddedServicesRule())).ToList();
+        var tasks = from p  in products
+                    select snb.CalculatePublishedRateAsync(request, p, Array.Empty<ValueAddedService>());
+        var prices = (await Task.WhenAll(tasks)).ToList();
+        for (int i = 0; i < products.Count; i++)
+        {
+            products[i].TotalCost = prices[i].Total;
+        }
 
         return Ok(products);
     }

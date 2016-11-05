@@ -62,7 +62,7 @@
             <a href="/ost-account/login" class="btn btn-danger">JOIN US TODAY</a>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="shipping-rate-form">
         <div class="col-md-6 ">
             <!-- BEGIN SAMPLE FORM PORTLET-->
             <div class="portlet light bordered">
@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="portlet-body form">
-                    <form role="form" id="shipping-rate-form">
+                    <form role="form">
                         <div class="form-body">
                             <div class="form-group form-md-line-input">
                                 <select class="form-control" id="from-address" placeholder="Sending from"></select>
@@ -104,32 +104,9 @@
 
                         </div>
                         <div class="form-actions noborder">
-                            <button type="button" class="btn blue">Submit</button>
+                            <button type="button" data-bind="click : getRatesAsync" class="btn blue">Submit</button>
                         </div>
                     </form>
-                </div>
-            </div>
-            <!-- END SAMPLE FORM PORTLET-->
-            <!-- BEGIN SAMPLE FORM PORTLET-->
-            <div class="portlet light bordered">
-                <div class="portlet-title">
-                    <div class="caption font-red-sunglo">
-                        <span class="caption-subject bold uppercase"> Input Groups &amp; Icons</span>
-                    </div>
-                    <div class="actions">
-                        <a class="btn btn-circle btn-icon-only blue" href="javascript:;">
-                            <i class="icon-cloud-upload"></i>
-                        </a>
-                        <a class="btn btn-circle btn-icon-only green" href="javascript:;">
-                            <i class="icon-wrench"></i>
-                        </a>
-                        <a class="btn btn-circle btn-icon-only red" href="javascript:;">
-                            <i class="icon-trash"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="portlet-body form">
-                   What ever
                 </div>
             </div>
             <!-- END SAMPLE FORM PORTLET-->
@@ -143,8 +120,36 @@
                         <span class="caption-subject bold uppercase"> Tell the whole world</span>
                     </div>
                 </div>
+
+
+
+                <div class="mt-element-list">
+                    <div class="mt-list-head list-simple font-white bg-red">
+                        <div class="list-head-title-container">
+                            <div class="list-date">Nov 8, 2015</div>
+                            <h3 class="list-title">Simple List</h3>
+                        </div>
+                    </div>
+                    <div class="mt-list-container list-simple">
+                        <ul data-bind="foreach : products">
+                            <li class="mt-list-item">
+                                <div class="list-icon-container done">
+                                    <i class="icon-check"></i>
+                                </div>
+                                <div class="list-datetime" data-bind="text : Name">  </div>
+                                <div class="list-item-content">
+                                    <h3 class="uppercase">
+                                        <a href="javascript:;" data-bind="text : TotalCost">Concept Proof</a>
+                                    </h3>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
             </div>
-      
+
         </div>
     </div>
     <!-- END CONTENT HEADER -->
@@ -225,10 +230,10 @@
                 </h4>
                 <p class="margin-top-20">
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                    aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut
-                    aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
-                    vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum
-                    zzril delenit augue duis dolore te feugait nulla facilisi.
+                    aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
+                    lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate
+                    velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et
+                    iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
                 </p>
                 <div class="row">
                     <div class="col-xs-6">
