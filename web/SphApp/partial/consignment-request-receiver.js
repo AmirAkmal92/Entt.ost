@@ -38,8 +38,6 @@ define([objectbuilders.system, "viewmodels/consigment-request-details" , "servic
               return markup;
         },
         attached  = function(view){
-
-            googlePlacesApi.attached(view);
             
             $("#receiver-company-name").select2({
                   ajax: {
