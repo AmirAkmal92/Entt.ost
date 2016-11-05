@@ -104,7 +104,10 @@
 
                         </div>
                         <div class="form-actions noborder">
-                            <button type="button" data-bind="click : getRatesAsync" class="btn blue">Submit</button>
+                            <button type="button" data-bind="click : getRatesAsync, disable : busy" class="btn blue">
+                                Submit
+                                <i class="fa fa-spin fa-circle-o-notch" data-bind="visible : busy"></i>
+                                </button>
                         </div>
                     </form>
                 </div>

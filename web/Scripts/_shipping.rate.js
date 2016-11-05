@@ -14,10 +14,13 @@
                 estimatedTotal = ko.observable(),
                 products = ko.observableArray(),
                 getRatesAsync = function () {
-
+                    busy(true);
                     return $.getJSON("snb-services/products/?from=" + ko.unwrap(fromPostcode) + "&to=" + ko.unwrap(fromPostcode) + "&country=MY&weight=" +
                             ko.unwrap(weight) + "&height=" + ko.unwrap(height) + "&length=" + ko.unwrap(length) + "&width=" + ko.unwrap(width))
-                        .then(products);
+                        .then(products)
+                        .done(function(){
+                            busy(false);
+                        });
                 };
 
             return {
@@ -113,7 +116,5 @@
         });
 
     ko.applyBindings(model, document.getElementById("shipping-rate-form"))
-
-
 
 });
