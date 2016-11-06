@@ -43,25 +43,6 @@
     "HasParent": true,
     "HasAction": false,
     "HasController": false
-  },  
-  {
-    "Parent": "AddressLookup",
-    "Controller": null,
-    "Action": null,
-    "Id": null,
-    "Claims": [
-      {
-        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
-        "Value": "customers",
-        "Permission": "a",
-        "ValueType": null,
-        "IsInherited": false
-      }
-    ],
-    "IsInherited": false,
-    "HasParent": true,
-    "HasAction": false,
-    "HasController": false
   },
   {
     "Parent": "ConsignmentRequest",
@@ -196,7 +177,6 @@
     "HasAction": false,
     "HasController": true
   },
-  
   {
     "Parent": "Custom",
     "Controller": "SnbServices",
@@ -301,6 +281,25 @@
       {
         "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
         "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": false,
+    "HasController": false
+  },
+  {
+    "Parent": "AddressLookup",
+    "Controller": null,
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/anonymous",
+        "Value": "true",
         "Permission": "a",
         "ValueType": null,
         "IsInherited": false
