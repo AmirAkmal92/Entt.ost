@@ -1,12 +1,12 @@
 param(
+    [switch]$SkipUpdateCheck,
     [string]$UpdateUrl = "http://alpha.rxdeveloper.com",
-    [switch]$DontUpdate,
     [switch]$KeepDownloadedUpdates
 )
 
 & ".\env.ost.ps1"
 
-if($DontUpdate.IsPresent -eq $true){
+if($SkipUpdateCheck.IsPresent -eq $true){
    
     & .\control.center\controlcenter.exe
     return;
