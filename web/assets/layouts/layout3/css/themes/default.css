@@ -286,15 +286,15 @@ Page Header
 Page Footer 
 ******/
 .page-prefooter {
-  background: #48525e;
+  background: #b72b34;
   color: #a2abb7; }
   .page-prefooter h2 {
-    color: #32c5d2; }
+    color: #ffc1ba; }
   .page-prefooter a {
-    color: #32c5d2; }
+    color: #ffc1ba; }
   .page-prefooter .subscribe-form .form-control {
-    background: #343b44;
-    border-color: #343b44;
+    background: #fff0f1;
+    border-color: #e7505a;
     color: #a2abb7; }
     .page-prefooter .subscribe-form .form-control::-moz-placeholder {
       color: #939eac;
@@ -341,7 +341,7 @@ Page Footer
       background-color: #fff; }
 
 .page-footer {
-  background: #3b434c;
+  background: #831017;
   color: #a2abb7; }
 
 /* Scroll Top */
