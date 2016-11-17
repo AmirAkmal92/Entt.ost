@@ -143,7 +143,7 @@ Page Header
       .page-header .page-header-top .top-menu .navbar-nav > li.dropdown-notification.dropdown-dark .dropdown-menu .dropdown-menu-list > li > a:hover .time {
         background: #181b1e; }
   .page-header .page-header-menu {
-    background: #444d58;
+    background: #b72b34;
     /* Default Mega Menu */
     /* Light Mega Menu */
     /* Header seaech box */ }
@@ -166,7 +166,7 @@ Page Header
       .page-header .page-header-menu .hor-menu .navbar-nav > li > a:focus,
       .page-header .page-header-menu .hor-menu .navbar-nav > li > a:active {
         color: #ffffff;
-        background: #55616f !important; }
+        background: #680d13 !important; }
         .page-header .page-header-menu .hor-menu .navbar-nav > li:hover > a > i,
         .page-header .page-header-menu .hor-menu .navbar-nav > li.open > a > i,
         .page-header .page-header-menu .hor-menu .navbar-nav > li > a:hover > i,
@@ -177,28 +177,28 @@ Page Header
       .page-header .page-header-menu .hor-menu .navbar-nav > li.active > a:hover, .page-header .page-header-menu .hor-menu .navbar-nav > li.current > a,
       .page-header .page-header-menu .hor-menu .navbar-nav > li.current > a:hover {
         color: #f1f1f1;
-        background: #4E5966; }
+        background: #831017; }
         .page-header .page-header-menu .hor-menu .navbar-nav > li.active > a > i,
         .page-header .page-header-menu .hor-menu .navbar-nav > li.active > a:hover > i, .page-header .page-header-menu .hor-menu .navbar-nav > li.current > a > i,
         .page-header .page-header-menu .hor-menu .navbar-nav > li.current > a:hover > i {
           color: #BCC2CB; }
       .page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu {
         box-shadow: 5px 5px rgba(85, 97, 111, 0.2);
-        background: #55616f; }
+        background: #C53A42; }
         .page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu li > a {
           color: #ced5de; }
           .page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu li > a > i {
             color: #6fa7d7; }
         .page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu li:hover > a {
           color: #ced5de;
-          background: #5d6b7a; }
+          background: #680d13; }
           .page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu li:hover > a > i {
             color: #6fa7d7; }
         .page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu li.active > a,
         .page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu li.active > a:hover, .page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu li.current > a,
         .page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu li.current > a:hover {
           color: #ced5de;
-          background: #5d6b7a; }
+          background: #831017; }
           .page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu li.active > a > i,
           .page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu li.active > a:hover > i, .page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu li.current > a > i,
           .page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu li.current > a:hover > i {
@@ -271,7 +271,7 @@ Page Header
         background: #38414c; }
         .page-header .page-header-menu .search-form .input-group .form-control {
           color: #616d7d;
-          background: #38414c; }
+          background: #ffc6c9; }
           .page-header .page-header-menu .search-form .input-group .form-control::-moz-placeholder {
             color: #5f6a7a;
             opacity: 1; }
@@ -286,15 +286,15 @@ Page Header
 Page Footer 
 ******/
 .page-prefooter {
-  background: #48525e;
+  background: #b72b34;
   color: #a2abb7; }
   .page-prefooter h2 {
-    color: #32c5d2; }
+    color: #ffc1ba; }
   .page-prefooter a {
-    color: #32c5d2; }
+    color: #ffc1ba; }
   .page-prefooter .subscribe-form .form-control {
-    background: #343b44;
-    border-color: #343b44;
+    background: #fff0f1;
+    border-color: #e7505a;
     color: #a2abb7; }
     .page-prefooter .subscribe-form .form-control::-moz-placeholder {
       color: #939eac;
@@ -341,7 +341,7 @@ Page Footer
       background-color: #fff; }
 
 .page-footer {
-  background: #3b434c;
+  background: #831017;
   color: #a2abb7; }
 
 /* Scroll Top */
