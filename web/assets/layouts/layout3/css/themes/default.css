@@ -157,9 +157,9 @@ Page Header
         .page-header .page-header-menu .hor-menu .navbar-nav > li.mega-menu-dropdown > .dropdown-menu .mega-menu-content .mega-menu-submenu li > h3 {
           color: #ced5de; }
       .page-header .page-header-menu .hor-menu .navbar-nav > li > a {
-        color: #BCC2CB; }
+        color: #ffd0d3; }
         .page-header .page-header-menu .hor-menu .navbar-nav > li > a > i {
-          color: #BCC2CB; }
+          color: #ffd0d3; }
       .page-header .page-header-menu .hor-menu .navbar-nav > li:hover > a,
       .page-header .page-header-menu .hor-menu .navbar-nav > li.open > a,
       .page-header .page-header-menu .hor-menu .navbar-nav > li > a:hover,
@@ -176,7 +176,7 @@ Page Header
       .page-header .page-header-menu .hor-menu .navbar-nav > li.active > a,
       .page-header .page-header-menu .hor-menu .navbar-nav > li.active > a:hover, .page-header .page-header-menu .hor-menu .navbar-nav > li.current > a,
       .page-header .page-header-menu .hor-menu .navbar-nav > li.current > a:hover {
-        color: #f1f1f1;
+        color: #ffffff;
         background: #831017; }
         .page-header .page-header-menu .hor-menu .navbar-nav > li.active > a > i,
         .page-header .page-header-menu .hor-menu .navbar-nav > li.active > a:hover > i, .page-header .page-header-menu .hor-menu .navbar-nav > li.current > a > i,
@@ -286,15 +286,15 @@ Page Header
 Page Footer 
 ******/
 .page-prefooter {
-  background: #b72b34;
-  color: #a2abb7; }
+  background: #ffffff;
+  color: #737b85; }
   .page-prefooter h2 {
-    color: #ffc1ba; }
+    color: #dc2d33; }
   .page-prefooter a {
-    color: #ffc1ba; }
+    color: #e01d33; }
   .page-prefooter .subscribe-form .form-control {
-    background: #fff0f1;
-    border-color: #e7505a;
+    background: #737b85;
+    border-color: #e79da2;
     color: #a2abb7; }
     .page-prefooter .subscribe-form .form-control::-moz-placeholder {
       color: #939eac;
@@ -341,12 +341,21 @@ Page Footer
       background-color: #fff; }
 
 .page-footer {
-  background: #831017;
-  color: #a2abb7; }
+  background: #eff3f8;
+  /*background: url(../footer-background3.jpg) center top;*/
+  /*color: #ffffff;*/ }
+
+.page-copyright {
+	background: url(~/assets/global/img/footer-background.jpg) center top;
+	min-height: 0px;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	color: #fff
+}
 
 /* Scroll Top */
 .scroll-to-top > i {
-  color: #657383;
+  color: #e43a45;
   font-size: 32px;
   opacity: 0.7 ;
   filter: alpha(opacity=70) ; }
