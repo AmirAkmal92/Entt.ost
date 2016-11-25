@@ -15,7 +15,7 @@
                 products = ko.observableArray(),
                 getRatesAsync = function () {
                     busy(true);
-                    return $.getJSON("snb-services/products/?from=" + ko.unwrap(fromPostcode) + "&to=" + ko.unwrap(fromPostcode) + "&country=MY&weight=" +
+                    return $.getJSON("snb-services/products/?from=" + ko.unwrap(fromPostcode) + "&to=" + ko.unwrap(toPostcode) + "&country=MY&weight=" +
                             ko.unwrap(weight) + "&height=" + ko.unwrap(height) + "&length=" + ko.unwrap(length) + "&width=" + ko.unwrap(width))
                         .then(products)
                         .done(function(){
@@ -42,17 +42,17 @@
         formatRepo = function (address) {
             if (!address) return "";
             if (address.loading) return address.text;
-            var markup = "<div class='select2-result-repository clearfix'>" +
-                "<div class='select2-result-repository__avatar'><img src='/assets/layouts/layout/img/avatar3_small.jpg' /></div>" +
-                "<div class='select2-result-repository__meta'>" +
-                "<div class='select2-result-repository__title'>" + address.Location + "</div>";
+            var markup = "<div class='form-group'>" +
+                "<div class='form-group'><img src='/assets/layouts/layout/img/avatar3_small.jpg' /></div>" +
+                "<div class='form-group'>" +
+                "<div class='form-group'>" + address.Location + "</div>";
 
-            markup += "<div class='select2-result-repository__description'>" + address.City + "</div>";
+            markup += "<div class='form-group'>" + address.City + "</div>";
 
 
-            markup += "<div class='select2-result-repository__statistics'>" +
-                "<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> " + address.State + " </div>" +
-                "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> " + address.Postcode + " </div>" +
+            markup += "<div class='form-group'>" +
+                "<div class='form-group'></i> " + address.State + " </div>" +
+                "<div class='form-group'><i class='fa fa-star'></i> " + address.Postcode + " </div>" +
                 "</div>" +
                 "</div></div>";
 
@@ -97,6 +97,7 @@
                     return o.Location + ", " + o.Postcode + " " + o.City + ", " + o.State;
                 }
                 return o.text;
+                //return o.Postcode;
             }
         })
         .on("select2:select", function (e) {
