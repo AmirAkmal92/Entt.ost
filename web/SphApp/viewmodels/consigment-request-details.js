@@ -48,7 +48,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
                 entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
             }, function(e) {
                 if (e.status == 404) {
-                    app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "Reactive Developer platform showcase", ["OK"]);
+                    app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "Ost", ["OK"]);
                 }
             }).always(function() {
                 if (typeof partial.activate === "function") {
@@ -60,6 +60,16 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
                 }
             });
             return tcs.promise();
+
+        },
+
+        attached = function(view) {
+            // validation
+            validation.init($('#consigment-request-details-form'), form());
+
+            if (typeof partial.attached === "function") {
+                partial.attached(view);
+            }
 
         },
 
@@ -96,37 +106,15 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
             });
             return tcs.promise();
         },
-        attached = function(view) {
-            // validation
-            validation.init($('#consigment-request-details-form'), form());
-
-            if (typeof partial.attached === "function") {
-                partial.attached(view);
-            }
-
+        postDefaultCommand = function() {
+            return defaultCommand();
         },
-
         compositionComplete = function() {
             $("[data-i18n]").each(function(i, v) {
                 var $label = $(v),
                     text = $label.data("i18n");
                 if (i18n && typeof i18n[text] === "string") {
                     $label.text(i18n[text]);
-                }
-            });
-        },
-        saveCommand = function() {
-            return defaultCommand()
-                .then(function(result) {
-                if (result.success) {
-                    return app.showMessage("Your consignment request has been created", ["OK"]);
-                } else {
-                    return Task.fromResult(false);
-                }
-            })
-                .then(function(result) {
-                if (result) {
-                    router.navigate('consignment-request-receiver/' + entity().Id());
                 }
             });
         };
@@ -138,14 +126,8 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
         compositionComplete: compositionComplete,
         entity: entity,
         errors: errors,
+        postDefaultCommand: postDefaultCommand,
         toolbar: {
-            saveCommand: saveCommand,
-            canExecuteSaveCommand: ko.computed(function() {
-                if (typeof partial.canExecuteSaveCommand === "function") {
-                    return partial.canExecuteSaveCommand();
-                }
-                return true;
-            }),
 
         }, // end toolbar
 
