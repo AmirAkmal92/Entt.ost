@@ -1,28 +1,23 @@
 <div class="mt-element-step">
     <div class="mt-element-step">
         <div class="row step-background-thin">
-            <div class="col-md-2 bg-grey-steel mt-step-col  active">
+            <div class="col-md-3 bg-grey-steel mt-step-col  active">
                 <div class="mt-step-number">1</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Sender</div>
                 <div class="mt-step-content font-grey-cascade">Sender information</div>
             </div>
-            <div class="col-md-2 bg-grey-steel mt-step-col ">
+            <div class="col-md-3 bg-grey-steel mt-step-col ">
                 <div class="mt-step-number">2</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Receiver</div>
                 <div class="mt-step-content font-grey-cascade">Receiver Information</div>
             </div>
-            <div class="col-md-2 bg-grey-steel mt-step-col ">
+            <div class="col-md-3 bg-grey-steel mt-step-col ">
                 <div class="mt-step-number">3</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Product</div>
                 <div class="mt-step-content font-grey-cascade">Consignment product</div>
             </div>
-            <div class="col-md-2 bg-grey-steel mt-step-col ">
+            <div class="col-md-3 bg-grey-steel mt-step-col ">
                 <div class="mt-step-number">4</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Custom</div>
-                <div class="mt-step-content font-grey-cascade">Custom Declaration</div>
-            </div>
-            <div class="col-md-2 bg-grey-steel mt-step-col ">
-                <div class="mt-step-number">5</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Summary</div>
                 <div class="mt-step-content font-grey-cascade">Consignment summary</div>
             </div>
@@ -30,7 +25,7 @@
     </div>
 </div>
 <h1 class="page-title">
-    Step 1 - Create single consignment
+    Create single consignment
     <small></small>
 </h1>
 <div class="row">
@@ -69,7 +64,7 @@
         <div class="form-control-focus"> </div>
         <span class="help-block"></span>
     </div>
-</div><h2 data-i18n="Sender Address" data-bind="visible:true">Sender Address</h2>
+</div><h4 data-i18n="Sender Address" data-bind="visible:true">Sender Address</h4>
 <div class="form-group form-md-line-input" data-bind="visible:true">
     <label data-i18n="Premise No./Mailbox" class="col-md-3 control-label" for="4f8d0f8c-e87c-4836-bedb-e36130d2667c">Premise No./Mailbox</label>
     <div class="col-md-9">
@@ -182,7 +177,7 @@
         <div class="form-control-focus"> </div>
         <span class="help-block"></span>
     </div>
-</div><h2 data-i18n="Contact Information" data-bind="visible:true">Contact Information</h2>
+</div><h4 data-i18n="Contact Information" data-bind="visible:true">Contact Information</h4>
 <div class="form-group form-md-line-input" data-bind="visible:true">
     <label data-i18n="Phone No." class="col-md-3 control-label" for="659476a2-df77-43cf-9850-3e86984e48ae">Phone No.</label>
     <div class="col-md-9">
@@ -215,6 +210,15 @@
                id="3c09fdec-2e13-467e-ba6c-321e15ca3c6a" name="Sender.ContactInformation.PrimaryEmail">
         <div class="form-control-focus"> </div>
         <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Next" class="col-md-3 control-label sr-only" for="c29257d6-671a-4373-f868-4b9b18d31c93">Next</label>
+    <div class="col-md-9">
+        <button data-bind="command : $root.postDefaultCommand, visible :true, enable: true" class="btn btn-primary">
+                <i class="fa fa-arrow-circle-right"></i>
+            Next
+        </button>
     </div>
 </div>    </div>
 </form>
