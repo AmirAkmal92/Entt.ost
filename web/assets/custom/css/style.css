@@ -1868,7 +1868,7 @@ footer nav:after {
 	clear: both
 }
 footer a:hover {
-	color: #FF6699;
+	color: #e43a45;
 	cursor: pointer;
 	text-decoration: none;
 }
@@ -1876,7 +1876,7 @@ footer a, footer a:visited {
 	color: #bbb;
 }
 footer a:visited:hover {
-	color: #FF6699;
+	color: #e43a45;
 }
 footer .copyright-info {
 	display: inline-block;
