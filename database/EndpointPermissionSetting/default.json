@@ -19,6 +19,401 @@
         "ValueType": null,
         "IsInherited": false
       }
-    ]
+    ],
+    "IsInherited": false,
+    "HasParent": false,
+    "HasAction": false,
+    "HasController": false
+  },
+  {
+    "Parent": "AddressBook",
+    "Controller": null,
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": false,
+    "HasController": false
+  },
+  {
+    "Parent": "ConsignmentRequest",
+    "Controller": null,
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": false,
+    "HasController": false
+  },
+  {
+    "Parent": "AddressBook",
+    "Controller": "AddressBookDefaultQueryEndpoint",
+    "Action": "GetCountAsync",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "System",
+    "Controller": "RxSystemApi",
+    "Action": "EntityForm",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "System",
+    "Controller": "RxSystemApi",
+    "Action": "Watcher",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "System",
+    "Controller": "RxSystemApi",
+    "Action": "Message",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "System",
+    "Controller": "RxSystemApi",
+    "Action": "UserProfile",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "Custom",
+    "Controller": "CustomAddressBook",
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": false,
+    "HasController": true
+  },
+  {
+    "Parent": "Custom",
+    "Controller": "SnbServices",
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": false,
+    "HasController": true
+  },
+  {
+    "Parent": "Country",
+    "Controller": "CountryDefaultOperationEndpoint",
+    "Action": "PostDefault",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "Country",
+    "Controller": "CountryServiceContract",
+    "Action": "OdataApi",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "System",
+    "Controller": "List",
+    "Action": "Index",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "System",
+    "Controller": "List",
+    "Action": "Distinct",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "ConsigmentRequest",
+    "Controller": null,
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": false,
+    "HasController": false
+  },
+  {
+    "Parent": "AddressLookup",
+    "Controller": null,
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/anonymous",
+        "Value": "true",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": false,
+    "HasController": false
+  },
+  {
+    "Parent": "AddressLookup",
+    "Controller": "AddressLookupDefaultQueryEndpoint",
+    "Action": "GetAction",
+    "Id": null,
+    "Claims": [],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "AddressLookup",
+    "Controller": "AddressLookupdefaultOperationEndpoint",
+    "Action": "Postdefault",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/anonymous",
+        "Value": "true",
+        "Permission": "d",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": true,
+    "HasParent": true,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "ConsigmentRequest",
+    "Controller": "ConsigmentRequestDefaultOperationEndpoint",
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": true,
+    "HasParent": true,
+    "HasAction": false,
+    "HasController": true
+  },
+  {
+    "Parent": "ConsigmentRequest",
+    "Controller": "ConsigmentRequestAddReceiversOperationEndpoint",
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": true,
+    "HasParent": true,
+    "HasAction": false,
+    "HasController": true
+  },
+  {
+    "Parent": "ConsigmentRequest",
+    "Controller": "ConsigmentRequestDefaultQueryEndpoint",
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": true,
+    "HasParent": true,
+    "HasAction": false,
+    "HasController": true
+  },
+  {
+    "Parent": "AddressBook",
+    "Controller": "AddressBookDefaultOperationEndpoint",
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": true,
+    "HasParent": true,
+    "HasAction": false,
+    "HasController": true
   }
 ]

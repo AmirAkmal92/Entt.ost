@@ -309,5 +309,111 @@
     "HasParent": true,
     "HasAction": false,
     "HasController": false
+  },
+  {
+    "Parent": "AddressLookup",
+    "Controller": "AddressLookupDefaultQueryEndpoint",
+    "Action": "GetAction",
+    "Id": null,
+    "Claims": [],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "AddressLookup",
+    "Controller": "AddressLookupdefaultOperationEndpoint",
+    "Action": "Postdefault",
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/anonymous",
+        "Value": "true",
+        "Permission": "d",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": true,
+    "HasParent": true,
+    "HasAction": true,
+    "HasController": true
+  },
+  {
+    "Parent": "ConsigmentRequest",
+    "Controller": "ConsigmentRequestDefaultOperationEndpoint",
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": true,
+    "HasParent": true,
+    "HasAction": false,
+    "HasController": true
+  },
+  {
+    "Parent": "ConsigmentRequest",
+    "Controller": "ConsigmentRequestAddReceiversOperationEndpoint",
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": true,
+    "HasParent": true,
+    "HasAction": false,
+    "HasController": true
+  },
+  {
+    "Parent": "ConsigmentRequest",
+    "Controller": "ConsigmentRequestDefaultQueryEndpoint",
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": true,
+    "HasParent": true,
+    "HasAction": false,
+    "HasController": true
+  },
+  {
+    "Parent": "AddressBook",
+    "Controller": "AddressBookDefaultOperationEndpoint",
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": true,
+    "HasParent": true,
+    "HasAction": false,
+    "HasController": true
   }
 ]

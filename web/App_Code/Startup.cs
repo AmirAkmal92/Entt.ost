@@ -31,7 +31,7 @@ public class Startup
         });
 
         //app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
-        app.UseGoogleAuthentication("112970609059-m6aibunjgp870t2nfd4de64uk6rhid3j.apps.googleusercontent.com", "rp51TYacrgleJjKNbuRimyQ6");
+        //app.UseGoogleAuthentication("112970609059-m6aibunjgp870t2nfd4de64uk6rhid3j.apps.googleusercontent.com", "rp51TYacrgleJjKNbuRimyQ6");
 
         app.RegisterCustomEntityDependencies()
             .UseCoreResource(true)
