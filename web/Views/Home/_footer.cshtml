@@ -1,0 +1,93 @@
+﻿<footer id="masterFooter" class="page-footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 footer-link-height">
+                <ul class="links">
+                    <li class="title-link">Overview</li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Prohibited Item List</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 footer-link-height">
+                <ul class="links">
+                    <li class="title-link">Quick Guide</li>
+                    <li><a href="#">Sign Up An Account</a></li>
+                    <li><a href="#">Place An Order</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 footer-link-height">
+                <ul class="links">
+                    <li class="title-link">My Account</li>
+                    <li><a href="#">Log In</a></li>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Edit Your Profile</a></li>
+                    <li><a href="#">My Order</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 footer-link-height">
+                <ul class="links">
+                    <li class="title-link">Tools</li>
+                    <li><a href="#">Send A Parcel</a></li>
+                    <li><a href="#">Track &amp; Trace</a></li>
+                    <li><a data-toggle="modal" href="#responsive">Volumetric Calculator</a></li>
+                    <li><a href="#">Widgets</a></li>
+                    <li><a href="#">Bulk Delivery Tool</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 footer-link-height social-links">
+                <ul class="links" style="padding-bottom: 5px;">
+                    <li class="title-link">Follow Us</li>
+                    <li style="float: left; margin-right: 10px;"><a href="#" target="_blank"><i class="epi-facebook"></i></a></li>
+                    <li style="float: left; margin-right: 10px;"><a href="#" target="_blank"><i class="epi-twitter"></i></a></li>
+                </ul>
+                <hr style="margin: 15px 0px;border-color: #5d5d5d;" />
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="page-copyright">
+    <div class="container">
+        <p class="text-center small">
+            © 2016 Pos Malaysia. All Rights Reserved
+        </p>
+    </div>
+</div>
+<div id="popupbox" class="modal fade in">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Loading...</h3>
+        </div>
+        <div class="modal-body"></div>
+        <div class="modal-footer"></div>
+    </div>
+</div>
+<div class="list-fix hidden-xs" id="list-fix" style="display: none;">
+    <div class="wrapper">
+        <span id="top-link-block"> <a href="#top" onclick="$(&#39;html,body&#39;).animate({scrollTop:0},&#39;slow&#39;);return false;" style="color: #fff;"> <i class="epi-up-big"></i></a> </span>
+        <div class="tooltip">Back To Top</div>
+    </div>
+</div>
+<!--[:page_tips:]-->
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    $('.list-fix').viewportChecker({
+        classToAdd: 'visible animated bounceIn',
+        removeClassAfterAnimation: true,
+        offset: "50%"
+    });
+
+    $('.fade-in-down').addClass("invisible").viewportChecker({
+        classToAddForFullView: 'visible animated fadeInDown',
+        classToRemove : 'invisible',
+        removeClassAfterAnimation: true,
+        offset: "20%"
+    });
+</script>
+<div class="swal2-container"><div class="swal2-overlay" tabindex="-1"></div><div class="swal2-modal" style="display: none" tabindex="-1"><div class="swal2-icon swal2-error"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span></div><div class="swal2-icon swal2-question">?</div><div class="swal2-icon swal2-warning">!</div><div class="swal2-icon swal2-info">i</div><div class="swal2-icon swal2-success"><span class="line tip"></span> <span class="line long"></span><div class="placeholder"></div> <div class="fix"></div></div><img class="swal2-image" /><h2></h2><div class="swal2-content"></div><input class="swal2-input" /><select class="swal2-select"></select><div class="swal2-radio"></div><label for="swal2-checkbox" class="swal2-checkbox"><input type="checkbox" id="swal2-checkbox" /></label><textarea class="swal2-textarea"></textarea><div class="swal2-validationerror"></div><hr class="swal2-spacer" /><button class="swal2-confirm">OK</button><button class="swal2-cancel">Cancel</button><span class="swal2-close">×</span></div></div>

@@ -4,7 +4,7 @@ define([objectbuilders.datacontext], function(context){
         rootEntity = null,
         activate = function(entity){
             rootEntity = entity;
-            return context.get("/snb-services/item-categories")
+            return context.get("/ost/snb-services/item-categories")
                     .then(categories);
 
 
@@ -42,7 +42,7 @@ define([objectbuilders.datacontext], function(context){
 
                 };
 
-                return context.post(ko.toJSON(request), "/snb-services/calculate-published-rate")
+                return context.post(ko.toJSON(request), "/ost/snb-services/calculate-published-rate")
                     .done(function(result){
                         console.log(result);
                         serviceModel.TotalCost(result.Total);

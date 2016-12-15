@@ -4893,7 +4893,7 @@ define('plugins/dialog', ['durandal/system', 'durandal/app', 'durandal/compositi
     MessageBox.defaultOptions = ['Ok'];
 
 
-    MessageBox.defaultSettings = { buttonClass: "btn btn-default", primaryButtonClass: "btn-default autofocus", secondaryButtonClass: "", "class": "modal-content messageBox", style: null };
+    MessageBox.defaultSettings = { buttonClass: "btn btn-default", primaryButtonClass: "btn-default autofocus", secondaryButtonClass: "", "class": "modal-content messageBox" };
 
     /**
     * Sets the classes and styles used throughout the message box markup.
@@ -4980,20 +4980,26 @@ define('plugins/dialog', ['durandal/system', 'durandal/app', 'durandal/compositi
      * @static
      */
     MessageBox.defaultViewMarkup = [
-        '<div data-view="plugins/messageBox" data-bind="css: getClass(), style: getStyle()">',
-            '<div class="modal-header">',
-                '<h3 data-bind="html: title"></h3>',
-            '</div>',
-            '<div class="modal-body">',
-                '<p class="message" data-bind="html: message"></p>',
-            '</div>',
-            '<div class="modal-footer">',
-                '<!-- ko foreach: options -->',
-                '<button data-bind="click: function () { $parent.selectOption($parent.getButtonValue($data)); }, text: $parent.getButtonText($data), css: $parent.getButtonClass($index)"></button>',
-                '<!-- /ko -->',
-                '<div style="clear:both;"></div>',
-            '</div>',
-        '</div>'
+        //'<div data-view="plugins/messageBox" data-bind="css: getClass(), style: getStyle()">',
+        //'<div class="modal fade in" tabindex="-1" role="basic" aria-hidden="true">',
+            '<div class="modal-dialog">',
+                '<div class="modal-content">',
+                    '<div class="modal-header">',
+                        '<h3 data-bind="html: title"></h3>',
+                    '</div>',
+                    '<div class="modal-body">',
+                        '<p class="message" data-bind="html: message"></p>',
+                    '</div>',
+                    '<div class="modal-footer">',
+                        '<!-- ko foreach: options -->',
+                        '<button data-bind="click: function () { $parent.selectOption($parent.getButtonValue($data)); }, text: $parent.getButtonText($data), css: $parent.getButtonClass($index)"></button>',
+                        '<!-- /ko -->',
+                        '<div style="clear:both;"></div>',
+                    '</div>',
+                '</div>',
+            '</div>'
+        //'</div>',
+        //'</div>'
     ].join('\n');
 
     function ensureDialogInstance(objOrModuleId) {
@@ -5236,29 +5242,31 @@ define('plugins/dialog', ['durandal/system', 'durandal/app', 'durandal/compositi
          */
         addHost: function (theDialog) {
             var body = $('body');
-            var blockout = $('<div class="modalBlockout"></div>')
-                .css({ 'z-index': dialog.getNextZIndex(), 'opacity': this.blockoutOpacity })
+            //var blockout = $('<div class="modalBlockout"></div>')
+            var blockout = $('<div class="modalBlockout modal-backdrop fade in"></div>')
+                //.css({ 'z-index': dialog.getNextZIndex(), 'opacity': this.blockoutOpacity })
                 .appendTo(body);
 
-            var host = $('<div class="modalHost"></div>')
-                .css({ 'z-index': dialog.getNextZIndex() })
+            //var host = $('<div class="modalHost modal fade in" tabindex="-1" role="basic" aria-hidden="true" >')
+            var host = $('<div class="modalHost modal fade in" tabindex="-1" role="basic" aria-hidden="true" style="display: block;padding-right: 16px;" >')
+                //.css({ 'z-index': dialog.getNextZIndex() })
                 .appendTo(body);
 
             theDialog.host = host.get(0);
             theDialog.blockout = blockout.get(0);
 
-            if (!dialog.isOpen()) {
-                theDialog.oldBodyMarginRight = body.css("margin-right");
-                theDialog.oldInlineMarginRight = body.get(0).style.marginRight;
+            //if (!dialog.isOpen()) {
+            //    theDialog.oldBodyMarginRight = body.css("margin-right");
+            //    theDialog.oldInlineMarginRight = body.get(0).style.marginRight;
 
-                var html = $("html");
-                var oldBodyOuterWidth = body.outerWidth(true);
-                var oldScrollTop = html.scrollTop();
-                $("html").css("overflow-y", "hidden");
-                var newBodyOuterWidth = $("body").outerWidth(true);
-                body.css("margin-right", (newBodyOuterWidth - oldBodyOuterWidth + parseInt(theDialog.oldBodyMarginRight, 10)) + "px");
-                html.scrollTop(oldScrollTop); // necessary for Firefox
-            }
+            //    var html = $("html");
+            //    var oldBodyOuterWidth = body.outerWidth(true);
+            //    var oldScrollTop = html.scrollTop();
+            //    $("html").css("overflow-y", "hidden");
+            //    var newBodyOuterWidth = $("body").outerWidth(true);
+            //    body.css("margin-right", (newBodyOuterWidth - oldBodyOuterWidth + parseInt(theDialog.oldBodyMarginRight, 10)) + "px");
+            //    html.scrollTop(oldScrollTop); // necessary for Firefox
+            //}
         },
         /**
          * This function is expected to remove any DOM machinery associated with the specified dialog and do any other necessary cleanup.
@@ -5274,21 +5282,22 @@ define('plugins/dialog', ['durandal/system', 'durandal/app', 'durandal/compositi
                 ko.removeNode(theDialog.blockout);
             }, this.removeDelay);
 
-            if (!dialog.isOpen()) {
-                var html = $("html");
-                var oldScrollTop = html.scrollTop(); // necessary for Firefox.
-                html.css("overflow-y", "").scrollTop(oldScrollTop);
+            //if (!dialog.isOpen()) {
+            //    var html = $("html");
+            //    var oldScrollTop = html.scrollTop(); // necessary for Firefox.
+            //    html.css("overflow-y", "").scrollTop(oldScrollTop);
 
-                if (theDialog.oldInlineMarginRight) {
-                    $("body").css("margin-right", theDialog.oldBodyMarginRight);
-                } else {
-                    $("body").css("margin-right", '');
-                }
-            }
+            //    if (theDialog.oldInlineMarginRight) {
+            //        $("body").css("margin-right", theDialog.oldBodyMarginRight);
+            //    } else {
+            //        $("body").css("margin-right", '');
+            //    }
+            //}
         },
         attached: function (view) {
             //To prevent flickering in IE8, we set visibility to hidden first, and later restore it
-            $(view).css("visibility", "hidden");
+            //$(view).css("visibility", "hidden");
+            $(view).css("display: block", "padding-right: 16px");
         },
         /**
          * This function is called after the modal is fully composed into the DOM, allowing your implementation to do any final modifications, such as positioning or animation. You can obtain the original dialog object by using `getDialog` on context.model.
@@ -5306,32 +5315,32 @@ define('plugins/dialog', ['durandal/system', 'durandal/app', 'durandal/compositi
                 return !(this.style.width && this.style.height) && !($this.attr("width") && $this.attr("height"));
             });
 
-            $child.data("predefinedWidth", $child.get(0).style.width);
+            //$child.data("predefinedWidth", $child.get(0).style.width);
 
-            var setDialogPosition = function (childView, objDialog) {
-                //Setting a short timeout is need in IE8, otherwise we could do this straight away
-                setTimeout(function () {
-                    var $childView = $(childView);
+            //var setDialogPosition = function (childView, objDialog) {
+            //    //Setting a short timeout is need in IE8, otherwise we could do this straight away
+            //    setTimeout(function () {
+            //        var $childView = $(childView);
 
-                    objDialog.context.reposition(childView);
+            //        objDialog.context.reposition(childView);
 
-                    $(objDialog.host).css('opacity', 1);
-                    $childView.css("visibility", "visible");
+            //        $(objDialog.host).css('opacity', 1);
+            //        $childView.css("visibility", "visible");
 
-                    $childView.find('.autofocus').first().focus();
-                }, 1);
-            };
+            //        $childView.find('.autofocus').first().focus();
+            //    }, 1);
+            //};
 
-            setDialogPosition(child, theDialog);
-            loadables.load(function () {
-                setDialogPosition(child, theDialog);
-            });
+            //setDialogPosition(child, theDialog);
+            //loadables.load(function () {
+            //    setDialogPosition(child, theDialog);
+            //});
 
-            if ($child.hasClass('autoclose') || context.model.autoclose) {
-                $(theDialog.blockout).click(function () {
-                    theDialog.close();
-                });
-            }
+            //if ($child.hasClass('autoclose') || context.model.autoclose) {
+            //    $(theDialog.blockout).click(function () {
+            //        theDialog.close();
+            //    });
+            //}
         },
         /**
          * This function is called to reposition the model view.
@@ -6839,21 +6848,21 @@ define('viewmodels/shell.custom', ["durandal/system", "services/system", "plugin
                     });
                 };
 
-                $(document).on("mouseenter", ".view-model-modal .modal-header", function (e) {
-                    e.preventDefault();
-                    var elem = $(this).parents(".view-model-modal"),
-                        draggable = elem.data("draggable") || elem.data("ui-draggable") || elem.data("uiDraggable");
+                //$(document).on("mouseenter", ".view-model-modal .modal-header", function (e) {
+                //    e.preventDefault();
+                //    var elem = $(this).parents(".view-model-modal"),
+                //        draggable = elem.data("draggable") || elem.data("ui-draggable") || elem.data("uiDraggable");
 
-                    if (!draggable) {
-                        elem.draggable({
-                            handle: ".modal-header"
-                        });
-                        $(".modal-header").css("cursor", "move");
-                        console.log("draggagle modal");
-                        elem.find("div.modal-header>button").
-                            after("<a class=\"pull-right\" id=\"help-dialog\" data-dialog=\"" + elem.attr("id") + "\" href=\"#\" title=\"see help on this topic\" style=\"margin-right:10px; color:gray\"><i class=\"fa fa-question-circle\"></i></a>");
-                    }
-                });
+                //    if (!draggable) {
+                //        elem.draggable({
+                //            handle: ".modal-header"
+                //        });
+                //        $(".modal-header").css("cursor", "move");
+                //        console.log("draggagle modal");
+                //        elem.find("div.modal-header>button").
+                //            after("<a class=\"pull-right\" id=\"help-dialog\" data-dialog=\"" + elem.attr("id") + "\" href=\"#\" title=\"see help on this topic\" style=\"margin-right:10px; color:gray\"><i class=\"fa fa-question-circle\"></i></a>");
+                //    }
+                //});
 
                 $(document).on("click", "a.dropdown-toggle", dropDown);
 
@@ -6988,14 +6997,14 @@ define('services/logger', ["durandal/system", objectbuilders.config],
             } else {
                 system.log(source, message);
             }
-            if (showToast) {
-                if (toastType === "error") {
-                    toastr.error(message);
-                } else {
-                    toastr.success(message);
-                }
+            //if (showToast) {
+            //    if (toastType === "error") {
+            //        toastr.error(message);
+            //    } else {
+            //        toastr.success(message);
+            //    }
 
-            }
+            //}
 
         }
 

@@ -76,7 +76,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
         findProductsAsync = function() {
 
             var cons = ko.toJS(entity);
-            return context.get("snb-services/products/?from=" + cons.Sender.Address.Postcode + "&to=" + cons.Receivers[0].Address.Postcode + "&weight=" + cons.Product.Weight + "&height=" + cons.Product.Volume.Height + "&length=" + cons.Product.Volume.Length + "&width=" + cons.Product.Volume.Width)
+            return context.get("ost/snb-services/products/?from=" + cons.Sender.Address.Postcode + "&to=" + cons.Receivers[0].Address.Postcode + "&weight=" + cons.Product.Weight + "&height=" + cons.Product.Volume.Height + "&length=" + cons.Product.Volume.Length + "&width=" + cons.Product.Volume.Width)
                 .then(function(list) {
                     // edit the = > back to => , the beatifier fucked up the ES2015 syntax
                     var list2 = list.map(function(v) {
@@ -92,7 +92,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
                                     valueAddedService: vas,
                                     request: entity
                                 };
-                                context.post(ko.mapping.toJSON(vm), "/snb-services/calculate-value-added-service")
+                                context.post(ko.mapping.toJSON(vm), "/ost/snb-services/calculate-value-added-service")
                                     .done(function(result) {
                                     vas.Value(result);
                                     vas.isBusy(false);

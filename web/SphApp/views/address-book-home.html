@@ -1,6 +1,4 @@
-<div class="mt-element-ribbon bg-grey-steel pull-right" style="    position: absolute;
-    top: 2px;
-    right: 7px;">
+<div class="mt-element-ribbon bg-grey-steel pull-right" style="position: absolute; top: 2px; right: 7px;">
     <div class="ribbon ribbon-right ribbon-color-success uppercase" data-bind="text: partial.groupName">Ribbon</div>
 </div>
 <div class="row">
@@ -12,10 +10,10 @@
                         <a href="javascript:;" id="select-all">Select all</a>
                     </th>
                     <th>Reference No</th>
-                    <th>Group</th>
-                    <th>Company Name</th>
-                    <th>Email</th>
                     <th>Contact Person</th>
+                    <!-- <th>Company Name</th> -->
+                    <th>Email</th>
+                    <th>Group</th>
                 </tr>
             </thead>
             <tbody data-bind="foreach :list">
@@ -29,10 +27,10 @@
                             <span data-bind="text:ReferenceNo"></span>
                         </a>
                     </td>
-                    <td data-bind="text:Groups"></td>
-                    <td data-bind="text:CompanyName"></td>
-                    <td data-bind="text:ContactInformation.EmailAddress"></td>
                     <td data-bind="text:ContactPerson"></td>
+                    <!-- <td data-bind="text:CompanyName"></td> -->
+                    <td data-bind="text:ContactInformation.EmailAddress"></td>
+                    <td data-bind="text:Groups"></td>
                 </tr>
             </tbody>
         </table>
