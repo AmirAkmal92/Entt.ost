@@ -172,11 +172,11 @@ html, body {
     border-radius: 4px;
 }
 
-.btn-group.bootstrap-select select {
+/*.btn-group.bootstrap-select select {
     width : 1px !important;
     opacity : 0;
     position : absolute;
-}
+}*/
 
 /* Callout CSS Styles */
 .bs-callout {
@@ -455,7 +455,7 @@ header.page-header, .header-top-bar, .header-logo {
     color: #333;
 }
 .site-nav-title {
-	color: rgba(255,102,153,0.5);
+	color: rgba(255, 0, 0, 0.5);
 	padding: 10px;
 	font-size: 16px;
 	margin-bottom: 0px;
@@ -507,11 +507,11 @@ header.page-header, .header-top-bar, .header-logo {
 	font-size: 15px;
 	padding: 0px 14px 12px;
 }
-select.select-country {
+/*select.select-country {
 	height: 50px;
     border: 0px;
     color: #333;
-    font-size: 15px;
+    font-size: 15px;*/
 }
 .nav-tabs>li>a {
 	background-color: #eee;
@@ -816,7 +816,7 @@ header.page-header button {
 img.courier-logo {
 	width: 100px;
 }
-.track-bar select#MainContentCourier, .track-bar input#MainContentAwb {
+/*.track-bar select#MainContentCourier, .track-bar input#MainContentAwb {
 	border: none;
 	box-shadow: none;
 	background-color: rgba(255, 255, 255, 0);
@@ -824,15 +824,15 @@ img.courier-logo {
 	width: 100%;
 	font-size: 12px;
 	text-transform: uppercase;
-}
+}*/
 input#awb {
 	font-weight: normal;
 }
-select#c, select#d, input#weight, .quote-book .input-group {
+/*select#c, select#d, input#weight, .quote-book .input-group {
 	position: relative;
 	width: 100%;
 	height: 40px;
-}
+}*/
 input#cp, input#dp, input#icp, input#idp {
 	position: relative;
 	height: 40px;
@@ -1139,11 +1139,11 @@ div.CodeMirror-cursors {
 .CodeMirror-code {
 	outline: 0;
 }
-.CodeMirror-gutter-wrapper {
+/*.CodeMirror-gutter-wrapper {
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
-}
+}*/
 .CodeMirror-gutter-wrapper {
 	position: absolute;
 	z-index: 4;
@@ -1564,10 +1564,10 @@ span.latest_statuspoint__courier-name {
 }
 
 /*selectCourier*/
-.easytrack_num {
+/*.easytrack_num {
 	background-color: #666 !important;
 	color: #fff !important;
-}
+}*/
 .tracking_status {
 	margin-bottom: 30px;
 }
@@ -5168,9 +5168,9 @@ form .rating span {
 	padding-top: 30px;
 	padding-bottom: 30px;
 }
-.res-email input.form-control, .SigninForm input.form-control, .SignupForm input#email1, .form-horizontal select#courier1, .form-group input#awb1 {
+/*.res-email input.form-control, .SigninForm input.form-control, .SignupForm input#email1, .form-horizontal select#courier1, .form-group input#awb1 {
 	height: 45px;
-}
+}*/
 .absolute-slideshow {
 	position: absolute;
 	z-index: 15;
@@ -5374,9 +5374,9 @@ form .rating span {
 .dashboard-btn-group {
 	float: right;
 }
-select.dashboard-bulk-action {
+/*select.dashboard-bulk-action {
 	display: inline-block;
-}
+}*/
 input#pageNum {
 	text-align: center;
 }
