@@ -14,7 +14,7 @@ public class CalculateValueAddedServiceViewModel
     public ValueAddedService ValueAddedService { get; set; }
     public Bespoke.Ost.ConsigmentRequests.Domain.ConsigmentRequest Request { get; set; }
 }
-[RoutePrefix("snb-services")]
+[RoutePrefix("ost/snb-services")]
 public class SnbServicesController : BaseApiController
 {
     
