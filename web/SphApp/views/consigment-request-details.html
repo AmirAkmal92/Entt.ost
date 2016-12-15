@@ -1,6 +1,6 @@
-<div class="mt-element-step">
+<div class="row mt-element-step">
     <div class="mt-element-step">
-        <div class="row step-background-thin">
+        <div class="row step-background-thin red">
             <div class="col-md-3 bg-grey-steel mt-step-col  active">
                 <div class="mt-step-number">1</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Sender</div>
@@ -24,7 +24,7 @@
         </div>
     </div>
 </div>
-<h1 class="page-title">
+<!--<h1 class="page-title">
     Create Consignment
     <small></small>
 </h1>
@@ -241,103 +241,57 @@
         </div>
 
     </form>
-</div>
+</div>-->
 
-<div>
+<div class="row">
     <div class="portlet light bordered">
         <div class="portlet-title">
             <div class="caption">
-                <i class="icon-equalizer font-red-sunglo"></i>
-                <h3><span class="caption-subject font-red-sunglo bold">Form Sample</span></h3>
-                <span class="caption-helper">send a parcel..</span>
+                <span class="caption-subject font-red-sunglo bold"><h2>Create Consignment</h2></span>
+                <span class="caption-helper">Sender Information</span>
             </div>
             <div class="tools">
                 <a href="" class="collapse" data-original-title="" title=""> </a>
-                <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title=""> </a>
                 <a href="" class="reload" data-original-title="" title=""> </a>
-                <a href="" class="remove" data-original-title="" title=""> </a>
             </div>
         </div>
         <div class="portlet-body form">
             <!-- BEGIN FORM-->
-            <form action="#" class="horizontal-form">
+            <form action="#" class="horizontal-form" data-bind="with : entity" id="consigment-request-details-form">
                 <div class="form-body">
-                    <h3 class="form-section">Person Info</h3>
+                    <h3 class="form-section">Personal Info (Sender)</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" data-bind="visible:true">
+                                <label data-i18n="Reference No" class="control-label" for="sender-reference-no">Reference No.</label>
+                                <input required type="text" class="form-control" data-bind="value: ReferenceNo" data-rule-required="true" id="sender-reference-no" name="ReferenceNo">
+                                <span class="help-block">  </span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">First Name</label>
-                                <input type="text" id="firstName" class="form-control" placeholder="Chee Kin">
-                                <span class="help-block"> This is inline help </span>
+                                <label data-i18n="Groups" class="control-label" for="sender-company-name">Sender Name</label>
+                                <select class="form-control" name="Sender.CompanyName" id="sender-company-name"></select>
+                                <div class="form-control-focus"> </div>
+                                <span class="help-block"> Select your contact </span>
                             </div>
                         </div>
-                        <!--/span-->
                         <div class="col-md-6">
-                            <div class="form-group has-error">
-                                <label class="control-label">Last Name</label>
-                                <input type="text" id="lastName" class="form-control" placeholder="Lim">
-                                <span class="help-block"> This field has error. </span>
+                            <div class="form-group" data-bind="visible:true">
+                                <label class="control-label"data-i18n="Company Name" for="b43c20c5-09fe-411e-81e6-bcce5cecf354">Company Name</label>
+                                <input required type="text" class="form-control" data-bind="value: Sender().CompanyName" data-rule-required="true" id="b43c20c5-09fe-411e-81e6-bcce5cecf354" name="Sender.CompanyName">
                             </div>
                         </div>
-                        <!--/span-->
                     </div>
-                    <!--/row-->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Gender</label>
-                                <select class="form-control">
-                                    <option value="">Male</option>
-                                    <option value="">Female</option>
-                                </select>
-                                <span class="help-block"> Select your gender </span>
-                            </div>
-                        </div>
-                        <!--/span-->
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Date of Birth</label>
-                                <input type="text" class="form-control" placeholder="dd/mm/yyyy">
-                            </div>
-                        </div>
-                        <!--/span-->
-                    </div>
-                    <!--/row-->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Category</label>
-                                <select class="form-control" data-placeholder="Choose a Category" tabindex="1">
-                                    <option value="Category 1">Category 1</option>
-                                    <option value="Category 2">Category 2</option>
-                                    <option value="Category 3">Category 5</option>
-                                    <option value="Category 4">Category 4</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!--/span-->
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Membership</label>
-                                <div class="radio-list">
-                                    <label class="radio-inline">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""> Option 1
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Option 2
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/span-->
-                    </div>
-                    <!--/row-->
+
                     <h3 class="form-section">Address</h3>
                     <div class="row">
                         <div class="col-md-12 ">
-                            <div class="form-group">
-                                <label>Street</label>
-                                <input type="text" class="form-control">
+                            <div class="form-group" data-bind="visible:true">
+                                <label data-i18n="Premise No./Mailbox" for="4f8d0f8c-e87c-4836-bedb-e36130d2667c">Premise No. / Mailbox</label>
+                                <input required type="text" class="form-control" data-bind="value: Sender().Address().PremiseNoMailbox" data-rule-required="true" id="4f8d0f8c-e87c-4836-bedb-e36130d2667c" name="Sender.Address.PremiseNoMailbox">
                             </div>
                         </div>
                     </div>

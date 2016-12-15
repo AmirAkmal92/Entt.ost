@@ -15603,9 +15603,11 @@ body.stop-scrolling {
   z-index: 5; }
 
 .mt-element-step .step-background-thin .active {
-  background-color: #32c5d2 !important; }
+  /*background-color: #32c5d2 !important; }*/
+  background-color: #dd3b41 !important; } 
   .mt-element-step .step-background-thin .active .mt-step-number {
-    color: #2ab4c0 !important; }
+    /*color: #2ab4c0 !important; }*/
+    color: #ff9999 !important; }
   .mt-element-step .step-background-thin .active .mt-step-title,
   .mt-element-step .step-background-thin .active .mt-step-content {
     color: #fff !important; }

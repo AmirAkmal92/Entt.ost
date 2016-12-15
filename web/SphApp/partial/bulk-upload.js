@@ -1,9 +1,7 @@
 // PLEASE WAIT WHILE YOUR SCRIPT IS LOADING
-define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "services/logger", "viewmodels/_address-book-groups", "services/app"],
- function (context, app, router, logger, contactGroups, app2) {
-     var groupName = ko.observable(),
-         selectedAddresses = ko.observableArray(),
-         importContacts = function () {
+define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "services/logger", "services/app"],
+ function (context, app, router, logger, app2) {
+     var importOrders = function () {
              var tcs = new $.Deferred();
              require(['viewmodels/import.bulk.dialog', 'durandal/app'], function (dialog, app2) {
 
@@ -13,7 +11,7 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
                          if (!result) return;
                          if (result === "OK") {
                              var storeId = ko.unwrap(dialog.item().storeId);
-                             context.post("{}", "address-books/" + storeId).done(function (result) {
+                             context.post("{}", "consignment-requests/" + storeId).done(function (result) {
                                  console.log(result);
                              });
                          }
@@ -23,7 +21,7 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
              return tcs.promise();
          },
          importCommand = {
-             command: importContacts,
+             command: importOrders,
              caption: "IMPORT ORDER",
              icon: "fa fa-upload icon-default"
          },
@@ -42,32 +40,8 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
              $(view).on("click", "a#select-all", function() {
                  $(view).find("input.contact-checked").prop("checked", true);
              });
-
-             rootList.subscribe(function () {
-
-                 $("a.contact-item").draggable({
-                     helper: "clone",
-                     start: function (e, ui) {
-                         $(ui.helper).css({ "background-color": "gray", "padding": "5px", "color": "black" });
-                     }
-                 });
-
-             }, "arrayChange", null);
          },
-         addAddress = function () {
-             var address = new bespoke.Ost_addressBook.domain.AddressBook();
-             require(['viewmodels/address-dialog', 'durandal/app'], function (dialog, app2) {
-                 dialog.entity(address);
-                 app2.showDialog(dialog)
-                     .done(function (result) {
-                         if (!result) return;
-                         if (result === "OK") {
 
-
-                         }
-                     });
-             });
-         };
      map = function (v) {
          v.Groups = ko.observableArray(v.Groups);
          return v;
@@ -75,7 +49,7 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
 
      return {
          map: map,
-         importContacts: importContacts,
+         importOrders: importOrders,
          activate: activate,
          attached: attached
      };
