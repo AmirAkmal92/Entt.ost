@@ -4,40 +4,467 @@
             <div class="col-md-3 bg-grey-steel mt-step-col ">
                 <div class="mt-step-number">1</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Sender</div>
-                <div class="mt-step-content font-grey-cascade">Sender information</div>
-            </div>
-            <div class="col-md-3 bg-grey-steel mt-step-col  active">
-                <div class="mt-step-number">2</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Receiver</div>
-                <div class="mt-step-content font-grey-cascade">Receiver Information</div>
+                <div class="mt-step-content font-grey-cascade">Sender Information</div>
             </div>
             <div class="col-md-3 bg-grey-steel mt-step-col ">
-                <div class="mt-step-number">3</div>
+                <div class="mt-step-number">2</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Product</div>
-                <div class="mt-step-content font-grey-cascade">Consignment product</div>
+                <div class="mt-step-content font-grey-cascade">Consignment Product</div>
+            </div>
+            <div class="col-md-3 bg-grey-steel mt-step-col  active">
+                <div class="mt-step-number">3</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Receivers</div>
+                <div class="mt-step-content font-grey-cascade">Receivers Information</div>
             </div>
             <div class="col-md-3 bg-grey-steel mt-step-col ">
                 <div class="mt-step-number">4</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Summary</div>
-                <div class="mt-step-content font-grey-cascade">Consignment summary</div>
+                <div class="mt-step-content font-grey-cascade">Consignment Summary</div>
             </div>
         </div>
     </div>
 </div>
 <h1 class="page-title">
-    Receiver information
-    <small>Step 2</small>
+    Receiver Information
+    <small>Step 2, Receiver Information</small>
 </h1>
+
 <div class="row">
+    <div class="col-md-6">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-speech font-green"></i>
+                    <span class="caption-subject bold font-green uppercase">Product Inventory</span>
+                </div>
+                <div class="actions">
+                    <a href="javascript:;" class="btn btn-circle btn-outline green">
+                        <i class="fa fa-pencil"></i> Edit
+                    </a>
+                    <a href="javascript:;" class="btn btn-circle blue-steel btn-outline">
+                        <i class="fa fa-plus"></i> Add
+                    </a>
+                    <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;"> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <form role="form" action="#">
+                    <div class="form-group">
+                        <label class="control-label">Product name</label>
+                        <input type="text" placeholder="A Can of Tuna" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Product Description</label>
+                        <textarea class="form-control" rows="3" placeholder="It's delicious!!"></textarea>
+                    </div>
+                    <div class="form-group mt-repeater">
+                        <div data-repeater-list="group-c">
+                            <div data-repeater-item class="mt-repeater-item">
+                                <div class="row mt-repeater-row">
+                                    <div class="col-md-8">
+                                        <label class="control-label">Product Variation</label>
+                                        <input type="text" placeholder="Salted Tuna" class="form-control" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="control-label">Qty</label>
+                                        <input type="text" placeholder="3" class="form-control" />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <a href="javascript:;" data-repeater-delete class="btn btn-danger mt-repeater-delete">
+                                            <i class="fa fa-close"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="javascript:;" data-repeater-create class="btn btn-info mt-repeater-add">
+                            <i class="fa fa-plus"></i> Add Product Variation
+                        </a>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Price</label>
+                        <input type="text" placeholder="$3.99" class="form-control" />
+                    </div>
+                    <div class="margin-top-10">
+                        <a href="javascript:;" class="btn green">Save Changes </a>
+                        <a href="javascript:;" class="btn default">Cancel </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN THEME PANEL -->
+    <div class="theme-panel hidden-xs hidden-sm">
+        <div class="toggler"> </div>
+        <div class="toggler-close"> </div>
+        <div class="theme-options">
+            <div class="theme-option theme-colors clearfix">
+                <span> THEME COLOR </span>
+                <ul>
+                    <li class="color-default current tooltips" data-style="default" data-container="body" data-original-title="Default"> </li>
+                    <li class="color-darkblue tooltips" data-style="darkblue" data-container="body" data-original-title="Dark Blue"> </li>
+                    <li class="color-blue tooltips" data-style="blue" data-container="body" data-original-title="Blue"> </li>
+                    <li class="color-grey tooltips" data-style="grey" data-container="body" data-original-title="Grey"> </li>
+                    <li class="color-light tooltips" data-style="light" data-container="body" data-original-title="Light"> </li>
+                    <li class="color-light2 tooltips" data-style="light2" data-container="body" data-html="true" data-original-title="Light 2"> </li>
+                </ul>
+            </div>
+            <div class="theme-option">
+                <span> Theme Style </span>
+                <select class="layout-style-option form-control input-sm">
+                    <option value="square" selected="selected">Square corners</option>
+                    <option value="rounded">Rounded corners</option>
+                </select>
+            </div>
+            <div class="theme-option">
+                <span> Layout </span>
+                <select class="layout-option form-control input-sm">
+                    <option value="fluid" selected="selected">Fluid</option>
+                    <option value="boxed">Boxed</option>
+                </select>
+            </div>
+            <div class="theme-option">
+                <span> Header </span>
+                <select class="page-header-option form-control input-sm">
+                    <option value="fixed" selected="selected">Fixed</option>
+                    <option value="default">Default</option>
+                </select>
+            </div>
+            <div class="theme-option">
+                <span> Top Menu Dropdown</span>
+                <select class="page-header-top-dropdown-style-option form-control input-sm">
+                    <option value="light" selected="selected">Light</option>
+                    <option value="dark">Dark</option>
+                </select>
+            </div>
+            <div class="theme-option">
+                <span> Sidebar Mode</span>
+                <select class="sidebar-option form-control input-sm">
+                    <option value="fixed">Fixed</option>
+                    <option value="default" selected="selected">Default</option>
+                </select>
+            </div>
+            <div class="theme-option">
+                <span> Sidebar Menu </span>
+                <select class="sidebar-menu-option form-control input-sm">
+                    <option value="accordion" selected="selected">Accordion</option>
+                    <option value="hover">Hover</option>
+                </select>
+            </div>
+            <div class="theme-option">
+                <span> Sidebar Style </span>
+                <select class="sidebar-style-option form-control input-sm">
+                    <option value="default" selected="selected">Default</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+            <div class="theme-option">
+                <span> Sidebar Position </span>
+                <select class="sidebar-pos-option form-control input-sm">
+                    <option value="left" selected="selected">Left</option>
+                    <option value="right">Right</option>
+                </select>
+            </div>
+            <div class="theme-option">
+                <span> Footer </span>
+                <select class="page-footer-option form-control input-sm">
+                    <option value="fixed">Fixed</option>
+                    <option value="default" selected="selected">Default</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <!-- END THEME PANEL -->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Form Stuff</span>
+            </li>
+        </ul>
+        <div class="page-toolbar">
+            <div class="btn-group pull-right">
+                <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown">
+                    Actions
+                    <i class="fa fa-angle-down"></i>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li>
+                        <a href="#">
+                            <i class="icon-bell"></i> Action
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="icon-shield"></i> Another action
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="icon-user"></i> Something else here
+                        </a>
+                    </li>
+                    <li class="divider"> </li>
+                    <li>
+                        <a href="#">
+                            <i class="icon-bag"></i> Separated link
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- BEGIN PAGE TITLE-->
+    <h1 class="page-title">
+        Form Repeater
+        <small>form repeater demos using jQuery Repeater plugin</small>
+    </h1>
+    <!-- END PAGE TITLE-->
+    <!-- END PAGE HEADER-->
+    <div class="m-heading-1 border-green m-bordered">
+        <h3>jQuery Repeater</h3>
+        <p>
+            Repeater uses the first <code>data-repeater-item</code> as a template for added items.
+            <br> For more info please check out
+            <a href="http://briandetering.net/repeater" target="_blank">the official documentation</a>.
+        </p>
+    </div>
+    <div class="portlet box red">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-gift"></i>Repeating Forms
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse"> </a>
+                <a href="#portlet-config" data-toggle="modal" class="config"> </a>
+                <a href="javascript:;" class="reload"> </a>
+                <a href="javascript:;" class="remove"> </a>
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <div class="form-body">
+                <div class="form-group">
+                    <form action="#" class="mt-repeater form-horizontal">
+                        <h3 class="mt-repeater-title">Human Resource Management</h3>
+                        <div data-repeater-list="group-a">
+                            <div data-repeater-item class="mt-repeater-item">
+                                <!-- jQuery Repeater Container -->
+                                <div class="mt-repeater-input">
+                                    <label class="control-label">Name</label>
+                                    <br />
+                                    <input type="text" name="text-input" class="form-control" value="John Smith" />
+                                </div>
+                                <div class="mt-repeater-input">
+                                    <label class="control-label">Joined Date</label>
+                                    <br />
+                                    <input class="input-group form-control form-control-inline date date-picker" size="16" type="text" value="01/08/2016" name="date-input" data-date-format="dd/mm/yyyy" />
+                                </div>
+                                <div class="mt-repeater-input mt-repeater-textarea">
+                                    <label class="control-label">Job Description</label>
+                                    <br />
+                                    <textarea name="textarea-input" class="form-control" rows="3">This role is to follow up with all meetings and ensure that each operational process flow moves accordingly in a timely manner.</textarea>
+                                </div>
+                                <div class="mt-repeater-input mt-radio-inline">
+                                    <label class="control-label">Tier</label>
+                                    <br />
+                                    <label class="mt-radio">
+                                        <input type="radio" name="optionsRadios" id="optionsRadios25" value="junior" checked=""> Junior
+                                        <span></span>
+                                    </label>
+                                    <label class="mt-radio">
+                                        <input type="radio" name="optionsRadios" id="optionsRadios26" value="senior" checked=""> Senior
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <div class="mt-repeater-input mt-checkbox-inline">
+                                    <label class="control-label">Language</label>
+                                    <br />
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="inlineCheckbox21" value="option1"> English
+                                        <span></span>
+                                    </label>
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="inlineCheckbox22" value="option2"> French
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <div class="mt-repeater-input">
+                                    <label class="control-label">Department</label>
+                                    <br />
+                                    <select name="select-input" class="form-control">
+                                        <option value="A" selected>Marketing</option>
+                                        <option value="B">Creative</option>
+                                        <option value="C">Development</option>
+                                    </select>
+                                </div>
+                                <div class="mt-repeater-input">
+                                    <a href="javascript:;" data-repeater-delete class="btn btn-danger mt-repeater-delete">
+                                        <i class="fa fa-close"></i> Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="javascript:;" data-repeater-create class="btn btn-success mt-repeater-add">
+                            <i class="fa fa-plus"></i> Add
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-speech font-green"></i>
+                        <span class="caption-subject bold font-green uppercase">User Profile</span>
+                    </div>
+                    <div class="actions">
+                        <a href="javascript:;" class="btn btn-circle btn-outline green">
+                            <i class="fa fa-pencil"></i> Edit
+                        </a>
+                        <a href="javascript:;" class="btn btn-circle blue-steel btn-outline">
+                            <i class="fa fa-plus"></i> Add
+                        </a>
+                        <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;"> </a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <form role="form" action="#">
+                        <div class="form-group">
+                            <label class="control-label">Name</label>
+                            <input type="text" placeholder="John Smith" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">E-mail</label>
+                            <input type="email" placeholder="john.smith@gmail.com" class="form-control" />
+                        </div>
+                        <div class="form-group mt-repeater">
+                            <div data-repeater-list="group-b">
+                                <div class="mt-repeater-item">
+                                    <label class="control-label">Mobile Number</label>
+                                    <input type="text" placeholder="+1 646 580 DEMO (6284)" class="form-control" />
+                                </div>
+                                <div data-repeater-item class="mt-repeater-item mt-overflow">
+                                    <label class="control-label">Additional Contact Number</label>
+                                    <div class="mt-repeater-cell">
+                                        <input type="text" placeholder="+1 646 580 DEMO (6284)" class="form-control mt-repeater-input-inline" />
+                                        <a href="javascript:;" data-repeater-delete class="btn btn-danger mt-repeater-delete mt-repeater-del-right mt-repeater-btn-inline">
+                                            <i class="fa fa-close"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="javascript:;" data-repeater-create class="btn btn-success mt-repeater-add">
+                                <i class="fa fa-plus"></i> Add new contact number
+                            </a>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Occupation</label>
+                            <input type="text" placeholder="Web Developer" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">About</label>
+                            <textarea class="form-control" rows="3" placeholder="We are KeenThemes!!!"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Website Url</label>
+                            <input type="text" placeholder="http://www.mywebsite.com" class="form-control" />
+                        </div>
+                        <div class="margin-top-10">
+                            <a href="javascript:;" class="btn green">Save Changes </a>
+                            <a href="javascript:;" class="btn default">Cancel </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-speech font-green"></i>
+                        <span class="caption-subject bold font-green uppercase">Product Inventory</span>
+                    </div>
+                    <div class="actions">
+                        <a href="javascript:;" class="btn btn-circle btn-outline green">
+                            <i class="fa fa-pencil"></i> Edit
+                        </a>
+                        <a href="javascript:;" class="btn btn-circle blue-steel btn-outline">
+                            <i class="fa fa-plus"></i> Add
+                        </a>
+                        <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;"> </a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <form role="form" action="#">
+                        <div class="form-group">
+                            <label class="control-label">Product name</label>
+                            <input type="text" placeholder="A Can of Tuna" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Product Description</label>
+                            <textarea class="form-control" rows="3" placeholder="It's delicious!!"></textarea>
+                        </div>
+                        <div class="form-group mt-repeater">
+                            <div data-repeater-list="group-c">
+                                <div data-repeater-item class="mt-repeater-item">
+                                    <div class="row mt-repeater-row">
+                                        <div class="col-md-8">
+                                            <label class="control-label">Product Variation</label>
+                                            <input type="text" placeholder="Salted Tuna" class="form-control" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="control-label">Qty</label>
+                                            <input type="text" placeholder="3" class="form-control" />
+                                        </div>
+                                        <div class="col-md-1">
+                                            <a href="javascript:;" data-repeater-delete class="btn btn-danger mt-repeater-delete">
+                                                <i class="fa fa-close"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="javascript:;" data-repeater-create class="btn btn-info mt-repeater-add">
+                                <i class="fa fa-plus"></i> Add Product Variation
+                            </a>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Price</label>
+                            <input type="text" placeholder="$3.99" class="form-control" />
+                        </div>
+                        <div class="margin-top-10">
+                            <a href="javascript:;" class="btn green">Save Changes </a>
+                            <a href="javascript:;" class="btn default">Cancel </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="row">
     <div class="col-sm-8">
-        <form class="form-horizontal" data-bind="with : entity" id="consignment-request-receiver-form">
+        <form class="form-horizontal" data-bind="with : entity" id="consignment-request-receiver-bulk-form">
             <div class="form-body">
                 <div class="form-group form-md-line-input">
                     <label data-i18n="Groups" class="col-md-3 control-label" for="receiver-company-name">Receiver</label>
                     <div class="col-md-9">
                         <select class="form-control" name="Receiver.CompanyName" id="receiver-company-name"></select>
                         <div class="form-control-focus"> </div>
-                        <span class="help-block">Receiver's name</span>
+                        <span class="help-block">Sender's name</span>
                     </div>
                 </div>
                 <div class="form-group form-md-line-input" data-bind="visible:true">
@@ -61,18 +488,7 @@
                         <div class="form-control-focus"> </div>
                         <span class="help-block"></span>
                     </div>
-                </div><h2 data-i18n="Address" data-bind="visible:true">Address</h2>
-
-                <div class="form-group form-md-line-input">
-                    <label data-i18n="Premise No./ Mailbox" class="col-md-3 control-label" for="autocomple">Search</label>
-                    <div class="col-md-9">
-                        <input class="input-large form-control" type="text"
-                               placeholder="search your address" id="autocomplete">
-                        <div class="form-control-focus"> </div>
-                        <span class="help-block"></span>
-                    </div>
-                </div>
-
+                </div><h4 data-i18n="Address" data-bind="visible:true">Address</h4>
                 <div class="form-group form-md-line-input" data-bind="visible:true">
                     <label data-i18n="Premise No./ Mailbox" class="col-md-3 control-label" for="19655c49-c421-4ac6-ccca-db24550bc884">Premise No./ Mailbox</label>
                     <div class="col-md-9">
@@ -100,8 +516,8 @@
                     <div class="col-md-9">
                         <input class="input-large form-control" type="text"
                                placeholder=""
-                               data-bind="value: $root.partial.receiver().Address().BuildingName"
-                               id="1f3c4cb2-9b54-4d20-a7a4-42066894e109" name="$root.partial.receiver.Address.BuildingName">
+                               data-bind="value: $root.partial.receiver().Address().BuldingName"
+                               id="1f3c4cb2-9b54-4d20-a7a4-42066894e109" name="$root.partial.receiver.Address.BuldingName">
                         <div class="form-control-focus"> </div>
                         <span class="help-block"></span>
                     </div>
@@ -171,7 +587,7 @@
                         <div class="form-control-focus"> </div>
                         <span class="help-block"></span>
                     </div>
-                </div><h2 data-i18n="Contact Information" data-bind="visible:true">Contact Information</h2>
+                </div><h4 data-i18n="Contact Information" data-bind="visible:true">Contact Information</h4>
                 <div class="form-group form-md-line-input" data-bind="visible:true">
                     <label data-i18n="Phone" class="col-md-3 control-label" for="be3c2990-30e4-4d97-da40-2a9a8cbce5bc">Phone</label>
                     <div class="col-md-9">
@@ -208,4 +624,4 @@
             </div>
         </form>
     </div>
-</div>
+</div>-->
