@@ -1,105 +1,19 @@
-﻿/// <reference path="../../Scripts/jquery-2.1.3.intellisense.js" />
-/// <reference path="../../Scripts/knockout-3.4.0.debug.js" />
-/// <reference path="../../Scripts/knockout.mapping-latest.debug.js" />
-/// <reference path="../../Scripts/require.js" />
-/// <reference path="../../Scripts/underscore.js" />
-/// <reference path="../../Scripts/moment.js" />
-/// <reference path="../services/datacontext.js" />
-/// <reference path="../schema/sph.domain.g.js" />
-
-
-//define(["plugins/dialog", 'partial/bulk.receiver.dialog'],
-//    function (dialog) {
-
-//define([objectbuilders.datacontext, objectbuilders.logger, objectbuilders.router,
-//objectbuilders.system, objectbuilders.validation, objectbuilders.eximp,
-//objectbuilders.dialog, objectbuilders.watcher, objectbuilders.config,
-//objectbuilders.app, 'partial/bulk.receiver.dialog'],
-
-//function (context, logger, router, system, validation, eximp, dialog, watcher, config, app, partial) {
-
-//        var route = ko.observable({
-//            "role": ko.observable(),
-//            "groupName": ko.observable(),
-//            "route": ko.observable(),
-//            "moduleId": ko.observable(),
-//            "title": ko.observable(),
-//            "nav": ko.observable(),
-//            "icon": ko.observable(),
-//            "caption": ko.observable(),
-//            "settings": ko.observable(),
-//            "showWhenLoggedIn": ko.observable(),
-//            "isAdminPage": ko.observable(),
-//            "startPageRoute": ko.observable()
-//        }),
-//            okClick = function (data, ev) {
-//                if (bespoke.utils.form.checkValidity(ev.target)) {
-//                    dialog.close(this, "Add");
-//                }
-
-//            },
-//            cancelClick = function () {
-//                dialog.close(this, "Cancel");
-//            };
-
-//        var vm = {
-//            route: route,
-//            okClick: okClick,
-//            cancelClick: cancelClick
-//        };
-
-
-//        return vm;
-
-//    });
-
-
-define([objectbuilders.datacontext, objectbuilders.logger, objectbuilders.router,
+﻿define([objectbuilders.datacontext, objectbuilders.logger, objectbuilders.router,
 objectbuilders.system, objectbuilders.validation, objectbuilders.eximp,
 objectbuilders.dialog, objectbuilders.watcher, objectbuilders.config,
 objectbuilders.app, "plugins/dialog"],
 
 function (context, logger, router, system, validation, eximp, dialog, watcher, config, app, dialog) {
 
-    var watching = ko.observable(false),
+    var receiver = ko.observable(new bespoke.Ost_consigmentRequest.domain.Receiver(system.guid())),
+        watching = ko.observable(false),
+        form = ko.observable(new bespoke.sph.domain.EntityForm()),
         id = ko.observable(),
         i18n = null,
 
-        bulk = ko.observable({
-            "role": ko.observable(),
-            "groupName": ko.observable(),
-            "route": ko.observable(),
-            "moduleId": ko.observable(),
-            "title": ko.observable(),
-            "nav": ko.observable(),
-            "icon": ko.observable(),
-            "caption": ko.observable(),
-            "settings": ko.observable(),
-            "showWhenLoggedIn": ko.observable(),
-            "isAdminPage": ko.observable(),
-            "startPageRoute": ko.observable()
-        }),
-        okClick = function (data, ev) {
-            if (bespoke.utils.form.checkvalidity(ev.target)) {
-                dialog.close(this, "Add");
-            }
-        },
-        cancelClick = function () {
-            dialog.close(this, "Cancel");
-        },
-        compositionComplete = function () {
-            $("[data-i18n]").each(function (i, v) {
-                var $label = $(v),
-                    text = $label.data("i18n");
-                if (i18n && typeof i18n[text] === "string") {
-                    $label.text(i18n[text]);
-                }
-            });
-        },
-
         activate = function (con) {
-                return true;
-            },
+            return true;
+        },
         formatRepo = function (contact) {
             if (!contact) return "";
             if (contact.loading) return contact.text;
@@ -121,7 +35,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return markup;
         },
         attached = function (view) {
-            validation.init($('#consignment-request-receiver-bulk-form'), form());
+
             $("#receiver-company-name").select2({
                 ajax: {
                     url: "/api/address-books/",
@@ -159,29 +73,66 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     if (!contact) {
                         return;
                     }
-                    Address().PremiseNoMailbox(contact.Address.PremiseNoMailbox);
-                    CompanyName(contact.CompanyName);
-                    Address().AreaVillageGardenName(contact.Address.AreaVillageGardenName);
-                    Address().Block(contact.Address.Block);
-                    Address().BuildingName(contact.Address.BuildingName);
-                    Address().City(contact.Address.City);
-                    Address().Country(contact.Address.Country);
-                    Address().District(contact.Address.District);
-                    Address().RoadName(contact.Address.RoadName);
-                    Address().State(contact.Address.State);
-                    Address().SubDistrict(contact.Address.SubDistrict);
-                    Address().Postcode(contact.Address.Postcode);
-                    ContactInformation().PrimaryEmail(contact.ContactInformation.EmailAddress);
-                    ContactInformation().PrimaryFax(contact.ContactInformation.FaxNumber);
-                    ContactInformation().PrimaryPhone(contact.ContactInformation.PhoneNumber);
+                    receiver().Address().PremiseNoMailbox(contact.Address.PremiseNoMailbox);
+                    receiver().CompanyName(contact.CompanyName);
+                    receiver().Address().AreaVillageGardenName(contact.Address.AreaVillageGardenName);
+                    receiver().Address().Block(contact.Address.Block);
+                    receiver().Address().BuildingName(contact.Address.BuildingName);
+                    receiver().Address().City(contact.Address.City);
+                    receiver().Address().Country(contact.Address.Country);
+                    receiver().Address().District(contact.Address.District);
+                    receiver().Address().RoadName(contact.Address.RoadName);
+                    receiver().Address().State(contact.Address.State);
+                    receiver().Address().SubDistrict(contact.Address.SubDistrict);
+                    receiver().Address().Postcode(contact.Address.Postcode);
+                    receiver().ContactInformation().PrimaryEmail(contact.ContactInformation.EmailAddress);
+                    receiver().ContactInformation().PrimaryFax(contact.ContactInformation.FaxNumber);
+                    receiver().ContactInformation().PrimaryPhone(contact.ContactInformation.PhoneNumber);
 
 
                 });
+        },
+
+        bulk = ko.observable({
+            "ContactPerson": ko.observable(),
+            "CompanyName": ko.observable(),
+            "PremiseNoMailbox": ko.observable(),
+            "AreaVillageGardenName": ko.observable(),
+            "Block": ko.observable(),
+            "BuildingName": ko.observable(),
+            "City": ko.observable(),
+            "Country": ko.observable(),
+            "District": ko.observable(),
+            "RoadName": ko.observable(),
+            "State": ko.observable(),
+            "SubDistrict": ko.observable(),
+            "Postcode": ko.observable(),
+            "EmailAddress": ko.observable(),
+            "FaxNumber": ko.observable(),
+            "PhoneNumber": ko.observable()
+        }),
+        okClick = function (data, ev) {
+            if (bespoke.utils.form.checkvalidity(ev.target)) {
+                dialog.close(this, "Add");
+            }
+        },
+        cancelClick = function () {
+            dialog.close(this, "Cancel");
+        },
+        compositionComplete = function () {
+            $("[data-i18n]").each(function (i, v) {
+                var $label = $(v),
+                    text = $label.data("i18n");
+                if (i18n && typeof i18n[text] === "string") {
+                    $label.text(i18n[text]);
+                }
+            });
         };
     var vm = {
         activate: activate,
-        config: config,
         attached: attached,
+        config: config,
+        receiver: receiver,
         compositionComplete: compositionComplete,
         bulk: bulk,
         okClick: okClick,

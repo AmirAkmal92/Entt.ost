@@ -1,64 +1,4 @@
-﻿<!--<section class="view-model-modal" id="custom-form-dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" data-bind="click : cancelClick">&times;</button>
-                <h3>Receiver Information</h3>
-            </div>
-            <div class="modal-body" data-bind="with: route">
-
-                <form class="form-horizontal" id="custom-form-dialog-form">
-                    <div class="form-group">
-                        <label for="route" class="col-lg-3 control-label">Contact Name</label>
-                        <div class="col-lg-9">
-                            <input type="text" data-bind="value: route"
-                                   required pattern="^[A-Za-z_-/:][A-Za-z0-9_-/:]*$"
-                                   class="form-control" id="route">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="module-id" class="col-lg-3 control-label">Telephone No</label>
-                        <div class="col-lg-9">
-                            <input type="text" data-bind="value: moduleId"
-                                   required pattern="^viewmodels/[A-Za-z_-][A-Za-z0-9_-]*$"
-                                   class="form-control" id="module-id">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="title" class="col-lg-3 control-label">Company Name</label>
-                        <div class="col-lg-9">
-                            <input type="text" data-bind="value: title"
-                                   required
-                                   class="form-control" id="title">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="caption" class="col-lg-3 control-label">Postcode No</label>
-                        <div class="col-lg-9">
-                            <input type="text" data-bind="value: caption"
-                                   class="form-control" id="caption">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="caption" class="col-lg-3 control-label">Reference No</label>
-                        <div class="col-lg-9">
-                            <input type="text" data-bind="value: role"
-                                   required
-                                   class="form-control" id="role">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <input form="custom-form-dialog-form" data-dismiss="modal" type="submit" class="btn btn-default" value="Add" data-bind="click: okClick" />
-                <a href="#" class="btn btn-default" data-dismiss="modal" data-bind="click : cancelClick">Cancel</a>
-            </div>
-        </div>
-    </div>
-</section>-->
-
-<section class="view-model-modal">
+﻿<section class="view-model-modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -66,7 +6,7 @@
                 <h3>Receiver Information</h3>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" data-bind="with : view" id="consignment-request-receiver-bulk-form">
+                <form class="form-horizontal" data-bind="with : receiver">
                     <div class="form-body">
                         <div class="form-group">
                             <label data-i18n="Groups" class="col-md-3 control-label" for="receiver-company-name">Receiver</label>
@@ -81,7 +21,7 @@
                             <div class="col-md-9">
                                 <input class="input-large form-control" type="text"
                                        placeholder=""
-                                       data-bind="value: $root.partial.receiver().CompanyName"
+                                       data-bind="value: CompanyName"
                                        id="480a360e-74a2-495c-c396-13027a2731d4" name="$rootreceiver.CompanyName">
                                 <div class="form-control-focus"> </div>
                                 <span class="help-block"></span>

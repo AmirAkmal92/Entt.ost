@@ -7,11 +7,11 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         list = ko.observableArray(),
+        partial = partial || {},
         errors = ko.observableArray(),
-        //form = ko.observable(new bespoke.sph.domain.EntityForm()),
-        //watching = ko.observable(false),
+        form = ko.observable(new bespoke.sph.domain.EntityForm()),
+        watching = ko.observable(false),
         id = ko.observable(),
-        //partial = partial || {},
         i18n = null,
         addNew = function () {
             require(['viewmodels/bulk.receiver.dialog', 'durandal/app'], function (dialog, app2) {
@@ -42,15 +42,15 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             });
             return Task.fromResult(0);
         },
-        //attached = function (view) {
-        //    // validation
-        //    validation.init($('#consignment-request-receiver-bulk-form'), form());
+        attached = function (view) {
+            // validation
+            validation.init($('#consignment-request-receiver-bulk-form'), form());
 
-        //    if (typeof partial.attached === "function") {
-        //        partial.attached(view);
-        //    }
+            if (typeof partial.attached === "function") {
+                partial.attached(view);
+            }
 
-        //},
+        },
 
         compositionComplete = function () {
             $("[data-i18n]").each(function (i, v) {
@@ -63,12 +63,12 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         };
     var vm = {
         list: list,
+        partial: partial,
         addNew: addNew,
-        //activate: activate,
         config: config,
-        //attached: attached,
+        attached: attached,
         compositionComplete: compositionComplete,
-        //entity: entity,
+        entity: entity,
     };
 
     return vm;
