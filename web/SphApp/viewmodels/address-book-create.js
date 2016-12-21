@@ -48,7 +48,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
                 entity(new bespoke.Ost_addressBook.domain.AddressBook(b[0] || b));
             }, function(e) {
                 if (e.status == 404) {
-                    app.showMessage("Sorry, but we cannot find any AddressBook with location : " + "/api/address-books/" + entityId, "Reactive Developer platform showcase", ["OK"]);
+                    app.showMessage("Sorry, but we cannot find any AddressBook with location : " + "/api/address-books/" + entityId, "Ost", ["OK"]);
                 }
             }).always(function() {
                 if (typeof partial.activate === "function") {
@@ -126,7 +126,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
             })
                 .then(function(result) {
                 if (result) {
-                    router.navigate("address-book-home/-");
+                    router.navigate("address-book-all");
                 }
             });
         };
