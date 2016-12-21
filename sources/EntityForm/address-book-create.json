@@ -918,6 +918,49 @@
           "InputColSm": null,
           "InputColXs": null,
           "WebId": "1f6145f4-8253-445d-c290-bdaf13e16bef"
+        },
+        {
+          "$type": "Bespoke.Sph.Domain.ImageElement, domain.sph",
+          "IsThumbnail": false,
+          "Width": null,
+          "Height": null,
+          "IsPathIsRequired": true,
+          "TypeName": "ImageElement",
+          "FieldValidation": {
+            "$type": "Bespoke.Sph.Domain.FieldValidation, domain.sph",
+            "IsRequired": false,
+            "Pattern": null,
+            "Mode": "",
+            "Message": null,
+            "Min": null,
+            "Max": null,
+            "MinLength": null,
+            "MaxLength": null,
+            "WebId": null
+          },
+          "Name": null,
+          "Label": "Gambar",
+          "Tooltip": null,
+          "Path": "AvatarStoreId",
+          "IsRequired": false,
+          "Size": "input-large",
+          "CssClass": "",
+          "Visible": "true",
+          "Enable": "true",
+          "ElementId": "42fe67f8-6646-48be-fb90-0ee58d416de3",
+          "HelpText": null,
+          "UseDisplayTemplate": false,
+          "ToolboxIconClass": null,
+          "IsUniqueName": false,
+          "LabelColLg": null,
+          "LabelColMd": null,
+          "LabelColSm": null,
+          "LabelColXs": null,
+          "InputColLg": null,
+          "InputColMd": null,
+          "InputColSm": null,
+          "InputColXs": null,
+          "WebId": "d065cf05-48a4-4a3e-a1d6-431e8ad57d6a"
         }
       ]
     },
@@ -980,6 +1023,6 @@
   "Id": "address-book-create",
   "CreatedDate": "2016-10-11T10:54:53.9068465+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-29T11:15:50.3453647+08:00",
+  "ChangedDate": "2016-12-18T16:37:06.8456432+08:00",
   "WebId": "20c7265a-ad7d-4aa2-8e2f-58271f1d99b5"
 }
