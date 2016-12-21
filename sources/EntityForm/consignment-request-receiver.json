@@ -8,7 +8,7 @@
         {
           "$type": "Bespoke.Sph.Domain.HtmlElement, domain.sph",
           "IsPathIsRequired": false,
-          "Text": "<div class=\"form-group form-md-line-input\" >\n    <label data-i18n=\"Groups\" class=\"col-md-3 control-label\" for=\"receiver-company-name\">Receiver</label>\n    <div class=\"col-md-9\">\n        <select class=\"form-control\" name=\"Receiver.CompanyName\" id=\"receiver-company-name\">\n        </select>\n        <div class=\"form-control-focus\"> </div>\n        <span class=\"help-block\">Sender's name</span>\n    </div>\n</div>",
+          "Text": "<div class=\"form-group form-md-line-input\" >\r\n    <label data-i18n=\"Groups\" class=\"col-md-3 control-label\" for=\"receiver-company-name\">Receiver</label>\r\n    <div class=\"col-md-9\">\r\n        <select class=\"form-control\" name=\"Receiver.CompanyName\" id=\"receiver-company-name\">\r\n        </select>\r\n        <div class=\"form-control-focus\"> </div>\r\n        <span class=\"help-block\">Sender's name</span>\r\n    </div>\r\n</div>",
           "TypeName": "HtmlElement",
           "FieldValidation": {
             "$type": "Bespoke.Sph.Domain.FieldValidation, domain.sph",
@@ -23,15 +23,15 @@
             "WebId": null
           },
           "Name": null,
-          "Label": "Label 16",
+          "Label": "Label 2",
           "Tooltip": null,
           "Path": null,
           "IsRequired": false,
-          "Size": null,
-          "CssClass": null,
+          "Size": "input-large",
+          "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "4c752b67-dcdb-4f67-9137-da6cf0150b65",
+          "ElementId": "b9544521-4f3d-4190-d546-e8dae9124f24",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -44,7 +44,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "8e17d886-8c53-4f0e-88eb-a3dc297ad4ab"
+          "WebId": "38042a4f-69cd-4936-bab5-f98982f7b746"
         },
         {
           "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
@@ -75,7 +75,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "480a360e-74a2-495c-c396-13027a2731d4",
+          "ElementId": "b85482e0-231c-4008-a218-ca095966fddc",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -88,7 +88,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "78f77958-9027-4a8f-a457-6469ec3e600c"
+          "WebId": "7f2b3627-b60a-4fc3-cf93-1790fa4baef6"
         },
         {
           "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
@@ -119,7 +119,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "f1060890-3c63-4e24-81b1-4ffc8d4d6d15",
+          "ElementId": "b0399730-93a7-4c79-9791-77e6e5f70fe2",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -132,7 +132,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "dcf21c52-ad0c-456f-f02a-fe848c57f9b6"
+          "WebId": "b6a35ddd-2112-4cad-ec04-8b7ba7dc9c10"
         },
         {
           "$type": "Bespoke.Sph.Domain.SectionFormElement, domain.sph",
@@ -159,7 +159,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "f2fabd32-820b-42d3-b1a1-9fc1e65d071a",
+          "ElementId": "65f1a204-1f44-4182-94a6-67fb7fd37dd4",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -172,7 +172,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "b1c43cd2-3c7a-422a-86e3-c0baf07ff34d"
+          "WebId": "9c88d846-60a4-44b1-ed54-b60c389f07dc"
         },
         {
           "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
@@ -203,7 +203,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "19655c49-c421-4ac6-ccca-db24550bc884",
+          "ElementId": "b3332cde-e04f-43a6-c21a-22d45b687ac6",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -216,7 +216,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "26845799-188f-4037-db4f-d9a6b804b412"
+          "WebId": "7f5895f5-4244-4022-d992-005dfb785eed"
         },
         {
           "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
@@ -247,7 +247,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "c9e954a8-c167-4b3e-a64c-aea2340d30ba",
+          "ElementId": "b07bd0cd-7edc-447f-f031-be04d86306ff",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -260,7 +260,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "3cc916f8-981f-4ee6-d32e-05ab61e365ec"
+          "WebId": "9da36339-a115-4264-90f5-14d50ccebaab"
         },
         {
           "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
@@ -291,7 +291,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "1f3c4cb2-9b54-4d20-a7a4-42066894e109",
+          "ElementId": "0ec529d3-0ef8-43d9-b8da-0883a9e408eb",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -304,7 +304,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "6f95be64-374a-4e3a-917c-bc197e50d534"
+          "WebId": "bca216a5-de90-485a-d62d-9761251898be"
         },
         {
           "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
@@ -335,7 +335,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "5b332070-4f83-46d3-c34b-55da579da588",
+          "ElementId": "114e9e57-ec10-439e-81ba-1a81a6558049",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -348,7 +348,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "4d967bc5-cbf5-4b58-c744-91d16723b059"
+          "WebId": "258dd3b6-9690-4707-95bc-e245303370b1"
         },
         {
           "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
@@ -379,7 +379,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "70b39bcc-7430-40d3-a9b2-e0165a93c189",
+          "ElementId": "58768a34-a4a4-49a2-fbbe-0113cce689f4",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -392,7 +392,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "f0bcc970-fd35-4ef0-adcb-f790f234e604"
+          "WebId": "bbd8e5bb-ce9e-4c8b-da78-769fe48c50b2"
         },
         {
           "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
@@ -423,7 +423,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "035697e1-c757-48a4-dd2c-5b2e4089114a",
+          "ElementId": "1c65b975-1a0a-4c48-9180-69188b09e1d3",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -436,7 +436,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "bc5c4a4e-dbb7-4da1-9360-95460039ea1e"
+          "WebId": "753e0333-6c97-4138-c40e-d8f91605e50a"
         },
         {
           "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
@@ -467,7 +467,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "e223a41d-9dff-4dee-b429-2cc44eca9f2e",
+          "ElementId": "d7070c3d-c8cf-436f-c0e6-1dcd4da6dcfc",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -480,7 +480,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "33c67e02-82c1-47f7-f2f5-e73bbecc4a8b"
+          "WebId": "40c7878b-5544-4ee9-b584-4f47ca8c3aa9"
         },
         {
           "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
@@ -511,7 +511,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "f8fbead8-5ced-40ad-c707-4fc99c15786f",
+          "ElementId": "5270f11b-a028-4cfc-8f7a-64bb229db027",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -524,7 +524,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "d7cb731f-e82f-479a-aff5-bbb6f4ef3c66"
+          "WebId": "37afcdd0-4132-4a80-e9f8-6e4ae7f12823"
         },
         {
           "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
@@ -555,7 +555,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "7e4feac6-084b-4b67-a488-c3182e65ecbf",
+          "ElementId": "ecab5970-566a-4c41-8906-f8cdbd88f0dd",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -568,7 +568,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "7b87ac0e-271b-4000-b4b2-393c44abd2ae"
+          "WebId": "10af3619-69c1-48d7-e368-e5f021aba42e"
         },
         {
           "$type": "Bespoke.Sph.Domain.SectionFormElement, domain.sph",
@@ -595,7 +595,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "36aba9a4-f735-4b40-dc36-96110dfd2b5b",
+          "ElementId": "8d24a151-5a2f-4067-e5a8-b1463d65e2b3",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -608,7 +608,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "9c9198b1-ab9a-4249-b821-7cd28ad3b086"
+          "WebId": "12d37357-9721-4af2-e79a-381f3777b3fd"
         },
         {
           "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
@@ -639,7 +639,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "be3c2990-30e4-4d97-da40-2a9a8cbce5bc",
+          "ElementId": "0e724af5-e897-4ddf-f100-782fe0cf2354",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -652,7 +652,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "1b531e42-48be-4f41-9850-52edf1785eee"
+          "WebId": "cbf8025e-8a94-42a8-88fc-b4087e4fee1e"
         },
         {
           "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
@@ -683,7 +683,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "f90f7bd3-c17c-43f3-fabc-119a068fa617",
+          "ElementId": "1cc4df3e-ff90-4847-ff5f-79e0bb3c1675",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -696,7 +696,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "e6d1d401-c30a-43c3-ba3f-ea08425a3f56"
+          "WebId": "5424b2da-c294-48f1-b34a-9c3eb016ae01"
         },
         {
           "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
@@ -727,7 +727,7 @@
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "5de40cee-9e10-482f-c445-a6036e4aada7",
+          "ElementId": "88aa4f98-1c29-4fab-c8af-65a12f740a8e",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -740,7 +740,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "00cdd68a-96b5-417a-e359-c32b16496400"
+          "WebId": "a8b0c6ba-1355-4874-d481-502f0f6e62e1"
         }
       ]
     },
@@ -803,6 +803,6 @@
   "Id": "consignment-request-receiver",
   "CreatedDate": "2016-10-29T12:06:30.5520972+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-29T16:05:29.5503607+08:00",
+  "ChangedDate": "2016-12-20T11:36:49.9929339+08:00",
   "WebId": "d955d20f-384c-4fc7-8ec3-f55520e3035c"
 }

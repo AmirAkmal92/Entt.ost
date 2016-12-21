@@ -1,7 +1,7 @@
 define([objectbuilders.datacontext, objectbuilders.logger, objectbuilders.router,
 objectbuilders.system, objectbuilders.validation, objectbuilders.eximp,
 objectbuilders.dialog, objectbuilders.watcher, objectbuilders.config,
-objectbuilders.app, 'partial/consignment-request-receiver'],
+objectbuilders.app, 'partial/consignment-request-product-bulk'],
 
 function(context, logger, router, system, validation, eximp, dialog, watcher, config, app, partial) {
 
@@ -16,14 +16,14 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
         activate = function(entityId) {
             id(entityId);
             var tcs = new $.Deferred();
-            context.loadOneAsync("EntityForm", "Route eq 'consignment-request-receiver'")
+            context.loadOneAsync("EntityForm", "Route eq 'consignment-request-product-bulk'")
                 .then(function(f) {
                 form(f);
                 return watcher.getIsWatchingAsync("ConsigmentRequest", entityId);
             })
                 .then(function(w) {
                 watching(w);
-                return $.getJSON("i18n/" + config.lang + "/consignment-request-receiver");
+                return $.getJSON("i18n/" + config.lang + "/consignment-request-product-bulk");
             })
                 .then(function(n) {
                 i18n = n[0];
@@ -48,7 +48,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
                 entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
             }, function(e) {
                 if (e.status == 404) {
-                    app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "Ost", ["OK"]);
+                    app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests-bulk/" + entityId, "Reactive Developer platform showcase", ["OK"]);
                 }
             }).always(function() {
                 if (typeof partial.activate === "function") {
@@ -63,6 +63,69 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
 
         },
 
+        attached = function(view) {
+            // validation
+            validation.init($('#consignment-request-product-bulk-form'), form());
+
+            if (typeof partial.attached === "function") {
+                partial.attached(view);
+            }
+
+        },
+
+        findProductsAsync = function() {
+
+            var cons = ko.toJS(entity);
+            return context.get("ost/snb-services/products/?from=" + cons.Sender.Address.Postcode + "&to=" + cons.Receivers[0].Address.Postcode + "&weight=" + cons.Product.Weight + "&height=" + cons.Product.Volume.Height + "&length=" + cons.Product.Volume.Length + "&width=" + cons.Product.Volume.Width)
+                .then(function(list) {
+                    // edit the = > back to => , the beatifier fucked up the ES2015 syntax
+                    var list2 = list.map(function(v) {
+
+                        var po = ko.mapping.fromJS(v);
+                        _(ko.unwrap(po.ValueAddedServices)).each(function(vas) {
+                            vas.isBusy = ko.observable(false);
+                            var evaluateValue = function() {
+
+                                vas.isBusy(true);
+                                var vm = {
+                                    product: v,
+                                    valueAddedService: vas,
+                                    request: entity
+                                };
+                                context.post(ko.mapping.toJSON(vm), "/ost/snb-services/calculate-value-added-service")
+                                    .done(function(result) {
+                                    vas.Value(result);
+                                    vas.isBusy(false);
+                                });
+                            };
+
+                            if (ko.unwrap(vas.UserInputs).length === 0) {
+                                vas.IsSelected.subscribe(function(selected) {
+                                    if (selected) {
+                                        evaluateValue();
+                                    } else {
+                                        vas.Value(0);
+                                    }
+                                });
+
+                            } else {
+                                _(ko.unwrap(vas.UserInputs)).each(function(uv) {
+                                    uv.Value.subscribe(evaluateValue);
+                                });
+
+                            }
+                        });
+
+                        po.TotalCost = ko.observable();
+                        // TODO -> go and get the rate
+                        partial.recalculatePrice(po)();
+                        return po;
+
+                    });
+                partial.products(list2);
+            });
+        },
+
         addReceiversCommand = function() {
 
             if (!validation.valid()) {
@@ -72,7 +135,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
             var data = ko.mapping.toJSON(entity),
                 tcs = new $.Deferred();
 
-            context.put(data, "/api/consigment-requests/" + ko.unwrap(entity().Id) + "/actions/add-receivers", headers)
+            context.put(data, "/api/consigment-requests-bulk/" + ko.unwrap(entity().Id) + "/actions/add-receivers", headers)
                 .fail(function(response) {
                 var result = response.responseJSON;
                 errors.removeAll();
@@ -96,37 +159,20 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
             });
             return tcs.promise();
         },
-        attached = function(view) {
-            // validation
-            validation.init($('#consignment-request-receiver-form'), form());
-
-            if (typeof partial.attached === "function") {
-                partial.attached(view);
-            }
-
+        putAddReceiversCommand = function() {
+            return addReceiversCommand()
+                .then(function(result) {
+                if (result) {
+                    router.navigate("consignment-request-summary/" + entity().Id());
+                }
+            });
         },
-
         compositionComplete = function() {
             $("[data-i18n]").each(function(i, v) {
                 var $label = $(v),
                     text = $label.data("i18n");
                 if (i18n && typeof i18n[text] === "string") {
                     $label.text(i18n[text]);
-                }
-            });
-        },
-        saveCommand = function() {
-            return addReceiversCommand()
-                .then(function(result) {
-                if (result.success) {
-                    return app.showMessage("Now you can go", ["OK"]);
-                } else {
-                    return Task.fromResult(false);
-                }
-            })
-                .then(function(result) {
-                if (result) {
-                    router.navigate('consignment-request-product/' + entity().Id());
                 }
             });
         };
@@ -138,14 +184,9 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
         compositionComplete: compositionComplete,
         entity: entity,
         errors: errors,
+        findProductsAsync: findProductsAsync,
+        putAddReceiversCommand: putAddReceiversCommand,
         toolbar: {
-            saveCommand: saveCommand,
-            canExecuteSaveCommand: ko.computed(function() {
-                if (typeof partial.canExecuteSaveCommand === "function") {
-                    return partial.canExecuteSaveCommand();
-                }
-                return true;
-            }),
 
         }, // end toolbar
 
