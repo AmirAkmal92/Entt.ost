@@ -1,4 +1,5 @@
-﻿<section class="view-model-modal">
+﻿<!--<section class="view-model-modal">-->
+<!--<div class="modal">-->
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -46,7 +47,7 @@
                             <div class="col-md-9">
                                 <input class="input-large form-control" type="text"
                                        placeholder=""
-                                       data-bind="value: Receiver.Address().PremiseNoMailbox"
+                                       data-bind="value: Address().PremiseNoMailbox"
                                        id="19655c49-c421-4ac6-ccca-db24550bc884" name="Receiver.Address.PremiseNoMailbox">
                                 <div class="form-control-focus"> </div>
                                 <span class="help-block"></span>
@@ -57,7 +58,7 @@
                             <div class="col-md-9">
                                 <input class="input-large form-control" type="text"
                                        placeholder=""
-                                       data-bind="value: Block"
+                                       data-bind="value: Address().Block"
                                        id="c9e954a8-c167-4b3e-a64c-aea2340d30ba" name="Receiver.Address.Block">
                                 <div class="form-control-focus"> </div>
                                 <span class="help-block"></span>
@@ -68,8 +69,8 @@
                             <div class="col-md-9">
                                 <input class="input-large form-control" type="text"
                                        placeholder=""
-                                       data-bind="value: BuldingName"
-                                       id="1f3c4cb2-9b54-4d20-a7a4-42066894e109" name="Receiver.Address.BuldingName">
+                                       data-bind="value: Address().BuildingName"
+                                       id="1f3c4cb2-9b54-4d20-a7a4-42066894e109" name="Receiver.Address.BuildingName">
                                 <div class="form-control-focus"> </div>
                                 <span class="help-block"></span>
                             </div>
@@ -79,7 +80,7 @@
                             <div class="col-md-9">
                                 <input class="input-large form-control" type="text"
                                        placeholder=""
-                                       data-bind="value: RoadName"
+                                       data-bind="value: Address().RoadName"
                                        id="5b332070-4f83-46d3-c34b-55da579da588" name="Receiver.Address.RoadName">
                                 <div class="form-control-focus"> </div>
                                 <span class="help-block"></span>
@@ -90,7 +91,7 @@
                             <div class="col-md-9">
                                 <input class="input-large form-control" type="text"
                                        placeholder=""
-                                       data-bind="value: AreaVillageGardenName"
+                                       data-bind="value: Address().AreaVillageGardenName"
                                        id="70b39bcc-7430-40d3-a9b2-e0165a93c189" name="Receiver.Address.AreaVillageGardenName">
                                 <div class="form-control-focus"> </div>
                                 <span class="help-block"></span>
@@ -101,7 +102,7 @@
                             <div class="col-md-9">
                                 <input class="input-large form-control" type="text"
                                        placeholder=""
-                                       data-bind="value: SubDistrict"
+                                       data-bind="value: Address().SubDistrict"
                                        id="035697e1-c757-48a4-dd2c-5b2e4089114a" name="Receiver.Address.SubDistrict">
                                 <div class="form-control-focus"> </div>
                                 <span class="help-block"></span>
@@ -112,7 +113,7 @@
                             <div class="col-md-9">
                                 <input class="input-large form-control" type="text"
                                        placeholder=""
-                                       data-bind="value: Postcode"
+                                       data-bind="value: Address().Postcode"
                                        id="e223a41d-9dff-4dee-b429-2cc44eca9f2e" name="Receiver.Address.Postcode">
                                 <div class="form-control-focus"> </div>
                                 <span class="help-block"></span>
@@ -123,7 +124,7 @@
                             <div class="col-md-9">
                                 <input class="input-large form-control" type="text"
                                        placeholder=""
-                                       data-bind="value: City"
+                                       data-bind="value: Address().City"
                                        id="f8fbead8-5ced-40ad-c707-4fc99c15786f" name="Receiver.Address.City">
                                 <div class="form-control-focus"> </div>
                                 <span class="help-block"></span>
@@ -134,7 +135,7 @@
                             <div class="col-md-9">
                                 <input class="input-large form-control" type="text"
                                        placeholder=""
-                                       data-bind="value: State"
+                                       data-bind="value: Address().State"
                                        id="7e4feac6-084b-4b67-a488-c3182e65ecbf" name="Receiver.Address.State">
                                 <div class="form-control-focus"> </div>
                                 <span class="help-block"></span>
@@ -145,7 +146,7 @@
                             <div class="col-md-9">
                                 <input class="input-large form-control" type="text"
                                        placeholder=""
-                                       data-bind="value: PrimaryPhone"
+                                       data-bind="value: ContactInformation().PrimaryPhone"
                                        id="be3c2990-30e4-4d97-da40-2a9a8cbce5bc" name="Receiver.ContactInformation.PrimaryPhone">
                                 <div class="form-control-focus"> </div>
                                 <span class="help-block"></span>
@@ -156,7 +157,7 @@
                             <div class="col-md-9">
                                 <input class="input-large form-control" type="text"
                                        placeholder=""
-                                       data-bind="value: PrimaryFax"
+                                       data-bind="value: ContactInformation().PrimaryFax"
                                        id="f90f7bd3-c17c-43f3-fabc-119a068fa617" name="Receiver.ContactInformation.PrimaryFax">
                                 <div class="form-control-focus"> </div>
                                 <span class="help-block"></span>
@@ -167,7 +168,7 @@
                             <div class="col-md-9">
                                 <input class="input-large form-control" type="text"
                                        placeholder=""
-                                       data-bind="value: PrimaryEmail"
+                                       data-bind="value: ContactInformation().PrimaryEmail"
                                        id="5de40cee-9e10-482f-c445-a6036e4aada7" name="Receiver.ContactInformation.PrimaryEmail">
                                 <div class="form-control-focus"> </div>
                                 <span class="help-block"></span>
@@ -177,9 +178,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <input form="custom-form-dialog-form" data-dismiss="modal" type="submit" class="btn btn-default" value="Add" data-bind="click: okClick" />
+                <input form="custom-form-dialog-form" data-dismiss="modal" type="submit" class="btn btn-default" value="OK" data-bind="click: okClick" />
                 <a href="#" class="btn btn-default" data-dismiss="modal" data-bind="click : cancelClick">Cancel</a>
             </div>
         </div>
     </div>
-</section>
+<!--</div>-->

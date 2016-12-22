@@ -7,11 +7,11 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
 
     var receiver = ko.observable(new bespoke.Ost_consigmentRequest.domain.Receiver(system.guid())),
         watching = ko.observable(false),
-        form = ko.observable(new bespoke.sph.domain.EntityForm()),
         id = ko.observable(),
         i18n = null,
 
         activate = function (con) {
+            receiver(new bespoke.Ost_consigmentRequest.domain.Receiver(system.guid()));
             return true;
         },
         formatRepo = function (contact) {
@@ -65,7 +65,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 escapeMarkup: function (markup) { return markup; },
                 minimumInputLength: 3,
                 templateResult: formatRepo,
-                templateSelection: function (o) { return o.CompanyName || o.text; }
+                templateSelection: function (o) { return o.ContactPerson || o.text; }
             })
                 .on("select2:select", function (e) {
                     console.log(e);
@@ -74,7 +74,9 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         return;
                     }
                     receiver().Address().PremiseNoMailbox(contact.Address.PremiseNoMailbox);
+                    receiver().ContactPerson(contact.ContactPerson);
                     receiver().CompanyName(contact.CompanyName);
+                    receiver().ReferenceNo(contact.ReferenceNo);
                     receiver().Address().AreaVillageGardenName(contact.Address.AreaVillageGardenName);
                     receiver().Address().Block(contact.Address.Block);
                     receiver().Address().BuildingName(contact.Address.BuildingName);
@@ -88,33 +90,13 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     receiver().ContactInformation().PrimaryEmail(contact.ContactInformation.EmailAddress);
                     receiver().ContactInformation().PrimaryFax(contact.ContactInformation.FaxNumber);
                     receiver().ContactInformation().PrimaryPhone(contact.ContactInformation.PhoneNumber);
-
-
                 });
         },
 
-        bulk = ko.observable({
-            "ContactPerson": ko.observable(),
-            "CompanyName": ko.observable(),
-            "PremiseNoMailbox": ko.observable(),
-            "AreaVillageGardenName": ko.observable(),
-            "Block": ko.observable(),
-            "BuildingName": ko.observable(),
-            "City": ko.observable(),
-            "Country": ko.observable(),
-            "District": ko.observable(),
-            "RoadName": ko.observable(),
-            "State": ko.observable(),
-            "SubDistrict": ko.observable(),
-            "Postcode": ko.observable(),
-            "EmailAddress": ko.observable(),
-            "FaxNumber": ko.observable(),
-            "PhoneNumber": ko.observable()
-        }),
         okClick = function (data, ev) {
-            if (bespoke.utils.form.checkvalidity(ev.target)) {
-                dialog.close(this, "Add");
-            }
+            //if (bespoke.utils.receiver.checkvalidity(ev.target)) {
+                dialog.close(this, "OK");
+            //}
         },
         cancelClick = function () {
             dialog.close(this, "Cancel");
@@ -134,7 +116,6 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         config: config,
         receiver: receiver,
         compositionComplete: compositionComplete,
-        bulk: bulk,
         okClick: okClick,
         cancelClick: cancelClick
     };
