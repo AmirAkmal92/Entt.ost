@@ -23,9 +23,9 @@ define([objectbuilders.system, "viewmodels/consigment-request-details" , "servic
               var markup = "<div class='select2-result-repository clearfix'>" +
                 "<div class='select2-result-repository__avatar'><img src='/assets/layouts/layout/img/avatar3_small.jpg' /></div>" +
                 "<div class='select2-result-repository__meta'>" +
-                  "<div class='select2-result-repository__title'>" + contact.CompanyName + "</div>";
+                  "<div class='select2-result-repository__title'>" + contact.ContactPerson + "</div>";
         
-                markup += "<div class='select2-result-repository__description'>" + contact.ContactPerson + "</div>";
+              markup += "<div class='select2-result-repository__description'>" + contact.CompanyName + "</div>";
               
         
               markup += "<div class='select2-result-repository__statistics'>" +
@@ -68,7 +68,7 @@ define([objectbuilders.system, "viewmodels/consigment-request-details" , "servic
                   escapeMarkup: function (markup) { return markup; }, 
                   minimumInputLength: 3,
                   templateResult: formatRepo,
-                  templateSelection: function(o){ return o.CompanyName || o.text; }
+                  templateSelection: function (o) { return o.ContactPerson || o.text; }
                 })
                 .on("select2:select", function(e){
                     console.log(e);
@@ -78,6 +78,7 @@ define([objectbuilders.system, "viewmodels/consigment-request-details" , "servic
                     }
                     receiver().Address().PremiseNoMailbox(contact.Address.PremiseNoMailbox);
                     receiver().CompanyName(contact.CompanyName);
+                    receiver().ReferenceNo(contact.ReferenceNo);
                     receiver().Address().AreaVillageGardenName(contact.Address.AreaVillageGardenName);
                     receiver().Address().Block(contact.Address.Block);
                     receiver().Address().BuildingName(contact.Address.BuildingName);

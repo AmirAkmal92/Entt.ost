@@ -138,18 +138,19 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
         compositionComplete: compositionComplete,
         entity: entity,
         errors: errors,
-        toolbar: {
-            saveCommand: saveCommand,
-            canExecuteSaveCommand: ko.computed(function() {
-                if (typeof partial.canExecuteSaveCommand === "function") {
-                    return partial.canExecuteSaveCommand();
-                }
-                return true;
-            }),
+        saveCommand: saveCommand
+        //toolbar: {
+        //    saveCommand: saveCommand,
+        //    canExecuteSaveCommand: ko.computed(function() {
+        //        if (typeof partial.canExecuteSaveCommand === "function") {
+        //            return partial.canExecuteSaveCommand();
+        //        }
+        //        return true;
+        //    }),
 
-        }, // end toolbar
+        //}, // end toolbar
 
-        commands: ko.observableArray([])
+        //commands: ko.observableArray([])
     };
 
     return vm;
