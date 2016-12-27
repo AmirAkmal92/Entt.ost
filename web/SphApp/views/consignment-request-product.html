@@ -36,201 +36,187 @@
                 <a href="" class="reload" data-original-title="" title=""> </a>
             </div>
         </div>
+
         <div class="portlet-body form">
-            <form class="form-horizontal" data-bind="with : entity" id="consignment-request-product-form">
+            <form action="#" class="form-horizontal" data-bind="with : entity" id="consignment-request-product-form">
                 <div class="form-body">
-                    <h4 data-i18n="Volume &amp; Weight" data-bind="visible:true">Volume &amp; Weight</h4>
+                    <h3 class="form-section" data-i18n="Calculate Volume &amp; Weight" data-bind="visible:true">Calculate Volume &amp; Weight</h3>
                     <div class="form-group" data-bind="visible:true">
-                        <label data-i18n="Weight" class="col-md-3 control-label" for="6465286c-a3af-46de-e7d8-0499b6bf7cf4">Weight</label>
-                        <div class="col-md-3">
-                            <input class="form-control" required type="text"
-                                   placeholder=""
-                                   data-bind="value: Product().Weight"
-                                   data-rule-number="true" data-rule-required="true"
-                                   data-rule-min="0"
-                                   data-rule-max="100"
-                                   id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Product.Weight">
-                            <span class="help-block">Weight in Kilogram</span>
+                        <label data-i18n="Weight in (kg)" class="col-md-3 control-label" for="6465286c-a3af-46de-e7d8-0499b6bf7cf4">
+                            Weight in (kg)
+                            <span class="required"> * </span>
+                        </label>
+                        <div class="col-md-4">
+                            <input class="form-control" required type="text" placeholder="" data-bind="value: Product().Weight" data-rule-number="true" data-rule-required="true" data-rule-min="0" data-rule-max="100" id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Product.Weight" />
+                            <span class="help-block"> Please enter weight </span>
                         </div>
                     </div>
                     <div class="form-group" data-bind="visible:true">
-                        <label data-i18n="Width" class="col-md-3 control-label" for="61040711-a759-4cf8-ea32-47b1cdee2f44">Width</label>
-                        <div class="col-md-3">
-                            <input class="form-control" type="text"
-                                   placeholder=""
-                                   data-bind="value: Product().Volume().Width"
-                                   data-rule-number="true"
-                                   id="61040711-a759-4cf8-ea32-47b1cdee2f44" name="Product.Volume.Width">
-                            <div class="form-control-focus"> </div>
-                            <span class="help-block">Width in cm</span>
+                        <label data-i18n="Width in (cm)" for="61040711-a759-4cf8-ea32-47b1cdee2f44" class="control-label col-md-3">
+                            Width in (cm)
+                            <span class="required"> * </span>
+                        </label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" placeholder="" data-bind="value: Product().Volume().Width" data-rule-number="true" id="61040711-a759-4cf8-ea32-47b1cdee2f44" name="Product.Volume.Width" />
+                            <span class="help-block"> Please enter width </span>
                         </div>
                     </div>
                     <div class="form-group" data-bind="visible:true">
-                        <label data-i18n="Length" class="col-md-3 control-label" for="38c9d5fd-8458-4ce4-9575-da6edf8b0c9d">Length</label>
-                        <div class="col-md-3">
-                            <input class="form-control" type="text"
-                                   placeholder=""
-                                   data-bind="value: Product().Volume().Length"
-                                   data-rule-number="true"
-                                   id="38c9d5fd-8458-4ce4-9575-da6edf8b0c9d" name="Product.Volume.Length">
-                            <div class="form-control-focus"> </div>
-                            <span class="help-block">Length  in cm</span>
+                        <label data-i18n="Length" class="col-md-3 control-label" for="38c9d5fd-8458-4ce4-9575-da6edf8b0c9d">
+                            Length in (cm)
+                            <span class="required"> * </span>
+                        </label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" placeholder="" data-bind="value: Product().Volume().Length" data-rule-number="true" id="38c9d5fd-8458-4ce4-9575-da6edf8b0c9d" name="Product.Volume.Length" />
+                            <span class="help-block"> Please enter length </span>
                         </div>
                     </div>
                     <div class="form-group" data-bind="visible:true">
-                        <label data-i18n="Height" class="col-md-3 control-label" for="a044e320-f819-4adf-fc9d-f130079818fe">Height</label>
-                        <div class="col-md-3">
-                            <input class="form-control" type="text"
-                                   placeholder=""
-                                   data-bind="value: Product().Volume().Height"
-                                   data-rule-number="true"
-                                   id="a044e320-f819-4adf-fc9d-f130079818fe" name="Product.Volume.Height">
-                            <div class="form-control-focus"> </div>
-                            <span class="help-block">Height  in cm</span>
+                        <label data-i18n="Height" class="col-md-3 control-label" for="a044e320-f819-4adf-fc9d-f130079818fe">
+                            Height in (cm)
+                            <span class="required"> * </span>
+                        </label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" placeholder="" data-bind="value: Product().Volume().Height" data-rule-number="true" id="a044e320-f819-4adf-fc9d-f130079818fe" name="Product.Volume.Height" />
+                            <span class="help-block"> Please enter height </span>
                         </div>
                     </div>
-                    <div class="form-group" data-bind="visible:true">
-                        <label data-i18n="Find the right service" class="col-md-3 control-label sr-only" for="btnFindProducts">Find the right service</label>
-                        <div class="col-md-6">
-                            <button data-bind="command : $root.findProductsAsync, visible :true, enable: true" class="btn red btn-outline">
-                                <i class="fa fa-search"></i>
-                                Find the right service
+                </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button data-bind="command : $root.findProductsAsync, visible :true, enable: true" class="btn red">
+                                <!--<i class="fa fa-search"></i>-->
+                                Find Service
                             </button>
+                            <!--<button type="submit" class="btn green">Submit</button>-->
+                            <button type="button" class="btn default">Reset</button>
                         </div>
                     </div>
-                    <h4 data-i18n="Services Available" data-bind="visible:true">Services Available</h4>
-                    
-                    <div class="form-group">
-                        <label data-i18n="Service" class="col-md-3 control-label" for="serviceCode">Service</label>
-                        <div class="col-md-3">
-                            <div class="mt-element-list">
-                                <div class="mt-list-container list-todo" id="accordion1" role="tablist" aria-multiselectable="true">
-                                    <div class="list-todo-line"></div>
-                                    <ul data-bind="foreach :$root.partial.products">
-                                        <li class="mt-list-item">
-                                            <div class="list-todo-icon bg-white">
-                                                <a href="javascript:;" data-bind="click : $root.partial.selectProduct">
-                                                    <i class="icon-check" style="font-size:28px"></i>
-                                                </a>
-                                            </div>
-                                            <div class="list-todo-item" data-bind="css : {'green-meadow': ko.unwrap($root.entity().Product().Code) === Code, 'blue-steel': ko.unwrap($root.entity().Product().Code) !== Code}">
-                                                <a class="list-toggle-container collapsed" data-toggle="collapse" data-parent="#accordion1" data-bind="attr :{href :'#product-'+ ko.unwrap(Code)}" onclick=" " aria-expanded="false">
-                                                    <div class="list-toggle done uppercase">
-                                                        <div class="list-toggle-title bold" data-bind="text:Name"></div>
-                                                        <div class="badge badge-default pull-right bold" data-bind="text:Code"></div>
-                                                    </div>
-                                                </a>
-                                                <div class="task-list panel-collapse collapse" data-bind="attr :{id : 'product-' + ko.unwrap(Code)}" aria-expanded="false" style="height: 0px;">
-                                                    <ul>
-                                                        <li class="task-list-item done">
-                                                            <div class="task-icon">
-                                                                <a href="javascript:;">
-                                                                    <i class="fa fa-calendar-check-o fa-2x"></i>
-                                                                </a>
-                                                            </div>
-                                                            <div class="task-content">
-                                                                <h4 class="uppercase bold">
-                                                                    <a href="javascript:;">Service Guarantee</a>
-                                                                </h4>
-                                                                <p data-bind="text : Description">Next business day </p>
-                                                            </div>
-                                                        </li>
-                                                        <li class="task-list-item">
-                                                            <div class="task-icon">
-                                                                <a href="javascript:;">
-                                                                    <i class="fa fa-clock-o fa-2x"></i>
-                                                                </a>
-                                                            </div>
-                                                            <div class="task-content">
-                                                                <h4 class="uppercase bold">
-                                                                    <a href="javascript:;">Commitment Date</a>
-                                                                </h4>
-                                                                <p data-bind="text: DeliverySla"></p>
-                                                            </div>
-                                                        </li>
-                                                        <!-- ko if : ko.unwrap(ValueAddedServices).length > 0 -->
-                                                        <li class="task-list-item">
-                                                            <div class="task-icon">
-                                                                <a href="javascript:;">
-                                                                    <i class="icon-present fa-2x"></i>
-                                                                </a>
-                                                            </div>
-                                                            <div class="task-content">
-                                                                <h4 class="uppercase bold">
-                                                                    <a href="javascript:;">Value added services</a>
-                                                                </h4>
+                </div>
 
-                                                                <ul class="list-group" data-bind="foreach: ValueAddedServices">
-                                                                    <li class="list-group-item">
-                                                                        <div class="md-checkbox">
-                                                                            <input type="checkbox" data-bind="checked : IsSelected, attr :{ id :ko.unwrap($parent.Code) + '-' + ko.unwrap(Code)}" class="md-check">
-                                                                            <label data-bind="attr :{ for :ko.unwrap($parent.Code) + '-' + ko.unwrap(Code)}">
-                                                                                <span class="inc"></span>
-                                                                                <span class="check"></span>
-                                                                                <span class="box"></span>
-                                                                                <!-- ko text : Name -->
-                                                                                <!-- /ko -->
-                                                                            </label>
-                                                                            <i class="fa fa-spin fa-circle-o-notch" data-bind="visible: isBusy"></i>
-                                                                        </div>
-                                                                        <span class="badge" style="margin-top:-20px" data-bind="money: Value"></span>
-                                                                    </li>
-                                                                    <!-- ko foreach: UserInputs -->
-                                                                    <div class="form-group form-md-line-input" data-bind="visible : $parent.IsSelected">
-                                                                        <label class="col-md-3 control-label" data-bind="text: Name"></label>
-                                                                        <div class="col-md-9">
-                                                                            <input class="input-small form-control" data-bind="value:Value" type="number" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- /ko -->
-                                                                </ul>
+                <h4 data-i18n="Services Available" data-bind="visible:true">Services Available</h4>
 
-                                                            </div>
-                                                        </li>
-                                                        <!-- /ko -->
-
-                                                        <li class="task-list-item">
-                                                            <div class="task-icon">
-                                                            </div>
-                                                            <div class="task-content">
-                                                                <button class="btn btn-info" data-bind="command : $root.partial.recalculatePrice.call($root.partial, $data)">Recalculate the price</button>
-                                                                <label class="btn red btn-outline btn-circle btn-md active pull-right" data-bind="text : 'RM ' + ko.unwrap(TotalCost)">RM 46.56</label>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                <div class="form-group">
+                    <label data-i18n="Service" class="col-md-3 control-label" for="serviceCode">Service</label>
+                    <div class="col-md-3">
+                        <div class="mt-element-list">
+                            <div class="mt-list-container list-todo" id="accordion1" role="tablist" aria-multiselectable="true">
+                                <div class="list-todo-line"></div>
+                                <ul data-bind="foreach :$root.partial.products">
+                                    <li class="mt-list-item">
+                                        <div class="list-todo-icon bg-white">
+                                            <a href="javascript:;" data-bind="click : $root.partial.selectProduct">
+                                                <i class="icon-check" style="font-size:28px"></i>
+                                            </a>
+                                        </div>
+                                        <div class="list-todo-item" data-bind="css : {'green-meadow': ko.unwrap($root.entity().Product().Code) === Code, 'blue-steel': ko.unwrap($root.entity().Product().Code) !== Code}">
+                                            <a class="list-toggle-container collapsed" data-toggle="collapse" data-parent="#accordion1" data-bind="attr :{href :'#product-'+ ko.unwrap(Code)}" onclick=" " aria-expanded="false">
+                                                <div class="list-toggle done uppercase">
+                                                    <div class="list-toggle-title bold" data-bind="text:Name"></div>
+                                                    <div class="badge badge-default pull-right bold" data-bind="text:Code"></div>
                                                 </div>
+                                            </a>
+                                            <div class="task-list panel-collapse collapse" data-bind="attr :{id : 'product-' + ko.unwrap(Code)}" aria-expanded="false" style="height: 0px;">
+                                                <ul>
+                                                    <li class="task-list-item done">
+                                                        <div class="task-icon">
+                                                            <a href="javascript:;">
+                                                                <i class="fa fa-calendar-check-o fa-2x"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="task-content">
+                                                            <h4 class="uppercase bold">
+                                                                <a href="javascript:;">Service Guarantee</a>
+                                                            </h4>
+                                                            <p data-bind="text : Description">Next business day </p>
+                                                        </div>
+                                                    </li>
+                                                    <li class="task-list-item">
+                                                        <div class="task-icon">
+                                                            <a href="javascript:;">
+                                                                <i class="fa fa-clock-o fa-2x"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="task-content">
+                                                            <h4 class="uppercase bold">
+                                                                <a href="javascript:;">Commitment Date</a>
+                                                            </h4>
+                                                            <p data-bind="text: DeliverySla"></p>
+                                                        </div>
+                                                    </li>
+                                                    <!-- ko if : ko.unwrap(ValueAddedServices).length > 0 -->
+                                                    <li class="task-list-item">
+                                                        <div class="task-icon">
+                                                            <a href="javascript:;">
+                                                                <i class="icon-present fa-2x"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="task-content">
+                                                            <h4 class="uppercase bold">
+                                                                <a href="javascript:;">Value added services</a>
+                                                            </h4>
+
+                                                            <ul class="list-group" data-bind="foreach: ValueAddedServices">
+                                                                <li class="list-group-item">
+                                                                    <div class="md-checkbox">
+                                                                        <input type="checkbox" data-bind="checked : IsSelected, attr :{ id :ko.unwrap($parent.Code) + '-' + ko.unwrap(Code)}" class="md-check">
+                                                                        <label data-bind="attr :{ for :ko.unwrap($parent.Code) + '-' + ko.unwrap(Code)}">
+                                                                            <span class="inc"></span>
+                                                                            <span class="check"></span>
+                                                                            <span class="box"></span>
+                                                                            <!-- ko text : Name -->
+                                                                            <!-- /ko -->
+                                                                        </label>
+                                                                        <i class="fa fa-spin fa-circle-o-notch" data-bind="visible: isBusy"></i>
+                                                                    </div>
+                                                                    <span class="badge" style="margin-top:-20px" data-bind="money: Value"></span>
+                                                                </li>
+                                                                <!-- ko foreach: UserInputs -->
+                                                                <div class="form-group form-md-line-input" data-bind="visible : $parent.IsSelected">
+                                                                    <label class="col-md-3 control-label" data-bind="text: Name"></label>
+                                                                    <div class="col-md-9">
+                                                                        <input class="input-small form-control" data-bind="value:Value" type="number" />
+                                                                    </div>
+                                                                </div>
+                                                                <!-- /ko -->
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                    <!-- /ko -->
+
+                                                    <li class="task-list-item">
+                                                        <div class="task-icon">
+                                                        </div>
+                                                        <div class="task-content">
+                                                            <button class="btn btn-info" data-bind="command : $root.partial.recalculatePrice.call($root.partial, $data)">Recalculate the price</button>
+                                                            <label class="btn red btn-outline btn-circle btn-md active pull-right" data-bind="text : 'RM ' + ko.unwrap(TotalCost)">RM 46.56</label>
+                                                        </div>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    <h4 data-i18n="Price &amp; Others" data-bind="visible:true">Price &amp; Others</h4>
-                    <div class="form-group form-md-line-input" data-bind="visible:true">
-                        <label data-i18n="Insurance - High value" class="col-md-3 control-label" for="65c20b74-a9cc-4626-9486-37b26c9cdbb7">Insurance - High value</label>
-                        <div class="col-md-9">
-                            <input class="input-large form-control" type="text"
-                                   placeholder=""
-                                   data-bind="value: Insurance().HighValue"
-                                   id="65c20b74-a9cc-4626-9486-37b26c9cdbb7" name="Insurance.HighValue">
-                            <div class="form-control-focus"> </div>
-                            <span class="help-block"></span>
-                        </div>
+                </div>
+                <!--<h3 data-i18n="Price &amp; Others" data-bind="visible:true">Price &amp; Others</h3>
+                <div class="form-group" data-bind="visible:true">
+                    <label data-i18n="Insurance - High value" class="col-md-3 control-label" for="65c20b74-a9cc-4626-9486-37b26c9cdbb7">Insurance - High value</label>
+                    <div class="col-md-9">
+                        <input class="input-large form-control" type="text"
+                               placeholder=""
+                               data-bind="value: Insurance().HighValue"
+                               id="65c20b74-a9cc-4626-9486-37b26c9cdbb7" name="Insurance.HighValue">
                     </div>
-                    <div class="form-group form-md-line-input" data-bind="visible:true">
-                        <label data-i18n="Next " class="col-md-3 control-label sr-only" for="btnNextOnProduct">Next </label>
-                        <div class="col-md-9">
-                            <button data-bind="command : $root.putAddReceiversCommand, visible :true, enable: true" class="btn btn-outline green button-next">
-                                Next
-                                <i class="fa fa-angle-right"></i>
-                            </button>
-                        </div>
-                    </div>
+                </div>-->
+                <div class="form-actions right">
+                    <button type="button" class="btn default">Cancel</button>
+                    <a class="btn btn-danger" data-bind="command : $root.putAddReceiversCommand, visible :true, enable: true">Next <span class="fa fa-check"></span></a>
                 </div>
             </form>
         </div>
     </div>
-
-
 </div>
