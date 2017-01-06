@@ -1,0 +1,141 @@
+﻿<div class="row" id="shipping-rate-form">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase"> Check shipping rates</span>
+                </div>
+                <ul class="actions pull-right">
+                    <li class="btn blue-steel btn-outline btn-circle active">
+                        <span href="#tab11" class="nav-link toggle" data-toggle="tab"><i class="fa fa-map-pin"></i> Domestic</span>
+                    </li>
+                    <li class="btn green btn-outline btn-circle">
+                        <span href="#tab12" class="nav-link toggle" data-toggle="tab"><i class="fa fa-globe"></i> International</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="portlet-body">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab11">
+                        <form role="form">
+                            <div class="row form-body">
+                                <div class="form-group col-md-12">
+                                    <label class="control-label font-red-sunglo" for="fromPostcode">From</label>
+                                    @*<input type="text" placeholder="Postcode" class="form-control" />*@
+                                    <select class="form-control" id="from-address" placeholder="Postcode"></select>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="control-label font-red-sunglo" for="toPostcode">To</label>
+                                    @*<input type="text" placeholder="Postcode" class="form-control" />*@
+                                    <select class="form-control" id="to-address" placeholder="Postcode"></select>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="control-label font-red-sunglo" for="weight">Weight</label>
+                                    <input type="text" placeholder="Weight in KG" class="form-control" id="weight" data-bind="value: weight" />
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="control-label font-red-sunglo" for="length">Length</label>
+                                    <input type="text" placeholder="Length in CM" class="form-control" id="length" data-bind="value: length" />
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="control-label font-red-sunglo" for="height">Height</label>
+                                    <input type="text" placeholder="Height in CM" class="form-control" id="height" data-bind="value: height" />
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="control-label font-red-sunglo" for="width">Width</label>
+                                    <input type="text" placeholder="Width in CM" class="form-control" id="width" data-bind="value: width" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="tab12">
+                        <form role="form" action="#">
+                            <div class="row form-body">
+                                <div class="form-group col-md-8">
+                                    <label class="control-label font-red-sunglo">Origin Country</label>
+                                    <input type="text" placeholder="Origin Country" class="form-control" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label font-red-sunglo">Postcode</label>
+                                    <input type="text" placeholder="Postcode" class="form-control" />
+                                </div>
+                                <div class="form-group col-md-8">
+                                    <label class="control-label font-red-sunglo">Destination Country</label>
+                                    <input type="text" placeholder="International Country" class="form-control" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label font-red-sunglo">Postcode</label>
+                                    <input type="text" placeholder="Postcode" class="form-control" />
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="control-label font-red-sunglo">Weight</label>
+                                    <input type="text" placeholder="Weight in KG" class="form-control" />
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="control-label font-red-sunglo">Length</label>
+                                    <input type="text" placeholder="Length in CM" class="form-control" />
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="control-label font-red-sunglo">Height</label>
+                                    <input type="text" placeholder="Height in CM" class="form-control" />
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="control-label font-red-sunglo">Width</label>
+                                    <input type="text" placeholder="Width in CM" class="form-control" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <div class="margin-top-10">
+                    @*<a class="btn red" data-toggle="modal" href="#shiprate" data-bind="click : getRatesAsync, disable : busy">Submit <i class="fa fa-spin fa-circle-o-notch" data-bind="visible : busy"></i></a>*@
+                    <a class="btn red" data-bind="click : getRatesAsync" data-target="#shiprate" data-toggle="modal">Submit </a>
+                    @*<button type="button" data-bind="click : getRatesAsync, disable : busy" class="btn green toggle">
+                            Submit
+                            <i class="fa fa-spin fa-circle-o-notch" data-bind="visible : busy"></i>
+                        <span><a data-toggle="modal" href="#shiprate"></a></span>
+                        </button>*@
+                    @*<button type="submit" class="btn green">Calculate</button>*@
+                    <button type="reset" class="btn default">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="shiprate" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header portlet-title bg-red">
+                <button type="button" class="close fa-globe font-white" data-dismiss="modal" aria-hidden="true">x</button>
+                <div class="caption font-white">
+                    <i class="icon-settings font-white"></i>
+                    <span class="caption-subject bold uppercase"> Available Product Services</span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="mt-element-list">
+                    <div class="row">
+                        <h3 class="red"> Service Suggestions </h3>
+                    </div>
+                    <div class="mt-list-container list-simple">
+                        <ul data-bind="foreach : products">
+                            <li class="mt-list-item">
+                                <div class="list-icon-container done">
+                                    <i class="icon-check"></i>
+                                </div>
+                                <div class="" data-bind="text : 'RM ' + ko.unwrap(TotalCost).toFixed(2)"> RM 45.55</div>
+                                <div class="list-item-content">
+                                    <h3 class="uppercase">
+                                        <a href="javascript:;" data-bind="text : Name">Product name</a>
+                                    </h3>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

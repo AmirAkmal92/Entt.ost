@@ -1,0 +1,84 @@
+﻿@{
+    @Html.Partial("_headerbar")
+    @Html.Partial("_calcvol")
+    @Html.Partial("_sidebarmobile")
+    Layout = "~/Views/Home/_Layout.cshtml";
+}
+
+<section class="light-bg stats-bg">
+    <div class="container space">
+        <div class="row" style="height:inherit;">
+            <div class="portlet light bordered" id="panel-track">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-map-marker"></i>
+                        <span class="caption-subject bold uppercase">Track And Trace</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <form role="form">
+                        <div class="form-body">
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Insert Tracking Number" data-bind="value: conNote" />
+                                    <span class="input-group-btn">
+                                        <button class="btn red" type="button" data-bind="click: search">Track</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <br /><br />
+                    <table class="table table-striped table-hover table-bordered" data-bind="visible: busy">
+                        <thead>
+                            <tr>
+                                <th>Date / Time</th>
+                                <th>Process</th>
+                                <th>Event</th>
+                            </tr>
+                        </thead>
+
+                        <tbody data-bind="foreach: results">
+                            <tr>
+                                <td class="font-grey-mint" data-bind="text:date"></td>
+                                <td class="font-grey-mint" data-bind="text:process"></td>
+                                <td class="font-grey-mint" data-bind="text:office"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+
+                var ViewModel = function () {
+                    var busy = ko.observable(false),
+                        conNote = ko.observable(),
+                        table = ko.observable("hidden"),
+                        results = ko.observableArray(),
+                        search = function () {
+
+                            busy(true);
+                            table("");
+                            return $.getJSON("/api/track-traces/" + ko.unwrap(conNote))
+                            .done(results);
+                        };
+
+                    return {
+                        busy: busy,
+                        conNote: conNote,
+                        results: results,
+                        table: table,
+                        search: search
+                    };
+                };
+
+                $(function () {
+
+                    var vm = new ViewModel();
+                    ko.applyBindings(vm, document.getElementById("panel-track"));
+                });
+            </script>
+        </div>
+    </div>
+</section>

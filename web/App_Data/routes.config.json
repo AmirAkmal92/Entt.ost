@@ -40,5 +40,19 @@
     "showWhenLoggedIn": false,
     "isAdminPage": false,
     "startPageRoute": null
+  },
+  {
+    "role": "customers",
+    "groupName": null,
+    "route": "create-consignment-bulk",
+    "moduleId": "viewmodels/create-consignment-bulk",
+    "title": "Create consignment bulk",
+    "nav": true,
+    "icon": "fa fa-shopping-cart",
+    "caption": "Create consignment bulk",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
   }
 ]

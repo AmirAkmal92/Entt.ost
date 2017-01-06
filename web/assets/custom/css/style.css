@@ -1,10 +1,10 @@
 html, body {
 	height: 100%;
-	font-family: 'Nunito', 'Arial', sans-serif;
+	/*font-family: 'Nunito', 'Arial', sans-serif;*/
 	/*font-weight: 100;*/
 }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-	font-family: 'Nunito', sans-serif;
+	/*font-family: 'Nunito', sans-serif;*/
 	font-weight: 100;
 }
 .h1, .h2, .h3, h1, h2, h3 {
@@ -159,7 +159,7 @@ html, body {
 	font-size: 12px;
 }
 .table>thead:first-child>tr:first-child>th {
-	background-color: #f69;
+	background-color: #db282e;
 	color: #fff;
 }
 .navbar-fixed-top + .content-container {
@@ -424,7 +424,7 @@ header.page-header, .header-top-bar, .header-logo {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	font-family: 'Nunito', sans-serif;
+	/*font-family: 'Nunito', sans-serif;*/
 }
 .header-grid-outer {
 	zoom: 1;

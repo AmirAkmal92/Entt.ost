@@ -1,0 +1,100 @@
+<div class="page-sidebar-wrapper">
+    <div class="page-sidebar navbar-collapse collapse">
+        <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px" id="contact-group-list">
+            <li class="sidebar-toggler-wrapper hide">
+                <div class="sidebar-toggler">
+                    <span></span>
+                </div>
+            </li>
+            <li class="sidebar-search-wrapper">
+                <form class="sidebar-search" method="POST">
+                    <a href="javascript:;" class="remove">
+                        <i class="icon-close"></i>
+                    </a>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <a href="javascript:;" class="btn submit">
+                                <i class="icon-magnifier"></i>
+                            </a>
+                        </span>
+                    </div>
+                </form>
+            </li>
+            <li class="nav-item start">
+                <a href="/ost#address-book-home/-" class="nav-link nav-toggle">
+                    <i class="icon-user-follow"></i>
+                    <span class="title">Address Books</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item start">
+                        <a href="/ost#address-book-home/-" class="nav-link">
+                            <i class="icon-users"></i>
+                            <span class="title">All contacts</span>
+                            <span class="badge badge-info" data-bind="text: contactsCount">852</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- ko compose : {view : '_address-book-groups' }-->
+            
+            <!--/ko-->
+            <li class="heading">
+                <h3 class="uppercase">Consignments</h3>
+            </li>
+            <li class="nav-item  ">
+                <a href="/ost#consigment-request-details/0" class="nav-link nav-toggle">
+                    <i class="icon-handbag"></i>
+                    <span class="title">Parcel</span>
+                    <span class="arrow"></span>
+                </a>
+
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="/ost#consigment-request-details/0" class="nav-link ">
+                            <span class="title">Send A Parcel</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="/ost#bulk-upload/0" class="nav-link ">
+                            <span class="title">Bulk Upload</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+            <li class="nav-item  ">
+                <a href="/ost#consigment-requests" class="nav-link nav-toggle">
+                    <i class="icon-handbag"></i>
+                    <span class="title">Request</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="/ost#consigment-requests" class="nav-link ">
+                            <span class="title">New</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="/ost#consigment-requests/new" class="nav-link ">
+                            <span class="title">In Progress</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="/ost#consigment-requests/new" class="nav-link ">
+                            <span class="title">Last 6 month</span>
+                        </a>
+                    </li>
+
+                </ul>
+
+
+            </li>
+
+        </ul>
+        <!-- END SIDEBAR MENU -->
+        <!-- END SIDEBAR MENU -->
+    </div>
+    <!-- END SIDEBAR -->
+</div>

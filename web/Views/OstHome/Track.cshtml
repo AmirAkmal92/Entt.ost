@@ -1,0 +1,95 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Pos Malaysia</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content='Pos Malaysia - Homepage' />
+    <meta name="keywords" content='Pos, Malaysia")' />
+    <title>Pos Malaysia</title>
+    <script type="text/javascript" src="~/SphApp/main.custom.js"></script>
+</head>
+<body class="en">
+    <div id="tracking-form">
+        <form id="tracking-form" name="tracking-form" method="POST">
+            <p>
+                <textarea id="trackingNo" name="trackingNo" placeholder="Please enter tracking no" rows="5"></textarea>
+            </p>
+            <input type="hidden" id="hvtrackNoHeader" name="hvtrackNoHeader" value="" />
+            <input type="hidden" id="hvfromheader" name="hvfromheader" value="0" />
+            <button style="margin: 10px 0;" class="dark-gray" type="button" id="bttest"><strong>TRACK</strong></button>
+        </form>
+    </div>
+    <div id="trackinfo"></div>
+
+    <script async="" src="//www.google-analytics.com/analytics.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script>
+                    function cleanTrackingIds(str) {
+                        //remove new lines, spaces, and plus'
+                        str = str.replace(/\n/g, ";").replace(/ /g, ";").replace(/\+/g, ';');
+
+                        //if multiple replacements where done, then there will be multiple semi-colons. remove them
+                        while (str.indexOf(';;') > -1) {
+                            str = str.replace(';;', ';');
+                        }
+
+                        //remove trailing semi-colons
+                        if (str.charAt(str.length - 1) == ";") {
+                            str = str.slice(0, -1);
+                        }
+
+                        //remove prefixed semi-colons
+                        if (str.charAt(0) == ";") {
+                            str = str.substring(1);
+                        }
+
+                        //cant think of anything else for the time being
+                        return str;
+                    }
+
+
+                    $(document).ready(function () {
+                        $("#bttest").click(function () {
+                            if ($("#trackingNo").val() == "") {
+
+                                $("#trackinfo").html("");
+                                $("#trackinfo").append("<div class='alert alert-danger'>Please enter tracking number</div>");
+                            }
+                            else {
+
+                                $('#hvtrackNoHeader').val('');
+                                $("#trackingNo").val(cleanTrackingIds($("#trackingNo").val()));
+                                $('form#tracking-form').submit();
+                            }
+                        });
+                        //Console Info Code for Developer
+                        //console.log('sItemNo:');;
+                        //console.log('URL:');;
+                        //console.log('isHeader:');;
+
+                        var strTD = "";
+                        $("#trackinfo").append(strTD);;
+                    });
+
+
+                    function LoadDetails(sItemNo) {
+                        $("#trackingNo").val(sItemNo);
+                        $("#hvfromheader").val("1");
+                        $('form#tracking-form').submit();
+                    }
+    </script>
+    <script type="text/html" id="tracking_message">
+        <div class="alert alert-danger">
+            <p><%= item %></p>
+        </div>
+    </script>
+
+</body>
+</html>

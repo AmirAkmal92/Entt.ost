@@ -1,0 +1,91 @@
+﻿<div id="sticky-anchor-mobile"></div>
+<div id="sticky" class="mobile-navbar navbar-header visible-xs">
+    <a href="http://localhost:50230/"><img src="assets/custom/images/Pos_Malaysia_Logo2.png" class="visible-xs hiddenn-sm phone-logo" style="float: left;" /></a>
+    <div class="mobile-menu pull-right">
+        <button type="button" class="navbar-toggle collapsed" onclick="displayMainMenu()"><i class="epi-menu"></i></button>
+    </div>
+    <div class="mobile-menu pull-right">
+        <a href="http://localhost:50230/ost-account/login/">
+            <button type="button" class="navbar-toggle collapsed"><i class="epi-user"></i></button>
+        </a>
+    </div>
+</div>
+<div id="MasterMobileMenu" style="display:none; background-color: rgba(255, 0, 0, 0.1);">
+    <div class="container">
+
+        <h3 class="site-nav-title">PROFILE</h3>
+        <ul class="nav navbar-nav site-nav-group">
+            <li class="site-nav-item"> <a href="#"><span>Log In</span> <span class="side-menu-box"><i class="epi-user"></i></span></a> </li>
+            <li class="site-nav-item"> <a href="#"><span>Sign Up</span> <span class="side-menu-box"><i class="epi-user"></i></span></a> </li>
+        </ul>
+        <h3 class="site-nav-title">USEFUL LINKS</h3>
+        <ul class="nav navbar-nav site-nav-group">
+            <li class="site-nav-item"> <a href="#"><span>Home</span> <span class="side-menu-box"><i class="epi-home"></i></span></a> </li>
+            <li class="site-nav-item"> <a href="#"><span>Test</span> <span class="side-menu-box"><i class="epi-info-circled"></i></span></a> </li>
+            <li class="site-nav-item"> <a data-toggle="modal" href="#volcal"><span>Volumetric Weight</span> <span class="side-menu-box"><i class="epi-truck"></i></span></a> </li>
+            <li class="site-nav-item"> <a href="/ost/shiprate"><span>Shipping Rate</span> <span class="side-menu-box"><i class="epi-cart-plus"></i></span></a> </li>
+            <li class="site-nav-item"> <a href="#"><span>Test</span> <span class="side-menu-box"><i class="epi-volume-up-1"></i></span></a> </li>
+            <li class="site-nav-item dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span> Test <span class="caret"></span></span> <span class="side-menu-box"><i class="epi-wrench"></i></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Test Track Parcel</a></li>
+                    <li><a href="#">Test Volumetric Weight</a></li>
+                    <li><a href="#">Test Bulk Delivery Tool</a></li>
+                    <li><a href="#">Test Pick Up Schedule</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+        function displayMainMenu(){
+            var currentStyle = document.getElementById("masterContent").style.display;
+            if(currentStyle == "none"){
+                document.getElementById("masterContent").style.display = "";
+                document.getElementById("masterFooter").style.display = "";
+                document.getElementById("MasterMobileMenu").style.display = "none";
+            }else{
+                document.getElementById("masterContent").style.display = "none";
+                document.getElementById("masterFooter").style.display = "none";
+                document.getElementById("MasterMobileMenu").style.display = "";
+            }
+            $('html,body').scrollTop(0);
+        }
+
+        function sticky_relocate() {
+            var window_top = $(window).scrollTop();
+            var div_top = $('#sticky-anchor').offset().top;
+            var div_top_mobile = $('#sticky-anchor-mobile').offset().top;
+            if (window_top > div_top || window_top > div_top_mobile) {
+                $('#sticky').addClass('stick');
+                $('#sticky').addClass('animated fadeInDownBig');
+                $('div#sticky.navbar-header.visible-xs').addClass('stick');
+                $('div#sticky.navbar-header.visible-xs').addClass('animated fadeInDownBig');
+            } else {
+                $('#sticky').removeClass('stick');
+                $('#sticky').removeClass('animated fadeInDownBig');
+                $('div#sticky.navbar-header.visible-xs').removeClass('stick');
+                $('div#sticky.navbar-header.visible-xs').removeClass('animated fadeInDownBig');
+            }
+        }
+
+        $(function () {
+            $(window).scroll(sticky_relocate);
+            sticky_relocate();
+            $(window).on('resize', function() {
+                if($(window).width() > 767){
+                    document.getElementById("MasterMobileMenu").style.display = "none";
+                    document.getElementById("masterContent").style.display = "";
+                    document.getElementById("masterFooter").style.display = "";
+                }
+            });
+
+            $(window).focus(function() {
+                if($(window).width() > 767){
+                    document.getElementById("MasterMobileMenu").style.display = "none";
+                    document.getElementById("masterContent").style.display = "";
+                    document.getElementById("masterFooter").style.display = "";
+                }
+            });
+        });
+</script>
