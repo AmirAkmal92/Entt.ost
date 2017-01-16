@@ -3637,6 +3637,7 @@ define('durandal/system', ['require', 'jquery'], function (require, $) {
 
 require.config({
     paths: {
+        //'sweetalert': '../assets/global/plugins/bootstrap-sweetalert/sweetalert.min',
         "text": "/Scripts/text",
         'durandal': "/Scripts/durandal",
         'plugins': "/Scripts/durandal/plugins",
@@ -3651,11 +3652,17 @@ require.config({
             deps: ["jquery"],
             exports: "jQuery"
         },
+        //'sweetalert': {
+        //    exports: "sweetalert.min"
+        //},
         "jsPlumb": {
             exports: "jsPlumb"
         }
     }
 });
+
+//require(['sweetalert'], function (sweetalert) { });
+
 define("jquery", function () { return jQuery; });
 define("knockout", ko);
 define("underscore", function () { return _; });
@@ -7324,14 +7331,14 @@ function (logger, system, ko2) {
         if (!entityOrOptions) throw "This cannot be happending, you have to have entity or option";
         var entity = entityOrOptions,
             includeTotal = false,
-            size = 20,
+            size = 10,
             page = 1,
             orderby = null;
         if (typeof entityOrOptions === "object") {
             entity = entityOrOptions.entity;
             includeTotal = entityOrOptions.includeTotal || false;
             page = entityOrOptions.page || 1;
-            size = entityOrOptions.size || 20;
+            size = entityOrOptions.size || 10;
             orderby = entityOrOptions.orderby || entityOrOptions.sort;
         }
 
@@ -7378,13 +7385,13 @@ function (logger, system, ko2) {
         if (!entityOrOptions) throw "This cannot be happening, you have to have entity or option";
 
         var entity = entityOrOptions,
-           size = 20,
+           size = 10,
            page = 1;
 
         if (typeof entityOrOptions === "object") {
             entity = entityOrOptions.entity;
             page = entityOrOptions.page || 1;
-            size = entityOrOptions.size || 20;
+            size = entityOrOptions.size || 10;
         }
 
         var url = "/search/" + entity.toLowerCase() + "/";
