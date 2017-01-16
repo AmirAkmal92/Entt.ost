@@ -70,10 +70,12 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
          },
          renameGroup = function () {
              var newGroupName = "-";
+             var isCancel = true;
              return app2.prompt("Rename your group", ko.unwrap(groupName))
                      .then(function (result) {
                          if (result) {
                              newGroupName = result;
+                             isCancel = false;
                              return context.put("{}", "/address-books/groups/" + ko.unwrap(groupName) + "/" + result);
                          }
                          return Task.fromResult({});
@@ -84,7 +86,9 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
                          }
                          return Task.fromResult({});
                      }).then(function () {
-                         return router.navigate("address-book-home/" + newGroupName);
+                         if (!isCancel) {
+                             return router.navigate("address-book-home/" + newGroupName);
+                         }
                      });
          },
          addCommand = {
@@ -136,7 +140,7 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
          },
          attached = function (view) {
 
-             $(view).on("click", "a#select-all", function() {
+             $(view).on("click", "a#select-all", function () {
                  $(view).find("input.contact-checked").prop("checked", true);
              });
 
@@ -216,7 +220,7 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
          selectedAddresses: selectedAddresses,
          removeAddresses: removeAddresses,
          map: map,
-         groupName : groupName,
+         groupName: groupName,
          commands: commands,
          activate: activate,
          attached: attached,

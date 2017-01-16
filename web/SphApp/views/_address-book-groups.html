@@ -1,19 +1,19 @@
-<li class="nav-item">
+<li class="nav-item start">
     <a href="/ost#address-book-home/-" class="nav-link nav-toggle">
         <i class="icon-user-follow"></i>
-        <span class="title">Group Address</span>
+        <span class="title">Address Book</span>
         <span class="arrow"></span>
     </a>
     <ul class="sub-menu">
         <li class="nav-item start">
             <a href="/ost#address-book-home/-" class="nav-link">
                 <i class="icon-users"></i>
-                <span class="title">All Group</span>
-                <span class="badge badge-info" data-bind="text: groupCount">852</span>
+                <span class="title">All Contacts</span>
+                <span class="badge badge-info" data-bind="text: contactsCount">852</span>
             </a>
         <!-- ko foreach : groups -->
-        <li class="nav-item" id="address-book-group">
-            <a href="/ost#address-book-home/**" data-bind="attr : {'href' : '/ost#/address-book-home/' + ko.unwrap(group)}" class="nav-link ">
+        <li class="nav-item address-book-group">
+            <a href="/ost#address-book-home/**" data-bind="attr : {'href' : '/ost#/address-book-home/' + ko.unwrap(group)}" class="nav-link">
                 <i class="icon-users"></i>
                 <span class="title" data-bind="text : group"></span>
                 <span class="badge badge-success" data-bind="text: count"></span>
@@ -21,8 +21,10 @@
         </li>
         <!-- /ko -->
         <li class="nav-item">
-            <input type="text" data-bind="value: groupName" style="border:0px;width:150px" />
-            <span class="badge badge-warning" data-bind="click: addGroup">+</span>
+            <a class="nav-link">
+                <input type="text" data-bind="value: groupName" style="border:0px;width:150px" />
+                <span class="badge badge-warning" data-bind="click: addGroup">+</span>
+            </a>
         </li>
     </ul>
 </li>

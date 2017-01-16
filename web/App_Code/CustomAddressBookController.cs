@@ -114,7 +114,7 @@ namespace web.sph.App_Code
                 await session.SubmitChanges("AddGroup", new Dictionary<string, object> { { "username", User.Identity.Name } });
             }
             // wait until the worker process it
-            await Task.Delay(500);
+            await Task.Delay(1000);
             return Ok(new { message = $"{contact.CompanyName} has been added to {group}" });
 
         }
