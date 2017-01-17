@@ -119,12 +119,65 @@
         "SourceTypeName": "",
         "DestinationTypeName": "",
         "WebId": "7cfd37ea-59b5-4308-a17c-fcb7772c4626"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.FunctoidMap, domain.sph",
+        "__uuid": "",
+        "Functoid": "1f94b40a-c327-4179-f3b1-77e82b02b385",
+        "Destination": "Address.AreaVillageGardenName",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "e8b299da-a8bb-4d36-e866-b8e38f88b9bc"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.FunctoidMap, domain.sph",
+        "__uuid": "",
+        "Functoid": "1f94b40a-c327-4179-f3b1-77e82b02b385",
+        "Destination": "Address.District",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "eb3ccbf5-8e9d-44b3-a758-aa8fbac83a0f"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.DirectMap, domain.sph",
+        "Source": "Email",
+        "TypeName": "",
+        "Destination": "ReferenceNo",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "f17b303a-3759-4dc3-e5bf-b1d708b31e48"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.FunctoidMap, domain.sph",
+        "__uuid": "",
+        "Functoid": "1f94b40a-c327-4179-f3b1-77e82b02b385",
+        "Destination": "Address.SubDistrict",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "08fdc073-9427-4761-cc83-f744c7b3bf56"
       }
     ]
   },
   "FunctoidCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Functoid, domain.sph]], domain.sph",
-    "$values": []
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.ConstantFunctoid, domain.sph",
+        "TypeName": "System.String, mscorlib",
+        "Value": "None",
+        "ArgumentCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FunctoidArg, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": null,
+        "OutputTypeName": null,
+        "Label": null,
+        "Comment": null,
+        "X": 293.0,
+        "Y": 306.0,
+        "WebId": "1f94b40a-c327-4179-f3b1-77e82b02b385"
+      }
+    ]
   },
   "InputCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.MethodArg, domain.sph]], domain.sph",
@@ -143,6 +196,6 @@
   "Id": "address-format-template-to-address-book",
   "CreatedDate": "2017-01-17T02:33:54.27467+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-01-17T02:40:01.9974267+08:00",
+  "ChangedDate": "2017-01-17T16:55:45.804314+08:00",
   "WebId": "abd1b51c-81f7-4df2-995e-bec1b5d3a79a"
 }

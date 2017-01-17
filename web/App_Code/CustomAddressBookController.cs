@@ -129,12 +129,12 @@ namespace web.sph.App_Code
                 return NotFound($"Cannot outlook csv in {storeId}");
 
             // write code use mapping , from port to import the data
-            var port = new Bespoke.Ost.ReceivePorts.OutlookCsvContact(ObjectBuilder.GetObject<ILogger>());
-            var map = new Bespoke.Ost.Integrations.Transforms.OutlookContactToAddressBook();
+            var port = new Bespoke.Ost.ReceivePorts.AddressTemplateFormat(ObjectBuilder.GetObject<ILogger>());
+            var map = new Bespoke.Ost.Integrations.Transforms.AddressFormatTemplateToAddressBook();
 
             var text = Encoding.Default.GetString(csv.Content);
             var lines = from t in text.Split(new[] { "\r\n", "\r" }, StringSplitOptions.RemoveEmptyEntries)
-                        where !t.StartsWith("First Name,") // ignore the label
+                        where !t.StartsWith("Name,") // ignore the label
                         let fields = t.Split(new[] { "," }, StringSplitOptions.None).Take(88)
                         select string.Join(",", fields);
 
@@ -142,7 +142,7 @@ namespace web.sph.App_Code
             // TODO :the mapping could have been simpler, if we the source is just the port type
             var outlookContacts = from cl in port.Process(lines)
                                   where null != cl
-                                  select cl.ToJson().DeserializeFromJson<Bespoke.Ost.OutlookContacts.Domain.OutlookContact>();
+                                  select cl.ToJson().DeserializeFromJson<Bespoke.Ost.AddressFormats.Domain.AddressFormat> ();
 
             var errors = new List<object>();
             var context = new SphDataContext();

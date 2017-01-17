@@ -29,12 +29,12 @@
   "Note": null,
   "Entity": "AddressFormat",
   "Resource": "address-formats",
-  "IsPublished": false,
+  "IsPublished": true,
   "IsConflictDetectionEnabled": false,
   "CreatedBy": "admin",
   "Id": "default-post-address-format",
   "CreatedDate": "2017-01-17T02:11:41.1822494+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-01-17T02:11:41.1822494+08:00",
+  "ChangedDate": "2017-01-17T13:30:11.6356569+08:00",
   "WebId": "7ce836fb-27d0-428a-991b-8ea245e999ff"
 }
