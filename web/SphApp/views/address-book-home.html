@@ -1,39 +1,136 @@
-<div class="mt-element-ribbon bg-grey-steel pull-right" style="position: absolute; top: 2px; right: 7px;">
-    <div class="ribbon ribbon-right ribbon-color-success uppercase" data-bind="text: partial.groupName">Ribbon</div>
-</div>
-<div class="row">
-    <div class="col-md-11 col-lg-11 -col-sm-12">
-        <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list, enableReload : true , filterPlaceholder : 'Search your contacts...', filterTooltip :'Press Enter to execute search'}">
-            <thead>
-                <tr>
-                    <th>
-                        <a href="javascript:;" id="select-all">Select all</a>
-                    </th>
-                    <th>Reference No</th>
-                    <th>Contact Person</th>
-                    <!-- <th>Company Name</th> -->
-                    <th>Email</th>
-                    <th>Group</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach :list">
-                <tr data-bind="">
-                    <td>
-                        <input class="contact-checked" type="checkbox" data-bind="checked : $root.partial.selectedAddresses, value:$data" />
-                    </td>
-                    <td>
-                        <a class="contact-item" data-bind="attr : {href:'#address-book-update' + '/' + Id , 'data-id' : Id}" title="To add to a group drag it to the group panel on the left">
-                            <i class="icon-user"></i>
-                            <span data-bind="text:ReferenceNo"></span>
-                        </a>
-                    </td>
-                    <td data-bind="text:ContactPerson"></td>
-                    <!-- <td data-bind="text:CompanyName"></td> -->
-                    <td data-bind="text:ContactInformation.EmailAddress"></td>
-                    <td data-bind="text:Groups"></td>
-                </tr>
-            </tbody>
-        </table>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="#"> Home </a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Address Book </span>
+        </li>
+    </ul>
+    <div class="page-toolbar">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown">
+                Actions
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="#">
+                        <i class="icon-bell"></i> Action
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-shield"></i> Another action
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-user"></i> Something else here
+                    </a>
+                </li>
+                <li class="divider"> </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-bag"></i> Separated link
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
-<div class="clearfix"> </div>
+<h1 class="page-title">
+    Address Book
+    <small></small>
+</h1>
+<div class="m-heading-1 border-red m-bordered">
+    <h3>General Information</h3>
+    <p> Pos Malaysia Berhad - Online Shipping Tools has made every attempt to ensure the accuracy and reliability of the information provided on this website. All user has to take responsibility for the collection or use of personal data from being use by third party. </p>
+    <p>
+        For more info please check out
+        <a class="btn red btn-outline" href="http://datatables.net/" target="_blank">Disclaimer</a>
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red">
+                    <i class="fa fa-user font-red"></i>
+                    <span class="caption-subject bold uppercase"> Contact List </span>
+                </div>
+                <div class="caption font-red pull-right" data-bind="visible: $root.partial.groupName() != '-'">
+                    <i class="fa fa-users"></i>
+                    <span class="label lable- label-danger" data-bind="text: partial.groupName"> </span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="action">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <a class="btn green" data-bind="command : $root.partial.addCommands, visible: true, enable: true">
+                                Add
+                                <i class="fa fa-plus"></i>
+                            </a>
+                            <a href="javascript:;" class="btn red">
+                                Delete
+                                <i class="fa fa-archive"></i>
+                            </a>
+                            <a class="btn blue" data-bind="command : $root.partial.importContacts, visible: true">
+                                Import
+                                <i class="fa fa-folder-open"></i>
+                            </a>
+                            <a class="btn blue-chambray" data-bind="command : $root.partial.exportToCsv, visible: true">
+                                Export
+                                <i class="fa fa-file-excel-o"></i>
+                            </a>
+                            <a class="btn btn-warning" data-bind="visible: $root.partial.groupName() != '-', command : $root.partial.renameGroup">
+                                Rename Group
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list, enableReload : true , filterPlaceholder : 'Search your contacts...', filterTooltip :'Press Enter to execute search'}">
+                    <thead>
+                        <tr>
+                            <th>
+                                <a href="javascript:;" id="select-all">
+                                    <span class="checkboxes label label-md label-danger fa fa-check"></span>
+                                </a>
+                            </th>
+                            <th>Reference No</th>
+                            <th>Contact Person</th>
+                            <!-- <th>Company Name</th> -->
+                            <th>Email</th>
+                            <th>Group</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach :list">
+                        <tr class="odd gradeX" data-bind="">
+                            <td>
+                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                    <input class="checkboxes contact-checked" type="checkbox" data-bind="checked : $root.partial.selectedAddresses, value:$data" />
+                                    <span></span>
+                                </label>
+                            </td>
+                            <td>
+                                <a class="contact-item" data-bind="attr : {href:'#address-book-update' + '/' + Id , 'data-id' : Id}" title="To add to a group drag it to the group panel on the left">
+                                    <i class="icon-user"></i>
+                                    <span data-bind="text:ReferenceNo"></span>
+                                </a>
+                            </td>
+                            <td data-bind="text:ContactPerson"></td>
+                            <!-- <td data-bind="text:CompanyName"></td> -->
+                            <td data-bind="text:ContactInformation.EmailAddress"></td>
+                            <td data-bind="text:Groups"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <img src="/assets/layouts/layout/img/loading.gif" alt="loading" class="absolute-center" style="display: none;">
+            </div>
+        </div>
+    </div>
+</div>

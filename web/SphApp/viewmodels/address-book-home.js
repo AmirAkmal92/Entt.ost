@@ -48,7 +48,9 @@ function(context, logger, router, chart, config, koList, partial) {
         attached: attached,
         list: list,
         partial: partial,
-        commands: commands
+        toolbar: {
+            commands: false
+        },
     };
 
     return vm;

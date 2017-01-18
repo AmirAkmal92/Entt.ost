@@ -1,6 +1,6 @@
 // PLEASE WAIT WHILE YOUR SCRIPT IS LOADING
-define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "services/logger", "viewmodels/_address-book-groups", "services/app"],
- function (context, app, router, logger, contactGroups, app2) {
+define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "services/logger", "viewmodels/_address-book-groups", "services/app", "plugins/dialog"],
+ function (context, app, router, logger, contactGroups, app2, dialog) {
      var groupName = ko.observable(),
          selectedAddresses = ko.observableArray(),
          removeAddresses = function () {
@@ -68,9 +68,26 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
 
              return tcs.promise();
          },
+        renameGroup2 = function () {
+            require(['viewmodels/_rename.group.dialog', 'durandal/app'], function (dialog, app2) {
+                app2.showDialog(dialog)
+                    .done(function (result) {
+                        if (result === "OK") {
+                            newGroupName = result;
+                            isCancel = false;
+                            return context.put("{}", "/address-books/groups/" + ko.unwrap(groupName) + "/" + result);
+                        }
+                        return Task.fromResult(0);
+                    }).then(function () {
+                        return router.navigate("address-book-home/" + newGroupName);
+                    });
+                return Task.fromResult(0);
+            });
+        },
          renameGroup = function () {
              var newGroupName = "-";
              var isCancel = true;
+             app2.prompt.delimiter = false;
              return app2.prompt("Rename your group", ko.unwrap(groupName))
                      .then(function (result) {
                          if (result) {
@@ -123,7 +140,7 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
          exportToCsvCommand = {
              command: exportToCsv,
              caption: "Export to csv",
-             icon: "fa fa-file-o icon-default"
+             icon: "fa fa-file-o icon-default",
          },
          commands = ko.observableArray([addCommand, removeCommand, importCommand, exportToCsvCommand, renameGroupCommand]),
          rootList = null,
@@ -187,7 +204,7 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
          },
          addCommands = function () {
                  return router.navigate("address-book-create/0");
-             },
+         },
 
          addAddress = function () {
              var address = new bespoke.Ost_addressBook.domain.AddressBook();
@@ -224,11 +241,13 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
          selectedAddresses: selectedAddresses,
          removeAddresses: removeAddresses,
          addCommands: addCommands,
+         renameGroup: renameGroup,
+         renameGroup2: renameGroup2,
          importContacts: importContacts,
          exportToCsv: exportToCsv,
          map: map,
          groupName: groupName,
-         commands: commands,
+         commands: false,
          activate: activate,
          attached: attached,
          addAddress: addAddress
