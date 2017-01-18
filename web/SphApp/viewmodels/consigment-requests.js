@@ -1,6 +1,6 @@
-define(["services/datacontext", "services/logger", "plugins/router", "services/chart", objectbuilders.config, "services/_ko.list", "partial/consigment-requests", "services/app", "services/datatable"],
+define(["services/datacontext", "services/logger", "plugins/router", "services/chart", objectbuilders.config, "services/_ko.list", "partial/consigment-requests"],
 
-function (context, logger, router, chart, config, koList, partial, appAll, datatable) {
+function (context, logger, router, chart, config, koList, partial) {
 
     var isBusy = ko.observable(false),
         query = "/api/consignment-requests/",
@@ -8,8 +8,6 @@ function (context, logger, router, chart, config, koList, partial, appAll, datat
         appAlls = appAlls || {},
         datatable = datatable || {},
         list = ko.observableArray([]),
-        App = ko.observable(),
-        Datatable = ko.observable(),
         map = function (v) {
             if (typeof partial.map === "function") {
                 return partial.map(v);
@@ -18,8 +16,7 @@ function (context, logger, router, chart, config, koList, partial, appAll, datat
         },
         activate = function () {
             if (typeof partial.activate === "function") {
-                //return partial.activate(list);
-                return appAlls(App);
+                return partial.activate(list);
             }
             return true;
         },
@@ -35,13 +32,7 @@ function (context, logger, router, chart, config, koList, partial, appAll, datat
         isBusy: isBusy,
         map: map,
         activate: activate,
-        appAlls: appAlls,
-        datatable: datatable,
-        list: list,
-        App: App,
-        toolbar: {
-            commands: ko.observableArray([])
-        }
+        list: list
     };
 
     return vm;

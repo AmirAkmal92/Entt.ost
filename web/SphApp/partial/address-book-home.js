@@ -185,6 +185,10 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
              setTimeout(makeGroupDroppable, 1500);
              contactGroups.groups.subscribe(function () { setTimeout(makeGroupDroppable, 500); }, "arrayChange", null);
          },
+         addCommands = function () {
+                 return router.navigate("address-book-create/0");
+             },
+
          addAddress = function () {
              var address = new bespoke.Ost_addressBook.domain.AddressBook();
              require(['viewmodels/address-dialog', 'durandal/app'], function (dialog, app2) {
@@ -219,6 +223,9 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
      return {
          selectedAddresses: selectedAddresses,
          removeAddresses: removeAddresses,
+         addCommands: addCommands,
+         importContacts: importContacts,
+         exportToCsv: exportToCsv,
          map: map,
          groupName: groupName,
          commands: commands,

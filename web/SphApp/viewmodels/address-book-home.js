@@ -47,10 +47,8 @@ function(context, logger, router, chart, config, koList, partial) {
         activate: activate,
         attached: attached,
         list: list,
-        partial : partial,
-        toolbar: {
-            commands: commands
-        }
+        partial: partial,
+        commands: commands
     };
 
     return vm;

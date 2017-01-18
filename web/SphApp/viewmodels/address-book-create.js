@@ -126,7 +126,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
             })
                 .then(function(result) {
                 if (result) {
-                    router.navigate("address-book-all");
+                    router.navigate("address-book-home/-");
                 }
             });
         };
