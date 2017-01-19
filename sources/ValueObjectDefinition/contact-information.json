@@ -11,6 +11,30 @@
         "IsAnalyzed": false,
         "IsFilterable": false,
         "IsExcludeInAll": false,
+        "Boost": 2,
+        "FullName": null,
+        "PropertyAttribute": null,
+        "MemberCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "FieldPermissionCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": "Email",
+        "AllowMultiple": false,
+        "DefaultValue": null,
+        "WebId": "5b064e17-8f05-4dea-e687-381f9a5db41d"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+        "TypeName": "System.String, mscorlib",
+        "IsNullable": false,
+        "IsNotIndexed": false,
+        "IsAnalyzed": false,
+        "IsFilterable": false,
+        "IsExcludeInAll": false,
         "Boost": 1,
         "FullName": null,
         "PropertyAttribute": null,
@@ -22,7 +46,7 @@
           "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
           "$values": []
         },
-        "Name": "PrimaryPhone",
+        "Name": "ContactNumber",
         "AllowMultiple": false,
         "DefaultValue": null,
         "WebId": "51ad0e85-435e-4c95-c27d-4f13b6b8a7d5"
@@ -46,202 +70,10 @@
           "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
           "$values": []
         },
-        "Name": "PrimaryPhoneExt",
+        "Name": "AlternativeContactNumber",
         "AllowMultiple": false,
         "DefaultValue": null,
         "WebId": "e6adf6d8-bc3e-4ccb-c9c8-6ba511263d29"
-      },
-      {
-        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-        "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
-        "IsNotIndexed": false,
-        "IsAnalyzed": false,
-        "IsFilterable": false,
-        "IsExcludeInAll": false,
-        "Boost": 4,
-        "FullName": null,
-        "PropertyAttribute": null,
-        "MemberCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "FieldPermissionCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "Name": "MobilePhone",
-        "AllowMultiple": false,
-        "DefaultValue": null,
-        "WebId": "26102e42-94dc-4e20-8b2f-33c28d5a54a7"
-      },
-      {
-        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-        "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
-        "IsNotIndexed": false,
-        "IsAnalyzed": false,
-        "IsFilterable": false,
-        "IsExcludeInAll": false,
-        "Boost": 2,
-        "FullName": null,
-        "PropertyAttribute": null,
-        "MemberCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "FieldPermissionCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "Name": "PrimaryEmail",
-        "AllowMultiple": false,
-        "DefaultValue": null,
-        "WebId": "5b064e17-8f05-4dea-e687-381f9a5db41d"
-      },
-      {
-        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-        "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
-        "IsNotIndexed": false,
-        "IsAnalyzed": false,
-        "IsFilterable": false,
-        "IsExcludeInAll": false,
-        "Boost": 0,
-        "FullName": null,
-        "PropertyAttribute": null,
-        "MemberCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "FieldPermissionCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "Name": "PrimaryFax",
-        "AllowMultiple": false,
-        "DefaultValue": null,
-        "WebId": "d911fd56-1b7d-4f91-c224-7e35b86f577c"
-      },
-      {
-        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-        "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
-        "IsNotIndexed": false,
-        "IsAnalyzed": false,
-        "IsFilterable": false,
-        "IsExcludeInAll": false,
-        "Boost": 0,
-        "FullName": null,
-        "PropertyAttribute": null,
-        "MemberCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "FieldPermissionCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "Name": "HomePhone",
-        "AllowMultiple": false,
-        "DefaultValue": null,
-        "WebId": "88a6be99-1def-4038-9ac9-75df7342e5dc"
-      },
-      {
-        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-        "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
-        "IsNotIndexed": false,
-        "IsAnalyzed": false,
-        "IsFilterable": false,
-        "IsExcludeInAll": false,
-        "Boost": 0,
-        "FullName": null,
-        "PropertyAttribute": null,
-        "MemberCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "FieldPermissionCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "Name": "HomeEmail",
-        "AllowMultiple": false,
-        "DefaultValue": null,
-        "WebId": "17815bf7-3751-4d90-e14b-3851fa91796b"
-      },
-      {
-        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-        "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
-        "IsNotIndexed": false,
-        "IsAnalyzed": false,
-        "IsFilterable": false,
-        "IsExcludeInAll": false,
-        "Boost": 0,
-        "FullName": null,
-        "PropertyAttribute": null,
-        "MemberCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "FieldPermissionCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "Name": "OfficePhone",
-        "AllowMultiple": false,
-        "DefaultValue": null,
-        "WebId": "008caae0-8fc1-47f5-bbed-344fc40e1a10"
-      },
-      {
-        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-        "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
-        "IsNotIndexed": false,
-        "IsAnalyzed": false,
-        "IsFilterable": false,
-        "IsExcludeInAll": false,
-        "Boost": 0,
-        "FullName": null,
-        "PropertyAttribute": null,
-        "MemberCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "FieldPermissionCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "Name": "OfficeEmail",
-        "AllowMultiple": false,
-        "DefaultValue": null,
-        "WebId": "33ec1c6d-bccf-4671-fa6b-9983495dc36a"
-      },
-      {
-        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-        "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
-        "IsNotIndexed": false,
-        "IsAnalyzed": false,
-        "IsFilterable": false,
-        "IsExcludeInAll": false,
-        "Boost": 0,
-        "FullName": null,
-        "PropertyAttribute": null,
-        "MemberCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "FieldPermissionCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "Name": "OfficePhoneExt",
-        "AllowMultiple": false,
-        "DefaultValue": null,
-        "WebId": "4aa4524b-5d10-4573-c27a-790e80b0f3dc"
       }
     ]
   },
@@ -254,6 +86,6 @@
   "Id": "contact-information",
   "CreatedDate": "2016-10-29T07:28:31.7287044+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-29T07:30:31.3826071+08:00",
+  "ChangedDate": "2017-01-19T10:28:26.4006132+08:00",
   "WebId": "2c676b2f-56b3-43c6-861f-9b716eebda83"
 }

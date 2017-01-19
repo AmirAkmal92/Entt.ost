@@ -142,7 +142,7 @@ namespace web.sph.App_Code
             // TODO :the mapping could have been simpler, if we the source is just the port type
             var outlookContacts = from cl in port.Process(lines)
                                   where null != cl
-                                  select cl.ToJson().DeserializeFromJson<Bespoke.Ost.AddressFormats.Domain.AddressFormat> ();
+                                  select cl.ToJson().DeserializeFromJson<Bespoke.Ost.AddressFormats.Domain.AddressFormat>();
 
             var errors = new List<object>();
             var context = new SphDataContext();
@@ -223,20 +223,18 @@ namespace web.sph.App_Code
         public async Task<HttpResponseMessage> DownloadCsv(
         [FromUri(Name = "companyName")] bool companyName = true,
         [FromUri(Name = "contactPerson")]bool contactPerson = true,
-        [FromUri(Name = "premiseNoMailbox")]bool premiseNoMailbox = true,
-        [FromUri(Name = "block")]bool block = true,
-        [FromUri(Name = "buildingName")]bool buildingName = true,
-        [FromUri(Name = "roadName")]bool roadName = true,
-        [FromUri(Name = "areaVillage")]bool areaVillage = true,
-        [FromUri(Name = "subDistrict")]bool subDistrict = true,
-        [FromUri(Name = "districtCity")]bool districtCity = true,
+        [FromUri(Name = "address1")]bool address1 = true,
+        [FromUri(Name = "address2")]bool address2 = true,
+        [FromUri(Name = "address3")]bool address3 = true,
+        [FromUri(Name = "address4")]bool address4 = true,
+        [FromUri(Name = "postcode")]bool postcode = true,
+        [FromUri(Name = "city")]bool city = true,
         [FromUri(Name = "state")]bool state = true,
         [FromUri(Name = "country")]bool country = true,
-        [FromUri(Name = "phoneNo")]bool phoneNo = true,
-        [FromUri(Name = "faxNumber")]bool faxNumber = true,
+        [FromUri(Name = "contactNumber")]bool contactNumber = true,
+        [FromUri(Name = "altContactNumber")]bool altContactNumber = true,
         [FromUri(Name = "email")]bool email = true,
         [FromUri(Name = "gpsLocation")]bool gpsLocation = false,
-        [FromUri(Name = "referenceNo")]bool referenceNo = true,
         [FromUri(Name = "addressGroup")]bool addressGroup = false)
         {
 
@@ -274,39 +272,35 @@ namespace web.sph.App_Code
 
             // headers
             if (companyName)
-                csv.Append(@"""companyName"",");
+                csv.Append(@"""Company Name"",");
             if (contactPerson)
-                csv.Append(@"""ContactPerson"",");
-            if (premiseNoMailbox)
-                csv.Append(@"""Address.PremiseNoMailbox"",");
-            if (block)
-                csv.Append(@"""Address.Block"",");
-            if (buildingName)
-                csv.Append(@"""Address.BuildingName"",");
-            if (roadName)
-                csv.Append(@"""Address.RoadName"",");
-            if (areaVillage)
-                csv.Append(@"""Address.AreaVillageGardenName"",");
-            if (subDistrict)
-                csv.Append(@"""Address.SubDistrict"",");
-            if (districtCity)
-                csv.Append(@"""Address.City"",");
+                csv.Append(@"""Contact Person"",");
+            if (address1)
+                csv.Append(@"""Address 1"",");
+            if (address2)
+                csv.Append(@"""Address 2"",");
+            if (address3)
+                csv.Append(@"""Address 3"",");
+            if (address4)
+                csv.Append(@"""Address 4"",");
+            if (postcode)
+                csv.Append(@"""Postcode"",");           
+            if (city)
+                csv.Append(@"""City"",");
             if (state)
-                csv.Append(@"""Address.State"",");
+                csv.Append(@"""State"",");
             if (country)
-                csv.Append(@"""Address.Country"",");
-            if (phoneNo)
-                csv.Append(@"""Address.PhoneNumber"",");
-            if (faxNumber)
-                csv.Append(@"""Address.FaxNumber"",");
+                csv.Append(@"""Country"",");
+            if (contactNumber)
+                csv.Append(@"""Contact Number"",");
+            if (altContactNumber)
+                csv.Append(@"""Alt. Contact Number"",");
             if (email)
-                csv.Append(@"""Address.Email"",");
+                csv.Append(@"""Email"",");
             if (gpsLocation)
-                csv.Append($@"""Address.GpsLocation"",");
-            if (referenceNo)
-                csv.Append(@"""ReferenceNo"",");
+                csv.Append($@"""GpsLocation"",");
             if (addressGroup)
-                csv.Append(@"""GroupAddress"",");
+                csv.Append(@"""Group"",");
 
             csv.AppendLine();
 
@@ -316,34 +310,30 @@ namespace web.sph.App_Code
                     csv.Append($@"""{adr.CompanyName}"",");
                 if (contactPerson)
                     csv.Append($@"""{adr.ContactPerson}"",");
-                if (premiseNoMailbox)
-                    csv.Append($@"""{adr.Address.PremiseNoMailbox}"",");
-                if (block)
-                    csv.Append($@"""{adr.Address.Block}"",");
-                if (buildingName)
-                    csv.Append($@"""{adr.Address.BuildingName}"",");
-                if (roadName)
-                    csv.Append($@"""{adr.Address.RoadName}"",");
-                if (areaVillage)
-                    csv.Append($@"""{adr.Address.AreaVillageGardenName}"",");
-                if (subDistrict)
-                    csv.Append($@"""{adr.Address.SubDistrict}"",");
-                if (districtCity)
+                if (address1)
+                    csv.Append($@"""{adr.Address.Address1}"",");
+                if (address2)
+                    csv.Append($@"""{adr.Address.Address2}"",");
+                if (address3)
+                    csv.Append($@"""{adr.Address.Address3}"",");
+                if (address4)
+                    csv.Append($@"""{adr.Address.Address4}"",");
+                if (postcode)
+                    csv.Append($@"""{adr.Address.Postcode}"",");
+                if (city)
                     csv.Append($@"""{adr.Address.City}"",");
                 if (state)
                     csv.Append($@"""{adr.Address.State}"",");
                 if (country)
                     csv.Append($@"""{adr.Address.Country}"",");
-                if (phoneNo)
-                    csv.Append($@"""{adr.ContactInformation.PhoneNumber}"",");
-                if (faxNumber)
-                    csv.Append($@"""{adr.ContactInformation.FaxNumber}"",");
+                if (contactNumber)
+                    csv.Append($@"""{adr.ContactInformation.ContactNumber}"",");
+                if (altContactNumber)
+                    csv.Append($@"""{adr.ContactInformation.AlternativeContactNumber}"",");
                 if (email)
-                    csv.Append($@"""{adr.ContactInformation.EmailAddress}"",");
-                /* if (gpsLocation)
-                     csv.Append($@"""{adr.Address.GpsLocation}"",");*/
-                if (referenceNo)
-                    csv.Append($@"""{adr.ReferenceNo}"",");
+                    csv.Append($@"""{adr.ContactInformation.Email}"",");
+                if (gpsLocation)
+                    csv.Append($@"""{adr.Address.GeoLocation.Lat}"" ""{adr.Address.GeoLocation.Long}"",");
                 if (addressGroup)
                     csv.Append($@"""{adr.Groups}"",");
 
