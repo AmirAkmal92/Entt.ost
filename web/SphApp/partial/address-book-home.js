@@ -110,7 +110,7 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
          },
          addCommand = {
              command: function () {
-                 return router.navigate("address-book-create/0");
+                 return router.navigate("address-book-details/0");
              },
              caption: "Add new address",
              icon: "fa fa-plus label label-info"
@@ -203,7 +203,7 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
              contactGroups.groups.subscribe(function () { setTimeout(makeGroupDroppable, 500); }, "arrayChange", null);
          },
          addCommands = function () {
-                 return router.navigate("address-book-create/0");
+                 return router.navigate("address-book-details/0");
          },
 
          addAddress = function () {

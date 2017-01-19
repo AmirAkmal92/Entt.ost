@@ -1,7 +1,7 @@
 define([objectbuilders.datacontext, objectbuilders.logger, objectbuilders.router,
 objectbuilders.system, objectbuilders.validation, objectbuilders.eximp,
 objectbuilders.dialog, objectbuilders.watcher, objectbuilders.config,
-objectbuilders.app, 'partial/address-book-update'],
+objectbuilders.app, 'partial/address-book-details'],
 
 function(context, logger, router, system, validation, eximp, dialog, watcher, config, app, partial) {
 
@@ -16,14 +16,14 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
         activate = function(entityId) {
             id(entityId);
             var tcs = new $.Deferred();
-            context.loadOneAsync("EntityForm", "Route eq 'address-book-update'")
+            context.loadOneAsync("EntityForm", "Route eq 'address-book-details'")
                 .then(function(f) {
                 form(f);
                 return watcher.getIsWatchingAsync("AddressBook", entityId);
             })
                 .then(function(w) {
                 watching(w);
-                return $.getJSON("i18n/" + config.lang + "/address-book-update");
+                return $.getJSON("i18n/" + config.lang + "/address-book-details");
             })
                 .then(function(n) {
                 i18n = n[0];
@@ -48,7 +48,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
                 entity(new bespoke.Ost_addressBook.domain.AddressBook(b[0] || b));
             }, function(e) {
                 if (e.status == 404) {
-                    app.showMessage("Sorry, but we cannot find any AddressBook with location : " + "/api/address-books/" + entityId, "Reactive Developer platform showcase", ["OK"]);
+                    app.showMessage("Sorry, but we cannot find any AddressBook with location : " + "/api/address-books/" + entityId, "Ost", ["OK"]);
                 }
             }).always(function() {
                 if (typeof partial.activate === "function") {
@@ -98,7 +98,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
         }, remove = function() {
             return context.sendDelete("/api/address-books/" + ko.unwrap(entity().Id))
                 .then(function(result) {
-                return app.showMessage("Your contact has been deleted", "Reactive Developer platform showcase", ["OK"]);
+                return app.showMessage("Your contact has been deleted", "Ost", ["OK"]);
             })
                 .then(function(result) {
                 router.navigate("address-book-home/-");
@@ -107,7 +107,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
 
         attached = function(view) {
             // validation
-            validation.init($('#address-book-update-form'), form());
+            validation.init($('#address-book-details-form'), form());
 
             if (typeof partial.attached === "function") {
                 partial.attached(view);

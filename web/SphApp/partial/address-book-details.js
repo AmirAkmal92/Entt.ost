@@ -1,14 +1,23 @@
-
-
-define([objectbuilders.datacontext], function (context) {
+define([objectbuilders.datacontext, objectbuilders.system], function (context, system) {
     var addressBook = null,
         groupOptions = ko.observableArray(),
         activate = function (entity) {
             addressBook = entity;
 
+            // Temp bug fix!
+            if (addressBook.Id() === "0") {
+                var guid = system.guid();
+                addressBook.Id(guid);
+            }
+
+            addressBook.ContactInformation().Email.subscribe(function (newEmail) {
+                addressBook.ReferenceNo(newEmail);
+            });
+
+            //addressBook.ReferenceNo(addressBook.Email);
+
             return context.get("/address-books/group-options")
             .then(groupOptions);
-
 
         },
         attached = function (view) {
