@@ -1,7 +1,7 @@
 <Query Kind="Program">
-  <Reference Relative="..\subscribers.host\domain.sph.dll">F:\project\work\entt.ost\subscribers.host\domain.sph.dll</Reference>
-  <Reference Relative="..\subscribers.host\Newtonsoft.Json.dll">F:\project\work\entt.ost\subscribers.host\Newtonsoft.Json.dll</Reference>
-  <Reference Relative="..\output\Ost.AddressBook.dll">F:\project\work\entt.ost\output\Ost.AddressBook.dll</Reference>
+  <Reference Relative="..\subscribers.host\domain.sph.dll">C:\project\work\entt.ost\subscribers.host\domain.sph.dll</Reference>
+  <Reference Relative="..\subscribers.host\Newtonsoft.Json.dll">C:\project\work\entt.ost\subscribers.host\Newtonsoft.Json.dll</Reference>
+  <Reference Relative="..\output\Ost.AddressBook.dll">C:\project\work\entt.ost\output\Ost.AddressBook.dll</Reference>
   <Reference>&lt;RuntimeDirectory&gt;\System.Net.Http.dll</Reference>
   <Namespace>Bespoke.Sph.Domain</Namespace>
   <Namespace>System.Net.Http</Namespace>
@@ -11,7 +11,7 @@
 
 void Main()
 {
-	var files = Directory.GetFiles(@"E:\temp\lhdn\21", "*.txt", SearchOption.AllDirectories);
+	var files = Directory.GetFiles(@"C:\Users\Mohammad\Desktop", "*.txt", SearchOption.AllDirectories);
 	foreach (var txt in files)
 	{
 		DoWork(txt).Wait();
