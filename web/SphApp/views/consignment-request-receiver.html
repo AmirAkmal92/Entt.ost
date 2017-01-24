@@ -1,170 +1,197 @@
-<div class="row mt-element-step">
+<div class="mt-element-step">
     <div class="mt-element-step">
-        <div class="row step-background-thin red">
-            <div class="col-md-3 bg-grey-steel mt-step-col">
+        <div class="row step-background-thin">
+            <div class="col-md-3 bg-grey-steel mt-step-col ">
                 <div class="mt-step-number">1</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Sender</div>
                 <div class="mt-step-content font-grey-cascade">Sender Information</div>
             </div>
-            <div class="col-md-3 bg-grey-steel red mt-step-col active">
+            <div class="col-md-3 bg-grey-steel mt-step-col  active">
                 <div class="mt-step-number">2</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Receiver</div>
                 <div class="mt-step-content font-grey-cascade">Receiver Information</div>
             </div>
-            <div class="col-md-3 bg-grey-steel mt-step-col">
+            <div class="col-md-3 bg-grey-steel mt-step-col ">
                 <div class="mt-step-number">3</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Product</div>
-                <div class="mt-step-content font-grey-cascade">Consignment product</div>
+                <div class="mt-step-content font-grey-cascade">Consignment Product</div>
             </div>
-            <div class="col-md-3 bg-grey-steel mt-step-col">
+            <div class="col-md-3 bg-grey-steel mt-step-col ">
                 <div class="mt-step-number">4</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Summary</div>
-                <div class="mt-step-content font-grey-cascade">Consignment summary</div>
+                <div class="mt-step-content font-grey-cascade">Consignment Summary</div>
             </div>
         </div>
     </div>
 </div>
+<h1 class="page-title">
+    Receiver information
+    <small>Step 2, receiver information</small>
+</h1>
 <div class="row">
-    <div class="portlet light bordered">
-        <div class="portlet-title">
-            <div class="caption">
-                <span class="caption-subject font-red-sunglo bold"><h2>Create Consignment</h2></span>
-                <span class="caption-helper">Receiver Information</span>
-            </div>
-            <div class="tools">
-                <a href="" class="collapse" data-original-title="" title=""> </a>
-                <a href="" class="reload" data-original-title="" title=""> </a>
-            </div>
-        </div>
-        <div class="portlet-body form">
-            <!-- BEGIN FORM-->
-            <form action="#" class="horizontal-form" data-bind="with : entity" id="consignment-request-receiver-form">
-                <div class="form-body">
-                    <h3 class="form-section">Personal Info (Receiver)</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label data-i18n="Groups" class="control-label" for="receiver-company-name">Receiver Name</label>
-                                <select class="form-control" name="Receiver.CompanyName" id="receiver-company-name"></select>
-                                <div class="form-control-focus"> </div>
-                                <span class="help-block"> Select your contact </span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Reference No." class="control-label" for="f1060890-3c63-4e24-81b1-4ffc8d4d6d15">Reference No.</label>
-                                <input required type="text" class="form-control" data-bind="value: $root.partial.receiver().ReferenceNo" id="f1060890-3c63-4e24-81b1-4ffc8d4d6d15" name="$root.partial.receiver.ReferenceNo">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Company Name" class="control-label" for="480a360e-74a2-495c-c396-13027a2731d4">Company Name</label>
-                                <input required type="text" class="form-control" data-bind="value: $root.partial.receiver().CompanyName" id="480a360e-74a2-495c-c396-13027a2731d4" name="$root.partial.receiver.CompanyName">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Phone No." class="control-label" for="be3c2990-30e4-4d97-da40-2a9a8cbce5bc">Phone No.</label>
-                                <input class="form-control" type="text" data-bind="value: $root.partial.receiver().ContactInformation().PrimaryPhone" id="be3c2990-30e4-4d97-da40-2a9a8cbce5bc" name="$root.partial.receiver.ContactInformation.PrimaryPhone">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Fax No." class="control-label" for="f90f7bd3-c17c-43f3-fabc-119a068fa617">Fax No.</label>
-                                <input required type="text" class="form-control" data-bind="value: $root.partial.receiver().ContactInformation().PrimaryFax" id="f90f7bd3-c17c-43f3-fabc-119a068fa617" name="$root.partial.receiver.ContactInformation.PrimaryFax">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Email" class="control-label" for="5de40cee-9e10-482f-c445-a6036e4aada7">Email</label>
-                                <input class="form-control" type="text" data-bind="value: $root.partial.receiver().ContactInformation().PrimaryEmail" id="5de40cee-9e10-482f-c445-a6036e4aada7" name="$root.partial.receiver.ContactInformation.PrimaryEmail">
-                            </div>
-                        </div>
-                    </div>
-                    <!--/address-->
-                    <div class="row">
-                        <div class="col-md-12 ">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Premise No. / Mailbox" class="control-label" for="19655c49-c421-4ac6-ccca-db24550bc884">Premise No. / Mailbox</label>
-                                <input type="text" class="form-control" data-bind="value: $root.partial.receiver().Address().PremiseNoMailbox" id="19655c49-c421-4ac6-ccca-db24550bc884" name="$root.partial.receiver.Address.PremiseNoMailbox">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Block" class="control-label" for="c9e954a8-c167-4b3e-a64c-aea2340d30ba">Block</label>
-                                <input type="text" class="form-control" data-bind="value: $root.partial.receiver().Address().Block" id="c9e954a8-c167-4b3e-a64c-aea2340d30ba" name="$root.partial.receiver.Address.Block">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Building Name" class="control-label" for="1f3c4cb2-9b54-4d20-a7a4-42066894e109">Building Name</label>
-                                <input type="text" class="form-control" data-bind="value: $root.partial.receiver().Address().BuildingName" id="1f3c4cb2-9b54-4d20-a7a4-42066894e109" name="$root.partial.receiver.Address.BuildingName">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Road Name" class="control-label" for="5b332070-4f83-46d3-c34b-55da579da588">Road Name</label>
-                                <input type="text" class="form-control" data-bind="value: $root.partial.receiver().Address().RoadName" id="5b332070-4f83-46d3-c34b-55da579da588" name="$root.partial.receiver.Address.RoadName">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Area / village / Garden" class="control-label" for="70b39bcc-7430-40d3-a9b2-e0165a93c189">Area / village / Garden</label>
-                                <input type="text" class="form-control" data-bind="value: $root.partial.receiver().Address().AreaVillageGardenName" id="70b39bcc-7430-40d3-a9b2-e0165a93c189" name="$root.partial.receiver.Address.AreaVillageGardenName">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Sub District" class="control-label" for="035697e1-c757-48a4-dd2c-5b2e4089114a">Sub District</label>
-                                <input type="text" class="form-control" data-bind="value: $root.partial.receiver().Address().SubDistrict" id="035697e1-c757-48a4-dd2c-5b2e4089114a" name="$root.partial.receiver.Address.SubDistrict">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Postcode" class="control-label" for="e223a41d-9dff-4dee-b429-2cc44eca9f2e">Postcode</label>
-                                <input type="text" class="form-control" data-bind="value: $root.partial.receiver().Address().Postcode" id="e223a41d-9dff-4dee-b429-2cc44eca9f2e" name="$root.partial.receiver.Address.Postcode">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="City" class="control-label" for="f8fbead8-5ced-40ad-c707-4fc99c15786f">City</label>
-                                <input type="text" class="form-control" data-bind="value: $root.partial.receiver().Address().City" id="f8fbead8-5ced-40ad-c707-4fc99c15786f" name="$root.partial.receiver.Address.City">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="State" class="control-label" for="7e4feac6-084b-4b67-a488-c3182e65ecbf">State</label>
-                                <input type="text" class="form-control" data-bind="value: $root.partial.receiver().Address().State" id="7e4feac6-084b-4b67-a488-c3182e65ecbf" name="$root.partial.receiver.Address.State">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Country" class="control-label" for="476a28ad-daea-4166-be1a-778c1b1ac828">Country</label>
-                                <input class="form-control" required type="text" data-bind="value: $root.partial.receiver().Address().Country, visible :true, autocomplete :{ entity:'Country', field :'Name', query:'Id ne \'0\'' }" data-rule-required="true" id="476a28ad-daea-4166-be1a-778c1b1ac828" name="Receiver.Address.Country">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-actions right">
-                    <button type="button" class="btn default">Cancel</button>
-                    <a class="btn btn-danger" data-bind="command: $root.saveCommand, visible :true, enable: true">Next <span class="fa fa-check"></span></a>
-                </div>
-            </form>
-            <!-- END FORM-->
-        </div>
+    <div class="col-sm-8">
+<form class="form-horizontal" data-bind="with : entity" id="consignment-request-receiver-form">
+    <div class="form-body">
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Reference No." class="col-md-3 control-label" for="91a68fb8-f93c-4981-945e-866a6f3f3f03">Reference No.</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: $root.partial.receiver().ReferenceNo"
+                data-rule-required="true" 
+               id="91a68fb8-f93c-4981-945e-866a6f3f3f03" name="$root.partial.receiver.ReferenceNo">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div><div class="form-group form-md-line-input" >
+    <label data-i18n="Groups" class="col-md-3 control-label" for="receiver-company-name">Receiver Name</label>
+    <div class="col-md-9">
+        <select class="form-control" name="Receiver.CompanyName" id="receiver-company-name">
+        </select>
+        <div class="form-control-focus"> </div>
+        <span class="help-block">Sender's name</span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Company Name" class="col-md-3 control-label" for="b85482e0-231c-4008-a218-ca095966fddc">Company Name</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: $root.partial.receiver().CompanyName"
+                data-rule-required="true" 
+               id="b85482e0-231c-4008-a218-ca095966fddc" name="$root.partial.receiver.CompanyName">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div><h4 data-i18n="Address" data-bind="visible:true">Address</h4>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Address 1" class="col-md-3 control-label" for="b3332cde-e04f-43a6-c21a-22d45b687ac6">Address 1</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: $root.partial.receiver().Address().Address1"
+                data-rule-required="true" 
+               id="b3332cde-e04f-43a6-c21a-22d45b687ac6" name="$root.partial.receiver.Address.Address1">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Address 2" class="col-md-3 control-label" for="b07bd0cd-7edc-447f-f031-be04d86306ff">Address 2</label>
+    <div class="col-md-9">
+        <input class="input-large form-control"  type="text"
+               placeholder=""
+               data-bind="value: $root.partial.receiver().Address().Address2"
+               id="b07bd0cd-7edc-447f-f031-be04d86306ff" name="$root.partial.receiver.Address.Address2">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Address 3" class="col-md-3 control-label" for="0ec529d3-0ef8-43d9-b8da-0883a9e408eb">Address 3</label>
+    <div class="col-md-9">
+        <input class="input-large form-control"  type="text"
+               placeholder=""
+               data-bind="value: $root.partial.receiver().Address().Address3"
+               id="0ec529d3-0ef8-43d9-b8da-0883a9e408eb" name="$root.partial.receiver.Address.Address3">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Address 4" class="col-md-3 control-label" for="114e9e57-ec10-439e-81ba-1a81a6558049">Address 4</label>
+    <div class="col-md-9">
+        <input class="input-large form-control"  type="text"
+               placeholder=""
+               data-bind="value: $root.partial.receiver().Address().Address4"
+               id="114e9e57-ec10-439e-81ba-1a81a6558049" name="$root.partial.receiver.Address.Address4">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Postcode" class="col-md-3 control-label" for="d7070c3d-c8cf-436f-c0e6-1dcd4da6dcfc">Postcode</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: $root.partial.receiver().Address().Postcode"
+                data-rule-required="true" 
+               id="d7070c3d-c8cf-436f-c0e6-1dcd4da6dcfc" name="$root.partial.receiver.Address.Postcode">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="City" class="col-md-3 control-label" for="5270f11b-a028-4cfc-8f7a-64bb229db027">City</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: $root.partial.receiver().Address().City"
+                data-rule-required="true" 
+               id="5270f11b-a028-4cfc-8f7a-64bb229db027" name="$root.partial.receiver.Address.City">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="State" class="col-md-3 control-label" for="ecab5970-566a-4c41-8906-f8cdbd88f0dd">State</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: $root.partial.receiver().Address().State"
+                data-rule-required="true" 
+               id="ecab5970-566a-4c41-8906-f8cdbd88f0dd" name="$root.partial.receiver.Address.State">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Country" class="col-md-3 control-label" for="7f59fb75-2965-4af9-87a2-95b4f92dba09">Country</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: $root.partial.receiver().Address().Country"
+                data-rule-required="true" 
+               id="7f59fb75-2965-4af9-87a2-95b4f92dba09" name="$root.partial.receiver.Address.Country">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div><h4 data-i18n="Contact Information" data-bind="visible:true">Contact Information</h4>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Contact Number" class="col-md-3 control-label" for="0e724af5-e897-4ddf-f100-782fe0cf2354">Contact Number</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: $root.partial.receiver().ContactInformation().ContactNumber"
+                data-rule-required="true" 
+               id="0e724af5-e897-4ddf-f100-782fe0cf2354" name="$root.partial.receiver.ContactInformation.ContactNumber">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Alternative Contact Number" class="col-md-3 control-label" for="1cc4df3e-ff90-4847-ff5f-79e0bb3c1675">Alternative Contact Number</label>
+    <div class="col-md-9">
+        <input class="input-large form-control"  type="text"
+               placeholder=""
+               data-bind="value: $root.partial.receiver().ContactInformation().AlternativeContactNumber"
+               id="1cc4df3e-ff90-4847-ff5f-79e0bb3c1675" name="$root.partial.receiver.ContactInformation.AlternativeContactNumber">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Email" class="col-md-3 control-label" for="88aa4f98-1c29-4fab-c8af-65a12f740a8e">Email</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: $root.partial.receiver().ContactInformation().Email"
+                data-rule-required="true" 
+               id="88aa4f98-1c29-4fab-c8af-65a12f740a8e" name="$root.partial.receiver.ContactInformation.Email">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>    </div>
+</form>
     </div>
 </div>

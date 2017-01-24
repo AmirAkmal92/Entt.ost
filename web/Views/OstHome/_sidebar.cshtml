@@ -21,53 +21,64 @@
                     </div>
                 </form>
             </li>
+            <li class="heading">
+                <h3 class="uppercase"> My Contact </h3>
+            </li>
             <!-- ko compose : {view : '_address-book-groups' }-->
 
             <!--/ko-->
             <li class="heading">
-                <h3 class="uppercase">Consignments</h3>
+                <h3 class="uppercase"> Parcel </h3>
             </li>
             <li class="nav-item  ">
-                <a href="/ost#consigment-request-details/0" class="nav-link nav-toggle">
-                    <i class="icon-handbag"></i>
-                    <span class="title">Parcel</span>
+                <a href="#" class="nav-link nav-toggle">
+                    <i class="fa fa-paper-plane"></i>
+                    <span class="title">Send Parcel</span>
                     <span class="arrow"></span>
                 </a>
 
                 <ul class="sub-menu">
                     <li class="nav-item  ">
                         <a href="/ost#consigment-request-details/0" class="nav-link ">
+                            <i class="fa fa-envelope"></i>
                             <span class="title">Send A Parcel</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="/ost#bulk-upload/0" class="nav-link ">
+                        <a href="/ost#consigment-request-details-bulk/0" class="nav-link ">
+                            <i class="fa fa-tasks"></i>
                             <span class="title">Bulk Upload</span>
                         </a>
                     </li>
                 </ul>
 
             </li>
+            <li class="heading">
+                <h3 class="uppercase"> Shipment </h3>
+            </li>
             <li class="nav-item  ">
                 <a href="/ost#consigment-requests" class="nav-link nav-toggle">
-                    <i class="icon-handbag"></i>
-                    <span class="title">Request</span>
+                    <i class="fa fa-ship"></i>
+                    <span class="title"> Shipment History </span>
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item  ">
                         <a href="/ost#consigment-requests" class="nav-link ">
-                            <span class="title">New</span>
+                            <i class="fa fa-th-list"></i>
+                            <span class="title"> All Shipment</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
                         <a href="/ost#consigment-requests/new" class="nav-link ">
-                            <span class="title">In Progress</span>
+                            <i class="fa fa-map-pin"></i>
+                            <span class="title">Domestic</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
                         <a href="/ost#consigment-requests/new" class="nav-link ">
-                            <span class="title">Last 6 month</span>
+                            <i class="fa fa-globe"></i>
+                            <span class="title">International</span>
                         </a>
                     </li>
 

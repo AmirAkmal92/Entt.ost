@@ -1,10 +1,10 @@
-<div class="row mt-element-step">
+<div class="mt-element-step">
     <div class="mt-element-step">
-        <div class="row step-background-thin red">
+        <div class="row step-background-thin">
             <div class="col-md-3 bg-grey-steel mt-step-col  active">
                 <div class="mt-step-number">1</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Sender</div>
-                <div class="mt-step-content font-grey-cascade">Sender information</div>
+                <div class="mt-step-content font-grey-cascade">Sender Information</div>
             </div>
             <div class="col-md-3 bg-grey-steel mt-step-col ">
                 <div class="mt-step-number">2</div>
@@ -14,158 +14,184 @@
             <div class="col-md-3 bg-grey-steel mt-step-col ">
                 <div class="mt-step-number">3</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Product</div>
-                <div class="mt-step-content font-grey-cascade">Consignment product</div>
+                <div class="mt-step-content font-grey-cascade">Consignment Product</div>
             </div>
             <div class="col-md-3 bg-grey-steel mt-step-col ">
                 <div class="mt-step-number">4</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Summary</div>
-                <div class="mt-step-content font-grey-cascade">Consignment summary</div>
+                <div class="mt-step-content font-grey-cascade">Consignment Summary</div>
             </div>
         </div>
     </div>
 </div>
+<h1 class="page-title">
+    Create single consignment
+    <small></small>
+</h1>
 <div class="row">
-    <div class="portlet light bordered">
-        <div class="portlet-title">
-            <div class="caption">
-                <span class="caption-subject font-red-sunglo bold"><h2>Create Consignment</h2></span>
-                <span class="caption-helper">Sender Information</span>
-            </div>
-            <div class="tools">
-                <a href="" class="collapse" data-original-title="" title=""> </a>
-                <a href="" class="reload" data-original-title="" title=""> </a>
-            </div>
-        </div>
-        <div class="portlet-body form">
-            <!-- BEGIN FORM-->
-            <form action="#" class="horizontal-form" data-bind="with : entity" id="consigment-request-details-form">
-                <div class="form-body">
-                    <h3 class="form-section">Personal Info (Sender)</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label data-i18n="Groups" class="control-label" for="sender-company-name">Sender Name</label>
-                                <select class="form-control" name="Sender.CompanyName" id="sender-company-name"></select>
-                                <div class="form-control-focus"> </div>
-                                <span class="help-block"> Select your contact </span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Reference No." class="control-label" for="sender-reference-no">Reference No.</label>
-                                <input required type="text" class="form-control" data-bind="value: Sender().ReferenceNo" data-rule-required="true" id="sender-reference-no" name="Sender.ReferenceNo">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label" data-i18n="Company Name" for="b43c20c5-09fe-411e-81e6-bcce5cecf354">Company Name</label>
-                                <input required type="text" class="form-control" data-bind="value: Sender().CompanyName" data-rule-required="true" id="b43c20c5-09fe-411e-81e6-bcce5cecf354" name="Sender.CompanyName">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Phone No." class="control-label" for="659476a2-df77-43cf-9850-3e86984e48ae">Phone No.</label>
-                                <input class="form-control" type="text" data-bind="value: Sender().ContactInformation().PrimaryPhone" id="659476a2-df77-43cf-9850-3e86984e48ae" name="Sender.ContactInformation.PrimaryPhone">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Fax" class="control-label" for="f1df1f3a-6fa6-47f8-9a2e-62cac1676026">Fax</label>
-                                <input required type="text" class="form-control" data-bind="value: Sender().ContactInformation().PrimaryFax" id="f1df1f3a-6fa6-47f8-9a2e-62cac1676026" name="Sender.ContactInformation.PrimaryFax">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Email" class="control-label" for="3c09fdec-2e13-467e-ba6c-321e15ca3c6a">Email</label>
-                                <input class="form-control" type="text" data-bind="value: Sender().ContactInformation().PrimaryEmail, visible :true, enable: true" data-rule-required="true" id="3c09fdec-2e13-467e-ba6c-321e15ca3c6a" name="Sender.ContactInformation.PrimaryEmail">
-                            </div>
-                        </div>
-                    </div>
-                    <!--/address-->
-                    <h3 class="form-section">Address</h3>
-                    <div class="row">
-                        <div class="col-md-12 ">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Premise No./Mailbox" for="4f8d0f8c-e87c-4836-bedb-e36130d2667c">Premise No. / Mailbox</label>
-                                <input type="text" class="form-control" data-bind="value: Sender().Address().PremiseNoMailbox" data-rule-required="true" id="4f8d0f8c-e87c-4836-bedb-e36130d2667c" name="Sender.Address.PremiseNoMailbox">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Block" class="control-label" for="9da614a5-785c-4f7e-fb71-3cbc5bc8a75b">Block</label>
-                                <input type="text" class="form-control" data-bind="value: Sender().Address().Block" id="9da614a5-785c-4f7e-fb71-3cbc5bc8a75b" name="Sender.Address.Block">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Building Name" class="control-label" for="01d1c388-d629-4283-bd25-56688c166c98">Building Name</label>
-                                <input type="text" class="form-control" data-bind="value: Sender().Address().BuildingName" id="01d1c388-d629-4283-bd25-56688c166c98" name="Sender.Address.BuildingName">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Road Name" class="control-label" for="402a7045-0ed4-4e97-e5fb-9e05da77d1d0">Road Name</label>
-                                <input type="text" class="form-control" data-bind="value: Sender().Address().RoadName" id="402a7045-0ed4-4e97-e5fb-9e05da77d1d0" name="Sender.Address.RoadName">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Area Village / Garden Name" class="col-md-3 control-label" for="c9adcdc4-7f0d-4583-8799-4600a307c4df">Area Village / Garden Name</label>
-                                <input type="text" class="form-control" data-bind="value: Sender().Address().AreaVillageGardenName" id="c9adcdc4-7f0d-4583-8799-4600a307c4df" name="Sender.Address.AreaVillageGardenName">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Sub District" class="control-label" for="c16b1ffa-6dd8-4bc9-938d-b01930b8f370">Sub District</label>
-                                <input type="text" class="form-control" data-bind="value: Sender().Address().SubDistrict" id="c16b1ffa-6dd8-4bc9-938d-b01930b8f370" name="Sender.Address.SubDistrict">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Postcode" class="control-label" for="d9a10872-d0db-4974-af97-b8b80c2fb53f">Postcode</label>
-                                <input type="text" class="form-control" data-bind="value: Sender().Address().Postcode" id="d9a10872-d0db-4974-af97-b8b80c2fb53f" name="Sender.Address.Postcode">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="City" class="control-label" for="c0c4c869-6817-473f-9c2a-d760f2f8fa7b">City</label>
-                                <input type="text" class="form-control" data-bind="value: Sender().Address().City" data-rule-required="true" id="c0c4c869-6817-473f-9c2a-d760f2f8fa7b" name="Sender.Address.City">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="State" class="control-label" for="9f17eaba-00e6-41ae-d51b-4bcbb6cd8bd1">State</label>
-                                <input type="text" class="form-control" data-bind="value: Sender().Address().State" id="9f17eaba-00e6-41ae-d51b-4bcbb6cd8bd1" name="Sender.Address.State">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label data-i18n="Country" class="control-label" for="476a28ad-daea-4166-be1a-778c1b1ac828">Country</label>
-                                <input class="form-control" required type="text" data-bind="value: Sender().Address().Country, visible :true, autocomplete :{ entity:'Country', field :'Name', query:'Id ne \'0\'' }" data-rule-required="true" id="476a28ad-daea-4166-be1a-778c1b1ac828" name="Sender.Address.Country">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-actions right">
-                    <button type="button" class="btn default">Cancel</button>
-                    <a class="btn btn-danger" data-bind="command: $root.saveCommand, visible :true, enable: true">Next <span class="fa fa-check"></span></a>
-                </div>
-            </form>
-            <!-- END FORM-->
-        </div>
+    <div class="col-sm-8">
+<form class="form-horizontal" data-bind="with : entity" id="consigment-request-details-form">
+    <div class="form-body">
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Reference No." class="col-md-3 control-label" for="de2f7ceb-07ff-4fc0-eff8-045583f7666d">Reference No.</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: ReferenceNo"
+                data-rule-required="true" 
+               id="de2f7ceb-07ff-4fc0-eff8-045583f7666d" name="ReferenceNo">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div><div class="form-group form-md-line-input" >
+    <label data-i18n="Groups" class="col-md-3 control-label" for="sender-company-name">Sender Name</label>
+    <div class="col-md-9">
+        <select class="form-control" name="Sender.CompanyName" id="sender-company-name">
+        </select>
+        <div class="form-control-focus"> </div>
+        <span class="help-block">Sender's name</span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Company Name" class="col-md-3 control-label" for="b43c20c5-09fe-411e-81e6-bcce5cecf354">Company Name</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: Sender().CompanyName"
+                data-rule-required="true" 
+               id="b43c20c5-09fe-411e-81e6-bcce5cecf354" name="Sender.CompanyName">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div><h4 data-i18n="Sender Address" data-bind="visible:true">Sender Address</h4>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Address 1" class="col-md-3 control-label" for="4f8d0f8c-e87c-4836-bedb-e36130d2667c">Address 1</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: Sender().Address().Address1"
+                data-rule-required="true" 
+               id="4f8d0f8c-e87c-4836-bedb-e36130d2667c" name="Sender.Address.Address1">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Address 2" class="col-md-3 control-label" for="9da614a5-785c-4f7e-fb71-3cbc5bc8a75b">Address 2</label>
+    <div class="col-md-9">
+        <input class="input-large form-control"  type="text"
+               placeholder=""
+               data-bind="value: Sender().Address().Address2"
+               id="9da614a5-785c-4f7e-fb71-3cbc5bc8a75b" name="Sender.Address.Address2">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Address 3" class="col-md-3 control-label" for="01d1c388-d629-4283-bd25-56688c166c98">Address 3</label>
+    <div class="col-md-9">
+        <input class="input-large form-control"  type="text"
+               placeholder=""
+               data-bind="value: Sender().Address().Address3"
+               id="01d1c388-d629-4283-bd25-56688c166c98" name="Sender.Address.Address3">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Address 4" class="col-md-3 control-label" for="402a7045-0ed4-4e97-e5fb-9e05da77d1d0">Address 4</label>
+    <div class="col-md-9">
+        <input class="input-large form-control"  type="text"
+               placeholder=""
+               data-bind="value: Sender().Address().Address4"
+               id="402a7045-0ed4-4e97-e5fb-9e05da77d1d0" name="Sender.Address.Address4">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Postcode" class="col-md-3 control-label" for="d9a10872-d0db-4974-af97-b8b80c2fb53f">Postcode</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: Sender().Address().Postcode"
+                data-rule-required="true" 
+               id="d9a10872-d0db-4974-af97-b8b80c2fb53f" name="Sender.Address.Postcode">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="City" class="col-md-3 control-label" for="c0c4c869-6817-473f-9c2a-d760f2f8fa7b">City</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: Sender().Address().City"
+                data-rule-required="true" 
+               id="c0c4c869-6817-473f-9c2a-d760f2f8fa7b" name="Sender.Address.City">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="State" class="col-md-3 control-label" for="9f17eaba-00e6-41ae-d51b-4bcbb6cd8bd1">State</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: Sender().Address().State"
+                data-rule-required="true" 
+               id="9f17eaba-00e6-41ae-d51b-4bcbb6cd8bd1" name="Sender.Address.State">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Country" class="col-md-3 control-label" for="476a28ad-daea-4166-be1a-778c1b1ac828">Country</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: Sender().Address().Country, visible :true, autocomplete :{ entity:'Country', field :'Name', query:'Id ne \'0\'' }"
+                data-rule-required="true" 
+               id="476a28ad-daea-4166-be1a-778c1b1ac828" name="Sender.Address.Country">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div><h4 data-i18n="Contact Information" data-bind="visible:true">Contact Information</h4>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Contact Number" class="col-md-3 control-label" for="659476a2-df77-43cf-9850-3e86984e48ae">Contact Number</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="text"
+               placeholder=""
+               data-bind="value: Sender().ContactInformation().ContactNumber"
+                data-rule-required="true" 
+               id="659476a2-df77-43cf-9850-3e86984e48ae" name="Sender.ContactInformation.ContactNumber">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Alternative Contact Number" class="col-md-3 control-label" for="f1df1f3a-6fa6-47f8-9a2e-62cac1676026">Alternative Contact Number</label>
+    <div class="col-md-9">
+        <input class="input-large form-control"  type="text"
+               placeholder=""
+               data-bind="value: Sender().ContactInformation().AlternativeContactNumber"
+               id="f1df1f3a-6fa6-47f8-9a2e-62cac1676026" name="Sender.ContactInformation.AlternativeContactNumber">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>
+<div class="form-group form-md-line-input" data-bind="visible:true">
+    <label data-i18n="Email" class="col-md-3 control-label" for="3c09fdec-2e13-467e-ba6c-321e15ca3c6a">Email</label>
+    <div class="col-md-9">
+        <input class="input-large form-control" required type="email"
+               placeholder=""
+               data-bind="value: Sender().ContactInformation().Email, visible :true, enable: true"
+                data-rule-required="true" 
+               id="3c09fdec-2e13-467e-ba6c-321e15ca3c6a" name="Sender.ContactInformation.Email">
+        <div class="form-control-focus"> </div>
+        <span class="help-block"></span>
+    </div>
+</div>    </div>
+</form>
     </div>
 </div>
