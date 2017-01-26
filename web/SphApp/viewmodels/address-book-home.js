@@ -49,7 +49,7 @@ function(context, logger, router, chart, config, koList, partial) {
         list: list,
         partial: partial,
         toolbar: {
-            commands: false
+            commands: ko.observableArray([])
         },
     };
 
