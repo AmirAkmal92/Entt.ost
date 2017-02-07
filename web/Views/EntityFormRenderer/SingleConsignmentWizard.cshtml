@@ -15,36 +15,41 @@
             
             <div class="col-md-3 bg-grey-steel mt-step-col @step1">
                 <div class="mt-step-number">1</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Sender</div>
+                <div class="mt-step-title uppercase font-grey-cascade"> Sender </div>
                 <div class="mt-step-content font-grey-cascade">Sender Information</div>
             </div>
             <div class="col-md-3 bg-grey-steel mt-step-col @step2">
                 <div class="mt-step-number">2</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Receiver</div>
+                <div class="mt-step-title uppercase font-grey-cascade"> Receiver </div>
                 <div class="mt-step-content font-grey-cascade">Receiver Information</div>
             </div>
             <div class="col-md-3 bg-grey-steel mt-step-col @step3">
                 <div class="mt-step-number">3</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Product</div>
-                <div class="mt-step-content font-grey-cascade">Consignment Product</div>
+                <div class="mt-step-title uppercase font-grey-cascade"> Parcel </div>
+                <div class="mt-step-content font-grey-cascade">Parcel Details</div>
             </div>
             <div class="col-md-3 bg-grey-steel mt-step-col @step4">
                 <div class="mt-step-number">4</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Summary</div>
-                <div class="mt-step-content font-grey-cascade">Consignment Summary</div>
+                <div class="mt-step-title uppercase font-grey-cascade"> Summary </div>
+                <div class="mt-step-content font-grey-cascade">Order Summary</div>
             </div>
         </div>
     </div>
 
 </div>
 
-<h1 class="page-title">
-    @Model.Form.Caption
-    <small>@Model.Form.Note</small>
-</h1>
 <div class="row">
-    <div class="col-sm-8">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject font-red-sunglo bold"><h2>@Model.Form.Caption</h2></span>
+                    <span class="caption-helper">@Model.Form.Note</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
         @Html.Partial("_MaterialDesignFormContent")
     </div>
-
 </div>

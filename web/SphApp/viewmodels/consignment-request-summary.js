@@ -1,9 +1,9 @@
 define([objectbuilders.datacontext, objectbuilders.logger, objectbuilders.router,
 objectbuilders.system, objectbuilders.validation, objectbuilders.eximp,
 objectbuilders.dialog, objectbuilders.watcher, objectbuilders.config,
-objectbuilders.app],
+objectbuilders.app, 'partial/consignment-request-summary'],
 
-function(context, logger, router, system, validation, eximp, dialog, watcher, config, app) {
+function(context, logger, router, system, validation, eximp, dialog, watcher, config, app, partial) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         errors = ko.observableArray(),
@@ -48,7 +48,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
                 entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
             }, function(e) {
                 if (e.status == 404) {
-                    app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "Reactive Developer platform showcase", ["OK"]);
+                    app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "Ost", ["OK"]);
                 }
             }).always(function() {
                 if (typeof partial.activate === "function") {
@@ -115,6 +115,14 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
                 }
             });
         },
+        disclaimerAlert = function () {
+            require(['viewmodels/checkout.disclaimer.dialog', 'durandal/app'], function (dialog, app2) {
+                app2.showDialog(dialog)
+                    .done;
+
+            });
+            return Task.fromResult(0);
+        },
         saveCommand = function() {
             return addReceiversCommand()
                 .then(function(result) {
@@ -138,6 +146,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
         compositionComplete: compositionComplete,
         entity: entity,
         errors: errors,
+        disclaimerAlert: disclaimerAlert,
         toolbar: {
             saveCommand: saveCommand,
             canExecuteSaveCommand: ko.computed(function() {

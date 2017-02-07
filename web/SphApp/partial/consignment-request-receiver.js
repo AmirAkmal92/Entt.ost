@@ -77,6 +77,7 @@ define([objectbuilders.system, "viewmodels/consigment-request-details" , "servic
                         return;
                     }
                     receiver().CompanyName(contact.CompanyName);
+                    receiver().ContactPerson(contact.ContactPerson);
                     receiver().Address().Address1(contact.Address.Address1);
                     receiver().Address().Address2(contact.Address.Address2);
                     receiver().Address().Address3(contact.Address.Address3);

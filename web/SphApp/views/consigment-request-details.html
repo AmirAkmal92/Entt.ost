@@ -3,33 +3,39 @@
         <div class="row step-background-thin">
             <div class="col-md-3 bg-grey-steel mt-step-col  active">
                 <div class="mt-step-number">1</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Sender</div>
+                <div class="mt-step-title uppercase font-grey-cascade"> Sender </div>
                 <div class="mt-step-content font-grey-cascade">Sender Information</div>
             </div>
             <div class="col-md-3 bg-grey-steel mt-step-col ">
                 <div class="mt-step-number">2</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Receiver</div>
+                <div class="mt-step-title uppercase font-grey-cascade"> Receiver </div>
                 <div class="mt-step-content font-grey-cascade">Receiver Information</div>
             </div>
             <div class="col-md-3 bg-grey-steel mt-step-col ">
                 <div class="mt-step-number">3</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Product</div>
-                <div class="mt-step-content font-grey-cascade">Consignment Product</div>
+                <div class="mt-step-title uppercase font-grey-cascade"> Parcel </div>
+                <div class="mt-step-content font-grey-cascade">Parcel Details</div>
             </div>
             <div class="col-md-3 bg-grey-steel mt-step-col ">
                 <div class="mt-step-number">4</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Summary</div>
-                <div class="mt-step-content font-grey-cascade">Consignment Summary</div>
+                <div class="mt-step-title uppercase font-grey-cascade"> Summary </div>
+                <div class="mt-step-content font-grey-cascade">Order Summary</div>
             </div>
         </div>
     </div>
 </div>
-<h1 class="page-title">
-    Create single consignment
-    <small></small>
-</h1>
 <div class="row">
-    <div class="col-sm-8">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject font-red-sunglo bold"><h2>Create single consignment</h2></span>
+                    <span class="caption-helper"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
 <form class="form-horizontal" data-bind="with : entity" id="consigment-request-details-form">
     <div class="form-body">
 <div class="form-group form-md-line-input" data-bind="visible:true">
@@ -44,12 +50,13 @@
         <span class="help-block"></span>
     </div>
 </div><div class="form-group form-md-line-input" >
-    <label data-i18n="Groups" class="col-md-3 control-label" for="sender-company-name">Sender Name</label>
+    <label data-i18n="Groups" class="col-md-3 control-label" for="sender-company-name">Search Contact</label>
     <div class="col-md-9">
         <select class="form-control" name="Sender.CompanyName" id="sender-company-name">
         </select>
         <div class="form-control-focus"> </div>
         <span class="help-block">Sender's name</span>
+        <input type="hidden" data-bind="value: Sender().ContactPerson" name="Sender.ContactPerson">
     </div>
 </div>
 <div class="form-group form-md-line-input" data-bind="visible:true">

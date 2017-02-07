@@ -28,7 +28,7 @@
           "IsRequired": false,
           "Size": null,
           "CssClass": null,
-          "Visible": "true",
+          "Visible": "false",
           "Enable": "true",
           "ElementId": "5740eb59-8d0d-4cc5-91a7-096e7be84a74",
           "HelpText": null,
@@ -68,7 +68,7 @@
           "IsRequired": false,
           "Size": null,
           "CssClass": null,
-          "Visible": "true",
+          "Visible": "false",
           "Enable": "true",
           "ElementId": "79cc5446-bc88-4612-b204-bde33f148cd0",
           "HelpText": null,
@@ -112,7 +112,7 @@
           "IsRequired": false,
           "Size": null,
           "CssClass": null,
-          "Visible": "true",
+          "Visible": "false",
           "Enable": "true",
           "ElementId": "27d2c008-f7a5-40b2-de67-3054df67ce7a",
           "HelpText": null,
@@ -138,16 +138,12 @@
             "$values": [
               {
                 "$type": "Bespoke.Sph.Domain.ListViewColumn, domain.sph",
-                "Label": "Name",
-                "Path": "CompanyName",
+                "Label": "Select",
+                "Path": "",
                 "Input": {
-                  "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
-                  "DefaultValue": "",
-                  "AutoCompletionEntity": "",
-                  "AutoCompletionField": "",
-                  "AutoCompletionQuery": "",
+                  "$type": "Bespoke.Sph.Domain.CheckBox, domain.sph",
                   "IsPathIsRequired": true,
-                  "TypeName": "TextBox",
+                  "TypeName": "CheckBox",
                   "FieldValidation": {
                     "$type": "Bespoke.Sph.Domain.FieldValidation, domain.sph",
                     "IsRequired": false,
@@ -161,9 +157,9 @@
                     "WebId": null
                   },
                   "Name": "",
-                  "Label": "Name",
+                  "Label": "Select",
                   "Tooltip": "",
-                  "Path": "CompanyName",
+                  "Path": "",
                   "IsRequired": false,
                   "Size": "",
                   "CssClass": "",
@@ -182,14 +178,14 @@
                   "InputColMd": null,
                   "InputColSm": null,
                   "InputColXs": null,
-                  "WebId": "0249a9ab-4216-4589-d7dd-a4e409ab471e"
+                  "WebId": "3ebb0d01-0a91-498e-e6ff-71766d036f08"
                 },
-                "WebId": "bfa7df8e-bfb7-415b-f2ff-db37d1ad137f"
+                "WebId": "7f018b83-6acd-4989-adeb-fe57780c9783"
               },
               {
                 "$type": "Bespoke.Sph.Domain.ListViewColumn, domain.sph",
-                "Label": "Service",
-                "Path": "$root.entity().Product().Name",
+                "Label": "Sender",
+                "Path": "$root.entity().Sender().ContactPerson",
                 "Input": {
                   "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
                   "DefaultValue": "",
@@ -211,9 +207,9 @@
                     "WebId": null
                   },
                   "Name": "",
-                  "Label": "Service",
+                  "Label": "Sender",
                   "Tooltip": "",
-                  "Path": "$root.entity().Product().Name",
+                  "Path": "$root.entity().Sender().ContactPerson",
                   "IsRequired": false,
                   "Size": "",
                   "CssClass": "",
@@ -232,14 +228,14 @@
                   "InputColMd": null,
                   "InputColSm": null,
                   "InputColXs": null,
-                  "WebId": "c1559fcb-5877-421a-989e-e9f7f94cb214"
+                  "WebId": "0a64718f-3993-40b3-e1a1-aa6333f7f1e9"
                 },
-                "WebId": "9b891c4a-8571-4649-b02a-e208b60d9512"
+                "WebId": "fb11588f-4d07-4095-e0e5-29a61a34f71c"
               },
               {
                 "$type": "Bespoke.Sph.Domain.ListViewColumn, domain.sph",
-                "Label": "Payment method",
-                "Path": "$root.entity().Product().Name",
+                "Label": "Receiver",
+                "Path": "ContactPerson",
                 "Input": {
                   "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
                   "DefaultValue": "",
@@ -261,9 +257,9 @@
                     "WebId": null
                   },
                   "Name": "",
-                  "Label": "Payment method",
+                  "Label": "Receiver",
                   "Tooltip": "",
-                  "Path": "$root.entity().Product().Name",
+                  "Path": "$root.entity().Receivers().ContactPerson",
                   "IsRequired": false,
                   "Size": "",
                   "CssClass": "",
@@ -282,9 +278,9 @@
                   "InputColMd": null,
                   "InputColSm": null,
                   "InputColXs": null,
-                  "WebId": "7d754177-67b6-4ca2-809e-36783b665410"
+                  "WebId": "e0fae71e-0b31-4736-fbc1-6a4894593c59"
                 },
-                "WebId": "4dd6475e-5203-46b9-a1ef-2251d7b48b19"
+                "WebId": "07b360c4-a9e5-451e-adff-32357d2b0078"
               },
               {
                 "$type": "Bespoke.Sph.Domain.ListViewColumn, domain.sph",
@@ -332,13 +328,63 @@
                   "InputColMd": null,
                   "InputColSm": null,
                   "InputColXs": null,
-                  "WebId": "4a5c6f12-ee76-42c3-9310-6ee6ee0e959e"
+                  "WebId": "7803b5bb-1e25-4452-cdf8-025865d2e429"
                 },
-                "WebId": "9379ca9b-9285-49fe-866a-aff6e9c198f2"
+                "WebId": "baee7cc0-5956-4938-a29f-11552d991fb7"
               },
               {
                 "$type": "Bespoke.Sph.Domain.ListViewColumn, domain.sph",
-                "Label": "Receiver State",
+                "Label": "Price",
+                "Path": "$root.entity().Payment().TotalPrice",
+                "Input": {
+                  "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
+                  "DefaultValue": "",
+                  "AutoCompletionEntity": "",
+                  "AutoCompletionField": "",
+                  "AutoCompletionQuery": "",
+                  "IsPathIsRequired": true,
+                  "TypeName": "TextBox",
+                  "FieldValidation": {
+                    "$type": "Bespoke.Sph.Domain.FieldValidation, domain.sph",
+                    "IsRequired": false,
+                    "Pattern": "",
+                    "Mode": "",
+                    "Message": "",
+                    "Min": null,
+                    "Max": null,
+                    "MinLength": null,
+                    "MaxLength": null,
+                    "WebId": null
+                  },
+                  "Name": "",
+                  "Label": "Price",
+                  "Tooltip": "",
+                  "Path": "$root.entity().Payment().TotalPrice",
+                  "IsRequired": false,
+                  "Size": "",
+                  "CssClass": "",
+                  "Visible": "",
+                  "Enable": "",
+                  "ElementId": "",
+                  "HelpText": "",
+                  "UseDisplayTemplate": false,
+                  "ToolboxIconClass": "",
+                  "IsUniqueName": false,
+                  "LabelColLg": null,
+                  "LabelColMd": null,
+                  "LabelColSm": null,
+                  "LabelColXs": null,
+                  "InputColLg": null,
+                  "InputColMd": null,
+                  "InputColSm": null,
+                  "InputColXs": null,
+                  "WebId": "cac98290-8f18-4470-b5cd-f43be57622ff"
+                },
+                "WebId": "da9f9e18-b84b-46af-d562-fbef32a36370"
+              },
+              {
+                "$type": "Bespoke.Sph.Domain.ListViewColumn, domain.sph",
+                "Label": "Destination",
                 "Path": "Address().State",
                 "Input": {
                   "$type": "Bespoke.Sph.Domain.TextBox, domain.sph",
@@ -361,9 +407,9 @@
                     "WebId": null
                   },
                   "Name": "",
-                  "Label": "Receiver State",
+                  "Label": "Destination",
                   "Tooltip": "",
-                  "Path": "Address().State",
+                  "Path": "$root.entity().Receivers().Address().State",
                   "IsRequired": false,
                   "Size": "",
                   "CssClass": "",
@@ -382,9 +428,9 @@
                   "InputColMd": null,
                   "InputColSm": null,
                   "InputColXs": null,
-                  "WebId": "dca95f5b-6489-4927-bb03-1e6bd1ed8dc0"
+                  "WebId": "5dd39457-54ad-4ec4-e826-4a6177e0bb9e"
                 },
-                "WebId": "d8081143-1788-4185-b46e-797191a8436e"
+                "WebId": "1d9f848c-0815-4265-a424-ee6c5794c48a"
               }
             ]
           },
@@ -472,7 +518,7 @@
   "IsExportAvailable": false,
   "Operation": "AddReceivers",
   "Entity": "ConsigmentRequest",
-  "Partial": "",
+  "Partial": "partial/consignment-request-summary",
   "Caption": "Consignment Request Summary",
   "Layout": "SingleConsignmentWizard",
   "OperationSuccessMesage": "OK done",
@@ -487,6 +533,6 @@
   "Id": "consignment-request-summary",
   "CreatedDate": "2016-10-29T16:12:06.6117617+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-29T18:38:46.192462+08:00",
+  "ChangedDate": "2017-01-24T13:37:00.3601567+08:00",
   "WebId": "7356bc66-03ef-4add-b4da-61df03d591d4"
 }

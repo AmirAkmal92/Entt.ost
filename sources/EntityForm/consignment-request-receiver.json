@@ -52,7 +52,7 @@
         {
           "$type": "Bespoke.Sph.Domain.HtmlElement, domain.sph",
           "IsPathIsRequired": false,
-          "Text": "<div class=\"form-group form-md-line-input\" >\r\n    <label data-i18n=\"Groups\" class=\"col-md-3 control-label\" for=\"receiver-company-name\">Receiver Name</label>\r\n    <div class=\"col-md-9\">\r\n        <select class=\"form-control\" name=\"Receiver.CompanyName\" id=\"receiver-company-name\">\r\n        </select>\r\n        <div class=\"form-control-focus\"> </div>\r\n        <span class=\"help-block\">Sender's name</span>\r\n    </div>\r\n</div>",
+          "Text": "<div class=\"form-group form-md-line-input\" >\r\n    <label data-i18n=\"Groups\" class=\"col-md-3 control-label\" for=\"receiver-company-name\">Receiver Name</label>\r\n    <div class=\"col-md-9\">\r\n        <select class=\"form-control\" name=\"Receiver.CompanyName\" id=\"receiver-company-name\">\r\n        </select>\r\n        <div class=\"form-control-focus\"> </div>\r\n        <span class=\"help-block\">Sender's name</span>\r\n        <input type=\"hidden\" data-bind=\"value: $root.partial.receiver().ContactPerson\" name=\"$root.partial.receiver.ContactPerson\">\r\n    </div>\r\n</div>",
           "TypeName": "HtmlElement",
           "FieldValidation": {
             "$type": "Bespoke.Sph.Domain.FieldValidation, domain.sph",
@@ -759,6 +759,6 @@
   "Id": "consignment-request-receiver",
   "CreatedDate": "2016-10-29T12:06:30.5520972+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-01-23T14:23:36.6741021+08:00",
+  "ChangedDate": "2017-01-24T12:45:01.9898393+08:00",
   "WebId": "d955d20f-384c-4fc7-8ec3-f55520e3035c"
 }

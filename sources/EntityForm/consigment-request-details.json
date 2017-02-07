@@ -52,7 +52,7 @@
         {
           "$type": "Bespoke.Sph.Domain.HtmlElement, domain.sph",
           "IsPathIsRequired": false,
-          "Text": "<div class=\"form-group form-md-line-input\" >\n    <label data-i18n=\"Groups\" class=\"col-md-3 control-label\" for=\"sender-company-name\">Sender Name</label>\n    <div class=\"col-md-9\">\n        <select class=\"form-control\" name=\"Sender.CompanyName\" id=\"sender-company-name\">\n        </select>\n        <div class=\"form-control-focus\"> </div>\n        <span class=\"help-block\">Sender's name</span>\n    </div>\n</div>",
+          "Text": "<div class=\"form-group form-md-line-input\" >\n    <label data-i18n=\"Groups\" class=\"col-md-3 control-label\" for=\"sender-company-name\">Search Contact</label>\n    <div class=\"col-md-9\">\n        <select class=\"form-control\" name=\"Sender.CompanyName\" id=\"sender-company-name\">\n        </select>\n        <div class=\"form-control-focus\"> </div>\n        <span class=\"help-block\">Sender's name</span>\n        <input type=\"hidden\" data-bind=\"value: Sender().ContactPerson\" name=\"Sender.ContactPerson\">\n    </div>\n</div>",
           "TypeName": "HtmlElement",
           "FieldValidation": {
             "$type": "Bespoke.Sph.Domain.FieldValidation, domain.sph",
@@ -755,6 +755,6 @@
   "Id": "consigment-request-details",
   "CreatedDate": "2016-10-29T07:26:06.8492482+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-01-23T14:21:24.0452342+08:00",
+  "ChangedDate": "2017-01-24T16:12:14.2165086+08:00",
   "WebId": "7f42cbee-9b45-468e-bc12-dca4f31cae62"
 }

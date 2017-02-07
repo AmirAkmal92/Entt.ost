@@ -74,6 +74,7 @@ define([objectbuilders.config, objectbuilders.system], function (config, system)
                         return;
                     }
                     request.Sender().CompanyName(contact.CompanyName);
+                    request.Sender().ContactPerson(contact.ContactPerson);
                     request.Sender().Address().Address1(contact.Address.Address1);
                     request.Sender().Address().Address2(contact.Address.Address2);
                     request.Sender().Address().Address3(contact.Address.Address3);
