@@ -1,9 +1,9 @@
 define([objectbuilders.datacontext, objectbuilders.logger, objectbuilders.router,
 objectbuilders.system, objectbuilders.validation, objectbuilders.eximp,
 objectbuilders.dialog, objectbuilders.watcher, objectbuilders.config,
-objectbuilders.app, 'partial/consignment-request-summary'],
+objectbuilders.app],
 
-function(context, logger, router, system, validation, eximp, dialog, watcher, config, app, partial) {
+function(context, logger, router, system, validation, eximp, dialog, watcher, config, app) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         errors = ko.observableArray(),
