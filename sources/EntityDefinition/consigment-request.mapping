@@ -132,7 +132,101 @@
         }
     }
 ,
-             "CurrentStep":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+             "CurrentStep":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+    "Consignments":{
+        "type":  "object",
+        "properties":{
+    "Pemberi":{
+        "type":  "object",
+        "properties":{
+             "ContactPerson":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "CompanyName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+    "Address":{
+        "type":  "object",
+        "properties":{
+             "Address1":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Address2":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Address3":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Address4":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "City":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "State":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Country":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Postcode":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+    "GeoLocation":{
+        "type":  "object",
+        "properties":{
+             "Lat":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "Long":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false}
+        }
+    }
+
+        }
+    }
+,
+    "ContactInformation":{
+        "type":  "object",
+        "properties":{
+             "Email":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "ContactNumber":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "AlternativeContactNumber":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+
+        }
+    }
+,
+    "Penerima":{
+        "type":  "object",
+        "properties":{
+             "ContactPerson":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "CompanyName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+    "Address":{
+        "type":  "object",
+        "properties":{
+             "Address1":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Address2":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Address3":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Address4":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "City":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "State":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Country":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Postcode":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+    "GeoLocation":{
+        "type":  "object",
+        "properties":{
+             "Lat":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "Long":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false}
+        }
+    }
+
+        }
+    }
+,
+    "ContactInformation":{
+        "type":  "object",
+        "properties":{
+             "Email":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "ContactNumber":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "AlternativeContactNumber":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+
+        }
+    }
+,
+    "Produk":{
+        "type":  "object",
+        "properties":{
+             "Weight":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Width":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Length":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Height":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+
+        }
+    }
+
         }
     }
 }

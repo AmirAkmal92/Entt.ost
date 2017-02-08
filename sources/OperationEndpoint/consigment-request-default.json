@@ -22,7 +22,7 @@
   },
   "Name": "Default",
   "Route": "",
-  "IsHttpPut": false,
+  "IsHttpPut": true,
   "IsHttpPatch": false,
   "IsHttpPost": true,
   "IsHttpDelete": true,
@@ -35,6 +35,6 @@
   "Id": "consigment-request-default",
   "CreatedDate": "2016-10-29T08:36:57.25386+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-29T08:37:25.309488+08:00",
+  "ChangedDate": "2017-02-08T11:59:53.7780437+08:00",
   "WebId": "2a788075-5f49-4175-dd49-243244d19847"
 }

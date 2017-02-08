@@ -54,5 +54,19 @@
     "showWhenLoggedIn": false,
     "isAdminPage": false,
     "startPageRoute": null
+  },
+  {
+    "role": "customers",
+    "groupName": null,
+    "route": "consignment-request-pemberi/:crId/consignments/:cId",
+    "moduleId": "viewmodels/consignment-request-pemberi",
+    "title": "Consignment Request Pemberi",
+    "nav": false,
+    "icon": "fa fa-paper-plane",
+    "caption": "Consignment Request Pemberi",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
   }
 ]

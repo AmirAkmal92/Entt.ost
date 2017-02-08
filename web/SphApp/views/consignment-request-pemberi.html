@@ -1,0 +1,58 @@
+<div>
+    <h1>Consignment Request Pemberi</h1>
+    <p>
+        <strong>Route Parameters</strong><br />
+        <label>Consignment Request Id</label>: <span data-bind="text: crid"></span><br />
+        <label>Consignment Id</label>: <span data-bind="text: cid"></span><br />
+    </p>
+    
+    <!--cart-->
+    <div data-bind="with: entity">
+        <div>
+            <a class="btn btn-xs btn-primary" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $root.crid() + '/consignments/' + 0 }"><i class="fa fa-plus"></i></a>
+        </div>
+        <ol data-bind="foreach: Consignments">
+            <li>
+                <span data-bind="text: Pemberi().ContactPerson"></span>
+                &nbsp;
+                <span data-bind="text: Pemberi().CompanyName"></span>
+                &nbsp;
+                <span data-bind="text: Pemberi().Address().Address1"></span>
+                &nbsp;
+                <span data-bind="text: Pemberi().Address().Address2"></span>
+                &nbsp;
+                <span data-bind="text: Pemberi().Address().Address3"></span>
+                &nbsp;
+                <span data-bind="text: Pemberi().Address().Address4"></span>
+                &nbsp;
+                <span data-bind="text: Pemberi().Address().City"></span>
+                &nbsp;
+                <span data-bind="text: Pemberi().Address().State"></span>
+                &nbsp;
+                <span data-bind="text: Pemberi().Address().Country"></span>
+                &nbsp;
+                <span data-bind="text: Pemberi().Address().Postcode"></span>
+                &nbsp;
+                <a class="btn btn-xs btn-success" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $root.crid() + '/consignments/' + WebId() }"><i class="fa fa-pencil"></i></a>
+                <a class="btn btn-xs btn-danger" data-bind="click: $root.deleteConsignment"><i class="fa fa-trash"></i></a>
+            </li>
+        </ol>
+    </div>
+
+    <!--form-pemberi-->
+    <div data-bind="with: consignment">
+        <p>
+            <h2>Pemberi</h2>
+            <label>Contact Person</label>: <input data-bind="value: Pemberi().ContactPerson" /><br />
+            <label>Company Name</label>: <input data-bind="value: Pemberi().CompanyName" /><br />
+            <label>Address1</label>: <input data-bind="value: Pemberi().Address().Address1" /><br />
+            <label>Address2</label>: <input data-bind="value: Pemberi().Address().Address2" /><br />
+            <label>Address3</label>: <input data-bind="value: Pemberi().Address().Address3" /><br />
+            <label>Address4</label>: <input data-bind="value: Pemberi().Address().Address4" /><br />
+            <label>City</label>: <input data-bind="value: Pemberi().Address().City" /><br />
+            <label>State</label>: <input data-bind="value: Pemberi().Address().State" /><br />
+            <label>Country</label>: <input data-bind="value: Pemberi().Address().Country" /><br />
+            <label>Postcode</label>: <input data-bind="value: Pemberi().Address().Postcode" /><br />
+        </p>        
+    </div>
+</div>
