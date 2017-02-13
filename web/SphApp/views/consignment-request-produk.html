@@ -1,0 +1,102 @@
+<div class="row mt-element-step">
+    <div class="mt-element-step">
+        <div class="row step-background-thin red">
+            <div class="col-md-4 bg-grey-steel mt-step-col">
+                <div class="mt-step-number">1</div>
+                <div class="mt-step-title uppercase font-grey-cascade"> Sender </div>
+                <div class="mt-step-content font-grey-cascade">Sender Information</div>
+            </div>
+            <div class="col-md-4 bg-grey-steel mt-step-col">
+                <div class="mt-step-number">2</div>
+                <div class="mt-step-title uppercase font-grey-cascade"> Receiver </div>
+                <div class="mt-step-content font-grey-cascade">Receiver Information</div>
+            </div>
+            <div class="col-md-4 bg-grey-steel mt-step-col active">
+                <div class="mt-step-number">3</div>
+                <div class="mt-step-title uppercase font-grey-cascade"> Parcel </div>
+                <div class="mt-step-content font-grey-cascade">Parcel Information</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption">
+                <span class="caption-subject font-red-sunglo bold"><h2> Parcel Details</h2></span>
+                <span class="caption-helper">Parcel Information</span>
+            </div>
+            <div class="tools">
+                <a href="" class="reload" data-original-title="" title=""> </a>
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <form action="#" class="horizontal-form" data-bind="with: consignment">
+                <div class="form-body">
+                    <h3 class="form-section" data-bind="visible:true">Volumetric Weight</h3>
+                    <div class="row form-group " data-bind="visible:true">
+                        <label data-i18n="Weight" class="col-md-2 control-label" for="6465286c-a3af-46de-e7d8-0499b6bf7cf4">Weight</label>
+                        <div class="col-md-4">
+                            <input class="form-control" required type="text"
+                                   placeholder=""
+                                   data-bind="value: Produk().Weight"
+                                   data-rule-number="true" data-rule-required="true"
+                                   data-rule-min="0"
+                                   data-rule-max="100"
+                                   id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Produk.Weight">
+                            <div class="form-control-focus"> </div>
+                            <span class="help-block">Weight in Kilogram</span>
+                        </div>
+                        <label data-i18n="Weight" class="col-md-1 control-label" for="6465286c-a3af-46de-e7d8-9499b6bf7cf4">Price</label> <span data-bind="text: 'RM ' + Produk().Price()"></span>
+                        <input type="hidden" data-bind="value: Produk().Price" />
+                    </div>
+                    <div class="row form-group" data-bind="visible:true">
+                        <label data-i18n="Width" class="col-md-2 control-label" for="61040711-a759-4cf8-ea32-47b1cdee2f44">Width</label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text"
+                                   placeholder=""
+                                   data-bind="value: Produk().Width"
+                                   data-rule-number="true"
+                                   id="61040711-a759-4cf8-ea32-47b1cdee2f44" name="Produk.Width">
+                            <div class="form-control-focus"> </div>
+                            <span class="help-block">Width in cm</span>
+                        </div>
+                    </div>
+                    <div class="row form-group" data-bind="visible:true">
+                        <label data-i18n="Length" class="col-md-2 control-label" for="38c9d5fd-8458-4ce4-9575-da6edf8b0c9d">Length</label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text"
+                                   placeholder=""
+                                   data-bind="value: Produk().Length"
+                                   data-rule-number="true"
+                                   id="38c9d5fd-8458-4ce4-9575-da6edf8b0c9d" name="Produk.Length">
+                            <div class="form-control-focus"> </div>
+                            <span class="help-block">Length  in cm</span>
+                        </div>
+                    </div>
+                    <div class="row form-group" data-bind="visible:true">
+                        <label data-i18n="Height" class="col-md-2 control-label" for="a044e320-f819-4adf-fc9d-f130079818fe">Height</label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text"
+                                   placeholder=""
+                                   data-bind="value: Produk().Height"
+                                   data-rule-number="true"
+                                   id="a044e320-f819-4adf-fc9d-f130079818fe" name="Produk.Height">
+                            <div class="form-control-focus"> </div>
+                            <span class="help-block">Height  in cm</span>
+                        </div>
+                    </div>
+                    <div class="row form-group" data-bind="visible:true">
+                        <label data-i18n="Find the right service" class="col-md-2 control-label sr-only" for="btnFindProducts">Find the right service</label>
+                        <div class="col-md-4">
+                            <button data-bind="command : $root.findProductsAsync, visible :true, enable: true" class="btn btn-success pull-right">
+                                <i class="fa fa-search"></i>
+                                Find Service
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

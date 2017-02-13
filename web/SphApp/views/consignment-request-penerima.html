@@ -1,26 +1,21 @@
 <div class="row mt-element-step">
     <div class="mt-element-step">
         <div class="row step-background-thin red">
-            <div class="col-md-4 bg-grey-steel mt-step-col  active">
+            <div class="col-md-4 bg-grey-steel mt-step-col">
                 <div class="mt-step-number">1</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Sender</div>
-                <div class="mt-step-content font-grey-cascade">Sender information</div>
+                <div class="mt-step-content font-grey-cascade">Sender Information</div>
             </div>
-            <div class="col-md-4 bg-grey-steel mt-step-col ">
+            <div class="col-md-4 bg-grey-steel mt-step-col active">
                 <div class="mt-step-number">2</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Receiver</div>
                 <div class="mt-step-content font-grey-cascade">Receiver Information</div>
             </div>
-            <div class="col-md-4 bg-grey-steel mt-step-col ">
+            <div class="col-md-4 bg-grey-steel mt-step-col">
                 <div class="mt-step-number">3</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Product</div>
-                <div class="mt-step-content font-grey-cascade">Consignment product</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Parcel</div>
+                <div class="mt-step-content font-grey-cascade">Parcel Information</div>
             </div>
-            <!--<div class="col-md-3 bg-grey-steel mt-step-col ">
-                <div class="mt-step-number">4</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Summary</div>
-                <div class="mt-step-content font-grey-cascade">Consignment summary</div>
-            </div>-->
         </div>
     </div>
 </div>
@@ -29,28 +24,27 @@
         <div class="portlet-title">
             <div class="caption">
                 <span class="caption-subject font-red-sunglo bold"><h2>Send Parcel</h2></span>
-                <span class="caption-helper">Sender Information</span>
+                <span class="caption-helper">Receiver Information</span>
             </div>
             <div class="tools">
                 <a href="" class="reload" data-original-title="" title=""> </a>
             </div>
         </div>
         <div class="portlet-body form">
-            <!-- BEGIN FORM-->
             <form action="#" class="horizontal-form" data-bind="with: consignment">
                 <div class="form-body">
-                    <h3 class="form-section">Personal Info (Sender)</h3>
+                    <h3 class="form-section">Personal Info (Receiver)</h3>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Sender Name</label>
-                                <input required type="text" class="form-control" data-bind="value: Pemberi().ContactPerson" data-rule-required="true">
+                                <label class="control-label">Receiver Name</label>
+                                <input required type="text" class="form-control" data-bind="value: Penerima().ContactPerson" data-rule-required="true">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Company Name</label>
-                                <input required type="text" class="form-control" data-bind="value: Pemberi().CompanyName" data-rule-required="true" name="Pemberi.CompanyName">
+                                <input required type="text" class="form-control" data-bind="value: Penerima().CompanyName" data-rule-required="true" name="Penerima.CompanyName">
                             </div>
                         </div>
                     </div>
@@ -58,14 +52,14 @@
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Contact No.</label>
-                                <input class="form-control" type="text" data-bind="value: Pemberi().ContactInformation().ContactNumber" name="Pemberi.ContactInformation.ContactNumber">
+                                <input class="form-control" type="text" data-bind="value: Penerima().ContactInformation().ContactNumber" name="Penerima.ContactInformation.ContactNumber">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Email</label>
-                                <input class="form-control" type="text" data-bind="value: Pemberi().ContactInformation().Email" data-rule-required="true" name="Pemberi.ContactInformation.Email">
+                                <input class="form-control" type="text" data-bind="value: Penerima().ContactInformation().Email" data-rule-required="true" name="Penerima.ContactInformation.Email">
                             </div>
                         </div>
                     </div>
@@ -73,23 +67,22 @@
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Alternative Contact No.</label>
-                                <input required type="text" class="form-control" data-bind="value: Pemberi().ContactInformation().AlternativeContactNumber" name="Pemberi.ContactInformation.AlternativeContactNumber">
+                                <input required type="text" class="form-control" data-bind="value: Penerima().ContactInformation().AlternativeContactNumber" name="Penerima.ContactInformation.AlternativeContactNumber">
                             </div>
                         </div>
                     </div>
-                    <!--/address-->
                     <h3 class="form-section">Address</h3>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Address 1</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Address1" name="Pemberi.Address.Address1">
+                                <input type="text" class="form-control" data-bind="value: Penerima().Address().Address1" name="Penerima.Address.Address1">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Address 2</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Address2" name="Pemberi.Address.Address2">
+                                <input type="text" class="form-control" data-bind="value: Penerima().Address().Address2" name="Penerima.Address.Address2">
                             </div>
                         </div>
                     </div>
@@ -97,13 +90,13 @@
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Address 3</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Address3" name="Pemberi.Address.Address3">
+                                <input type="text" class="form-control" data-bind="value: Penerima().Address().Address3" name="Penerima.Address.Address3">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Address 4</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Address4" name="Pemberi.Address.Address4">
+                                <input type="text" class="form-control" data-bind="value: Penerima().Address().Address4" name="Penerima.Address.Address4">
                             </div>
                         </div>
                     </div>
@@ -111,13 +104,13 @@
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Postcode</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Postcode" name="Pemberi.Address.Postcode">
+                                <input type="text" class="form-control" data-bind="value: Penerima().Address().Postcode" name="Penerima.Address.Postcode">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">City</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().City" name="Pemberi.Address.City">
+                                <input type="text" class="form-control" data-bind="value: Penerima().Address().City" name="Penerima.Address.City">
                             </div>
                         </div>
                     </div>
@@ -125,19 +118,18 @@
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">State</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().State" name="Pemberi.Address.State">
+                                <input type="text" class="form-control" data-bind="value: Penerima().Address().State" name="Penerima.Address.State">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Country</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Country, visible :true, autocomplete :{ entity:'Country', field :'Name', query:'Id ne \'0\'' }" name="Pemberi.Address.Country">
+                                <input type="text" class="form-control" data-bind="value: Penerima().Address().Country, visible :true, autocomplete :{ entity:'Country', field :'Name', query:'Id ne \'0\'' }" name="Penerima.Address.Country">
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
-            <!-- END FORM-->
         </div>
     </div>
 </div>

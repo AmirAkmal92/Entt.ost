@@ -7,7 +7,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         consignment = ko.observable(new bespoke.Ost_consigmentRequest.domain.Consignment(system.guid())),
-        pemberi = ko.observable(new bespoke.Ost_consigmentRequest.domain.Pemberi(system.guid())),
+        penerima = ko.observable(new bespoke.Ost_consigmentRequest.domain.Penerima(system.guid())),
         errors = ko.observableArray(),
         id = ko.observable(),
         crid = ko.observable(),
@@ -39,9 +39,8 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
                     if (!cId || cId === "0") {
-                        consignment().Pemberi(pemberi());
+                        consignment().Penerima(penerima());
                         entity().Consignments().push(consignment());
-                        cid(consignment().WebId());
                     } else {
                         var editIndex = -1;
                         for (var i = 0; i < entity().Consignments().length; i++) {
@@ -51,15 +50,9 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                             }
                         }
                         if (editIndex != -1) {
-                            consignment().Pemberi(entity().Consignments()[editIndex].Pemberi());
-                            cid(entity().Consignments()[i].WebId());
-                        } else {
-                            consignment().Pemberi(pemberi());
-                            entity().Consignments().push(consignment());
-                            cid(consignment().WebId());
+                            consignment().Penerima(entity().Consignments()[editIndex].Penerima());
                         }
                     }
-
                 }, function (e) {
                     if (e.status == 404) {
                         app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + crId, "Ost", ["OK"]);
@@ -74,12 +67,10 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     }
                 });
             return tcs.promise();
-
         },
         defaultCommand = function () {
             var data = ko.mapping.toJSON(entity),
                 tcs = new $.Deferred();
-
             context.put(data, "/api/consigment-requests/" + ko.unwrap(entity().Id) + "", headers)
                 .fail(function (response) {
                     var result = response.responseJSON;
@@ -107,7 +98,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         remove = function () {
             return context.sendDelete("/api/consigment-requests/" + ko.unwrap(entity().Id))
                 .then(function (result) {
-                    return app.showMessage("Sender details has been successfully deleted", "POS Online Shipping Tools", ["OK"]);
+                    return app.showMessage("Receiver details has been successfully deleted", "POS Online Shipping Tools", ["OK"]);
                 })
                 .then(function (result) {
                     router.navigate("consignment-request-ringkasan/" + crid() + "/consignments/" + 0);
@@ -116,6 +107,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         deleteConsignment = function (consignment) {
             entity().Consignments.remove(consignment);
         },
+
         attached = function (view) {
             if (typeof partial.attached === "function") {
                 partial.attached(view);
@@ -128,14 +120,14 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return defaultCommand()
                 .then(function (result) {
                     if (result.success) {
-                        return app.showMessage("Sender details has been successfully saved", "POS Online Shipping Tools", ["OK"]);
+                        return app.showMessage("Receiver details has been successfully saved", "POS Online Shipping Tools", ["OK"]);
                     } else {
                         return Task.fromResult(false);
                     }
                 })
                 .then(function (result) {
                     if (result) {
-                        router.navigate("consignment-request-penerima/" + crid() + "/consignments/" + cid());
+                        router.navigate("consignment-request-produk/" + crid() + "/consignments/" + cid());
                     }
                 });
         };

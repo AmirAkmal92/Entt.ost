@@ -68,5 +68,47 @@
     "showWhenLoggedIn": false,
     "isAdminPage": false,
     "startPageRoute": null
+  },
+  {
+    "role": "customers",
+    "groupName": null,
+    "route": "consignment-request-penerima/:crId/consignments/:cId",
+    "moduleId": "viewmodels/consignment-request-penerima",
+    "title": "Consignment Request Penerima",
+    "nav": false,
+    "icon": "fa fa-paper-plane",
+    "caption": "Consignment Request Penerima",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
+  },
+  {
+    "role": "customers",
+    "groupName": null,
+    "route": "consignment-request-produk/:crId/consignments/:cId",
+    "moduleId": "viewmodels/consignment-request-produk",
+    "title": "Consignment Request Produk",
+    "nav": false,
+    "icon": "fa fa-paper-plane",
+    "caption": "Consignment Request Produk",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
+  },
+  {
+    "role": "customers",
+    "groupName": null,
+    "route": "consignment-request-ringkasan/:crId/consignments/:cId",
+    "moduleId": "viewmodels/consignment-request-ringkasan",
+    "title": "Consignment Request Ringkasan",
+    "nav": false,
+    "icon": "fa fa-paper-plane",
+    "caption": "Consignment Request Ringkasan",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
   }
 ]
