@@ -100,7 +100,7 @@
   {
     "role": "customers",
     "groupName": null,
-    "route": "consignment-request-ringkasan/:crId/consignments/:cId",
+    "route": "consignment-request-ringkasan/:entityId",
     "moduleId": "viewmodels/consignment-request-ringkasan",
     "title": "Consignment Request Ringkasan",
     "nav": false,

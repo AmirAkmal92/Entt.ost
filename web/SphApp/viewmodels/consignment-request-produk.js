@@ -8,13 +8,10 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         consignment = ko.observable(new bespoke.Ost_consigmentRequest.domain.Consignment(system.guid())),
         produk = ko.observable(new bespoke.Ost_consigmentRequest.domain.Produk(system.guid())),
-        //pemberi = ko.observable(new bespoke.Ost_consigmentRequest.domain.Pemberi(system.guid())),
-        //penerima = ko.observable(new bespoke.Ost_consigmentRequest.domain.Penerima(system.guid())),
         errors = ko.observableArray(),
         id = ko.observable(),
         crid = ko.observable(),
         cid = ko.observable(),
-        jumlah = ko.observable(0),
         partial = partial || {},
         headers = {},
         activate = function (crId, cId) {
@@ -104,18 +101,6 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     tcs.resolve(result);
                 });
             return tcs.promise();
-        },
-        remove = function () {
-            return context.sendDelete("/api/consigment-requests/" + ko.unwrap(entity().Id))
-                .then(function (result) {
-                    return app.showMessage("Parcel details has been successfully deleted", "POS Online Shipping Tools", ["OK"]);
-                })
-                .then(function (result) {
-                    router.navigate("consignment-request-ringkasan/" + crid() + "/consignments/" + 0);
-                });
-        },
-        deleteConsignment = function (consignment) {
-            entity().Consignments.remove(consignment);
         },
         attached = function (view) {
             if (typeof partial.attached === "function") {
@@ -225,9 +210,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 };
                 return context.post(ko.toJSON(request), "/ost/snb-services/calculate-published-rate")
                 .done(function (result) {
-                    console.log(result);
                     console.log(result.Total);
-                    jumlah(result.Total);
                     consignment().Produk().Price(result.Total);
                 });
             };
@@ -243,7 +226,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             })
             .then(function (result) {
                 if (result) {
-                    router.navigate("consignment-request-ringkasan/" + crid() + "/consignments/" + 0);
+                    router.navigate("consignment-request-ringkasan/" + crid());
                 }
             });
     };
@@ -257,24 +240,11 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         errors: errors,
         crid: crid,//temp
         cid: cid,//temp
-        jumlah: jumlah,//temp
         consignment: consignment,
-        deleteConsignment: deleteConsignment,
         findProductsAsync: findProductsAsync,
         recalculatePrice: recalculatePrice,
         toolbar: {
-            removeCommand: remove,
-            canExecuteRemoveCommand: ko.computed(function () {
-                return entity().Id();
-            }),
             saveCommand: saveCommand,
-            canExecuteSaveCommand: ko.computed(function () {
-                if (typeof partial.canExecuteSaveCommand === "function") {
-                    return partial.canExecuteSaveCommand();
-                }
-                return true;
-            }),
-
         }, // end toolbar
 
         commands: ko.observableArray([])

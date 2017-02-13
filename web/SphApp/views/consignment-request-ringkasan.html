@@ -15,7 +15,7 @@
                     <div class="col-xs-6 invoice-block pull-right">
                         <div class="tab-pane active">
                             <div class="clearfix">
-                                <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $root.crid() + '/consignments/' + 0 }" class="btn blue margin-bottom-5">
+                                <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/' + 0 }" class="btn blue margin-bottom-5">
                                     <i class="glyphicon glyphicon-plus"></i> New Parcel
                                 </a>
                             </div>
@@ -39,17 +39,17 @@
                             <tbody data-bind="foreach :Consignments">
                                 <tr>
                                     <td class="hidden-xs">
-                                        <a class="contact-item" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $root.crid() + '/consignments/' + WebId() }">
+                                        <a class="contact-item" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }">
                                             <span data-bind="text: Pemberi().ContactPerson"></span>
                                         </a>
                                     </td>
                                     <td class="hidden-xs">
-                                        <a class="contact-item" data-bind="attr: { href: 'ost#consignment-request-penerima/' + $root.crid() + '/consignments/' + WebId() }">
+                                        <a class="contact-item" data-bind="attr: { href: 'ost#consignment-request-penerima/' + $parent.Id() + '/consignments/' + WebId() }">
                                             <span data-bind="text: Penerima().ContactPerson"></span>
                                         </a>
                                     </td>
                                     <td class="hidden-xs">
-                                        <a class="contact-item" data-bind="attr: { href: 'ost#consignment-request-produk/' + $root.crid() + '/consignments/' + WebId() }">
+                                        <a class="contact-item" data-bind="attr: { href: 'ost#consignment-request-produk/' + $parent.Id() + '/consignments/' + WebId() }">
                                             <!--ko if: Produk().Weight() != null-->
                                             <span data-bind="text: Produk().Weight() + ' kg'"></span>
                                             <!-- /ko -->
@@ -66,8 +66,8 @@
                                         <!-- /ko -->
                                     </td>
                                     <td>
-                                        <a class="btn btn-xs btn-success" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $root.crid() + '/consignments/' + WebId() }"><i class="fa fa-pencil"></i></a>
-                                        <a class="btn btn-xs btn-danger" data-bind="click: $root.deleteConsignment2"><i class="fa fa-trash"></i></a>
+                                        <a class="btn btn-xs btn-success" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }"><i class="fa fa-pencil"></i></a>
+                                        <a class="btn btn-xs btn-danger" data-bind="click: $root.deleteConsignment"><i class="fa fa-trash"></i></a>
                                     </td>
 
                                 </tr>
@@ -79,7 +79,7 @@
                     <div class="col-xs-12 invoice-block pull-right">
                         <ul class="list-unstyled amounts">
                             <li>
-                                <strong>Grand Total:</strong> //Null todo
+                                <strong>Grand Total:</strong> 0.00
                             </li>
                         </ul>
                     </div>

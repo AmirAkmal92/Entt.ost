@@ -95,19 +95,6 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 });
             return tcs.promise();
         },
-        remove = function () {
-            return context.sendDelete("/api/consigment-requests/" + ko.unwrap(entity().Id))
-                .then(function (result) {
-                    return app.showMessage("Receiver details has been successfully deleted", "POS Online Shipping Tools", ["OK"]);
-                })
-                .then(function (result) {
-                    router.navigate("consignment-request-ringkasan/" + crid() + "/consignments/" + 0);
-                });
-        },
-        deleteConsignment = function (consignment) {
-            entity().Consignments.remove(consignment);
-        },
-
         attached = function (view) {
             if (typeof partial.attached === "function") {
                 partial.attached(view);
@@ -142,20 +129,8 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         crid: crid,//temp
         cid: cid,//temp
         consignment: consignment,
-        deleteConsignment: deleteConsignment,
         toolbar: {
-            removeCommand: remove,
-            canExecuteRemoveCommand: ko.computed(function () {
-                return entity().Id();
-            }),
             saveCommand: saveCommand,
-            canExecuteSaveCommand: ko.computed(function () {
-                if (typeof partial.canExecuteSaveCommand === "function") {
-                    return partial.canExecuteSaveCommand();
-                }
-                return true;
-            }),
-
         }, // end toolbar
 
         commands: ko.observableArray([])

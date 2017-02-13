@@ -1,30 +1,15 @@
-define([objectbuilders.datacontext, objectbuilders.logger, objectbuilders.router,
-objectbuilders.system, objectbuilders.validation, objectbuilders.eximp,
-objectbuilders.dialog, objectbuilders.watcher, objectbuilders.config,
-objectbuilders.app],
+define(["services/datacontext", "services/logger", "plugins/router", "services/system",
+    "services/chart", objectbuilders.config, objectbuilders.app],
 
-function (context, logger, router, system, validation, eximp, dialog, watcher, config, app) {
+function (context, logger, router, system, chart, config, app) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
-        consignment = ko.observable(new bespoke.Ost_consigmentRequest.domain.Consignment(system.guid())),
-        penerima = ko.observable(new bespoke.Ost_consigmentRequest.domain.Penerima(system.guid())),
         errors = ko.observableArray(),
         id = ko.observable(),
-        crid = ko.observable(),
-        cid = ko.observable(),
-        partial = partial || {},
         headers = {},
-        activate = function (crId, cId) {
-            id(crId);
-            crid(crId);
-            cid(cId);
-            var tcs = new $.Deferred();
-            if (!crId || crId === "0") {
-                return Task.fromResult({
-                    WebId: system.guid()
-                });
-            }
-            return context.get("/api/consigment-requests/" + crId)
+        activate = function (entityId) {
+            id(entityId);
+            return context.get("/api/consigment-requests/" + entityId)
                 .then(function (b, textStatus, xhr) {
                     if (xhr) {
                         var etag = xhr.getResponseHeader("ETag"),
@@ -37,34 +22,11 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         }
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
-                    if (!cId || cId === "0") {
-                        consignment().Penerima(penerima());
-                    } else {
-                        var editIndex = -1;
-                        for (var i = 0; i < entity().Consignments().length; i++) {
-                            if (entity().Consignments()[i].WebId() === cId) {
-                                editIndex = i;
-                                break;
-                            }
-                        }
-                        if (editIndex != -1) {
-                            consignment().Penerima(entity().Consignments()[editIndex].Penerima());
-                        }
-                    }
                 }, function (e) {
                     if (e.status == 404) {
-                        app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + crId, "Ost", ["OK"]);
-                    }
-                }).always(function () {
-                    if (typeof partial.activate === "function") {
-                        partial.activate(ko.unwrap(entity))
-                            .done(tcs.resolve)
-                            .fail(tcs.reject);
-                    } else {
-                        tcs.resolve(true);
+                        app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "Ost", ["OK"]);
                     }
                 });
-            return tcs.promise();
         },
         defaultCommand = function () {
             var data = ko.mapping.toJSON(entity),
@@ -94,37 +56,13 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 });
             return tcs.promise();
         },
-        remove = function () {
-            return context.sendDelete("/api/consigment-requests/" + ko.unwrap(entity().Id))
-                .then(function (result) {
-                    return app.showMessage("Successfully deleted", "Ost", ["OK"]);
-                })
-                .then(function (result) {
-                    router.navigate("yyy");
-                });
-        },
-        removeConsignment = function (consignment) {
-            return context.sendDelete("/api/consigment-requests/" + ko.unwrap(entity().Id) + "consignment-request-pemberi/" + crid() + "/consignments/" + cid())
-                .then(function (result) {
-                    return app.showMessage("Successfully deleted", "Ost", ["OK"]);
-                })
-                .then(function (result) {
-                    router.navigate("yyy");
-                });
-        },
         deleteConsignment = function (consignment) {
-            app.showMessage("Are you sure to remove?", "POS Online Shipping Tools", ["OK"]);
-            entity().Consignments.remove(consignment);
-            return saveCommand()
-        },
-        deleteConsignment2 = function (consignment) {
             var tcs = $.Deferred();
             app.showMessage(`Are you sure you want to remove parcel, this action cannot be undone`, "POS Online Shipping Tools", ["Yes", "No"])
                 .done(function (dialogResult) {
                     if (dialogResult === "Yes") {
                         entity().Consignments.remove(consignment);
-                        return defaultCommand()
-                        .then(function (result) {
+                        return defaultCommand().then(function (result) {
                             if (result.success) {
                                 return app.showMessage("Parcel has been successfully removed", "POS Online Shipping Tools", ["OK"]);
                             } else {
@@ -140,43 +78,14 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         },
         attached = function (view) {
 
-            if (typeof partial.attached === "function") {
-                partial.attached(view);
-            }
-
-        },
-        compositionComplete = function () {
-
-        },
-        saveCommand = function () {
-            return defaultCommand()
-                .then(function (result) {
-                    if (result.success) {
-                        return app.showMessage("Successfully edited", ["OK"]);
-                    } else {
-                        return Task.fromResult(false);
-                    }
-                })
-                .then(function (result) {
-                    if (result) {
-                        router.navigate("xxx");
-                    }
-                });
         };
     var vm = {
-        partial: partial,
         activate: activate,
         config: config,
         attached: attached,
-        compositionComplete: compositionComplete,
-        entity: entity,
         errors: errors,
-        crid: crid,//temp
-        cid: cid,//temp
-        consignment: consignment,
-        deleteConsignment: deleteConsignment,
-        deleteConsignment2: deleteConsignment2,
-        removeConsignment: removeConsignment
+        entity: entity,
+        deleteConsignment: deleteConsignment
     };
 
     return vm;
