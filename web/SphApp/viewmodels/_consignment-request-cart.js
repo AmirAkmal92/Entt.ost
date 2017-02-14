@@ -1,5 +1,5 @@
-define(['services/datacontext', 'services/logger', 'plugins/router'],
-    function (context, logger, router) {
+define(['services/datacontext', 'services/logger', 'plugins/router', objectbuilders.system],
+    function (context, logger, router, system) {
         var isBusy = ko.observable(true),
             consignmentRequest = ko.observable(),
             activate = function () {
@@ -7,7 +7,12 @@ define(['services/datacontext', 'services/logger', 'plugins/router'],
                     console.log(crList);
                     if (crList._count == 0) {
                         //create new cart
-                        //TODO:
+                        consignmentRequest(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid()));
+                        consignmentRequest().ReferenceNo(system.guid());
+                        var data = ko.mapping.toJSON(consignmentRequest);
+                        context.post(data, "/api/consigment-requests/").done(function (result) {
+                            consignmentRequest().Id(result.id);
+                        });
                     } else {
                         //get the first one
                         consignmentRequest(crList._results[0]);
@@ -17,7 +22,7 @@ define(['services/datacontext', 'services/logger', 'plugins/router'],
             attached = function (view) {
 
             };
-        var vm = {          
+        var vm = {
             isBusy: isBusy,
             consignmentRequest: consignmentRequest,
             activate: activate,

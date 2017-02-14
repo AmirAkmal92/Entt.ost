@@ -3,7 +3,7 @@
         <h3 class="uppercase"> Parcel </h3>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + consignmentRequest().Id + '/consignments/0' }">
+        <a class="nav-link" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + ko.unwrap(consignmentRequest().Id) + '/consignments/0' }">
             <i class="fa fa-paper-plane"></i>
             <span class="title">Send Parcel</span>
         </a>
@@ -12,7 +12,7 @@
         <h3 class="uppercase"> Shipment </h3>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-bind="attr: { href: 'ost#consignment-request-ringkasan/' + consignmentRequest().Id }">
+        <a class="nav-link" data-bind="attr: { href: 'ost#consignment-request-ringkasan/' + ko.unwrap(consignmentRequest().Id) }">
             <i class="fa fa-shopping-cart"></i>
             <span class="title"> Shipping Cart </span>(<span data-bind="text: consignmentRequest().Consignments.length"></span>)
         </a>
