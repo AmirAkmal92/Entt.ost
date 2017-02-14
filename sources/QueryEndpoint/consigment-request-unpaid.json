@@ -1,0 +1,60 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "ConsigmentRequestUnpaidQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "CreatedBy",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.FunctionField, domain.sph",
+          "CodeNamespace": "ffca3003e2",
+          "Script": "ObjectBuilder.GetObject<IDirectoryService>().CurrentUserName",
+          "Name": "Created By",
+          "Note": "",
+          "WebId": "ca3003e2-0110-49a6-a769-6f470f59ecae"
+        },
+        "WebId": "0e078eb0-b681-491d-b929-f32e29aa3263"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Payment.IsPaid",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "Value": "false",
+          "Name": "false",
+          "Note": "",
+          "WebId": "7873fa2b-c3f1-4103-b3d8-2a569eb0ddd4"
+        },
+        "WebId": "52a81548-eba1-4bad-c56e-a9053779946a"
+      }
+    ]
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "Unpaid",
+  "Route": "unpaid",
+  "IsReturnSource": "",
+  "Entity": "ConsigmentRequest",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "consigment-requests",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "consigment-request-unpaid",
+  "CreatedDate": "2017-02-14T12:15:11.6179879+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-14T13:02:15.5563793+08:00",
+  "WebId": "ef3a624b-dce6-4c73-a383-12c3739c9b9b"
+}

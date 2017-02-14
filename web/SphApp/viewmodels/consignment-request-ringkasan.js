@@ -1,7 +1,7 @@
 define(["services/datacontext", "services/logger", "plugins/router", "services/system",
-    "services/chart", objectbuilders.config, objectbuilders.app],
+    "services/chart", objectbuilders.config, objectbuilders.app, "viewmodels/_consignment-request-cart"],
 
-function (context, logger, router, system, chart, config, app) {
+function (context, logger, router, system, chart, config, app, crCart) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         errors = ko.observableArray(),
@@ -27,6 +27,8 @@ function (context, logger, router, system, chart, config, app) {
                         app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "Ost", ["OK"]);
                     }
                 });
+
+            crCart.activate();
         },
         defaultCommand = function () {
             var data = ko.mapping.toJSON(entity),
@@ -64,6 +66,7 @@ function (context, logger, router, system, chart, config, app) {
                         entity().Consignments.remove(consignment);
                         return defaultCommand().then(function (result) {
                             if (result.success) {
+                                crCart.activate();
                                 return app.showMessage("Parcel has been successfully removed", "POS Online Shipping Tools", ["OK"]);
                             } else {
                                 return Task.fromResult(false);
@@ -77,6 +80,9 @@ function (context, logger, router, system, chart, config, app) {
             return tcs.promise();
         },
         attached = function (view) {
+
+        },
+        compositionComplete = function () {
 
         };
     var vm = {

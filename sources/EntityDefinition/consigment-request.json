@@ -1523,6 +1523,37 @@
               "AllowMultiple": false,
               "DefaultValue": null,
               "WebId": "6830255f-fba9-4ff4-8963-8b1f964c757e"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+              "TypeName": "System.Boolean, mscorlib",
+              "IsNullable": false,
+              "IsNotIndexed": false,
+              "IsAnalyzed": false,
+              "IsFilterable": false,
+              "IsExcludeInAll": false,
+              "Boost": 4,
+              "FullName": null,
+              "PropertyAttribute": null,
+              "MemberCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "FieldPermissionCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "Name": "IsPaid",
+              "AllowMultiple": false,
+              "DefaultValue": {
+                "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+                "TypeName": "System.Boolean, mscorlib",
+                "Value": false,
+                "Name": "false",
+                "Note": "",
+                "WebId": "d9590e95-8597-4d52-d413-eefe34c1d7e9"
+              },
+              "WebId": "198376ed-a2d1-4b51-a795-8da61feb6ad3"
             }
           ]
         },
@@ -2606,7 +2637,7 @@
     "CodeNamespace": "Bespoke.Ost.IntegrationApis",
     "FullSearchEndpoint": {
       "$type": "Bespoke.Sph.Domain.FullSearchEndpoint, domain.sph",
-      "IsAllowed": false,
+      "IsAllowed": true,
       "WebId": null
     },
     "OdataEndpoint": {
@@ -2635,6 +2666,6 @@
   "Id": "consigment-request",
   "CreatedDate": "2016-10-29T07:26:06.8492482+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-13T11:00:40.2062791+08:00",
+  "ChangedDate": "2017-02-14T12:12:28.3942543+08:00",
   "WebId": "b8808d89-54c8-4d91-8396-7627974f1138"
 }

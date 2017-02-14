@@ -1,9 +1,9 @@
 define([objectbuilders.datacontext, objectbuilders.logger, objectbuilders.router,
 objectbuilders.system, objectbuilders.validation, objectbuilders.eximp,
 objectbuilders.dialog, objectbuilders.watcher, objectbuilders.config,
-objectbuilders.app],
+objectbuilders.app, "viewmodels/_consignment-request-cart"],
 
-function (context, logger, router, system, validation, eximp, dialog, watcher, config, app) {
+function (context, logger, router, system, validation, eximp, dialog, watcher, config, app, crCart) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         consignment = ko.observable(new bespoke.Ost_consigmentRequest.domain.Consignment(system.guid())),
@@ -184,6 +184,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return defaultCommand()
                 .then(function (result) {
                     if (result.success) {
+                        crCart.activate();
                         return app.showMessage("Sender details has been successfully saved", "POS Online Shipping Tools", ["OK"]);
                     } else {
                         return Task.fromResult(false);

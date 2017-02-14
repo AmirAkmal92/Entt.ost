@@ -6821,8 +6821,8 @@ define('viewmodels/search', ['durandal/system', 'services/logger', objectbuilder
 /// <reference path="../../Scripts/_task.js" />
 /// <reference path="../../Scripts/jquery-2.2.0.intellisense.js" />
 
-define('viewmodels/shell.custom', ["durandal/system", "services/system", "plugins/router", "services/logger", "services/datacontext", objectbuilders.config, objectbuilders.cultures, "viewmodels/messages", "viewmodels/_address-book-groups"],
-    function (system, system2, router, logger, context, config, cultures, messagesConfig, contactGroups) {
+define('viewmodels/shell.custom', ["durandal/system", "services/system", "plugins/router", "services/logger", "services/datacontext", objectbuilders.config, objectbuilders.cultures, "viewmodels/messages", "viewmodels/_address-book-groups", "viewmodels/_consignment-request-cart"],
+    function (system, system2, router, logger, context, config, cultures, messagesConfig, contactGroups, crCart) {
 
         var activeItem = ko.observable({ caption: "Test 123" }),
             activate = function () {
@@ -6893,6 +6893,12 @@ define('viewmodels/shell.custom', ["durandal/system", "services/system", "plugin
                 contactGroups.activate().done(function () {
                     if (!ko.dataFor(document.getElementById("contact-group-list"))) {
                         ko.applyBindings(contactGroups, document.getElementById("contact-group-list"));
+                    }
+                });
+
+                crCart.activate().done(function () {
+                    if (!ko.dataFor(document.getElementById("consignment-request-cart"))) {
+                        ko.applyBindings(crCart, document.getElementById("consignment-request-cart"));
                     }
                 });
 
