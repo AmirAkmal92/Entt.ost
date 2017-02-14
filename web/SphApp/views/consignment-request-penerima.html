@@ -37,6 +37,15 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
+                                <label class="control-label">Search Contact</label>
+                                <select class="form-control" name="Penerima.CompanyName" id="sender-company-name"></select>
+                                <!--<input type="hidden" data-bind="value: Pemberi().ContactPerson" name="Sender.ContactPerson">-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Receiver Name</label>
                                 <input required type="text" class="form-control" data-bind="value: Penerima().ContactPerson" data-rule-required="true">
                             </div>

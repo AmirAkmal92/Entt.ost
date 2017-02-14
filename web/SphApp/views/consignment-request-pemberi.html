@@ -4,7 +4,7 @@
             <div class="col-md-4 bg-grey-steel mt-step-col  active">
                 <div class="mt-step-number">1</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Sender</div>
-                <div class="mt-step-content font-grey-cascade">Sender information</div>
+                <div class="mt-step-content font-grey-cascade">Sender Information</div>
             </div>
             <div class="col-md-4 bg-grey-steel mt-step-col ">
                 <div class="mt-step-number">2</div>
@@ -13,14 +13,9 @@
             </div>
             <div class="col-md-4 bg-grey-steel mt-step-col ">
                 <div class="mt-step-number">3</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Product</div>
-                <div class="mt-step-content font-grey-cascade">Consignment product</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Parcel</div>
+                <div class="mt-step-content font-grey-cascade">Parcel Information</div>
             </div>
-            <!--<div class="col-md-3 bg-grey-steel mt-step-col ">
-                <div class="mt-step-number">4</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Summary</div>
-                <div class="mt-step-content font-grey-cascade">Consignment summary</div>
-            </div>-->
         </div>
     </div>
 </div>
@@ -40,6 +35,15 @@
             <form action="#" class="horizontal-form" data-bind="with: consignment">
                 <div class="form-body">
                     <h3 class="form-section">Personal Info (Sender)</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" data-bind="visible:true">
+                                <label class="control-label">Search Contact</label>
+                                <select class="form-control" name="Pemberi.CompanyName" id="sender-company-name"></select>
+                                <!--<input type="hidden" data-bind="value: Pemberi().ContactPerson" name="Sender.ContactPerson">-->
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
