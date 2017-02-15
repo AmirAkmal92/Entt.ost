@@ -3,8 +3,8 @@
         <div class="portlet light bordered">
             <div class="portlet-title">
                 <div class="caption">
-                    <span class="caption-subject font-red-sunglo bold"><h2><span class="fa fa-shopping-cart"> </span> Shipping Cart </h2></span>
-                    <span class="caption-helper">Shipping Cart Information</span>
+                    <span class="caption-subject font-red-sunglo bold"><h2><span class="fa fa-shopping-cart"> </span> Shopping Cart </h2></span>
+                    <span class="caption-helper">Shopping Cart Information</span>
                 </div>
             </div>
             <div class="invoice" data-bind="with : entity">
@@ -23,65 +23,78 @@
                     </div>
                 </div>
                 <hr />
-                <div class="row">
-                    <div class="col-xs-12">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th> Sender </th>
-                                    <th class="hidden-xs"> Receiver </th>
-                                    <th class="hidden-xs"> Weight </th>
-                                    <th class="hidden-xs"> Volume </th>
-                                    <th> Total </th>
-                                    <th> Action </th>
-                                </tr>
-                            </thead>
-                            <tbody data-bind="foreach :Consignments">
-                                <tr>
-                                    <td class="hidden-xs">
-                                        <a class="contact-item" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }">
-                                            <span data-bind="text: Pemberi().ContactPerson"></span>
-                                        </a>
-                                    </td>
-                                    <td class="hidden-xs">
-                                        <a class="contact-item" data-bind="attr: { href: 'ost#consignment-request-penerima/' + $parent.Id() + '/consignments/' + WebId() }">
-                                            <span data-bind="text: Penerima().ContactPerson"></span>
-                                        </a>
-                                    </td>
-                                    <td class="hidden-xs">
-                                        <a class="contact-item" data-bind="attr: { href: 'ost#consignment-request-produk/' + $parent.Id() + '/consignments/' + WebId() }">
-                                            <!--ko if: Produk().Weight() != null-->
-                                            <span data-bind="text: Produk().Weight() + ' kg'"></span>
-                                            <!-- /ko -->
-                                        </a>
-                                    </td>
-                                    <td class="hidden-xs">
-                                        <!--ko if: Produk().Width() != null-->
-                                        <span data-bind="text: Produk().Width() + 'cm x ' + Produk().Length() + 'cm x ' + Produk().Height() + 'cm'"></span>
-                                        <!-- /ko -->
-                                    </td>
-                                    <td >
-                                        <!--ko if: Produk().Price() != null-->
-                                        <span data-bind="text: 'RM ' + Produk().Price()"></span>
-                                        <!-- /ko -->
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-xs btn-success" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }"><i class="fa fa-pencil"></i></a>
-                                        <a class="btn btn-xs btn-danger" data-bind="click: $root.deleteConsignment"><i class="fa fa-trash"></i></a>
-                                    </td>
-
-                                </tr>
-                            </tbody>
-                        </table>
+                <div data-bind="visible: Consignments().length == 0">
+                    <br />
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h4>
+                                Shopping Cart is empty. Please
+                                <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/' + 0 }">add</a> new parcel.
+                            </h4>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12 invoice-block pull-right">
-                        <ul class="list-unstyled amounts">
-                            <li>
-                                <strong>Grand Total:</strong> 0.00
-                            </li>
-                        </ul>
+                <div data-bind="visible: Consignments().length > 0">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th> Sender </th>
+                                        <th class="hidden-xs"> Receiver </th>
+                                        <th class="hidden-xs"> Weight </th>
+                                        <th class="hidden-xs"> Volume </th>
+                                        <th> Total </th>
+                                        <th> Action </th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach :Consignments">
+                                    <tr>
+                                        <td class="hidden-xs">
+                                            <a class="contact-item" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }">
+                                                <span data-bind="text: Pemberi().ContactPerson"></span>
+                                            </a>
+                                        </td>
+                                        <td class="hidden-xs">
+                                            <a class="contact-item" data-bind="attr: { href: 'ost#consignment-request-penerima/' + $parent.Id() + '/consignments/' + WebId() }">
+                                                <span data-bind="text: Penerima().ContactPerson"></span>
+                                            </a>
+                                        </td>
+                                        <td class="hidden-xs">
+                                            <a class="contact-item" data-bind="attr: { href: 'ost#consignment-request-produk/' + $parent.Id() + '/consignments/' + WebId() }">
+                                                <!--ko if: Produk().Weight() != null-->
+                                                <span data-bind="text: Produk().Weight() + ' kg'"></span>
+                                                <!-- /ko -->
+                                            </a>
+                                        </td>
+                                        <td class="hidden-xs">
+                                            <!--ko if: Produk().Width() != null-->
+                                            <span data-bind="text: Produk().Width() + 'cm x ' + Produk().Length() + 'cm x ' + Produk().Height() + 'cm'"></span>
+                                            <!-- /ko -->
+                                        </td>
+                                        <td>
+                                            <!--ko if: Produk().Price() != null-->
+                                            <span data-bind="text: 'RM ' + Produk().Price()"></span>
+                                            <!-- /ko -->
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-xs btn-success" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }"><i class="fa fa-pencil"></i></a>
+                                            <a class="btn btn-xs btn-danger" data-bind="click: $root.deleteConsignment"><i class="fa fa-trash"></i></a>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 invoice-block pull-right">
+                            <ul class="list-unstyled amounts">
+                                <li>
+                                    <strong>Grand Total:</strong> 0.00
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

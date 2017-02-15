@@ -6,8 +6,8 @@ objectbuilders.app, "viewmodels/_consignment-request-cart"],
 function (context, logger, router, system, validation, eximp, dialog, watcher, config, app, crCart) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
-        consignment = ko.observable(new bespoke.Ost_consigmentRequest.domain.Consignment(system.guid())),
-        pemberi = ko.observable(new bespoke.Ost_consigmentRequest.domain.Pemberi(system.guid())),
+        consignment = ko.observable(),
+        pemberi = ko.observable(),
         errors = ko.observableArray(),
         id = ko.observable(),
         crid = ko.observable(),
@@ -38,6 +38,8 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         }
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
+                    consignment(new bespoke.Ost_consigmentRequest.domain.Consignment(system.guid()));
+                    pemberi(new bespoke.Ost_consigmentRequest.domain.Pemberi(system.guid()));
                     if (!cId || cId === "0") {
                         consignment().Pemberi(pemberi());
                         entity().Consignments().push(consignment());
@@ -54,9 +56,9 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                             consignment().Pemberi(entity().Consignments()[editIndex].Pemberi());
                             cid(entity().Consignments()[i].WebId());
                         } else {
-                            consignment().Pemberi(pemberi());
-                            entity().Consignments().push(consignment());
-                            cid(consignment().WebId());
+                            app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "Ost", ["OK"]).done(function () {
+                                router.navigate("consignment-request-ringkasan/" + crId);
+                            });
                         }
                     }
 
@@ -76,25 +78,25 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return tcs.promise();
 
         },
-        formatRepo =    function  (contact) {
-             if(!contact)return "";
-             if(contact.loading)return  contact.text;
-              var markup = "<div class='select2-result-repository clearfix'>" +
-                "<div class='select2-result-repository__avatar'><img src='/assets/layouts/layout/img/avatar3_small.jpg' /></div>" +
-                "<div class='select2-result-repository__meta'>" +
-                  "<div class='select2-result-repository__title'>" + contact.ContactPerson + "</div>";
-        
-                markup += "<div class='select2-result-repository__description'>" + contact.CompanyName + "</div>";
-              
-        
-              markup += "<div class='select2-result-repository__statistics'>" +
-                "<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> " + contact.ReferenceNo + " Ref</div>" +
-                "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> " + contact.ContactInformation.Email + " Email</div>" +
-                "<div class='select2-result-repository__watchers'><i class='fa fa-eye'></i> " + contact.ContactInformation.ContactNumber + " Phone</div>" +
-              "</div>" +
-              "</div></div>";
-        
-              return markup;
+        formatRepo = function (contact) {
+            if (!contact) return "";
+            if (contact.loading) return contact.text;
+            var markup = "<div class='select2-result-repository clearfix'>" +
+              "<div class='select2-result-repository__avatar'><img src='/assets/layouts/layout/img/avatar3_small.jpg' /></div>" +
+              "<div class='select2-result-repository__meta'>" +
+                "<div class='select2-result-repository__title'>" + contact.ContactPerson + "</div>";
+
+            markup += "<div class='select2-result-repository__description'>" + contact.CompanyName + "</div>";
+
+
+            markup += "<div class='select2-result-repository__statistics'>" +
+              "<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> " + contact.ReferenceNo + " Ref</div>" +
+              "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> " + contact.ContactInformation.Email + " Email</div>" +
+              "<div class='select2-result-repository__watchers'><i class='fa fa-eye'></i> " + contact.ContactInformation.ContactNumber + " Phone</div>" +
+            "</div>" +
+            "</div></div>";
+
+            return markup;
         },
         defaultCommand = function () {
             var data = ko.mapping.toJSON(entity),
@@ -184,8 +186,9 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return defaultCommand()
                 .then(function (result) {
                     if (result.success) {
-                        crCart.activate();
-                        return app.showMessage("Sender details has been successfully saved", "POS Online Shipping Tools", ["OK"]);
+                        return app.showMessage("Sender details has been successfully saved", "POS Online Shipping Tools", ["OK"]).done(function () {
+                            crCart.activate();
+                        });
                     } else {
                         return Task.fromResult(false);
                     }

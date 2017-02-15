@@ -65,9 +65,10 @@ function (context, logger, router, system, chart, config, app, crCart) {
                     if (dialogResult === "Yes") {
                         entity().Consignments.remove(consignment);
                         return defaultCommand().then(function (result) {
-                            if (result.success) {
-                                crCart.activate();
-                                return app.showMessage("Parcel has been successfully removed", "POS Online Shipping Tools", ["OK"]);
+                            if (result.success) {                                
+                                return app.showMessage("Parcel has been successfully removed", "POS Online Shipping Tools", ["OK"]).done(function () {
+                                    crCart.activate();
+                                });
                             } else {
                                 return Task.fromResult(false);
                             }

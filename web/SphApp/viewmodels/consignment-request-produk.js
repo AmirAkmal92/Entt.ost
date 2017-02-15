@@ -6,8 +6,8 @@ objectbuilders.app],
 function (context, logger, router, system, validation, eximp, dialog, watcher, config, app) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
-        consignment = ko.observable(new bespoke.Ost_consigmentRequest.domain.Consignment(system.guid())),
-        produk = ko.observable(new bespoke.Ost_consigmentRequest.domain.Produk(system.guid())),
+        consignment = ko.observable(),
+        produk = ko.observable(),
         errors = ko.observableArray(),
         id = ko.observable(),
         crid = ko.observable(),
@@ -38,10 +38,12 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         }
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
-
+                    consignment(new bespoke.Ost_consigmentRequest.domain.Consignment(system.guid()));
+                    produk(new bespoke.Ost_consigmentRequest.domain.Produk(system.guid()));
                     if (!cId || cId === "0") {
                         consignment().Produk(produk());
                         entity().Consignments().push(consignment());
+                        cid(consignment().WebId());
                     } else {
                         var editIndex = -1;
                         for (var i = 0; i < entity().Consignments().length; i++) {
@@ -54,6 +56,11 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                             consignment().Produk(entity().Consignments()[editIndex].Produk());
                             consignment().Pemberi(entity().Consignments()[editIndex].Pemberi());
                             consignment().Penerima(entity().Consignments()[editIndex].Penerima());
+                            cid(entity().Consignments()[i].WebId());
+                        } else {
+                            app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "Ost", ["OK"]).done(function () {
+                                router.navigate("consignment-request-ringkasan/" + crId);
+                            });
                         }
                     }
 
