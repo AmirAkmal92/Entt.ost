@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <div class="caption-subject font-red-sunglo bold"><h2><span class="fa fa-file-text"> </span> Paid Orders </h2></div>
+                    <span class="caption-helper">Paid Orders</span>
+                </div>
+            </div>
+            <div class="invoice">
+                <div class="row invoice-logo">
+                    <div class="col-xs-6 invoice-logo-space">
+                        <img src="../assets/pages/media/invoice/posost.png" class="img-responsive" alt="" />
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list}">
+                            <thead>
+                                <tr>
+                                    <th>Order No</th>
+                                    <th>Parcel</th>
+                                    <th>Total Price</th>
+                                    <th>Created Date</th>
+                                    <th>Last Modified</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach :list">
+                                <tr data-bind="">
+                                    <td>
+                                        <a data-bind="attr : {href:'#consignment-request-paid-summary' + '/' + Id, title:'Summary' }">
+                                            <span data-bind="text:ReferenceNo"></span>
+                                        </a>
+                                    </td>
+                                    <td data-bind="text:Consignments.length"></td>
+                                    <td data-bind="text:Payment.TotalPrice"></td>
+                                    <td data-bind="date:{ value:CreatedDate, format:&#39;D/M/YYYY HH:mm&#39;}"></td>
+                                    <td data-bind="date:{ value:ChangedDate, format:&#39;D/M/YYYY HH:mm&#39;}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <img src="/Images/spinner-md.gif" alt="loading" class="absolute-center" data-bind="visible: isBusy" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

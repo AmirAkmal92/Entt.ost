@@ -110,5 +110,33 @@
     "showWhenLoggedIn": false,
     "isAdminPage": false,
     "startPageRoute": null
+  },
+  {
+    "role": "customers",
+    "groupName": null,
+    "route": "consignment-requests-paid",
+    "moduleId": "viewmodels/consignment-requests-paid",
+    "title": "Consignment Requests Paid",
+    "nav": false,
+    "icon": "fa fa-file-text",
+    "caption": "Consignment Requests Paid",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
+  },
+  {
+    "role": "customers",
+    "groupName": null,
+    "route": "consignment-request-paid-summary/:entityId",
+    "moduleId": "viewmodels/consignment-request-paid-summary",
+    "title": "Consignment Request Paid Summary",
+    "nav": false,
+    "icon": "fa fa-file-text-o",
+    "caption": "Consignment Request Paid Summary",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
   }
 ]
