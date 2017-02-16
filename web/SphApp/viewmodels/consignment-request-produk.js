@@ -250,11 +250,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         consignment: consignment,
         findProductsAsync: findProductsAsync,
         recalculatePrice: recalculatePrice,
-        toolbar: {
-            saveCommand: saveCommand,
-        }, // end toolbar
-
-        commands: ko.observableArray([])
+        saveCommand: saveCommand
     };
 
     return vm;

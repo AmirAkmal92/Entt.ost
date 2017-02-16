@@ -38,8 +38,8 @@
     <link href="~/assets/pages/css/invoice.min.css" rel="stylesheet" type="text/css" />
     <link href="~/assets/pages/css/blog.min.css" rel="stylesheet" type="text/css" />
     <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="~/assets/global/css/components-md.css" rel="stylesheet" id="style_components" type="text/css" />
-    <link href="~/assets/global/css/plugins-md.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/css/components.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/css/plugins.css" rel="stylesheet" type="text/css" />
     @*<link href="~/assets/global/css/components.min.css" rel="stylesheet" type="text/css" />*@
 
     <link href="~/assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
@@ -99,7 +99,7 @@
     <script type="text/javascript" src="../Scripts/require.js" data-main="SphApp/main.custom"></script>
 </head>
 <!-- END HEAD -->
-<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md">
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
     <div class="page-wrapper">
         <!-- BEGIN HEADER -->
         <div class="page-header navbar navbar-fixed-top">
@@ -511,10 +511,6 @@
         </div>
         <!-- END FOOTER -->
     </div>
-    <!-- BEGIN QUICK NAV -->
-    @Html.Partial("_quicknav")
-    <div class="quick-nav-overlay"></div>
-    <!-- END QUICK NAV -->
     <!--[if lt IE 9]>
     <script src="~/assets/global/plugins/respond.min.js"></script>
     <script src="~/assets/global/plugins/excanvas.min.js"></script>

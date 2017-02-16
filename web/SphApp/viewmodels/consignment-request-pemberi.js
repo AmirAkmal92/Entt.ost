@@ -210,11 +210,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         crid: crid,//temp
         cid: cid,//temp
         consignment: consignment,
-        toolbar: {
-            saveCommand: saveCommand,
-        }, // end toolbar
-
-        commands: ko.observableArray([])
+        saveCommand: saveCommand
     };
 
     return vm;

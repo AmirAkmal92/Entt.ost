@@ -1,3 +1,18 @@
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="#"> Home </a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Send Parcel </span>
+        </li>
+    </ul>
+</div>
+<h1 class="page-title">
+    Send Parcel
+    <small></small>
+</h1>
 <div class="row mt-element-step">
     <div class="mt-element-step">
         <div class="row step-background-thin red">
@@ -23,24 +38,19 @@
     <div class="portlet light bordered">
         <div class="portlet-title">
             <div class="caption">
-                <span class="caption-subject font-red-sunglo bold"><h2>Send Parcel</h2></span>
+                <span class="caption-subject font-red-sunglo bold"><h2>Sende Parcel</h2></span>
                 <span class="caption-helper">Sender Information</span>
-            </div>
-            <div class="tools">
-                <a href="" class="reload" data-original-title="" title=""> </a>
             </div>
         </div>
         <div class="portlet-body form">
-            <!-- BEGIN FORM-->
-            <form action="#" class="horizontal-form" data-bind="with: consignment">
+            <form data-bind="with: consignment" role="form">
                 <div class="form-body">
-                    <h3 class="form-section">Personal Info (Sender)</h3>
+                    <h3 class="form-section"> Personal Info </h3>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Search Contact</label>
-                                <select class="form-control" name="Pemberi.CompanyName" id="sender-company-name"></select>
-                                <!--<input type="hidden" data-bind="value: Pemberi().ContactPerson" name="Sender.ContactPerson">-->
+                                <select class="form-control" name="Pemberi.ContactPerson" id="sender-company-name"></select>
                             </div>
                         </div>
                     </div>
@@ -61,15 +71,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Contact No.</label>
-                                <input class="form-control" type="text" data-bind="value: Pemberi().ContactInformation().ContactNumber" name="Pemberi.ContactInformation.ContactNumber">
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Email</label>
                                 <input class="form-control" type="text" data-bind="value: Pemberi().ContactInformation().Email" data-rule-required="true" name="Pemberi.ContactInformation.Email">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" data-bind="visible:true">
+                                <label class="control-label">Contact No.</label>
+                                <input class="form-control" type="text" data-bind="value: Pemberi().ContactInformation().ContactNumber" name="Pemberi.ContactInformation.ContactNumber">
                             </div>
                         </div>
                     </div>
@@ -81,7 +90,6 @@
                             </div>
                         </div>
                     </div>
-                    <!--/address-->
                     <h3 class="form-section">Address</h3>
                     <div class="row">
                         <div class="col-md-6">
@@ -140,8 +148,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-actions right">
+                    <button id="save-button" class="btn btn-danger" data-bind="command: $root.saveCommand, visible :true, enable: true">
+                        <i class="icon-arrow-right"></i>
+                        <span data-i18n="Save"> Next </span>
+                    </button>
+                </div>
             </form>
-            <!-- END FORM-->
         </div>
     </div>
 </div>
