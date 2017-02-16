@@ -4,6 +4,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
 function (context, logger, router, system, chart, config, app, crCart) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
+        grandTotal = ko.observable(),
         errors = ko.observableArray(),
         id = ko.observable(),
         headers = {},
@@ -22,6 +23,11 @@ function (context, logger, router, system, chart, config, app, crCart) {
                         }
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
+                    var total = 0;
+                    _.each(entity().Consignments(), function (v) {
+                        total = total + parseFloat(v.Produk().Price());
+                    })
+                    grandTotal(total.toFixed(2));
                 }, function (e) {
                     if (e.status == 404) {
                         app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "Ost", ["OK"]);
@@ -92,6 +98,7 @@ function (context, logger, router, system, chart, config, app, crCart) {
         attached: attached,
         errors: errors,
         entity: entity,
+        grandTotal: grandTotal,
         deleteConsignment: deleteConsignment
     };
 

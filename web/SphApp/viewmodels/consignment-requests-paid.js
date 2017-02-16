@@ -31,10 +31,7 @@ function(context, logger, router, chart, config, koList, partial) {
         map: map,
         activate: activate,
         attached: attached,
-        list: list,
-        toolbar: {
-            commands: ko.observableArray([])
-        }
+        list: list
     };
 
     return vm;

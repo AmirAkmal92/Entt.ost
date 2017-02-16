@@ -48,7 +48,8 @@
                                         <th> Action </th>
                                     </tr>
                                 </thead>
-                                <tbody data-bind="foreach :Consignments">
+                                <tbody>
+                                    <!--ko foreach: Consignments-->
                                     <tr>
                                         <td class="hidden-xs">
                                             <a class="contact-item" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }">
@@ -74,26 +75,22 @@
                                         </td>
                                         <td>
                                             <!--ko if: Produk().Price() != null-->
-                                            <span data-bind="text: 'RM ' + Produk().Price()"></span>
+                                            RM <span data-bind="text: Produk().Price()" class="pull-right"></span>
                                             <!-- /ko -->
                                         </td>
                                         <td>
                                             <a class="btn btn-xs btn-success" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }"><i class="fa fa-pencil"></i></a>
                                             <a class="btn btn-xs btn-danger" data-bind="click: $root.deleteConsignment"><i class="fa fa-trash"></i></a>
                                         </td>
-
+                                    </tr>
+                                    <!-- /ko -->
+                                    <tr>
+                                        <td colspan="4"><strong>Grand Total</strong></td>
+                                        <td>RM <span data-bind="text: $root.grandTotal" class="pull-right"></span></td>
+                                        <td>&nbsp;</td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 invoice-block pull-right">
-                            <ul class="list-unstyled amounts">
-                                <li>
-                                    <strong>Grand Total:</strong> 0.00
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>

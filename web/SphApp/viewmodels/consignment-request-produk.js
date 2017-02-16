@@ -8,6 +8,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         consignment = ko.observable(),
         produk = ko.observable(),
+        products = ko.observableArray(),
         errors = ko.observableArray(),
         id = ko.observable(),
         crid = ko.observable(),
@@ -39,7 +40,8 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
                     consignment(new bespoke.Ost_consigmentRequest.domain.Consignment(system.guid()));
-                    produk(new bespoke.Ost_consigmentRequest.domain.Produk(system.guid()));
+                    produk(new bespoke.Ost_consigmentRequest.domain.Produk(system.guid()));                   
+                    products([]);
                     if (!cId || cId === "0") {
                         consignment().Produk(produk());
                         entity().Consignments().push(consignment());
@@ -63,6 +65,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                             });
                         }
                     }
+                    consignment().Produk().Price(0);
 
                 }, function (e) {
                     if (e.status == 404) {
@@ -131,56 +134,66 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 consignment().Pemberi(entity().Consignments()[editIndex].Pemberi());
                 consignment().Penerima(entity().Consignments()[editIndex].Penerima());
             }
-            console.log(entity().Consignments()[editIndex].Pemberi().Address().Postcode());
-            console.log(entity().Consignments()[editIndex].Penerima().Address().Postcode());
-            console.log(entity().Consignments()[editIndex].Produk().Weight());
-            return context.get("ost/snb-services/products/?from=" + entity().Consignments()[editIndex].Pemberi().Address().Postcode() + "&to=" + entity().Consignments()[editIndex].Penerima().Address().Postcode() + "&weight=" + entity().Consignments()[editIndex].Produk().Weight() + "&height=" + entity().Consignments()[editIndex].Produk().Height() + "&length=" + entity().Consignments()[editIndex].Produk().Length() + "&width=" + entity().Consignments()[editIndex].Produk().Width())
-                .then(function (list) {
-                    // edit the = > back to => , the beatifier fucked up the ES2015 syntax
-                    var list2 = list.map(function (v) {
-                        var po = ko.mapping.fromJSON(v);
-                        _(ko.unwrap(po.ValueAddedServices)).each(function (vas) {
-                            vas.isBusy = ko.observable(false);
-                            var vm = {
-                                produk: v,
-                                valueAddedService: vas,
-                                request: entity().Consignments()[editIndex]
-                            };
-                            context.post(ko.mapping.toJSON(vm), "/ost/snb-services/calculate-value-added-service")
-                                .done(function (result) {
-                                    vas.Value(result);
-                                    vas.isBusy(false);
-                                });
-                            if (ko.unwrap(vas.UserInputs).length === 0) {
-                                vas.IsSelected.subscribe(function (selected) {
-                                    if (selected) {
-                                        evaluateValue();
-                                    } else {
-                                        vas.Value(0);
-                                    }
-                                });
+            return context.get("ost/snb-services/products/?from=" + consignment().Pemberi().Address().Postcode()
+                                + "&to=" + consignment().Penerima().Address().Postcode()
+                                + "&country=" + consignment().Penerima().Address().Country()
+                                + "&weight=" + consignment().Produk().Weight
+                                + "&height=" + consignment().Produk().Height()
+                                + "&length=" + consignment().Produk().Length()
+                                + "&width=" + consignment().Produk().Width()).then(function (list) {
+                                    // edit the = > back to => , the beatifier fucked up the ES2015 syntax
+                                    var list2 = list.map(function (v) {
 
-                            } else {
-                                _(ko.unwrap(vas.UserInputs)).each(function (uv) {
-                                    uv.Value.subscribe(evaluateValue);
-                                });
+                                        var po = ko.mapping.fromJS(v);
+                                        _(ko.unwrap(po.ValueAddedServices)).each(function (vas) {
+                                            vas.isBusy = ko.observable(false);
+                                            var evaluateValue = function () {
 
-                            }
-                        });
-                        po.TotalCost = ko.observable();
-                        // TODO -> go and get the rate
-                        recalculatePrice(po)();
-                        return po;
-                    });
-                });
+                                                vas.isBusy(true);
+                                                var vm = {
+                                                    product: v,
+                                                    valueAddedService: vas,
+                                                    request: entity
+                                                };
+                                                context.post(ko.mapping.toJSON(vm), "/ost/snb-services/calculate-value-added-service")
+                                                    .done(function (result) {
+                                                        vas.Value(result);
+                                                        vas.isBusy(false);
+                                                    });
+                                            };
+
+                                            if (ko.unwrap(vas.UserInputs).length === 0) {
+                                                vas.IsSelected.subscribe(function (selected) {
+                                                    if (selected) {
+                                                        evaluateValue();
+                                                    } else {
+                                                        vas.Value(0);
+                                                    }
+                                                });
+
+                                            } else {
+                                                _(ko.unwrap(vas.UserInputs)).each(function (uv) {
+                                                    uv.Value.subscribe(evaluateValue);
+                                                });
+
+                                            }
+                                        });
+
+                                        po.TotalCost = ko.observable();
+                                        // TODO -> go and get the rate
+                                        recalculatePrice(po)();
+                                        return po;
+
+                                    });
+                                    products(list2);
+                                });
         },
-        selectProduct = function (prd) {
-            entity().Consignments()[editIndex].Produk().Code(prd.Code);
-        },
-        recalculatePrice = function (produk) {
+        recalculatePrice = function (serviceModel) {
+            console.log(ko.toJS(serviceModel));
+
             return function () {
-                var request,
-                editIndex = -1;
+
+                var editIndex = -1;
                 for (var i = 0; i < entity().Consignments().length; i++) {
                     if (entity().Consignments()[i].WebId() === cid()) {
                         editIndex = i;
@@ -192,28 +205,24 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     consignment().Pemberi(entity().Consignments()[editIndex].Pemberi());
                     consignment().Penerima(entity().Consignments()[editIndex].Penerima());
                 }
-                console.log(entity().Consignments()[editIndex].Pemberi().Address().Postcode());
-                console.log(entity().Consignments()[editIndex].Penerima().Address().Postcode());
-                console.log(entity().Consignments()[editIndex].Produk().Weight());
+                var model = ko.toJS(serviceModel),
                 request = {
                     request: {
                         ItemCategory: "",
-                        Weight: entity().Consignments()[editIndex].Produk().Weight(),
-                        Width: entity().Consignments()[editIndex].Produk().Width(),
-                        Length: entity().Consignments()[editIndex].Produk().Length(),
-                        Height: entity().Consignments()[editIndex].Produk().Height(),
-                        SenderPostcode: entity().Consignments()[editIndex].Pemberi().Address().Postcode(),
-                        SenderCountry: entity().Consignments()[editIndex].Pemberi().Address().Country(),
-                        ReceiverPostcode: entity().Consignments()[editIndex].Penerima().Address().Postcode(),
-                        ReceiverCountry: entity().Consignments()[editIndex].Penerima().Address().Country()
+                        Weight: consignment().Produk().Weight(),
+                        Width: consignment().Produk().Width(),
+                        Length: consignment().Produk().Length(),
+                        Height: consignment().Produk().Height(),
+                        SenderPostcode: consignment().Pemberi().Address().Postcode(),
+                        SenderCountry: consignment().Pemberi().Address().Country(),
+                        ReceiverPostcode: consignment().Penerima().Address().Postcode(),
+                        ReceiverCountry: consignment().Penerima().Address().Country()
                     },
                     product: {
-                        Code: "PLD1001",
-                        //Code: entity().Consignments()[editIndex].Produk().Code,
-                        //Description: entity().Consignments()[editIndex].Produk().Description
-                        Description: "NDD"
+                        Code: model.Code,
+                        Description: model.Description
                     },
-                    valueAddedServices: _(entity().Consignments()[editIndex].Produk().ValueAddedServices).filter(function (v) { return v.IsSelected; })
+                    valueAddedServices: _(model.ValueAddedServices).filter(function (v) { return v.IsSelected; })
                 };
                 return context.post(ko.toJSON(request), "/ost/snb-services/calculate-published-rate")
                 .done(function (result) {
@@ -244,6 +253,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         attached: attached,
         compositionComplete: compositionComplete,
         entity: entity,
+        products: products,
         errors: errors,
         crid: crid,//temp
         cid: cid,//temp

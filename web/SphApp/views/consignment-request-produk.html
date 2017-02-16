@@ -38,7 +38,7 @@
     <div class="portlet light bordered">
         <div class="portlet-title">
             <div class="caption">
-                <span class="caption-subject font-red-sunglo bold"><h2> Parcel Details </h2></span>
+                <div class="caption-subject font-red-sunglo bold"><h2> Parcel Details</h2></div>
                 <span class="caption-helper">Parcel Information</span>
             </div>
         </div>
@@ -57,10 +57,8 @@
                                    data-rule-max="100"
                                    id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Produk.Weight">
                             <div class="form-control-focus"> </div>
-                            <span class="help-block">Weight in Kilogram</span>
+                            <span class="help-block">Weight in kg</span>
                         </div>
-                        <label data-i18n="Weight" class="col-md-1 control-label" for="6465286c-a3af-46de-e7d8-9499b6bf7cf4">Price</label> <span data-bind="text: 'RM ' + Produk().Price()"></span>
-                        <input type="hidden" data-bind="value: Produk().Price" />
                     </div>
                     <div class="row form-group" data-bind="visible:true">
                         <label data-i18n="Width" class="col-md-2 control-label" for="61040711-a759-4cf8-ea32-47b1cdee2f44">Width</label>
@@ -99,22 +97,140 @@
                         </div>
                     </div>
                     <div class="row form-group" data-bind="visible:true">
-                        <label data-i18n="Find the right service" class="col-md-2 control-label sr-only" for="btnFindProducts">Find the right service</label>
+                        <label data-i18n="Weight" class="col-md-2 control-label" for="6465286c-a3af-46de-e7d8-9499b6bf7cf4">Price</label>
                         <div class="col-md-4">
-                            <button data-bind="command : $root.findProductsAsync, visible :true, enable: true" class="btn btn-success pull-right">
-                                <i class="fa fa-search"></i>
-                                Find Service
-                            </button>
+                            <div class="input-group">
+                                <div class="input-group-addon">RM</div>
+                                <input class="form-control" type="text"
+                                       placeholder=""
+                                       data-bind="money: Produk().Price"
+                                       id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Produk.Price" disabled />
+                            </div>
+                            <div class="form-control-focus"> </div>
+                            <span class="help-block">Calculated Price</span>
                         </div>
                     </div>
                 </div>
-                <div class="form-actions right">
-                    <button id="save-button" class="btn btn-danger" data-bind="command: $root.saveCommand, visible :true, enable: true">
-                        <i class="icon-arrow-right"></i>
-                        <span> Next </span>
+            </form>
+            <div data-bind="if: products().length > 0">
+                <div class="row">
+                    <div data-bind="with: products()[0]">
+                        <div class="col-md-2">&nbsp;</div>
+                        <div class="col-md-4">
+                            <div class="col-md-4 text-success">
+                                <input type="checkbox" data-bind="checked: true" disabled />
+                                <i class="fa fa-archive fa-4x"></i>
+                                <h5><span data-bind="text: Code"></span> / <span data-bind="text: Description"></span></h5>
+                            </div>
+                            <div class="col-md-4 text-success">
+                                <input type="checkbox" data-bind="checked: true" disabled />
+                                <!--ko if: IsInternational-->
+                                <i class="fa fa-plane fa-4x"></i>
+                                <!-- /ko -->
+                                <!--ko ifnot: IsInternational-->
+                                <i class="fa fa-truck fa-4x"></i>
+                                <!-- /ko -->
+                                <h5><span data-bind="text: Name"></span></h5>
+                            </div>
+                            <div data-bind="with: ValueAddedServices()[0]">
+                                <div class="col-md-4 text-success">
+                                    <input type="checkbox" data-bind="checked: IsSelected" />
+                                    <i class="fa fa-shield fa-4x"></i>
+                                    <h5><span data-bind="text: Name"></span></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-bind="with: products()[0]">
+                <div data-bind="with: ValueAddedServices()[0]">
+                    <!--ko if: IsSelected-->
+                    <form action="#" class="horizontal-form" data-bind="with: UserInputs()[0]">
+                        <div class="form-body">
+                            <div class="row form-group " data-bind="visible:true">
+                                <label data-i18n="Weight" class="col-md-2 control-label" for="b85482e0-231c-4008-a218-ca095966fddc"><span data-bind="text: $parent.Name"></span></label>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">RM</div>
+                                        <input class="form-control" required type="text"
+                                               placeholder=""
+                                               data-bind="value: Value"
+                                               data-rule-number="true" data-rule-required="true"
+                                               data-rule-min="0"
+                                               data-rule-max="100"
+                                               id="b85482e0-231c-4008-a218-ca095966fddc" name="Produk.DeclaredValue">
+                                    </div>
+                                    <div class="form-control-focus"> </div>
+                                    <span class="help-block">Declared Value</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- /ko -->
+                </div>
+            </div>
+            <div class="row">
+                <!--ko ifnot: products().length > 0-->
+                <div class="col-md-2">&nbsp;</div>
+                <div class="col-md-4">
+                    <button data-bind="command : $root.findProductsAsync" class="btn btn-info">
+                        <i class="fa fa-calculator"></i>
+                        Calculate Price
                     </button>
                 </div>
-            </form>
+                <!-- /ko -->
+                <!--ko if: products().length > 0-->
+                <div data-bind="with: products()[0]">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-4">
+                        <button data-bind="click : $root.recalculatePrice.call($root, $data)" class="btn btn-info">
+                            <i class="fa fa-calculator"></i>
+                            Recalculate Price
+                        </button>
+                    </div>
+                </div>
+                <!-- /ko -->
+            </div>
+            <br />
+            <div class="form-actions right">
+                <button id="save-button" class="btn btn-danger" data-bind="command: $root.saveCommand, visible :true, enable: consignment().Produk().Price() != 0">
+                    <i class="icon-arrow-right"></i>
+                    <span> Next </span>
+                </button>
+            </div>
+            <!--ko if: 0-->
+            <div data-bind="if: products().length > 0">
+                <h4>Products</h4>
+                <ul data-bind="foreach: products">
+                    <li>
+                        <label>Code</label>: <span data-bind="text: Code"></span><br />
+                        <label>DeliverySla</label>: <span data-bind="text: DeliverySla"></span><br />
+                        <label>Description</label>: <span data-bind="text: Description"></span><br />
+                        <label>Name</label>: <span data-bind="text: Name"></span><br />
+                        <h4>Value Added Services</h4>
+                        <ul data-bind="foreach: ValueAddedServices">
+                            <li>
+                                <input type="checkbox" data-bind="checked: IsSelected" /> <label>Name</label>: <span data-bind="text: Name"></span><br />
+                                <!--ko if: IsSelected-->
+                                <h4>User Inputs</h4>
+                                <ul data-bind="foreach: UserInputs">
+                                    <li>
+                                        <label>Name</label>: <span data-bind="text: Name"></span><br />
+                                        <label>Value</label>: <input type="number" data-bind="value: Value" /> [<span data-bind="text: $parent.Value"></span>]<br />
+                                    </li>
+                                </ul>
+                                <!-- /ko -->
+                            </li>
+                        </ul>
+                        <button class="btn btn-info" data-bind="click : $root.recalculatePrice.call($root, $data)">
+                            <i class="fa fa-calculator"></i>
+                            Calculate Price
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <!-- /ko -->
         </div>
     </div>
 </div>
