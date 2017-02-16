@@ -1,0 +1,128 @@
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="index.html">Home</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Send Parcel</span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Sales Order</span>
+            <i class="fa fa-circle"></i>
+        </li>
+    </ul>
+</div>
+<h1 class="page-title">
+    Order Summary
+</h1>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="invoice-content-2 bordered col-md-8" data-bind="with: entity">
+        <div class="row invoice-head">
+            <div class="col-md-6 col-xs-6">
+                <div class="invoice-logo">
+                    <img src="../assets/pages/media/invoice/posost.png" class="img-responsive" alt="" />
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-6">
+                <div class="company-address">
+                    <span class="bold uppercase">Order Number</span>
+                    <br /> <span data-bind="text: Id"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row invoice-body">
+            <div class="col-xs-12 table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="invoice-title uppercase">Description</th>
+                            <th class="invoice-title uppercase text-center">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="text-center sbold">Price</span></td>
+                            <td class="text-center sbold"><span data-bind="text: Payment().TotalPrice">16,000$</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="text-center sbold">GST (6%)</span></td>
+                            <td class="text-center sbold"><span data-bind="text: Payment().TotalPrice*0.06">16,000$</span></td>
+                        </tr>
+                    </tbody>
+                </table><br /><br />
+            </div>
+        </div>
+        <div class="row invoice-subtotal">
+            <div class="col-xs-6">
+                <h2 class="invoice-title uppercase">Grand Total</h2>
+                <p class="invoice-desc grand-total">23,800$</p>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br />
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="portlet light portlet-fit portlet-form bordered col-md-8">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-credit-card font-green"></i>
+                <span class="caption-subject font-green sbold uppercase">Payment Information</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="portlet-body form col-md-8">
+                <form action="#" class="form-horizontal">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon input-circle-left">
+                                    <i class="fa fa-credit-card"></i>
+                                </span>
+                                <input type="text" class="form-control input-circle-right" placeholder="Card Number" data-bind="value: creditCardNo">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon input-circle-left">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                <input type="text" class="form-control input-circle-right" placeholder="Name On Card" data-bind="value: nameCard">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon input-circle-left">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                                <input type="text" class="form-control input-circle-right" placeholder="Expiration Date" data-bind="value: expNo">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon input-circle-left">
+                                    <i class="fa fa-cc-discover"></i>
+                                </span>
+                                <input type="text" class="form-control input-circle-right" placeholder="CVV Number" data-bind="value: cvvNo">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="form-actions">
+            <div class="row">
+                <div class="col-md-offset-4 col-md-8">
+                    <button type="submit" class="btn green">
+                        <i class="fa fa-check"></i> Submit
+                    </button>
+                    <button type="button" class="btn default">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

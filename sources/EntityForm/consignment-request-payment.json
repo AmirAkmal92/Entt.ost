@@ -1,0 +1,70 @@
+{
+  "$type": "Bespoke.Sph.Domain.EntityForm, domain.sph",
+  "FormDesign": {
+    "$type": "Bespoke.Sph.Domain.FormDesign, domain.sph",
+    "FormElementCollection": {
+      "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FormElement, domain.sph]], domain.sph",
+      "$values": []
+    },
+    "Name": "",
+    "Description": "",
+    "ConfirmationText": "",
+    "ImageStoreId": "",
+    "LabelColLg": null,
+    "LabelColMd": null,
+    "LabelColSm": null,
+    "LabelColXs": null,
+    "InputColLg": null,
+    "InputColMd": null,
+    "InputColSm": null,
+    "InputColXs": null,
+    "WebId": null
+  },
+  "Rules": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "RouteParameterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.RouteParameter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "FormLayoutCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FormLayout, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "EntityDefinitionId": "consigment-request",
+  "Name": "Consignment Request Payment",
+  "Route": "consignment-request-payment",
+  "Note": "",
+  "IsAllowedNewItem": false,
+  "IconClass": "",
+  "IconStoreId": "",
+  "IsPublished": true,
+  "IsDefault": false,
+  "IsWatchAvailable": false,
+  "IsEmailAvailable": false,
+  "IsPrintAvailable": false,
+  "IsAuditTrailAvailable": false,
+  "IsRemoveAvailable": false,
+  "IsImportAvailable": false,
+  "IsExportAvailable": false,
+  "Operation": null,
+  "Entity": "ConsigmentRequest",
+  "Partial": "",
+  "Caption": "",
+  "Layout": " ",
+  "OperationSuccessMesage": "",
+  "OperationSuccessNavigateUrl": "",
+  "OperationSuccessCallback": "",
+  "OperationFailureCallback": "",
+  "OperationMethod": "",
+  "DeleteOperation": null,
+  "DeleteOperationSuccessMesage": "",
+  "DeleteOperationSuccessNavigateUrl": "",
+  "CreatedBy": "admin",
+  "Id": "consignment-request-payment",
+  "CreatedDate": "2017-02-16T20:28:44.497074+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-16T20:35:14.8267694+08:00",
+  "WebId": "de980fc7-5cc3-484a-be8f-32e780f98742"
+}
