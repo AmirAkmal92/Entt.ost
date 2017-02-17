@@ -47,7 +47,8 @@
                                         <th> Action </th>
                                     </tr>
                                 </thead>
-                                <tbody data-bind="foreach :Consignments">
+                                <tbody>
+                                    <!--ko foreach: Consignments-->
                                     <tr>
                                         <td class="hidden-xs">
                                                 <span data-bind="text: Pemberi().ContactPerson"></span>
@@ -75,17 +76,14 @@
                                             <a class="btn btn-success" title="Summary"> <i class="fa fa-file-text-o"></i> </a>
                                         </td>
                                     </tr>
+                                    <!-- /ko -->
+                                    <tr>
+                                        <td colspan="4"><strong>Grand Total</strong></td>
+                                        <td>RM <span data-bind="text: $root.grandTotal" class="pull-right"></span></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 invoice-block pull-right">
-                            <ul class="list-unstyled amounts">
-                                <li>
-                                    <strong>Grand Total:</strong> 0.00
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
