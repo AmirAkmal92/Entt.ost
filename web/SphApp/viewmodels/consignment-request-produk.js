@@ -61,7 +61,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                             cid(entity().Consignments()[i].WebId());
                         } else {
                             app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "Ost", ["OK"]).done(function () {
-                                router.navigate("consignment-request-ringkasan/" + crId);
+                                router.navigate("consignment-request-cart/" + crId);
                             });
                         }
                     }
@@ -242,7 +242,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             })
             .then(function (result) {
                 if (result) {
-                    router.navigate("consignment-request-ringkasan/" + crid());
+                    router.navigate("consignment-request-cart/" + crid());
                 }
             });
     };
