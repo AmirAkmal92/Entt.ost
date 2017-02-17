@@ -148,8 +148,17 @@ namespace web.sph.App_Code
 
             await CreateProfile(profile, designation);
 
-            //return Json(new { success = true, profile, status = "Created" });
+            //Json(new { success = true, profile, status = "Created" });
             return RedirectToAction("register-success", "ost-account");
+        }
+
+
+        [AllowAnonymous]
+        [Route("register")]
+        public ActionResult RegisterNew()
+        {
+            //Todo: to be implemented
+            return View();
         }
 
         /// <summary>
@@ -240,7 +249,7 @@ namespace web.sph.App_Code
 
         [AllowAnonymous]
         [Route("register-success")]
-        public ActionResult Register()
+        public ActionResult RegisterSuccess()
         {
             return View();
         }
@@ -267,6 +276,25 @@ namespace web.sph.App_Code
         {
             //Todo: to be implemented
             return View();
+        }
+
+
+        public ActionResult ResetPassword(string userName, string password)
+        {
+            if (string.IsNullOrWhiteSpace(password))
+                return Json(new { OK = false, messages = "Please specify new Password" });
+
+            var em = Membership.GetUser(userName);
+            if (null == em) return Json(new { OK = false, messages = "User does not exist" });
+            if (em.IsLockedOut)
+            {
+                em.UnlockUser();
+            }
+
+            var oldPassword = em.ResetPassword();
+            var result = em.ChangePassword(oldPassword, password);
+            Membership.UpdateUser(em);
+            return Json(new { OK = result, messages = "Password for user has been reset." });
         }
     }
 }
