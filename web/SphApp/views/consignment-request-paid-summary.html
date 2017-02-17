@@ -9,13 +9,13 @@
             </div>
             <div class="invoice" data-bind="with : entity">
                 <div class="row invoice-logo">
-                    <div class="col-xs-6 invoice-logo-space">
+                    <div class="col-md-6 invoice-logo-space">
                         <img src="../assets/pages/media/invoice/posost.png" class="img-responsive" alt="" />
                     </div>
-                    <div class="col-xs-6 invoice-block pull-right">
+                    <div class="col-md-6">
                         <div class="tab-pane active">
                             <div class="clearfix">
-                                <a href= "ost#consignment-requests-paid" class="btn blue margin-bottom-5">
+                                <a href= "ost#consignment-requests-paid" class="btn btn-info pull-right">
                                     <i class="fa fa-file-text"></i> Back
                                 </a>
                             </div>
@@ -57,9 +57,11 @@
                                                 <span data-bind="text: Penerima().ContactPerson"></span>
                                         </td>
                                         <td class="hidden-xs">
+                                            <a class="contact-item" data-bind="attr: { href: 'ost#consignment-request-produk/' + $parent.Id() + '/consignments/' + WebId() }">
                                                 <!--ko if: Produk().Weight() != null-->
                                                 <span data-bind="text: Produk().Weight() + ' kg'"></span>
                                                 <!-- /ko -->
+                                            </a>
                                         </td>
                                         <td class="hidden-xs">
                                             <!--ko if: Produk().Width() != null-->
@@ -68,7 +70,7 @@
                                         </td>
                                         <td>
                                             <!--ko if: Produk().Price() != null-->
-                                            <span data-bind="text: 'RM ' + Produk().Price()"></span>
+                                            RM <span data-bind="text: Produk().Price()" class="pull-right"></span>
                                             <!-- /ko -->
                                         </td>
                                         <td>
