@@ -200,38 +200,38 @@
                     <span> Next </span>
                 </button>
             </div>
-            <!--ko if: 0-->
-            <div data-bind="if: products().length > 0">
-                <h4>Products</h4>
-                <ul data-bind="foreach: products">
-                    <li>
-                        <label>Code</label>: <span data-bind="text: Code"></span><br />
-                        <label>DeliverySla</label>: <span data-bind="text: DeliverySla"></span><br />
-                        <label>Description</label>: <span data-bind="text: Description"></span><br />
-                        <label>Name</label>: <span data-bind="text: Name"></span><br />
-                        <h4>Value Added Services</h4>
-                        <ul data-bind="foreach: ValueAddedServices">
-                            <li>
-                                <input type="checkbox" data-bind="checked: IsSelected" /> <label>Name</label>: <span data-bind="text: Name"></span><br />
-                                <!--ko if: IsSelected-->
-                                <h4>User Inputs</h4>
-                                <ul data-bind="foreach: UserInputs">
-                                    <li>
-                                        <label>Name</label>: <span data-bind="text: Name"></span><br />
-                                        <label>Value</label>: <input type="number" data-bind="value: Value" /> [<span data-bind="text: $parent.Value"></span>]<br />
-                                    </li>
-                                </ul>
-                                <!-- /ko -->
-                            </li>
-                        </ul>
-                        <button class="btn btn-info" data-bind="click : $root.recalculatePrice.call($root, $data)">
-                            <i class="fa fa-calculator"></i>
-                            Calculate Price
-                        </button>
-                    </li>
-                </ul>
+            <div data-bind="visible: false">
+                <div data-bind="if: products().length > 0">
+                    <h4>Products</h4>
+                    <ul data-bind="foreach: products">
+                        <li>
+                            <label>Code</label>: <span data-bind="text: Code"></span><br />
+                            <label>DeliverySla</label>: <span data-bind="text: DeliverySla"></span><br />
+                            <label>Description</label>: <span data-bind="text: Description"></span><br />
+                            <label>Name</label>: <span data-bind="text: Name"></span><br />
+                            <h4>Value Added Services</h4>
+                            <ul data-bind="foreach: ValueAddedServices">
+                                <li>
+                                    <input type="checkbox" data-bind="checked: IsSelected" /> <label>Name</label>: <span data-bind="text: Name"></span><br />
+                                    <!--ko if: IsSelected-->
+                                    <h4>User Inputs</h4>
+                                    <ul data-bind="foreach: UserInputs">
+                                        <li>
+                                            <label>Name</label>: <span data-bind="text: Name"></span><br />
+                                            <label>Value</label>: <input type="number" data-bind="value: Value" /> [<span data-bind="text: $parent.Value"></span>]<br />
+                                        </li>
+                                    </ul>
+                                    <!-- /ko -->
+                                </li>
+                            </ul>
+                            <button class="btn btn-info" data-bind="click : $root.recalculatePrice.call($root, $data)">
+                                <i class="fa fa-calculator"></i>
+                                Calculate Price
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <!-- /ko -->
         </div>
     </div>
 </div>

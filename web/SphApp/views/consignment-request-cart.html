@@ -9,14 +9,17 @@
             </div>
             <div class="invoice" data-bind="with : entity">
                 <div class="row invoice-logo">
-                    <div class="col-xs-6 invoice-logo-space">
+                    <div class="col-md-6 invoice-logo-space">
                         <img src="../assets/pages/media/invoice/posost.png" class="img-responsive" alt="" />
                     </div>
-                    <div class="col-xs-6 invoice-block">
+                    <div class="col-md-6 invoice-block">
                         <div class="tab-pane active">
-                            <div class="clearfix">
-                                <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/' + 0 }" class="btn blue margin-bottom-5 pull-right">
-                                    <i class="glyphicon glyphicon-plus"></i> New Parcel
+                            <div class="clearfix pull-right">
+                                <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }" class="btn btn-info">
+                                    <i class="fa fa-paper-plane"></i> Add More Parcel
+                                </a>
+                                <a data-bind="attr: { href: 'ost#consignment-request-summary/' + Id() }" class="btn btn-warning">
+                                    <i class="fa fa-credit-card"></i> Pay Now
                                 </a>
                             </div>
                         </div>
