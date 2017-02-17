@@ -138,5 +138,19 @@
     "showWhenLoggedIn": false,
     "isAdminPage": false,
     "startPageRoute": null
+  },
+  {
+    "role": "customers",
+    "groupName": null,
+    "route": "consignment-request-payment/:entityId",
+    "moduleId": "viewmodels/consignment-request-payment",
+    "title": "Consignment Request Payment",
+    "nav": false,
+    "icon": "fa fa-credit-card",
+    "caption": "Consignment Request Payment",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
   }
 ]
