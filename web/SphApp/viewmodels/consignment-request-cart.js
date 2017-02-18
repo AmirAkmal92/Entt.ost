@@ -23,11 +23,7 @@ function (context, logger, router, system, chart, config, app, crCart) {
                         }
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
-                    var total = 0;
-                    _.each(entity().Consignments(), function (v) {
-                        total = total + parseFloat(v.Produk().Price());
-                    })
-                    grandTotal(total.toFixed(2));
+                    calculateGrandTotal();
                 }, function (e) {
                     if (e.status == 404) {
                         app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "Ost", ["OK"]);
@@ -35,6 +31,18 @@ function (context, logger, router, system, chart, config, app, crCart) {
                 });
 
             crCart.activate();
+        },
+        calculateGrandTotal = function () {
+            var total = 0;
+            _.each(entity().Consignments(), function (v) {
+                if (!v.Produk().Price()) {
+                    total += 0;
+                } else {
+                    total += v.Produk().Price();
+
+                }
+            })
+            grandTotal(total.toFixed(2));
         },
         defaultCommand = function () {
             var data = ko.mapping.toJSON(entity),
@@ -73,6 +81,7 @@ function (context, logger, router, system, chart, config, app, crCart) {
                         return defaultCommand().then(function (result) {
                             if (result.success) {                                
                                 return app.showMessage("Parcel has been successfully removed", "POS Online Shipping Tools", ["OK"]).done(function () {
+                                    calculateGrandTotal();
                                     crCart.activate();
                                 });
                             } else {

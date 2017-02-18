@@ -78,7 +78,7 @@
                                         </td>
                                         <td>
                                             <!--ko if: Produk().Price() != null-->
-                                            RM <span data-bind="text: Produk().Price()" class="pull-right"></span>
+                                            RM <span data-bind="text: Produk().Price().toFixed(2)" class="pull-right"></span>
                                             <!-- /ko -->
                                         </td>
                                         <td>

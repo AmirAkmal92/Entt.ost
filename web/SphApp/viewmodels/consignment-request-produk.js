@@ -137,7 +137,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return context.get("ost/snb-services/products/?from=" + consignment().Pemberi().Address().Postcode()
                                 + "&to=" + consignment().Penerima().Address().Postcode()
                                 + "&country=" + consignment().Penerima().Address().Country()
-                                + "&weight=" + consignment().Produk().Weight
+                                + "&weight=" + consignment().Produk().Weight()
                                 + "&height=" + consignment().Produk().Height()
                                 + "&length=" + consignment().Produk().Length()
                                 + "&width=" + consignment().Produk().Width()).then(function (list) {
@@ -235,7 +235,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         return defaultCommand()
             .then(function (result) {
                 if (result.success) {
-                    return app.showMessage("Parcel details has been successfully saved", "POS Online Shipping Tools", ["OK"]);
+                    return app.showMessage("Parcel Information has been successfully saved", "POS Online Shipping Tools", ["OK"]);
                 } else {
                     return Task.fromResult(false);
                 }
