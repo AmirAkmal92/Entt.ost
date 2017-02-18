@@ -39,26 +39,26 @@
                     <thead>
                         <tr>
                             <th class="invoice-title uppercase">Description</th>
-                            <th class="invoice-title uppercase text-center">Total</th>
+                            <th class="invoice-title uppercase col-md-3">Total</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><span class="text-center sbold">Price</span></td>
-                            <td class="text-center sbold"><span data-bind="text: Payment().TotalPrice">16,000$</span></td>
+                            <td><span class="sbold col">Price</span></td>
+                            <td class="sbold col-md-3">RM <span data-bind="text: (Payment().TotalPrice()*0.94).toFixed(2)" class="pull-right"></span></td>
                         </tr>
                         <tr>
-                            <td><span class="text-center sbold">GST (6%)</span></td>
-                            <td class="text-center sbold"><span data-bind="text: Payment().TotalPrice*0.06">16,000$</span></td>
+                            <td><span class="sbold">GST (6%)</span></td>
+                            <td class="sbold col-md-3">RM <span data-bind="text: (Payment().TotalPrice()*0.06).toFixed(2)" class="pull-right"></span></td>
                         </tr>
                     </tbody>
-                </table><br /><br />
+                </table>
             </div>
         </div>
         <div class="row invoice-subtotal">
-            <div class="col-xs-6">
+            <div class="col-md-6 col-xs-6">
                 <h2 class="invoice-title uppercase">Grand Total</h2>
-                <p class="invoice-desc grand-total">23,800$</p>
+                <p class="invoice-desc">RM <span data-bind="text: Payment().TotalPrice().toFixed(2)"></span></p>
             </div>
         </div>
     </div>

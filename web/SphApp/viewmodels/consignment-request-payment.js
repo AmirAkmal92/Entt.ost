@@ -6,6 +6,7 @@ function (context, logger, router, system, chart, config, app) {
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         errors = ko.observableArray(),
         id = ko.observable(),
+        grandTotal = ko.observable(),
         creditCardNo = ko.observable(),
         nameCard = ko.observable(),
         expNo = ko.observable(),
@@ -26,12 +27,30 @@ function (context, logger, router, system, chart, config, app) {
                         }
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
+                    calculateGrandTotal();
+                    if (grandTotal() != entity().Payment().TotalPrice()) {
+                        app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + entityId, "Ost", ["OK"]).done(function () {
+                            router.navigate("consignment-request-cart/" + entityId);
+                        });
+                    }
                 }, function (e) {
                     if (e.status == 404) {
                         app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "Ost", ["OK"]);
                     }
                 });
 
+        },
+        calculateGrandTotal = function () {
+            var total = 0;
+            _.each(entity().Consignments(), function (v) {
+                if (!v.Produk().Price()) {
+                    total += 0;
+                } else {
+                    total += v.Produk().Price();
+
+                }
+            })
+            grandTotal(total.toFixed(2));
         },
         attached = function (view) {
 
@@ -45,6 +64,7 @@ function (context, logger, router, system, chart, config, app) {
         attached: attached,
         errors: errors,
         entity: entity,
+        grandTotal: grandTotal,
         creditCardNo: creditCardNo,
         nameCard: nameCard,
         expNo: expNo,

@@ -6,6 +6,10 @@
         </li>
         <li>
             <span> Send Parcel </span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Summary </span>
         </li>
     </ul>
 </div>
@@ -43,6 +47,7 @@
                 <span class="caption-helper">Order Summary</span>
             </div>
         </div>
+        <br /><br />
         <div class="invoice" data-bind="with : entity">
             <div class="portlet-title">
                 <div class="caption">
@@ -137,7 +142,7 @@
                                     </td>
                                     <td>
                                         <!--ko if: Produk().Price() != null-->
-                                        RM <span data-bind="text: Produk().Price()" class="pull-right"></span>
+                                        RM <span data-bind="text: Produk().Price().toFixed(2)" class="pull-right"></span>
                                         <!-- /ko -->
                                     </td>
                                 </tr>
@@ -163,7 +168,7 @@
                         <i class="fa fa-paper-plane"></i>
                         Add More Parcel
                     </a>
-                    <a href="#" class="btn btn-warning" data-bind="attr: { href: 'ost#consignment-request-payment/' + Id() }">
+                    <a href="#" class="btn btn-warning" data-bind="click: $root.goToPayment">
                         <i class="fa fa-credit-card"></i>
                         Pay Now
                     </a>
