@@ -2486,7 +2486,7 @@
                 "$values": [
                   {
                     "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-                    "TypeName": "System.String, mscorlib",
+                    "TypeName": "System.Decimal, mscorlib",
                     "IsNullable": false,
                     "IsNotIndexed": false,
                     "IsAnalyzed": false,
@@ -2510,7 +2510,7 @@
                   },
                   {
                     "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-                    "TypeName": "System.String, mscorlib",
+                    "TypeName": "System.Decimal, mscorlib",
                     "IsNullable": false,
                     "IsNotIndexed": false,
                     "IsAnalyzed": false,
@@ -2534,7 +2534,7 @@
                   },
                   {
                     "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-                    "TypeName": "System.String, mscorlib",
+                    "TypeName": "System.Decimal, mscorlib",
                     "IsNullable": false,
                     "IsNotIndexed": false,
                     "IsAnalyzed": false,
@@ -2558,7 +2558,7 @@
                   },
                   {
                     "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-                    "TypeName": "System.String, mscorlib",
+                    "TypeName": "System.Decimal, mscorlib",
                     "IsNullable": false,
                     "IsNotIndexed": false,
                     "IsAnalyzed": false,
@@ -2582,7 +2582,7 @@
                   },
                   {
                     "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-                    "TypeName": "System.String, mscorlib",
+                    "TypeName": "System.Decimal, mscorlib",
                     "IsNullable": false,
                     "IsNotIndexed": false,
                     "IsAnalyzed": false,
@@ -2666,6 +2666,6 @@
   "Id": "consigment-request",
   "CreatedDate": "2016-10-29T07:26:06.8492482+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-14T20:18:25.2818495+08:00",
+  "ChangedDate": "2017-02-18T10:21:39.2712681+08:00",
   "WebId": "b8808d89-54c8-4d91-8396-7627974f1138"
 }
