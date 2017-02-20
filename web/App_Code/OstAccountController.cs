@@ -147,9 +147,7 @@ namespace web.sph.App_Code
             profile.Roles = roles;
 
             await CreateProfile(profile, designation);
-
-            //Json(new { success = true, profile, status = "Created" });
-            return RedirectToAction("register-success", "ost-account");
+            return RedirectToAction("success", "ost-account");
         }
 
 
@@ -248,8 +246,8 @@ namespace web.sph.App_Code
         }
 
         [AllowAnonymous]
-        [Route("register-success")]
-        public ActionResult RegisterSuccess()
+        [Route("success")]
+        public ActionResult Success()
         {
             return View();
         }
@@ -271,14 +269,44 @@ namespace web.sph.App_Code
         }
 
         [AllowAnonymous]
+        [HttpPost]
+        [Route("forgot-password")]
+        public async Task<ActionResult> ForgotPassword(string email)
+        {
+            var username = Membership.GetUserNameByEmail(email);
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                return Json(new { sucess = false, status = "Cannot find any user with email  " + email });
+            }
+            var setting = new Setting { UserName = email, Key = "ForgotPassword", Value = DateTime.Now.ToString("s"), Id = Strings.GenerateId() };
+            var context = new SphDataContext();
+            using (var session = context.OpenSession())
+            {
+                session.Attach(setting);
+                await session.SubmitChanges("ForgotPassword");
+            }
+            using (var smtp = new SmtpClient())
+            {
+                var mail = new MailMessage(ConfigurationManager.FromEmailAddress, email)
+                {
+                    Subject = ConfigurationManager.ApplicationFullName + " Forgot password ",
+                    Body = $@"Dear user, please click link below to reset your password.
+                    {ConfigurationManager.BaseUrl}/ost-account/reset-password/{setting.Id} ",
+                    IsBodyHtml = false
+                };
+                await smtp.SendMailAsync(mail);
+            }
+            return RedirectToAction("success", "ost-account");
+        }
+
+
+        [AllowAnonymous]
         [Route("reset-password/{id}")]
         public ActionResult ResetPassword(string id)
         {
             //Todo: to be implemented
             return View();
         }
-
-
         public ActionResult ResetPassword(string userName, string password)
         {
             if (string.IsNullOrWhiteSpace(password))
