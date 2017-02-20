@@ -126,11 +126,9 @@
                                         <span data-bind="text: Penerima().ContactPerson"></span>
                                     </td>
                                     <td class="hidden-xs">
-                                        <a class="contact-item" data-bind="attr: { href: 'ost#consignment-request-produk/' + $parent.Id() + '/consignments/' + WebId() }">
-                                            <!--ko if: Produk().Weight() != null-->
-                                            <span data-bind="text: Produk().Weight() + ' kg'"></span>
-                                            <!-- /ko -->
-                                        </a>
+                                        <!--ko if: Produk().Weight() != null-->
+                                        <span data-bind="text: Produk().Weight() + ' kg'"></span>
+                                        <!-- /ko -->
                                     </td>
                                     <td class="hidden-xs">
                                         <!--ko if: Produk().Width() != null-->
@@ -138,7 +136,13 @@
                                         <!-- /ko -->
                                     </td>
                                     <td class="hidden-xs">
-                                        <span>NDD / EMS</span>
+                                        <span data-bind="text: Produk().Code()"></span>
+                                        <!--ko if: Produk().IsInternational-->
+                                        <i class="fa fa-plane"></i>
+                                        <!-- /ko -->
+                                        <!--ko ifnot: Produk().IsInternational-->
+                                        <i class="fa fa-truck"></i>
+                                        <!-- /ko -->
                                     </td>
                                     <td>
                                         <!--ko if: Produk().Price() != null-->

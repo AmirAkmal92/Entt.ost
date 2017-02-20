@@ -40,7 +40,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
                     consignment(new bespoke.Ost_consigmentRequest.domain.Consignment(system.guid()));
-                    produk(new bespoke.Ost_consigmentRequest.domain.Produk(system.guid()));                   
+                    produk(new bespoke.Ost_consigmentRequest.domain.Produk(system.guid()));
                     products([]);
                     if (!cId || cId === "0") {
                         consignment().Produk(produk());
@@ -65,8 +65,14 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                             });
                         }
                     }
+                    // reset price related fields
+                    // always need to calculate price
                     consignment().Produk().Price(0);
-
+                    consignment().Produk().Code("");
+                    consignment().Produk().IsInternational(false);
+                    consignment().Produk().ValueAddedCode("");
+                    consignment().Produk().ValueAddedValue(0);
+                    consignment().Produk().ValueAddedDeclaredValue(0);
                 }, function (e) {
                     if (e.status == 404) {
                         app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + crId, "Ost", ["OK"]);
@@ -228,24 +234,36 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 .done(function (result) {
                     console.log(result.Total);
                     consignment().Produk().Price(result.Total);
+                    consignment().Produk().Code(model.Code);
+                    consignment().Produk().IsInternational(model.IsInternational);
+                    // always take the first VAS
+                    if (model.ValueAddedServices[0].IsSelected) {
+                        consignment().Produk().ValueAddedCode(model.ValueAddedServices[0].Code);
+                        consignment().Produk().ValueAddedValue(model.ValueAddedServices[0].Value);
+                        consignment().Produk().ValueAddedDeclaredValue(model.ValueAddedServices[0].UserInputs[0].Value);
+                    } else {
+                        consignment().Produk().ValueAddedCode("");
+                        consignment().Produk().ValueAddedValue(0);
+                        consignment().Produk().ValueAddedDeclaredValue(0);
+                    }
                 });
             };
+        },
+        saveCommand = function () {
+            return defaultCommand()
+                .then(function (result) {
+                    if (result.success) {
+                        return app.showMessage("Parcel Information has been successfully saved", "POS Online Shipping Tools", ["OK"]);
+                    } else {
+                        return Task.fromResult(false);
+                    }
+                })
+                .then(function (result) {
+                    if (result) {
+                        router.navigate("consignment-request-cart/" + crid());
+                    }
+                });
         };
-    saveCommand = function () {
-        return defaultCommand()
-            .then(function (result) {
-                if (result.success) {
-                    return app.showMessage("Parcel Information has been successfully saved", "POS Online Shipping Tools", ["OK"]);
-                } else {
-                    return Task.fromResult(false);
-                }
-            })
-            .then(function (result) {
-                if (result) {
-                    router.navigate("consignment-request-cart/" + crid());
-                }
-            });
-    };
     var vm = {
         partial: partial,
         activate: activate,
