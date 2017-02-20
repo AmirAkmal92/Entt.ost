@@ -26,5 +26,24 @@ namespace web.sph.App_Code
         {
             return View();
         }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("payment-gateway")]
+        public ActionResult PaymentGateway()
+        {
+            ViewBag.Title = "Payment Gateway";
+            var model = new PxRexModel();
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("payment-gateway")]
+        public ActionResult PaymentGateway(PxRexModel model)
+        {
+            ViewBag.Title = "Payment Gateway";
+            return View(model);
+        }
     }
 }

@@ -76,14 +76,14 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="portlet-body form col-md-8">
-                <form action="#" class="form-horizontal">
+                <form action="/ost/payment-gateway" method="post" class="form-horizontal">
                     <div class="form-body">
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon input-circle-left">
                                     <i class="fa fa-credit-card"></i>
                                 </span>
-                                <input type="text" class="form-control input-circle-right" placeholder="Card Number" data-bind="value: creditCardNo">
+                                <input type="text" class="form-control input-circle-right" placeholder="Number" data-bind="value: creditCardNo">
                             </div>
                         </div>
                         <div class="form-group">
@@ -91,37 +91,100 @@
                                 <span class="input-group-addon input-circle-left">
                                     <i class="fa fa-user"></i>
                                 </span>
-                                <input type="text" class="form-control input-circle-right" placeholder="Name On Card" data-bind="value: nameCard">
+                                <input type="text" class="form-control input-circle-right" placeholder="Name" data-bind="value: creditCardName">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon input-circle-left">
-                                    <i class="fa fa-calendar"></i>
+                                    <i class="fa fa-unlock"></i>
                                 </span>
-                                <input type="text" class="form-control input-circle-right" placeholder="Expiration Date" data-bind="value: expNo">
+                                <input type="password" class="form-control input-circle-right" placeholder="CVV2" data-bind="value: creditCardCvv2">
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon input-circle-left">
-                                    <i class="fa fa-cc-discover"></i>
-                                </span>
-                                <input type="text" class="form-control input-circle-right" placeholder="CVV Number" data-bind="value: cvvNo">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon input-circle-left">
+                                        <i class="fa fa-calendar-o"></i>
+                                    </span>
+                                    <select class="form-control input-circle-right" placeholder="Month (MM)" data-bind="value: creditCardExpMM">
+                                        <option disabled selected value="">Month (MM)</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon input-circle-left">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                    <select class="form-control input-circle-right" placeholder="Year (YY)" data-bind="value: creditCardExpYY">
+                                        <option disabled selected value="">Year (YY)</option>
+                                        <option value="17">2017</option>
+                                        <option value="18">2018</option>
+                                        <option value="19">2019</option>
+                                        <option value="20">2020</option>
+                                        <option value="21">2021</option>
+                                        <option value="22">2022</option>
+                                        <option value="23">2023</option>
+                                        <option value="24">2024</option>
+                                        <option value="25">2025</option>
+                                        <option value="26">2026</option>
+                                        <option value="27">2027</option>
+                                        <option value="28">2028</option>
+                                        <option value="29">2029</option>
+                                        <option value="30">2030</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="PX_VERSION" data-bind="value: pxVersion" />
+                            <input type="hidden" name="PX_TRANSACTION_TYPE" data-bind="value: pxTransactionType" />
+                            <input type="hidden" name="PX_PURCHASE_ID" data-bind="value: pxPurchaseId" />
+                            <input type="hidden" name="PX_PAN" data-bind="value: creditCardNo" />
+                            <input type="hidden" name="PX_EXPIRY" data-bind="value: creditCardExpMM() + creditCardExpYY()" />
+                            <input type="hidden" name="PX_MERCHANT_ID" data-bind="value: pxMerchantId" />
+                            <input type="hidden" name="PX_PURCHASE_AMOUNT" data-bind="value: pxPurchaseAmount" />
+                            <input type="hidden" name="PX_PURCHASE_DESCRIPTION" value="" />
+                            <input type="hidden" name="PX_PURCHASE_DATE" data-bind="value: pxPurchaseDate" />
+                            <input type="hidden" name="PX_CVV2" data-bind="value: creditCardCvv2" />
+                            <input type="hidden" name="PX_CUSTOM_FIELD1" data-bind="value: creditCardName" />
+                            <!--<input type="hidden" name="PX_CUSTOM_FIELD2" value="" />
+                            <input type="hidden" name="PX_CUSTOM_FIELD3" value="" />
+                            <input type="hidden" name="PX_CUSTOM_FIELD4" value="" />
+                            <input type="hidden" name="PX_CUSTOM_FIELD5" value="" />-->
+                            <input type="hidden" name="PX_REF" data-bind="value: pxRef" />
+                            <!--<input type="hidden" name="PX_ALT_URL" value="" />
+                            <input type="hidden" name="PX_POLICY_NO" value="" />-->
+                            <input type="hidden" name="PX_SIG" data-bind="value: pxSig" />
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-4 col-md-8">
+                                    <button type="submit" class="btn btn-warning">
+                                        <i class="fa fa-credit-card"></i> Pay
+                                    </button>
+                                    <a class="btn btn-danger" data-bind="attr: { href: 'ost#consignment-request-summary/' + entity().Id() }">
+                                        <i class="fa fa-times-circle"></i> Cancel
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </form>
-            </div>
-        </div>
-        <div class="form-actions">
-            <div class="row">
-                <div class="col-md-offset-4 col-md-8">
-                    <button type="submit" class="btn green">
-                        <i class="fa fa-check"></i> Submit
-                    </button>
-                    <button type="button" class="btn default">Cancel</button>
-                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,100 @@
+﻿@model web.sph.App_Code.PxRexModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link href="~/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        body {
+            padding-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        @*<h1>@ViewBag.Title</h1>*@
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Payment Gateway<small> powered by Alliance &amp; Silverlake</small></h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">PxReq</h3>
+                            </div>
+                            <div class="panel-body">
+                                <dl class="dl-horizontal">
+                                    <dt>Version</dt>
+                                    <dd>@Html.Raw(Model.PX_VERSION)</dd>
+                                    <dt>Type</dt>
+                                    <dd>@Html.Raw(Model.PX_TRANSACTION_TYPE)</dd>
+                                    <dt>Order Id</dt>
+                                    <dd>@Html.Raw(Model.PX_PURCHASE_ID)</dd>
+                                    <dt>Amount</dt>
+                                    <dd>@Html.Raw(Model.PX_PURCHASE_AMOUNT)</dd>
+                                    <dt>Date</dt>
+                                    <dd>@Html.Raw(Model.PX_PURCHASE_DATE)</dd>
+                                    <dt>Merchant Id</dt>
+                                    <dd>@Html.Raw(Model.PX_MERCHANT_ID)</dd>
+                                    <dt>Sig</dt>
+                                    <dd>@Html.Raw(Model.PX_SIG)</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Credit Card</h3>
+                            </div>
+                            <table class="table">
+                                <tr>
+                                    <td><label>Number</label></td>
+                                    <td>@Html.Raw(Model.PX_PAN)</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Name</label></td>
+                                    <td>@Html.Raw(Model.PX_CUSTOM_FIELD1)</td>
+                                </tr>
+                                <tr>
+                                    <td><label>Expiry</label></td>
+                                    <td>@Html.Raw(Model.PX_EXPIRY)</td>
+                                </tr>
+                                <tr>
+                                    <td><label>CVV2</label></td>
+                                    <td>@Html.Raw(Model.PX_CVV2)</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-3">&nbsp;</div>
+                    <div class="col-md-6">
+                        <center>
+                            <a class="btn btn-lg btn-success">Accepted</a>
+                            <a class="btn btn-lg btn-warning">Rejected</a>
+                        </center>
+                    </div>
+                    <div class="col-md-3">&nbsp;</div>
+                </div>
+                <hr />
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-2.2.0.min.js"></script>
+    <script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
