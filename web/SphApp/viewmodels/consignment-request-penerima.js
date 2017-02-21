@@ -8,6 +8,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         consignment = ko.observable(),
         penerima = ko.observable(),
+        availableCountries = ko.observableArray(),
         errors = ko.observableArray(),
         id = ko.observable(),
         crid = ko.observable(),
@@ -66,6 +67,9 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + crId, "Ost", ["OK"]);
                     }
                 }).always(function () {
+                    context.get("/api/countries/available-country?size=300").done(function (cList) {
+                        availableCountries(cList._results);
+                    });
                     if (typeof partial.activate === "function") {
                         partial.activate(ko.unwrap(entity))
                             .done(tcs.resolve)
@@ -201,6 +205,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         attached: attached,
         compositionComplete: compositionComplete,
         entity: entity,
+        availableCountries: availableCountries,
         errors: errors,
         crid: crid,//temp
         cid: cid,//temp

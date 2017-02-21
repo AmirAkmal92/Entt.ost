@@ -148,7 +148,8 @@
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Country</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Country, visible :true, autocomplete :{ entity:'Country', field :'Name', query:'Id ne \'0\'' }" name="Pemberi.Address.Country">
+                                <!--<input type="text" class="form-control" data-bind="value: Pemberi().Address().Country, visible :true, autocomplete :{ entity:'Country', field :'Name', query:'Id ne \'0\'' }" name="Pemberi.Address.Country">-->
+                                <select class="form-control" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Pemberi().Address().Country"></select>
                             </div>
                         </div>
                     </div>
