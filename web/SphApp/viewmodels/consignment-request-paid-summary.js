@@ -44,6 +44,28 @@ function (context, logger, router, system, chart, config, app) {
             })
             grandTotal(total.toFixed(2));
         },
+        generateConNotes = function () {
+            var data = ko.mapping.toJSON(entity);
+            context.put(data, "/consignment-request/generate-and-save-con-notes/" + ko.unwrap(entity().Id) + "")
+                .fail(function (response) {
+                    app.showMessage("Sorry, but we cannot process tracking number for the Paid Order with Id : " + ko.unwrap(entity().Id), "Ost", ["OK"]).done(function () {
+                        router.navigate("consignment-requests-paid");
+                    });
+                })
+                .then(function (result) {
+                    console.log(result);
+                    if (result.success) {
+                        app.showMessage("Tracking number genrated. You can now print your AWB.", "Ost", ["OK"]).done(function () {
+                            router.activeItem().activate(result.id);
+                        });                        
+                    } else {
+                        console.log(result.status);
+                        app.showMessage("Sorry, but we cannot process tracking number for the Paid Order with Id : " + result.id, "Ost", ["OK"]).done(function () {
+                            router.navigate("consignment-requests-paid");
+                        });
+                    }
+                });
+        },
         attached = function (view) {
 
         },
@@ -56,6 +78,7 @@ function (context, logger, router, system, chart, config, app) {
         attached: attached,
         errors: errors,
         grandTotal: grandTotal,
+        generateConNotes: generateConNotes,
         entity: entity
     };
 

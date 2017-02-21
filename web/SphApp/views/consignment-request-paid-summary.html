@@ -13,9 +13,12 @@
                         <img src="../assets/pages/media/invoice/posost.png" class="img-responsive" alt="" />
                     </div>
                     <div class="col-md-6">
-                        <div class="tab-pane active">
+                        <div class="tab-pane active pull-right">
                             <div class="clearfix">
-                                <a href="ost#consignment-requests-paid" class="btn btn-info pull-right">
+                                <button class="btn btn-info" data-bind="click: $root.generateConNotes, enable: !Payment().IsConNoteReady()">
+                                    <i class="fa fa-print"></i> Generate Tracking No
+                                </button>
+                                <a href="ost#consignment-requests-paid" class="btn btn-info">
                                     <i class="fa fa-file-text"></i> Back
                                 </a>
                             </div>
@@ -40,10 +43,11 @@
                                 <thead>
                                     <tr>
                                         <th> Sender </th>
-                                        <th class="hidden-xs"> Receiver </th>
-                                        <th class="hidden-xs"> Weight </th>
-                                        <th class="hidden-xs"> Volume </th>
+                                        <th> Receiver </th>
+                                        <th> Weight </th>
+                                        <th> Volume </th>
                                         <th> Total </th>
+                                        <th> Tracking No </th>
                                         <th> Action </th>
                                     </tr>
                                 </thead>
@@ -72,7 +76,10 @@
                                             <!-- /ko -->
                                         </td>
                                         <td>
-                                            <a class="btn btn-info" title="Print AWB"> <i class="fa fa-print"></i> </a>
+                                            <span data-bind="text: ConNote"></span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-info" title="Print AWB" data-bind="enable: ConNote()"> <i class="fa fa-print"></i> </button>
                                             <a class="btn btn-success" title="Summary"> <i class="fa fa-file-text-o"></i> </a>
                                         </td>
                                     </tr>
