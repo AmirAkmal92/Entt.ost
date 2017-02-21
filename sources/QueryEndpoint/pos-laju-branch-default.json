@@ -10,9 +10,9 @@
     "$values": [
       {
         "$type": "Bespoke.Sph.Domain.Sort, domain.sph",
-        "Path": "FromNumber",
+        "Path": "PostcodeFrom",
         "Direction": "Asc",
-        "WebId": "f41e118f-6af3-45ac-c492-8a96d8db9831"
+        "WebId": "13787ca0-ec44-4252-aaa2-c79dfd331f31"
       }
     ]
   },
@@ -31,8 +31,8 @@
   "CacheFilter": null,
   "CreatedBy": "admin",
   "Id": "pos-laju-branch-default",
-  "CreatedDate": "2016-11-03T10:25:39.0023962+08:00",
+  "CreatedDate": "2017-02-21T19:42:05.3527307+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:26:09.4677161+08:00",
-  "WebId": "3eb76c1e-2a58-438b-ab1e-6867fabb06d0"
+  "ChangedDate": "2017-02-21T19:49:10.8946908+08:00",
+  "WebId": "3f7677ac-e774-40c3-c981-22f43e69e2f3"
 }

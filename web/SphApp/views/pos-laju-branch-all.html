@@ -1,0 +1,26 @@
+<h1>All PosLajuBranchBranches</h1>
+<div class="row">
+    <div class="col-md-8">
+        <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list}">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Postcode From</th>
+                    <th>Postcode To</th>
+                    <th>Pickup Id</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach :list">
+                <tr data-bind="">
+                    <td data-bind="text:Name"></td>
+                    <td data-bind="text:Email"></td>
+                    <td data-bind="text:PostcodeFrom"></td>
+                    <td data-bind="text:PostcodeTo"></td>
+                    <td data-bind="text:PickupId"></td>
+                </tr>
+            </tbody>
+        </table>
+        <img src="/Images/spinner-md.gif" alt="loading" class="absolute-center" data-bind="visible: isBusy" />
+    </div>
+</div>
