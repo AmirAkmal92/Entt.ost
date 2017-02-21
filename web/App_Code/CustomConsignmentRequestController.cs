@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -12,33 +13,24 @@ using System.Web.Http;
 namespace web.sph.App_Code
 {
     [RoutePrefix("consignment-request")]
-    public class CustomConsignmentRequestController: BaseApiController
+    public class CustomConsignmentRequestController : BaseApiController
     {
         [HttpPut]
         [Route("calculate-total-price/{id}")]
         public async Task<IHttpActionResult> CalculateAndSaveTotalPrice(string id)
         {
-            var context = new SphDataContext();
-            var repos = ObjectBuilder.GetObject<IReadonlyRepository<ConsigmentRequest>>();
-
-            var lo = await repos.LoadOneAsync(id);
-            if (null == lo.Source)
-                lo = await repos.LoadOneAsync("ReferenceNo", id);
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
             if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
 
             var item = lo.Source;
             decimal total = 0;
+
             foreach (var consignment in lo.Source.Consignments)
             {
                 total += consignment.Produk.Price;
             }
             item.Payment.TotalPrice = total;
-
-            using (var session = context.OpenSession())
-            {
-                session.Attach(item);
-                await session.SubmitChanges("Default");
-            }
+            await SaveConsigmentRequest(item);            
 
             var result = new
             {
@@ -61,14 +53,10 @@ namespace web.sph.App_Code
         [Route("generate-px-req-fields/{id}")]
         public async Task<IHttpActionResult> GeneratePxReqFields(string id)
         {
-            var pxReq = new PxRexModel();
-
-            var repos = ObjectBuilder.GetObject<IReadonlyRepository<ConsigmentRequest>>();
-
-            var lo = await repos.LoadOneAsync(id);
-            if (null == lo.Source)
-                lo = await repos.LoadOneAsync("ReferenceNo", id);
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
             if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
+
+            var pxReq = new PxRexModel();
             var item = lo.Source;
 
             pxReq.PX_VERSION = "1.1";
@@ -82,13 +70,10 @@ namespace web.sph.App_Code
             //TODO: PX_MERCHANT_ID = merchantId + checksum
             pxReq.PX_MERCHANT_ID = pxMerchantId;
             pxReq.PX_PURCHASE_AMOUNT = item.Payment.TotalPrice;
-
             pxReq.PX_PURCHASE_DATE = DateTime.Now.ToString("ddMMyyyy HH:mm:ss");
             pxReq.PX_REF = pxRef;
-
             //TODO: generate PX_SIG using provided encryption algorithm
             pxReq.PX_SIG = "todo-enrypted-px-sig";
-
 
             var result = new
             {
@@ -99,6 +84,114 @@ namespace web.sph.App_Code
             };
 
             return Ok(result);
+        }
+
+        [HttpPut]
+        [Route("generate-and-save-con-notes/{id}")]
+        public async Task<IHttpActionResult> GenerateAndSaveConNotes(string id)
+        {
+            //TODO: Set & Get from appSettings 
+            var baseUrl = "http://stagingsds.pos.com.my/apigateway/as2corporate/api/generateconnote/v1";
+            var secretKey = "ODA2MzViZTAtODk3MS00OGU5LWFiNGEtYTcxYjAxMjU4NjM1";
+
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
+            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
+
+            var resultSuccess = true;
+            var resultStatus = "OK";
+            var item = lo.Source;
+
+            var totalConsignments = item.Consignments.Count;
+            if (totalConsignments > 0)
+            {
+                if (!item.Payment.IsConNoteReady)
+                {
+                    var client = new HttpClient();
+                    client.DefaultRequestHeaders.Add("x-user-key", secretKey);
+
+                    List<KeyValuePair<string, string>> pairs = new List<KeyValuePair<string, string>>();
+                    //TODO: need more information from API provider; hardcode for now
+                    pairs.Add(new KeyValuePair<string, string>("Prefix", "ES"));
+                    pairs.Add(new KeyValuePair<string, string>("ApplicationCode", "OST"));
+                    pairs.Add(new KeyValuePair<string, string>("Secretid", "ost@1234"));
+                    pairs.Add(new KeyValuePair<string, string>("username", "entt.ost"));
+                    pairs.Add(new KeyValuePair<string, string>("numberOfItem", totalConsignments.ToString()));
+                    pairs.Add(new KeyValuePair<string, string>("Orderid", item.Id));
+
+                    var content = new FormUrlEncodedContent(pairs);
+                    var query = content.ReadAsStringAsync().Result;
+                    var output = await client.GetStringAsync(baseUrl + "?" + query);
+                    //TODO: check output for error and null
+                    var json = JObject.Parse(output);
+                    //TODO: check json for error and null
+
+                    if (json["StatusCode"].ToString() == "01")
+                    {
+                        var conNotes = json["ConnoteNo"].ToString().Split('|');
+                        if (conNotes.Length >= item.Consignments.Count)
+                        {
+                            var count = 0;
+                            foreach (var conNote in conNotes)
+                            {
+                                item.Consignments[count].ConNote = conNote;
+                                count++;
+                            }
+                            item.Payment.IsConNoteReady = true;
+                            await SaveConsigmentRequest(item);                            
+                        }
+                        else
+                        {
+                            resultSuccess = false;
+                            resultStatus = "Generated consignment note not enough";
+                        }
+                    }
+                    else
+                    {
+                        resultSuccess = false;
+                        resultStatus = "StatusCode: " + json["StatusCode"].ToString() + " Message: " + json["Message"].ToString();
+                    }
+                }
+                else
+                {
+                    resultSuccess = false;
+                    resultStatus = "Consignment note was already generated";
+                }
+            }
+            else
+            {
+                resultSuccess = false;
+                resultStatus = "Consignment not found";
+            }           
+
+            var result = new
+            {
+                success = resultSuccess,
+                status = resultStatus,
+                id = item.Id,
+            };
+
+            // wait until the worker process it
+            await Task.Delay(1500);
+            return Accepted(result);
+        }
+
+        private static async Task<LoadData<ConsigmentRequest>> GetConsigmentRequest(string id)
+        {
+            var repos = ObjectBuilder.GetObject<IReadonlyRepository<ConsigmentRequest>>();
+            var lo = await repos.LoadOneAsync(id);
+            if (null == lo.Source)
+                lo = await repos.LoadOneAsync("ReferenceNo", id);
+            return lo;
+        }
+
+        private static async Task SaveConsigmentRequest(ConsigmentRequest item)
+        {
+            var context = new SphDataContext();
+            using (var session = context.OpenSession())
+            {
+                session.Attach(item);
+                await session.SubmitChanges("Default");
+            }
         }
     }
 
