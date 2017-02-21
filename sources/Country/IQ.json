@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "IRAQ ",
+  "Abbreviation": "IQ",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "IQ",
+  "CreatedDate": "2017-02-21T13:37:32.4709098+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.4694059+08:00",
+  "WebId": "4168e350-1939-46e7-ac61-26cd4ac8a7be"
+}

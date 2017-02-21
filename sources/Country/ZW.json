@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "ZIMBABWE ",
+  "Abbreviation": "ZW",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "ZW",
+  "CreatedDate": "2017-02-21T13:37:25.5491283+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.547623+08:00",
+  "WebId": "99dcf9fc-ccc3-4d42-b0e6-34f9adb4b656"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "TORTOLA",
+  "Abbreviation": "OT",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "OT",
+  "CreatedDate": "2017-02-21T13:37:24.9094263+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:24.9019057+08:00",
+  "WebId": "defa3e93-85eb-4920-ad6c-f83bbfb46805"
+}

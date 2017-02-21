@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "BOTSWANA ",
+  "Abbreviation": "BW",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "BW",
+  "CreatedDate": "2017-02-21T13:37:25.8965498+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.8955473+08:00",
+  "WebId": "a00ed04c-4e77-460f-9137-b61a58ed6809"
+}

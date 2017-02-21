@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SWITZERLAND ",
+  "Abbreviation": "CH",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "CH",
+  "CreatedDate": "2017-02-21T13:37:31.7735561+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.7725536+08:00",
+  "WebId": "a29cba55-7407-4769-8c25-ce395656a3ee"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "GUAM ",
+  "Abbreviation": "GU",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "GU",
+  "CreatedDate": "2017-02-21T13:37:25.8283689+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.82486+08:00",
+  "WebId": "0fa34eff-aca6-4dab-acd5-1f878b681b0b"
+}

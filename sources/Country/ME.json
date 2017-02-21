@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "MONTENEGRO ",
+  "Abbreviation": "ME",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "ME",
+  "CreatedDate": "2017-02-21T13:37:25.8393981+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.8383956+08:00",
+  "WebId": "18fbc659-e165-41c5-9aae-a6f33f86947d"
+}

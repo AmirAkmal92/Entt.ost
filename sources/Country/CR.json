@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "COSTA RICA ",
+  "Abbreviation": "CR",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "CR",
+  "CreatedDate": "2017-02-21T13:37:26.3156643+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.3151625+08:00",
+  "WebId": "6e7db293-bae0-47a6-a95c-ba79dfd1f204"
+}

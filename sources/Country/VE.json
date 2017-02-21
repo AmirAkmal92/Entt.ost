@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "VENEZUELA,  BOLIVARIAN REPUBLIC OF ",
+  "Abbreviation": "VE",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "VE",
+  "CreatedDate": "2017-02-21T13:37:24.6517411+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:24.6482315+08:00",
+  "WebId": "3b7127fb-b121-4746-8046-9a1fe20c103d"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SAINT LUCIA ",
+  "Abbreviation": "LC",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "LC",
+  "CreatedDate": "2017-02-21T13:37:25.4844545+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.4829513+08:00",
+  "WebId": "d721896e-5479-4a25-8f86-60f5dc243a30"
+}

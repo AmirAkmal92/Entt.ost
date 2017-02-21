@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "YEMEN ",
+  "Abbreviation": "YE",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "YE",
+  "CreatedDate": "2017-02-21T13:37:26.1462144+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.0985875+08:00",
+  "WebId": "b05e5c00-e68c-4095-a7b1-6f6662baa0dd"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "NEPAL ",
+  "Abbreviation": "NP",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "NP",
+  "CreatedDate": "2017-02-21T13:37:32.7160619+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.7010221+08:00",
+  "WebId": "151b7a8d-6201-4965-9a48-337540f1fb66"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "URUGUAY ",
+  "Abbreviation": "UY",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "UY",
+  "CreatedDate": "2017-02-21T13:37:25.0162099+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.0142049+08:00",
+  "WebId": "cfda08a8-c14e-4f90-bfcf-0c136ee761fa"
+}

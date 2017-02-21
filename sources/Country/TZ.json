@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "TANZANIA,  UNITED REPUBLIC OF ",
+  "Abbreviation": "TZ",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "TZ",
+  "CreatedDate": "2017-02-21T13:37:31.7926069+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.7895987+08:00",
+  "WebId": "7d106ec1-f85f-4d45-a130-ba8cd8ff12df"
+}

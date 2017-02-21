@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "PITCAIRN ",
+  "Abbreviation": "PN",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "PN",
+  "CreatedDate": "2017-02-21T13:37:22.3839193+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:22.3834175+08:00",
+  "WebId": "7b1c6f91-2d6f-44c4-ba7f-cff726a0c84e"
+}

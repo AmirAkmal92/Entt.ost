@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "BURKINA FASO ",
+  "Abbreviation": "BF",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "BF",
+  "CreatedDate": "2017-02-21T13:37:24.6733005+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:24.6692877+08:00",
+  "WebId": "132636a6-1204-4e50-b3ea-82e28d0144bf"
+}

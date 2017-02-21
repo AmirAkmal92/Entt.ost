@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "UNITED STATES MINOR OUTLYING ISLANDS ",
+  "Abbreviation": "UM",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "UM",
+  "CreatedDate": "2017-02-21T13:37:26.4976487+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.4951434+08:00",
+  "WebId": "ba901a49-e18d-4340-9667-59c1341ca6df"
+}

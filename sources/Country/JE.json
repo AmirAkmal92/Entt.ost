@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "JERSEY ",
+  "Abbreviation": "JE",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "JE",
+  "CreatedDate": "2017-02-21T13:37:25.2678784+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.2668759+08:00",
+  "WebId": "c661bc42-aa04-4d3c-bce4-74aff4c99be5"
+}

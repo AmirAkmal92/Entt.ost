@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "NETHERLANDS ANTILLES ",
+  "Abbreviation": "AN",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "AN",
+  "CreatedDate": "2017-02-21T13:37:31.5364256+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.5329164+08:00",
+  "WebId": "b9c3a69d-958d-4216-8774-4c845a91b7be"
+}

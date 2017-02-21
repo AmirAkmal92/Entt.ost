@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "RUSSIAN FEDERATION ",
+  "Abbreviation": "RU",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "RU",
+  "CreatedDate": "2017-02-21T13:37:32.6729478+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.6624191+08:00",
+  "WebId": "865071e6-8cca-46e7-95ad-f0e3b2c7dce9"
+}

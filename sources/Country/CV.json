@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "CAPE VERDE ",
+  "Abbreviation": "CV",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "CV",
+  "CreatedDate": "2017-02-21T13:37:32.0227189+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.0041695+08:00",
+  "WebId": "b6c51506-c1ef-433f-b360-74cd6479f3ea"
+}

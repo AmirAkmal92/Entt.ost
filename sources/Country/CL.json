@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "CHILE ",
+  "Abbreviation": "CL",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "CL",
+  "CreatedDate": "2017-02-21T13:37:26.8445709+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.8415621+08:00",
+  "WebId": "8ebbf50c-2b5d-44c6-828f-3f953fca6cd7"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "NIUE ",
+  "Abbreviation": "NU",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "NU",
+  "CreatedDate": "2017-02-21T13:37:33.6791232+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:33.6706008+08:00",
+  "WebId": "ba6660f1-23ba-4a99-b874-53bf5613ecd1"
+}

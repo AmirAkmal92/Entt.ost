@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "KENYA ",
+  "Abbreviation": "KE",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "KE",
+  "CreatedDate": "2017-02-21T13:37:25.5100224+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.5090195+08:00",
+  "WebId": "8746576d-e9eb-4642-8d09-74e848a17e92"
+}

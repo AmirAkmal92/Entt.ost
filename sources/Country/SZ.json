@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SWAZILAND ",
+  "Abbreviation": "SZ",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "SZ",
+  "CreatedDate": "2017-02-21T13:37:30.3131738+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:30.2630409+08:00",
+  "WebId": "f8a94959-86a4-4b06-be08-5fc5b2fcaf42"
+}

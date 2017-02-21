@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "CANADA ",
+  "Abbreviation": "CA",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "CA",
+  "CreatedDate": "2017-02-21T13:37:32.4328085+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.4313042+08:00",
+  "WebId": "f06a1d97-0c96-4b0e-b503-be1e3c5ddfa7"
+}

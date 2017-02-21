@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "TURKS AND CAICOS ISLANDS ",
+  "Abbreviation": "TC",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "TC",
+  "CreatedDate": "2017-02-21T13:37:25.4298095+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.428807+08:00",
+  "WebId": "0d3cbdf8-121c-4f60-9138-90a84637103a"
+}

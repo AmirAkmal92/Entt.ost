@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "ARGENTINA ",
+  "Abbreviation": "AR",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "AR",
+  "CreatedDate": "2017-02-21T13:37:24.9906424+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:24.984125+08:00",
+  "WebId": "71cc20fa-6cec-48e4-b97d-7612c7524e8b"
+}

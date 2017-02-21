@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "FALKLAND ISLANDS (MALVINAS) ",
+  "Abbreviation": "FK",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "FK",
+  "CreatedDate": "2017-02-21T13:37:25.5631638+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.5586535+08:00",
+  "WebId": "4bef64a1-a784-4356-83b5-cc59eb4a9713"
+}

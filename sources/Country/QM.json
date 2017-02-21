@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "BOSNIA REP SRPSKA ",
+  "Abbreviation": "QM",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "QM",
+  "CreatedDate": "2017-02-21T13:37:26.3828427+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.3818402+08:00",
+  "WebId": "009ca593-cc43-4ebd-9fee-275bdce2a5ab"
+}

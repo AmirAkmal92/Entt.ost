@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SAO TOME AND PRINCIPE ",
+  "Abbreviation": "ST",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "ST",
+  "CreatedDate": "2017-02-21T13:37:33.7447963+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:33.7392817+08:00",
+  "WebId": "828dcb54-dab6-497f-a131-6c145f7de02c"
+}

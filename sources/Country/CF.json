@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "CENTRAL AFRICAN REPUBLIC ",
+  "Abbreviation": "CF",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "CF",
+  "CreatedDate": "2017-02-21T13:37:26.2063736+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.2018626+08:00",
+  "WebId": "43574422-1f94-428f-88ca-06a27aa2c25d"
+}

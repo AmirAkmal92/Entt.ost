@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "CONGO ",
+  "Abbreviation": "CG",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "CG",
+  "CreatedDate": "2017-02-21T13:37:29.4167919+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:29.3731754+08:00",
+  "WebId": "eea0e505-21bf-4109-886c-cb0b1d68a52b"
+}

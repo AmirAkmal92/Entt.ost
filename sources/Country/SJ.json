@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SVALBARD AND JAN MAYEN ",
+  "Abbreviation": "SJ",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "SJ",
+  "CreatedDate": "2017-02-21T13:37:25.2879324+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.2849243+08:00",
+  "WebId": "271df4ba-dc51-46e7-8c4b-339a44fd6e6e"
+}

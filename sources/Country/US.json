@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "UNITED STATES ",
+  "Abbreviation": "US",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "US",
+  "CreatedDate": "2017-02-21T13:37:32.8233466+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.8218445+08:00",
+  "WebId": "961e81c2-11ed-46f1-bbf7-eed447bd47e5"
+}

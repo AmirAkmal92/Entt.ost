@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "FRENCH GUIANA ",
+  "Abbreviation": "GF",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "GF",
+  "CreatedDate": "2017-02-21T13:37:25.4919744+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.4904701+08:00",
+  "WebId": "85915f17-3af9-483d-8739-f823f6349efa"
+}

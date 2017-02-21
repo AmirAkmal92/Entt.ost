@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "LUXEMBOURG ",
+  "Abbreviation": "LU",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "LU",
+  "CreatedDate": "2017-02-21T13:37:28.2281308+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:28.1880241+08:00",
+  "WebId": "a3761d74-e7dc-439a-bebf-efec5f0eab77"
+}

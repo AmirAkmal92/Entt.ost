@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "HOLY SEE (VATICAN CITY STATE) ",
+  "Abbreviation": "VA",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "VA",
+  "CreatedDate": "2017-02-21T13:37:29.938678+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:29.9030842+08:00",
+  "WebId": "d9cd54e9-3bb4-4865-9fc2-71fe1382a7a2"
+}

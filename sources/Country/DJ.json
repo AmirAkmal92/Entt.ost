@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "DJIBOUTI ",
+  "Abbreviation": "DJ",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "DJ",
+  "CreatedDate": "2017-02-21T13:37:25.2182473+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.2152391+08:00",
+  "WebId": "dcfc2452-5b6d-4296-8529-21c3e96606b9"
+}

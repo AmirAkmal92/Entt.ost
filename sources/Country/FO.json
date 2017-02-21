@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "FAROE ISLANDS ",
+  "Abbreviation": "FO",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "FO",
+  "CreatedDate": "2017-02-21T13:37:28.8327385+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:28.8031604+08:00",
+  "WebId": "4b15f386-55ad-47a9-b36a-e3b10e3768d7"
+}

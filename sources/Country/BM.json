@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "BERMUDA ",
+  "Abbreviation": "BM",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "BM",
+  "CreatedDate": "2017-02-21T13:37:26.5217123+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.5202088+08:00",
+  "WebId": "4dcfe5b2-74a2-405f-a19d-af11f8f30358"
+}

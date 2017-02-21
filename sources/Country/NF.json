@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "NORFOLK ISLAND ",
+  "Abbreviation": "NF",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "NF",
+  "CreatedDate": "2017-02-21T13:37:25.3866951+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.3851912+08:00",
+  "WebId": "795baae8-7741-4bb9-bc59-63c45ac8f6ec"
+}

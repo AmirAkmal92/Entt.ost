@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "NICARAGUA ",
+  "Abbreviation": "NI",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "NI",
+  "CreatedDate": "2017-02-21T13:37:26.7382881+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.7282607+08:00",
+  "WebId": "f7eb2465-cec0-4a59-b9ee-f52dcb03b623"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "FRENCH SOUTHERN TERRITORIES ",
+  "Abbreviation": "TF",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "TF",
+  "CreatedDate": "2017-02-21T13:37:29.283938+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:29.2653886+08:00",
+  "WebId": "234d21b5-2c2b-44a3-8e6f-70d18081da45"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SAINT BARTHELEMY ",
+  "Abbreviation": "BL",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "BL",
+  "CreatedDate": "2017-02-21T13:37:24.9515393+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:24.9425148+08:00",
+  "WebId": "53147603-fb4b-4bbb-8b38-aac2f35be742"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "GUERNSEY ",
+  "Abbreviation": "GG",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "GG",
+  "CreatedDate": "2017-02-21T13:37:31.4792739+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.4667408+08:00",
+  "WebId": "05b5bb7f-389f-494c-a563-f3af94453b81"
+}

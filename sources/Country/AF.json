@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "AFGHANISTAN ",
+  "Abbreviation": "AF",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "AF",
+  "CreatedDate": "2017-02-21T13:37:26.3347155+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.3342137+08:00",
+  "WebId": "a29e54a9-fd00-46e7-b065-b31e444e6dd3"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "BONAIRE,  SINT EUSTATIUS AND SABA ",
+  "Abbreviation": "BQ",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "BQ",
+  "CreatedDate": "2017-02-21T13:37:29.3235432+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:29.312013+08:00",
+  "WebId": "0ca64f1d-281b-47dd-a40a-5b9af9a105c0"
+}

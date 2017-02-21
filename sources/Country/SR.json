@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SURINAME ",
+  "Abbreviation": "SR",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "SR",
+  "CreatedDate": "2017-02-21T13:37:32.0698436+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.0578116+08:00",
+  "WebId": "8206744d-eef3-4431-8665-fb2fab554a5f"
+}

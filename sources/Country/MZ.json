@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "MOZAMBIQUE ",
+  "Abbreviation": "MZ",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "MZ",
+  "CreatedDate": "2017-02-21T13:37:31.6632629+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.6512316+08:00",
+  "WebId": "c9c92550-b7ac-4847-9b10-4bcabe362c8e"
+}

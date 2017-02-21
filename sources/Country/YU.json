@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SERBIA & MONTENEGRO ",
+  "Abbreviation": "YU",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "YU",
+  "CreatedDate": "2017-02-21T13:37:22.348823+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:22.348823+08:00",
+  "WebId": "0925b085-06c1-4ce6-8c4a-d67c89a247ce"
+}

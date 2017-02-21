@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "GUATEMALA ",
+  "Abbreviation": "GT",
+  "Region": null,
+  "CreatedBy": "excel",
+  "Id": "GT",
+  "CreatedDate": "2017-02-21T00:00:00+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:21.0650131+08:00",
+  "WebId": "00e5bdeb-573d-43d1-8de3-3f079c3abd56"
+}

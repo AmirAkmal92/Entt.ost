@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "LESOTHO ",
+  "Abbreviation": "LS",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "LS",
+  "CreatedDate": "2017-02-21T13:37:33.2068662+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:33.1752823+08:00",
+  "WebId": "38c95c85-fa83-4a19-96a9-97918a5cfd65"
+}

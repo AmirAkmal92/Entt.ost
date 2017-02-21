@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "GEORGIA ",
+  "Abbreviation": "GE",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "GE",
+  "CreatedDate": "2017-02-21T13:37:22.3909402+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:22.389937+08:00",
+  "WebId": "3bd510ed-3512-4f1f-9900-5626822f8181"
+}

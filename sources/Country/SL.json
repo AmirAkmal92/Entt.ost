@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SIERRA LEONE ",
+  "Abbreviation": "SL",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "SL",
+  "CreatedDate": "2017-02-21T13:37:24.613637+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:24.6096264+08:00",
+  "WebId": "99fdb4d3-4ff8-497e-b496-c814f73bf44c"
+}

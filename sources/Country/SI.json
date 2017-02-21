@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SLOVENIA ",
+  "Abbreviation": "SI",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "SI",
+  "CreatedDate": "2017-02-21T13:37:25.9376596+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.933649+08:00",
+  "WebId": "fc3791df-af03-41c4-b90c-6001680d1b43"
+}

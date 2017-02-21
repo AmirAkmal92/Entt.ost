@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "HONG KONG ",
+  "Abbreviation": "HK",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "HK",
+  "CreatedDate": "2017-02-21T13:37:25.7250942+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.7070459+08:00",
+  "WebId": "45c63432-7ed8-4a0a-82ef-e79578ff291e"
+}

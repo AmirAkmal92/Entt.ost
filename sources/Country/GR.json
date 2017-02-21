@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "GREECE ",
+  "Abbreviation": "GR",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "GR",
+  "CreatedDate": "2017-02-21T13:37:22.340802+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:22.3397988+08:00",
+  "WebId": "69cbcaac-2d7e-4df5-aecb-cfe0abbcb363"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "LIECHTENSTEIN ",
+  "Abbreviation": "LI",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "LI",
+  "CreatedDate": "2017-02-21T13:37:24.6973627+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:24.6958581+08:00",
+  "WebId": "0e9491a1-4124-4ff9-a5a2-b45165224428"
+}

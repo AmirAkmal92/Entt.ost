@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "UNITED ARAB EMIRATES ",
+  "Abbreviation": "AE",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "AE",
+  "CreatedDate": "2017-02-21T13:37:32.6528935+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.6518906+08:00",
+  "WebId": "df28d955-cacf-405f-bb39-a9bece009e26"
+}

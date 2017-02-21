@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "HUNGARY ",
+  "Abbreviation": "HU",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "HU",
+  "CreatedDate": "2017-02-21T13:37:31.5253965+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.5198822+08:00",
+  "WebId": "eca2d666-abc3-4cc8-857b-71f7bfab0b4d"
+}

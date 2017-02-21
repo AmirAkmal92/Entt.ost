@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "TIMOR-LESTE ",
+  "Abbreviation": "TL",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "TL",
+  "CreatedDate": "2017-02-21T13:37:26.3061387+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.3036323+08:00",
+  "WebId": "82f71347-2815-4e84-89ed-ffbe55849eb2"
+}

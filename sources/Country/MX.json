@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "MEXICO ",
+  "Abbreviation": "MX",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "MX",
+  "CreatedDate": "2017-02-21T13:37:31.6798069+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.6757963+08:00",
+  "WebId": "db086d30-f29c-487f-8d1b-d9c345816d0b"
+}

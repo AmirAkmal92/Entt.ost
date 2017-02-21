@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "ICELAND ",
+  "Abbreviation": "IS",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "IS",
+  "CreatedDate": "2017-02-21T13:37:25.3265348+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.3190149+08:00",
+  "WebId": "e6cbdfc8-cba0-4653-9202-9c281ad3de97"
+}

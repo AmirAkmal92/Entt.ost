@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "EL SALVADOR ",
+  "Abbreviation": "SV",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "SV",
+  "CreatedDate": "2017-02-21T13:37:22.4069818+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:22.40598+08:00",
+  "WebId": "c84c9930-d2e3-40fa-8642-e327d83be3fd"
+}

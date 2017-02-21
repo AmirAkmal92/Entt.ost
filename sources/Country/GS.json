@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS ",
+  "Abbreviation": "GS",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "GS",
+  "CreatedDate": "2017-02-21T13:37:24.6863335+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:24.68533+08:00",
+  "WebId": "ff78e423-7774-4c74-93ca-ef6819c9b4bf"
+}

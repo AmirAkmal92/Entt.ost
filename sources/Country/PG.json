@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "PAPUA NEW GUINEA ",
+  "Abbreviation": "PG",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "PG",
+  "CreatedDate": "2017-02-21T13:37:32.4423337+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.4413312+08:00",
+  "WebId": "5a707689-5594-43c8-aa73-b1a13696fcf9"
+}

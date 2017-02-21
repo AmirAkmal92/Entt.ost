@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "BRUNEI DARUSSALAM ",
+  "Abbreviation": "BN",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "BN",
+  "CreatedDate": "2017-02-21T13:37:31.7820792+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.7810763+08:00",
+  "WebId": "30b4f1bf-891e-41a7-8822-d181a5a4434f"
+}

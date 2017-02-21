@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "COTE D'IVOIRE ",
+  "Abbreviation": "CI",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "CI",
+  "CreatedDate": "2017-02-21T13:37:26.4435044+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.4425016+08:00",
+  "WebId": "b18beb72-e2ca-4314-b513-8b34dea39432"
+}

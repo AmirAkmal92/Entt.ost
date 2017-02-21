@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "BELGIUM ",
+  "Abbreviation": "BE",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "BE",
+  "CreatedDate": "2017-02-21T13:37:32.0954115+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.0929047+08:00",
+  "WebId": "d770f48a-d4b2-44d2-b2fc-b9f8753a3798"
+}

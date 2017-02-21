@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "BOUVET ISLAND ",
+  "Abbreviation": "BV",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "BV",
+  "CreatedDate": "2017-02-21T13:37:25.4518773+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.4508656+08:00",
+  "WebId": "7155909a-96cf-43e9-ad5b-54269f2b6605"
+}

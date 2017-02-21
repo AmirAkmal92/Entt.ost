@@ -57,9 +57,9 @@
         "IsNullable": false,
         "IsNotIndexed": false,
         "IsAnalyzed": false,
-        "IsFilterable": true,
+        "IsFilterable": false,
         "IsExcludeInAll": false,
-        "Boost": 1,
+        "Boost": 0,
         "FullName": null,
         "PropertyAttribute": null,
         "MemberCollection": {
@@ -72,15 +72,8 @@
         },
         "Name": "Region",
         "AllowMultiple": false,
-        "DefaultValue": {
-          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
-          "TypeName": "System.String, mscorlib",
-          "Value": "South-east Asia",
-          "Name": "South-east Asia",
-          "Note": "",
-          "WebId": "a333a8b8-726a-41d4-f067-644addae9a19"
-        },
-        "WebId": "e56bdcbb-deb2-4ba3-8859-4350efb70e58"
+        "DefaultValue": null,
+        "WebId": "276ba656-f1b3-4e82-bca1-0d10dff08d5b"
       }
     ]
   },
@@ -122,6 +115,6 @@
   "Id": "country",
   "CreatedDate": "2014-04-19T10:07:12.2060219+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-27T07:51:29.1556461+08:00",
+  "ChangedDate": "2017-02-21T14:09:54.9067286+08:00",
   "WebId": "5d31c43-852d-4a9d-b3be-1fc94d5cea05"
 }

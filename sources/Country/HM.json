@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "HEARD ISLAND AND MCDONALD ISLANDS ",
+  "Abbreviation": "HM",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "HM",
+  "CreatedDate": "2017-02-21T13:37:25.8860217+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.8840164+08:00",
+  "WebId": "fa5a1134-cb33-4d4a-b1c9-9c03be35e092"
+}

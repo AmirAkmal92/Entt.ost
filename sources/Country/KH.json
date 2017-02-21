@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "CAMBODIA ",
+  "Abbreviation": "KH",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "KH",
+  "CreatedDate": "2017-02-21T13:37:32.3876887+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.385182+08:00",
+  "WebId": "f647e9a6-5c3a-409b-9e89-df9fe8af4c48"
+}

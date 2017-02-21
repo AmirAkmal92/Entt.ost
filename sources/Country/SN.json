@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SENEGAL ",
+  "Abbreviation": "SN",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "SN",
+  "CreatedDate": "2017-02-21T13:37:27.9985209+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:27.9935081+08:00",
+  "WebId": "0f4c59f4-1303-46ab-a22b-54158659fec4"
+}

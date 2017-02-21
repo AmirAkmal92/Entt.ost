@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "ESTONIA ",
+  "Abbreviation": "EE",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "EE",
+  "CreatedDate": "2017-02-21T13:37:26.5116853+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.5091782+08:00",
+  "WebId": "c72f8928-9035-4c7c-8d78-7376917e633e"
+}

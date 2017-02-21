@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "MONGOLIA ",
+  "Abbreviation": "MN",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "MN",
+  "CreatedDate": "2017-02-21T13:37:32.7551657+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.740627+08:00",
+  "WebId": "65da6f2d-ac81-45b3-a758-52a4fcfdd0d0"
+}

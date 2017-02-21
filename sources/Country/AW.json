@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "ARUBA ",
+  "Abbreviation": "AW",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "AW",
+  "CreatedDate": "2017-02-21T13:37:26.1893285+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.1833121+08:00",
+  "WebId": "3881f829-6cd9-4c91-8e84-dee61c4d31ab"
+}

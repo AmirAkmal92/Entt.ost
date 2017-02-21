@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "MACEDONIA,  THE FORMER YUGOSLAV REPUBLIC OF ",
+  "Abbreviation": "MK",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "MK",
+  "CreatedDate": "2017-02-21T13:37:22.3277672+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:22.3267654+08:00",
+  "WebId": "b925ba07-c3f3-426f-8a1a-6b90c060663a"
+}

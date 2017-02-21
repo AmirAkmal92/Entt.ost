@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "ANGUILLA ",
+  "Abbreviation": "AI",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "AI",
+  "CreatedDate": "2017-02-21T13:37:26.4861188+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.485115+08:00",
+  "WebId": "35ff257d-52d5-45ea-a790-9e8b98582133"
+}

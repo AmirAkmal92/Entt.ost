@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "GAMBIA ",
+  "Abbreviation": "GM",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "GM",
+  "CreatedDate": "2017-02-21T13:37:26.4344806+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.4329763+08:00",
+  "WebId": "0d5d21e1-7bd6-4308-a90d-37e7cfddea57"
+}

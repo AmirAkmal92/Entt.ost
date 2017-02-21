@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "NEW CALEDONIA ",
+  "Abbreviation": "NC",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "NC",
+  "CreatedDate": "2017-02-21T13:37:31.8607885+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.851764+08:00",
+  "WebId": "58724b1d-8d88-4838-8ba2-8088d663f85f"
+}

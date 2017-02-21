@@ -1,12 +1,12 @@
 {
   "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
-  "Name": "France",
-  "Abbreviation": "fr",
-  "Region": "Europe",
-  "CreatedBy": "osman",
-  "Id": "fr",
-  "CreatedDate": "2016-10-27T08:11:43.4786066+08:00",
-  "ChangedBy": "osman",
-  "ChangedDate": "2016-10-27T08:11:43.475603+08:00",
-  "WebId": "f3da6a07-791d-4f24-efb6-823932df4174"
+  "Name": "FRANCE ",
+  "Abbreviation": "FR",
+  "Region": null,
+  "CreatedBy": "excel",
+  "Id": "FR",
+  "CreatedDate": "2017-02-21T00:00:00+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:29.7486871+08:00",
+  "WebId": "7c093fc2-fd81-40f7-b766-d7597ba7520c"
 }

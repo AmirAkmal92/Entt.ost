@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "ZAIRE ",
+  "Abbreviation": "ZR",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "ZR",
+  "CreatedDate": "2017-02-21T13:37:32.1981855+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.1976848+08:00",
+  "WebId": "8ea17af6-55e6-4af0-8d1f-2c8d3c6ac90e"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "ANTIGUA AND BARBUDA ",
+  "Abbreviation": "AG",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "AG",
+  "CreatedDate": "2017-02-21T13:37:31.8407348+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.8297053+08:00",
+  "WebId": "351ceb31-d0f8-44e4-b032-8229f1773660"
+}

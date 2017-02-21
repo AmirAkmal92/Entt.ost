@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SAINT KITTS AND NEVIS ",
+  "Abbreviation": "KN",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "KN",
+  "CreatedDate": "2017-02-21T13:37:33.4595375+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:33.4409889+08:00",
+  "WebId": "6e9f6dfd-c525-46b0-b783-174b5e4ee1cd"
+}

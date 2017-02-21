@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "HAITI ",
+  "Abbreviation": "HT",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "HT",
+  "CreatedDate": "2017-02-21T13:37:26.8240155+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.8215088+08:00",
+  "WebId": "9f009b08-2c2d-4c72-80e0-b87c7fdf9f2c"
+}

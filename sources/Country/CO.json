@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "COLOMBIA ",
+  "Abbreviation": "CO",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "CO",
+  "CreatedDate": "2017-02-21T13:37:29.2297941+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:29.2097414+08:00",
+  "WebId": "90aebf55-b442-4ce3-96d1-28f57ba2f1b5"
+}

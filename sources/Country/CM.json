@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "CAMEROON ",
+  "Abbreviation": "CM",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "CM",
+  "CreatedDate": "2017-02-21T13:37:22.43606+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:22.4320497+08:00",
+  "WebId": "ae2d1c34-f00e-42e8-bc94-9922d0567119"
+}

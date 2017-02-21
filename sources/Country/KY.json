@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "CAYMAN ISLANDS ",
+  "Abbreviation": "KY",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "KY",
+  "CreatedDate": "2017-02-21T13:37:26.7874206+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.786416+08:00",
+  "WebId": "b518a12e-6118-435e-b28e-ff4e0bb8fc24"
+}

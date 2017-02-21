@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SEYCHELLES ",
+  "Abbreviation": "SC",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "SC",
+  "CreatedDate": "2017-02-21T13:37:32.3761578+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.3706432+08:00",
+  "WebId": "ac3e8196-ac67-4c9e-9df6-3065516bcca5"
+}

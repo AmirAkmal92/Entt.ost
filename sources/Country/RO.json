@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "ROMANIA ",
+  "Abbreviation": "RO",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "RO",
+  "CreatedDate": "2017-02-21T13:37:27.6771641+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:27.6520969+08:00",
+  "WebId": "d9eb62ab-3169-477e-9c0d-707ad14015b2"
+}

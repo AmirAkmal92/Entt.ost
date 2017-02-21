@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "TURKEY ",
+  "Abbreviation": "TR",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "TR",
+  "CreatedDate": "2017-02-21T13:37:25.4628969+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.4598891+08:00",
+  "WebId": "5ee6f586-a4a5-4e9e-9a82-7fcb454a8170"
+}

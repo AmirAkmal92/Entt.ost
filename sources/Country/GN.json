@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "GUINEA ",
+  "Abbreviation": "GN",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "GN",
+  "CreatedDate": "2017-02-21T13:37:25.4724229+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.4719211+08:00",
+  "WebId": "a9784130-fc58-48b3-951d-669442962905"
+}

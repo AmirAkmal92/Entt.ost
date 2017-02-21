@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "REUNION ",
+  "Abbreviation": "RE",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "RE",
+  "CreatedDate": "2017-02-21T13:37:32.1109534+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.1059392+08:00",
+  "WebId": "5ba2c813-d4cd-4d18-aac3-51e6b1042099"
+}

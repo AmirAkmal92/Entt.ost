@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "PALESTINE,  STATE OF ",
+  "Abbreviation": "PS",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "PS",
+  "CreatedDate": "2017-02-21T13:37:25.3746641+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.3736606+08:00",
+  "WebId": "695cde77-6918-4838-b988-0c850176f1d8"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "MAYOTTE ",
+  "Abbreviation": "YT",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "YT",
+  "CreatedDate": "2017-02-21T13:37:31.5970901+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.5960845+08:00",
+  "WebId": "e36c5d44-3ee2-429e-84b4-3f8baa2dbe0b"
+}

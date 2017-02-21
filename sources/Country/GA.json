@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "GABON ",
+  "Abbreviation": "GA",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "GA",
+  "CreatedDate": "2017-02-21T13:37:25.4393347+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.4373294+08:00",
+  "WebId": "6fe0a398-20ee-4d9f-b99a-01d63c4d6731"
+}

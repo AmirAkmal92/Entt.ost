@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SAINT VINCENT AND THE GRENADINES ",
+  "Abbreviation": "VC",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "VC",
+  "CreatedDate": "2017-02-21T13:37:25.5877292+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.58422+08:00",
+  "WebId": "646ae691-dde8-4d54-9989-92e97b5f014c"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "NETHERLANDS ",
+  "Abbreviation": "NL",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "NL",
+  "CreatedDate": "2017-02-21T13:37:25.1064502+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.1019377+08:00",
+  "WebId": "5926160a-887c-4aca-bf95-c8ad5b038a9d"
+}

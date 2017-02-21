@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "MACAO ",
+  "Abbreviation": "MO",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "MO",
+  "CreatedDate": "2017-02-21T13:37:26.3557713+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.3537656+08:00",
+  "WebId": "a145228e-28e4-4b5b-9cfa-bd199dd10679"
+}

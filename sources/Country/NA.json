@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "NAMIBIA ",
+  "Abbreviation": "NA",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "NA",
+  "CreatedDate": "2017-02-21T13:37:26.5643253+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.56232+08:00",
+  "WebId": "d5b990fe-3515-4f6c-9f14-88fed3674e12"
+}

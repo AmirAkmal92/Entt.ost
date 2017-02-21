@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "MALDIVES ",
+  "Abbreviation": "MV",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "MV",
+  "CreatedDate": "2017-02-21T13:37:26.554298+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.5532955+08:00",
+  "WebId": "d36eb90f-7336-4abb-a21b-6372b4cf6ec3"
+}

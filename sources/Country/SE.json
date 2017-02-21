@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SWEDEN ",
+  "Abbreviation": "SE",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "SE",
+  "CreatedDate": "2017-02-21T13:37:29.0753832+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:29.055832+08:00",
+  "WebId": "7984e44a-079c-48d5-86f8-69807b0a5233"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "UNITED KINGDOM ",
+  "Abbreviation": "GB",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "GB",
+  "CreatedDate": "2017-02-21T13:37:25.3992292+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.3982256+08:00",
+  "WebId": "59281571-c955-4731-9864-73f730db681a"
+}

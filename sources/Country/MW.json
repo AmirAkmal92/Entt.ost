@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "MALAWI ",
+  "Abbreviation": "MW",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "MW",
+  "CreatedDate": "2017-02-21T13:37:31.3068168+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.288266+08:00",
+  "WebId": "cb17247c-01df-4367-be20-d98ed1dc8d17"
+}

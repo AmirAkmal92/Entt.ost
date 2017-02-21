@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "KOREA,  DEMOCRATIC PEOPLE'S REPUBLIC OF ",
+  "Abbreviation": "KP",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "KP",
+  "CreatedDate": "2017-02-21T13:37:31.7149004+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.7128944+08:00",
+  "WebId": "2be72848-873e-4dad-baa1-7402a0063909"
+}

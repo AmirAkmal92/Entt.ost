@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "TONGA ",
+  "Abbreviation": "TO",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "TO",
+  "CreatedDate": "2017-02-21T13:37:27.8621588+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:27.8330809+08:00",
+  "WebId": "253e686e-2694-425b-8d8f-cae82bf0441a"
+}

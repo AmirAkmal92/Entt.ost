@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SAMOA ",
+  "Abbreviation": "WS",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "WS",
+  "CreatedDate": "2017-02-21T13:37:26.244476+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.2354511+08:00",
+  "WebId": "6e7696ac-de9a-4fc6-9ef0-8ba77e5d091a"
+}

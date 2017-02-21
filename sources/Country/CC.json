@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "COCOS (KEELING) ISLANDS ",
+  "Abbreviation": "CC",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "CC",
+  "CreatedDate": "2017-02-21T13:37:25.857446+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.8549389+08:00",
+  "WebId": "9e5b0b0e-0368-4d1f-970c-f477985a0766"
+}

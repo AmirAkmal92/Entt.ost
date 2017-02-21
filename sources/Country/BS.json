@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "BAHAMAS ",
+  "Abbreviation": "BS",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "BS",
+  "CreatedDate": "2017-02-21T13:37:28.0667025+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:28.0426399+08:00",
+  "WebId": "63c20563-d5d6-45a9-9da7-cc58d80ce7ad"
+}

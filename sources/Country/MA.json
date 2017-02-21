@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "MOROCCO ",
+  "Abbreviation": "MA",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "MA",
+  "CreatedDate": "2017-02-21T13:37:31.8041375+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.7996247+08:00",
+  "WebId": "d0851e1e-edbb-43c2-bc2c-7f226a6501f6"
+}

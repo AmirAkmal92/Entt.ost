@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "BRITISH INDIAN OCEAN TERRITORY ",
+  "Abbreviation": "IO",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "IO",
+  "CreatedDate": "2017-02-21T13:37:32.4568725+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.451859+08:00",
+  "WebId": "43e1b6fd-3599-4f30-b2b9-9858848f1311"
+}

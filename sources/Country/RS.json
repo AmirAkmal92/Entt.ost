@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SERBIA ",
+  "Abbreviation": "RS",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "RS",
+  "CreatedDate": "2017-02-21T13:37:25.2357938+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.2317828+08:00",
+  "WebId": "81aa8893-5b23-4e9b-bca4-ad168db0bc28"
+}

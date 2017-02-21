@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "TRISTAN DA CUNHA ",
+  "Abbreviation": "TA",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "TA",
+  "CreatedDate": "2017-02-21T13:37:25.5030035+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.5014996+08:00",
+  "WebId": "12457e65-8587-4e2e-9552-f9b70fe52821"
+}

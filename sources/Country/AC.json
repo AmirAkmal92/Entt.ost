@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "ASCENSION ISLAND ",
+  "Abbreviation": "AC",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "AC",
+  "CreatedDate": "2017-02-21T13:37:25.3531055+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.3450895+08:00",
+  "WebId": "fb402b3b-835f-4957-a01a-a11f306f6bf5"
+}

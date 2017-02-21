@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "LIBYA ",
+  "Abbreviation": "LY",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "LY",
+  "CreatedDate": "2017-02-21T13:37:32.6919976+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.6909962+08:00",
+  "WebId": "d3c75c76-b2d1-456e-a088-8efa35037b24"
+}

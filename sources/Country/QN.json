@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "BOSNIA ",
+  "Abbreviation": "QN",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "QN",
+  "CreatedDate": "2017-02-21T13:37:32.2658646+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.2528298+08:00",
+  "WebId": "7617fffe-e9a6-46e6-92fd-4f4d8c717405"
+}

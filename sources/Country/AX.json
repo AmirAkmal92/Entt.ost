@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "ALAND ISLANDS ",
+  "Abbreviation": "AX",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "AX",
+  "CreatedDate": "2017-02-21T13:37:32.1445423+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.1390277+08:00",
+  "WebId": "02b06a8c-ace0-4fa1-8a68-33b94daa6f40"
+}

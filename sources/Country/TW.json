@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "TAIWAN,  PROVINCE OF CHINA ",
+  "Abbreviation": "TW",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "TW",
+  "CreatedDate": "2017-02-21T13:37:30.9613967+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:30.9408423+08:00",
+  "WebId": "3a8f9323-d67c-49be-b866-4955d0582ddf"
+}

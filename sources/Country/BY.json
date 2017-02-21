@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "BELARUS ",
+  "Abbreviation": "BY",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "BY",
+  "CreatedDate": "2017-02-21T13:37:32.1330114+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.1239879+08:00",
+  "WebId": "61e9aaa1-4bb9-41ea-9d25-c181f7864b78"
+}

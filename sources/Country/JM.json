@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "JAMAICA ",
+  "Abbreviation": "JM",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "JM",
+  "CreatedDate": "2017-02-21T13:37:26.4525282+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.4505233+08:00",
+  "WebId": "b7f84d44-9577-4a63-a52d-7749497d6681"
+}

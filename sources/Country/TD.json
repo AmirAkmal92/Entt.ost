@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "CHAD ",
+  "Abbreviation": "TD",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "TD",
+  "CreatedDate": "2017-02-21T13:37:22.3337835+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:22.3337835+08:00",
+  "WebId": "14f891cd-1542-454a-9a63-db3e24a476d9"
+}

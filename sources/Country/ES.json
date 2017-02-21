@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SPAIN ",
+  "Abbreviation": "ES",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "ES",
+  "CreatedDate": "2017-02-21T13:37:31.726932+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.7259299+08:00",
+  "WebId": "afcc3168-97ae-49e3-bea4-ccaf9894e21f"
+}

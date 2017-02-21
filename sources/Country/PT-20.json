@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "AZORES",
+  "Abbreviation": "PT-20",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "PT-20",
+  "CreatedDate": "2017-02-21T13:37:32.831869+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.8293629+08:00",
+  "WebId": "07bc6994-290b-43a7-9272-388041f0bdfd"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "ANTARCTICA ",
+  "Abbreviation": "AQ",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "AQ",
+  "CreatedDate": "2017-02-21T13:37:36.474236+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:36.4632062+08:00",
+  "WebId": "3997b8f8-3b4a-4af5-9355-137ebd96e95e"
+}

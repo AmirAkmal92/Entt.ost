@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "CONGO,  THE DEMOCRATIC REPUBLIC OF THE ",
+  "Abbreviation": "CD",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "CD",
+  "CreatedDate": "2017-02-21T13:37:22.3999633+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:22.3989605+08:00",
+  "WebId": "bb909e01-9beb-4260-b9d9-dffeacb0858f"
+}

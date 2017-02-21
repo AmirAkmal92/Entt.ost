@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "MALI ",
+  "Abbreviation": "ML",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "ML",
+  "CreatedDate": "2017-02-21T13:37:32.5155285+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.4934698+08:00",
+  "WebId": "9fc8bba8-de67-484b-a7b0-6368cb7f0966"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "GUYANA ",
+  "Abbreviation": "GY",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "GY",
+  "CreatedDate": "2017-02-21T13:37:28.9921622+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:28.9696042+08:00",
+  "WebId": "b277c50e-ca57-457a-8065-8614e3d6a5d3"
+}

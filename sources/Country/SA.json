@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SAUDI ARABIA ",
+  "Abbreviation": "SA",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "SA",
+  "CreatedDate": "2017-02-21T13:37:31.5599882+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.5589853+08:00",
+  "WebId": "b155a27b-add1-4473-9572-5efa58a4493c"
+}

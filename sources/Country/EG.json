@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "EGYPT ",
+  "Abbreviation": "EG",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "EG",
+  "CreatedDate": "2017-02-21T13:37:26.4119202+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.4114188+08:00",
+  "WebId": "fde757bd-f9ba-4f0a-a211-0bc7b6a6bcf9"
+}

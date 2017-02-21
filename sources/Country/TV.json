@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "TUVALU ",
+  "Abbreviation": "TV",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "TV",
+  "CreatedDate": "2017-02-21T13:37:32.5917314+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.5892247+08:00",
+  "WebId": "779e4685-7569-4ce2-9482-26a42e1f3822"
+}

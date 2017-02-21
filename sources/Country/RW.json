@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "RWANDA ",
+  "Abbreviation": "RW",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "RW",
+  "CreatedDate": "2017-02-21T13:37:26.9438343+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.9403247+08:00",
+  "WebId": "aa59f118-b58b-492c-8ee6-2022c94f6449"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "WESTERN SAHARA ",
+  "Abbreviation": "EH",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "EH",
+  "CreatedDate": "2017-02-21T13:37:26.4234522+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.4224483+08:00",
+  "WebId": "49793fd7-0b50-422f-9972-f7814459431d"
+}

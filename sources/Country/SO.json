@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SOMALIA ",
+  "Abbreviation": "SO",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "SO",
+  "CreatedDate": "2017-02-21T13:37:27.7212845+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:27.7012312+08:00",
+  "WebId": "70103e42-77df-4ff4-a54b-78a0405b6262"
+}

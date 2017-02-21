@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SAINT HELENA,  ASCENSION AND TRISTAN DA CUNHA ",
+  "Abbreviation": "SH",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "SH",
+  "CreatedDate": "2017-02-21T13:37:25.5195476+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.5175426+08:00",
+  "WebId": "b2fc0631-de64-4867-9f79-aac9e0cfc4cf"
+}

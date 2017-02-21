@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "AUSTRIA ",
+  "Abbreviation": "AT",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "AT",
+  "CreatedDate": "2017-02-21T13:37:32.2969471+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.2839126+08:00",
+  "WebId": "6ba5acf6-e828-47fc-a9be-f79f187a914a"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "SYRIAN ARAB REPUBLIC ",
+  "Abbreviation": "SY",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "SY",
+  "CreatedDate": "2017-02-21T13:37:26.5482827+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.5472799+08:00",
+  "WebId": "31ca9c47-2811-4014-b736-039ce9ef13b7"
+}

@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "LITHUANIA ",
+  "Abbreviation": "LT",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "LT",
+  "CreatedDate": "2017-02-21T13:37:26.7593442+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.7538296+08:00",
+  "WebId": "21aaf41b-3007-4ebe-9e97-b08121cd8858"
+}

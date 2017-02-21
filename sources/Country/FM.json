@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "MICRONESIA FEDERATED STATES OF ",
+  "Abbreviation": "FM",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "FM",
+  "CreatedDate": "2017-02-21T13:37:27.9077803+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:27.8867245+08:00",
+  "WebId": "da9652e4-5a2e-44b9-af07-43a307372ed0"
+}

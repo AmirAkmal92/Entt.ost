@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "PANAMA ",
+  "Abbreviation": "PA",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "PA",
+  "CreatedDate": "2017-02-21T13:37:36.2305878+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:36.2255715+08:00",
+  "WebId": "37230419-2245-4b41-a974-8d537356b18a"
+}

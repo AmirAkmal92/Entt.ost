@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "UZBEKISTAN ",
+  "Abbreviation": "UZ",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "UZ",
+  "CreatedDate": "2017-02-21T13:37:25.0457888+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.0342579+08:00",
+  "WebId": "da66d842-19af-4e0c-8822-518c5d6d10ba"
+}

@@ -1,12 +1,12 @@
 {
   "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
-  "Name": "Indonesia",
-  "Abbreviation": "id",
-  "Region": "Asia",
-  "CreatedBy": "osman",
-  "Id": "id",
-  "CreatedDate": "2016-10-27T08:10:22.0167566+08:00",
-  "ChangedBy": "osman",
-  "ChangedDate": "2016-10-27T08:10:22.0137533+08:00",
-  "WebId": "6c1374dc-76df-4b31-aa3a-26dfd3f22780"
+  "Name": "INDONESIA ",
+  "Abbreviation": "ID",
+  "Region": null,
+  "CreatedBy": "excel",
+  "Id": "ID",
+  "CreatedDate": "2017-02-21T00:00:00+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:33.6059271+08:00",
+  "WebId": "48d49f95-9eb0-4fea-81c9-852eb04d1f9a"
 }

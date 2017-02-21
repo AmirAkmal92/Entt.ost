@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "VIRGIN ISLANDS,  BRITISH ",
+  "Abbreviation": "VG",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "VG",
+  "CreatedDate": "2017-02-21T13:37:31.7068798+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:31.7033698+08:00",
+  "WebId": "1c53f36e-3745-419d-a7bf-4a9bfac19c86"
+}

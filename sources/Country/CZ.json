@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "CZECH REPUBLIC ",
+  "Abbreviation": "CZ",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "CZ",
+  "CreatedDate": "2017-02-21T13:37:32.3576091+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:32.3400619+08:00",
+  "WebId": "796d3566-7217-4cf7-82c0-9ffe0df8a20c"
+}

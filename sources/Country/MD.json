@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "MOLDOVA,  REPUBLIC OF ",
+  "Abbreviation": "MD",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "MD",
+  "CreatedDate": "2017-02-21T13:37:25.0838897+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.0753667+08:00",
+  "WebId": "908ab9e3-5f7e-411c-8b68-f4b4538cdc8d"
+}

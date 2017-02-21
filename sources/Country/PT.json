@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "PORTUGAL ",
+  "Abbreviation": "PT",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "PT",
+  "CreatedDate": "2017-02-21T13:37:26.6485492+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.647045+08:00",
+  "WebId": "a0652e3f-dda0-4f1b-8c1d-bbca6ed3cc43"
+}

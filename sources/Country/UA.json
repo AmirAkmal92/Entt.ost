@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "UKRAINE ",
+  "Abbreviation": "UA",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "UA",
+  "CreatedDate": "2017-02-21T13:37:25.1751321+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:25.1731268+08:00",
+  "WebId": "825f62f4-bc97-4867-a866-0c8aa515727d"
+}

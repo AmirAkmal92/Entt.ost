@@ -1,0 +1,12 @@
+{
+  "$type": "Bespoke.Ost.Countries.Domain.Country, Ost.Country",
+  "Name": "KUWAIT ",
+  "Abbreviation": "KW",
+  "Region": null,
+  "CreatedBy": "admin",
+  "Id": "KW",
+  "CreatedDate": "2017-02-21T13:37:26.3743203+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T13:37:26.3733171+08:00",
+  "WebId": "53be4566-5caa-4143-902c-7bc121629e02"
+}
