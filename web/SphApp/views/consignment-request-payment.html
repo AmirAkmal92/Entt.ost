@@ -45,11 +45,11 @@
                     <tbody>
                         <tr>
                             <td><span class="sbold col">Price</span></td>
-                            <td class="sbold col-md-3">RM <span data-bind="text: (Payment().TotalPrice()*0.94).toFixed(2)" class="pull-right"></span></td>
+                            <td class="sbold col-md-3">RM <span data-bind="text: (Payment().TotalPrice()/1.06).toFixed(2)" class="pull-right"></span></td>
                         </tr>
                         <tr>
                             <td><span class="sbold">GST (6%)</span></td>
-                            <td class="sbold col-md-3">RM <span data-bind="text: (Payment().TotalPrice()*0.06).toFixed(2)" class="pull-right"></span></td>
+                            <td class="sbold col-md-3">RM <span data-bind="text: ((Payment().TotalPrice()/1.06)*0.06).toFixed(2)" class="pull-right"></span></td>
                         </tr>
                     </tbody>
                 </table>
