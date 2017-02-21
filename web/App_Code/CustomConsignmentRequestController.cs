@@ -1,4 +1,5 @@
 ﻿using Bespoke.Ost.ConsigmentRequests.Domain;
+using Bespoke.Ost.PosLajuBranchBranches.Domain;
 using Bespoke.Sph.Domain;
 using Bespoke.Sph.WebApi;
 using Newtonsoft.Json.Linq;
@@ -7,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
 
 namespace web.sph.App_Code
@@ -30,7 +30,7 @@ namespace web.sph.App_Code
                 total += consignment.Produk.Price;
             }
             item.Payment.TotalPrice = total;
-            await SaveConsigmentRequest(item);            
+            await SaveConsigmentRequest(item);
 
             var result = new
             {
@@ -137,7 +137,7 @@ namespace web.sph.App_Code
                                 count++;
                             }
                             item.Payment.IsConNoteReady = true;
-                            await SaveConsigmentRequest(item);                            
+                            await SaveConsigmentRequest(item);
                         }
                         else
                         {
@@ -161,7 +161,7 @@ namespace web.sph.App_Code
             {
                 resultSuccess = false;
                 resultStatus = "Consignment not found";
-            }           
+            }
 
             var result = new
             {
@@ -173,6 +173,90 @@ namespace web.sph.App_Code
             // wait until the worker process it
             await Task.Delay(1500);
             return Accepted(result);
+        }
+
+        [HttpGet]
+        [Route("get-pickup-availability/{postcode}")]
+        public async Task<IHttpActionResult> GetPickupAvailability(int postcode)
+        {
+            var repos = ObjectBuilder.GetObject<IReadonlyRepository<PosLajuBranch>>();
+            var query = $@"{{
+  ""filter"": {{
+    ""bool"": {{
+      ""must"": [
+
+      ],
+      ""must_not"": [
+
+      ]
+    }}
+  }},
+  ""sort"": [ {{ ""PostcodeFrom"": {{ ""order"": ""asc"" }} }} ],
+  ""aggs"": {{
+    ""filtered_max_date"": {{
+      ""filter"": {{
+        ""bool"": {{
+          ""must"": [
+
+          ],
+          ""must_not"": [
+
+          ]
+        }}
+      }},
+      ""aggs"": {{
+        ""last_changed_date"": {{
+          ""max"": {{
+            ""field"": ""ChangedDate""
+          }}
+        }}
+      }}
+    }}
+  }}
+}}";
+            var queryString = "from=0&size=200";
+            var response = await repos.SearchAsync(query, queryString);
+            var json = JObject.Parse(response);
+
+            var list = from f in json.SelectToken("$.hits.hits")
+                       let webId = f.SelectToken("_source.WebId").Value<string>()
+                       let id = f.SelectToken("_id").Value<string>()
+                       let link = $"\"link\" :{{ \"href\" :\"{ConfigurationManager.BaseUrl}/api/pos-laju-branches/{id}\"}}"
+                       select f.SelectToken("_source").ToString().Replace($"{webId}\"", $"{webId}\"," + link);
+
+            var posLajuBranches = list.ToList();
+            List<PosLajuBranch> branches = new List<PosLajuBranch>();
+
+            foreach (var posLajuBranch in posLajuBranches)
+            {
+                JObject jObject = JObject.Parse(posLajuBranch);
+                var tmpBranch = new PosLajuBranch
+                {
+                    BranchCode = (string)jObject["BranchCode"],
+                    Name = (string)jObject["Name"],
+                    PostcodeFrom = (string)jObject["PostcodeFrom"],
+                    PostcodeTo = (string)jObject["PostcodeTo"],
+                    Email = (string)jObject["Email"],
+                    PickupId = (string)jObject["PickupId"],
+                    CreatedBy = (string)jObject["CreatedBy"],
+                    Id = (string)jObject["Id"],
+                    CreatedDate = (DateTime)jObject["CreatedDate"],
+                    ChangedBy = (string)jObject["ChangedBy"],
+                    ChangedDate = (DateTime)jObject["ChangedDate"],
+                    WebId = (string)jObject["WebId"]
+                };
+
+                branches.Add(tmpBranch);
+            }
+
+            var branch = branches.Where(x => postcode >= Int32.Parse(x.PostcodeFrom) && postcode <= Int32.Parse(x.PostcodeTo)).FirstOrDefault();
+
+            if (branch == null)
+            {
+                return NotFound("No pickup for postcode: " + postcode);
+            }
+
+            return Ok(branch);
         }
 
         private static async Task<LoadData<ConsigmentRequest>> GetConsigmentRequest(string id)
