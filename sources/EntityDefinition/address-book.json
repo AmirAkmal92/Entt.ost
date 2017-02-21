@@ -488,7 +488,7 @@
           "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
           "$values": []
         },
-        "Name": "Avatar",
+        "Name": "ProfilePictureUrl",
         "AllowMultiple": false,
         "DefaultValue": null,
         "WebId": "387bcfee-6508-4e38-ead7-d4654b3fbc6c"
@@ -501,7 +501,7 @@
         "IsAnalyzed": false,
         "IsFilterable": false,
         "IsExcludeInAll": false,
-        "Boost": 0,
+        "Boost": 3,
         "FullName": null,
         "PropertyAttribute": null,
         "MemberCollection": {
@@ -512,7 +512,7 @@
           "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
           "$values": []
         },
-        "Name": "AvatarStoreId",
+        "Name": "UserId",
         "AllowMultiple": false,
         "DefaultValue": null,
         "WebId": "937e3834-177a-409e-c28b-9ac12dd9b9b9"
@@ -557,6 +557,6 @@
   "Id": "address-book",
   "CreatedDate": "2016-10-11T10:54:53.9068465+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-01-19T11:31:08.0501693+08:00",
+  "ChangedDate": "2017-02-21T17:01:03.7139274+08:00",
   "WebId": "26a50087-d1d9-4cd3-8b85-cab9c3bf2dc3"
 }

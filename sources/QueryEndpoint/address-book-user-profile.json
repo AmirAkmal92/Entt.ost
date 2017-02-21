@@ -1,0 +1,60 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "AddressBookUserProfileQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "CreatedBy",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.FunctionField, domain.sph",
+          "CodeNamespace": "ff7ba7ef65",
+          "Script": "ObjectBuilder.GetObject<IDirectoryService>().CurrentUserName",
+          "Name": "CurrentUser",
+          "Note": "",
+          "WebId": "7ba7ef65-2a0f-4232-83c9-84a54caa43fa"
+        },
+        "WebId": "bb1a00bf-32a6-4deb-d51e-05d1eeb159fc"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "UserId",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.FunctionField, domain.sph",
+          "CodeNamespace": "ff335be6cd",
+          "Script": "ObjectBuilder.GetObject<IDirectoryService>().CurrentUserName",
+          "Name": "CurrentUser",
+          "Note": "",
+          "WebId": "335be6cd-0a03-483c-8ba9-87c97a6af15e"
+        },
+        "WebId": "30315bc1-0c15-4405-b56c-810f0306fecc"
+      }
+    ]
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "User Profile",
+  "Route": "user-profile",
+  "IsReturnSource": "",
+  "Entity": "AddressBook",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "address-books",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "address-book-user-profile",
+  "CreatedDate": "2017-02-21T17:02:34.477888+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-02-21T17:07:46.1722222+08:00",
+  "WebId": "3e424a5c-4ce7-4a41-8e08-ecb025a03f6e"
+}
