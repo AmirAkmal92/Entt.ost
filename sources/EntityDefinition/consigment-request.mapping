@@ -135,6 +135,54 @@
     }
 ,
              "CurrentStep":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+    "Pickup":{
+        "type":  "object",
+        "properties":{
+             "Number":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "ContactPerson":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "CompanyName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+    "Address":{
+        "type":  "object",
+        "properties":{
+             "Address1":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Address2":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Address3":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Address4":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "City":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "State":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Country":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Postcode":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+    "GeoLocation":{
+        "type":  "object",
+        "properties":{
+             "Lat":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "Long":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false}
+        }
+    }
+
+        }
+    }
+,
+    "ContactInformation":{
+        "type":  "object",
+        "properties":{
+             "Email":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "ContactNumber":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "AlternativeContactNumber":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+             "DateReady":{"type":"date","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "DateClose":{"type":"date","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "TotalDocument":{"type":"integer","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "TotalMerchandise":{"type":"integer","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "TotalParcel":{"type":"integer","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "TotalQuantity":{"type":"integer","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "TotalWeight":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "Status":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
     "Consignments":{
         "type":  "object",
         "properties":{
