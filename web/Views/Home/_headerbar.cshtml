@@ -2,130 +2,12 @@
     <div class="container">
         <div class="row featurette header-grid-inner">
             <div class="container-fluid">
-                <div class="col-lg-6 col-md-4 col-sm-6 logo-wrapper"> <a href="http://localhost:50230/" class="logo-wrapper"><img src="assets/custom/images/Pos_Malaysia_Logo2.png" class="logo hidden-xs" /></a> </div>
+                <div class="col-lg-6 col-md-4 col-sm-6 logo-wrapper"> <a href="http://localhost:50230/" class="logo-wrapper"><img src="~/assets/custom/images/Pos_Malaysia_Logo2.png" class="logo hidden-xs" /></a> </div>
 
                 <ul class="nav navbar-nav navbar-right visible-sm">
                     <li class="login-menu"><a href="/ost-account/login"><i class="epi-user"></i> Log In</a></li>
                     <li class="login-menu" style="border-left: 2px solid #fff;"><a href="/ost-account/register">Sign Up</a></li>
                 </ul>
-                <div class="col-lg-6 col-md-8 padding-off hidden-sm" id="panel-track-header">
-                    <div class="row">
-                        <frame width="100%" height="50" frameborder="0" scrolling="auto">
-                            <div id="masterContent">
-                                <div class="col-md-12" style="padding: 0px;top: 8px;">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" data-bind="value: conNote" placeholder="Track your parcel!" name="conNotes" id="conNotes" />
-                                        <span class="input-group-btn">
-                                            @*<button class="btn red" type="button" data-bind="click: search">*@
-                                            <a class="btn red" type="button" href="#tracktrace" data-toggle="modal" data-bind="click: search">
-                                                <span class="fa fa-globe"> </span> Track
-                                            </a>
-                                            @*</button>*@
-                                        </span>
-                                    </div>
-                                </div>
-                                <div id="dialog"></div>
-
-                                <script type="text/javascript">
-                                    var ViewModel = function () {
-                                        var busy = ko.observable(false),
-                                            conNote = ko.observable(),
-                                            awb = ko.observable(),
-                                            modal = ko.observable(),
-                                            results = ko.observableArray(),
-                                            search = function () {
-                                                busy(true);
-                                                modal("#tracktrace");
-                                                check("checkNull()");
-                                                return $.getJSON("/api/track-traces/" + ko.unwrap(conNote))
-                                                .done(results);
-                                            },
-                                            chkNull = function () {
-                                                busy(true);
-                                                modal("#tracktrace");
-                                                check("checkNull()");
-                                                return $.getJSON("/api/track-traces/" + ko.unwrap(conNote))
-                                                .done(results);
-                                            };
-
-                                        return {
-                                            busy: busy,
-                                            conNote: conNote,
-                                            results: results,
-                                            modal: modal,
-                                            chkNull: chkNull,
-                                            search: search
-                                        };
-                                    };
-
-                                    $(function () {
-
-                                        var vm = new ViewModel();
-                                        ko.applyBindings(vm, document.getElementById("panel-track-header"));
-                                    });
-
-                                    function checkNull() {
-                                        var vm = new ViewModel();
-                                        var awb = $('#conNotes').val();
-                                        awb = awb.trim();
-                                        if (awb == "") {
-                                            //alert('Please enter Airway Bill for track.');
-                                            swal({
-                                                title: 'Error',
-                                                type: 'error',
-                                                html: 'Please enter tracking number.',
-                                                confirmButtonColor: '#ea5460'
-                                            })
-                                        } else {
-                                            ko.applyBindings(vm, document.getElementById("panel-track-header"));
-                                        }
-                                    };
-                                </script>
-                            </div>
-                            <div id="popupbox" class="modal fade in" role="dialog" data-backdrop="static" data-keyboard="false">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h3>Loading...</h3>
-                                    </div>
-                                    <div class="modal-body"></div>
-                                    <div class="modal-footer"></div>
-                                </div>
-                            </div>
-
-
-
-                            <div id="tracktrace" class="modal fade" tabindex="-1">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close fa-globe" data-dismiss="modal" aria-hidden="true">x</button>
-                                        <h4 class="modal-title">Track & Trace</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <table class="table table-striped table-hover table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Date / Time</th>
-                                                        <th>Process</th>
-                                                        <th>Event</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody data-bind="foreach: results">
-                                                    <tr>
-                                                        <td class="font-grey-mint" data-bind="text:date"></td>
-                                                        <td class="font-grey-mint" data-bind="text:process"></td>
-                                                        <td class="font-grey-mint" data-bind="text:office"></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </frame>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -137,26 +19,9 @@
             <div class="row featurette">
                 <nav id="bs-navbar" class="collapse navbar-collapse hidden-xs">
                     <ul class="nav navbar-nav">
-                        <li><a href="#" style="padding-left: 0px;"><span class="glyphicon glyphicon-home hidden-sm hidden-md"></span> Home </a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Test <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#"> Test </a></li>
-                                <li><a href="#"> Test </a></li>
-                            </ul>
-                        </li>
+                        <li><a href="http://localhost:50230/" style="padding-left: 0px;"><span class="glyphicon glyphicon-home hidden-sm hidden-md"></span> Home </a></li>
                         <li><a data-toggle="modal" href="#volcal"> Volumetric Weight </a></li>
                         <li><a href="/ost/shiprate"> Shipping Rate </a></li>
-                        <li><a href="#"> Test </a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Test <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#"> Test Track Parcel </a></li>
-                                <li><a data-toggle="modal" href="#volcal"> Test Volumetric Weight </a></li>
-                                <li><a href="#"> Test Bulk Delivery Tool </a></li>
-                                <li><a href="#"> Test Pick Up Schedule </a></li>
-                            </ul>
-                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right hidden-sm">
                         <li class="login-menu"><a href="/ost-account/login"><i class="epi-user"></i> Log In</a></li>
@@ -167,5 +32,3 @@
         </div>
     </header>
 </div>
-
-<div class="swal2-container"><div class="swal2-overlay" tabindex="-1"></div><div class="swal2-modal" style="display: none" tabindex="-1"><div class="swal2-icon swal2-error"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span></div><div class="swal2-icon swal2-question">?</div><div class="swal2-icon swal2-warning">!</div><div class="swal2-icon swal2-info">i</div><div class="swal2-icon swal2-success"><span class="line tip"></span> <span class="line long"></span><div class="placeholder"></div> <div class="fix"></div></div><img class="swal2-image"><h2></h2><div class="swal2-content"></div><input class="swal2-input"><select class="swal2-select"></select><div class="swal2-radio"></div><label for="swal2-checkbox" class="swal2-checkbox"><input type="checkbox" id="swal2-checkbox"></label><textarea class="swal2-textarea"></textarea><div class="swal2-validationerror"></div><hr class="swal2-spacer"><button class="swal2-confirm">OK</button><button class="swal2-cancel">Cancel</button><span class="swal2-close">×</span></div></div>
