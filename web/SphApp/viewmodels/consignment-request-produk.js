@@ -73,6 +73,13 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     consignment().Produk().ValueAddedCode("");
                     consignment().Produk().ValueAddedValue(0);
                     consignment().Produk().ValueAddedDeclaredValue(0);
+
+                    // always check for pickup location 
+                    if (entity().Pickup().Address().Postcode() === undefined) {
+                        app.showMessage("Sorry, you must set Pickup Location first before you can send any Parcel.", "Ost", ["OK"]).done(function () {
+                            router.navigate("consignment-request-pickup/" + crId);
+                        });
+                    }
                 }, function (e) {
                     if (e.status == 404) {
                         app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + crId, "Ost", ["OK"]);
