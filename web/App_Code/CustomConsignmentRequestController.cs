@@ -5,8 +5,10 @@ using Bespoke.Sph.WebApi;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -15,6 +17,23 @@ namespace web.sph.App_Code
     [RoutePrefix("consignment-request")]
     public class CustomConsignmentRequestController : BaseApiController
     {
+        private string m_sdsBaseUrl;
+        private string m_sdsApi_GenerateConnote;
+        private string m_sdsSecretKey_GenerateConnote;
+        private string m_sdsApi_PickupWebApi;
+        private string m_sdsSecretKey_PickupWebApi;
+
+        public CustomConsignmentRequestController()
+        {
+            //TODO: Set & Get from appSettings 
+            m_sdsBaseUrl = "http://stagingsds.pos.com.my/apigateway";
+
+            m_sdsApi_GenerateConnote = "/as2corporate/api/generateconnote/v1";
+            m_sdsSecretKey_GenerateConnote = "ODA2MzViZTAtODk3MS00OGU5LWFiNGEtYTcxYjAxMjU4NjM1";
+            m_sdsApi_PickupWebApi = "/devposlaju/api/pickupwebapi/v1";
+            m_sdsSecretKey_PickupWebApi = "ZGQxNGJjMDEtZGMyMy00YjQwLWFiODUtYTcxYjAxMzAyMjdk";
+        }
+
         [HttpPut]
         [Route("calculate-total-price/{id}")]
         public async Task<IHttpActionResult> CalculateAndSaveTotalPrice(string id)
@@ -29,6 +48,12 @@ namespace web.sph.App_Code
             {
                 total += consignment.Produk.Price;
             }
+
+            if (!string.IsNullOrEmpty(item.Pickup.Number))
+            {
+                total += 5.30m;
+            }
+
             item.Payment.TotalPrice = total;
             await SaveConsigmentRequest(item);
 
@@ -87,13 +112,9 @@ namespace web.sph.App_Code
         }
 
         [HttpPut]
-        [Route("generate-and-save-con-notes/{id}")]
-        public async Task<IHttpActionResult> GenerateAndSaveConNotes(string id)
+        [Route("generate-con-notes/{id}")]
+        public async Task<IHttpActionResult> GenerateConNotes(string id)
         {
-            //TODO: Set & Get from appSettings 
-            var baseUrl = "http://stagingsds.pos.com.my/apigateway/as2corporate/api/generateconnote/v1";
-            var secretKey = "ODA2MzViZTAtODk3MS00OGU5LWFiNGEtYTcxYjAxMjU4NjM1";
-
             LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
             if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
 
@@ -107,7 +128,7 @@ namespace web.sph.App_Code
                 if (!item.Payment.IsConNoteReady)
                 {
                     var client = new HttpClient();
-                    client.DefaultRequestHeaders.Add("x-user-key", secretKey);
+                    client.DefaultRequestHeaders.Add("x-user-key", m_sdsSecretKey_GenerateConnote);
 
                     List<KeyValuePair<string, string>> pairs = new List<KeyValuePair<string, string>>();
                     //TODO: need more information from API provider; hardcode for now
@@ -120,7 +141,7 @@ namespace web.sph.App_Code
 
                     var content = new FormUrlEncodedContent(pairs);
                     var query = content.ReadAsStringAsync().Result;
-                    var output = await client.GetStringAsync(baseUrl + "?" + query);
+                    var output = await client.GetStringAsync(m_sdsBaseUrl + m_sdsApi_GenerateConnote + "?" + query);
                     //TODO: check output for error and null
                     var json = JObject.Parse(output);
                     //TODO: check json for error and null
@@ -257,6 +278,133 @@ namespace web.sph.App_Code
             }
 
             return Ok(branch);
+        }
+
+        [HttpPut]
+        [Route("schedule-pickup/{id}")]
+        public async Task<IHttpActionResult> SchedulePickup(string id,
+            [FromUri(Name = "timeReady")]string timeReady = "02:00 PM", 
+            [FromUri(Name = "timeClose")]string timeClose = "06:30 PM")
+        {
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
+            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
+
+            var resultSuccess = true;
+            var resultStatus = "OK";
+            var item = lo.Source;
+
+            if (!item.Payment.IsPaid)
+            {
+                if (string.IsNullOrEmpty(item.Pickup.Number))
+                {
+                    if (!string.IsNullOrEmpty(item.Pickup.Address.Postcode))
+                    {
+                        var client = new HttpClient();
+                        client.DefaultRequestHeaders.Add("x-user-key", m_sdsSecretKey_PickupWebApi);
+
+                        List<KeyValuePair<string, string>> pairs = new List<KeyValuePair<string, string>>();
+                        //TODO: need more information from API provider; hardcode for now
+                        pairs.Add(new KeyValuePair<string, string>("callerNameF", item.Pickup.ContactPerson));
+                        pairs.Add(new KeyValuePair<string, string>("contactpersonf", item.Pickup.ContactPerson));
+                        pairs.Add(new KeyValuePair<string, string>("phoneNoF", item.Pickup.ContactInformation.ContactNumber));
+                        pairs.Add(new KeyValuePair<string, string>("callerPhoneF", item.Pickup.ContactInformation.ContactNumber));
+                        var pickupAddress = new StringBuilder(item.Pickup.Address.Address1);
+                        pickupAddress.Append($" {item.Pickup.Address.Address2}");
+                        pickupAddress.Append($", {item.Pickup.Address.Address3}");
+                        pickupAddress.Append($" {item.Pickup.Address.Address4}");
+                        pickupAddress.Append($", {item.Pickup.Address.Postcode}");
+                        pickupAddress.Append($" {item.Pickup.Address.City}");
+                        pickupAddress.Append($", {item.Pickup.Address.State}");
+                        pickupAddress.Append($" {item.Pickup.Address.Country}");
+                        pairs.Add(new KeyValuePair<string, string>("pickAddressF", pickupAddress.ToString()));
+                        pairs.Add(new KeyValuePair<string, string>("posCodeF", item.Pickup.Address.Postcode));
+                        pairs.Add(new KeyValuePair<string, string>("totDocumentF", "0"));
+                        pairs.Add(new KeyValuePair<string, string>("totMerchandiseF", "0"));
+                        var totalConsignments = item.Consignments.Count;
+                        pairs.Add(new KeyValuePair<string, string>("totParcelF", totalConsignments.ToString()));
+                        pairs.Add(new KeyValuePair<string, string>("totQuantityF", totalConsignments.ToString()));
+                        decimal totalWeight = 0;
+                        foreach (var consignment in item.Consignments)
+                        {
+                            totalWeight += consignment.Produk.Weight;
+                        }
+                        pairs.Add(new KeyValuePair<string, string>("totWeightF", totalWeight.ToString()));
+                        pairs.Add(new KeyValuePair<string, string>("accNoF", "ENTT-OST-" + item.Id));
+                        pairs.Add(new KeyValuePair<string, string>("_readyF", timeReady));
+                        pairs.Add(new KeyValuePair<string, string>("_closeF", timeClose));
+
+                        var content = new FormUrlEncodedContent(pairs);
+                        var query = content.ReadAsStringAsync().Result;
+                        var output = await client.GetStringAsync(m_sdsBaseUrl + m_sdsApi_PickupWebApi + "?" + query);
+                        //TODO: check output for error and null
+                        var json = JObject.Parse(output);
+                        //TODO: check json for error and null
+
+                        if (json["StatusCode"].ToString() == "00")
+                        {
+                            DateTime currentTime = DateTime.Now;
+                            DateTime cutOffTime = DateTime.ParseExact("11:00 AM", "hh:mm tt",
+                                        CultureInfo.InvariantCulture);                            
+                            DateTime tReady = DateTime.ParseExact(timeReady, "hh:mm tt",
+                                                       CultureInfo.InvariantCulture);
+                            DateTime tClose = DateTime.ParseExact(timeClose, "hh:mm tt",
+                                                                CultureInfo.InvariantCulture);
+
+                            if (currentTime < cutOffTime)
+                            {                   
+                                item.Pickup.DateReady = tReady;
+                                item.Pickup.DateClose = tClose;
+                            }
+                            else
+                            {
+                                item.Pickup.DateReady = tReady.AddDays(1);
+                                item.Pickup.DateClose = tClose.AddDays(1);
+                            }
+                            item.Pickup.Number = json["pickupNumber"].ToString();
+                            item.Pickup.TotalDocument = 0;
+                            item.Pickup.TotalMerchandise = 0;
+                            item.Pickup.TotalParcel = totalConsignments;
+                            item.Pickup.TotalQuantity = totalConsignments;
+                            item.Pickup.TotalWeight = totalWeight;
+                            await SaveConsigmentRequest(item);
+                        }
+                        else
+                        {
+                            resultSuccess = false;
+                            resultStatus = "Message: " + json["Message"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        resultSuccess = false;
+                        resultStatus = "Postcode is mandatory";
+                    }
+                }
+                else
+                {
+                    resultSuccess = false;
+                    resultStatus = "Pickup was already scheduled";
+                }
+            }
+            else
+            {
+                resultSuccess = false;
+                resultStatus = "Consignment Request has been paid";
+            }            
+
+            var result = new
+            {
+                success = resultSuccess,
+                status = resultStatus,
+                id = item.Id,
+                pickup_number = item.Pickup.Number,
+                pickup_ready = item.Pickup.DateReady.ToString(),
+                pickup_close = item.Pickup.DateClose.ToString()
+            };
+
+            // wait until the worker process it
+            await Task.Delay(1500);
+            return Accepted(result);
         }
 
         private static async Task<LoadData<ConsigmentRequest>> GetConsigmentRequest(string id)
