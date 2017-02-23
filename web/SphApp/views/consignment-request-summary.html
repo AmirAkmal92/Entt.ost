@@ -25,28 +25,98 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <div class="col-md-5">
-                                    <h4>Pickup Id</h4>
-                                    AA1-BB2-CC3-123
-                                    <br /><br />
-                                    <h4>Pickup Date</h4>
-                                    DD/MM/YYY HH:MM
+                                <div class="col-md-6">
+                                    <h4>Pickup Number</h4>
+                                    <a data-bind="click: $root.toggleShowPickupScheduleForm, visible: !$root.isPickupNumberValid()">Schedule a Pickup</a>
+                                    <span data-bind="text: Pickup().Number, visible: $root.isPickupNumberValid()"></span>
+                                    <br /><br />                                    
+                                    <div data-bind="visible: $root.isPickupNumberValid()">
+                                        <h4>Pickup Date</h4>
+                                        Time Ready: <span data-bind="text: Pickup().DateReady"></span><br />
+                                        Time Close: <span data-bind="text: Pickup().DateClose"></span><br />
+                                        Total Quantity: <span data-bind="text: Pickup().TotalQuantity"></span> parcel(s)<br />
+                                        Total Weight: <span data-bind="text: Pickup().TotalWeight"></span> kg<br />
+                                    </div>
+                                    <div data-bind="if: $root.showPickupScheduleForm">
+                                        <h4>Schedule Pickup</h4>
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="control-label">Time Ready</label>:
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <select class="form-control input-sm" data-bind="value: $root.pickupReadyHH">
+                                                            <option value="02" selected>2</option>
+                                                            <option value="03">3</option>
+                                                            <option value="04">4</option>
+                                                            <option value="05">5</option>
+                                                            <option value="06">6</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <select class="form-control input-sm" data-bind="value: $root.pickupReadyMM">
+                                                            <option value="00" selected>00</option>
+                                                            <option value="30">30</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        PM
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Time Close</label>:
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <select class="form-control input-sm" data-bind="value: $root.pickupCloseHH">
+                                                            <option value="02">2</option>
+                                                            <option value="03">3</option>
+                                                            <option value="04">4</option>
+                                                            <option value="05">5</option>
+                                                            <option value="06" selected>6</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <select class="form-control input-sm" data-bind="value: $root.pickupCloseMM">
+                                                            <option value="00">00</option>
+                                                            <option value="30" selected>30</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        PM
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <a class="btn btn-success btn-sm" data-bind="click: $root.schedulePickup"><i class="fa fa-list"></i> Schedule a Pickup</a>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-md-6">
                                     <h4>Pickup Address</h4>
                                     <address>
-                                        <strong>Muhammad Abdullah</strong><br />
-                                        <a href="mailto:#">muhd.abd@example.com</a>
+                                        <strong><span data-bind="text: Pickup().ContactPerson"></span></strong><br />
+                                        <a href="mailto:#"><span data-bind="text: Pickup().ContactInformation().Email"></span></a>
                                     </address>
                                     <address>
-                                        <strong>Muhd Sdn. Bhd.</strong><br />
-                                        100 Jalan Tun Perak 50050<br />
-                                        Pudu, Kuala Lumpur, Malaysia<br />
-                                        <abbr title="Phone">P:</abbr> +60 3 1234 5678<br />
-                                        <abbr title="Fax">F:</abbr> +60 3 1234 5678
+                                        <strong><span data-bind="text: Pickup().CompanyName"></span></strong><br />
+                                        <span data-bind="text: Pickup().Address().Address1"></span>&nbsp;
+                                        <span data-bind="text: Pickup().Address().Address2"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: Pickup().Address().Address3"></span>&nbsp;
+                                        <span data-bind="text: Pickup().Address().Address4"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: Pickup().Address().City"></span>&nbsp;
+                                        <span data-bind="text: Pickup().Address().State"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: Pickup().Address().Postcode"></span>&nbsp;
+                                        <span data-bind="text: Pickup().Address().Country"></span>&nbsp;
+                                        <br />
+                                        <abbr title="Contact Number">Phone 1:</abbr> <span data-bind="text: Pickup().ContactInformation().ContactNumber"></span><br />
+                                        <abbr title="Alternative Contact Number">Phone 2:</abbr> <span data-bind="text: Pickup().ContactInformation().AlternativeContactNumber"></span>
                                     </address>
                                 </div>
                             </div>
@@ -122,9 +192,19 @@
                                     <!-- /ko -->
                                     <tr>
                                         <td>&nbsp;</td>
+
+                                        <td data-bind="visible: !$root.isPickupNumberValid()" colspan="5">
+                                            Pickup not scheduled. Please <a data-bind="click: $root.toggleShowPickupScheduleForm">Schedule a Pickup</a> before payment can be made.
+                                        </td>
+                                        <td data-bind="visible: !$root.isPickupNumberValid()">RM <span class="pull-right">0.00</span></td>
+
+                                        <td data-bind="visible: $root.isPickupNumberValid()" colspan="5">Pickup</td>
+                                        <td data-bind="visible: $root.isPickupNumberValid()">RM <span class="pull-right">5.30</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
                                         <td colspan="5"><strong>Grand Total</strong></td>
                                         <td>RM <span data-bind="text: $root.grandTotal" class="pull-right"></span></td>
-                                        <td>&nbsp;</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -133,15 +213,15 @@
                 </div>
                 <div class="row">
                     <div class="pull-right">
-                        <a class="btn btn-info" data-bind="attr: { href: 'ost#consignment-request-cart/' + Id() }">
+                        <a class="btn btn-info" data-bind="attr: { href: 'ost#consignment-request-cart/' + Id() }, css: { 'disabled': $root.isPickupNumberValid() }">
                             <i class="fa fa-shopping-cart"></i>
                             Shopping Cart
                         </a>
-                        <a href="#" class="btn btn-info" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }">
+                        <a href="#" class="btn btn-info" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }, css: { 'disabled': $root.isPickupNumberValid() }">
                             <i class="fa fa-paper-plane"></i>
                             Add More Parcel
                         </a>
-                        <a href="#" class="btn btn-warning" data-bind="click: $root.goToPayment">
+                        <a href="#" class="btn btn-warning" data-bind="click: $root.goToPayment, css: { 'disabled': !$root.isPickupNumberValid() }">
                             <i class="fa fa-credit-card"></i>
                             Pay Now
                         </a>

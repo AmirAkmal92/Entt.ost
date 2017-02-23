@@ -4,6 +4,12 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
 function (context, logger, router, system, chart, config, app) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
+        isPickupNumberValid = ko.observable(false),
+        showPickupScheduleForm = ko.observable(false),
+        pickupReadyHH = ko.observable(),
+        pickupReadyMM = ko.observable(),
+        pickupCloseHH = ko.observable(),
+        pickupCloseMM = ko.observable(),
         grandTotal = ko.observable(),
         errors = ko.observableArray(),
         id = ko.observable(),
@@ -23,6 +29,11 @@ function (context, logger, router, system, chart, config, app) {
                         }
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
+                    if (entity().Pickup().Number() === undefined) {
+                        app.showMessage("Pickup not scheduled. Please Schedule Pickup before payment can be made.", "Ost", ["OK"]);
+                    } else {
+                        isPickupNumberValid(true);
+                    }
                     calculateGrandTotal();
                 }, function (e) {
                     if (e.status == 404) {
@@ -44,6 +55,35 @@ function (context, logger, router, system, chart, config, app) {
                     router.navigate("consignment-request-payment/" + ko.unwrap(entity().Id));
                 });
         },
+        schedulePickup = function () {
+            var data = ko.mapping.toJSON(entity),
+                tReady = pickupReadyHH() + ":" + pickupReadyMM() + " PM",
+                tClose = pickupCloseHH() + ":" + pickupCloseMM() + " PM";
+
+            context.put(data, "/consignment-request/schedule-pickup/" + ko.unwrap(entity().Id) + "?timeReady=" + tReady + "&timeClose=" + tClose)
+                .fail(function (response) {
+                    app.showMessage("Sorry, but we cannot shedule a pickup for the Consignment Request with Id : " + ko.unwrap(entity().Id), "Ost", ["OK"]).done(function () {
+                        router.navigate("consignment-requests-cart/" + ko.unwrap(entity().Id));
+                    });
+                })
+                .then(function (result) {
+                    console.log(result);
+                    if (result.success) {
+                        app.showMessage("Pickup successfully scheduled with Pickum Number: " + result.pickup_number + ". You can now proceed with payment.", "Ost", ["OK"]).done(function () {
+                            showPickupScheduleForm(false);
+                            router.activeItem().activate(result.id);
+                        });
+                    } else {
+                        console.log(result.status);
+                        app.showMessage("Sorry, but we cannot shedule a pickup for the Consignment Request with Id : " + result.id, "Ost", ["OK"]).done(function () {
+                            router.navigate("consignment-requests-cart/" + result.id);
+                        });
+                    }
+                });
+        },
+        toggleShowPickupScheduleForm = function () {
+            showPickupScheduleForm(!showPickupScheduleForm());
+        },
         calculateGrandTotal = function () {
             var total = 0;
             _.each(entity().Consignments(), function (v) {
@@ -53,8 +93,13 @@ function (context, logger, router, system, chart, config, app) {
                     total += v.Produk().Price();
 
                 }
-            })
-            grandTotal(total.toFixed(2));
+            });
+            if (entity().Pickup().Number() === undefined) {                
+                grandTotal(total.toFixed(2));
+            } else {
+                total += 5.3;
+                grandTotal(total.toFixed(2));
+            }
         },
         attached = function (view) {
 
@@ -67,8 +112,16 @@ function (context, logger, router, system, chart, config, app) {
         config: config,
         attached: attached,
         errors: errors,
+        pickupReadyHH: pickupReadyHH,
+        pickupReadyMM: pickupReadyMM,
+        pickupCloseHH: pickupCloseHH,
+        pickupCloseMM: pickupCloseMM,
         grandTotal: grandTotal,
         entity: entity,
+        isPickupNumberValid: isPickupNumberValid,
+        showPickupScheduleForm: showPickupScheduleForm,
+        toggleShowPickupScheduleForm: toggleShowPickupScheduleForm,
+        schedulePickup: schedulePickup,
         goToPayment: goToPayment
     };
 
