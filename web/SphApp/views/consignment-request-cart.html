@@ -18,7 +18,7 @@
                                 <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }, css: { 'disabled': $root.isPickupNumberValid() }" class="btn btn-info">
                                     <i class="fa fa-paper-plane"></i> Add More Parcel
                                 </a>
-                                <a data-bind="attr: { href: 'ost#consignment-request-summary/' + Id() }" class="btn btn-warning">
+                                <a data-bind="attr: { href: 'ost#consignment-request-summary/' + Id() }, css: { 'disabled': Consignments().length == 0 }" class="btn btn-warning">
                                     <i class="fa fa-credit-card"></i> Pay Now
                                 </a>
                             </div>

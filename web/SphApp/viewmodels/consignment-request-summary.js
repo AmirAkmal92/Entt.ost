@@ -69,7 +69,7 @@ function (context, logger, router, system, chart, config, app) {
                 .then(function (result) {
                     console.log(result);
                     if (result.success) {
-                        app.showMessage("Pickup successfully scheduled with Pickum Number: " + result.pickup_number + ". You can now proceed with payment.", "Ost", ["OK"]).done(function () {
+                        app.showMessage("Pickup successfully scheduled with Pickup Number: " + result.pickup_number + ". You can now proceed with payment.", "Ost", ["OK"]).done(function () {
                             showPickupScheduleForm(false);
                             router.activeItem().activate(result.id);
                         });
