@@ -65,7 +65,7 @@ function (context, logger, router, system, chart, config, app) {
                 .then(function (result) {
                     console.log(result);
                     if (result.success) {
-                        app.showMessage("Tracking number genrated. You can now print your Consignment Note.", "Ost", ["OK"]).done(function () {
+                        app.showMessage("Tracking number successfully generated. You can now print your Consignment Note.", "Ost", ["OK"]).done(function () {
                             router.activeItem().activate(result.id);
                         });                        
                     } else {

@@ -61,12 +61,7 @@ namespace web.sph.App_Code
             {
                 success = true,
                 status = "OK",
-                id = item.Id,
-                _link = new
-                {
-                    rel = "self",
-                    href = $"{ConfigurationManager.BaseUrl}/api/consigment-requests/{item.Id}"
-                }
+                id = item.Id
             };
 
             // wait until the worker process it
@@ -105,7 +100,7 @@ namespace web.sph.App_Code
                 success = true,
                 status = "OK",
                 pxreq = pxReq,
-                id = item.Id,
+                id = item.Id
             };
 
             return Ok(result);
@@ -188,7 +183,7 @@ namespace web.sph.App_Code
             {
                 success = resultSuccess,
                 status = resultStatus,
-                id = item.Id,
+                id = item.Id
             };
 
             // wait until the worker process it
@@ -283,7 +278,7 @@ namespace web.sph.App_Code
         [HttpPut]
         [Route("schedule-pickup/{id}")]
         public async Task<IHttpActionResult> SchedulePickup(string id,
-            [FromUri(Name = "timeReady")]string timeReady = "02:00 PM", 
+            [FromUri(Name = "timeReady")]string timeReady = "02:00 PM",
             [FromUri(Name = "timeClose")]string timeClose = "06:30 PM")
         {
             LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
@@ -344,14 +339,14 @@ namespace web.sph.App_Code
                         {
                             DateTime currentTime = DateTime.Now;
                             DateTime cutOffTime = DateTime.ParseExact("11:00 AM", "hh:mm tt",
-                                        CultureInfo.InvariantCulture);                            
+                                        CultureInfo.InvariantCulture);
                             DateTime tReady = DateTime.ParseExact(timeReady, "hh:mm tt",
                                                        CultureInfo.InvariantCulture);
                             DateTime tClose = DateTime.ParseExact(timeClose, "hh:mm tt",
                                                                 CultureInfo.InvariantCulture);
 
                             if (currentTime < cutOffTime)
-                            {                   
+                            {
                                 item.Pickup.DateReady = tReady;
                                 item.Pickup.DateClose = tClose;
                             }
@@ -390,7 +385,7 @@ namespace web.sph.App_Code
             {
                 resultSuccess = false;
                 resultStatus = "Consignment Request has been paid";
-            }            
+            }
 
             var result = new
             {
@@ -405,6 +400,42 @@ namespace web.sph.App_Code
             // wait until the worker process it
             await Task.Delay(1500);
             return Accepted(result);
+        }
+
+        [HttpPost]
+        [Route("payment-accepted")]
+        public async Task<IHttpActionResult> PaymentAccepted(PxResModel model)
+        {
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(model.PX_PURCHASE_ID);
+            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + model.PX_PURCHASE_ID);
+            var item = lo.Source;
+
+            // TODO: validate model.PX_SIG
+            // TODO: store related PxRes parameters
+            item.Payment.IsPaid = true;
+            await SaveConsigmentRequest(item);
+
+            // wait until the worker process it
+            await Task.Delay(1500);
+            return Redirect("http://localhost:50230/ost#consignment-request-paid-summary/" + model.PX_PURCHASE_ID);
+        }
+
+        [HttpPost]
+        [Route("payment-rejected")]
+        public async Task<IHttpActionResult> PaymentRejected(PxResModel model)
+        {
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(model.PX_PURCHASE_ID);
+            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + model.PX_PURCHASE_ID);
+            var item = lo.Source;
+
+            // TODO: validate model.PX_SIG
+            // TODO: store related PxRes parameters
+            item.Payment.IsPaid = false;
+            await SaveConsigmentRequest(item);
+
+            // wait until the worker process it
+            await Task.Delay(1500);
+            return Redirect("http://localhost:50230/ost#consignment-request-summary/" + model.PX_PURCHASE_ID);
         }
 
         private static async Task<LoadData<ConsigmentRequest>> GetConsigmentRequest(string id)
