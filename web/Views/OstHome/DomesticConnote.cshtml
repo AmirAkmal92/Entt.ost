@@ -2,7 +2,620 @@
 @{
     Layout = null;
 }
-@*Modify here*@
-<h1>@Html.Raw(Model.ConNote)</h1>
-<h4>@Html.Raw(Model.Pemberi.ContactPerson)</h4>
-<h4>@Html.Raw(Model.Pemberi.CompanyName)</h4>
+
+<html>
+<head>
+    <style>
+        .image accNo {
+            width: 80%;
+            display: block;
+            position: absolute;
+            top: 17.3cm;
+            left: 18.5cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            text-align: center;
+            margin: 0;
+            z-index: 9;
+        }
+
+        name {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 18.7cm;
+            left: 13.5cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        address1 {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 19.8cm;
+            left: 10.5cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        address2 {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 20.8cm;
+            left: 11cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        address3 {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 21.8cm;
+            left: 12.4cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        address4 {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 21.8cm;
+            left: 17.6cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        city {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 22.8cm;
+            left: 10.6cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        state {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 22.8cm;
+            left: 20.5cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        tel-email {
+            width: 80%;
+            display: block;
+            position: absolute;
+            top: 23.8cm;
+            left: 25.15cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            text-align: center;
+            margin: 0;
+            z-index: 9;
+        }
+
+        postcode {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 23.8cm;
+            left: 11cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        impRef {
+            width: 80%;
+            display: block;
+            position: absolute;
+            top: 9.85cm;
+            left: 48.5cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            text-align: center;
+            margin: 0;
+            z-index: 9;
+        }
+
+        nameTo {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 27.3cm;
+            left: 7.3cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        address1To {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 27.33cm;
+            left: 15.6cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        address2To {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 27.33cm;
+            left: 28.1cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        conNote {
+            width: 80%;
+            display: block;
+            position: absolute;
+            top: 14.2cm;
+            left: 49.1cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 37px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            text-align: center;
+            margin: 0;
+            z-index: 9;
+        }
+
+        address3To {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 29cm;
+            left: 11.3cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        address4To {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 29cm;
+            left: 18.1cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        cityTo {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 30.3cm;
+            left: 11cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        tel-emailTo {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 32.5cm;
+            left: 15.8cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        postcodeTo {
+            width: 80%;
+            display: block;
+            position: absolute;
+            top: 36.1cm;
+            left: 36.6cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 66px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            text-align: center;
+            margin: 0;
+            z-index: 9;
+        }
+
+        stateTo {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 31.4cm;
+            left: 9.5cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+        gift {
+            width: 80%;
+            display: block;
+            position: absolute;
+            top: 31.05cm;
+            left: 27.3cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            text-align: center;
+            margin: 0;
+            z-index: 9;
+        }
+
+        price {
+            width: 80%;
+            display: block;
+            position: absolute;
+            top: 23.5cm;
+            left: 38.7cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            text-align: center;
+            margin: 0;
+            z-index: 9;
+        }
+
+        bil {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 21.7cm;
+            left: 36.6cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        item {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 21.7cm;
+            left: 40.6cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        value {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 21.7cm;
+            left: 47.6cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        valueIns {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 23.45cm;
+            left: 49.6cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        decValue {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 25.4cm;
+            left: 46.3cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+
+        codeTarif {
+            /*width: 80%;*/
+            display: block;
+            position: absolute;
+            top: 26.4cm;
+            left: 46.3cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            /*text-align: center;*/
+            margin: 0;
+            z-index: 9;
+        }
+        date {
+            width: 80%;
+            display: block;
+            position: absolute;
+            top: 25.6cm;
+            left: 60.7cm;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            line-height: 70px;
+            text-align: center;
+            margin: 0;
+            z-index: 9;
+        }
+    </style>
+</head>
+<body>
+    <!--No 1 Pengirim-->
+    <div class="image">
+        <img src="~/assets/connotes/Domestic_Form.jpg" />
+        <accNo><span></span></accNo>    @*TODO*@
+        <name><span>@Html.Raw(Model.Pemberi.ContactPerson.ToUpper())</span></name>
+        <address1><span>@Html.Raw(Model.Pemberi.Address.Address1.ToUpper())</span></address1>
+        <address2><span>@Html.Raw(Model.Pemberi.Address.Address2.ToUpper())</span></address2>
+        <address3><span>@Html.Raw(Model.Pemberi.Address.Address3.ToUpper())</span></address3>
+        <address4><span>@Html.Raw(Model.Pemberi.Address.Address4)</span></address4>
+        <city><span>@Html.Raw(Model.Pemberi.Address.City.ToUpper())</span></city>
+        <state><span>@Html.Raw(Model.Pemberi.Address.State.ToUpper())</span></state>
+        <tel-email><span>@Html.Raw(Model.Pemberi.ContactInformation.ContactNumber.ToUpper()) / @Html.Raw(Model.Pemberi.ContactInformation.Email.ToLower())</span></tel-email>
+        <postcode><span>@Html.Raw(Model.Pemberi.Address.Postcode.ToUpper())</span></postcode>
+    </div>
+    <!--End No 1 Pengirim-->
+
+    <!--No 2 Penerima-->
+    <div class="image">
+        <nameTo><span>@Html.Raw(Model.Penerima.ContactPerson.ToUpper())</span></nameTo>
+        <address1To><span>@Html.Raw(Model.Penerima.Address.Address1.ToUpper()), @Html.Raw(Model.Penerima.Address.Address2.ToUpper()),</span></address1To>
+        <address3To><span>@Html.Raw(Model.Penerima.Address.Address3.ToUpper()), @Html.Raw(Model.Penerima.Address.Address4.ToUpper()).</span></address3To>
+        
+        <conNote><span>@Html.Raw(Model.ConNote)</span></conNote>
+        <cityTo><span>@Html.Raw(Model.Penerima.Address.City.ToUpper())</span></cityTo>
+        <tel-emailTo><span>@Html.Raw(Model.Penerima.ContactInformation.ContactNumber.ToUpper()) / @Html.Raw(Model.Penerima.ContactInformation.Email.ToLower())</span></tel-emailTo>
+        <postcodeTo><span>@Html.Raw(Model.Penerima.Address.Postcode.ToUpper())</span></postcodeTo>
+        <stateTo><span data-bind="text: State">STATE</span></stateTo>
+    </div>
+    <!--End No 2 Penerima-->
+    <!--Item Category-->
+    <div class="image">
+        <price><span data-bind="text: price">✓</span></price>       @*TODO*@
+        <bil><span data-bind="text: commSample">1</span></bil>
+        <item><span>@Html.Raw(Model.Produk.Description)</span></item>
+        <value><span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></value>
+        <valueIns><span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></valueIns>
+        <decValue><span></span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</decValue>
+        <codeTarif><span></span></codeTarif>     @*TODO*@
+        <date><span></span></date>@*TODO*@
+    </div>
+    <!--End Item Category-->
+</body>
+</html>
