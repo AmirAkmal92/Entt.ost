@@ -3,8 +3,9 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
 
 function (context, logger, router, system, chart, config, app, crCart) {
 
-    var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
+    var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),       
         grandTotal = ko.observable(),
+        isPickupNumberValid = ko.observable(false),
         errors = ko.observableArray(),
         id = ko.observable(),
         headers = {},
@@ -23,6 +24,11 @@ function (context, logger, router, system, chart, config, app, crCart) {
                         }
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
+                    if (entity().Pickup().Number() === undefined) {
+                    } else {
+                        app.showMessage("Pickup has been scheduled. No more changes are allowed to the Shopping Cart. You may proceed to make Payment now.", "Ost", ["OK"]);
+                        isPickupNumberValid(true);
+                    }
                     calculateGrandTotal();
                 }, function (e) {
                     if (e.status == 404) {
@@ -41,7 +47,13 @@ function (context, logger, router, system, chart, config, app, crCart) {
                     total += v.Produk().Price();
 
                 }
-            })
+            });
+            //if (entity().Pickup().Number() === undefined) {
+            //    grandTotal(total.toFixed(2));
+            //} else {
+            //    total += 5.3;
+            //    grandTotal(total.toFixed(2));
+            //}
             grandTotal(total.toFixed(2));
         },
         defaultCommand = function () {
@@ -106,6 +118,7 @@ function (context, logger, router, system, chart, config, app, crCart) {
         config: config,
         attached: attached,
         errors: errors,
+        isPickupNumberValid: isPickupNumberValid,
         entity: entity,
         grandTotal: grandTotal,
         deleteConsignment: deleteConsignment

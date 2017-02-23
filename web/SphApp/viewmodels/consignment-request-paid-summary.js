@@ -5,6 +5,7 @@ function (context, logger, router, system, chart, config, app) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         grandTotal = ko.observable(),
+        isPickupNumberValid = ko.observable(false),
         errors = ko.observableArray(),
         id = ko.observable(),
         headers = {},
@@ -23,6 +24,10 @@ function (context, logger, router, system, chart, config, app) {
                         }
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
+                    if (entity().Pickup().Number() === undefined) {                        
+                    } else {
+                        isPickupNumberValid(true);
+                    }
                     calculateGrandTotal();
                 }, function (e) {
                     if (e.status == 404) {
@@ -41,12 +46,17 @@ function (context, logger, router, system, chart, config, app) {
                     total += v.Produk().Price();
 
                 }
-            })
-            grandTotal(total.toFixed(2));
+            });
+            if (entity().Pickup().Number() === undefined) {
+                grandTotal(total.toFixed(2));
+            } else {
+                total += 5.3;
+                grandTotal(total.toFixed(2));
+            }
         },
         generateConNotes = function () {
             var data = ko.mapping.toJSON(entity);
-            context.put(data, "/consignment-request/generate-and-save-con-notes/" + ko.unwrap(entity().Id) + "")
+            context.put(data, "/consignment-request/generate-con-notes/" + ko.unwrap(entity().Id) + "")
                 .fail(function (response) {
                     app.showMessage("Sorry, but we cannot process tracking number for the Paid Order with Id : " + ko.unwrap(entity().Id), "Ost", ["OK"]).done(function () {
                         router.navigate("consignment-requests-paid");
@@ -55,7 +65,7 @@ function (context, logger, router, system, chart, config, app) {
                 .then(function (result) {
                     console.log(result);
                     if (result.success) {
-                        app.showMessage("Tracking number genrated. You can now print your AWB.", "Ost", ["OK"]).done(function () {
+                        app.showMessage("Tracking number genrated. You can now print your Consignment Note.", "Ost", ["OK"]).done(function () {
                             router.activeItem().activate(result.id);
                         });                        
                     } else {
@@ -77,6 +87,7 @@ function (context, logger, router, system, chart, config, app) {
         config: config,
         attached: attached,
         errors: errors,
+        isPickupNumberValid: isPickupNumberValid,
         grandTotal: grandTotal,
         generateConNotes: generateConNotes,
         entity: entity

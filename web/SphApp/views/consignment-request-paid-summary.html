@@ -26,6 +26,50 @@
                     </div>
                 </div>
                 <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="col-md-6">
+                                    <h4>Pickup Number</h4>
+                                    <span data-bind="text: Pickup().Number, visible: $root.isPickupNumberValid()"></span>
+                                    <br /><br />
+                                    <h4>Pickup Date</h4>
+                                    <div data-bind="visible: $root.isPickupNumberValid()">                                        
+                                        Time Ready: <span data-bind="text: Pickup().DateReady"></span><br />
+                                        Time Close: <span data-bind="text: Pickup().DateClose"></span><br />
+                                        Total Quantity: <span data-bind="text: Pickup().TotalQuantity"></span> parcel(s)<br />
+                                        Total Weight: <span data-bind="text: Pickup().TotalWeight"></span> kg<br />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>Pickup Address</h4>
+                                    <address>
+                                        <strong><span data-bind="text: Pickup().ContactPerson"></span></strong><br />
+                                        <a href="mailto:#"><span data-bind="text: Pickup().ContactInformation().Email"></span></a>
+                                    </address>
+                                    <address>
+                                        <strong><span data-bind="text: Pickup().CompanyName"></span></strong><br />
+                                        <span data-bind="text: Pickup().Address().Address1"></span>&nbsp;
+                                        <span data-bind="text: Pickup().Address().Address2"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: Pickup().Address().Address3"></span>&nbsp;
+                                        <span data-bind="text: Pickup().Address().Address4"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: Pickup().Address().City"></span>&nbsp;
+                                        <span data-bind="text: Pickup().Address().State"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: Pickup().Address().Postcode"></span>&nbsp;
+                                        <span data-bind="text: Pickup().Address().Country"></span>&nbsp;
+                                        <br />
+                                        <abbr title="Contact Number">Phone 1:</abbr> <span data-bind="text: Pickup().ContactInformation().ContactNumber"></span><br />
+                                        <abbr title="Alternative Contact Number">Phone 2:</abbr> <span data-bind="text: Pickup().ContactInformation().AlternativeContactNumber"></span>
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div data-bind="visible: Consignments().length == 0">
                     <br />
                     <div class="panel panel-default">
@@ -46,6 +90,7 @@
                                         <th> Receiver </th>
                                         <th> Weight </th>
                                         <th> Volume </th>
+                                        <th> Product </th>
                                         <th> Total </th>
                                         <th> Tracking No </th>
                                         <th> Action </th>
@@ -70,23 +115,41 @@
                                             <span data-bind="text: Produk().Width() + 'cm x ' + Produk().Length() + 'cm x ' + Produk().Height() + 'cm'"></span>
                                             <!-- /ko -->
                                         </td>
-                                        <td>
+                                        <td class="hidden-xs">
+                                            <span data-bind="text: Produk().Code()"></span>
+                                            <!--ko if: Produk().IsInternational-->
+                                            <i class="fa fa-plane"></i>
+                                            <!-- /ko -->
+                                            <!--ko ifnot: Produk().IsInternational-->
+                                            <i class="fa fa-truck"></i>
+                                            <!-- /ko -->
+                                        </td>
+                                        <td class="hidden-xs">
                                             <!--ko if: Produk().Price() != null-->
                                             RM <span data-bind="text: Produk().Price().toFixed(2)" class="pull-right"></span>
                                             <!-- /ko -->
                                         </td>
-                                        <td>
+                                        <td class="hidden-xs">
                                             <span data-bind="text: ConNote"></span>
                                         </td>
-                                        <td>
+                                        <td class="hidden-xs">
                                             <button class="btn btn-info" title="Print AWB" data-bind="enable: ConNote()"> <i class="fa fa-print"></i> </button>
                                             <a class="btn btn-success" title="Summary"> <i class="fa fa-file-text-o"></i> </a>
                                         </td>
                                     </tr>
                                     <!-- /ko -->
+                                    <!--ko if: $root.isPickupNumberValid-->
                                     <tr>
-                                        <td colspan="4"><strong>Grand Total</strong></td>
+                                        <td colspan="5">Pickup</td>
+                                        <td>RM <span class="pull-right">5.30</span></td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <!-- /ko -->
+                                    <tr>
+                                        <td colspan="5"><strong>Grand Total</strong></td>
                                         <td>RM <span data-bind="text: $root.grandTotal" class="pull-right"></span></td>
+                                        <td>&nbsp;</td>
                                         <td>&nbsp;</td>
                                     </tr>
                                 </tbody>
