@@ -38,6 +38,7 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
                              var storeId = ko.unwrap(dialog.item().storeId);
                              context.post("{}", "address-books/" + storeId).done(function (result) {
                                  console.log(result);
+                                 router.activeItem().activate("-");
                              });
                          }
                      });
