@@ -6,6 +6,8 @@ function (context, logger, router, system, chart, config, app) {
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         id = ko.observable(),
         grandTotal = ko.observable(),
+        totalDomestic = ko.observable(),
+        totalInternational = ko.observable(),
         creditCardNo = ko.observable(),
         creditCardName = ko.observable(),
         creditCardExpMM = ko.observable(),
@@ -25,9 +27,10 @@ function (context, logger, router, system, chart, config, app) {
                 .then(function (b, textStatus, xhr) {
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
                     calculateGrandTotal();
+                    calculateDomesticAndInternational();
                     if (grandTotal() != entity().Payment().TotalPrice()) {
                         app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + entityId, "Ost", ["OK"]).done(function () {
-                            return router.navigate("consignment-request-cart/" + entityId);
+                            return router.navigate("consignment-request-summary/" + entityId);
                         });
                     } else {
                         return context.get("/consignment-request/generate-px-req-fields/" + entityId).then(function (res) {
@@ -43,7 +46,7 @@ function (context, logger, router, system, chart, config, app) {
                         }, function (e) {
                             if (e.status == 404) {
                                 app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + entityId, "Ost", ["OK"]).done(function () {
-                                    return router.navigate("consignment-request-cart/" + entityId);
+                                    return router.navigate("consignment-request-summary/" + entityId);
                                 });
                             }
                         });
@@ -63,8 +66,38 @@ function (context, logger, router, system, chart, config, app) {
                     total += v.Produk().Price();
 
                 }
-            })
+            });
+            if (entity().Pickup().Number() === undefined) {
+                grandTotal(total.toFixed(2));
+            } else {
+                total += 5.3;
+                grandTotal(total.toFixed(2));
+            }
             grandTotal(total.toFixed(2));
+        },
+        calculateDomesticAndInternational = function () {
+            var dtotal = 0;
+            var itotal = 0;
+            _.each(entity().Consignments(), function (v) {
+                if (!v.Produk().IsInternational()) {
+                    if (!v.Produk().Price()) {
+                        dtotal += 0;
+                    } else {
+                        dtotal += v.Produk().Price();
+                    }
+                }                
+            });
+            _.each(entity().Consignments(), function (v) {
+                if (v.Produk().IsInternational()) {
+                    if (!v.Produk().Price()) {
+                        itotal += 0;
+                    } else {
+                        itotal += v.Produk().Price();
+                    }
+                }
+            });
+            totalDomestic(dtotal);
+            totalInternational(itotal);
         },
         attached = function (view) {
 
@@ -88,7 +121,10 @@ function (context, logger, router, system, chart, config, app) {
         pxPurchaseAmount: pxPurchaseAmount,
         pxMerchantId: pxMerchantId,
         pxRef: pxRef,
-        pxSig: pxSig
+        pxSig: pxSig,
+        grandTotal: grandTotal,
+        totalDomestic: totalDomestic,
+        totalInternational: totalInternational
     };
 
     return vm;
