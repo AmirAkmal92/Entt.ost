@@ -35,7 +35,7 @@
                                     <span data-bind="text: Pickup().Number, visible: $root.isPickupNumberValid()"></span>
                                     <br /><br />
                                     <h4>Pickup Date</h4>
-                                    <div data-bind="visible: $root.isPickupNumberValid()">                                        
+                                    <div data-bind="visible: $root.isPickupNumberValid()">
                                         Time Ready: <span data-bind="text: Pickup().DateReady"></span><br />
                                         Time Close: <span data-bind="text: Pickup().DateClose"></span><br />
                                         Total Quantity: <span data-bind="text: Pickup().TotalQuantity"></span> parcel(s)<br />
@@ -133,8 +133,19 @@
                                             <span data-bind="text: ConNote"></span>
                                         </td>
                                         <td class="hidden-xs">
-                                            <button class="btn btn-info" title="Print AWB" data-bind="enable: ConNote()"> <i class="fa fa-print"></i> </button>
-                                            <a class="btn btn-success" title="Summary"> <i class="fa fa-file-text-o"></i> </a>
+                                            <!--ko ifnot: Produk().IsInternational-->
+                                            <a class="btn btn-info" title="Print Consignment Note" data-bind="attr: { href: 'ost/print-domestic-connote/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }">
+                                                <i class="fa fa-print"></i>
+                                            </a>
+                                            <!-- /ko -->
+                                            <!--ko if: Produk().IsInternational-->
+                                            <a class="btn btn-info" title="Print Consignment Note" data-bind="attr: { href: 'ost/print-international-connote/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }">
+                                                <i class="fa fa-print"></i>
+                                            </a>
+                                            <!-- /ko -->
+                                            <a class="btn btn-success" title="Summary">
+                                                <i class="fa fa-file-text-o"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                     <!-- /ko -->
