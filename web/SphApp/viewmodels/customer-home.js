@@ -14,7 +14,7 @@ function (context, logger, router, config, app, system) {
                     entity().CompanyName("");
                     entity().ContactPerson("");
                     entity().UserId(config.userName);
-                    entity().ProfilePictureUrl("http://localhost:50230/assets/pages/media/profile/people19.png");
+                    entity().ProfilePictureUrl("http://localhost:50230/assets/images/user_default.png");
                     var data = ko.mapping.toJSON(entity);
                     context.post(data, "/api/address-books/").done(function (result) {
                         entity().Id(result.id);
