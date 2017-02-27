@@ -4,7 +4,6 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
 function (context, logger, router, system, chart, config, app) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
-        grandTotal = ko.observable(),
         isPickupNumberValid = ko.observable(false),
         errors = ko.observableArray(),
         id = ko.observable(),
@@ -28,7 +27,6 @@ function (context, logger, router, system, chart, config, app) {
                     } else {
                         isPickupNumberValid(true);
                     }
-                    calculateGrandTotal();
                 }, function (e) {
                     if (e.status == 404) {
                         app.showMessage("Sorry, but we cannot find any Paid Order with Id : " + entityId, "Ost", ["OK"]).done(function () {
@@ -37,22 +35,30 @@ function (context, logger, router, system, chart, config, app) {
                     }
                 });
         },
-        calculateGrandTotal = function () {
-            var total = 0;
-            _.each(entity().Consignments(), function (v) {
-                if (!v.Produk().Price()) {
-                    total += 0;
-                } else {
-                    total += v.Produk().Price();
-
-                }
-            });
-            if (entity().Pickup().Number() === undefined) {
-                grandTotal(total.toFixed(2));
-            } else {
-                total += 5.3;
-                grandTotal(total.toFixed(2));
-            }
+        deactivate = function () {
+            isPickupNumberValid(false);
+        },
+        schedulePickup = function () {
+            var data = ko.mapping.toJSON(entity);
+            context.put(data, "/consignment-request/schedule-pickup/" + ko.unwrap(entity().Id) + "")
+                .fail(function (response) {
+                    app.showMessage("Sorry, but we cannot process pickup for the Paid Order with Id : " + ko.unwrap(entity().Id), "Ost", ["OK"]).done(function () {
+                        router.navigate("consignment-requests-paid");
+                    });
+                })
+                .then(function (result) {
+                    console.log(result);
+                    if (result.success) {
+                        app.showMessage("Pickup successfully scheduled.", "Ost", ["OK"]).done(function () {
+                            router.activeItem().activate(result.id);
+                        });
+                    } else {
+                        console.log(result.status);
+                        app.showMessage("Sorry, but we cannot process pickup for the Paid Order with Id : " + result.id, "Ost", ["OK"]).done(function () {
+                            router.navigate("consignment-requests-paid");
+                        });
+                    }
+                });
         },
         generateConNotes = function () {
             var data = ko.mapping.toJSON(entity);
@@ -65,7 +71,7 @@ function (context, logger, router, system, chart, config, app) {
                 .then(function (result) {
                     console.log(result);
                     if (result.success) {
-                        app.showMessage("Tracking number successfully generated. You can now print your Consignment Note.", "Ost", ["OK"]).done(function () {
+                        app.showMessage("Tracking number successfully generated.", "Ost", ["OK"]).done(function () {
                             router.activeItem().activate(result.id);
                         });                        
                     } else {
@@ -84,11 +90,12 @@ function (context, logger, router, system, chart, config, app) {
         };
     var vm = {
         activate: activate,
+        deactivate: deactivate,
         config: config,
         attached: attached,
         errors: errors,
         isPickupNumberValid: isPickupNumberValid,
-        grandTotal: grandTotal,
+        schedulePickup: schedulePickup,
         generateConNotes: generateConNotes,
         entity: entity
     };

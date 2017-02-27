@@ -49,7 +49,8 @@ namespace web.sph.App_Code
                 total += consignment.Produk.Price;
             }
 
-            if (!string.IsNullOrEmpty(item.Pickup.Number))
+            if (!item.Pickup.DateReady.Equals(DateTime.MinValue) 
+                && !item.Pickup.DateClose.Equals(DateTime.MinValue))
             {
                 total += 5.30m;
             }
@@ -348,9 +349,7 @@ namespace web.sph.App_Code
 
         [HttpPut]
         [Route("schedule-pickup/{id}")]
-        public async Task<IHttpActionResult> SchedulePickup(string id,
-            [FromUri(Name = "timeReady")]string timeReady = "02:00 PM",
-            [FromUri(Name = "timeClose")]string timeClose = "06:30 PM")
+        public async Task<IHttpActionResult> ScheduleAndSavePickup(string id)
         {
             LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
             if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
@@ -359,7 +358,7 @@ namespace web.sph.App_Code
             var resultStatus = "OK";
             var item = lo.Source;
 
-            if (!item.Payment.IsPaid)
+            if (item.Payment.IsPaid)
             {
                 if (string.IsNullOrEmpty(item.Pickup.Number))
                 {
@@ -394,6 +393,10 @@ namespace web.sph.App_Code
                         {
                             totalWeight += consignment.Produk.Weight;
                         }
+                        string timeReady = item.Pickup.DateReady.ToShortTimeString();
+                        timeReady = sanitizeShortTimeString(timeReady);
+                        string timeClose = item.Pickup.DateClose.ToShortTimeString();
+                        timeClose = sanitizeShortTimeString(timeClose);
                         pairs.Add(new KeyValuePair<string, string>("totWeightF", totalWeight.ToString()));
                         pairs.Add(new KeyValuePair<string, string>("accNoF", "ENTT-OST-" + item.Id));
                         pairs.Add(new KeyValuePair<string, string>("_readyF", timeReady));
@@ -455,7 +458,7 @@ namespace web.sph.App_Code
             else
             {
                 resultSuccess = false;
-                resultStatus = "Consignment Request has been paid";
+                resultStatus = "Consignment Request has not been paid";
             }
 
             var result = new
@@ -526,6 +529,17 @@ namespace web.sph.App_Code
                 session.Attach(item);
                 await session.SubmitChanges("Default");
             }
+        }
+
+        private static string sanitizeShortTimeString(string timeReady)
+        {
+            var format = timeReady.Split(':');
+            if (format[0].Length == 1)
+            {
+                timeReady = "0" + timeReady;
+            }
+
+            return timeReady;
         }
     }
 

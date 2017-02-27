@@ -94,7 +94,7 @@ function (context, logger, router, system, chart, config, app) {
 
                 }
             });
-            if (entity().Pickup().Number() === undefined) {                
+            if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
                 grandTotal(total.toFixed(2));
             } else {
                 total += 5.3;
