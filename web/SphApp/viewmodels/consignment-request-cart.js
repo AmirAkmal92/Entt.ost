@@ -48,12 +48,6 @@ function (context, logger, router, system, chart, config, app, crCart) {
 
                 }
             });
-            //if (entity().Pickup().Number() === undefined) {
-            //    grandTotal(total.toFixed(2));
-            //} else {
-            //    total += 5.3;
-            //    grandTotal(total.toFixed(2));
-            //}
             grandTotal(total.toFixed(2));
         },
         defaultCommand = function () {
