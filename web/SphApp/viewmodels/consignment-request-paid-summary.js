@@ -4,7 +4,6 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
 function (context, logger, router, system, chart, config, app) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
-        isPickupNumberValid = ko.observable(false),
         errors = ko.observableArray(),
         id = ko.observable(),
         headers = {},
@@ -23,10 +22,6 @@ function (context, logger, router, system, chart, config, app) {
                         }
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
-                    if (entity().Pickup().Number() === undefined) {                        
-                    } else {
-                        isPickupNumberValid(true);
-                    }
                 }, function (e) {
                     if (e.status == 404) {
                         app.showMessage("Sorry, but we cannot find any Paid Order with Id : " + entityId, "Ost", ["OK"]).done(function () {
@@ -34,9 +29,6 @@ function (context, logger, router, system, chart, config, app) {
                         });
                     }
                 });
-        },
-        deactivate = function () {
-            isPickupNumberValid(false);
         },
         schedulePickup = function () {
             var data = ko.mapping.toJSON(entity);
@@ -90,11 +82,9 @@ function (context, logger, router, system, chart, config, app) {
         };
     var vm = {
         activate: activate,
-        deactivate: deactivate,
         config: config,
         attached: attached,
         errors: errors,
-        isPickupNumberValid: isPickupNumberValid,
         schedulePickup: schedulePickup,
         generateConNotes: generateConNotes,
         entity: entity

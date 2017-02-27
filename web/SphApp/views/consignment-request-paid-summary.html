@@ -15,7 +15,7 @@
                     <div class="col-md-6">
                         <div class="tab-pane active pull-right">
                             <div class="clearfix">
-                                <button class="btn btn-info" data-bind="click: $root.schedulePickup, visible: !$root.isPickupNumberValid()">
+                                <button class="btn btn-info" data-bind="click: $root.schedulePickup, visible: !Payment().IsPickupScheduled()">
                                     <i class="fa fa-list"></i> Shedule Pickup
                                 </button>
                                 <button class="btn btn-info" data-bind="click: $root.generateConNotes, visible: !Payment().IsConNoteReady()">
@@ -35,10 +35,10 @@
                             <div class="panel-body">
                                 <div class="col-md-6">
                                     <h4>Pickup Number</h4>
-                                    <span data-bind="text: Pickup().Number, visible: $root.isPickupNumberValid()"></span>
+                                    <span data-bind="text: Pickup().Number, visible: Payment().IsPickupScheduled()"></span>
                                     <br /><br />
                                     <h4>Pickup Date</h4>
-                                    <div data-bind="visible: $root.isPickupNumberValid()">
+                                    <div data-bind="visible: Payment().IsPickupScheduled()">
                                         Time Ready: <span data-bind="date:{ value: Pickup().DateReady, format:'D/M/YYYY HH:mm'}"></span><br />
                                         Time Close: <span data-bind="date:{ value: Pickup().DateClose, format:'D/M/YYYY HH:mm'}"></span><br />
                                         Total Quantity: <span data-bind="text: Pickup().TotalQuantity"></span> parcel(s)<br />
