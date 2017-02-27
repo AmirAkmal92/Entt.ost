@@ -9,6 +9,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         consignment = ko.observable(),
         pemberi = ko.observable(),
         availableCountries = ko.observableArray(),
+        isUsingPickupAddress = ko.observable(true),
         errors = ko.observableArray(),
         id = ko.observable(),
         crid = ko.observable(),
@@ -55,6 +56,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         }
                         if (editIndex != -1) {
                             consignment().Pemberi(entity().Consignments()[editIndex].Pemberi());
+                            consignment().Pemberi().Address().Country("MY");
                             cid(entity().Consignments()[i].WebId());
                         } else {
                             app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "Ost", ["OK"]).done(function () {
@@ -69,6 +71,9 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                             router.navigate("consignment-request-pickup/" + crId);
                         });
                     }
+
+                    // toggle Address Source
+                    togglePemberiAddressSource();
                 }, function (e) {
                     if (e.status == 404) {
                         app.showMessage("Sorry, but we cannot find any ConsigmentRequest with Id : " + crId, "Ost", ["OK"]).done(function () {
@@ -138,6 +143,9 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 });
             return tcs.promise();
         },
+        deactivate = function () {
+            isUsingPickupAddress(true);
+        },
         attached = function (view) {
             $("#sender-company-name").select2({
                 ajax: {
@@ -176,20 +184,35 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                    if (!contact) {
                        return;
                    }
-                   consignment().Pemberi().CompanyName(contact.CompanyName);
-                   consignment().Pemberi().ContactPerson(contact.ContactPerson);
-                   consignment().Pemberi().Address().Address1(contact.Address.Address1);
-                   consignment().Pemberi().Address().Address2(contact.Address.Address2);
-                   consignment().Pemberi().Address().Address3(contact.Address.Address3);
-                   consignment().Pemberi().Address().Address4(contact.Address.Address4);
-                   consignment().Pemberi().Address().Postcode(contact.Address.Postcode);
-                   consignment().Pemberi().Address().City(contact.Address.City);
-                   consignment().Pemberi().Address().State(contact.Address.State);
-                   consignment().Pemberi().Address().Country(contact.Address.Country);
-                   consignment().Pemberi().ContactInformation().Email(contact.ContactInformation.Email);
-                   consignment().Pemberi().ContactInformation().AlternativeContactNumber(contact.ContactInformation.AlternativeContactNumber);
-                   consignment().Pemberi().ContactInformation().ContactNumber(contact.ContactInformation.ContactNumber);
+                   fillUpContact(contact);
                });
+        },
+        togglePemberiAddressSource = function () {
+            if (isUsingPickupAddress()) {
+                fillUpContact(ko.toJS(entity().Pickup()))
+            } else {
+                fillUpContact(ko.toJS(new bespoke.Ost_consigmentRequest.domain.Pemberi(system.guid())));
+                consignment().Pemberi().Address().Country("MY");
+            }
+        },
+        toggleIsUsingPickupAddress = function () {
+            isUsingPickupAddress(!isUsingPickupAddress());
+            togglePemberiAddressSource();
+        },
+        fillUpContact = function (contact) {
+            consignment().Pemberi().CompanyName(contact.CompanyName);
+            consignment().Pemberi().ContactPerson(contact.ContactPerson);
+            consignment().Pemberi().Address().Address1(contact.Address.Address1);
+            consignment().Pemberi().Address().Address2(contact.Address.Address2);
+            consignment().Pemberi().Address().Address3(contact.Address.Address3);
+            consignment().Pemberi().Address().Address4(contact.Address.Address4);
+            consignment().Pemberi().Address().Postcode(contact.Address.Postcode);
+            consignment().Pemberi().Address().City(contact.Address.City);
+            consignment().Pemberi().Address().State(contact.Address.State);
+            consignment().Pemberi().Address().Country(contact.Address.Country);
+            consignment().Pemberi().ContactInformation().Email(contact.ContactInformation.Email);
+            consignment().Pemberi().ContactInformation().AlternativeContactNumber(contact.ContactInformation.AlternativeContactNumber);
+            consignment().Pemberi().ContactInformation().ContactNumber(contact.ContactInformation.ContactNumber);
         },
         compositionComplete = function () {
 
@@ -214,11 +237,14 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
     var vm = {
         partial: partial,
         activate: activate,
+        deactivate: deactivate,
         config: config,
         attached: attached,
         compositionComplete: compositionComplete,
         entity: entity,
         availableCountries: availableCountries,
+        isUsingPickupAddress: isUsingPickupAddress,
+        toggleIsUsingPickupAddress: toggleIsUsingPickupAddress,
         errors: errors,
         crid: crid,//temp
         cid: cid,//temp

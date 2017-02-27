@@ -134,12 +134,12 @@
                                         </td>
                                         <td class="hidden-xs">
                                             <!--ko ifnot: Produk().IsInternational-->
-                                            <a class="btn btn-info" title="Print Consignment Note" data-bind="attr: { href: 'ost/print-domestic-connote/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }">
+                                            <a class="btn btn-info" title="Print Consignment Note" data-bind="attr: { href: 'ost/print-domestic-connote/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }" target="_blank">
                                                 <i class="fa fa-print"></i>
                                             </a>
                                             <!-- /ko -->
                                             <!--ko if: Produk().IsInternational-->
-                                            <a class="btn btn-info" title="Print Consignment Note" data-bind="attr: { href: 'ost/print-international-connote/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }">
+                                            <a class="btn btn-info" title="Print Consignment Note" data-bind="attr: { href: 'ost/print-international-connote/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }" target="_blank">
                                                 <i class="fa fa-print"></i>
                                             </a>
                                             <!-- /ko -->

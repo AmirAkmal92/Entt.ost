@@ -55,6 +55,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         }
                         if (editIndex != -1) {
                             consignment().Penerima(entity().Consignments()[editIndex].Penerima());
+                            consignment().Penerima().Address().Country("MY");
                             cid(entity().Consignments()[i].WebId());
                         } else {
                             app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "Ost", ["OK"]).done(function () {
