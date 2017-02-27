@@ -49,7 +49,7 @@ namespace web.sph.App_Code
                 total += consignment.Produk.Price;
             }
 
-            if (!item.Pickup.DateReady.Equals(DateTime.MinValue) 
+            if (!item.Pickup.DateReady.Equals(DateTime.MinValue)
                 && !item.Pickup.DateClose.Equals(DateTime.MinValue))
             {
                 total += 5.30m;
@@ -119,53 +119,63 @@ namespace web.sph.App_Code
             var item = lo.Source;
 
             var totalConsignments = item.Consignments.Count;
-            if (totalConsignments > 0)
+
+            if (item.Payment.IsPaid)
             {
                 if (!item.Payment.IsConNoteReady)
                 {
-                    var client = new HttpClient();
-                    client.DefaultRequestHeaders.Add("x-user-key", m_sdsSecretKey_GenerateConnote);
-
-                    List<KeyValuePair<string, string>> pairs = new List<KeyValuePair<string, string>>();
-                    //TODO: need more information from API provider; hardcode for now
-                    pairs.Add(new KeyValuePair<string, string>("Prefix", "ES"));
-                    pairs.Add(new KeyValuePair<string, string>("ApplicationCode", "OST"));
-                    pairs.Add(new KeyValuePair<string, string>("Secretid", "ost@1234"));
-                    pairs.Add(new KeyValuePair<string, string>("username", "entt.ost"));
-                    pairs.Add(new KeyValuePair<string, string>("numberOfItem", totalConsignments.ToString()));
-                    pairs.Add(new KeyValuePair<string, string>("Orderid", item.Id));
-
-                    var content = new FormUrlEncodedContent(pairs);
-                    var query = content.ReadAsStringAsync().Result;
-                    var output = await client.GetStringAsync(m_sdsBaseUrl + m_sdsApi_GenerateConnote + "?" + query);
-                    //TODO: check output for error and null
-                    var json = JObject.Parse(output);
-                    //TODO: check json for error and null
-
-                    if (json["StatusCode"].ToString() == "01")
+                    if (totalConsignments > 0)
                     {
-                        var conNotes = json["ConnoteNo"].ToString().Split('|');
-                        if (conNotes.Length >= item.Consignments.Count)
+                        var client = new HttpClient();
+                        client.DefaultRequestHeaders.Add("x-user-key", m_sdsSecretKey_GenerateConnote);
+
+                        List<KeyValuePair<string, string>> pairs = new List<KeyValuePair<string, string>>();
+                        //TODO: need more information from API provider; hardcode for now
+                        pairs.Add(new KeyValuePair<string, string>("Prefix", "ES"));
+                        pairs.Add(new KeyValuePair<string, string>("ApplicationCode", "OST"));
+                        pairs.Add(new KeyValuePair<string, string>("Secretid", "ost@1234"));
+                        pairs.Add(new KeyValuePair<string, string>("username", "entt.ost"));
+                        pairs.Add(new KeyValuePair<string, string>("numberOfItem", totalConsignments.ToString()));
+                        pairs.Add(new KeyValuePair<string, string>("Orderid", item.Id));
+
+                        var content = new FormUrlEncodedContent(pairs);
+                        var query = content.ReadAsStringAsync().Result;
+                        var output = await client.GetStringAsync(m_sdsBaseUrl + m_sdsApi_GenerateConnote + "?" + query);
+                        //TODO: check output for error and null
+                        var json = JObject.Parse(output);
+                        //TODO: check json for error and null
+
+                        if (json["StatusCode"].ToString() == "01")
                         {
-                            var count = 0;
-                            foreach (var conNote in conNotes)
+                            var conNotes = json["ConnoteNo"].ToString().Split('|');
+                            if (conNotes.Length >= item.Consignments.Count)
                             {
-                                item.Consignments[count].ConNote = conNote;
-                                count++;
+                                var count = 0;
+                                foreach (var conNote in conNotes)
+                                {
+                                    item.Consignments[count].ConNote = conNote;
+                                    count++;
+                                }
+                                item.Payment.IsConNoteReady = true;
+                                await SaveConsigmentRequest(item);
                             }
-                            item.Payment.IsConNoteReady = true;
-                            await SaveConsigmentRequest(item);
+                            else
+                            {
+                                resultSuccess = false;
+                                resultStatus = "Generated consignment note not enough";
+                            }
                         }
                         else
                         {
                             resultSuccess = false;
-                            resultStatus = "Generated consignment note not enough";
+                            resultStatus = "StatusCode: " + json["StatusCode"].ToString() + " Message: " + json["Message"].ToString();
                         }
                     }
                     else
                     {
                         resultSuccess = false;
-                        resultStatus = "StatusCode: " + json["StatusCode"].ToString() + " Message: " + json["Message"].ToString();
+                        resultStatus = "Consignment not found";
+
                     }
                 }
                 else
@@ -177,7 +187,7 @@ namespace web.sph.App_Code
             else
             {
                 resultSuccess = false;
-                resultStatus = "Consignment not found";
+                resultStatus = "Consignment Request has not been paid";
             }
 
             var result = new
@@ -360,7 +370,7 @@ namespace web.sph.App_Code
 
             if (item.Payment.IsPaid)
             {
-                if (string.IsNullOrEmpty(item.Pickup.Number))
+                if (!item.Payment.IsPickupScheduled)
                 {
                     if (!string.IsNullOrEmpty(item.Pickup.Address.Postcode))
                     {

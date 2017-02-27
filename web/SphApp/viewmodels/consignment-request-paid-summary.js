@@ -22,6 +22,20 @@ function (context, logger, router, system, chart, config, app) {
                         }
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
+                    //if (entity().Payment().IsPaid()) {
+                    //    if (!entity().Payment().IsPickupScheduled()) {
+                    //        if (entity().Pickup().Number() === undefined) {
+                    //            console.log("Schedule Pickup");
+                    //            schedulePickup();
+                    //        }
+                    //    }
+                    //    if (!entity().Payment().IsConNoteReady()) {
+                    //        if (entity().Consignments()[0].ConNote() === undefined) {
+                    //            console.log("Generate Connotes");
+                    //            generateConNotes();
+                    //        }
+                    //    }
+                    //}
                 }, function (e) {
                     if (e.status == 404) {
                         app.showMessage("Sorry, but we cannot find any Paid Order with Id : " + entityId, "Ost", ["OK"]).done(function () {
@@ -32,7 +46,7 @@ function (context, logger, router, system, chart, config, app) {
         },
         schedulePickup = function () {
             var data = ko.mapping.toJSON(entity);
-            context.put(data, "/consignment-request/schedule-pickup/" + ko.unwrap(entity().Id) + "")
+            return context.put(data, "/consignment-request/schedule-pickup/" +ko.unwrap(entity().Id) + "")
                 .fail(function (response) {
                     app.showMessage("Sorry, but we cannot process pickup for the Paid Order with Id : " + ko.unwrap(entity().Id), "Ost", ["OK"]).done(function () {
                         router.navigate("consignment-requests-paid");
@@ -54,7 +68,7 @@ function (context, logger, router, system, chart, config, app) {
         },
         generateConNotes = function () {
             var data = ko.mapping.toJSON(entity);
-            context.put(data, "/consignment-request/generate-con-notes/" + ko.unwrap(entity().Id) + "")
+            return context.put(data, "/consignment-request/generate-con-notes/" + ko.unwrap(entity().Id) + "")
                 .fail(function (response) {
                     app.showMessage("Sorry, but we cannot process tracking number for the Paid Order with Id : " + ko.unwrap(entity().Id), "Ost", ["OK"]).done(function () {
                         router.navigate("consignment-requests-paid");
@@ -65,7 +79,7 @@ function (context, logger, router, system, chart, config, app) {
                     if (result.success) {
                         app.showMessage("Tracking number successfully generated.", "Ost", ["OK"]).done(function () {
                             router.activeItem().activate(result.id);
-                        });                        
+                        });
                     } else {
                         console.log(result.status);
                         app.showMessage("Sorry, but we cannot process tracking number for the Paid Order with Id : " + result.id, "Ost", ["OK"]).done(function () {
