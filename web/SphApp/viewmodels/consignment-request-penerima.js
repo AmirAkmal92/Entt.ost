@@ -44,6 +44,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     if (!cId || cId === "0") {
                         consignment().Penerima(penerima());
                         entity().Consignments().push(consignment());
+                        consignment().Penerima().Address().Country("MY");
                         cid(consignment().WebId());
                     } else {
                         var editIndex = -1;
@@ -55,7 +56,9 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         }
                         if (editIndex != -1) {
                             consignment().Penerima(entity().Consignments()[editIndex].Penerima());
-                            consignment().Penerima().Address().Country("MY");
+                            if (consignment().Penerima().Address().Country() === undefined) {
+                                consignment().Penerima().Address().Country("MY");
+                            }
                             cid(entity().Consignments()[i].WebId());
                         } else {
                             app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "Ost", ["OK"]).done(function () {
