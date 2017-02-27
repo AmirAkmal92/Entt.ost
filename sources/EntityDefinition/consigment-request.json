@@ -1585,6 +1585,37 @@
                 "WebId": "eea44ea7-37d7-46f9-9647-a6566ac8cb44"
               },
               "WebId": "560a33cf-e4c9-4463-e7e9-b41e4cb35e6a"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+              "TypeName": "System.Boolean, mscorlib",
+              "IsNullable": false,
+              "IsNotIndexed": false,
+              "IsAnalyzed": false,
+              "IsFilterable": false,
+              "IsExcludeInAll": false,
+              "Boost": 4,
+              "FullName": null,
+              "PropertyAttribute": null,
+              "MemberCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "FieldPermissionCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "Name": "IsPickupScheduled",
+              "AllowMultiple": false,
+              "DefaultValue": {
+                "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+                "TypeName": "System.Boolean, mscorlib",
+                "Value": false,
+                "Name": "false",
+                "Note": "",
+                "WebId": "42cecaa1-1c3b-437e-ba8c-839fa1a0dc75"
+              },
+              "WebId": "d334346e-c42a-4178-a744-478d404e8b3b"
             }
           ]
         },
@@ -3171,6 +3202,30 @@
                 "$values": [
                   {
                     "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+                    "TypeName": "System.String, mscorlib",
+                    "IsNullable": false,
+                    "IsNotIndexed": false,
+                    "IsAnalyzed": false,
+                    "IsFilterable": false,
+                    "IsExcludeInAll": false,
+                    "Boost": 0,
+                    "FullName": null,
+                    "PropertyAttribute": null,
+                    "MemberCollection": {
+                      "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+                      "$values": []
+                    },
+                    "FieldPermissionCollection": {
+                      "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+                      "$values": []
+                    },
+                    "Name": "ItemCategory",
+                    "AllowMultiple": false,
+                    "DefaultValue": null,
+                    "WebId": "bb770a5e-cb60-4bea-cb63-ca68f2c1ec60"
+                  },
+                  {
+                    "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
                     "TypeName": "System.Decimal, mscorlib",
                     "IsNullable": false,
                     "IsNotIndexed": false,
@@ -3526,6 +3581,6 @@
   "Id": "consigment-request",
   "CreatedDate": "2016-10-29T07:26:06.8492482+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-22T11:09:49.5005882+08:00",
+  "ChangedDate": "2017-02-27T20:53:25.6121235+08:00",
   "WebId": "b8808d89-54c8-4d91-8396-7627974f1138"
 }
