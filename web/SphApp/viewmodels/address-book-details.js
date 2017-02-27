@@ -155,22 +155,17 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         entity: entity,
         availableCountries: availableCountries,
         errors: errors,
-        toolbar: {
-            removeCommand: remove,
-            canExecuteRemoveCommand: ko.computed(function () {
-                return entity().Id();
-            }),
-            saveCommand: saveCommand,
-            canExecuteSaveCommand: ko.computed(function () {
-                if (typeof partial.canExecuteSaveCommand === "function") {
-                    return partial.canExecuteSaveCommand();
-                }
-                return true;
-            }),
-
-        }, // end toolbar
-
-        commands: ko.observableArray([])
+        removeCommand: remove,
+        canExecuteRemoveCommand: ko.computed(function () {
+            return entity().Id();
+        }),
+        saveCommand: saveCommand,
+        canExecuteSaveCommand: ko.computed(function () {
+            if (typeof partial.canExecuteSaveCommand === "function") {
+                return partial.canExecuteSaveCommand();
+            }
+            return true;
+        })
     };
 
     return vm;
