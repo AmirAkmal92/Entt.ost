@@ -15,7 +15,7 @@
                     <div class="col-md-6 invoice-block">
                         <div class="tab-pane active">
                             <div class="clearfix pull-right">
-                                <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }, css: { 'disabled': $root.isPickupNumberValid() }" class="btn btn-info">
+                                <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }, css: { 'disabled': $root.isPickupDateTimeValid() }" class="btn btn-info">
                                     <i class="fa fa-paper-plane"></i> Add More Parcel
                                 </a>
                                 <a data-bind="attr: { href: 'ost#consignment-request-summary/' + Id() }, css: { 'disabled': Consignments().length == 0 }" class="btn btn-warning">
@@ -55,17 +55,17 @@
                                     <!--ko foreach: Consignments-->
                                     <tr>
                                         <td class="hidden-xs">
-                                            <a class="btn btn-link btn-sm" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': $root.isPickupNumberValid() }">
+                                            <a class="btn btn-link btn-sm" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': $root.isPickupDateTimeValid() }">
                                                 <span data-bind="text: Pemberi().ContactPerson"></span>
                                             </a>
                                         </td>
                                         <td class="hidden-xs">
-                                            <a class="btn btn-link btn-sm" data-bind="attr: { href: 'ost#consignment-request-penerima/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': $root.isPickupNumberValid() }">
+                                            <a class="btn btn-link btn-sm" data-bind="attr: { href: 'ost#consignment-request-penerima/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': $root.isPickupDateTimeValid() }">
                                                 <span data-bind="text: Penerima().ContactPerson"></span>
                                             </a>
                                         </td>
                                         <td class="hidden-xs">
-                                            <a class="btn btn-link btn-sm" data-bind="attr: { href: 'ost#consignment-request-produk/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': $root.isPickupNumberValid() }">
+                                            <a class="btn btn-link btn-sm" data-bind="attr: { href: 'ost#consignment-request-produk/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': $root.isPickupDateTimeValid() }">
                                                 <!--ko if: Produk().Weight() != null-->
                                                 <span data-bind="text: Produk().Weight() + ' kg'"></span>
                                                 <!-- /ko -->
@@ -82,10 +82,10 @@
                                             <!-- /ko -->
                                         </td>
                                         <td>
-                                            <a class="btn btn-xs btn-success" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': $root.isPickupNumberValid() }">
+                                            <a class="btn btn-xs btn-success" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': $root.isPickupDateTimeValid() }">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
-                                            <a class="btn btn-xs btn-danger" data-bind="click: $root.deleteConsignment, css: { 'disabled': $root.isPickupNumberValid() }">
+                                            <a class="btn btn-xs btn-danger" data-bind="click: $root.deleteConsignment, css: { 'disabled': $root.isPickupDateTimeValid() }">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </td>

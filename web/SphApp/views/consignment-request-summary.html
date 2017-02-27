@@ -30,13 +30,13 @@
                             <div class="panel-body">
                                 <div class="col-md-6">
                                     <h4>Pickup Number</h4>
-                                    <a data-bind="click: $root.toggleShowPickupScheduleForm, visible: !$root.isPickupNumberValid()">Schedule a Pickup</a>
-                                    <span data-bind="text: Pickup().Number, visible: $root.isPickupNumberValid()"></span>
+                                    <a data-bind="click: $root.toggleShowPickupScheduleForm, visible: !$root.isPickupDateTimeValid()">Schedule a Pickup</a>
+                                    <span data-bind="visible: $root.isPickupDateTimeValid()">Pending payment approval</span>
                                     <br /><br />                                    
-                                    <div data-bind="visible: $root.isPickupNumberValid()">
+                                    <div data-bind="visible: $root.isPickupDateTimeValid()">
                                         <h4>Pickup Date</h4>
-                                        Time Ready: <span data-bind="text: Pickup().DateReady"></span><br />
-                                        Time Close: <span data-bind="text: Pickup().DateClose"></span><br />
+                                        Time Ready: <span data-bind="date:{ value: Pickup().DateReady, format:'HH:mm'}"></span><br />
+                                        Time Close: <span data-bind="date:{ value: Pickup().DateClose, format:'HH:mm'}"></span><br />
                                         Total Quantity: <span data-bind="text: Pickup().TotalQuantity"></span> parcel(s)<br />
                                         Total Weight: <span data-bind="text: Pickup().TotalWeight"></span> kg<br />
                                     </div>
@@ -99,7 +99,7 @@
                                     <h4>Pickup Address</h4>
                                     <address>
                                         <strong><span data-bind="text: Pickup().ContactPerson"></span></strong><br />
-                                        <a href="mailto:#"><span data-bind="text: Pickup().ContactInformation().Email"></span></a>
+                                        <span data-bind="text: Pickup().ContactInformation().Email"></span>
                                     </address>
                                     <address>
                                         <strong><span data-bind="text: Pickup().CompanyName"></span></strong><br />
@@ -193,13 +193,13 @@
                                     <tr>
                                         <td>&nbsp;</td>
 
-                                        <td data-bind="visible: !$root.isPickupNumberValid()" colspan="5">
+                                        <td data-bind="visible: !$root.isPickupDateTimeValid()" colspan="5">
                                             Pickup not scheduled. Please <a data-bind="click: $root.toggleShowPickupScheduleForm">Schedule a Pickup</a> before payment can be made.
                                         </td>
-                                        <td data-bind="visible: !$root.isPickupNumberValid()">RM <span class="pull-right">0.00</span></td>
+                                        <td data-bind="visible: !$root.isPickupDateTimeValid()">RM <span class="pull-right">0.00</span></td>
 
-                                        <td data-bind="visible: $root.isPickupNumberValid()" colspan="5">Pickup</td>
-                                        <td data-bind="visible: $root.isPickupNumberValid()">RM <span class="pull-right">5.30</span></td>
+                                        <td data-bind="visible: $root.isPickupDateTimeValid()" colspan="5">Pickup</td>
+                                        <td data-bind="visible: $root.isPickupDateTimeValid()">RM <span class="pull-right">5.30</span></td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;</td>
@@ -213,15 +213,15 @@
                 </div>
                 <div class="row">
                     <div class="pull-right">
-                        <a class="btn btn-info" data-bind="attr: { href: 'ost#consignment-request-cart/' + Id() }, css: { 'disabled': $root.isPickupNumberValid() }">
+                        <a class="btn btn-info" data-bind="attr: { href: 'ost#consignment-request-cart/' + Id() }, css: { 'disabled': $root.isPickupDateTimeValid() }">
                             <i class="fa fa-shopping-cart"></i>
                             Shopping Cart
                         </a>
-                        <a href="#" class="btn btn-info" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }, css: { 'disabled': $root.isPickupNumberValid() }">
+                        <a href="#" class="btn btn-info" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }, css: { 'disabled': $root.isPickupDateTimeValid() }">
                             <i class="fa fa-paper-plane"></i>
                             Add More Parcel
                         </a>
-                        <a href="#" class="btn btn-warning" data-bind="click: $root.goToPayment, css: { 'disabled': !$root.isPickupNumberValid() }">
+                        <a href="#" class="btn btn-warning" data-bind="click: $root.goToPayment, css: { 'disabled': !$root.isPickupDateTimeValid() }">
                             <i class="fa fa-credit-card"></i>
                             Pay Now
                         </a>
