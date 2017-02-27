@@ -52,7 +52,19 @@
                 <div class="form-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <h3 class="form-section" data-bind="visible:true">Volumetric</h3>
+                            <h3 class="form-section" data-bind="visible:true">Parcel Details</h3>
+                            <div class="row form-group " data-bind="if: consignment().Penerima().Address().Country() != 'MY'">
+                                <label data-i18n="ItemCategory" class="col-md-4 control-label" for="c28f91ae-ae5d-448e-991f-5b4065d3464f">Item Category</label>
+                                <div class="col-md-8">
+                                    <select class="form-control"
+                                            data-bind="value: consignment().Produk().ItemCategory"
+                                            id="c28f91ae-ae5d-448e-991f-5b4065d3464f" name="Produk.ItemCategory">
+                                        <option value="document">Document (Less than 1.000kg)</option>
+                                        <option value="merchandise">Merchandise (From 0.001 to 30.000kg)</option>
+                                    </select>
+                                    <span class="help-block">&nbsp;</span>
+                                </div>
+                            </div>
                             <div class="row form-group " data-bind="visible:true">
                                 <label data-i18n="Weight" class="col-md-4 control-label" for="6465286c-a3af-46de-e7d8-0499b6bf7cf4">Weight</label>
                                 <div class="col-md-8">
@@ -61,7 +73,7 @@
                                            data-bind="value: consignment().Produk().Weight"
                                            data-rule-number="true" data-rule-required="true"
                                            data-rule-min="0"
-                                           data-rule-max="100"
+                                           data-rule-max="30"
                                            id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Produk.Weight">
                                     <div class="form-control-focus"> </div>
                                     <span class="help-block">Weight in kg</span>
@@ -70,10 +82,10 @@
                             <div class="row form-group" data-bind="visible:true">
                                 <label data-i18n="Width" class="col-md-4 control-label" for="61040711-a759-4cf8-ea32-47b1cdee2f44">Width</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" type="text"
+                                    <input class="form-control" required type="text"
                                            placeholder=""
                                            data-bind="value: consignment().Produk().Width"
-                                           data-rule-number="true"
+                                           data-rule-number="true" data-rule-required="true"
                                            id="61040711-a759-4cf8-ea32-47b1cdee2f44" name="Produk.Width">
                                     <div class="form-control-focus"> </div>
                                     <span class="help-block">Width in cm</span>
@@ -82,27 +94,41 @@
                             <div class="row form-group" data-bind="visible:true">
                                 <label data-i18n="Length" class="col-md-4 control-label" for="38c9d5fd-8458-4ce4-9575-da6edf8b0c9d">Length</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" type="text"
+                                    <input class="form-control" required type="text"
                                            placeholder=""
                                            data-bind="value: consignment().Produk().Length"
-                                           data-rule-number="true"
+                                           data-rule-number="true" data-rule-required="true"
                                            id="38c9d5fd-8458-4ce4-9575-da6edf8b0c9d" name="Produk.Length">
                                     <div class="form-control-focus"> </div>
-                                    <span class="help-block">Length  in cm</span>
+                                    <span class="help-block">Length in cm</span>
                                 </div>
                             </div>
                             <div class="row form-group" data-bind="visible:true">
                                 <label data-i18n="Height" class="col-md-4 control-label" for="a044e320-f819-4adf-fc9d-f130079818fe">Height</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" type="text"
+                                    <input class="form-control" required type="text"
                                            placeholder=""
                                            data-bind="value: consignment().Produk().Height"
-                                           data-rule-number="true"
+                                           data-rule-number="true" data-rule-required="true"
                                            id="a044e320-f819-4adf-fc9d-f130079818fe" name="Produk.Height">
                                     <div class="form-control-focus"> </div>
-                                    <span class="help-block">Height  in cm</span>
+                                    <span class="help-block">Height in cm</span>
                                 </div>
                             </div>
+
+                            <div class="row form-group" data-bind="visible:true">
+                                <label data-i18n="Volumetric" class="col-md-4 control-label" for="92b7aa5e-3ce5-4b46-9877-f1fd62fab1ce">Volumetric Weight</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="text"
+                                           placeholder=""
+                                           data-bind="value: $root.volumetric().toFixed(2)"
+                                           data-rule-number="true"
+                                           id="92b7aa5e-3ce5-4b46-9877-f1fd62fab1ce" name="Volumetric" disabled />
+                                    <div class="form-control-focus"> </div>
+                                    <span class="help-block">Volumetric weight in kg</span>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="col-md-6">
                             <h3 class="form-section" data-bind="visible:true">Description</h3>
@@ -168,7 +194,7 @@
                                     <!--ko if: IsSelected-->
                                     <div data-bind="with: UserInputs()[0]">
                                         <div class="row form-group" data-bind="visible:true">
-                                            <label data-i18n="Weight" class="col-md-4 control-label" for="b85482e0-231c-4008-a218-ca095966fddc"><span data-bind="text: $parent.Name"></span></label>
+                                            <label data-i18n="Weight" class="col-md-4 control-label" for="b85482e0-231c-4008-a218-ca095966fddc">Insurance</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <div class="input-group-addon">RM</div>

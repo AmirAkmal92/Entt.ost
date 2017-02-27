@@ -9,6 +9,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         consignment = ko.observable(),
         produk = ko.observable(),
         products = ko.observableArray(),
+        volumetric = ko.observable(0),
         errors = ko.observableArray(),
         id = ko.observable(),
         crid = ko.observable(),
@@ -73,6 +74,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     consignment().Produk().ValueAddedCode("");
                     consignment().Produk().ValueAddedValue(0);
                     consignment().Produk().ValueAddedDeclaredValue(0);
+                    volumetric(0);
 
                     // always check for pickup location 
                     if (entity().Pickup().Address().Postcode() === undefined) {
@@ -104,7 +106,6 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return tcs.promise();
 
         },
-
         defaultCommand = function () {
             var data = ko.mapping.toJSON(entity),
                 tcs = new $.Deferred();
@@ -138,6 +139,40 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 partial.attached(view);
             }
 
+            consignment().Produk().Weight.subscribe(function (newWeight) {
+                if (consignment().Penerima().Address().Country() == "MY") { // domestic
+                    // Max weight 30.000kg
+                    if (newWeight > 30) {
+                        consignment().Produk().Weight(30.000);
+                    }
+                    if (newWeight <= 0) {
+                        consignment().Produk().Weight(0.001);
+                    }
+                } else { // international
+                    if (consignment().Produk().ItemCategory() === "merchandise") {
+                        // From 0.001 to 30.000kg
+                        if (newWeight > 30) {
+                            consignment().Produk().Weight(30.000);
+                        }
+                        if (newWeight <= 0) {
+                            consignment().Produk().Weight(0.001);
+                        }
+                    } else if (consignment().Produk().ItemCategory() === "document") {
+                        // Less than 1.000kg
+                        if (newWeight > 1) {
+                            consignment().Produk().Weight(1.000);
+                        }
+                        if (newWeight <= 0) {
+                            consignment().Produk().Weight(0.001);
+                        }
+                    } else {
+                        // Max weight 30.000kg
+                        if (newWeight > 30) {
+                            consignment().Produk().Weight(30.000);
+                        }
+                    }
+                }
+            });
         },
         compositionComplete = function () {
 
@@ -155,6 +190,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 consignment().Pemberi(entity().Consignments()[editIndex].Pemberi());
                 consignment().Penerima(entity().Consignments()[editIndex].Penerima());
             }
+            calculatvolumetric();
             return context.get("ost/snb-services/products/?from=" + consignment().Pemberi().Address().Postcode()
                                 + "&to=" + consignment().Penerima().Address().Postcode()
                                 + "&country=" + consignment().Penerima().Address().Country()
@@ -211,7 +247,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         },
         recalculatePrice = function (serviceModel) {
             console.log(ko.toJS(serviceModel));
-
+            calculatvolumetric();
             return function () {
 
                 var editIndex = -1;
@@ -264,6 +300,14 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 });
             };
         },
+        calculatvolumetric = function () {
+            var vlmtrc = 0;
+            w = consignment().Produk().Width();
+            l = consignment().Produk().Length();
+            h = consignment().Produk().Height();
+            vlmtrc = (w * l * h) / 6000;
+            volumetric(vlmtrc);
+        },
         saveCommand = function () {
             return defaultCommand()
                 .then(function (result) {
@@ -287,6 +331,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         compositionComplete: compositionComplete,
         entity: entity,
         products: products,
+        volumetric: volumetric,
         errors: errors,
         crid: crid,//temp
         cid: cid,//temp
