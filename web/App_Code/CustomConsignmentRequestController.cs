@@ -109,7 +109,7 @@ namespace web.sph.App_Code
 
         [HttpPut]
         [Route("generate-con-notes/{id}")]
-        public async Task<IHttpActionResult> GenerateConNotes(string id)
+        public async Task<IHttpActionResult> GenerateAndSaveConNotes(string id)
         {
             LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
             if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
@@ -435,6 +435,7 @@ namespace web.sph.App_Code
                             item.Pickup.TotalParcel = totalConsignments;
                             item.Pickup.TotalQuantity = totalConsignments;
                             item.Pickup.TotalWeight = totalWeight;
+                            item.Payment.IsPickupScheduled = true;
                             await SaveConsigmentRequest(item);
                         }
                         else
