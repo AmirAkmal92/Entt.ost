@@ -62,10 +62,9 @@
                                     <span class="checkboxes label label-md label-danger fa fa-check"></span>
                                 </a>
                             </th>
-                            <th>Reference No</th>
+                            <th>Email</th>
                             <th>Contact Person</th>
                             <th>Company Name</th> 
-                            <th>Email</th>
                             <th>Group</th>
                         </tr>
                     </thead>
@@ -80,12 +79,11 @@
                             <td>
                                 <a class="contact-item" data-bind="attr : {href:'#address-book-details' + '/' + Id , 'data-id' : Id}" title="To add to a group drag it to the group panel on the left">
                                     <i class="icon-user"></i>
-                                    <span data-bind="text:ReferenceNo"></span>
+                                    <span data-bind="text:ContactInformation.Email"></span>
                                 </a>
                             </td>
                             <td data-bind="text:ContactPerson"></td>
                             <td data-bind="text:CompanyName"></td> 
-                            <td data-bind="text:ContactInformation.Email"></td>
                             <td data-bind="text:Groups"></td>
                         </tr>
                     </tbody>
