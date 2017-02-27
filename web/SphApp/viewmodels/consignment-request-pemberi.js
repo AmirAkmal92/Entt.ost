@@ -56,6 +56,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         }
                         if (editIndex != -1) {
                             consignment().Pemberi(entity().Consignments()[editIndex].Pemberi());
+                            consignment().Pemberi().Address().Country("MY");
                             cid(entity().Consignments()[i].WebId());
                         } else {
                             app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "Ost", ["OK"]).done(function () {
@@ -191,6 +192,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 fillUpContact(ko.toJS(entity().Pickup()))
             } else {
                 fillUpContact(ko.toJS(new bespoke.Ost_consigmentRequest.domain.Pemberi(system.guid())));
+                consignment().Pemberi().Address().Country("MY");
             }
         },
         toggleIsUsingPickupAddress = function () {

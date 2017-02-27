@@ -54,6 +54,9 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 }).always(function () {
                     context.get("/api/countries/available-country?size=300").done(function (cList) {
                         availableCountries(cList._results);
+                        if (entityId === "0") {
+                            entity().Address().Country("MY");
+                        }
                     });
                     if (typeof partial.activate === "function") {
                         partial.activate(ko.unwrap(entity))
