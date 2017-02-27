@@ -36,8 +36,8 @@
                                     <br /><br />
                                     <h4>Pickup Date</h4>
                                     <div data-bind="visible: $root.isPickupNumberValid()">
-                                        Time Ready: <span data-bind="text: Pickup().DateReady"></span><br />
-                                        Time Close: <span data-bind="text: Pickup().DateClose"></span><br />
+                                        Time Ready: <span data-bind="date:{ value: Pickup().DateReady, format:'D/M/YYYY HH:mm'}"></span><br />
+                                        Time Close: <span data-bind="date:{ value: Pickup().DateClose, format:'D/M/YYYY HH:mm'}"></span><br />
                                         Total Quantity: <span data-bind="text: Pickup().TotalQuantity"></span> parcel(s)<br />
                                         Total Weight: <span data-bind="text: Pickup().TotalWeight"></span> kg<br />
                                     </div>
@@ -46,7 +46,7 @@
                                     <h4>Pickup Address</h4>
                                     <address>
                                         <strong><span data-bind="text: Pickup().ContactPerson"></span></strong><br />
-                                        <a href="mailto:#"><span data-bind="text: Pickup().ContactInformation().Email"></span></a>
+                                        <span data-bind="text: Pickup().ContactInformation().Email"></span>
                                     </address>
                                     <address>
                                         <strong><span data-bind="text: Pickup().CompanyName"></span></strong><br />

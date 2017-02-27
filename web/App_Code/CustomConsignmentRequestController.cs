@@ -276,6 +276,77 @@ namespace web.sph.App_Code
         }
 
         [HttpPut]
+        [Route("propose-pickup/{id}")]
+        public async Task<IHttpActionResult> ProposePickup(string id,
+            [FromUri(Name = "timeReady")]string timeReady = "02:00 PM",
+            [FromUri(Name = "timeClose")]string timeClose = "06:30 PM")
+        {
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
+            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
+
+            var resultSuccess = true;
+            var resultStatus = "OK";
+            var item = lo.Source;
+
+            if (!item.Payment.IsPaid)
+            {
+                if (string.IsNullOrEmpty(item.Pickup.Number))
+                {
+                    if (!string.IsNullOrEmpty(item.Pickup.Address.Postcode))
+                    {
+                        DateTime tReady = DateTime.ParseExact(timeReady, "hh:mm tt",
+                           CultureInfo.InvariantCulture);
+                        DateTime tClose = DateTime.ParseExact(timeClose, "hh:mm tt",
+                                                            CultureInfo.InvariantCulture);
+                        var totalConsignments = item.Consignments.Count;
+                        decimal totalWeight = 0;
+                        foreach (var consignment in item.Consignments)
+                        {
+                            totalWeight += consignment.Produk.Weight;
+                        }
+
+                        item.Pickup.DateReady = tReady;
+                        item.Pickup.DateClose = tClose;
+                        item.Pickup.TotalDocument = 0;
+                        item.Pickup.TotalMerchandise = 0;
+                        item.Pickup.TotalParcel = totalConsignments;
+                        item.Pickup.TotalQuantity = totalConsignments;
+                        item.Pickup.TotalWeight = totalWeight;
+                        await SaveConsigmentRequest(item);
+                    }
+                    else
+                    {
+                        resultSuccess = false;
+                        resultStatus = "Postcode is mandatory";
+                    }
+                }
+                else
+                {
+                    resultSuccess = false;
+                    resultStatus = "Pickup was already scheduled";
+                }
+            }
+            else
+            {
+                resultSuccess = false;
+                resultStatus = "Consignment Request has been paid";
+            }
+
+            var result = new
+            {
+                success = resultSuccess,
+                status = resultStatus,
+                id = item.Id,
+                pickup_ready = item.Pickup.DateReady.ToString(),
+                pickup_close = item.Pickup.DateClose.ToString()
+            };
+
+            // wait until the worker process it
+            await Task.Delay(1500);
+            return Accepted(result);
+        }
+
+        [HttpPut]
         [Route("schedule-pickup/{id}")]
         public async Task<IHttpActionResult> SchedulePickup(string id,
             [FromUri(Name = "timeReady")]string timeReady = "02:00 PM",

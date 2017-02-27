@@ -72,6 +72,14 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         });
                     }
 
+                    // always check for pickup schedule
+                    if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
+                    } else {
+                        app.showMessage("Pickup has been scheduled. No more changes are allowed to the Sender. You may proceed to make Payment now.", "Ost", ["OK"]).done(function () {
+                            router.navigate("consignment-request-summary/" + crId);
+                        });
+                    }
+
                     // toggle Address Source
                     togglePemberiAddressSource();
                 }, function (e) {

@@ -4,7 +4,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
 function (context, logger, router, system, chart, config, app) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
-        isPickupNumberValid = ko.observable(false),
+        isPickupDateTimeValid = ko.observable(false),
         showPickupScheduleForm = ko.observable(false),
         pickupReadyHH = ko.observable(),
         pickupReadyMM = ko.observable(),
@@ -29,10 +29,10 @@ function (context, logger, router, system, chart, config, app) {
                         }
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
-                    if (entity().Pickup().Number() === undefined) {
+                    if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
                         app.showMessage("Pickup not scheduled. Please Schedule Pickup before payment can be made.", "Ost", ["OK"]);
                     } else {
-                        isPickupNumberValid(true);
+                        isPickupDateTimeValid(true);
                     }
                     calculateGrandTotal();
                 }, function (e) {
@@ -60,7 +60,7 @@ function (context, logger, router, system, chart, config, app) {
                 tReady = pickupReadyHH() + ":" + pickupReadyMM() + " PM",
                 tClose = pickupCloseHH() + ":" + pickupCloseMM() + " PM";
 
-            context.put(data, "/consignment-request/schedule-pickup/" + ko.unwrap(entity().Id) + "?timeReady=" + tReady + "&timeClose=" + tClose)
+            context.put(data, "/consignment-request/propose-pickup/" + ko.unwrap(entity().Id) + "?timeReady=" + tReady + "&timeClose=" + tClose)
                 .fail(function (response) {
                     app.showMessage("Sorry, but we cannot shedule a pickup for the Consignment Request with Id : " + ko.unwrap(entity().Id), "Ost", ["OK"]).done(function () {
                         router.navigate("consignment-requests-cart/" + ko.unwrap(entity().Id));
@@ -69,7 +69,7 @@ function (context, logger, router, system, chart, config, app) {
                 .then(function (result) {
                     console.log(result);
                     if (result.success) {
-                        app.showMessage("Pickup successfully scheduled with Pickup Number: " + result.pickup_number + ". You can now proceed with payment.", "Ost", ["OK"]).done(function () {
+                        app.showMessage("Pickup successfully scheduled. You can now proceed with Payment.", "Ost", ["OK"]).done(function () {
                             showPickupScheduleForm(false);
                             router.activeItem().activate(result.id);
                         });
@@ -118,7 +118,7 @@ function (context, logger, router, system, chart, config, app) {
         pickupCloseMM: pickupCloseMM,
         grandTotal: grandTotal,
         entity: entity,
-        isPickupNumberValid: isPickupNumberValid,
+        isPickupDateTimeValid: isPickupDateTimeValid,
         showPickupScheduleForm: showPickupScheduleForm,
         toggleShowPickupScheduleForm: toggleShowPickupScheduleForm,
         schedulePickup: schedulePickup,

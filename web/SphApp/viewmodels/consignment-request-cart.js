@@ -5,7 +5,7 @@ function (context, logger, router, system, chart, config, app, crCart) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),       
         grandTotal = ko.observable(),
-        isPickupNumberValid = ko.observable(false),
+        isPickupDateTimeValid = ko.observable(false),
         errors = ko.observableArray(),
         id = ko.observable(),
         headers = {},
@@ -24,10 +24,10 @@ function (context, logger, router, system, chart, config, app, crCart) {
                         }
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
-                    if (entity().Pickup().Number() === undefined) {
+                    if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
                     } else {
                         app.showMessage("Pickup has been scheduled. No more changes are allowed to the Shopping Cart. You may proceed to make Payment now.", "Ost", ["OK"]);
-                        isPickupNumberValid(true);
+                        isPickupDateTimeValid(true);
                     }
                     calculateGrandTotal();
                 }, function (e) {
@@ -118,7 +118,7 @@ function (context, logger, router, system, chart, config, app, crCart) {
         config: config,
         attached: attached,
         errors: errors,
-        isPickupNumberValid: isPickupNumberValid,
+        isPickupDateTimeValid: isPickupDateTimeValid,
         entity: entity,
         grandTotal: grandTotal,
         deleteConsignment: deleteConsignment

@@ -70,6 +70,14 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                             router.navigate("consignment-request-pickup/" + crId);
                         });
                     }
+
+                    // always check for pickup schedule
+                    if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
+                    } else {
+                        app.showMessage("Pickup has been scheduled. No more changes are allowed to the Receiver. You may proceed to make Payment now.", "Ost", ["OK"]).done(function () {
+                            router.navigate("consignment-request-summary/" + crId);
+                        });
+                    }
                 }, function (e) {
                     if (e.status == 404) {
                         app.showMessage("Sorry, but we cannot find any ConsigmentRequest with Id : " + crId, "Ost", ["OK"]).done(function () {
