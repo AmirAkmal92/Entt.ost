@@ -54,8 +54,16 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
+                                <i class="fa fa-toggle-on fa-2x" data-bind="visible: $root.isUsingPickupAddress()"></i>
+                                <i class="fa fa-toggle-off fa-2x" data-bind="visible: !$root.isUsingPickupAddress()"></i>
+                                <a class="btn btn-link" data-bind="click: $root.toggleIsUsingPickupAddress">
+                                    <label class="control-label" data-bind="visible: $root.isUsingPickupAddress()">Using Pickup Address. Change to Own Address?</label>
+                                    <label class="control-label" data-bind="visible: !$root.isUsingPickupAddress()">Using Own Address. Change to Pickup Address?</label>
+                                </a>
+                            </div>
+                            <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Search Contact</label>
-                                <select class="form-control" name="Pemberi.ContactPerson" id="sender-company-name"></select>
+                                <select class="form-control" name="Pemberi.ContactPerson" id="sender-company-name" data-bind="disable: $root.isUsingPickupAddress()"></select>
                             </div>
                         </div>
                     </div>
@@ -63,13 +71,13 @@
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Sender Name</label>
-                                <input required type="text" class="form-control" data-bind="value: Pemberi().ContactPerson" data-rule-required="true">
+                                <input required type="text" class="form-control" data-bind="value: Pemberi().ContactPerson, disable: $root.isUsingPickupAddress()" data-rule-required="true">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Company Name</label>
-                                <input required type="text" class="form-control" data-bind="value: Pemberi().CompanyName" data-rule-required="true" name="Pemberi.CompanyName">
+                                <input required type="text" class="form-control" data-bind="value: Pemberi().CompanyName, disable: $root.isUsingPickupAddress()" data-rule-required="true" name="Pemberi.CompanyName">
                             </div>
                         </div>
                     </div>
@@ -77,13 +85,13 @@
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Email</label>
-                                <input class="form-control" type="text" data-bind="value: Pemberi().ContactInformation().Email" data-rule-required="true" name="Pemberi.ContactInformation.Email">
+                                <input class="form-control" type="text" data-bind="value: Pemberi().ContactInformation().Email, disable: $root.isUsingPickupAddress()" data-rule-required="true" name="Pemberi.ContactInformation.Email">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Contact No.</label>
-                                <input class="form-control" type="text" data-bind="value: Pemberi().ContactInformation().ContactNumber" name="Pemberi.ContactInformation.ContactNumber">
+                                <input class="form-control" type="text" data-bind="value: Pemberi().ContactInformation().ContactNumber, disable: $root.isUsingPickupAddress()" name="Pemberi.ContactInformation.ContactNumber">
                             </div>
                         </div>
                     </div>
@@ -91,7 +99,7 @@
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Alternative Contact No.</label>
-                                <input required type="text" class="form-control" data-bind="value: Pemberi().ContactInformation().AlternativeContactNumber" name="Pemberi.ContactInformation.AlternativeContactNumber">
+                                <input required type="text" class="form-control" data-bind="value: Pemberi().ContactInformation().AlternativeContactNumber, disable: $root.isUsingPickupAddress()" name="Pemberi.ContactInformation.AlternativeContactNumber">
                             </div>
                         </div>
                     </div>
@@ -100,13 +108,13 @@
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Address 1</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Address1" name="Pemberi.Address.Address1">
+                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Address1, disable: $root.isUsingPickupAddress()" name="Pemberi.Address.Address1">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Address 2</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Address2" name="Pemberi.Address.Address2">
+                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Address2, disable: $root.isUsingPickupAddress()" name="Pemberi.Address.Address2">
                             </div>
                         </div>
                     </div>
@@ -114,13 +122,13 @@
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Address 3</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Address3" name="Pemberi.Address.Address3">
+                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Address3, disable: $root.isUsingPickupAddress()" name="Pemberi.Address.Address3">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Address 4</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Address4" name="Pemberi.Address.Address4">
+                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Address4, disable: $root.isUsingPickupAddress()" name="Pemberi.Address.Address4">
                             </div>
                         </div>
                     </div>
@@ -128,13 +136,13 @@
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Postcode</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Postcode" name="Pemberi.Address.Postcode">
+                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Postcode, disable: $root.isUsingPickupAddress()" name="Pemberi.Address.Postcode">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">City</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().City" name="Pemberi.Address.City">
+                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().City, disable: $root.isUsingPickupAddress()" name="Pemberi.Address.City">
                             </div>
                         </div>
                     </div>
@@ -142,14 +150,14 @@
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">State</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().State" name="Pemberi.Address.State">
+                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().State, disable: $root.isUsingPickupAddress()" name="Pemberi.Address.State">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Country</label>
                                 <!--<input type="text" class="form-control" data-bind="value: Pemberi().Address().Country, visible :true, autocomplete :{ entity:'Country', field :'Name', query:'Id ne \'0\'' }" name="Pemberi.Address.Country">-->
-                                <select class="form-control" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Pemberi().Address().Country"></select>
+                                <select class="form-control" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Pemberi().Address().Country, disable: $root.isUsingPickupAddress()"></select>
                             </div>
                         </div>
                     </div>
