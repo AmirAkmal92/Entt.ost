@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="portlet-body form">
-            <form data-bind="with: entity().Pickup()" role="form">
+            <form data-bind="with: entity().Pickup()" role="form" id="consignment-request-pickup-form">
                 <div class="form-body">
                     <h3 class="form-section"> Personal Info </h3>
                     <div class="row">
@@ -62,13 +62,15 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Sender Name</label>
+                                <label class="control-label">Sender Name
+                                    <span class="required" aria-required="true"> * </span></label>
                                 <input required type="text" class="form-control" data-bind="value: ContactPerson" data-rule-required="true" name="ContactPerson">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Company Name</label>
+                                <label class="control-label">Company Name
+                                    <span class="required" aria-required="true"> * </span></label>
                                 <input required type="text" class="form-control" data-bind="value: CompanyName" data-rule-required="true" name="CompanyName">
                             </div>
                         </div>
@@ -76,14 +78,16 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Email</label>
-                                <input class="form-control" type="text" data-bind="value: ContactInformation().Email" data-rule-required="true" name="ContactInformation.Email">
+                                <label class="control-label">Email
+                                    <span class="required" aria-required="true"> * </span></label>
+                                <input required class="form-control" type="email" data-bind="value: ContactInformation().Email" data-rule-required="true" name="ContactInformation.Email">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Contact No.</label>
-                                <input class="form-control" type="text" data-bind="value: ContactInformation().ContactNumber" name="ContactInformation.ContactNumber">
+                                <label class="control-label">Contact No.
+                                    <span class="required" aria-required="true"> * </span></label>
+                                <input required class="form-control" type="text" data-bind="value: ContactInformation().ContactNumber" name="ContactInformation.ContactNumber">
                             </div>
                         </div>
                     </div>
@@ -99,27 +103,29 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Address 1</label>
-                                <input type="text" class="form-control" data-bind="value: Address().Address1" name="Address.Address1">
+                                <label class="control-label">Address Line 1
+                                    <span class="required" aria-required="true"> * </span></label>
+                                <input required type="text" class="form-control" data-bind="value: Address().Address1" name="Address.Address1">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Address 2</label>
-                                <input type="text" class="form-control" data-bind="value: Address().Address2" name="Address.Address2">
+                                <label class="control-label">Address Line 2
+                                    <span class="required" aria-required="true"> * </span></label>
+                                <input required type="text" class="form-control" data-bind="value: Address().Address2" name="Address.Address2">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Address 3</label>
+                                <label class="control-label">Address Line 3</label>
                                 <input type="text" class="form-control" data-bind="value: Address().Address3" name="Address.Address3">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Address 4</label>
+                                <label class="control-label">Address Line 4</label>
                                 <input type="text" class="form-control" data-bind="value: Address().Address4" name="Address.Address4">
                             </div>
                         </div>
@@ -127,34 +133,38 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Postcode</label>
-                                <input type="text" class="form-control" data-bind="value: Address().Postcode" name="Address.Postcode">
+                                <label class="control-label">Postcode
+                                    <span class="required" aria-required="true"> * </span></label>
+                                <input required type="text" class="form-control" data-bind="value: Address().Postcode" name="Address.Postcode">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">City</label>
-                                <input type="text" class="form-control" data-bind="value: Address().City" name="Address.City">
+                                <label class="control-label">City
+                                    <span class="required" aria-required="true"> * </span></label>
+                                <input required type="text" class="form-control" data-bind="value: Address().City" name="Address.City">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">State</label>
-                                <input type="text" class="form-control" data-bind="value: Address().State" name="Address.State">
+                                <label class="control-label">State
+                                    <span class="required" aria-required="true"> * </span></label>
+                                <input required type="text" class="form-control" data-bind="value: Address().State" name="Address.State">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Country</label>
-                                <select class="form-control" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Address().Country" name="Address.Country"></select>
+                                <label class="control-label">Country
+                                    <span class="required" aria-required="true"> * </span></label>
+                                <select class="form-control" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Address().Country" name="Address.Country" required></select>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="form-actions right">
-                    <button id="save-button" class="btn btn-danger" data-bind="command: $root.saveCommand, visible :true, enable: $root.isPoscodeValid">
+                    <button id="save-button" class="btn btn-danger" data-bind="click: $root.saveCommand, visible :true, enable: $root.isPoscodeValid">
                         <i class="icon-arrow-right"></i>
                         <span data-i18n="Save"> Next </span>
                     </button>

@@ -107,6 +107,9 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
 
         },
         defaultCommand = function () {
+            if (!$("#consignment-request-produk-form").valid()) {
+                return Task.fromResult(false);
+            }
             var data = ko.mapping.toJSON(entity),
                 tcs = new $.Deferred();
 
@@ -135,6 +138,12 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return tcs.promise();
         },
         attached = function (view) {
+            $("#consignment-request-produk-form").validate({
+                rules: {
+                },
+                messages: {
+                }
+            });
             if (typeof partial.attached === "function") {
                 partial.attached(view);
             }
