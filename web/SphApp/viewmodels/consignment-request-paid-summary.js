@@ -92,12 +92,38 @@ function (context, logger, router, system, chart, config, app) {
 
         },
         compositionComplete = function () {
-
+            if (entity().Payment().IsPaid()) {
+                var data = ko.mapping.toJSON(entity);
+                if (!entity().Payment().IsPickupScheduled()) {
+                    if (entity().Pickup().Number() === undefined) {
+                        console.log("Schedule Pickup");
+                        context.put(data, "/consignment-request/schedule-pickup/" + ko.unwrap(entity().Id) + "").done(function (result) {
+                            if (result.success) {
+                                app.showMessage("Pickup successfully scheduled.", "Ost", ["OK"]).done(function () {
+                                    if (!entity().Payment().IsConNoteReady()) {
+                                        if (entity().Consignments()[0].ConNote() === undefined) {
+                                            console.log("Generate Connotes");
+                                            context.put(data, "/consignment-request/generate-con-notes/" + ko.unwrap(entity().Id) + "").done(function (result) {
+                                                if (result.success) {
+                                                    app.showMessage("Tracking number successfully generated.", "Ost", ["OK"]).done(function () {
+                                                        router.activeItem().activate(result.id);
+                                                    });
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                }
+            }
         };
     var vm = {
         activate: activate,
         config: config,
         attached: attached,
+        compositionComplete: compositionComplete,
         errors: errors,
         schedulePickup: schedulePickup,
         generateConNotes: generateConNotes,
