@@ -79,9 +79,11 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return markup;
         },
         defaultCommand = function () {
+            if (!$("#consignment-request-pickup-form").valid()) {
+                return Task.fromResult(false);
+            }
             var data = ko.mapping.toJSON(entity),
                 tcs = new $.Deferred();
-
             context.put(data, "/api/consigment-requests/" + ko.unwrap(entity().Id) + "", headers)
                 .fail(function (response) {
                     var result = response.responseJSON;
@@ -107,6 +109,13 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return tcs.promise();
         },
         attached = function (view) {
+            $("#consignment-request-pickup-form").validate({
+                rules: {
+                },
+                messages: {
+                }
+            });
+
             entity().Pickup().Address().Postcode.subscribe(function (newValue) {
                 getPickupAvailability(newValue);
             });
