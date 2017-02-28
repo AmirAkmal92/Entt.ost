@@ -209,7 +209,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 })
                 .then(function (result) {
                     if (result) {
-                        router.navigate("consignment-request-pemberi/" + id() + "/consignments/0");
+                        router.navigate("consignment-request-cart/" + id());
                     }
                 });
         };

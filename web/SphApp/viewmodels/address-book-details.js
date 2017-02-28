@@ -105,7 +105,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         }, remove = function () {
             return context.sendDelete("/api/address-books/" + ko.unwrap(entity().Id))
                 .then(function (result) {
-                    return app.showMessage("Your contact has been deleted", "Ost", ["OK"]);
+                    return app.showMessage("Your contact has been deleted.", "Ost", ["OK"]);
                 })
                 .then(function (result) {
                     router.navigate("address-book-home/-");
@@ -135,7 +135,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return defaultCommand()
                 .then(function (result) {
                     if (result.success) {
-                        return app.showMessage("Your contact has been updated", ["OK"]);
+                        return app.showMessage("Your contact has been updated.", "Ost", ["OK"]);
                     } else {
                         return Task.fromResult(false);
                     }

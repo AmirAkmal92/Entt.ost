@@ -48,7 +48,8 @@ function (context, logger, router, config, app, system) {
             }).then(function (result) {
                 if (result.success) {
                     return app.showMessage("Sender details has been successfully saved", "POS Online Shipping Tools", ["OK"]).done(function () {
-                        router.activeItem().activate();
+                        //router.activeItem().activate();
+                        router.navigate("address-book-home/-");
                     });
                 }
             });

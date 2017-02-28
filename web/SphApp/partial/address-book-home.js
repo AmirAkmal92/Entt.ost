@@ -38,7 +38,9 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
                              var storeId = ko.unwrap(dialog.item().storeId);
                              context.post("{}", "address-books/" + storeId).done(function (result) {
                                  console.log(result);
-                                 router.activeItem().activate("-");
+                                 app.showMessage("Contact(s) successfuly imported from file.", "Ost", ["OK"]).done(function () {
+                                     router.activeItem().activate("-");
+                                 });                                 
                              });
                          }
                      });
@@ -109,6 +111,9 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
                          }
                      });
          },
+         refreshAddressBook = function () {
+             router.activeItem().activate("-");
+        },
          addCommand = {
              command: function () {
                  return router.navigate("address-book-details/0");
@@ -246,6 +251,7 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
          renameGroup2: renameGroup2,
          importContacts: importContacts,
          exportToCsv: exportToCsv,
+         refreshAddressBook: refreshAddressBook,
          map: map,
          groupName: groupName,
          commands: false,
