@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="portlet-body form">
-            <form action="#" class="horizontal-form">
+            <form action="#" class="horizontal-form" id="consignment-request-produk-form">
                 <div class="form-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                             <div class="row form-group " data-bind="visible:true">
-                                <label data-i18n="Weight" class="col-md-4 control-label" for="6465286c-a3af-46de-e7d8-0499b6bf7cf4">Weight</label>
+                                <label data-i18n="Weight" class="col-md-4 control-label" for="6465286c-a3af-46de-e7d8-0499b6bf7cf4">Weight<span class="required" aria-required="true"> * </span></label>
                                 <div class="col-md-8">
                                     <input class="form-control" required type="text"
                                            placeholder=""
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                             <div class="row form-group" data-bind="visible:true">
-                                <label data-i18n="Width" class="col-md-4 control-label" for="61040711-a759-4cf8-ea32-47b1cdee2f44">Width</label>
+                                <label data-i18n="Width" class="col-md-4 control-label" for="61040711-a759-4cf8-ea32-47b1cdee2f44">Width<span class="required" aria-required="true"> * </span></label>
                                 <div class="col-md-8">
                                     <input class="form-control" required type="text"
                                            placeholder=""
@@ -92,7 +92,7 @@
                                 </div>
                             </div>
                             <div class="row form-group" data-bind="visible:true">
-                                <label data-i18n="Length" class="col-md-4 control-label" for="38c9d5fd-8458-4ce4-9575-da6edf8b0c9d">Length</label>
+                                <label data-i18n="Length" class="col-md-4 control-label" for="38c9d5fd-8458-4ce4-9575-da6edf8b0c9d">Length<span class="required" aria-required="true"> * </span></label>
                                 <div class="col-md-8">
                                     <input class="form-control" required type="text"
                                            placeholder=""
@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                             <div class="row form-group" data-bind="visible:true">
-                                <label data-i18n="Height" class="col-md-4 control-label" for="a044e320-f819-4adf-fc9d-f130079818fe">Height</label>
+                                <label data-i18n="Height" class="col-md-4 control-label" for="a044e320-f819-4adf-fc9d-f130079818fe">Height<span class="required" aria-required="true"> * </span></label>
                                 <div class="col-md-8">
                                     <input class="form-control" required type="text"
                                            placeholder=""
@@ -133,9 +133,9 @@
                         <div class="col-md-6">
                             <h3 class="form-section" data-bind="visible:true">Description</h3>
                             <div class="row form-group" data-bind="visible:true">
-                                <label data-i18n="Description" class="col-md-4 control-label" for="01d1c388-d629-4283-bd25-56688c166c98">Description</label>
+                                <label data-i18n="Description" class="col-md-4 control-label" for="01d1c388-d629-4283-bd25-56688c166c98">Description<span class="required" aria-required="true"> * </span></label>
                                 <div class="col-md-8">
-                                    <textarea class="form-control"
+                                    <textarea required class="form-control"
                                               placeholder=""
                                               data-bind="value: consignment().Produk().Description"
                                               id="01d1c388-d629-4283-bd25-56688c166c98" name="Produk.Description"></textarea>
@@ -242,7 +242,7 @@
             </form>
             <br />
             <div class="form-actions right">
-                <button id="save-button" class="btn btn-danger" data-bind="command: $root.saveCommand, visible :true, enable: consignment().Produk().Price() != 0">
+                <button id="save-button" class="btn btn-danger" data-bind="click: $root.saveCommand, visible :true, enable: consignment().Produk().Price() != 0">
                     <i class="icon-arrow-right"></i>
                     <span> Next </span>
                 </button>
