@@ -78,7 +78,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
 
                     // always check for pickup location 
                     if (entity().Pickup().Address().Postcode() === undefined) {
-                        app.showMessage("Sorry, you must set Pickup Location first before you can send any Parcel.", "Ost", ["OK"]).done(function () {
+                        app.showMessage("You must set Pickup Location first before you can send any Parcel.", "Ost", ["OK"]).done(function () {
                             router.navigate("consignment-request-pickup/" + crId);
                         });
                     }
