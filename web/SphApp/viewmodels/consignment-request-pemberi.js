@@ -127,6 +127,9 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return markup;
         },
         defaultCommand = function () {
+            if (!$("#consignment-request-pemberi-form").valid()) {
+                return Task.fromResult(false);
+            }
             var data = ko.mapping.toJSON(entity),
                 tcs = new $.Deferred();
 
@@ -158,6 +161,12 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             isUsingPickupAddress(true);
         },
         attached = function (view) {
+            $("#consignment-request-pemberi-form").validate({
+                rules: {
+                },
+                messages: {
+                }
+            });
             $("#sender-company-name").select2({
                 ajax: {
                     url: "/api/address-books/",
