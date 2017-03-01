@@ -131,14 +131,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group" data-bind="visible:true">
                                                 <label class="control-label">Country<span class="required" aria-required="true"> * </span></label>
-                                                <!--<input type="text" class="form-control" data-bind="value: Address.Country, visible :true, autocomplete :{ entity:'Country', field :'Name', query:'Id ne \'0\'' }" name="Pemberi.Address.Country">-->
                                                 <select class="form-control" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Address.Country" required></select>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="margiv-top-10">
+                                    <div class="margiv-top-10 pull-right">
                                         <button id="save-button" class="btn btn-info" data-bind="click: $root.saveProfile, visible :true, enable: true">
-                                            <span data-i18n="Save"> Save Changes </span>
+                                            <i class="fa fa-save"></i>
+                                            <span data-i18n="Save"> Save </span>
                                         </button>
                                     </div>
                                 </form>

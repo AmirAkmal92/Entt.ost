@@ -94,30 +94,13 @@
                 <div class="row featurette">
                     <nav id="bs-navbar" class="collapse navbar-collapse hidden-xs">
                         <ul class="nav navbar-nav">
-                            <li><a href="#" style="padding-left: 0px;"><span class="glyphicon glyphicon-home hidden-sm hidden-md"></span> Home</a></li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About Us <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">About Pos OST</a></li>
-                                    <li><a href="#">FAQ</a></li>
-                                </ul>
-                            </li>
-                            <li><a data-toggle="modal" href="#shiprate">Start Shipping</a></li>
-                            <li><a data-toggle="modal" href="#shiprate">Shipping Rate</a></li>
-                            <li><a href="#">Help</a></li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Etc<span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Track Parcel</a></li>
-                                    <li><a data-toggle="modal" href="#volcal">Volumetric Weight</a></li>
-                                    <li><a href="#">Bulk Delivery Tool</a></li>
-                                    <li><a href="#">Pick Up Schedule</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="/" style="padding-left: 0px;"><span class="glyphicon glyphicon-home hidden-sm hidden-md"></span> Home </a></li>
+                            <li><a href="/shipment-volumetric"> Volumetric Weight </a></li>
+                            <li><a href="/track-trace"> Track & Trace </a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right hidden-sm">
                             <li class="login-menu"><a href="/ost-account/login"><i class="epi-user"></i> Log In</a></li>
-                            <li class="login-menu"><a href="/ost-account/login" style="border-left: 1px solid rgba(255, 255, 255, 0.5);">Sign Up</a></li>
+                            <li class="login-menu"><a href="/ost-account/register" style="border-left: 1px solid rgba(255, 255, 255, 0.5);">Sign Up</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -281,7 +264,6 @@
     <!--START OF MOBILE DROP DOWN MENU-->
     <div id="MasterMobileMenu" style="display:none; background-color: rgba(255,102,153,0.1);">
         <div class="container">
-
             <h3 class="site-nav-title">PROFILE</h3>
             <ul class="nav navbar-nav site-nav-group">
                 <li class="site-nav-item"> <a href="#"><span>Log In</span> <span class="side-menu-box"><i class="epi-user"></i></span></a> </li>
@@ -289,27 +271,10 @@
             </ul>
             <h3 class="site-nav-title">USEFUL LINKS</h3>
             <ul class="nav navbar-nav site-nav-group">
-                <li class="site-nav-item"> <a href="#"><span>Home</span> <span class="side-menu-box"><i class="epi-home"></i></span></a> </li>
-                <li class="site-nav-item"> <a href="#"><span>About Us</span> <span class="side-menu-box"><i class="epi-info-circled"></i></span></a> </li>
-                <li class="site-nav-item"> <a href="#"><span>Send A Parcel</span> <span class="side-menu-box"><i class="epi-truck"></i></span></a> </li>
-                <li class="site-nav-item"> <a href="#"><span>My Cart</span> <span class="side-menu-box"><i class="epi-cart-plus"></i></span></a> </li>
-                <li class="site-nav-item"> <a href="#"><span>Promotion</span> <span class="side-menu-box"><i class="epi-volume-up-1"></i></span></a> </li>
-                <li class="site-nav-item dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span> Tools <span class="caret"></span></span> <span class="side-menu-box"><i class="epi-wrench"></i></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Track Parcel</a></li>
-                        <li><a href="#"> style="cursor: pointer;">Volumetric Weight</a></li>
-                        <li><a href="#">Widgets</a></li>
-                        <li><a href="#">Bulk Delivery Tool</a></li>
-                        <li><a href="#">Shipping Rate</a></li>
-                        <li><a href="#">Delivery Commitment Date</a></li>
-                        <li><a href="#">Pick Up Schedule</a></li>
-                    </ul>
-                </li>
-                <li class="site-nav-item"> <a href="#"><span>Blog</span> <span class="side-menu-box"><i class="epi-newspaper"></i></span></a> </li>
+                <li class="site-nav-item"> <a href="/"><span>Home</span><span class="side-menu-box"><i class="epi-home"></i></span></a> </li>
+                <li class="site-nav-item"> <a href="/shipment-volumetric"><span>Volumetric Weight</span> <span class="side-menu-box"><i class="epi-truck"></i></span></a> </li>
+                <li class="site-nav-item"> <a href="/track-trace"><span>Track & Trace</span> <span class="side-menu-box"><i class="epi-volume-up-1"></i></span></a> </li>
             </ul>
-
-
         </div>
     </div>
     <div>
