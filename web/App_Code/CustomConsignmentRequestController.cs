@@ -491,6 +491,7 @@ namespace web.sph.App_Code
         [Route("payment-accepted")]
         public async Task<IHttpActionResult> PaymentAccepted(PxResModel model)
         {
+            var baseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl");
             LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(model.PX_PURCHASE_ID);
             if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + model.PX_PURCHASE_ID);
             var item = lo.Source;
@@ -502,13 +503,14 @@ namespace web.sph.App_Code
 
             // wait until the worker process it
             await Task.Delay(1500);
-            return Redirect("http://localhost:50230/ost#consignment-request-paid-summary/" + model.PX_PURCHASE_ID);
+            return Redirect(baseUrl + "/ost#consignment-request-paid-summary/" + model.PX_PURCHASE_ID);
         }
 
         [HttpPost]
         [Route("payment-rejected")]
         public async Task<IHttpActionResult> PaymentRejected(PxResModel model)
         {
+            var baseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl");
             LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(model.PX_PURCHASE_ID);
             if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + model.PX_PURCHASE_ID);
             var item = lo.Source;
@@ -520,7 +522,7 @@ namespace web.sph.App_Code
 
             // wait until the worker process it
             await Task.Delay(1500);
-            return Redirect("http://localhost:50230/ost#consignment-request-summary/" + model.PX_PURCHASE_ID);
+            return Redirect(baseUrl + "/ost#consignment-request-summary/" + model.PX_PURCHASE_ID);
         }
 
         private static async Task<LoadData<ConsigmentRequest>> GetConsigmentRequest(string id)
