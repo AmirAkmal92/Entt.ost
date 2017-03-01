@@ -128,33 +128,27 @@ namespace web.sph.App_Code
                     {
                         var client = new HttpClient();
                         client.DefaultRequestHeaders.Add("x-user-key", m_sdsSecretKey_GenerateConnote);
+                        var url = new StringBuilder();
+                        url.Append(m_sdsApi_GenerateConnote);
+                        url.Append("?Prefix=ES");
+                        url.Append("&ApplicationCode=OST");
+                        url.Append("&Secretid=ost@1234");
+                        url.Append("&username=entt.ost");
+                        url.Append($"&numberOfItem={totalConsignments.ToString()}");
+                        url.Append($"&Orderid={item.Id}");
 
-                        List<KeyValuePair<string, string>> pairs = new List<KeyValuePair<string, string>>();
-                        //TODO: need more information from API provider; hardcode for now
-                        pairs.Add(new KeyValuePair<string, string>("Prefix", "ES"));
-                        pairs.Add(new KeyValuePair<string, string>("ApplicationCode", "OST"));
-                        pairs.Add(new KeyValuePair<string, string>("Secretid", "ost@1234"));
-                        pairs.Add(new KeyValuePair<string, string>("username", "entt.ost"));
-                        pairs.Add(new KeyValuePair<string, string>("numberOfItem", totalConsignments.ToString()));
-                        pairs.Add(new KeyValuePair<string, string>("Orderid", item.Id));
+                        var output = await client.GetStringAsync(m_sdsBaseUrl + url.ToString());
 
-                        var content = new FormUrlEncodedContent(pairs);
-                        var query = content.ReadAsStringAsync().Result;
-                        var output = await client.GetStringAsync(m_sdsBaseUrl + m_sdsApi_GenerateConnote + "?" + query);
-                        //TODO: check output for error and null
                         var json = JObject.Parse(output);
-                        //TODO: check json for error and null
+                        var sdsConnote = new SdsConnote(json);
 
-                        if (json["StatusCode"].ToString() == "01")
+                        if (sdsConnote.StatusCode == "01")
                         {
-                            var conNotes = json["ConnoteNo"].ToString().Split('|');
-                            if (conNotes.Length >= item.Consignments.Count)
+                            if (sdsConnote.ConnoteNumbers.Count >= totalConsignments)
                             {
-                                var count = 0;
-                                foreach (var conNote in conNotes)
+                                for (int i = 0; i < totalConsignments; i++)
                                 {
-                                    item.Consignments[count].ConNote = conNote;
-                                    count++;
+                                    item.Consignments[i].ConNote = sdsConnote.ConnoteNumbers[i];
                                 }
                                 item.Payment.IsConNoteReady = true;
                                 await SaveConsigmentRequest(item);
@@ -168,7 +162,7 @@ namespace web.sph.App_Code
                         else
                         {
                             resultSuccess = false;
-                            resultStatus = "StatusCode: " + json["StatusCode"].ToString() + " Message: " + json["Message"].ToString();
+                            resultStatus = "StatusCode: " + sdsConnote.StatusCode + " Message: " + sdsConnote.Message;
                         }
                     }
                     else
@@ -197,8 +191,6 @@ namespace web.sph.App_Code
                 id = item.Id
             };
 
-            // wait until the worker process it
-            await Task.Delay(1500);
             return Accepted(result);
         }
 
@@ -376,50 +368,46 @@ namespace web.sph.App_Code
                     {
                         var client = new HttpClient();
                         client.DefaultRequestHeaders.Add("x-user-key", m_sdsSecretKey_PickupWebApi);
-
-                        List<KeyValuePair<string, string>> pairs = new List<KeyValuePair<string, string>>();
-                        //TODO: need more information from API provider; hardcode for now
-                        pairs.Add(new KeyValuePair<string, string>("callerNameF", item.Pickup.ContactPerson));
-                        pairs.Add(new KeyValuePair<string, string>("contactpersonf", item.Pickup.ContactPerson));
-                        pairs.Add(new KeyValuePair<string, string>("phoneNoF", item.Pickup.ContactInformation.ContactNumber));
-                        pairs.Add(new KeyValuePair<string, string>("callerPhoneF", item.Pickup.ContactInformation.ContactNumber));
-                        var pickupAddress = new StringBuilder(item.Pickup.Address.Address1);
-                        pickupAddress.Append($" {item.Pickup.Address.Address2}");
-                        pickupAddress.Append($", {item.Pickup.Address.Address3}");
-                        pickupAddress.Append($" {item.Pickup.Address.Address4}");
-                        pickupAddress.Append($", {item.Pickup.Address.Postcode}");
-                        pickupAddress.Append($" {item.Pickup.Address.City}");
-                        pickupAddress.Append($", {item.Pickup.Address.State}");
-                        pickupAddress.Append($" {item.Pickup.Address.Country}");
-                        pairs.Add(new KeyValuePair<string, string>("pickAddressF", pickupAddress.ToString()));
-                        pairs.Add(new KeyValuePair<string, string>("posCodeF", item.Pickup.Address.Postcode));
-                        pairs.Add(new KeyValuePair<string, string>("totDocumentF", "0"));
-                        pairs.Add(new KeyValuePair<string, string>("totMerchandiseF", "0"));
+                        var url = new StringBuilder();
+                        url.Append(m_sdsApi_PickupWebApi);
+                        url.Append($"?callerNameF={item.Pickup.ContactPerson}");
+                        url.Append($"&contactpersonf={item.Pickup.ContactPerson}");
+                        url.Append($"&phoneNoF={item.Pickup.ContactInformation.ContactNumber}");
+                        url.Append($"&callerPhoneF={item.Pickup.ContactInformation.ContactNumber}");
+                        url.Append($"&pickAddressF={item.Pickup.Address.Address1}");
+                        url.Append($" {item.Pickup.Address.Address2}");
+                        url.Append($", {item.Pickup.Address.Address3}");
+                        url.Append($" {item.Pickup.Address.Address4}");
+                        url.Append($", {item.Pickup.Address.Postcode}");
+                        url.Append($" {item.Pickup.Address.City}");
+                        url.Append($", {item.Pickup.Address.State}");
+                        url.Append($" {item.Pickup.Address.Country}");
+                        url.Append($"&posCodeF={item.Pickup.Address.Postcode}");
+                        url.Append("&totDocumentF=0");
+                        url.Append("&totMerchandiseF=0");
                         var totalConsignments = item.Consignments.Count;
-                        pairs.Add(new KeyValuePair<string, string>("totParcelF", totalConsignments.ToString()));
-                        pairs.Add(new KeyValuePair<string, string>("totQuantityF", totalConsignments.ToString()));
+                        url.Append($"&totParcelF={totalConsignments}");
+                        url.Append($"&totQuantityF={totalConsignments}");
                         decimal totalWeight = 0;
                         foreach (var consignment in item.Consignments)
                         {
                             totalWeight += consignment.Produk.Weight;
-                        }
+                        }                        
+                        url.Append($"&totWeightF={totalWeight}");
+                        url.Append($"&accNoF=ENTT-OST-{item.Id}");
                         string timeReady = item.Pickup.DateReady.ToShortTimeString();
                         timeReady = sanitizeShortTimeString(timeReady);
                         string timeClose = item.Pickup.DateClose.ToShortTimeString();
                         timeClose = sanitizeShortTimeString(timeClose);
-                        pairs.Add(new KeyValuePair<string, string>("totWeightF", totalWeight.ToString()));
-                        pairs.Add(new KeyValuePair<string, string>("accNoF", "ENTT-OST-" + item.Id));
-                        pairs.Add(new KeyValuePair<string, string>("_readyF", timeReady));
-                        pairs.Add(new KeyValuePair<string, string>("_closeF", timeClose));
+                        url.Append($"&_readyF={timeReady}");
+                        url.Append($"&_closeF={timeClose}");
 
-                        var content = new FormUrlEncodedContent(pairs);
-                        var query = content.ReadAsStringAsync().Result;
-                        var output = await client.GetStringAsync(m_sdsBaseUrl + m_sdsApi_PickupWebApi + "?" + query);
-                        //TODO: check output for error and null
+                        var output = await client.GetStringAsync(m_sdsBaseUrl + url.ToString());
+
                         var json = JObject.Parse(output);
-                        //TODO: check json for error and null
+                        var sdsPickup = new SdsPickup(json);
 
-                        if (json["StatusCode"].ToString() == "00")
+                        if (sdsPickup.StatusCode == "00")
                         {
                             DateTime currentTime = DateTime.Now;
                             DateTime cutOffTime = DateTime.ParseExact("11:00 AM", "hh:mm tt",
@@ -439,7 +427,7 @@ namespace web.sph.App_Code
                                 item.Pickup.DateReady = tReady.AddDays(1);
                                 item.Pickup.DateClose = tClose.AddDays(1);
                             }
-                            item.Pickup.Number = json["pickupNumber"].ToString();
+                            item.Pickup.Number = sdsPickup.PickupNumber;
                             item.Pickup.TotalDocument = 0;
                             item.Pickup.TotalMerchandise = 0;
                             item.Pickup.TotalParcel = totalConsignments;
@@ -482,8 +470,6 @@ namespace web.sph.App_Code
                 pickup_close = item.Pickup.DateClose.ToString()
             };
 
-            // wait until the worker process it
-            await Task.Delay(1500);
             return Accepted(result);
         }
 
@@ -554,6 +540,35 @@ namespace web.sph.App_Code
 
             return timeReady;
         }
+    }
+
+    public class SdsConnote
+    {
+        public SdsConnote(JObject json)
+        {
+            this.StatusCode = json.SelectToken("$.StatusCode").Value<string>();
+            this.ConnoteNumbers = json.SelectToken("$.ConnoteNo").Value<string>().Split('|').ToList();
+            this.Message = json.SelectToken("$.Message").Value<string>();
+
+        }
+
+        public string StatusCode { get; set; }
+        public List<string> ConnoteNumbers { get; set; }
+        public string Message { get; set; }
+    }
+
+    public class SdsPickup
+    {
+        public SdsPickup(JObject json)
+        {
+            this.StatusCode = json.SelectToken("$.StatusCode").Value<string>();
+            this.PickupNumber = json.SelectToken("$.pickupNumber").Value<string>();
+            this.Message = (json.SelectToken("$.Message") == null) ? string.Empty : json.SelectToken("$.Message").Value<string>();
+        }
+
+        public string StatusCode { get; set; }
+        public string PickupNumber { get; set; }
+        public string Message { get; set; }
     }
 
     public class PxRexModel
