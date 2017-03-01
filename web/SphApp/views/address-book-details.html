@@ -39,7 +39,7 @@
                                 <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-md-9">
-                                <input class="form-control" type="text" placeholder="Name" data-bind="value: ContactPerson" name="name" required="required">
+                                <input class="form-control" type="text" placeholder="Name" data-bind="value: ContactPerson" name="name" required>
                             </div>
                         </div>
                     </div>
@@ -47,10 +47,9 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">
                                 Company Name
-                                <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-md-9">
-                                <input class="form-control" type="text" placeholder="Company Name" data-bind="value: CompanyName, visible :true, enable: true" name="companyame" data-required="1" required="required">
+                                <input class="form-control" type="text" placeholder="Company Name" data-bind="value: CompanyName, visible :true, enable: true" name="companyame">
                             </div>
                         </div>
                     </div>
@@ -63,7 +62,7 @@
                                 <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-md-9">
-                                <input class="form-control" type="text" placeholder="Contact Number" data-bind="value: ContactInformation().ContactNumber" name="contactnumber" required="required">
+                                <input class="form-control" type="text" placeholder="Contact Number" data-bind="value: ContactInformation().ContactNumber" name="contactnumber" required>
                             </div>
                         </div>
                     </div>
@@ -74,7 +73,7 @@
                                 <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-md-9">
-                                <input class="form-control" type="email" placeholder="Email" data-bind="value: ContactInformation().Email" name="email" required="required">
+                                <input class="form-control" type="email" placeholder="Email" data-bind="value: ContactInformation().Email" name="email" required>
                             </div>
                         </div>
                     </div>
@@ -110,7 +109,7 @@
                                 <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-md-9">
-                                <input class="form-control" type="text" placeholder="Address Line 1" data-bind="value: Address().Address1" name="addressline1" required="required">
+                                <input class="form-control" type="text" placeholder="Address Line 1" data-bind="value: Address().Address1" name="addressline1" required>
                             </div>
                         </div>
                     </div>
@@ -121,7 +120,7 @@
                                 <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-md-9">
-                                <input class="form-control" type="text" placeholder="Address Line 2" data-bind="value: Address().Address2" name="addressline2" required="required">
+                                <input class="form-control" type="text" placeholder="Address Line 2" data-bind="value: Address().Address2" name="addressline2" required>
                             </div>
                         </div>
                     </div>
@@ -156,7 +155,7 @@
                                 <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-md-9">
-                                <input class="form-control" type="text" placeholder="Postcode" data-bind="value: Address().Postcode" name="postcode" required="required">
+                                <input class="form-control" type="text" placeholder="Postcode" data-bind="value: Address().Postcode" name="postcode" required>
                             </div>
                         </div>
                     </div>
@@ -167,7 +166,7 @@
                                 <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-md-9">
-                                <input class="form-control" type="text" placeholder="City" data-bind="value: Address().City" name="city" required="required">
+                                <input class="form-control" type="text" placeholder="City" data-bind="value: Address().City" name="city" required>
                             </div>
                         </div>
                     </div>
@@ -180,7 +179,7 @@
                                 <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-md-9">
-                                <input class="form-control" type="text" placeholder="State" data-bind="value: Address().State" name="state" required="required">
+                                <input class="form-control" type="text" placeholder="State" data-bind="value: Address().State" name="state" required>
                             </div>
                         </div>
                     </div>
@@ -191,7 +190,7 @@
                                 <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-md-9">
-                                <select class="form-control" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Address().Country, entity" name="Address.Country" id="countryDropDown" required="required"></select>
+                                <select class="form-control" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Address().Country, entity" name="Address.Country" id="countryDropDown" required></select>
                             </div>
                         </div>
                     </div>

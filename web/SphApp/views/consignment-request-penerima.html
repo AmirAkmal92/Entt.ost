@@ -64,14 +64,13 @@
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Receiver Name
                                     <span class="required" aria-required="true"> * </span></label>
-                                <input required type="text" class="form-control" data-bind="value: Penerima().ContactPerson" data-rule-required="true">
+                                <input required type="text" class="form-control" data-bind="value: Penerima().ContactPerson">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Company Name
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required type="text" class="form-control" data-bind="value: Penerima().CompanyName" data-rule-required="true" name="Penerima.CompanyName">
+                                <label class="control-label">Company Name</label>
+                                <input type="text" class="form-control" data-bind="value: Penerima().CompanyName" name="Penerima.CompanyName">
                             </div>
                         </div>
                     </div>
@@ -80,7 +79,7 @@
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Email
                                     <span class="required" aria-required="true"> * </span></label>
-                                <input required class="form-control" type="email" data-bind="value: Penerima().ContactInformation().Email" data-rule-required="true" name="Penerima.ContactInformation.Email">
+                                <input required class="form-control" type="email" data-bind="value: Penerima().ContactInformation().Email" name="Penerima.ContactInformation.Email">
                             </div>
                         </div>
                         <div class="col-md-6">

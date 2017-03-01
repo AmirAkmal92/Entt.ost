@@ -64,14 +64,13 @@
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Sender Name
                                     <span class="required" aria-required="true"> * </span></label>
-                                <input required type="text" class="form-control" data-bind="value: ContactPerson" data-rule-required="true" name="ContactPerson">
+                                <input required type="text" class="form-control" data-bind="value: ContactPerson" name="ContactPerson">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Company Name
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required type="text" class="form-control" data-bind="value: CompanyName" data-rule-required="true" name="CompanyName">
+                                <label class="control-label">Company Name</label>
+                                <input type="text" class="form-control" data-bind="value: CompanyName" name="CompanyName">
                             </div>
                         </div>
                     </div>
@@ -80,7 +79,7 @@
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Email
                                     <span class="required" aria-required="true"> * </span></label>
-                                <input required class="form-control" type="email" data-bind="value: ContactInformation().Email" data-rule-required="true" name="ContactInformation.Email">
+                                <input required class="form-control" type="email" data-bind="value: ContactInformation().Email" name="ContactInformation.Email">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -95,7 +94,7 @@
                         <div class="col-md-6">
                             <div class="form-group" data-bind="visible:true">
                                 <label class="control-label">Alternative Contact No.</label>
-                                <input required type="text" class="form-control" data-bind="value: ContactInformation().AlternativeContactNumber" name="ContactInformation.AlternativeContactNumber">
+                                <input type="text" class="form-control" data-bind="value: ContactInformation().AlternativeContactNumber" name="ContactInformation.AlternativeContactNumber">
                             </div>
                         </div>
                     </div>
