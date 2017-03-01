@@ -45,7 +45,6 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     if (!cId || cId === "0") {
                         consignment().Pemberi(pemberi());
                         entity().Consignments().push(consignment());
-                        consignment().Pemberi().Address().Country("MY");
                         cid(consignment().WebId());
                     } else {
                         var editIndex = -1;
@@ -57,9 +56,6 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         }
                         if (editIndex != -1) {
                             consignment().Pemberi(entity().Consignments()[editIndex].Pemberi());
-                            if (consignment().Pemberi().Address().Country() === undefined) {
-                                consignment().Pemberi().Address().Country("MY");
-                            }
                             cid(entity().Consignments()[i].WebId());
                         } else {
                             app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "Ost", ["OK"]).done(function () {
@@ -91,10 +87,18 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                                 router.navigate("consignment-request-cart/" + crId);
                             });
                     }
-                }).always(function () {
+                }).then(function () {
+                    var setToMY = false;
+                    if (consignment().Penerima().Address().Country() === undefined) {
+                        setToMY = true;
+                    }
                     context.get("/api/countries/available-country?size=300").done(function (cList) {
                         availableCountries(cList._results);
+                        if (setToMY) {
+                            consignment().Penerima().Address().Country("MY");
+                        }
                     });
+                }).always(function () {
                     if (typeof partial.activate === "function") {
                         partial.activate(ko.unwrap(entity))
                             .done(tcs.resolve)

@@ -43,6 +43,17 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                             router.navigate("consignment-request-cart/" + id);
                         });
                     }
+                }).then(function () {
+                    var setToMY = false;
+                    if (entity().Pickup().Address().Country() === undefined) {
+                        setToMY = true;
+                    }
+                    context.get("/api/countries/available-country?size=300").done(function (cList) {
+                        availableCountries(cList._results);
+                        if (setToMY) {
+                            entity().Pickup().Address().Country("MY");
+                        }
+                    });
                 }).always(function () {
                     context.get("/api/countries/available-country?size=300").done(function (cList) {
                         availableCountries(cList._results);
