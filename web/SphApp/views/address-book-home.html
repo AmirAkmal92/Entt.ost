@@ -35,10 +35,10 @@
                                 Add
                                 <i class="fa fa-plus"></i>
                             </a>
-                            <a href="javascript:;" class="btn red">
+                            <!--<a href="javascript:;" class="btn red">
                                 Delete
                                 <i class="fa fa-archive"></i>
-                            </a>
+                            </a>-->
                             <a class="btn blue" data-bind="command : $root.partial.importContacts, visible: true">
                                 Import
                                 <i class="fa fa-folder-open"></i>
@@ -61,11 +61,12 @@
                 <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list, filterPlaceholder : 'Search your contacts...', filterTooltip :'Press Enter to execute search'}">
                     <thead>
                         <tr>
-                            <th>
+                            <!--<th>
                                 <a href="javascript:;" id="select-all">
                                     <span class="checkboxes label label-md label-danger fa fa-check"></span>
                                 </a>
-                            </th>
+                            </th>-->
+                            <th>&nbsp;</th>
                             <th>Email</th>
                             <th>Contact Person</th>
                             <th>Company Name</th> 
@@ -74,11 +75,14 @@
                     </thead>
                     <tbody data-bind="foreach :list">
                         <tr class="odd gradeX" data-bind="">
-                            <td>
+                            <!--<td>
                                 <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                     <input class="checkboxes contact-checked" type="checkbox" data-bind="checked : $root.partial.selectedAddresses, value:$data" />
                                     <span></span>
                                 </label>
+                            </td>-->
+                            <td>
+                                <span data-bind="text: $index() + 1"></span>.
                             </td>
                             <td>
                                 <a class="contact-item" data-bind="attr : {href:'#address-book-details' + '/' + Id , 'data-id' : Id}" title="To add to a group drag it to the group panel on the left">
