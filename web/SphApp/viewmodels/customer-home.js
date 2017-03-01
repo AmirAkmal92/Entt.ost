@@ -14,7 +14,7 @@ function (context, logger, router, config, app, system) {
                     entity().CompanyName("");
                     entity().ContactPerson("");
                     entity().UserId(config.userName);
-                    entity().ProfilePictureUrl("http://localhost:50230/assets/images/user_default.png");
+                    entity().ProfilePictureUrl("~/assets/images/user_default.png");
                     entity().ContactPerson(config.userName);
                     entity().ContactInformation().Email(config.profile.Email);
                     entity().Address().Country("MY");
