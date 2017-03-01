@@ -32,6 +32,10 @@ function (context, logger, router, config, app, system) {
             });
         },
         saveProfile = function () {
+            if (!$("#customer-home-form").valid()) {
+                return Task.fromResult(false);
+            }
+
             var data = ko.mapping.toJSON(entity);
             context.put(data, "/api/address-books/" + ko.unwrap(entity().Id) + "").fail(function (response) {
                 var result = response.responseJSON;
@@ -55,6 +59,12 @@ function (context, logger, router, config, app, system) {
             });
         },
         attached = function (view) {
+            $("#customer-home-form").validate({
+                rules: {
+                },
+                messages: {
+                }
+            });
         };
 
     var vm = {
