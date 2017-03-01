@@ -35,8 +35,8 @@
                                     <br /><br />                                    
                                     <div data-bind="visible: $root.isPickupDateTimeValid()">
                                         <h4>Pickup Date</h4>
-                                        Time Ready: <span data-bind="date:{ value: Pickup().DateReady, format:'HH:mm'}"></span><br />
-                                        Time Close: <span data-bind="date:{ value: Pickup().DateClose, format:'HH:mm'}"></span><br />
+                                        From: <span data-bind="date:{ value: Pickup().DateReady, format:'HH:mm'}"></span><br />
+                                        To: <span data-bind="date:{ value: Pickup().DateClose, format:'HH:mm'}"></span><br />
                                         Total Quantity: <span data-bind="text: Pickup().TotalQuantity"></span> parcel(s)<br />
                                         Total Weight: <span data-bind="text: Pickup().TotalWeight"></span> kg<br />
                                     </div>
@@ -44,7 +44,7 @@
                                         <h4>Schedule Pickup</h4>
                                         <form class="form-horizontal">
                                             <div class="form-group">
-                                                <label class="control-label">Time Ready</label>:
+                                                <label class="control-label">From</label>:
                                                 <div class="row">
                                                     <div class="col-md-5">
                                                         <select class="form-control input-sm" data-bind="value: $root.pickupReadyHH">
@@ -67,7 +67,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label">Time Close</label>:
+                                                <label class="control-label">To</label>:
                                                 <div class="row">
                                                     <div class="col-md-5">
                                                         <select class="form-control input-sm" data-bind="value: $root.pickupCloseHH">
