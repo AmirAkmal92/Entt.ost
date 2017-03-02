@@ -6,16 +6,16 @@ function (context, logger, router, config, app, system) {
         entity = ko.observable(),
         availableCountries = ko.observableArray(),
         activate = function () {
-            return context.get("/api/address-books/user-profile").done(function (uList) {
+            context.get("/api/address-books/user-profile").done(function (uList) {
                 console.log(uList);
                 if (uList._count == 0) {
-                    entity(new bespoke.Ost_addressBook.domain.AddressBook(system.guid()));
+                    var guid = system.guid();
+                    entity(new bespoke.Ost_addressBook.domain.AddressBook(guid));
+                    entity().Id(guid);
                     entity().ReferenceNo(config.profile.Email);
-                    entity().CompanyName("");
-                    entity().ContactPerson("");
                     entity().UserId(config.userName);
-                    entity().ProfilePictureUrl("/assets/images/user_default.png");
                     entity().ContactPerson(config.userName);
+                    entity().ProfilePictureUrl("/assets/images/user_default.png");
                     entity().ContactInformation().Email(config.profile.Email);
                     entity().Address().Country("MY");
                     var data = ko.mapping.toJSON(entity);
@@ -23,11 +23,18 @@ function (context, logger, router, config, app, system) {
                         entity().Id(result.id);
                     });
                 } else {
-                    entity(uList._results[0]);
+                    entity(new bespoke.Ost_addressBook.domain.AddressBook(uList._results[0]));
                 }
             }).always(function () {
+                var setToMY = false;
+                if (ko.unwrap(entity().Address.Country) === undefined) {
+                    setToMY = true;
+                }
                 context.get("/api/countries/available-country?size=300").done(function (cList) {
                     availableCountries(cList._results);
+                    if (setToMY) {
+                        entity().Address().Country("MY");
+                    }
                 });
             });
         },

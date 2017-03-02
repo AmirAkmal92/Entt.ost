@@ -40,13 +40,13 @@
                                             <div class="form-group" data-bind="visible:true">
                                                 <label class="control-label">Name
                                                     <span class="required" aria-required="true"> * </span></label>
-                                                <input required type="text" class="form-control" data-bind="value: ContactPerson" data-rule-="true">
+                                                <input required type="text" class="form-control" data-bind="value: ContactPerson">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group" data-bind="visible:true">
                                                 <label class="control-label">Company Name</label>
-                                                <input type="text" class="form-control" data-bind="value: CompanyName" data-rule-="true" name="CompanyName">
+                                                <input type="text" class="form-control" data-bind="value: CompanyName" name="CompanyName">
                                             </div>
                                         </div>
                                     </div>
@@ -54,13 +54,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group" data-bind="visible:true">
                                                 <label class="control-label">Email<span class="required" aria-required="true"> * </span></label>
-                                                <input required class="form-control" type="email" data-bind="value: ContactInformation.Email" data-rule-="true" name="ContactInformation.Email">
+                                                <input required class="form-control" type="email" data-bind="value: ContactInformation().Email" name="ContactInformation.Email">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group" data-bind="visible:true">
                                                 <label class="control-label">Contact No.<span class="required" aria-required="true"> * </span></label>
-                                                <input required class="form-control" type="text" data-bind="value: ContactInformation.ContactNumber" name="ContactInformation.ContactNumber">
+                                                <input required class="form-control" type="text" data-bind="value: ContactInformation().ContactNumber" name="ContactInformation.ContactNumber">
                                             </div>
                                         </div>
                                     </div>
@@ -68,7 +68,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group" data-bind="visible:true">
                                                 <label class="control-label">Alternative Contact No.</label>
-                                                <input type="text" class="form-control" data-bind="value: ContactInformation.AlternativeContactNumber" name="ContactInformation.AlternativeContactNumber">
+                                                <input type="text" class="form-control" data-bind="value: ContactInformation().AlternativeContactNumber" name="ContactInformation.AlternativeContactNumber">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -83,13 +83,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group" data-bind="visible:true">
                                                 <label class="control-label">Address Line 1<span class="required" aria-required="true"> * </span></label>
-                                                <input required type="text" class="form-control" data-bind="value: Address.Address1" name="Address.Address1">
+                                                <input required type="text" class="form-control" data-bind="value: Address().Address1" name="Address.Address1">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group" data-bind="visible:true">
                                                 <label class="control-label">Address Line 2<span class="required" aria-required="true"> * </span></label>
-                                                <input required type="text" class="form-control" data-bind="value: Address.Address2" name="Address.Address2">
+                                                <input required type="text" class="form-control" data-bind="value: Address().Address2" name="Address.Address2">
                                             </div>
                                         </div>
                                     </div>
@@ -97,13 +97,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group" data-bind="visible:true">
                                                 <label class="control-label">Address Line 3</label>
-                                                <input type="text" class="form-control" data-bind="value: Address.Address3" name="Pemberi.Address.Address3">
+                                                <input type="text" class="form-control" data-bind="value: Address().Address3" name="Pemberi.Address.Address3">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group" data-bind="visible:true">
                                                 <label class="control-label">Address Line 4</label>
-                                                <input type="text" class="form-control" data-bind="value: Address.Address4" name="Pemberi.Address.Address4">
+                                                <input type="text" class="form-control" data-bind="value: Address().Address4" name="Pemberi.Address.Address4">
                                             </div>
                                         </div>
                                     </div>
@@ -111,13 +111,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group" data-bind="visible:true">
                                                 <label class="control-label">Postcode<span class="required" aria-required="true"> * </span></label>
-                                                <input required type="text" class="form-control" data-bind="value: Address.Postcode" name="Address.Postcode">
+                                                <input required type="text" class="form-control" data-bind="value: Address().Postcode" name="Address.Postcode">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group" data-bind="visible:true">
                                                 <label class="control-label">City<span class="required" aria-required="true"> * </span></label>
-                                                <input required type="text" class="form-control" data-bind="value: Address.City" name="Address.City">
+                                                <input required type="text" class="form-control" data-bind="value: Address().City" name="Address.City">
                                             </div>
                                         </div>
                                     </div>
@@ -125,13 +125,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group" data-bind="visible:true">
                                                 <label class="control-label">State<span class="required" aria-required="true"> * </span></label>
-                                                <input required type="text" class="form-control" data-bind="value: Address.State" name="Address.State">
+                                                <input required type="text" class="form-control" data-bind="value: Address().State" name="Address.State">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group" data-bind="visible:true">
                                                 <label class="control-label">Country<span class="required" aria-required="true"> * </span></label>
-                                                <select class="form-control" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Address.Country" required></select>
+                                                <select required class="form-control" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Address().Country" name="value: Address.Country"></select>
                                             </div>
                                         </div>
                                     </div>
