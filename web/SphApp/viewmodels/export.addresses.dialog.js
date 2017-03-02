@@ -1,27 +1,24 @@
 define(["plugins/dialog"],
     function (dialog) {
         var options = ko.observable({
-            companyName: ko.observable(false),
-            contactPerson: ko.observable(false),
-            premiseNoMailbox: ko.observable(false),
-            block: ko.observable(false),
-            buildingName: ko.observable(false),
-            roadName: ko.observable(false),
-            areaVillage: ko.observable(false),
-            subDistrict: ko.observable(false),
-            districtCity: ko.observable(false),
-            state: ko.observable(false),
-            country: ko.observable(false),
-            phoneNo: ko.observable(false),
-            faxNumber: ko.observable(false),
-            email: ko.observable(false),
-            gpsLocation: ko.observable(false),
-            referenceNo: ko.observable(false),
-            addressGroup: ko.observable(false)
-        }),
+                companyName: ko.observable(false),
+                contactPerson: ko.observable(false),
+                address1: ko.observable(false),
+                address2: ko.observable(false),
+                address3: ko.observable(false),
+                address4: ko.observable(false),
+                postcode: ko.observable(false),
+                city: ko.observable(false),
+                state: ko.observable(false),
+                country: ko.observable(false),
+                contactNumber: ko.observable(false),
+                altContactNumber: ko.observable(false),
+                email: ko.observable(false),
+                gpsLocation: ko.observable(false),
+                addressGroup: ko.observable(false)
+            }),
             okClick = function (data, ev) {
-                    dialog.close(this, "OK");
-                
+                dialog.close(this, "OK");
             },
         cancelClick = function () {
             dialog.close(this, "Cancel");
@@ -32,8 +29,5 @@ define(["plugins/dialog"],
             okClick: okClick,
             cancelClick: cancelClick
         };
-
-
         return vm;
-
     });

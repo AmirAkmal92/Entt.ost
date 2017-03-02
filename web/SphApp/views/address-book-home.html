@@ -31,14 +31,14 @@
                 <div class="action">
                     <div class="row">
                         <div class="col-md-8">
-                            <a class="btn green" data-bind="command : $root.partial.addCommands, visible: true, enable: true">
+                            <a class="btn green" data-bind="click : $root.partial.addContact, visible: true, enable: true">
                                 Add
                                 <i class="fa fa-plus"></i>
                             </a>
-                            <!--<a href="javascript:;" class="btn red">
+                            <a class="btn red" data-bind="command : $root.partial.removeAddresses, css: { 'disabled': $root.partial.selectedAddresses().length == 0 }">
                                 Delete
                                 <i class="fa fa-archive"></i>
-                            </a>-->
+                            </a>
                             <a class="btn blue" data-bind="command : $root.partial.importContacts, visible: true">
                                 Import
                                 <i class="fa fa-folder-open"></i>
@@ -51,38 +51,29 @@
                                 Rename Group
                                 <i class="fa fa-pencil"></i>
                             </a>
-                            <a class="btn btn-default" data-bind="click: $root.partial.refreshAddressBook, visible: true">
-                                Refresh
-                                <i class="fa fa-refresh"></i>
-                            </a>
                         </div>
                     </div>
                 </div>
                 <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list, filterPlaceholder : 'Search your contacts...', filterTooltip :'Press Enter to execute search'}">
                     <thead>
                         <tr>
-                            <!--<th>
-                                <a href="javascript:;" id="select-all">
-                                    <span class="checkboxes label label-md label-danger fa fa-check"></span>
-                                </a>
-                            </th>-->
-                            <th>&nbsp;</th>
+                            <th>
+                                <!--<span data-bind="click: $root.partial.toggleCheckAll">
+                                    <i class="fa fa-square-o" data-bind="visible: !$root.partial.checkAll()"></i>
+                                    <i class="fa fa-check-square-o" data-bind="visible: $root.partial.checkAll()"></i>
+                                </span>-->
+                                &nbsp;
+                            </th>
                             <th>Email</th>
                             <th>Contact Person</th>
-                            <th>Company Name</th> 
+                            <th>Company Name</th>
                             <th>Group</th>
                         </tr>
                     </thead>
                     <tbody data-bind="foreach :list">
-                        <tr class="odd gradeX" data-bind="">
-                            <!--<td>
-                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                    <input class="checkboxes contact-checked" type="checkbox" data-bind="checked : $root.partial.selectedAddresses, value:$data" />
-                                    <span></span>
-                                </label>
-                            </td>-->
+                        <tr>
                             <td>
-                                <span data-bind="text: $index() + 1"></span>.
+                                <input type="checkbox" data-bind="checked : $root.partial.selectedAddresses, value:$data, attr: { name: 'check-contact-' + $index }" />
                             </td>
                             <td>
                                 <a class="contact-item" data-bind="attr : {href:'#address-book-details' + '/' + Id , 'data-id' : Id}" title="To add to a group drag it to the group panel on the left">
@@ -91,7 +82,7 @@
                                 </a>
                             </td>
                             <td data-bind="text:ContactPerson"></td>
-                            <td data-bind="text:CompanyName"></td> 
+                            <td data-bind="text:CompanyName"></td>
                             <td data-bind="text:Groups"></td>
                         </tr>
                     </tbody>

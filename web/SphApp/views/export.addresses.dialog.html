@@ -1,5 +1,4 @@
-<!-- use dialog-form code snippet  to create a template for your -->
-<section class="view-model-modal" id="ID">
+<section class="view-model-modal" id="export-contacts-dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,153 +6,16 @@
                 <h3>Export addresses</h3>
             </div>
             <div class="modal-body" data-bind="with: options">
-                <p>
-                    This will create a CSV ( comma seperated values) file containing all of the contacts in your Address Book
-                </p>
-                <p>
-                    Select Colums for export : (Select None)
-                </p>
-                <form id="ID-form">
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked: companyName" id="CompanyName" type="checkbox" name="CompanyName"/>
-                                    Company Name
-                                </label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked: contactPerson" id="ContactPerson" type="checkbox" name="ContactPerson"/>
-                                    Contact Person
-                                </label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked: premiseNoMailbox" id="PremiseNoMailbox" type="checkbox" name="PremiseNoMailbox"/>
-                                    PremiseNo/ Mailbox
-                                </label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked: state" id="state" type="checkbox" name="State"/>
-                                    State
-                                </label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked: addressGroup" name="addressGroup" id="addressGroup" type="checkbox"/>
-                                    Address Group
-                                </label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked: referenceNo" name="referenceNo" id="referenceNo" type="checkbox"/>
-                                    Reference No
-                                </label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked: gpsLocation" name="gpsLocation" id="gpsLocation" type="checkbox"/>
-                                    GPS Location
-                                </label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked: email" name="email" id="email" type="checkbox"/>
-                                    Email
-                                </label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked: faxNumber" name="faxNumber" id="faxNumber" type="checkbox"/>
-                                    Fax Number
-                                </label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked: phoneNo" name="phoneNo" id="phoneNo" type="checkbox"/>
-                                    Phone No
-                                </label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked: country" name="country" id="country" type="checkbox"/>
-                                    Country
-                                </label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked: districtCity" name="districtCity" id="districtCity" type="checkbox"/>
-                                    District/ City
-                                </label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked: subDistrict" name="subDistrict" id="subDistrict" type="checkbox"/>
-                                    Sub-District
-                                </label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked: areaVillage" name="areaVillage" id="areaVillage" type="checkbox"/>
-                                    Area Village
-                                </label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked:roadName" name="roadName" id="roadName" type="checkbox"/>
-                                    Road Name
-                                </label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked:buildingName " name="buildingName" id="buildingName" type="checkbox"/>
-                                    Building Name
-                                </label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="checkbox">
-                            <label>
-                                    <input data-bind="checked: block" name="block" id="block" type="checkbox"/>
-                                    Block
-                                </label>
-                        </div>
-                    </div>
-                </form>
+                <h4>
+                    This will create a file containing all of the contacts<br />
+                    from your Address Book
+                    <br /><br />
+                    The file is in *.csv format and can be opened <br />
+                    by <a href="https://en.wikipedia.org/wiki/Microsoft_Excel" target="_blank">Microsoft Excel</a> or any other similar program.                      
+                </h4>
             </div>
             <div class="modal-footer">
-                <input form="ID-form" data-dismiss="modal" type="submit" class="btn btn-primary" value="OK" data-bind="click: okClick" />
+                <input data-dismiss="modal" type="submit" class="btn btn-primary" value="OK" data-bind="click: okClick" />
                 <a href="#" class="btn btn-default" data-dismiss="modal" data-bind="click : cancelClick">Cancel</a>
             </div>
         </div>
