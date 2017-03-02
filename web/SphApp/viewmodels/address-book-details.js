@@ -72,7 +72,10 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
 
         defaultCommand = function () {
 
-            if (!validation.valid()) {
+            //if (!validation.valid()) {
+            //    return Task.fromResult(false);
+            //}
+            if (!$("#address-book-details-form").valid()) {
                 return Task.fromResult(false);
             }
 
@@ -113,8 +116,14 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         },
 
         attached = function (view) {
-            // validation
-            validation.init($('#address-book-details-form'), form());
+
+            //validation.init($('#address-book-details-form'), form());
+            $("#address-book-details-form").validate({
+                rules: {
+                },
+                messages: {
+                }
+            });
 
             if (typeof partial.attached === "function") {
                 partial.attached(view);
@@ -147,6 +156,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 });
         };
     var vm = {
+        id: id,
         partial: partial,
         activate: activate,
         config: config,
