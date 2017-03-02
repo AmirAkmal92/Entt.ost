@@ -6,7 +6,7 @@ function (context, app, router, logger, contactGroups, app2, dialog) {
         //checkAll = ko.observable(false),
         removeAddresses = function () {
             var tcs = $.Deferred();
-            app.showMessage(`Are you sure you want to remove ${selectedAddresses().length} address(es), this action cannot be undone`, "OST", ["Yes", "No"])
+            app.showMessage(`Are you sure you want to remove ${selectedAddresses().length} contact(s)? This action cannot be undone.`, "OST", ["Yes", "No"])
                 .done(function (dialogResult) {
                     if (dialogResult === "Yes") {
                         var tasks = selectedAddresses()
