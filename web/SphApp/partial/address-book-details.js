@@ -14,11 +14,8 @@ define([objectbuilders.datacontext, objectbuilders.system], function (context, s
                 addressBook.ReferenceNo(newEmail);
             });
 
-            //addressBook.ReferenceNo(addressBook.Email);
-
             return context.get("/address-books/group-options")
             .then(groupOptions);
-
         },
         attached = function (view) {
             setTimeout(function(){
