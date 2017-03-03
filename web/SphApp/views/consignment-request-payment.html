@@ -45,18 +45,22 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <!--ko if: $root.totalDomestic() > 0-->
                         <tr>
                             <td class="col-md-6"><span class="sbold col">Domestic Parcel</span></td>
                             <td class="sbold col-md-2">RM <span data-bind="text: ($root.totalDomestic()/1.06).toFixed(2)" class="pull-right"></span></td>
                             <td class="sbold col-md-2">RM <span data-bind="text: (($root.totalDomestic()/1.06)*0.06).toFixed(2)" class="pull-right"></span></td>
                             <td class="sbold col-md-2">RM <span data-bind="text: $root.totalDomestic().toFixed(2)" class="pull-right"></span></td>
                         </tr>
+                        <!--/ko-->
+                        <!--ko if: $root.totalInternational() > 0-->
                         <tr>
                             <td class="col-md-6"><span class="sbold col">International Parcel</span></td>
                             <td class="sbold col-md-2">RM <span data-bind="text: $root.totalInternational().toFixed(2)" class="pull-right"></span></td>
                             <td class="sbold col-md-2">RM <span class="pull-right">0.00</span></td>
                             <td class="sbold col-md-2">RM <span data-bind="text: $root.totalInternational().toFixed(2)" class="pull-right"></span></td>
                         </tr>
+                        <!--/ko-->
                         <tr>
                             <td class="col-md-6"><span class="sbold col">Pickup</span></td>
                             <td class="sbold col-md-2">RM <span class="pull-right">5.00</span></td>
