@@ -11,7 +11,12 @@ function (context, logger, router, system, chart, config, app, crCart) {
         headers = {},
         activate = function (entityId) {
             id(entityId);
-            return context.get("/api/consigment-requests/" + entityId)
+            //return context.get("/api/consigment-requests/" + entityId)
+            return $.ajax({
+                url: "/api/consigment-requests/" + entityId,
+                method: "GET",
+                cache: false
+            })
                 .then(function (b, textStatus, xhr) {
                     if (xhr) {
                         var etag = xhr.getResponseHeader("ETag"),
@@ -79,14 +84,14 @@ function (context, logger, router, system, chart, config, app, crCart) {
             return tcs.promise();
         },
         deleteConsignment = function (consignment) {
-            var tcs = $.Deferred();
-            app.showMessage(`Are you sure you want to remove parcel, this action cannot be undone`, "POS Online Shipping Tools", ["Yes", "No"])
+            return app.showMessage("Are you sure you want to remove parcel? This action cannot be undone.", "OST", ["Yes", "No"])
                 .done(function (dialogResult) {
                     if (dialogResult === "Yes") {
+                        // delete selected consignment
                         entity().Consignments.remove(consignment);
                         return defaultCommand().then(function (result) {
                             if (result.success) {                                
-                                return app.showMessage("Parcel has been successfully removed", "POS Online Shipping Tools", ["OK"]).done(function () {
+                                app.showMessage("Parcel has been successfully removed.", "OST", ["OK"]).done(function () {
                                     calculateGrandTotal();
                                     crCart.activate();
                                 });
@@ -98,8 +103,29 @@ function (context, logger, router, system, chart, config, app, crCart) {
                         tcs.resolve(false);
                     }
                 });
-
-            return tcs.promise();
+        },
+        emptyConsignmentRequest = function () {
+            return app.showMessage("Are you sure you want to empty cart? This action cannot be undone.", "OST", ["Yes", "No"])
+                .done(function (dialogResult) {
+                    if (dialogResult === "Yes") {
+                        // delete all consignments
+                        entity().Consignments.removeAll();
+                        // clear pickup information
+                        entity().Pickup(new bespoke.Ost_consigmentRequest.domain.Pickup());
+                        return defaultCommand().then(function (result) {
+                            if (result.success) {
+                                return app.showMessage("Cart has been successfully emptied.", "OST", ["OK"]).done(function () {
+                                    calculateGrandTotal();
+                                    crCart.activate();
+                                });
+                            } else {
+                                return Task.fromResult(false);
+                            }
+                        });
+                    } else {
+                        return Task.fromResult(false);
+                    }
+                });
         },
         attached = function (view) {
 
@@ -115,7 +141,8 @@ function (context, logger, router, system, chart, config, app, crCart) {
         isPickupDateTimeValid: isPickupDateTimeValid,
         entity: entity,
         grandTotal: grandTotal,
-        deleteConsignment: deleteConsignment
+        deleteConsignment: deleteConsignment,
+        emptyConsignmentRequest: emptyConsignmentRequest
     };
 
     return vm;
