@@ -191,6 +191,9 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
 
         },
         findProductsAsync = function () {
+            if (!$("#consignment-request-produk-form").valid()) {
+                return;
+            }
             var editIndex = -1;
             for (var i = 0; i < entity().Consignments().length; i++) {
                 if (entity().Consignments()[i].WebId() === cid()) {
@@ -299,6 +302,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     console.log(result.Total);
                     consignment().Produk().Price(result.Total);
                     consignment().Produk().Code(model.Code);
+                    consignment().Produk().Name(model.Name);
                     consignment().Produk().IsInternational(model.IsInternational);
                     // always take the first VAS
                     if (model.ValueAddedServices[0].IsSelected) {

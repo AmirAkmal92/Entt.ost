@@ -119,11 +119,16 @@
                                             <!-- /ko -->
                                         </td>
                                         <td class="hidden-xs">
-                                            <span data-bind="text: Produk().Code()"></span>
                                             <!--ko if: Produk().IsInternational-->
+                                            <!--ko if: Produk().Name()-->
+                                            <span data-bind="text: Produk().Name().replace(' Contract', '')"></span>
+                                            <!-- /ko -->
                                             <i class="fa fa-plane"></i>
                                             <!-- /ko -->
                                             <!--ko ifnot: Produk().IsInternational-->
+                                            <!--ko if: Produk().Name()-->
+                                            <span data-bind="text: Produk().Name()"></span>
+                                            <!-- /ko -->
                                             <i class="fa fa-truck"></i>
                                             <!-- /ko -->
                                         </td>
