@@ -90,7 +90,7 @@ function (context, logger, router, system, chart, config, app, app2) {
         },
         compositionComplete = function () {
             if ((entity().Payment().IsPaid()) && (!entity().Payment().IsConNoteReady()) && (!entity().Payment().IsPickupScheduled())) {
-                app.showMessage("Congratulation. Payment has been accepted. Please wait a momment while we generate your Pickup Number and Tracking Number(s). Thank you.", "Ost", ["OK"]).done(function () {
+                app.showMessage("Congratulation. Payment has been accepted. Please wait a moment while we generate your Pickup Number and Tracking Number(s). Thank you.", "Ost", ["OK"]).done(function () {
                         var data = ko.mapping.toJSON(entity);
                         if (entity().Pickup().Number() === undefined) {
                             console.log("Schedule Pickup");
