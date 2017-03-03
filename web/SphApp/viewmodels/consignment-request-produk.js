@@ -325,7 +325,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return defaultCommand()
                 .then(function (result) {
                     if (result.success) {
-                        return app.showMessage("Parcel Information has been successfully saved", "POS Online Shipping Tools", ["OK"]);
+                        return app.showMessage("Parcel Information has been successfully saved.", "OST", ["OK"]);
                     } else {
                         return Task.fromResult(false);
                     }

@@ -224,7 +224,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return defaultCommand()
                 .then(function (result) {
                     if (result.success) {
-                        return app.showMessage("Pickup details has been successfully saved", "POS Online Shipping Tools", ["OK"]).done(function () {
+                        return app.showMessage("Pickup details has been successfully saved. Return to shopping cart and start adding parcel. ", "OST", ["OK"]).done(function () {
                             crCart.activate();
                         });
                     } else {
