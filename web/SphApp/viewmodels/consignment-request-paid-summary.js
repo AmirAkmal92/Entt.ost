@@ -22,20 +22,6 @@ function (context, logger, router, system, chart, config, app, app2) {
                         }
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
-                    //if (entity().Payment().IsPaid()) {
-                    //    if (!entity().Payment().IsPickupScheduled()) {
-                    //        if (entity().Pickup().Number() === undefined) {
-                    //            console.log("Schedule Pickup");
-                    //            schedulePickup();
-                    //        }
-                    //    }
-                    //    if (!entity().Payment().IsConNoteReady()) {
-                    //        if (entity().Consignments()[0].ConNote() === undefined) {
-                    //            console.log("Generate Connotes");
-                    //            generateConNotes();
-                    //        }
-                    //    }
-                    //}
                 }, function (e) {
                     if (e.status == 404) {
                         app.showMessage("Sorry, but we cannot find any Paid Order with Id : " + entityId, "Ost", ["OK"]).done(function () {
@@ -103,31 +89,29 @@ function (context, logger, router, system, chart, config, app, app2) {
 
         },
         compositionComplete = function () {
-            if (entity().Payment().IsPaid()) {
-                var data = ko.mapping.toJSON(entity);
-                if (!entity().Payment().IsPickupScheduled()) {
-                    if (entity().Pickup().Number() === undefined) {
-                        console.log("Schedule Pickup");
-                        context.put(data, "/consignment-request/schedule-pickup/" + ko.unwrap(entity().Id) + "").done(function (result) {
-                            if (result.success) {
-                                app.showMessage("Pickup successfully scheduled.", "Ost", ["OK"]).done(function () {
-                                    if (!entity().Payment().IsConNoteReady()) {
+            if ((entity().Payment().IsPaid()) && (!entity().Payment().IsConNoteReady()) && (!entity().Payment().IsPickupScheduled())) {
+                app.showMessage("Congratulation. Payment has been accepted. Please wait a momment while we generate your Pickup Number and Tracking Number(s). Thank you.", "Ost", ["OK"]).done(function () {
+                        var data = ko.mapping.toJSON(entity);
+                        if (entity().Pickup().Number() === undefined) {
+                            console.log("Schedule Pickup");
+                            context.put(data, "/consignment-request/schedule-pickup/" + ko.unwrap(entity().Id) + "").done(function (result) {
+                                if (result.success) {
+                                    app.showMessage("Pickup Number successfully generated.", "Ost", ["OK"]).done(function () {
                                         if (entity().Consignments()[0].ConNote() === undefined) {
                                             console.log("Generate Connotes");
                                             context.put(data, "/consignment-request/generate-con-notes/" + ko.unwrap(entity().Id) + "").done(function (result) {
                                                 if (result.success) {
-                                                    app.showMessage("Tracking number successfully generated.", "Ost", ["OK"]).done(function () {
+                                                    app.showMessage("Tracking Number(s) successfully generated.", "Ost", ["OK"]).done(function () {
                                                         router.activeItem().activate(result.id);
                                                     });
                                                 }
                                             });
                                         }
-                                    }
-                                });
-                            }
-                        });
-                    }
-                }
+                                    });
+                                }
+                            });
+                        }
+                });
             }
         };
     var vm = {
