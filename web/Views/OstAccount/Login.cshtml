@@ -25,35 +25,39 @@
             <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" />
         </div>
     </div>
+    @*<div class="form-group">
+        <input type="hidden" name="ReturnUrl" value="@Request.RawUrl" />
+    </div>*@
     <div class="form-actions">
         <label class="rememberme mt-checkbox mt-checkbox-outline">
             <input type="checkbox" name="RememberMe" value="true" /> Remember me
             <span></span>
         </label>
-        <button type="submit" class="btn red pull-right"> Login </button>
+        <button type="submit" class="btn red pull-right">Login</button>
     </div>
     <div class="login-options">
-        <h4>Or login with</h4>
+        <h4>Login with:</h4>
         <ul class="social-icons">
             <li>
-                <a class="facebook" data-original-title="facebook" href="javascript:;"> </a>
+                <a class="facebook" data-original-title="facebook" href="#"></a>
             </li>
             <li>
-                <a class="googleplus" data-original-title="Goole Plus" href="javascript:;"> </a>
+                <a class="googleplus" data-original-title="Goole Plus" href="#"></a>
             </li>
         </ul>
     </div>
     <div class="forget-password">
-        <h4>Forgot your password ?</h4>
+        <h4>Forgot password?</h4>
         <p>
-            no worries, click
-            <a href="/ost-account/forgot-password" id="forget-password"> here </a> to reset your password.
+            Reset your password
+            <a href="/ost-account/forgot-password" id="forget-password">here</a>.
         </p>
     </div>
     <div class="create-account">
+        <h4>No account yet?</h4>
         <p>
-            Don't have an account yet ?&nbsp;
-            <a href="/ost-account/register" id="register-btn"> Create an account </a>
+            Create your account 
+            <a href="/ost-account/register" id="register-btn">here</a>.
         </p>
     </div>
 </form>
@@ -62,7 +66,7 @@
 @section scripts
   {
     <script>
-        window.onload = $("#forget-password-form").hide();
+        //window.onload = $("#forget-password-form").hide();
         window.onload = $("#register-new-form").hide();
         jQuery(document).ready(function () {
             function getParameterByName(name) {
@@ -73,35 +77,31 @@
             }
             var retUrl = getParameterByName("ReturnUrl") + window.location.hash;
             $('input[name=ReturnUrl]').val(retUrl);
-
-
-
-            $('#forget-password-form').submit(function (e) {
-                e.preventDefault();
-
-                var button = $("#forgot-password-submit"),
-                    email = $('#forget-password-email').val();
-                if (!email) {
-                    return;
-                }
-                button.prop("disabled", true);
-                $("#progress").show();
-                $.ajax({
-                    type: "POST",
-                    data: JSON.stringify({ email: email }),
-                    url: "/ost-account/forgot-password",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    error: function (a, b, c) {
-                        console.log(c);
-                    },
-                    success: function () {
-                        button.prop("disabled", false);
-                        $("#progress").hide();
-                        window.location = "/";
-                    }
-                });
-            });
+            //$('#forget-password-form').submit(function (e) {
+            //    e.preventDefault();
+            //    var button = $("#forgot-password-submit"),
+            //        email = $('#forget-password-email').val();
+            //    if (!email) {
+            //        return;
+            //    }
+            //    button.prop("disabled", true);
+            //    $("#progress").show();
+            //    $.ajax({
+            //        type: "POST",
+            //        data: JSON.stringify({ email: email }),
+            //        url: "/ost-account/forgot-password",
+            //        contentType: "application/json; charset=utf-8",
+            //        dataType: "json",
+            //        error: function (a, b, c) {
+            //            console.log(c);
+            //        },
+            //        success: function () {
+            //            button.prop("disabled", false);
+            //            $("#progress").hide();
+            //            window.location = "/";
+            //        }
+            //    });
+            //});
         });
     </script>
 }

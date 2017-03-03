@@ -1,4 +1,3 @@
-// PLEASE WAIT WHILE YOUR SCRIPT IS LOADING
 define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "services/logger", "viewmodels/_address-book-groups", "services/app", "plugins/dialog"],
 function (context, app, router, logger, contactGroups, app2, dialog) {
     var groupName = ko.observable(),
@@ -91,7 +90,7 @@ function (context, app, router, logger, contactGroups, app2, dialog) {
         },
         rootList = null,
         activate = function (list, grpName) {
-             rootList = list;
+            rootList = list;
              groupName(grpName);
              var tcs = new $.Deferred();
              setTimeout(function () {
@@ -142,7 +141,15 @@ function (context, app, router, logger, contactGroups, app2, dialog) {
              return router.navigate("address-book-details/0");
         },
         //toggleCheckAll = function () {
-        //    $("input[name^='check-contact-']").click();
+        //    $("input[name^='check-contact-']").each(function () {
+        //        if (!checkAll()) {
+        //            if (!$(this).is(":checked")) {
+        //                $(this).click();
+        //            }
+        //        } else {
+        //            $(this).click();
+        //        }
+        //    });
         //    checkAll(!checkAll());
         //},
         map = function (v) {
