@@ -16,32 +16,36 @@ function (context, logger, router, system, chart, config, app) {
         headers = {},
         activate = function (entityId) {
             id(entityId);
-            return context.get("/api/consigment-requests/" + entityId)
-                .then(function (b, textStatus, xhr) {
-                    if (xhr) {
-                        var etag = xhr.getResponseHeader("ETag"),
-                            lastModified = xhr.getResponseHeader("Last-Modified");
-                        if (etag) {
-                            headers["If-Match"] = etag;
-                        }
-                        if (lastModified) {
-                            headers["If-Modified-Since"] = lastModified;
-                        }
+            //return context.get("/api/consigment-requests/" + entityId)
+            return $.ajax({
+                url: "/api/consigment-requests/" + entityId,
+                method: "GET",
+                cache: false
+            }).then(function (b, textStatus, xhr) {
+                if (xhr) {
+                    var etag = xhr.getResponseHeader("ETag"),
+                        lastModified = xhr.getResponseHeader("Last-Modified");
+                    if (etag) {
+                        headers["If-Match"] = etag;
                     }
-                    entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
-                    if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
-                        app.showMessage("Pickup not scheduled. Please Schedule Pickup before payment can be made.", "Ost", ["OK"]);
-                    } else {
-                        isPickupDateTimeValid(true);
+                    if (lastModified) {
+                        headers["If-Modified-Since"] = lastModified;
                     }
-                    calculateGrandTotal();
-                }, function (e) {
-                    if (e.status == 404) {
-                        app.showMessage("Sorry, but we cannot find any Order Summary with Id : " + entityId, "Ost", ["OK"]).done(function () {
-                            router.navigate("consignment-requests-paid");
-                        });
-                    }
-                });
+                }
+                entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
+                if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
+                    app.showMessage("Pickup not scheduled. Please Schedule Pickup before payment can be made.", "Ost", ["OK"]);
+                } else {
+                    isPickupDateTimeValid(true);
+                }
+                calculateGrandTotal();
+            }, function (e) {
+                if (e.status == 404) {
+                    app.showMessage("Sorry, but we cannot find any Order Summary with Id : " + entityId, "Ost", ["OK"]).done(function () {
+                        router.navigate("consignment-requests-paid");
+                    });
+                }
+            });
         },
         goToPayment = function () {
             var data = ko.mapping.toJSON(entity);
