@@ -6,7 +6,12 @@ function (context, logger, router, config, app, system) {
         entity = ko.observable(),
         availableCountries = ko.observableArray(),
         activate = function () {
-            context.get("/api/address-books/user-profile").done(function (uList) {
+            //context.get("/api/address-books/user-profile")
+            return $.ajax({
+                url: "/api/address-books/user-profile",
+                method: "GET",
+                cache: false
+            }).done(function (uList) {
                 console.log(uList);
                 if (uList._count == 0) {
                     var guid = system.guid();

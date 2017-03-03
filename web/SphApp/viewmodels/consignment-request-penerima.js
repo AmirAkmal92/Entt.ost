@@ -26,84 +26,88 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     WebId: system.guid()
                 });
             }
-            return context.get("/api/consigment-requests/" + crId)
-                .then(function (b, textStatus, xhr) {
+            //return context.get("/api/consigment-requests/" + crId)
+            return $.ajax({
+                url: "/api/consigment-requests/" + crId,
+                method: "GET",
+                cache: false
+            }).then(function (b, textStatus, xhr) {
 
-                    if (xhr) {
-                        var etag = xhr.getResponseHeader("ETag"),
-                            lastModified = xhr.getResponseHeader("Last-Modified");
-                        if (etag) {
-                            headers["If-Match"] = etag;
-                        }
-                        if (lastModified) {
-                            headers["If-Modified-Since"] = lastModified;
+                if (xhr) {
+                    var etag = xhr.getResponseHeader("ETag"),
+                        lastModified = xhr.getResponseHeader("Last-Modified");
+                    if (etag) {
+                        headers["If-Match"] = etag;
+                    }
+                    if (lastModified) {
+                        headers["If-Modified-Since"] = lastModified;
+                    }
+                }
+                entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
+                consignment(new bespoke.Ost_consigmentRequest.domain.Consignment(system.guid()));
+                penerima(new bespoke.Ost_consigmentRequest.domain.Penerima(system.guid()));
+                if (!cId || cId === "0") {
+                    consignment().Penerima(penerima());
+                    entity().Consignments().push(consignment());
+                    cid(consignment().WebId());
+                } else {
+                    var editIndex = -1;
+                    for (var i = 0; i < entity().Consignments().length; i++) {
+                        if (entity().Consignments()[i].WebId() === cId) {
+                            editIndex = i;
+                            break;
                         }
                     }
-                    entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
-                    consignment(new bespoke.Ost_consigmentRequest.domain.Consignment(system.guid()));
-                    penerima(new bespoke.Ost_consigmentRequest.domain.Penerima(system.guid()));
-                    if (!cId || cId === "0") {
-                        consignment().Penerima(penerima());
-                        entity().Consignments().push(consignment());
-                        cid(consignment().WebId());
+                    if (editIndex != -1) {
+                        consignment().Penerima(entity().Consignments()[editIndex].Penerima());
+                        cid(entity().Consignments()[i].WebId());
                     } else {
-                        var editIndex = -1;
-                        for (var i = 0; i < entity().Consignments().length; i++) {
-                            if (entity().Consignments()[i].WebId() === cId) {
-                                editIndex = i;
-                                break;
-                            }
-                        }
-                        if (editIndex != -1) {
-                            consignment().Penerima(entity().Consignments()[editIndex].Penerima());
-                            cid(entity().Consignments()[i].WebId());
-                        } else {
-                            app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "Ost", ["OK"]).done(function () {
-                                router.navigate("consignment-request-cart/" + crId);
-                            });
-                        }
-                    }
-
-                    // always check for pickup location
-                    if (entity().Pickup().Address().Postcode() === undefined) {
-                        app.showMessage("You must set Pickup Location first before you can send any Parcel.", "Ost", ["OK"]).done(function () {
-                            router.navigate("consignment-request-pickup/" + crId);
-                        });
-                    }
-
-                    // always check for pickup schedule
-                    if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
-                    } else {
-                        app.showMessage("Pickup has been scheduled. No more changes are allowed to the Receiver. You may proceed to make Payment now.", "Ost", ["OK"]).done(function () {
-                            router.navigate("consignment-request-summary/" + crId);
-                        });
-                    }
-                }, function (e) {
-                    if (e.status == 404) {
-                        app.showMessage("Sorry, but we cannot find any ConsigmentRequest with Id : " + crId, "Ost", ["OK"]).done(function () {
+                        app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "Ost", ["OK"]).done(function () {
                             router.navigate("consignment-request-cart/" + crId);
                         });
                     }
-                }).then(function () {
-                    var setToMY = false;
-                    if (consignment().Penerima().Address().Country() === undefined) {
-                        setToMY = true;
-                    }
-                    context.get("/api/countries/available-country?size=300").done(function (cList) {
-                        availableCountries(cList._results);
-                        if (setToMY) {
-                            consignment().Penerima().Address().Country("MY");
-                        }
+                }
+
+                // always check for pickup location
+                if (entity().Pickup().Address().Postcode() === undefined) {
+                    app.showMessage("You must set Pickup Location first before you can send any Parcel.", "Ost", ["OK"]).done(function () {
+                        router.navigate("consignment-request-pickup/" + crId);
                     });
-                }).always(function () {
-                    if (typeof partial.activate === "function") {
-                        partial.activate(ko.unwrap(entity))
-                            .done(tcs.resolve)
-                            .fail(tcs.reject);
-                    } else {
-                        tcs.resolve(true);
+                }
+
+                // always check for pickup schedule
+                if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
+                } else {
+                    app.showMessage("Pickup has been scheduled. No more changes are allowed to the Receiver. You may proceed to make Payment now.", "Ost", ["OK"]).done(function () {
+                        router.navigate("consignment-request-summary/" + crId);
+                    });
+                }
+            }, function (e) {
+                if (e.status == 404) {
+                    app.showMessage("Sorry, but we cannot find any ConsigmentRequest with Id : " + crId, "Ost", ["OK"]).done(function () {
+                        router.navigate("consignment-request-cart/" + crId);
+                    });
+                }
+            }).then(function () {
+                var setToMY = false;
+                if (consignment().Penerima().Address().Country() === undefined) {
+                    setToMY = true;
+                }
+                context.get("/api/countries/available-country?size=300").done(function (cList) {
+                    availableCountries(cList._results);
+                    if (setToMY) {
+                        consignment().Penerima().Address().Country("MY");
                     }
                 });
+            }).always(function () {
+                if (typeof partial.activate === "function") {
+                    partial.activate(ko.unwrap(entity))
+                        .done(tcs.resolve)
+                        .fail(tcs.reject);
+                } else {
+                    tcs.resolve(true);
+                }
+            });
             return tcs.promise();
         },
         formatRepo = function (contact) {

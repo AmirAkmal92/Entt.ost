@@ -20,52 +20,56 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     WebId: system.guid()
                 });
             }
-            return context.get("/api/consigment-requests/" + entityId)
-                .then(function (b, textStatus, xhr) {
+            //return context.get("/api/consigment-requests/" + entityId)
+            return $.ajax({
+                url: "/api/consigment-requests/" + entityId,
+                method: "GET",
+                cache: false
+            }).then(function (b, textStatus, xhr) {
 
-                    if (xhr) {
-                        var etag = xhr.getResponseHeader("ETag"),
-                            lastModified = xhr.getResponseHeader("Last-Modified");
-                        if (etag) {
-                            headers["If-Match"] = etag;
-                        }
-                        if (lastModified) {
-                            headers["If-Modified-Since"] = lastModified;
-                        }
+                if (xhr) {
+                    var etag = xhr.getResponseHeader("ETag"),
+                        lastModified = xhr.getResponseHeader("Last-Modified");
+                    if (etag) {
+                        headers["If-Match"] = etag;
                     }
-                    entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
-                    if (entity().Pickup().Address().Postcode() != undefined) {
-                        isPoscodeValid(true);
+                    if (lastModified) {
+                        headers["If-Modified-Since"] = lastModified;
                     }
-                }, function (e) {
-                    if (e.status == 404) {
-                        app.showMessage("Sorry, but we cannot find any ConsigmentRequest with Id : " + id, "Ost", ["OK"]).done(function () {
-                            router.navigate("consignment-request-cart/" + id);
-                        });
-                    }
-                }).then(function () {
-                    var setToMY = false;
-                    if (entity().Pickup().Address().Country() === undefined) {
-                        setToMY = true;
-                    }
-                    context.get("/api/countries/available-country?size=300").done(function (cList) {
-                        availableCountries(cList._results);
-                        if (setToMY) {
-                            entity().Pickup().Address().Country("MY");
-                        }
+                }
+                entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
+                if (entity().Pickup().Address().Postcode() != undefined) {
+                    isPoscodeValid(true);
+                }
+            }, function (e) {
+                if (e.status == 404) {
+                    app.showMessage("Sorry, but we cannot find any ConsigmentRequest with Id : " + id, "Ost", ["OK"]).done(function () {
+                        router.navigate("consignment-request-cart/" + id);
                     });
-                }).always(function () {
-                    context.get("/api/countries/available-country?size=300").done(function (cList) {
-                        availableCountries(cList._results);
-                    });
-                    if (typeof partial.activate === "function") {
-                        partial.activate(ko.unwrap(entity))
-                            .done(tcs.resolve)
-                            .fail(tcs.reject);
-                    } else {
-                        tcs.resolve(true);
+                }
+            }).then(function () {
+                var setToMY = false;
+                if (entity().Pickup().Address().Country() === undefined) {
+                    setToMY = true;
+                }
+                context.get("/api/countries/available-country?size=300").done(function (cList) {
+                    availableCountries(cList._results);
+                    if (setToMY) {
+                        entity().Pickup().Address().Country("MY");
                     }
                 });
+            }).always(function () {
+                context.get("/api/countries/available-country?size=300").done(function (cList) {
+                    availableCountries(cList._results);
+                });
+                if (typeof partial.activate === "function") {
+                    partial.activate(ko.unwrap(entity))
+                        .done(tcs.resolve)
+                        .fail(tcs.reject);
+                } else {
+                    tcs.resolve(true);
+                }
+            });
             return tcs.promise();
 
         },
@@ -193,24 +197,24 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     console.log(result);
                 }, function (e) {
                     isPoscodeValid(false);
-                    if (e.status == 404) {                        
+                    if (e.status == 404) {
                         app.showMessage("Sorry, no pickup coverage for given location / postcode: "
                             + postcode
                             + ". Please choose another Pickup Location.", "Ost", ["OK"]).done(function () {
-                            entity().Pickup().CompanyName("");
-                            entity().Pickup().ContactPerson("");
-                            entity().Pickup().Address().Address1("");
-                            entity().Pickup().Address().Address2("");
-                            entity().Pickup().Address().Address3("");
-                            entity().Pickup().Address().Address4("");
-                            //entity().Pickup().Address().Postcode("");
-                            entity().Pickup().Address().City("");
-                            entity().Pickup().Address().State("");
-                            entity().Pickup().Address().Country("");
-                            entity().Pickup().ContactInformation().Email("");
-                            entity().Pickup().ContactInformation().AlternativeContactNumber("");
-                            entity().Pickup().ContactInformation().ContactNumber("");
-                        });
+                                entity().Pickup().CompanyName("");
+                                entity().Pickup().ContactPerson("");
+                                entity().Pickup().Address().Address1("");
+                                entity().Pickup().Address().Address2("");
+                                entity().Pickup().Address().Address3("");
+                                entity().Pickup().Address().Address4("");
+                                //entity().Pickup().Address().Postcode("");
+                                entity().Pickup().Address().City("");
+                                entity().Pickup().Address().State("");
+                                entity().Pickup().Address().Country("");
+                                entity().Pickup().ContactInformation().Email("");
+                                entity().Pickup().ContactInformation().AlternativeContactNumber("");
+                                entity().Pickup().ContactInformation().ContactNumber("");
+                            });
                     }
                 });
         },
