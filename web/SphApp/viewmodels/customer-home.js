@@ -63,7 +63,7 @@ function (context, logger, router, config, app, system) {
                 logger.error("There are errors in your entity, !!!");
             }).then(function (result) {
                 if (result.success) {
-                    return app.showMessage("Sender details has been successfully saved", "POS Online Shipping Tools", ["OK"]).done(function () {
+                    return app.showMessage("User Profile has been successfully saved.", "OST", ["OK"]).done(function () {
                         //router.activeItem().activate();
                         router.navigate("address-book-home/-");
                     });
