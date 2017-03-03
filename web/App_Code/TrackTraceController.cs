@@ -21,16 +21,14 @@ public class TrackTraceController : BaseApiController
 
     [HttpGet]
     [Route("{conNote}/{culture?}")]
-    public async Task<IHttpActionResult> GetTrackingAsync(string conNote, string culture="En")
+    public async Task<IHttpActionResult> GetTrackingAsync(string conNote, string culture = "En")
     {
         m_client.DefaultRequestHeaders.Add("X-User-Key", Bespoke.Sph.Domain.ConfigurationManager.GetEnvironmentVariable("SdsTrackTraceKey") ?? "YTk3ZDYyNTgtMzAwMS00ZDQ0LWJjZGUtYTZlYzAxMTY5NDE3"); //production server
         //m_client.DefaultRequestHeaders.Add("X-User-Key", Bespoke.Sph.Domain.ConfigurationManager.GetEnvironmentVariable("SdsTrackTraceKey") ?? "NjY3MmFkMjYtYTgyNy00ODM0LTliMzctYTcxYjAxMjEyZDkx"); //stagging server
         string publishPointingUrl = $"apigateway/as2corporate/api/v2trackntracewebapijson/v1?id={conNote}&Culture={culture}";
-    
-        var response = await m_client.GetStringAsync(publishPointingUrl );
-        return Json(response);
-        
 
+        var response = await m_client.GetStringAsync(publishPointingUrl);
+        return Json(response);
     }
 
 }

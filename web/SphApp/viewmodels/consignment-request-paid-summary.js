@@ -1,7 +1,7 @@
 define(["services/datacontext", "services/logger", "plugins/router", "services/system",
-    "services/chart", objectbuilders.config, objectbuilders.app],
+    "services/chart", objectbuilders.config, objectbuilders.app, "services/app"],
 
-function (context, logger, router, system, chart, config, app) {
+function (context, logger, router, system, chart, config, app, app2) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         errors = ko.observableArray(),
@@ -46,7 +46,7 @@ function (context, logger, router, system, chart, config, app) {
         },
         schedulePickup = function () {
             var data = ko.mapping.toJSON(entity);
-            return context.put(data, "/consignment-request/schedule-pickup/" +ko.unwrap(entity().Id) + "")
+            return context.put(data, "/consignment-request/schedule-pickup/" + ko.unwrap(entity().Id) + "")
                 .fail(function (response) {
                     app.showMessage("Sorry, but we cannot process pickup for the Paid Order with Id : " + ko.unwrap(entity().Id), "Ost", ["OK"]).done(function () {
                         router.navigate("consignment-requests-paid");
@@ -88,6 +88,17 @@ function (context, logger, router, system, chart, config, app) {
                     }
                 });
         },
+        showParcelTrackTrace = function (consignment) {
+            require(['viewmodels/show.parcel.track.trace.dialog', 'durandal/app'], function (dialog, app2) {
+                dialog.conNote(consignment.ConNote());
+                app2.showDialog(dialog)
+                    .done(function (result) {
+                        if (!result) return;
+                        if (result === "OK") {
+                        }
+                    });
+            });
+        },
         attached = function (view) {
 
         },
@@ -127,6 +138,7 @@ function (context, logger, router, system, chart, config, app) {
         errors: errors,
         schedulePickup: schedulePickup,
         generateConNotes: generateConNotes,
+        showParcelTrackTrace: showParcelTrackTrace,
         entity: entity
     };
 

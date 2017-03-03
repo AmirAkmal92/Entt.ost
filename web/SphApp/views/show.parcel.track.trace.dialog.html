@@ -1,0 +1,46 @@
+<section class="view-model-modal" id="show-parcel-track-trace-dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" data-bind="click : cancelClick">&times;</button>
+                <h3>Track <span data-bind="text: conNote"></span></h3>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Date / Time</th>
+                            <th>Process	Event</th>
+                            <th>Event</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: item">
+                        <tr>
+                            <td data-bind="text: date"></td>
+                            <td data-bind="text: process"></td>
+                            <td data-bind="text: office"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!--DEMO ONLY-->
+                <div data-bind="visible: true">                    
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label class="control-label">Tracking Number</label>:
+                            <input type="text" class="form-control" data-bind="value: conNote" />
+                        </div>
+                        <a class="btn btn-default" data-bind="click: trackConNote">Track</a>
+                    </form>
+                    <small class="text-danger">*TESTING PURPOSE ONLY (will be deleted soon)</small><br />
+                    <small>Staging generated connote has no track. Track these production connotes instead - </small><br />
+                    <small>EH435377031MY EH379390524MY EX512698013MY EN312257775MY</small>
+                </div>
+                <!--/DEMO ONLY-->
+            </div>
+            <div class="modal-footer">
+                <input form="show-parcel-track-trace-dialog-form" data-dismiss="modal" type="submit" class="btn btn-primary" value="OK" data-bind="click: okClick" />
+                <!--<a href="#" class="btn btn-default" data-dismiss="modal" data-bind="click : cancelClick">Cancel</a>-->
+            </div>
+        </div>
+    </div>
+</section>
