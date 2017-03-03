@@ -133,9 +133,9 @@
                         <div class="col-md-6">
                             <h3 class="form-section" data-bind="visible:true">Description</h3>
                             <div class="row form-group" data-bind="visible:true">
-                                <label data-i18n="Description" class="col-md-4 control-label" for="01d1c388-d629-4283-bd25-56688c166c98">Description</label>
+                                <label data-i18n="Description" class="col-md-4 control-label" for="01d1c388-d629-4283-bd25-56688c166c98">Description<span class="required" aria-required="true"> * </span></label>
                                 <div class="col-md-8">
-                                    <textarea rows="3" class="form-control"
+                                    <textarea class="form-control" required rows="3" 
                                               placeholder=""
                                               data-bind="value: consignment().Produk().Description"
                                               id="01d1c388-d629-4283-bd25-56688c166c98" name="Produk.Description"></textarea>
@@ -210,7 +210,7 @@
                                                 <span class="help-block">Declared Value</span>
                                             </div>
                                         </div>
-                                    </div>                                    
+                                    </div>
                                     <!-- /ko -->
                                 </div>
                             </div>
@@ -228,7 +228,7 @@
                                 <div data-bind="with: products()[0]">
                                     <div class="col-md-4">&nbsp;</div>
                                     <div class="col-md-8">
-                                        <button data-bind="click : $root.recalculatePrice.call($root, $data)" class="btn btn-info">
+                                        <button data-bind="command : $root.recalculatePrice.call($root, $data)" class="btn btn-info">
                                             <i class="fa fa-calculator"></i>
                                             Recalculate Price
                                         </button>
@@ -271,7 +271,7 @@
                                     <!-- /ko -->
                                 </li>
                             </ul>
-                            <button class="btn btn-info" data-bind="click : $root.recalculatePrice.call($root, $data)">
+                            <button class="btn btn-info" data-bind="command : $root.recalculatePrice.call($root, $data)">
                                 <i class="fa fa-calculator"></i>
                                 Calculate Price
                             </button>
