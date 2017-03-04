@@ -77,7 +77,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             if (!contact) return "";
             if (contact.loading) return contact.text;
             var markup = "<div class='select2-result-repository clearfix'>" +
-              "<div class='select2-result-repository__avatar'><img src='/assets/layouts/layout/img/avatar3_small.jpg' /></div>" +
+              "<div class='select2-result-repository__avatar'><img src='/assets/images/user_default.png' /></div>" +
               "<div class='select2-result-repository__meta'>" +
                 "<div class='select2-result-repository__title'>" + contact.ContactPerson + "</div>";
 

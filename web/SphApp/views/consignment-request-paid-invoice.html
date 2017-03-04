@@ -122,7 +122,7 @@
                                             <span data-bind="text: ConNote"></span>
                                         </td>
                                         <td>
-                                            <!--ko if: Produk().Name()-->
+                                            <!--ko if: Produk().Name() != null -->
                                             <!--ko if: Produk().IsInternational-->
                                             <span data-bind="text: Produk().Name().replace(' Contract', '')"></span>
                                             <!--/ko-->
@@ -132,12 +132,12 @@
                                             <!--/ko-->
                                         </td>
                                         <td>
-                                            <!--ko if: Produk().Weight()-->
+                                            <!--ko if: Produk().Weight() != null-->
                                             <span data-bind="text: Produk().Weight().toFixed(3)"></span> kg
                                             <!-- /ko -->
                                         </td>
                                         <td>
-                                            <!--ko if: Produk().Price()-->
+                                            <!--ko if: Produk().Price() != null-->
                                             <!--ko if: Produk().IsInternational-->
                                             <span data-bind="text: Produk().Price().toFixed(2)" class="pull-right"></span>
                                             <!--/ko-->

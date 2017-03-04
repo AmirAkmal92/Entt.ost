@@ -105,59 +105,57 @@
                                 <tbody>
                                     <!--ko foreach: Consignments-->
                                     <tr>
-                                        <td class="hidden-xs">
+                                        <td>
                                             <span data-bind="text: Pemberi().ContactPerson"></span>
                                         </td>
-                                        <td class="hidden-xs">
+                                        <td>
                                             <span data-bind="text: Penerima().ContactPerson"></span>
                                         </td>
-                                        <td class="hidden-xs">
+                                        <td>
                                             <!--ko if: Produk().Weight() != null-->
                                             <span data-bind="text: Produk().Weight() + ' kg'"></span>
                                             <!-- /ko -->
                                         </td>
-                                        <td class="hidden-xs">
+                                        <td>
                                             <!--ko if: Produk().Width() != null-->
                                             <span data-bind="text: Produk().Width() + 'cm x ' + Produk().Length() + 'cm x ' + Produk().Height() + 'cm'"></span>
                                             <!-- /ko -->
                                         </td>
-                                        <td class="hidden-xs">
+                                        <td>
+                                            <!--ko if: Produk().Name() != null-->
                                             <!--ko if: Produk().IsInternational-->
-                                            <!--ko if: Produk().Name()-->
                                             <span data-bind="text: Produk().Name().replace(' Contract', '')"></span>
-                                            <!-- /ko -->
                                             <i class="fa fa-plane"></i>
                                             <!-- /ko -->
                                             <!--ko ifnot: Produk().IsInternational-->
-                                            <!--ko if: Produk().Name()-->
                                             <span data-bind="text: Produk().Name()"></span>
-                                            <!-- /ko -->
                                             <i class="fa fa-truck"></i>
                                             <!-- /ko -->
+                                            <!-- /ko -->
                                         </td>
-                                        <td class="hidden-xs">
+                                        <td>
                                             <!--ko if: Produk().Price() != null-->
                                             RM <span data-bind="text: Produk().Price().toFixed(2)" class="pull-right"></span>
                                             <!-- /ko -->
                                         </td>
-                                        <td class="hidden-xs">
+                                        <td>
                                             <span data-bind="text: ConNote"></span>
                                         </td>
-                                        <td class="hidden-xs">
+                                        <td>
                                             <!--ko ifnot: Produk().IsInternational-->
-                                            <a class="btn btn-info" title="Print Consignment Note" data-bind="attr: { href: 'ost/print-domestic-connote/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }" target="_blank">
+                                            <a class="btn btn-info btn-xs" title="Print Consignment Note" data-bind="attr: { href: 'ost/print-domestic-connote/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }" target="_blank">
                                                 <i class="fa fa-print"></i>
                                             </a>
                                             <!-- /ko -->
                                             <!--ko if: Produk().IsInternational-->
-                                            <a class="btn btn-info" title="Print Consignment Note" data-bind="attr: { href: 'ost/print-international-connote/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }" target="_blank">
+                                            <a class="btn btn-info btn-xs" title="Print Consignment Note" data-bind="attr: { href: 'ost/print-international-connote/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }" target="_blank">
                                                 <i class="fa fa-print"></i>
                                             </a>
                                             <!-- /ko -->
-                                            <a class="btn btn-info" title="Track &amp; Trace" data-bind="click: $root.showParcelTrackTrace">
+                                            <a class="btn btn-info btn-xs" title="Track &amp; Trace" data-bind="click: $root.showParcelTrackTrace">
                                                 <i class="fa fa-search"></i>
                                             </a>
-                                            <a class="btn btn-success" title="Summary">
+                                            <a class="btn btn-success btn-xs" title="Summary">
                                                 <i class="fa fa-file-text-o"></i>
                                             </a>
                                         </td>
