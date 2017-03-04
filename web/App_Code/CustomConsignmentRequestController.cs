@@ -485,6 +485,7 @@ namespace web.sph.App_Code
             // TODO: validate model.PX_SIG
             // TODO: store related PxRes parameters
             item.Payment.IsPaid = true;
+            item.Payment.Date = DateTime.Now;
             await SaveConsigmentRequest(item);
 
             // wait until the worker process it

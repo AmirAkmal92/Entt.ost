@@ -1,0 +1,222 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <div class="caption-subject font-red-sunglo bold"><h2><span class="fa fa-clipboard"> </span> Tax Invoice</h2></div>
+                    <span class="caption-helper">Tax Invoice</span>
+                </div>
+            </div>
+            <div class="invoice" data-bind="with : entity">
+                <div class="row invoice-logo">
+                    <div class="col-md-6 invoice-logo-space">
+                        <img src="../assets/pages/media/invoice/posost.png" class="img-responsive" alt="" />
+                    </div>
+                    <div class="col-md-6">
+                        &nbsp;
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="col-md-6">
+                                    <h4>PAID TO</h4>
+                                    <address>
+                                        <strong>Pos Malaysia Berhad</strong> (22990-M)<br />
+                                        care@pos.com.my
+                                    </address>
+                                    <address>
+                                        Level 8 Pos Malaysia Headquarters<br />
+                                        Dayabumi Complex<br />
+                                        50670 Kuala Lumpur<br />
+                                        Malaysia<br />
+                                        <abbr title="Contact Number">Phone:</abbr> 1-300-300-300<br />
+                                    </address>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>INVOICED TO</h4>
+                                    <address>
+                                        <strong><span data-bind="text: Pickup().ContactPerson"></span></strong><br />
+                                        <span data-bind="text: Pickup().ContactInformation().Email"></span>
+                                    </address>
+                                    <address>
+                                        <strong><span data-bind="text: Pickup().CompanyName"></span></strong><br />
+                                        <span data-bind="text: Pickup().Address().Address1"></span>&nbsp;
+                                        <span data-bind="text: Pickup().Address().Address2"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: Pickup().Address().Address3"></span>&nbsp;
+                                        <span data-bind="text: Pickup().Address().Address4"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: Pickup().Address().Postcode"></span>&nbsp;
+                                        <span data-bind="text: Pickup().Address().City"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: Pickup().Address().State"></span>&nbsp;
+                                        <!--<span data-bind="text: Pickup().Address().Country"></span>-->Malaysia&nbsp;
+                                        <br />
+                                        <abbr title="Contact Number">Phone:</abbr> <span data-bind="text: Pickup().ContactInformation().ContactNumber"></span><br />
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <dl>
+                                    <dt>Tax Invoice No</dt>
+                                    <dd>#<span data-bind="text: Id"></span></dd>
+                                    <dt>Date</dt>
+                                    <dd><span data-bind="date:{ value: Payment().Date, format:&#39;D/M/YYYY HH:mm&#39;}"></span></dd>
+                                    <dt>Payment Mode</dt>
+                                    <dd><span>Credit Card</span></dd>
+                                    <dt>Ref No</dt>
+                                    <dd><span>XYZ-987-ABC-321</span></dd>
+                                    <dt>Res Code</dt>
+                                    <dd><span>Accepted (Transaction Successfull)</span></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-bind="visible: Consignments().length == 0">
+                    <br />
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h4>
+                                Invoice is empty. No Parcel found.
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div data-bind="visible: Consignments().length > 0">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>&nbsp;</th>
+                                        <th>Tracking Number</th>
+                                        <th>Product</th>
+                                        <th>Weight</th>
+                                        <th><span class="pull-right">Total RM</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!--ko foreach: Consignments-->
+                                    <tr>
+                                        <td>
+                                            <span data-bind="text: $index() + 1"></span>
+                                        </td>
+                                        <td>
+                                            <!--ko if: Produk().IsInternational-->
+                                            #
+                                            <!--/ko-->
+                                            <!--ko ifnot: Produk().IsInternational-->
+                                            *
+                                            <!--/ko-->
+                                            <span data-bind="text: ConNote"></span>
+                                        </td>
+                                        <td>
+                                            <!--ko if: Produk().Name()-->
+                                            <!--ko if: Produk().IsInternational-->
+                                            <span data-bind="text: Produk().Name().replace(' Contract', '')"></span>
+                                            <!--/ko-->
+                                            <!--ko ifnot: Produk().IsInternational-->
+                                            <span data-bind="text: Produk().Name()"></span>
+                                            <!--/ko-->
+                                            <!--/ko-->
+                                        </td>
+                                        <td>
+                                            <!--ko if: Produk().Weight()-->
+                                            <span data-bind="text: Produk().Weight().toFixed(3)"></span> kg
+                                            <!-- /ko -->
+                                        </td>
+                                        <td>
+                                            <!--ko if: Produk().Price()-->
+                                            <!--ko if: Produk().IsInternational-->
+                                            <span data-bind="text: Produk().Price().toFixed(2)" class="pull-right"></span>
+                                            <!--/ko-->
+                                            <!--ko ifnot: Produk().IsInternational-->
+                                            <span data-bind="text: (Produk().Price()/1.06).toFixed(2)" class="pull-right"></span>
+                                            <!--/ko-->
+                                            <!--/ko-->
+
+                                        </td>
+                                    </tr>
+                                    <!-- /ko -->
+                                    <tr>
+                                        <td><span data-bind="text: Consignments().length + 1"></span></td>
+                                        <td colspan="3">Pickup</td>
+                                        <td><span class="pull-right">5.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">Sub Total</td>
+                                        <td><span data-bind="text: (($root.totalDomestic() / 1.06) + $root.totalInternational() + 5).toFixed(2)" class="pull-right"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">* GST 6%</td>
+                                        <td><span data-bind="text: ((($root.totalDomestic() / 1.06) * 0.06 ) + 0.3).toFixed(2)" class="pull-right"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"><strong>Grand Total</strong></td>
+                                        <td><strong><span data-bind="text: Payment().TotalPrice().toFixed(2)" class="pull-right"></span></strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <center>
+                                                <strong><span>GST Registration No.</span></strong> <span>001609433088</span>
+                                            </center>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3">GST Summary</th>
+                                        <th><span class="pull-right">Amount RM</span></th>
+                                        <th><span class="pull-right">Tax RM</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="3"># Zero rated</td>
+                                        <td><span data-bind="text: $root.totalInternational().toFixed(2)" class="pull-right"></span></td>
+                                        <td><span class="pull-right">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">* GST 6%</td>
+                                        <td><span data-bind="text: ((($root.totalDomestic() / 1.06)) + 5).toFixed(2)" class="pull-right"></span></td>
+                                        <td><span data-bind="text: ((($root.totalDomestic() / 1.06) * 0.06) + 0.3).toFixed(2)" class="pull-right"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>
+                                <center>
+                                    Thank you for using OST (Online Shipping Tool)<br />
+                                    <small>
+                                        If you have any questions about your tax invoice please<br />
+                                        call us at 1-300-300-300<br />
+                                        or drop us an email at care@pos.com.my<br />
+                                    </small>
+                                </center>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
