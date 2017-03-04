@@ -9,7 +9,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         consignment = ko.observable(),
         pemberi = ko.observable(),
         availableCountries = ko.observableArray(),
-        isUsingPickupAddress = ko.observable(true),
+        isUsingPickupAddress = ko.observable(false),
         errors = ko.observableArray(),
         id = ko.observable(),
         crid = ko.observable(),
@@ -50,6 +50,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     consignment().Pemberi(pemberi());
                     entity().Consignments().push(consignment());
                     cid(consignment().WebId());
+                    isUsingPickupAddress(true);
                 } else {
                     var editIndex = -1;
                     for (var i = 0; i < entity().Consignments().length; i++) {
@@ -61,7 +62,9 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     if (editIndex != -1) {
                         consignment().Pemberi(entity().Consignments()[editIndex].Pemberi());
                         cid(entity().Consignments()[i].WebId());
+                        isUsingPickupAddress(false);
                     } else {
+                        isUsingPickupAddress(true);
                         app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "Ost", ["OK"]).done(function () {
                             router.navigate("consignment-request-cart/" + crId);
                         });
@@ -84,7 +87,9 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 }
 
                 // toggle Address Source
-                togglePemberiAddressSource();
+                if (isUsingPickupAddress()) {
+                    togglePemberiAddressSource();
+                }
             }, function (e) {
                 if (e.status == 404) {
                     app.showMessage("Sorry, but we cannot find any ConsigmentRequest with Id : " + crId, "Ost", ["OK"]).done(function () {
@@ -166,7 +171,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return tcs.promise();
         },
         deactivate = function () {
-            isUsingPickupAddress(true);
+            //isUsingPickupAddress(true);
         },
         attached = function (view) {
             $("#consignment-request-pemberi-form").validate({
