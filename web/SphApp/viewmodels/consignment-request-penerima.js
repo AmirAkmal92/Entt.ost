@@ -16,6 +16,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         cid = ko.observable(),
         partial = partial || {},
         headers = {},
+        editIndex = -1,
         activate = function (crId, cId) {
             id(crId);
             crid(crId);
@@ -51,7 +52,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     entity().Consignments().push(consignment());
                     cid(consignment().WebId());
                 } else {
-                    var editIndex = -1;
+                    editIndex = -1;
                     for (var i = 0; i < entity().Consignments().length; i++) {
                         if (entity().Consignments()[i].WebId() === cId) {
                             editIndex = i;
@@ -114,7 +115,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             if (!contact) return "";
             if (contact.loading) return contact.text;
             var markup = "<div class='select2-result-repository clearfix'>" +
-              "<div class='select2-result-repository__avatar'><img src='/assets/layouts/layout/img/avatar3_small.jpg' /></div>" +
+              "<div class='select2-result-repository__avatar'><img src='/assets/images/user_default.png' /></div>" +
               "<div class='select2-result-repository__meta'>" +
                 "<div class='select2-result-repository__title'>" + contact.ContactPerson + "</div>";
 
@@ -198,31 +199,35 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 templateResult: formatRepo,
                 templateSelection: function (o) { return o.ContactPerson || o.text; }
             })
-                           .on("select2:select", function (e) {
-                               console.log(e);
-                               var contact = e.params.data;
-                               if (!contact) {
-                                   return;
-                               }
-                               consignment().Penerima().CompanyName(contact.CompanyName);
-                               consignment().Penerima().ContactPerson(contact.ContactPerson);
-                               consignment().Penerima().Address().Address1(contact.Address.Address1);
-                               consignment().Penerima().Address().Address2(contact.Address.Address2);
-                               consignment().Penerima().Address().Address3(contact.Address.Address3);
-                               consignment().Penerima().Address().Address4(contact.Address.Address4);
-                               consignment().Penerima().Address().Postcode(contact.Address.Postcode);
-                               consignment().Penerima().Address().City(contact.Address.City);
-                               consignment().Penerima().Address().State(contact.Address.State);
-                               consignment().Penerima().Address().Country(contact.Address.Country);
-                               consignment().Penerima().ContactInformation().Email(contact.ContactInformation.Email);
-                               consignment().Penerima().ContactInformation().AlternativeContactNumber(contact.ContactInformation.AlternativeContactNumber);
-                               consignment().Penerima().ContactInformation().ContactNumber(contact.ContactInformation.ContactNumber);
-                           });
+                .on("select2:select", function (e) {
+                    console.log(e);
+                    var contact = e.params.data;
+                    if (!contact) {
+                        return;
+                    }
+                    consignment().Penerima().CompanyName(contact.CompanyName);
+                    consignment().Penerima().ContactPerson(contact.ContactPerson);
+                    consignment().Penerima().Address().Address1(contact.Address.Address1);
+                    consignment().Penerima().Address().Address2(contact.Address.Address2);
+                    consignment().Penerima().Address().Address3(contact.Address.Address3);
+                    consignment().Penerima().Address().Address4(contact.Address.Address4);
+                    consignment().Penerima().Address().Postcode(contact.Address.Postcode);
+                    consignment().Penerima().Address().City(contact.Address.City);
+                    consignment().Penerima().Address().State(contact.Address.State);
+                    consignment().Penerima().Address().Country(contact.Address.Country);
+                    consignment().Penerima().ContactInformation().Email(contact.ContactInformation.Email);
+                    consignment().Penerima().ContactInformation().AlternativeContactNumber(contact.ContactInformation.AlternativeContactNumber);
+                    consignment().Penerima().ContactInformation().ContactNumber(contact.ContactInformation.ContactNumber);
+                });
         },
         compositionComplete = function () {
 
         },
         saveCommand = function () {
+            // reset price to 0.00 when changes are made to receiver
+            if (editIndex != -1) {
+                entity().Consignments()[editIndex].Produk().Price(0.00);
+            }
             return defaultCommand()
                 .then(function (result) {
                     if (result.success) {

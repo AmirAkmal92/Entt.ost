@@ -3,7 +3,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
     "services/app", "plugins/dialog"],
 function (context, logger, router, system, chart, config, app, crCart, app2, dialog) {
 
-    var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),       
+    var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         grandTotal = ko.observable(),
         isPickupDateTimeValid = ko.observable(false),
         errors = ko.observableArray(),
@@ -90,7 +90,7 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                         // delete selected consignment
                         entity().Consignments.remove(consignment);
                         return defaultCommand().then(function (result) {
-                            if (result.success) {                                
+                            if (result.success) {
                                 app.showMessage("Parcel has been successfully removed.", "OST", ["OK"]).done(function () {
                                     calculateGrandTotal();
                                     crCart.activate();
@@ -153,7 +153,28 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                             }
                         });
                 });
-            }            
+            }
+            return tcs.promise();
+        },
+        goToSummary = function () {
+            var tcs = new $.Deferred();
+            var needToCalculatePrice = false;
+            for (var i = 0; i < entity().Consignments().length; i++) {
+                if (entity().Consignments()[i].Produk().Price() == null
+                    || entity().Consignments()[i].Produk().Price() == 0) {
+                    needToCalculatePrice = true;
+                    break;
+                }
+            }
+            if (needToCalculatePrice) {
+                app.showMessage("Some parcels are yet to be finalized. Please verify Sender, Receiver, Parcel Information and Price before payment can be made.", "Ost", ["OK"])
+                    .done(function () {
+                        tcs.resolve(false);
+            });                
+            } else {
+                tcs.resolve(true);
+                router.navigate("consignment-request-summary/" + id());
+            }
             return tcs.promise();
         },
         attached = function (view) {
@@ -172,7 +193,8 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
         grandTotal: grandTotal,
         deleteConsignment: deleteConsignment,
         emptyConsignmentRequest: emptyConsignmentRequest,
-        importConsignments: importConsignments
+        importConsignments: importConsignments,
+        goToSummary: goToSummary
     };
 
     return vm;
