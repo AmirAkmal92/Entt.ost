@@ -1,0 +1,46 @@
+<section class="view-model-modal" id="import-consignments-dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" data-bind="click : cancelClick">&times;</button>
+                <h3>Import Parcels (from CSV)</h3>
+            </div>
+            <div class="modal-body" data-bind="with: item">
+                <form class="form-horizontal" id="import-consignments-dialog-form">
+                    <h4>
+                        Start by <a href="../../Content/Files/address_format_template.csv">downloading</a>
+                        the Parcel Template.<br /><br />
+                        The file is in *.csv format and can be opened <br />
+                        by <a href="https://en.wikipedia.org/wiki/Microsoft_Excel" target="_blank">Microsoft Excel</a> or any other similar program.
+                    </h4>
+                    <p>
+                        <em>
+                            *Do not delete any column from the template.<br />
+                            Simply add parcels of your own by following the given format.
+                        </em>
+                    </p>
+                    <div class="form-group">
+                    </div>
+                    <div class="form-group">
+                        <label for="upload-csv" class="col-lg-3 control-label">Upload CSV :</label>
+                        <div class="col-lg-8">
+                            <div class="k-widget k-upload">
+                                <div class="btn blue btn-outline k-button k-upload-button">
+                                    <input type="file" data-bind="kendoUpload : storeId" name="files" class="form-control" id="upload-csv" data-role="upload" autocomplete="off">
+                                    <span>Select file from disk</span>
+                                </div>
+                                <div class="form-control-focus"></div>
+                                <span class="help-block"><i>Drop files here to upload.</i></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <input form="import-consignments-dialog-form" data-dismiss="modal" type="submit" class="btn blue" value="Import" data-bind="click: okClick" />
+                <a href="#" class="btn btn-default" data-dismiss="modal" data-bind="click : cancelClick">Cancel</a>
+            </div>
+        </div>
+    </div>
+</section>

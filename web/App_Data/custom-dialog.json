@@ -16,5 +16,11 @@
     "originalName": "show.parcel.track.trace",
     "jsDiff": null,
     "htmlDiff": null
+  },
+  {
+    "name": "import.consignments.dialog",
+    "originalName": null,
+    "jsDiff": null,
+    "htmlDiff": null
   }
 ]
