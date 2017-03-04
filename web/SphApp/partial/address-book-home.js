@@ -24,46 +24,6 @@ function (context, app, router, logger, contactGroups, app2, dialog) {
                 });
             return tcs.promise();
         },
-        importContacts = function () {
-            var tcs = new $.Deferred();
-            require(['viewmodels/import.contacts.dialog', 'durandal/app'], function (dialog, app2) {
-                app2.showDialog(dialog)
-                    .done(function (result) {
-                        tcs.resolve(result);
-                        if (!result) return;
-                        if (result === "OK") {
-                            var storeId = ko.unwrap(dialog.item().storeId);
-                            context.post("{}", "address-books/" + storeId).done(function (result) {
-                                console.log(result);
-                                app.showMessage("Contacts successfuly imported from file.", "Ost", ["OK"]).done(function () {
-                                    contactGroups.activate();
-                                });
-                            });
-                        }
-                    });
-            });
-            return tcs.promise();
-        },
-        exportToCsv = function () {
-            var tcs = new $.Deferred();
-            require(['viewmodels/export.addresses.dialog', 'durandal/app'], function (dialog, app2) {
-                app2.showDialog(dialog)
-                    .done(function (result) {
-                        tcs.resolve(result);
-                        if (!result) return;
-                        if (result === "OK") {
-                            //var uri = "";
-                            //for (var opt in dialog.options()) {
-                            //    if (ko.isObservable(dialog.options()[opt])) {
-                            //        uri += opt + "=" + ko.unwrap(dialog.options()[opt]) + "&"
-                            //    }
-                            //}
-                            window.open("/address-books/csv");
-                        }
-                    });
-            });
-            return tcs.promise();
-        },
         renameGroup = function () {
             var newGroupName = "-";
             var isCancel = true;
@@ -164,8 +124,6 @@ function (context, app, router, logger, contactGroups, app2, dialog) {
         //checkAll: checkAll,
         //toggleCheckAll: toggleCheckAll,
         renameGroup: renameGroup,
-        importContacts: importContacts,
-        exportToCsv: exportToCsv,
         map: map,
         groupName: groupName,
         commands: ko.observableArray([]),
