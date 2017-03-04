@@ -125,8 +125,7 @@ namespace web.sph.App_Code
         {
             var store = ObjectBuilder.GetObject<IBinaryStore>();
             var csv = await store.GetContentAsync(storeId);
-            if (null == csv)
-                return NotFound($"Cannot outlook csv in {storeId}");
+            if (null == csv) return NotFound($"Cannot find csv in {storeId}");
 
             // write code use mapping , from port to import the data
             var port = new Bespoke.Ost.ReceivePorts.AddressTemplateFormat(ObjectBuilder.GetObject<ILogger>());
@@ -284,7 +283,7 @@ namespace web.sph.App_Code
             if (address4)
                 csv.Append(@"""Address 4"",");
             if (postcode)
-                csv.Append(@"""Postcode"",");           
+                csv.Append(@"""Postcode"",");
             if (city)
                 csv.Append(@"""City"",");
             if (state)

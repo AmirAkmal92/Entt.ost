@@ -518,77 +518,85 @@ namespace web.sph.App_Code
         {
             var store = ObjectBuilder.GetObject<IBinaryStore>();
             var csv = await store.GetContentAsync(storeId);
-            if (null == csv)
-                return NotFound($"Cannot outlook csv in {storeId}");
+            if (null == csv) return NotFound($"Cannot find csv in {storeId}");
 
             LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
             if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
 
+            var resultSuccess = true;
+            var resultStatus = "OK";
             var item = lo.Source;
 
-            // TODO: check for IsPaid
-            // TODO: default pickup for sender?
-
-            var port = new Bespoke.Ost.ReceivePorts.ConsignmentListTemplateFormat(ObjectBuilder.GetObject<ILogger>());
-            var text = Encoding.Default.GetString(csv.Content);
-            var lines = from t in text.Split(new[] { "\r\n", "\r" }, StringSplitOptions.RemoveEmptyEntries)
-                        where !t.StartsWith("Sender Name,") // ignore the label
-                        let fields = t.Split(new[] { "," }, StringSplitOptions.None).Take(88)
-                        select string.Join(",", fields);
-
-            var consignments = from cl in port.Process(lines)
-                               where null != cl
-                               select cl.ToJson().DeserializeFromJson<Bespoke.Ost.ConsignmentListFormats.Domain.ConsignmentListFormat>();
-
-            foreach (var consignment in consignments)
+            if (!item.Payment.IsPaid)
             {
-                var tmpConsignment = new Consignment();
-                // assign sender information
-                tmpConsignment.Pemberi.ContactPerson = consignment.SenderName;
-                tmpConsignment.Pemberi.CompanyName = consignment.SenderCompanyName;
-                tmpConsignment.Pemberi.Address.Address1 = consignment.SenderAddress1;
-                tmpConsignment.Pemberi.Address.Address2 = consignment.SenderAddress2;
-                tmpConsignment.Pemberi.Address.Address3 = consignment.SenderAddress3;
-                tmpConsignment.Pemberi.Address.Address4 = consignment.SenderAddress4;
-                tmpConsignment.Pemberi.Address.City = consignment.SenderCity;
-                tmpConsignment.Pemberi.Address.State = consignment.SenderState;
-                tmpConsignment.Pemberi.Address.Country = consignment.SenderCountry;
-                tmpConsignment.Pemberi.Address.Postcode = consignment.SenderPostcode;
-                tmpConsignment.Pemberi.ContactInformation.Email = consignment.SenderEmail;
-                tmpConsignment.Pemberi.ContactInformation.ContactNumber = consignment.SenderContactNumber;
-                tmpConsignment.Pemberi.ContactInformation.AlternativeContactNumber = consignment.SenderAlternativeContactNumber;
+                var port = new Bespoke.Ost.ReceivePorts.ConsignmentListTemplateFormat(ObjectBuilder.GetObject<ILogger>());
+                var text = Encoding.Default.GetString(csv.Content);
+                var lines = from t in text.Split(new[] { "\r\n", "\r" }, StringSplitOptions.RemoveEmptyEntries)
+                            where !t.StartsWith("Sender Name,") // ignore the label
+                            let fields = t.Split(new[] { "," }, StringSplitOptions.None).Take(88)
+                            select string.Join(",", fields);
 
-                // assign receiver information
-                tmpConsignment.Penerima.ContactPerson = consignment.ReceiverName;
-                tmpConsignment.Penerima.CompanyName = consignment.ReceiverCompanyName;
-                tmpConsignment.Penerima.Address.Address1 = consignment.ReceiverAddress1;
-                tmpConsignment.Penerima.Address.Address2 = consignment.ReceiverAddress2;
-                tmpConsignment.Penerima.Address.Address3 = consignment.ReceiverAddress3;
-                tmpConsignment.Penerima.Address.Address4 = consignment.ReceiverAddress4;
-                tmpConsignment.Penerima.Address.City = consignment.ReceiverCity;
-                tmpConsignment.Penerima.Address.State = consignment.ReceiverState;
-                tmpConsignment.Penerima.Address.Country = consignment.ReceiverCountry;
-                tmpConsignment.Penerima.Address.Postcode = consignment.ReceiverPostcode;
-                tmpConsignment.Penerima.ContactInformation.Email = consignment.ReceiverEmail;
-                tmpConsignment.Penerima.ContactInformation.ContactNumber = consignment.ReceiverContactNumber;
-                tmpConsignment.Penerima.ContactInformation.AlternativeContactNumber = consignment.ReceiverAlternativeContactNumber;
+                var consignments = from cl in port.Process(lines)
+                                   where null != cl
+                                   select cl.ToJson().DeserializeFromJson<Bespoke.Ost.ConsignmentListFormats.Domain.ConsignmentListFormat>();
 
-                // assign product information
-                tmpConsignment.Produk.Weight = Convert.ToDecimal(consignment.ItemWeightKg, CultureInfo.InvariantCulture);
-                tmpConsignment.Produk.Width = Convert.ToDecimal(consignment.ItemWidthCm, CultureInfo.InvariantCulture);
-                tmpConsignment.Produk.Length = Convert.ToDecimal(consignment.ItemLengthCm, CultureInfo.InvariantCulture);
-                tmpConsignment.Produk.Height = Convert.ToDecimal(consignment.ItemHeightCm, CultureInfo.InvariantCulture);
-                tmpConsignment.Produk.Description = consignment.ItemDescription;
+                foreach (var consignment in consignments)
+                {
+                    var tmpConsignment = new Consignment();
+                    // assign sender information
+                    tmpConsignment.Pemberi.ContactPerson = consignment.SenderName;
+                    tmpConsignment.Pemberi.CompanyName = consignment.SenderCompanyName;
+                    tmpConsignment.Pemberi.Address.Address1 = consignment.SenderAddress1;
+                    tmpConsignment.Pemberi.Address.Address2 = consignment.SenderAddress2;
+                    tmpConsignment.Pemberi.Address.Address3 = consignment.SenderAddress3;
+                    tmpConsignment.Pemberi.Address.Address4 = consignment.SenderAddress4;
+                    tmpConsignment.Pemberi.Address.City = consignment.SenderCity;
+                    tmpConsignment.Pemberi.Address.State = consignment.SenderState;
+                    tmpConsignment.Pemberi.Address.Country = consignment.SenderCountry;
+                    tmpConsignment.Pemberi.Address.Postcode = consignment.SenderPostcode;
+                    tmpConsignment.Pemberi.ContactInformation.Email = consignment.SenderEmail;
+                    tmpConsignment.Pemberi.ContactInformation.ContactNumber = consignment.SenderContactNumber;
+                    tmpConsignment.Pemberi.ContactInformation.AlternativeContactNumber = consignment.SenderAlternativeContactNumber;
 
-                tmpConsignment.WebId = Guid.NewGuid().ToString();
-                item.Consignments.Add(tmpConsignment);
+                    // assign receiver information
+                    tmpConsignment.Penerima.ContactPerson = consignment.ReceiverName;
+                    tmpConsignment.Penerima.CompanyName = consignment.ReceiverCompanyName;
+                    tmpConsignment.Penerima.Address.Address1 = consignment.ReceiverAddress1;
+                    tmpConsignment.Penerima.Address.Address2 = consignment.ReceiverAddress2;
+                    tmpConsignment.Penerima.Address.Address3 = consignment.ReceiverAddress3;
+                    tmpConsignment.Penerima.Address.Address4 = consignment.ReceiverAddress4;
+                    tmpConsignment.Penerima.Address.City = consignment.ReceiverCity;
+                    tmpConsignment.Penerima.Address.State = consignment.ReceiverState;
+                    tmpConsignment.Penerima.Address.Country = consignment.ReceiverCountry;
+                    tmpConsignment.Penerima.Address.Postcode = consignment.ReceiverPostcode;
+                    tmpConsignment.Penerima.ContactInformation.Email = consignment.ReceiverEmail;
+                    tmpConsignment.Penerima.ContactInformation.ContactNumber = consignment.ReceiverContactNumber;
+                    tmpConsignment.Penerima.ContactInformation.AlternativeContactNumber = consignment.ReceiverAlternativeContactNumber;
+
+                    // assign product information
+                    tmpConsignment.Produk.Weight = Convert.ToDecimal(consignment.ItemWeightKg, CultureInfo.InvariantCulture);
+                    tmpConsignment.Produk.Width = Convert.ToDecimal(consignment.ItemWidthCm, CultureInfo.InvariantCulture);
+                    tmpConsignment.Produk.Length = Convert.ToDecimal(consignment.ItemLengthCm, CultureInfo.InvariantCulture);
+                    tmpConsignment.Produk.Height = Convert.ToDecimal(consignment.ItemHeightCm, CultureInfo.InvariantCulture);
+                    tmpConsignment.Produk.Description = consignment.ItemDescription;
+
+                    tmpConsignment.WebId = Guid.NewGuid().ToString();
+                    item.Consignments.Add(tmpConsignment);
+                }
+
+                await SaveConsigmentRequest(item);
+            } else
+            {
+                resultSuccess = false;
+                resultStatus = "Consignment Request has been paid";
             }
-            await SaveConsigmentRequest(item);
+
+            
 
             var result = new
             {
-                success = true,
-                status = "OK",
+                success = resultSuccess,
+                status = resultStatus,
                 id = item.Id
             };
 
