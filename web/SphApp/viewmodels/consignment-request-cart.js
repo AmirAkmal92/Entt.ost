@@ -1,7 +1,7 @@
 define(["services/datacontext", "services/logger", "plugins/router", "services/system",
-    "services/chart", objectbuilders.config, objectbuilders.app, "viewmodels/_consignment-request-cart"],
-
-function (context, logger, router, system, chart, config, app, crCart) {
+    "services/chart", objectbuilders.config, objectbuilders.app, "viewmodels/_consignment-request-cart",
+    "services/app", "plugins/dialog"],
+function (context, logger, router, system, chart, config, app, crCart, app2, dialog) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),       
         grandTotal = ko.observable(),
@@ -127,6 +127,35 @@ function (context, logger, router, system, chart, config, app, crCart) {
                     }
                 });
         },
+        importConsignments = function () {
+            var tcs = new $.Deferred();
+            // always check for pickup location
+            if (entity().Pickup().Address().Postcode() === undefined) {
+                app.showMessage("You must set Pickup Location first before you can import any Parcel.", "Ost", ["OK"]).done(function () {
+                    tcs.resolve("OK");
+                    router.navigate("consignment-request-pickup/" + id());
+                });
+            } else {
+                require(['viewmodels/import.consignments.dialog', 'durandal/app'], function (dialog, app2) {
+                    app2.showDialog(dialog)
+                        .done(function (result) {
+                            tcs.resolve(result);
+                            if (!result) return;
+                            if (result === "OK") {
+                                var storeId = ko.unwrap(dialog.item().storeId);
+                                context.post("{}", "/consignment-request/import-consignments/" + id() + "/store-id/" + storeId).done(function (result) {
+                                    console.log(result);
+                                    app.showMessage("Parcels successfuly imported from file.", "Ost", ["OK"]).done(function () {
+                                        activate(id());
+                                        crCart.activate();
+                                    });
+                                });
+                            }
+                        });
+                });
+            }            
+            return tcs.promise();
+        },
         attached = function (view) {
 
         },
@@ -142,7 +171,8 @@ function (context, logger, router, system, chart, config, app, crCart) {
         entity: entity,
         grandTotal: grandTotal,
         deleteConsignment: deleteConsignment,
-        emptyConsignmentRequest: emptyConsignmentRequest
+        emptyConsignmentRequest: emptyConsignmentRequest,
+        importConsignments: importConsignments
     };
 
     return vm;
