@@ -3,7 +3,12 @@ define(['services/datacontext', 'services/logger', 'plugins/router', objectbuild
         var isBusy = ko.observable(true),
             consignmentRequest = ko.observable(),
             activate = function () {
-                return context.get("/api/consigment-requests/unpaid/").done(function (crList) {
+                //return context.get("/api/consigment-requests/unpaid/")
+                return $.ajax({
+                    url: "/api/consigment-requests/unpaid/",
+                    method: "GET",
+                    cache: false
+                }).done(function (crList) {
                     console.log(crList);
                     if (crList._count == 0) {
                         //create new cart

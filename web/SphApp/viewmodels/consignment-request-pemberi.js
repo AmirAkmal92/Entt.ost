@@ -223,7 +223,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         },
         togglePemberiAddressSource = function () {
             if (isUsingPickupAddress()) {
-                fillUpContact(ko.toJS(entity().Pickup()))
+                fillUpContact(ko.toJS(entity().Pickup()));
             } else {
                 fillUpContact(ko.toJS(new bespoke.Ost_consigmentRequest.domain.Pemberi(system.guid())));
                 consignment().Pemberi().Address().Country("MY");
