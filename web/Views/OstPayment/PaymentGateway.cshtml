@@ -83,11 +83,11 @@
                     <div class="col-md-3">&nbsp;</div>
                     <div class="col-md-6">
                         <center>
-                            <form action="/consignment-request/payment-accepted" method="post">
+                            <form action="/ost-payment/payment-accepted" method="post">
                                 <input type="hidden" name="PX_PURCHASE_ID" value="@Html.Raw(Model.PX_PURCHASE_ID)"/>
                                 <button type="submit" class="btn btn-lg btn-success">Accepted</button>
                             </form>
-                            <form action="/consignment-request/payment-rejected" method="post">
+                            <form action="/ost-payment/payment-rejected" method="post">
                                 <input type="hidden" name="PX_PURCHASE_ID" value="@Html.Raw(Model.PX_PURCHASE_ID)" />
                                 <button type="submit" class="btn btn-lg btn-warning">Rejected</button>
                             </form>

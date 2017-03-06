@@ -474,45 +474,6 @@ namespace web.sph.App_Code
         }
 
         [HttpPost]
-        [Route("payment-accepted")]
-        public async Task<IHttpActionResult> PaymentAccepted(PxResModel model)
-        {
-            var baseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl");
-            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(model.PX_PURCHASE_ID);
-            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + model.PX_PURCHASE_ID);
-            var item = lo.Source;
-
-            // TODO: validate model.PX_SIG
-            // TODO: store related PxRes parameters
-            item.Payment.IsPaid = true;
-            item.Payment.Date = DateTime.Now;
-            await SaveConsigmentRequest(item);
-
-            // wait until the worker process it
-            await Task.Delay(1500);
-            return Redirect(baseUrl + "/ost#consignment-request-paid-summary/" + model.PX_PURCHASE_ID);
-        }
-
-        [HttpPost]
-        [Route("payment-rejected")]
-        public async Task<IHttpActionResult> PaymentRejected(PxResModel model)
-        {
-            var baseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl");
-            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(model.PX_PURCHASE_ID);
-            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + model.PX_PURCHASE_ID);
-            var item = lo.Source;
-
-            // TODO: validate model.PX_SIG
-            // TODO: store related PxRes parameters
-            item.Payment.IsPaid = false;
-            await SaveConsigmentRequest(item);
-
-            // wait until the worker process it
-            await Task.Delay(1500);
-            return Redirect(baseUrl + "/ost#consignment-request-summary/" + model.PX_PURCHASE_ID);
-        }
-
-        [HttpPost]
         [Route("import-consignments/{id}/store-id/{storeId}")]
         public async Task<IHttpActionResult> ImportConsignments(string id, string storeId)
         {
@@ -663,50 +624,5 @@ namespace web.sph.App_Code
         public string StatusCode { get; set; }
         public string PickupNumber { get; set; }
         public string Message { get; set; }
-    }
-
-    public class PxRexModel
-    {
-        public string PX_VERSION { get; set; }
-        public string PX_TRANSACTION_TYPE { get; set; }
-        public string PX_PURCHASE_ID { get; set; }
-        public long PX_PAN { get; set; }
-        public string PX_EXPIRY { get; set; }
-        public int PX_MERCHANT_ID { get; set; }
-        public decimal PX_PURCHASE_AMOUNT { get; set; }
-        public string PX_PURCHASE_DESCRIPTION { get; set; }
-        public string PX_PURCHASE_DATE { get; set; }
-        public int PX_CVV2 { get; set; }
-        public string PX_CUSTOM_FIELD1 { get; set; }
-        public string PX_CUSTOM_FIELD2 { get; set; }
-        public string PX_CUSTOM_FIELD3 { get; set; }
-        public string PX_CUSTOM_FIELD4 { get; set; }
-        public string PX_CUSTOM_FIELD5 { get; set; }
-        public string PX_REF { get; set; }
-        public string PX_ALT_URL { get; set; }
-        public string PX_POLICY_NO { get; set; }
-        public string PX_SIG { get; set; }
-    }
-
-    public class PxResModel
-    {
-        public string PX_VERSION { get; set; }
-        public string PX_TRANSACTION_TYPE { get; set; }
-        public string PX_PURCHASE_ID { get; set; }
-        public long PX_PAN { get; set; }
-        public decimal PX_PURCHASE_AMOUNT { get; set; }
-        public string PX_PURCHASE_DATE { get; set; }
-        public string PX_HOST_DATE { get; set; }
-        public string PX_ERROR_CODE { get; set; }
-        public string PX_ERROR_DESCRIPTION { get; set; }
-        public string PX_APPROVAL_CODE { get; set; }
-        public string PX_RRN { get; set; }
-        public string PX_3D_FLAG { get; set; }
-        public string PX_CUSTOM_FIELD1 { get; set; }
-        public string PX_CUSTOM_FIELD2 { get; set; }
-        public string PX_CUSTOM_FIELD3 { get; set; }
-        public string PX_CUSTOM_FIELD4 { get; set; }
-        public string PX_CUSTOM_FIELD5 { get; set; }
-        public string PX_SIG { get; set; }
     }
 }
