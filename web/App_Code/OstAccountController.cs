@@ -1,30 +1,19 @@
-﻿using System;
+﻿using Bespoke.Sph.Domain;
+using System;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using Bespoke.Sph.Domain;
-using Newtonsoft.Json;
-
-using System.Net.Http;
-using System.Collections.Generic;
-using Bespoke.Sph.WebApi;
-
-using System.IO;
-using System.IO.Compression;
-using System.Net;
-using System.Text.RegularExpressions;
-using static System.IO.File;
 
 namespace web.sph.App_Code
 {
     [RoutePrefix("ost-account")]
     public class OstAccountController : Controller
     {
-
         [Route("logout")]
         public async Task<ActionResult> Logoff()
         {
@@ -42,10 +31,23 @@ namespace web.sph.App_Code
         }
 
         [AllowAnonymous]
-        [Route("login")]
-        public ActionResult Login()
+        [Route("success")]
+        public ActionResult Success(bool success = false, string status = "ERROR", string operation = "default")
         {
-            //Todo: to be implemented
+            ViewBag.success = success;
+            ViewBag.status = status;
+            ViewBag.operation = operation;
+
+            return View();
+        }
+
+        [AllowAnonymous]
+        [Route("login")]
+        public ActionResult Login(bool success = true, string status = "OK")
+        {
+            ViewBag.success = success;
+            ViewBag.status = status;
+
             return View();
         }
 
@@ -54,143 +56,296 @@ namespace web.sph.App_Code
         [Route("login")]
         public async Task<ActionResult> Login(OstLoginModel model, string returnUrl = "/")
         {
+            if (string.IsNullOrEmpty(model.UserName))
+                return RedirectToAction("login", "ost-account", new { success = false, status = "Username cannot be set to null or empty." });
+            if (string.IsNullOrEmpty(model.Password))
+                return RedirectToAction("login", "ost-account", new { success = false, status = "Password cannot be set to null or empty." });
+
             var logger = ObjectBuilder.GetObject<ILogger>();
-            if (ModelState.IsValid)
+
+            var directory = ObjectBuilder.GetObject<IDirectoryService>();
+            if (await directory.AuthenticateAsync(model.UserName, model.Password))
             {
-                var directory = ObjectBuilder.GetObject<IDirectoryService>();
-                if (await directory.AuthenticateAsync(model.UserName, model.Password))
+                var identity = new ClaimsIdentity(ConfigurationManager.ApplicationName + "Cookie");
+                identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, model.UserName));
+                identity.AddClaim(new Claim(ClaimTypes.Name, model.UserName));
+                var roles = Roles.GetRolesForUser(model.UserName).Select(x => new Claim(ClaimTypes.Role, x));
+                identity.AddClaims(roles);
+
+
+                var context = new SphDataContext();
+                var profile = await context.LoadOneAsync<UserProfile>(u => u.UserName == model.UserName);
+                await logger.LogAsync(new LogEntry { Log = EventLog.Security });
+                if (null != profile)
                 {
-                    var identity = new ClaimsIdentity(ConfigurationManager.ApplicationName + "Cookie");
-                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, model.UserName));
-                    identity.AddClaim(new Claim(ClaimTypes.Name, model.UserName));
-                    var roles = Roles.GetRolesForUser(model.UserName).Select(x => new Claim(ClaimTypes.Role, x));
-                    identity.AddClaims(roles);
+                    // user email address verification pending
+                    if (!profile.HasChangedDefaultPassword)
+                        return RedirectToAction("login", "ost-account", new { success = false, status = "Email verification pending. Please check your inbox for a verification email. You will be allowed to sign in after verification is complete." });
 
+                    var claims = profile.GetClaims();
+                    identity.AddClaims(claims);
 
-                    var context = new SphDataContext();
-                    var profile = await context.LoadOneAsync<UserProfile>(u => u.UserName == model.UserName);
-                    await logger.LogAsync(new LogEntry { Log = EventLog.Security });
-                    if (null != profile)
-                    {
-                        var claims = profile.GetClaims();
-                        identity.AddClaims(claims);
+                    var designation = context.LoadOneFromSources<Designation>(x => x.Name == profile.Designation);
+                    if (null != designation && designation.EnforceStartModule)
+                        profile.StartModule = designation.StartModule;
 
-                        var designation = context.LoadOneFromSources<Designation>(x => x.Name == profile.Designation);
-                        if (null != designation && designation.EnforceStartModule)
-                            profile.StartModule = designation.StartModule;
-
-                        HttpContext.GetOwinContext().Authentication.SignIn(identity);
-
-                        if (returnUrl == "/" ||
-                            returnUrl.Equals("/ost", StringComparison.InvariantCultureIgnoreCase) ||
-                            returnUrl.Equals("/ost#", StringComparison.InvariantCultureIgnoreCase) ||
-                            returnUrl.Equals("/ost/", StringComparison.InvariantCultureIgnoreCase) ||
-                            returnUrl.Equals("/ost/#", StringComparison.InvariantCultureIgnoreCase) ||
-                            string.IsNullOrWhiteSpace(returnUrl))
-                            return Redirect("/ost#" + profile.StartModule);
-                    }
                     HttpContext.GetOwinContext().Authentication.SignIn(identity);
-                    if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
-                        return Redirect(returnUrl);
-                    return RedirectToAction("Default", "OstHome");
+
+                    if (string.IsNullOrEmpty(profile.Designation) ||
+                        !profile.Designation.Equals("No contract customer"))
+                        return Redirect("/sph");
+
+                    if (returnUrl == "/" ||
+                        returnUrl.Equals("/ost", StringComparison.InvariantCultureIgnoreCase) ||
+                        returnUrl.Equals("/ost#", StringComparison.InvariantCultureIgnoreCase) ||
+                        returnUrl.Equals("/ost/", StringComparison.InvariantCultureIgnoreCase) ||
+                        returnUrl.Equals("/ost/#", StringComparison.InvariantCultureIgnoreCase) ||
+                        string.IsNullOrWhiteSpace(returnUrl))
+                        return Redirect("/ost#" + profile.StartModule);
                 }
-                var user = await directory.GetUserAsync(model.UserName);
-                await logger.LogAsync(new LogEntry { Log = EventLog.Security, Message = "Login Failed" });
-                if (null != user && user.IsLockedOut)
-                    ModelState.AddModelError("", "Your acount has beeen locked, Please contact your administrator.");
-                else
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                HttpContext.GetOwinContext().Authentication.SignIn(identity);
+                if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    return Redirect(returnUrl);
+                return RedirectToAction("Default", "OstHome");
             }
-            return View(model);
+            var user = await directory.GetUserAsync(model.UserName);
+            await logger.LogAsync(new LogEntry { Log = EventLog.Security, Message = "Login Failed" });
+            if (null != user && user.IsLockedOut)
+                return RedirectToAction("login", "ost-account", new { success = false, status = "Your acount has beeen locked, Please contact your administrator." });
+            else
+                return RedirectToAction("login", "ost-account", new { success = false, status = "The user name or password provided is incorrect." });
+        }
+
+        [AllowAnonymous]
+        [Route("register")]
+        public ActionResult Register(bool success = true, string status = "OK")
+        {
+            ViewBag.success = success;
+            ViewBag.status = status;
+
+            return View();
         }
 
         [AllowAnonymous]
         [HttpPost]
         [Route("register")]
-        public async Task<ActionResult> AddUser(Profile profile)
+        public async Task<ActionResult> Register(OstRegisterModel model)
         {
+            if (string.IsNullOrEmpty(model.UserName))
+                return RedirectToAction("register", "ost-account", new { success = false, status = "Username cannot be set to null or empty." });
+            if (string.IsNullOrEmpty(model.Designation))
+                return RedirectToAction("register", "ost-account", new { success = false, status = "Designation cannot be set to null or empty." });
+            if (string.IsNullOrEmpty(model.Password))
+                return RedirectToAction("register", "ost-account", new { success = false, status = "Password cannot be set to null or empty." });
+            if (!model.Password.Equals(model.ConfirmPassword))
+                return RedirectToAction("register", "ost-account", new { success = false, status = "Password and ConfirmPassword cannot be different." });
+            if (string.IsNullOrEmpty(model.Email))
+                return RedirectToAction("register", "ost-account", new { success = false, status = "Email cannot be set to null or empty." });
+
+            Profile profile = new Profile();
+            profile.UserName = model.UserName;
+            profile.Email = model.Email;
+            profile.Password = model.Password;
+
             var context = new SphDataContext();
-            var userName = profile.UserName;
-            if (string.IsNullOrWhiteSpace(profile.Designation)) throw new ArgumentNullException("Designation for  " + userName + " cannot be set to null or empty");
-            var designation = await context.LoadOneAsync<Designation>(d => d.Name == profile.Designation);
-            if (null == designation) throw new InvalidOperationException("Cannot find designation " + profile.Designation);
-            var roles = designation.RoleCollection.ToArray();
+            var designation = await context.LoadOneAsync<Designation>(d => d.Name == model.Designation);
+            if (null == designation) throw new InvalidOperationException("Cannot find designation " + model.Designation);
 
-            var em = Membership.GetUser(userName);
+            profile.Designation = model.Designation;
+            profile.Roles = designation.RoleCollection.ToArray();
 
-            if (null != em)
-            {
-                profile.Roles = roles;
-                em.Email = profile.Email;
-
-                var originalRoles = Roles.GetRolesForUser(userName);
-                if (originalRoles.Length > 0)
-                    Roles.RemoveUserFromRoles(userName, originalRoles);
-
-                Roles.AddUserToRoles(userName, profile.Roles);
-                Membership.UpdateUser(em);
-                await CreateProfile(profile, designation);
-                return Json(new { success = true, profile, status = "OK" });
-            }
+            var em = Membership.GetUser(profile.UserName);
+            if (null != em) return RedirectToAction("register", "ost-account", new { success = false, status = $"User {model.UserName} already exist." });
 
             try
             {
-                Membership.CreateUser(userName, profile.Password, profile.Email);
+                Membership.CreateUser(profile.UserName, profile.Password, profile.Email);
             }
             catch (MembershipCreateUserException ex)
             {
                 ObjectBuilder.GetObject<ILogger>().Log(new LogEntry(ex));
-                return Json(new { message = ex.Message, success = false, status = "ERROR" });
+                return RedirectToAction("register", "ost-account", new { success = false, status = ex.Message });
             }
 
-            Roles.AddUserToRoles(userName, roles);
-            profile.Roles = roles;
-
+            Roles.AddUserToRoles(profile.UserName, profile.Roles);
             await CreateProfile(profile, designation);
-            return RedirectToAction("success", "ost-account");
+            await SendVerificationEmail(profile.Email);
+
+            return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "register" });
         }
 
+        [AllowAnonymous]
+        [Route("verify-email/{id}")]
+        public async Task<ActionResult> VerifyEmail(string id)
+        {
+            ViewBag.success = true;
+            ViewBag.status = "OK";
+            var context = new SphDataContext();
+
+            var setting = await context.LoadOneAsync<Setting>(x => x.Id == id);
+            if (null == setting)
+            {
+                ViewBag.success = false;
+                ViewBag.status = "The link is invalid.";
+                return View();
+            }
+
+            if ((DateTime.Now - setting.CreatedDate).TotalHours > 3)
+            {
+                ViewBag.success = false;
+                ViewBag.status = "The link has expired.";
+                return View();
+            }
+
+            if (!setting.Key.Equals("VerifyEmail"))
+            {
+                ViewBag.success = false;
+                ViewBag.status = "The link is not associated with verify email.";
+                return View();
+            }
+
+            var username = Membership.GetUserNameByEmail(setting.UserName);
+            if (null == username)
+            {
+                ViewBag.success = false;
+                ViewBag.status = $"Cannot find any user with email {setting.UserName}.";
+                return View();
+            }
+
+            // email address verification complete
+            var userProfile = await context.LoadOneAsync<UserProfile>(p => p.UserName == username);
+            userProfile.HasChangedDefaultPassword = true;
+            using (var session = context.OpenSession())
+            {
+                session.Attach(userProfile);
+                await session.SubmitChanges();
+            }
+
+            return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "verify-email" });
+        }
 
         [AllowAnonymous]
-        [Route("register")]
-        public ActionResult RegisterNew()
+        [Route("forgot-password")]
+        public ActionResult ForgotPassword(bool success = true, string status = "OK")
         {
-            //Todo: to be implemented
+            ViewBag.success = success;
+            ViewBag.status = status;
+
             return View();
         }
 
-        /// <summary>
-        /// Checks password complexity requirements for the actual membership provider
-        /// </summary>
-        /// <param name="password">password to check</param>
-        /// <returns>true if the password meets the req. complexity</returns>
-        public ActionResult CheckPasswordComplexity(string password)
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("forgot-password")]
+        public async Task<ActionResult> ForgotPassword(string Email)
         {
-            var result = CheckPasswordComplexity(Membership.Provider, password);
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
+            if (string.IsNullOrEmpty(Email))
+                return RedirectToAction("forgot-password", "ost-account", new { success = false, status = "Email cannot be set to null or empty." });
 
-
-        /// <summary>
-        /// Checks password complexity requirements for the given membership provider
-        /// </summary>
-        /// <param name="membershipProvider">membership provider</param>
-        /// <param name="password">password to check</param>
-        /// <returns>true if the password meets the req. complexity</returns>
-        public static bool CheckPasswordComplexity(MembershipProvider membershipProvider, string password)
-        {
-            if (string.IsNullOrEmpty(password)) return false;
-            if (password.Length < membershipProvider.MinRequiredPasswordLength) return false;
-            int nonAlnumCount = password.Where((t, i) => !char.IsLetterOrDigit(password, i)).Count();
-            if (nonAlnumCount < membershipProvider.MinRequiredNonAlphanumericCharacters) return false;
-            if (!string.IsNullOrEmpty(membershipProvider.PasswordStrengthRegularExpression) &&
-                !Regex.IsMatch(password, membershipProvider.PasswordStrengthRegularExpression))
+            var username = Membership.GetUserNameByEmail(Email);
+            if (string.IsNullOrWhiteSpace(username))
             {
-                return false;
+                return RedirectToAction("forgot-password", "ost-account", new { success = false, status = $"Cannot find any user with email {Email}" });
             }
-            return true;
+
+            await SendForgotPasswordEmail(Email);
+
+            return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "forgot-password" });
         }
 
+        [AllowAnonymous]
+        [Route("reset-password/{id}")]
+        public async Task<ActionResult> ResetPassword(string id, bool success = true, string status = "OK")
+        {
+            ViewBag.success = success;
+            ViewBag.status = status;
+
+            var context = new SphDataContext();
+            var setting = await context.LoadOneAsync<Setting>(x => x.Id == id);
+            if (null == setting)
+            {
+                ViewBag.success = false;
+                ViewBag.status = "The link is invalid.";
+                return View();
+            }
+
+            if ((DateTime.Now - setting.CreatedDate).TotalHours > 3)
+            {
+                ViewBag.success = false;
+                ViewBag.status = "The link has expired.";
+                return View();
+            }
+
+            if (!setting.Key.Equals("ForgotPassword"))
+            {
+                ViewBag.success = false;
+                ViewBag.status = "The link is not associated with forgot password.";
+                return View();
+            }
+
+            var username = Membership.GetUserNameByEmail(setting.UserName);
+            if (null == username)
+            {
+                ViewBag.success = false;
+                ViewBag.status = $"Cannot find any user with email {setting.UserName}.";
+                return View();
+            }
+
+            ViewBag.id = id;
+            ViewBag.email = setting.UserName;
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("reset-password")]
+        public ActionResult ResetPassword(OstResetPasswordModel model)
+        {
+            if (string.IsNullOrEmpty(model.Password))
+                return RedirectToAction($"reset-password/{model.Id}", "ost-account", new { success = false, status = "Email cannot be set to null or empty." });
+            if (string.IsNullOrEmpty(model.Password))
+                return RedirectToAction($"reset-password/{model.Id}", "ost-account", new { success = false, status = "Password cannot be set to null or empty." });
+            if (!model.Password.Equals(model.ConfirmPassword))
+                return RedirectToAction($"reset-password/{model.Id}", "ost-account", new { success = false, status = "Password and ConfirmPassword cannot be different." });
+
+            var username = Membership.GetUserNameByEmail(model.Email);
+            var user = Membership.GetUser(username);
+            if (null == user) return RedirectToAction($"reset-password/{model.Id}", "ost-account", new { success = false, status = $"Cannot find user {user}." });
+            var temp = user.ResetPassword();
+            user.ChangePassword(temp, model.Password);
+            Membership.UpdateUser(user);
+
+            return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "reset-password" });
+        }
+
+        [AllowAnonymous]
+        [Route("send-verify-email")]
+        public ActionResult SendVerifyEmail(bool success = true, string status = "OK")
+        {
+            ViewBag.success = success;
+            ViewBag.status = status;
+
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("send-verify-email")]
+        public async Task<ActionResult> SendVerifyEmail(string Email)
+        {
+            if (string.IsNullOrEmpty(Email))
+                return RedirectToAction("send-verify-email", "ost-account", new { success = false, status = "Email cannot be set to null or empty." });
+
+            var username = Membership.GetUserNameByEmail(Email);
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                return RedirectToAction("send-verify-email", "ost-account", new { success = false, status = $"Cannot find any user with email {Email}" });
+            }
+
+            await SendVerificationEmail(Email);
+
+            return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "send-verify-email" });
+        }
 
         private static async Task<UserProfile> CreateProfile(Profile profile, Designation designation)
         {
@@ -220,109 +375,87 @@ namespace web.sph.App_Code
 
             return usp;
         }
-        public async Task<ActionResult> UpdateUser(UserProfile profile)
+
+        private static async Task SendVerificationEmail(string userEmail)
         {
-            var context = new SphDataContext();
-            var userprofile = await context.LoadOneAsync<UserProfile>(p => p.UserName == User.Identity.Name)
-                ?? new UserProfile();
-            userprofile.UserName = User.Identity.Name;
-            userprofile.Email = profile.Email;
-            userprofile.Telephone = profile.Telephone;
-            userprofile.FullName = profile.FullName;
-            userprofile.StartModule = profile.StartModule;
-            userprofile.Language = profile.Language;
-
-            if (userprofile.IsNewItem) userprofile.Id = userprofile.UserName.ToIdFormat();
-
-            using (var session = context.OpenSession())
+            var setting = new Setting
             {
-                session.Attach(userprofile);
-                await session.SubmitChanges();
-            }
-            this.Response.ContentType = "application/json; charset=utf-8";
-            return Content(JsonConvert.SerializeObject(userprofile));
+                UserName = userEmail,
+                Key = "VerifyEmail",
+                Value = DateTime.Now.ToString("s"),
+                Id = Strings.GenerateId()
+            };
+            await SaveSetting(setting);
 
-
+            var emailSubject = ConfigurationManager.ApplicationFullName + " - Verify your email address";
+            var emailBody = $@"Please click the link below to verify your email address.
+    {ConfigurationManager.BaseUrl}/ost-account/verify-email/{setting.Id}";
+            await SendEmail(userEmail, emailSubject, emailBody);
         }
 
-        [AllowAnonymous]
-        [Route("success")]
-        public ActionResult Success()
+        private static async Task SendForgotPasswordEmail(string userEmail)
         {
-            return View();
-        }
-
-        [Authorize]
-        [Route("change-password")]
-        public ActionResult ChangePassword()
-        {
-            //Todo: to be implemented
-            return View();
-        }
-
-        [AllowAnonymous]
-        [Route("forgot-password")]
-        public ActionResult ForgotPassword()
-        {
-            //Todo: to be implemented
-            return View();
-        }
-
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("forgot-password")]
-        public async Task<ActionResult> ForgotPassword(string email)
-        {
-            var username = Membership.GetUserNameByEmail(email);
-            if (string.IsNullOrWhiteSpace(username))
+            var setting = new Setting
             {
-                return Json(new { sucess = false, status = "Cannot find any user with email  " + email });
+                UserName = userEmail,
+                Key = "ForgotPassword",
+                Value = DateTime.Now.ToString("s"),
+                Id = Strings.GenerateId()
+            };
+            await SaveSetting(setting);
+
+            var emailSubject = ConfigurationManager.ApplicationFullName + " - Forgot your password";
+            var emailBody = $@"Please click the link below to change your password.
+    {ConfigurationManager.BaseUrl}/ost-account/reset-password/{setting.Id}";
+            await SendEmail(userEmail, emailSubject, emailBody);
+        }
+
+        private static async Task SendEmail(string emailTo, string emailSubject, string emailBody)
+        {
+            using (var smtp = new SmtpClient())
+            {
+                var mail = new MailMessage(ConfigurationManager.FromEmailAddress, emailTo)
+                {
+                    Subject = emailSubject,
+                    Body = emailBody,
+                    IsBodyHtml = false
+                };
+                await smtp.SendMailAsync(mail);
             }
-            var setting = new Setting { UserName = email, Key = "ForgotPassword", Value = DateTime.Now.ToString("s"), Id = Strings.GenerateId() };
+        }
+
+        private static async Task SaveSetting(Setting setting)
+        {
             var context = new SphDataContext();
             using (var session = context.OpenSession())
             {
                 session.Attach(setting);
                 await session.SubmitChanges("ForgotPassword");
             }
-            using (var smtp = new SmtpClient())
-            {
-                var mail = new MailMessage(ConfigurationManager.FromEmailAddress, email)
-                {
-                    Subject = ConfigurationManager.ApplicationFullName + " Forgot password ",
-                    Body = $@"Dear user, please click link below to reset your password.
-                    {ConfigurationManager.BaseUrl}/ost-account/reset-password/{setting.Id} ",
-                    IsBodyHtml = false
-                };
-                await smtp.SendMailAsync(mail);
-            }
-            return RedirectToAction("success", "ost-account");
         }
+    }
 
+    public class OstLoginModel
+    {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public bool RememberMe { get; set; }
+    }
 
-        [AllowAnonymous]
-        [Route("reset-password/{id}")]
-        public ActionResult ResetPassword(string id)
-        {
-            //Todo: to be implemented
-            return View();
-        }
-        public ActionResult ResetPassword(string userName, string password)
-        {
-            if (string.IsNullOrWhiteSpace(password))
-                return Json(new { OK = false, messages = "Please specify new Password" });
+    public class OstRegisterModel
+    {
+        public string UserName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
+        public string Designation { get; set; }
+    }
 
-            var em = Membership.GetUser(userName);
-            if (null == em) return Json(new { OK = false, messages = "User does not exist" });
-            if (em.IsLockedOut)
-            {
-                em.UnlockUser();
-            }
-
-            var oldPassword = em.ResetPassword();
-            var result = em.ChangePassword(oldPassword, password);
-            Membership.UpdateUser(em);
-            return Json(new { OK = result, messages = "Password for user has been reset." });
-        }
+    public class OstResetPasswordModel
+    {
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
+        public string Id { get; set; }
     }
 }

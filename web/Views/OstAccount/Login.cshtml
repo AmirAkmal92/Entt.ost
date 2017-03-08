@@ -3,39 +3,54 @@
     Layout = "_Layout.cshtml";
 }
 
-<!-- START LOGIN FORM -->
-<form class="login-form" action="/ost-account/login" method="post">
-    <h3 class="form-title">Log In</h3>
-    <div class="alert alert-danger display-hide">
-        <button class="close" data-close="alert"></button>
-        <span> Enter any username and password. </span>
-    </div>
+<form id="login-form" action="/ost-account/login" method="post">
+    <h3>Log In</h3>
     <div class="form-group">
-        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-        <label class="control-label visible-ie8 visible-ie9">Username</label>
         <div class="input-icon">
             <i class="fa fa-user"></i>
-            <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username" />
+            <input class="form-control" type="text" autocomplete="off" placeholder="Username" aria-label="Username" name="UserName" id="UserName" />
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label visible-ie8 visible-ie9">Password</label>
         <div class="input-icon">
             <i class="fa fa-lock"></i>
-            <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" />
+            <input class="form-control" type="password" autocomplete="off" placeholder="Password" aria-label="Password" name="Password" id="Password" />
         </div>
     </div>
     @*<div class="form-group">
-        <input type="hidden" name="ReturnUrl" value="@Request.RawUrl" />
-    </div>*@
-    <div class="form-actions">
-        <label class="rememberme mt-checkbox mt-checkbox-outline">
-            <input type="checkbox" name="RememberMe" value="true" /> Remember me
-            <span></span>
+            <input type="hidden" name="ReturnUrl" value="@Request.RawUrl" />
+        </div>*@
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" name="RememberMe" id="RememberMe" /> Remember me
         </label>
-        <button type="submit" class="btn red pull-right">Login</button>
     </div>
-    <div class="login-options">
+    <div class="row">
+        <button type="submit" class="btn btn-primary pull-right">Login</button>
+    </div>
+</form>
+<br />
+@if (!ViewBag.success)
+{
+<div class="row">
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="text-danger">Login unsuccessful</h4>
+        <p>
+            <span class="text-danger">@ViewBag.status</span>
+        </p>
+        <p>
+            @if (ViewBag.status.Contains("Email verification pending"))
+            {
+                <span>Having Problem? Resend verification email now.</span><br />
+                <a class="btn btn-info" href="/ost-account/send-verify-email">Resend</a>
+            }
+        </p>
+    </div>
+</div>
+}
+<div class="row">
+    <div>
         <h4>Login with:</h4>
         <ul class="social-icons">
             <li>
@@ -46,62 +61,56 @@
             </li>
         </ul>
     </div>
-    <div class="forget-password">
+    <div>
         <h4>Forgot password?</h4>
         <p>
             Reset your password
-            <a href="/ost-account/forgot-password" id="forget-password">here</a>.
+            <a href="/ost-account/forgot-password">here</a>.
         </p>
     </div>
-    <div class="create-account">
+    <div>
         <h4>No account yet?</h4>
         <p>
-            Create your account 
-            <a href="/ost-account/register" id="register-btn">here</a>.
+            Create your account
+            <a href="/ost-account/register">here</a>.
         </p>
     </div>
-</form>
-<!-- END LOGIN FORM -->
+</div>
 
 @section scripts
   {
     <script>
-        //window.onload = $("#forget-password-form").hide();
-        window.onload = $("#register-new-form").hide();
         jQuery(document).ready(function () {
-            function getParameterByName(name) {
-                name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                    results = regex.exec(location.search);
-                return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-            }
-            var retUrl = getParameterByName("ReturnUrl") + window.location.hash;
-            $('input[name=ReturnUrl]').val(retUrl);
-            //$('#forget-password-form').submit(function (e) {
-            //    e.preventDefault();
-            //    var button = $("#forgot-password-submit"),
-            //        email = $('#forget-password-email').val();
-            //    if (!email) {
-            //        return;
-            //    }
-            //    button.prop("disabled", true);
-            //    $("#progress").show();
-            //    $.ajax({
-            //        type: "POST",
-            //        data: JSON.stringify({ email: email }),
-            //        url: "/ost-account/forgot-password",
-            //        contentType: "application/json; charset=utf-8",
-            //        dataType: "json",
-            //        error: function (a, b, c) {
-            //            console.log(c);
-            //        },
-            //        success: function () {
-            //            button.prop("disabled", false);
-            //            $("#progress").hide();
-            //            window.location = "/";
-            //        }
-            //    });
-            //});
+            $("#login-form").validate({
+                rules: {
+                    UserName: {
+                        required: true
+                        //minlength: 6
+                    },
+                    Password: {
+                        required: true
+                        //minlength: 8
+                    }
+                },
+                messages: {
+                    UserName: {
+                        required: "Please provide username."
+                        //minlength: "Username must consist of at least 6 characters."
+                    },
+                    Password: {
+                        required: "Please provide a password."
+                        //minlength: "Your password must be at least 8 characters long."
+                    }
+                }
+            });
+            //function getParameterByName(name) {
+            //    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            //    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            //        results = regex.exec(location.search);
+            //    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            //}
+            //var retUrl = getParameterByName("ReturnUrl") + window.location.hash;
+            //$('input[name=ReturnUrl]').val(retUrl);
         });
     </script>
 }

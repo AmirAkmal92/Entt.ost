@@ -1,16 +1,57 @@
 ﻿@{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "Operation Successful";
     Layout = "_Layout.cshtml";
 }
 
-<form class="login-form">
-    <h3 class="form-title">Successful!</h3>
-    <br /><br />
-    <div class="form-group">
-        <label></label>
+@if (ViewBag.success && ViewBag.operation.Equals("register"))
+{
+    <div>
+        <h3><span class="text-success">Sign up successful</span></h3>
+        <p>
+            Please check your inbox for a verification email from us.<br />
+            You will be allowed to sign in after verification is complete.
+        </p>
     </div>
-    <div class="form-group">
-        <label> Click "Log In" button to get signed in your account.</label>
-        <a class="btn red pull-right" href="/ost-account/login"> Log In</a>
+}
+@if (ViewBag.success && ViewBag.operation.Equals("verify-email"))
+{
+    <div>
+        <h3><span class="text-success">Email verification successful</span></h3>
+        <p>
+            Your email address has been verified.<br />
+            You may proceed to login now.<br />
+            <a class="btn btn-info" href="/ost-account/login">Login</a>
+        </p>
     </div>
-</form>
+}
+@if (ViewBag.success && ViewBag.operation.Equals("forgot-password"))
+{
+    <div>
+        <h3><span class="text-success">Forgot password email sent</span></h3>
+        <p>
+            Please check your inbox for a forgot password email from us.<br />
+            You will be allowed to reset your password by following the instructions given in the email.
+        </p>
+    </div>
+}
+@if (ViewBag.success && ViewBag.operation.Equals("reset-password"))
+{
+    <div>
+        <h3><span class="text-success">Password reset successful</span></h3>
+        <p>
+            Your password has been reset.<br />
+            You may proceed to login now.<br />
+            <a class="btn btn-info" href="/ost-account/login">Login</a>
+        </p>
+    </div>
+}
+@if (ViewBag.success && ViewBag.operation.Equals("send-verify-email"))
+{
+    <div>
+        <h3><span class="text-success">Email verification sent</span></h3>
+        <p>
+            Please check your inbox for a verification email from us.<br />
+            You will be allowed to sign in after verification is complete.
+        </p>
+    </div>
+}

@@ -1,11 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Forgot password";
+    ViewBag.Title = "Send verify email";
     Layout = "_Layout.cshtml";
 }
 
-<h3>Forgot Password</h3>
+<h3>Send Verify Email</h3>
 <p>Enter your email address:</p>
-<form id="forgot-password-form" action="/ost-account/forgot-password" method="post">
+<form id="send-verify-email-form" action="/ost-account/send-verify-email" method="post">
+
     <div class="form-group">
         <div class="input-icon">
             <i class="fa fa-envelope"></i>
@@ -16,12 +17,11 @@
         <button type="submit" class="btn btn-success pull-right">Send</button>
     </div>
 </form>
-<br />
 @if (!ViewBag.success)
 {
     <div class="alert alert-danger" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="text-danger">Forgot password problem</h4>
+        <h4 class="text-danger">Send verify email problem</h4>
         <p>
             <span class="text-danger">@ViewBag.status</span>
         </p>
@@ -32,7 +32,7 @@
 {
     <script>
         $(document).ready(function () {
-            $("#forgot-password-form").validate({
+            $("#send-verify-email-form").validate({
                 rules: {
                     Email: {
                         required: true,
