@@ -1,0 +1,10 @@
+select:invalid, input:invalid, textarea:invalid {
+    background-image: url(/Images/red-bar.png) !important;
+    background-repeat: repeat-y;
+    background-position-x: -0.2%;
+    background-position-y: 50%;
+}
+.error {
+    color: red;
+}
+/*TODO: Minimize and minify all style and script*/
