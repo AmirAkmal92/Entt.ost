@@ -55,10 +55,10 @@
         <div class="row">
             <div class="col-md-2">&nbsp;</div>
             <div class="col-md-8">
-                <button type="button" class="btn btn-default btn-block" id="google-sign-in">
+                <button type="button" class="btn btn-danger btn-block" id="google-sign-in">
                     <i class="fa fa-google"></i> Google Sign In
                 </button>
-                <button type="button" class="btn btn-default btn-block" id="google-sign-in">
+                <button type="button" class="btn btn-info btn-block" id="facebook-sign-in">
                     <i class="fa fa-facebook"></i> Facebook Sign In
                 </button>
             </div>
@@ -66,15 +66,16 @@
         </div>
         <br />
         <div class="row">
-            <div class="col-md-6">
-                <strong>Forgot password?</strong>
-                <p><small>Reset your password <a href="/ost-account/forgot-password">here</a>.</small></p>                
+            <div class="col-md-2">&nbsp;</div>
+            <div class="col-md-8">
+                <center>
+                    <strong>Forgot password?</strong>
+                    <p><small>Reset your password <a href="/ost-account/forgot-password">here</a>.</small></p>
+                    <strong>No account yet?</strong>
+                    <p><small>Create your account <a href="/ost-account/register">here</a>.</small></p>
+                </center>
             </div>
-            <div class="col-md-6">
-                <strong>No account yet?</strong>
-                <p><small>Create your account <a href="/ost-account/register">here</a>.</small></p>
-                
-            </div>
+            <div class="col-md-2">&nbsp;</div>
         </div>
     </div>
     <div class="col-md-2">&nbsp;</div>
@@ -82,6 +83,7 @@
 
 @section scripts
   {
+    <!--google-->
     <script>
         var auth2;
         var initGoogleClient = function () {
@@ -89,24 +91,53 @@
                 auth2 = gapi.auth2.init({
                     client_id: '253695464797-uf5g6nko2h9difvh169ddl2man33pp31.apps.googleusercontent.com'
                 });
-                auth2.attachClickHandler(document.getElementById('google-sign-in'), {}, onSuccess, onFailure);
+                auth2.attachClickHandler(document.getElementById('google-sign-in'), {}, onSuccessGoogle, onFailureGoogle);
             });
         };
-        function onSuccess(googleUser) {
+        function onSuccessGoogle(googleUser) {
             var profile = googleUser.getBasicProfile();
             console.log('ID: ' + profile.getId());
             console.log('Full Name: ' + profile.getName());
-            console.log('Given Name: ' + profile.getGivenName());
-            console.log('Family Name: ' + profile.getFamilyName());
             console.log('Image URL: ' + profile.getImageUrl());
             console.log('Email: ' + profile.getEmail());
-
-            var id_token = googleUser.getAuthResponse().id_token;
-            console.log('idtoken: ' + id_token);
         }
-        function onFailure(error) {
+        function onFailureGoogle(error) {
             console.log(error);
         }
+    </script>
+
+    <!--facebook-->
+    <script>
+        function loginFacebook() {
+            FB.login(function (response) {
+                if (response.status === 'connected') {
+                    onSuccessFacebook();
+                } else if (response.status === 'not_authorized') {
+                    onFailureFacebook();
+                } else {
+                    onFailureFacebook();
+                }
+            }, { scope: 'public_profile,email,user_photos' });
+        }
+
+        function onSuccessFacebook() {
+            FB.api('me?fields=id,name,email,picture{url,height,width}', function (response) {
+                if (response && !response.error) {
+                    console.log('id: ' + response.id);
+                    console.log('name: ' + response.name);
+                    console.log('email: ' + response.email);
+                    console.log('picture url: ' + response.picture.data.url);
+                }
+            });
+        }
+
+        function onFailureFacebook() {
+
+        }
+    </script>
+
+    <!--ost-->
+    <script>
         jQuery(document).ready(function () {
             $("#login-form").validate({
                 rules: {
@@ -130,6 +161,9 @@
                     }
                 }
             });
+            $("#facebook-sign-in").click(function () {
+                loginFacebook();
+            });
             //function getParameterByName(name) {
             //    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
             //    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -140,7 +174,27 @@
             //$('input[name=ReturnUrl]').val(retUrl);
         });
     </script>
-    @*<script src="https://apis.google.com/js/platform.js" async defer></script>*@
+
+    <!--init google-->
     <script src="https://apis.google.com/js/api:client.js"></script>
     <script>initGoogleClient();</script>
+
+    <!--init facebook-->
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '273791976367235',
+                cookie: true,
+                xfbml: true,
+                version: 'v2.8'
+            });
+        };
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 }

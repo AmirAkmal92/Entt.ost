@@ -364,10 +364,18 @@ namespace web.sph.App_Code
         }
 
         [AllowAnonymous]
-        [Route("playground")]
-        public ActionResult Playground()
+        [HttpPost]
+        [Route("facebook-login")]
+        public ActionResult FacebookLogin(string Email)
         {
-            return View();
+            if (string.IsNullOrEmpty(Email))
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(new { result = false, status = "ERROR", message = $"Email cannot be set to null or empty." });
+            }
+
+            Response.StatusCode = (int)HttpStatusCode.OK;
+            return Json(new { result = true, status = "OK", message = $"Email {Email}." });
         }
 
         private static async Task<UserProfile> CreateProfile(Profile profile, Designation designation)
