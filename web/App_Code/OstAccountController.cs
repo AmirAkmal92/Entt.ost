@@ -1,6 +1,7 @@
 ﻿using Bespoke.Sph.Domain;
 using System;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
 using System.Security.Claims;
@@ -345,6 +346,28 @@ namespace web.sph.App_Code
             await SendVerificationEmail(Email);
 
             return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "send-verify-email" });
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("google-login")]
+        public ActionResult GoogleLogin(string Email)
+        {
+            if (string.IsNullOrEmpty(Email))
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(new { result = false, status = "ERROR", message = $"Email cannot be set to null or empty." });
+            }
+
+            Response.StatusCode = (int)HttpStatusCode.OK;
+            return Json(new { result = true, status = "OK", message = $"Email {Email}." });
+        }
+
+        [AllowAnonymous]
+        [Route("playground")]
+        public ActionResult Playground()
+        {
+            return View();
         }
 
         private static async Task<UserProfile> CreateProfile(Profile profile, Designation designation)

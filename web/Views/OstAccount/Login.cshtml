@@ -32,54 +32,81 @@
 <br />
 @if (!ViewBag.success)
 {
-<div class="row">
-    <div class="alert alert-danger" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="text-danger">Login unsuccessful</h4>
-        <p>
-            <span class="text-danger">@ViewBag.status</span>
-        </p>
-        <p>
-            @if (ViewBag.status.Contains("Email verification pending"))
-            {
-                <span>Having Problem? Resend verification email now.</span><br />
-                <a class="btn btn-info" href="/ost-account/send-verify-email">Resend</a>
-            }
-        </p>
+    <div class="row">
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="text-danger">Login unsuccessful</h4>
+            <p>
+                <span class="text-danger">@ViewBag.status</span>
+            </p>
+            <p>
+                @if (ViewBag.status.Contains("Email verification pending"))
+                {
+                    <span>Having Problem? Resend verification email now.</span><br />
+                    <a class="btn btn-info" href="/ost-account/send-verify-email">Resend</a>
+                }
+            </p>
+        </div>
     </div>
-</div>
 }
 <div class="row">
-    <div>
-        <h4>Login with:</h4>
-        <ul class="social-icons">
-            <li>
-                <a class="facebook" data-original-title="facebook" href="#"></a>
-            </li>
-            <li>
-                <a class="googleplus" data-original-title="Goole Plus" href="#"></a>
-            </li>
-        </ul>
+    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-2">&nbsp;</div>
+            <div class="col-md-8">
+                <button type="button" class="btn btn-default btn-block" id="google-sign-in">
+                    <i class="fa fa-google"></i> Google Sign In
+                </button>
+                <button type="button" class="btn btn-default btn-block" id="google-sign-in">
+                    <i class="fa fa-facebook"></i> Facebook Sign In
+                </button>
+            </div>
+            <div class="col-md-2">&nbsp;</div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-6">
+                <strong>Forgot password?</strong>
+                <p><small>Reset your password <a href="/ost-account/forgot-password">here</a>.</small></p>                
+            </div>
+            <div class="col-md-6">
+                <strong>No account yet?</strong>
+                <p><small>Create your account <a href="/ost-account/register">here</a>.</small></p>
+                
+            </div>
+        </div>
     </div>
-    <div>
-        <h4>Forgot password?</h4>
-        <p>
-            Reset your password
-            <a href="/ost-account/forgot-password">here</a>.
-        </p>
-    </div>
-    <div>
-        <h4>No account yet?</h4>
-        <p>
-            Create your account
-            <a href="/ost-account/register">here</a>.
-        </p>
-    </div>
+    <div class="col-md-2">&nbsp;</div>
 </div>
 
 @section scripts
   {
     <script>
+        var auth2;
+        var initGoogleClient = function () {
+            gapi.load('auth2', function () {
+                auth2 = gapi.auth2.init({
+                    client_id: '253695464797-uf5g6nko2h9difvh169ddl2man33pp31.apps.googleusercontent.com'
+                });
+                auth2.attachClickHandler(document.getElementById('google-sign-in'), {}, onSuccess, onFailure);
+            });
+        };
+        function onSuccess(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId());
+            console.log('Full Name: ' + profile.getName());
+            console.log('Given Name: ' + profile.getGivenName());
+            console.log('Family Name: ' + profile.getFamilyName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail());
+
+            var id_token = googleUser.getAuthResponse().id_token;
+            console.log('idtoken: ' + id_token);
+        }
+        function onFailure(error) {
+            console.log(error);
+        }
         jQuery(document).ready(function () {
             $("#login-form").validate({
                 rules: {
@@ -113,4 +140,7 @@
             //$('input[name=ReturnUrl]').val(retUrl);
         });
     </script>
+    @*<script src="https://apis.google.com/js/platform.js" async defer></script>*@
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <script>initGoogleClient();</script>
 }
