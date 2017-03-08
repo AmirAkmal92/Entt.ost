@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /******************************
  3RD PARTY PLUGIN CUSTOMIZATION 
 ******************************/
@@ -1787,7 +1787,7 @@ Jstree
   background: transparent;
   background-repeat: no-repeat; }
 
-.vakata-context,
+/*.vakata-context,
 .vakata-context ul {
   padding: 0;
   min-width: 125px;
@@ -1827,7 +1827,7 @@ Jstree
 .vakata-context .vakata-context-separator a,
 .vakata-context-rtl .vakata-context-separator a {
   margin: 0;
-  border: 0; }
+  border: 0; }*/
 
 .jstree-rename-input {
   background-color: #ffffff !important;
