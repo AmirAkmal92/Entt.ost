@@ -1,0 +1,17 @@
+<!--[if lt IE 9]>
+<script src="/assets/global/plugins/respond.min.js"></script>
+<script src="/assets/global/plugins/excanvas.min.js"></script>
+<![endif]-->
+
+@{
+    var min = HttpContext.Current.IsDebuggingEnabled ? "" : ".min";
+
+}
+
+<script src="/Scripts/scripts@(min).js" type="text/javascript"></script>
+<script>
+jQuery(document).ready(function() {
+   Metronic.init();
+   Layout.init();
+});
+</script>
