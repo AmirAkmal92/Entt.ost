@@ -7,6 +7,7 @@ using Bespoke.Sph.WebApi;
 using System.Linq;
 using System;
 using System.Net.Http;
+using System.Text;
 
 [RoutePrefix("api/track-traces")]
 public class TrackTraceController : BaseApiController
@@ -31,4 +32,23 @@ public class TrackTraceController : BaseApiController
         return Json(response);
     }
 
+    [HttpGet]
+    [Route("conNotes/{culture?}")]
+    public async Task<IHttpActionResult> GetTrackingsAsync([FromUri] List<string> conNotes, string culture = "En")
+    {
+        m_client.DefaultRequestHeaders.Add("X-User-Key", Bespoke.Sph.Domain.ConfigurationManager.GetEnvironmentVariable("SdsTrackTraceKey") ?? "ZjE3NTc3ZTgtNDg0NC00ZGFhLTlkNWEtYTcyODAwYzk2MGU1"); //production server
+        //not available in stagging server!
+        StringBuilder sb = new StringBuilder();
+        foreach (var conNote in conNotes)
+        {
+            if (!string.IsNullOrEmpty(conNote))
+            {
+                sb.Append($"{conNote};");
+            }
+        }
+        string publishPointingUrl = $"apigateway/as2corporate/api/trackntracewebapiheader/v1?id={sb}&Culture={culture}";
+
+        var response = await m_client.GetStringAsync(publishPointingUrl);
+        return Json(response);
+    }
 }
