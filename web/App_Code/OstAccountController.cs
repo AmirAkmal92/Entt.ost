@@ -156,7 +156,7 @@ namespace web.sph.App_Code
             profile.Roles = designation.RoleCollection.ToArray();
 
             var em = Membership.GetUser(profile.UserName);
-            if (null != em) return RedirectToAction("register", "ost-account", new { success = false, status = $"User {model.UserName} already exist." });
+            if (null != em) return RedirectToAction("register", "ost-account", new { success = false, status = $"User {profile.UserName} already exist." });
 
             try
             {
@@ -350,32 +350,132 @@ namespace web.sph.App_Code
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("google-login")]
-        public ActionResult GoogleLogin(string Email)
+        [Route("social-media-handle")]
+        public async Task<ActionResult> SocialMediaHandle(OstSocialModel model)
         {
-            if (string.IsNullOrEmpty(Email))
+            if (string.IsNullOrEmpty(model.Email))
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return Json(new { result = false, status = "ERROR", message = $"Email cannot be set to null or empty." });
+                return Json(new { success = false, status = "ERROR", message = "Email cannot be set to null or empty." });
             }
-
-            Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(new { result = true, status = "OK", message = $"Email {Email}." });
-        }
-
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("facebook-login")]
-        public ActionResult FacebookLogin(string Email)
-        {
-            if (string.IsNullOrEmpty(Email))
+            if (string.IsNullOrEmpty(model.Name))
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return Json(new { result = false, status = "ERROR", message = $"Email cannot be set to null or empty." });
+                return Json(new { success = false, status = "ERROR", message = "Name cannot be set to null or empty." });
+            }
+            if (string.IsNullOrEmpty(model.Id))
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(new { success = false, status = "ERROR", message = "Id cannot be set to null or empty." });
             }
 
-            Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(new { result = true, status = "OK", message = $"Email {Email}." });
+            if (!string.IsNullOrEmpty(model.IdToken))
+            {
+                // TODO: Verify the integrity of the ID token
+                // Phase 2
+                if (model.Brand.Equals("facebook"))
+                {
+
+                }
+                if (model.Brand.Equals("google"))
+                {
+
+                }
+            }
+
+            var username = Membership.GetUserNameByEmail(model.Email);
+            if (null == username)
+            {
+                //register
+                Profile profile = new Profile();
+                string strippedName = new string(model.Name.ToCharArray()
+                    .Where(c => !char.IsWhiteSpace(c))
+                    .ToArray()).ToLower();
+                Random rnd = new Random();
+                int rndTail = rnd.Next(1000, 10000);
+                var newUserName = strippedName + rndTail.ToString();
+                profile.UserName = newUserName;
+
+                string password = Membership.GeneratePassword(8, 1);
+                profile.Password = password;
+
+                profile.Email = model.Email;
+                profile.Designation = "No contract customer";
+
+                var context = new SphDataContext();
+                var designation = await context.LoadOneAsync<Designation>(d => d.Name == profile.Designation);
+                if (null == designation)
+                {
+                    Response.StatusCode = (int)HttpStatusCode.NotFound;
+                    return Json(new { success = false, status = "ERROR", message = $"Cannot find designation {profile.Designation}." });
+                }
+
+                profile.Roles = designation.RoleCollection.ToArray();
+
+                var em = Membership.GetUser(profile.UserName);
+                if (null != em)
+                {
+                    Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                    return Json(new { success = false, status = "ERROR", message = $"User {profile.UserName} already exist." });
+                }
+
+                try
+                {
+                    Membership.CreateUser(profile.UserName, profile.Password, profile.Email);
+                }
+                catch (MembershipCreateUserException ex)
+                {
+                    ObjectBuilder.GetObject<ILogger>().Log(new LogEntry(ex));
+                    Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    return Json(new { success = false, status = "ERROR", message = ex.Message });
+                }
+
+                Roles.AddUserToRoles(profile.UserName, profile.Roles);
+                await CreateProfile(profile, designation);
+                await SendVerificationEmail(profile.Email);
+                // TODO: create user's address book entry
+
+                return Json(new { success = true, status = "OK", message = $"User {profile.UserName} with email {profile.Email} has been registered." });
+            }
+            else
+            {
+                //login
+                var logger = ObjectBuilder.GetObject<ILogger>();
+                var identity = new ClaimsIdentity(ConfigurationManager.ApplicationName + "Cookie");
+                identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, username));
+                identity.AddClaim(new Claim(ClaimTypes.Name, username));
+                var roles = Roles.GetRolesForUser(username).Select(x => new Claim(ClaimTypes.Role, x));
+                identity.AddClaims(roles);
+
+
+                var context = new SphDataContext();
+                var profile = await context.LoadOneAsync<UserProfile>(u => u.UserName == username);
+                await logger.LogAsync(new LogEntry { Log = EventLog.Security });
+                if (null != profile)
+                {
+                    // user email address verification pending
+                    if (!profile.HasChangedDefaultPassword)
+                    {
+                        Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        return Json(new { success = false, status = "ERROR", message = "Email verification pending. Please check your inbox for a verification email. You will be allowed to sign in after verification is complete." });
+                    }
+
+                    var claims = profile.GetClaims();
+                    identity.AddClaims(claims);
+
+                    var designation = context.LoadOneFromSources<Designation>(x => x.Name == profile.Designation);
+                    if (null != designation && designation.EnforceStartModule)
+                        profile.StartModule = designation.StartModule;
+
+                    HttpContext.GetOwinContext().Authentication.SignIn(identity);
+
+                    Response.StatusCode = (int)HttpStatusCode.OK;
+                    return Json(new { success = true, status = "OK", message = $"User {profile.UserName} with email {profile.Email} has been authenticated." });
+                }
+                HttpContext.GetOwinContext().Authentication.SignIn(identity);
+                Response.StatusCode = (int)HttpStatusCode.OK;
+                return Json(new { success = true, status = "OK", message = $"User {profile.UserName} with email {profile.Email} has been authenticated." });
+            }
         }
 
         private static async Task<UserProfile> CreateProfile(Profile profile, Designation designation)
@@ -471,6 +571,16 @@ namespace web.sph.App_Code
         public string UserName { get; set; }
         public string Password { get; set; }
         public bool RememberMe { get; set; }
+    }
+
+    public class OstSocialModel
+    {
+        public string Email { get; set; }
+        public string Name { get; set; }
+        public string Id { get; set; }
+        public string PictureUrl { get; set; }
+        public string IdToken { get; set; }
+        public string Brand { get; set; }
     }
 
     public class OstRegisterModel

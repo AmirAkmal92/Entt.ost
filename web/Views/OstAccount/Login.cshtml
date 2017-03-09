@@ -89,7 +89,7 @@
         var initGoogleClient = function () {
             gapi.load('auth2', function () {
                 auth2 = gapi.auth2.init({
-                    client_id: '253695464797-uf5g6nko2h9difvh169ddl2man33pp31.apps.googleusercontent.com'
+                    client_id: '512305602332-8fjveri89cp2bk1q9drc2mlurfq1t958.apps.googleusercontent.com'
                 });
                 auth2.attachClickHandler(document.getElementById('google-sign-in'), {}, onSuccessGoogle, onFailureGoogle);
             });
@@ -98,8 +98,17 @@
             var profile = googleUser.getBasicProfile();
             console.log('ID: ' + profile.getId());
             console.log('Full Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
             console.log('Email: ' + profile.getEmail());
+            console.log('Image URL: ' + profile.getImageUrl());
+            var id_token = googleUser.getAuthResponse().id_token;
+            handleSocialMedia({
+                Email: profile.getEmail(),
+                Name: profile.getName(),
+                Id: profile.getId(),
+                PictureUrl: profile.getImageUrl(),
+                Brand: "google",
+                IdToken: id_token
+            });
         }
         function onFailureGoogle(error) {
             console.log(error);
@@ -111,7 +120,7 @@
         function loginFacebook() {
             FB.login(function (response) {
                 if (response.status === 'connected') {
-                    onSuccessFacebook();
+                    onSuccessFacebook(response);
                 } else if (response.status === 'not_authorized') {
                     onFailureFacebook();
                 } else {
@@ -120,13 +129,22 @@
             }, { scope: 'public_profile,email,user_photos' });
         }
 
-        function onSuccessFacebook() {
+        function onSuccessFacebook(r) {
+            console.log(r);
             FB.api('me?fields=id,name,email,picture{url,height,width}', function (response) {
                 if (response && !response.error) {
                     console.log('id: ' + response.id);
                     console.log('name: ' + response.name);
                     console.log('email: ' + response.email);
                     console.log('picture url: ' + response.picture.data.url);
+                    handleSocialMedia({
+                        Email: response.email,
+                        Name: response.name,
+                        Id: response.id,
+                        PictureUrl: response.picture.data.url,
+                        Brand: "facebook",
+                        IdToken: r.authResponse.accessToken
+                    });
                 }
             });
         }
@@ -173,6 +191,31 @@
             //var retUrl = getParameterByName("ReturnUrl") + window.location.hash;
             //$('input[name=ReturnUrl]').val(retUrl);
         });
+        function handleSocialMedia(data) {
+            $.ajax({
+                type: "POST",
+                data: JSON.stringify(data),
+                url: "/ost-account/social-media-handle",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (a, b, c) {
+                    console.log(a);
+                    // TODO: change alert to bootstrap dialog
+                    alert(JSON.parse(a.responseText).message);
+                },
+                success: function (response) {
+                    console.log(response);
+                    if (response.success) {
+                        if (response.message.includes("authenticated")) {
+                            window.location = "/ost#";
+                        }
+                        if (response.message.includes("registered")) {
+                            window.location = "/ost-account/success?success=true&status=OK&operation=register";
+                        }
+                    }
+                }
+            });
+        }
     </script>
 
     <!--init google-->
@@ -183,7 +226,8 @@
     <script>
         window.fbAsyncInit = function () {
             FB.init({
-                appId: '273791976367235',
+                //appId: '273791976367235', //localhost
+                appId: '239143563211423', //ost.pos.com.my
                 cookie: true,
                 xfbml: true,
                 version: 'v2.8'
