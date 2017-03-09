@@ -1,4 +1,4 @@
-define(["services/datacontext", "services/logger", "plugins/router", "services/chart", objectbuilders.config, "services/_ko.list", "partial/consigment-requests"],
+define(["services/datacontext", "services/logger", "plugins/router", "services/chart", objectbuilders.config, "services/_ko.list", "partial/consignment-requests-paid"],
 
 function(context, logger, router, chart, config, koList, partial) {
 
@@ -31,6 +31,7 @@ function(context, logger, router, chart, config, koList, partial) {
         map: map,
         activate: activate,
         attached: attached,
+        partial: partial,
         list: list
     };
 
