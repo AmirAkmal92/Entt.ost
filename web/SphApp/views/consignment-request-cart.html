@@ -3,8 +3,8 @@
         <div class="portlet light bordered">
             <div class="portlet-title">
                 <div class="caption">
-                    <div class="caption-subject font-red-sunglo bold"><h2><span class="fa fa-shopping-cart"> </span> Shopping Cart </h2></div>
-                    <span class="caption-helper">Shopping Cart Information</span>
+                    <div class="caption-subject font-red-sunglo bold"><h2><span class="fa fa-shopping-cart"> </span> Shipping Cart </h2></div>
+                    <span class="caption-helper">Shipping Cart Information</span>
                 </div>
             </div>
             <div class="invoice" data-bind="with : entity">
@@ -22,7 +22,7 @@
                                     <i class="fa fa-folder-open"></i> Import Parcel
                                 </a>
                                 <a data-bind="click: $root.emptyConsignmentRequest, css: { 'disabled': $root.isPickupDateTimeValid() || Consignments().length == 0 }" class="btn btn-danger">
-                                    <i class="fa fa-trash"></i> Empty Shopping Cart
+                                    <i class="fa fa-trash"></i> Empty Shipping Cart
                                 </a>
                                 <a data-bind="command: $root.goToSummary, css: { 'disabled': Consignments().length == 0 }" class="btn btn-warning">
                                     <i class="fa fa-credit-card"></i> Pay Now
@@ -37,7 +37,7 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <h4>
-                                Shopping Cart is empty. Please
+                                Shipping Cart is empty. Please
                                 <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/' + 0 }">add</a> new parcel.
                             </h4>
                         </div>
