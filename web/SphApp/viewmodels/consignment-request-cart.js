@@ -35,13 +35,13 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                         isPickupDateTimeValid(true);
                     }
                     calculateGrandTotal();
+                    crCart.activate();
                 }, function (e) {
                     if (e.status == 404) {
                         app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "Ost", ["OK"]);
                     }
                 });
 
-            crCart.activate();
         },
         calculateGrandTotal = function () {
             var total = 0;
@@ -92,8 +92,7 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                         return defaultCommand().then(function (result) {
                             if (result.success) {
                                 app.showMessage("Parcel has been successfully removed.", "OST", ["OK"]).done(function () {
-                                    calculateGrandTotal();
-                                    crCart.activate();
+                                    activate(id());
                                 });
                             } else {
                                 return Task.fromResult(false);
@@ -115,8 +114,7 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                         return defaultCommand().then(function (result) {
                             if (result.success) {
                                 return app.showMessage("Cart has been successfully emptied.", "OST", ["OK"]).done(function () {
-                                    calculateGrandTotal();
-                                    crCart.activate();
+                                    activate(id());
                                 });
                             } else {
                                 return Task.fromResult(false);
@@ -147,7 +145,6 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                                     console.log(result);
                                     app.showMessage("Parcels successfuly imported from file.", "Ost", ["OK"]).done(function () {
                                         activate(id());
-                                        crCart.activate();
                                     });
                                 });
                             }
@@ -170,7 +167,7 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                 app.showMessage("Some parcels are yet to be finalized. Please verify Sender, Receiver, Parcel Information and Price before payment can be made.", "Ost", ["OK"])
                     .done(function () {
                         tcs.resolve(false);
-            });                
+                    });
             } else {
                 tcs.resolve(true);
                 router.navigate("consignment-request-summary/" + id());
