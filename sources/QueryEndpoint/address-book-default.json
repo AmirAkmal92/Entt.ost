@@ -1,6 +1,6 @@
 {
   "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
-  "ControllerName": "ConsigmentRequestUnpaidQueryEndpoint",
+  "ControllerName": "AddressBookDefaultQueryEndpoint",
   "FilterCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
     "$values": [
@@ -10,27 +10,13 @@
         "Operator": "Eq",
         "Field": {
           "$type": "Bespoke.Sph.Domain.FunctionField, domain.sph",
-          "CodeNamespace": "ffca3003e2",
+          "CodeNamespace": "ffa30d2e1b",
           "Script": "ObjectBuilder.GetObject<IDirectoryService>().CurrentUserName",
-          "Name": "Created By",
+          "Name": "CurrentUser",
           "Note": "",
-          "WebId": "ca3003e2-0110-49a6-a769-6f470f59ecae"
+          "WebId": "a30d2e1b-1d30-4d1b-d496-d1a3a04f3508"
         },
-        "WebId": "0e078eb0-b681-491d-b929-f32e29aa3263"
-      },
-      {
-        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
-        "Term": "Payment.IsPaid",
-        "Operator": "Eq",
-        "Field": {
-          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
-          "TypeName": "System.String, mscorlib",
-          "Value": "false",
-          "Name": "false",
-          "Note": "",
-          "WebId": "7873fa2b-c3f1-4103-b3d8-2a569eb0ddd4"
-        },
-        "WebId": "52a81548-eba1-4bad-c56e-a9053779946a"
+        "WebId": "902b7b26-a787-42af-d505-58dc79f621de"
       }
     ]
   },
@@ -41,7 +27,7 @@
         "$type": "Bespoke.Sph.Domain.Sort, domain.sph",
         "Path": "ChangedDate",
         "Direction": "Desc",
-        "WebId": "033ceb12-fa83-4457-ff0a-c78ef40488a2"
+        "WebId": "98f920ed-ad19-4f6f-a426-bfcfe4762fa4"
       }
     ]
   },
@@ -50,18 +36,18 @@
     "$values": []
   },
   "CacheProfile": "",
-  "Name": "Unpaid",
-  "Route": "unpaid",
+  "Name": "Default",
+  "Route": "",
   "IsReturnSource": "",
-  "Entity": "ConsigmentRequest",
+  "Entity": "AddressBook",
   "Note": "",
   "IsPublished": true,
-  "Resource": "consigment-requests",
+  "Resource": "address-books",
   "CacheFilter": null,
   "CreatedBy": "admin",
-  "Id": "consigment-request-unpaid",
-  "CreatedDate": "2017-02-14T12:15:11.6179879+08:00",
+  "Id": "address-book-default",
+  "CreatedDate": "2016-10-13T16:20:50.7932076+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-03-12T11:19:34.8403749+08:00",
-  "WebId": "ef3a624b-dce6-4c73-a383-12c3739c9b9b"
+  "ChangedDate": "2017-03-12T11:18:19.8445929+08:00",
+  "WebId": "45c90c88-c60c-4824-c314-a4a191b96d81"
 }

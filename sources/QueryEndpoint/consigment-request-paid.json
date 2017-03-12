@@ -36,7 +36,14 @@
   },
   "SortCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
-    "$values": []
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Sort, domain.sph",
+        "Path": "ChangedDate",
+        "Direction": "Desc",
+        "WebId": "1e2f6f81-b151-479c-ed83-135e214b46e0"
+      }
+    ]
   },
   "MemberCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
@@ -55,6 +62,6 @@
   "Id": "consigment-request-paid",
   "CreatedDate": "2017-02-15T11:11:36.916867+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-15T11:13:46.5109664+08:00",
+  "ChangedDate": "2017-03-12T11:18:56.2554849+08:00",
   "WebId": "b5aa96d7-2973-4a0d-d978-1b9374516f81"
 }
