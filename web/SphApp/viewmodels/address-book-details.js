@@ -33,7 +33,12 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                             WebId: system.guid()
                         });
                     }
-                    return context.get("/api/address-books/" + entityId);
+                    //return context.get("/api/address-books/" + entityId);
+                    return $.ajax({
+                        url: "/api/address-books/" + entityId,
+                        method: "GET",
+                        cache: false
+                    })
                 }).then(function (b, textStatus, xhr) {
 
                     if (xhr) {
