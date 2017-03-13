@@ -1,819 +1,243 @@
 ﻿@{
     Layout = null;
 }
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/ico/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/ico/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/ico/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" href="/images/ico/apple-touch-icon-57x57.png" />
+    <link rel="shortcut icon" href="/images/ico/apple-touch-icon.png" />
     <title>Pos Malaysia | Online Shipping Tools</title>
-    <meta name="description" content="" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta property="og:title" content="Book for Courier Services Online!" />
-    <meta property="og:description" content="Save on every parcel when you book for delivery via Poslaju, Skynet, Nationwide or Airpak. It&#39;s easy and affordable! Sign up now to deliver your first parcel for FREE!" />
-    <meta property="og:image" content="/assets/custom/images/easyparcel-my-referralbanner.jpg" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Favicons-->
-    <link rel="icon" type="image/png" href="assets/custom/favicon.ico" />
-
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <!-- Bootstrap core CSS -->
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+    <!-- Custom styles for this template -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-    <link href="/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/global/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-
-    <!-- STYLES -->
-    <link href="/assets/global/css/components.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
-
-    <!-- BOOTSTRAP -->
-    <link type="text/css" rel="stylesheet" href="/assets/custom/css/bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="/assets/custom/css/bootstrap-select.min.css" />
-
-    <!-- Stylesheet-->
-    <link type="text/css" rel="stylesheet" href="/assets/custom/css/fontello.css" />
-    <link type="text/css" rel="stylesheet" href="/assets/custom/css/style.css" />
-    <link type="text/css" rel="stylesheet" href="/assets/custom/css/jquery-ui.min.css" />
-    <link type="text/css" rel="stylesheet" href="/assets/custom/css/animation.css" />
-    <link type="text/css" rel="stylesheet" href="/assets/custom/css/nunito.css" />
-    <link type="text/css" rel="stylesheet" href="/assets/custom/css/animate.css" />
-    <link type="text/css" rel="stylesheet" href="/assets/custom/css/sweetalert2.css" />
-    <link type="text/css" rel="stylesheet" href="/assets/custom/css/sweetalert2.min.css" />
-
-    <!-- BEGIN CORE PLUGINS -->
-    <script src="~/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-    <script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="~/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-    <script src="~/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <script src="~/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-    <script src="~/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-
-    <!-- Javascript-->
-    <script src="/Scripts/jquery-1.12.1.min.js" type="text/javascript"></script>
-    <script src="/Scripts/general.js" type="text/javascript"></script>
-    <script src="/scripts/knockout-3.4.0.js" type="text/javascript"></script>
-    <script src="/scripts/knockout.mapping-latest.js" type="text/javascript"></script>
-
-    <script type="text/javascript" src="/assets/custom/js/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/bootstrap-filestyle.min.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/jquery.jplist.3.4.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/general.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/newsline.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/jssor.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/jssor.slider.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/jquery.viewportchecker.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/odometer.min.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/jquery.mobile.custom.min.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/jquery.ui.widget.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/jquery.iframe-transport.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/jquery.fileupload.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/bootstrap-select.min.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/tooltip.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/conversion.js"></script>
-    <script type="text/javascript" src="/assets/custom/js/sweetalert2.min.js"></script>
+    <link href="@Url.Content("~/Content/font-awesome.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/assets/public/css/carousel.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/assets/public/css/logo-nav.css")" rel="stylesheet" />
 </head>
+<!-- NAVBAR
+================================================== -->
 <body>
-    @Html.Partial("_headerbar")
-    @Html.Partial("_calcvol")
-    @Html.Partial("_sidebarmobile")
-
-
-    <div id="masterContent" [:style:]="">
-        <div class="span6">
-            <script>
-                $(document).ready(function() {
-                    $("#tcb-testimonial-carousel2").swiperight(function() {
-                        $("#prev").click();
-                    });
-                    $("#tcb-testimonial-carousel2").swipeleft(function() {
-                        $("#next").click();
-                    });
-                    $("#tcb-partner-carousel").swiperight(function() {
-                        $("#prev-partner").click();
-                    });
-                    $("#tcb-partner-carousel").swipeleft(function() {
-                        $("#next-partner").click();
-                    });
-                });
-            </script>
-            <!--slider-->
-            <section class="slider-bg">
-                <div id="carousel-example-generic" class="carousel slide" data-interval="8000" data-ride="carousel">
-                    <div class="col-lg-4 col-md-5 absolute-slideshow padding-off">
-                        <style>
-                            .qnb-wrapped .nav-tabs > li > a {
-                                margin-right: 5px;
-                            }
-
-                            .qnb-wrapped .nav-tabs > li.active > a.domestic-tab, .qnb-wrapped .nav-tabs > li.active > a:focus.domestic-tab, .qnb-wrapped .nav-tabs > li.active > a.domestic-tab:hover {
-                                background-color: #0d4c91;
-                                border: 1px solid #0d4c91;
-                                border-bottom-color: transparent;
-                                color: #fff;
-                            }
-
-                            .qnb-wrapped .nav-tabs > li.active > a.international-tab, .qnb-wrapped .nav-tabs > li.active > a:focus.international-tab, .qnb-wrapped .nav-tabs > li.active > a.international-tab:hover {
-                                background-color: #5cb85c;
-                                border: 1px solid #5cb85c;
-                                border-bottom-color: transparent;
-                                color: #fff;
-                            }
-
-                            .qnb-wrapped .nav-tabs > li.active > a.drop_parcel-tab, .qnb-wrapped .nav-tabs > li.active > a:focus.drop_parcel-tab, .qnb-wrapped .nav-tabs > li.active > a.drop_parcel-tab:hover {
-                                background-color: #b3003c;
-                                border: 1px solid #b3003c;
-                                border-bottom-color: transparent;
-                                color: #fff;
-                            }
-
-
-
-                            .qnb-wrapped .nav > li > a.domestic-tab:hover, .qnb-wrapped .nav .open > a.domestic-tab:hover {
-                                background-color: #0d4c91;
-                                color: #fff;
-                                border-color: #0d4c91;
-                                border-bottom: 1px solid #FFF;
-                            }
-
-                            .qnb-wrapped .nav > li > a.international-tab:hover, .qnb-wrapped .nav .open > a.international-tab:hover {
-                                background-color: #5cb85c;
-                                color: #fff;
-                                border-color: #5cb85c;
-                                border-bottom: 1px solid #FFF;
-                            }
-
-                            .qnb-wrapped .nav > li > a.drop_parcel-tab:hover, .qnb-wrapped .nav .open > a.drop_parcel-tab:hover {
-                                background-color: #b3003c;
-                                color: #fff;
-                                border-color: #b3003c;
-                                border-bottom: 1px solid #FFF;
-                            }
-
-                            .qnb-wrapped .nav-tabs {
-                                border-bottom: 1px solid #FFF;
-                            }
-
-                            .quote-book.international-body {
-                                background-color: #5cb85c;
-                            }
-
-                            .quote-book.drop_parcel-body {
-                                background-color: #b3003c;
-                            }
-
-                            span.tip {
-                                position: absolute;
-                                top: -10px;
-                                left: 32px;
-                                font-size: 10px;
-                                color: #fff;
-                                background-color: #5cb85c;
-                                padding: 2px 5px;
-                            }
-                        </style>
-                        <link type="text/css" href="assets/custom/css/quote.css" rel="stylesheet" />
-                        <script type="text/javascript" src="assets/custom/js/quote.js"></script>
-                        <div id="dialog"> </div>
-                        <script>
-                            $('#myTabs a').click(function (e) {
-                                e.preventDefault()
-                                $(this).tab('show')
-                            })
-
-                            var quickQ = {
-                                checkField: function(obj,option){
-                                    var str = $(obj).val();
-                                    if(str.length == 5){
-                                        $.ajax({
-                                            type  : "post",
-                                            url : "http://easyparcel.my/?ac=doGetState",
-                                            async : false,
-                                            data : {
-                                                postcode : str,
-                                            },
-                                            success : function(result){
-
-                                                if(result!="No State Available"){
-                                                    $('#'+option).selectpicker('val', result);
-                                                }
-                                            }
-                                        });
-                                    }
-                                    str = str.replace(/[^0-9]+/g,'');
-                                    $(obj).val(str);
-                                }
-                            };
-
-
-                            function checkaddress(){
-
-                                var status=true;
-                                var message = "";
-                                if($('#d').val() == ''){
-                                    message += "Delivery State Not Chosen.<br>";
-                                }else{
-                                    d_state = $('#d').val();
-                                }
-
-                                if($('#c').val() == ''){
-                                    message += "Collection State Not Chosen.<br>";
-                                }else{
-                                    c_state = $('#c').val();
-                                }
-
-
-                                if($('#cp').val().trim().length==5 && $('#dp').val().trim().length==5){
-
-                                    if(message == ""){
-
-                                        $.ajax({
-                                            type  : "post",
-                                            url : "http://secure.easyparcel.my/pass/?ac=checkPostcode",
-                                            async : false,
-                                            data : {
-                                                cpostcode : $('#cp').val(),
-                                                cstate : c_state,
-                                                dpostcode : $('#dp').val(),
-                                                dstate : d_state
-                                            },
-                                            success : function(result){
-                                                if(result == true){
-                                                    status=true;
-                                                }else{
-                                                    message += result;
-                                                    status=false;
-                                                }
-                                            },
-                                            fail : function(result){
-                                                message += "Something Went Wrong. Please Try Again. If Problem Persist, Please Contact Our Customer Service.<br>";
-                                                status=false;
-                                            }
-                                        });
-
-                                    }
-                                }
-                                else if($('#cp').val().trim().length!=0 || $('#dp').val().trim().length!=0)
-                                {
-                                    if($('#cp').val().trim().length!=5 && $('#cp').val().trim().length!=0)
-                                    {
-                                        message += "Collection Postcode Does Not Match The Standard.<br>";
-                                        status=false;
-                                    }
-                                    else if($('#dp').val().trim().length!=5 && $('#dp').val().trim().length!=0)
-                                    {
-                                        message += "Delivery Postcode Does Not Match The Standard.<br>";
-                                        status=false;
-                                    }
-
-                                }
-
-
-                                if(message != ""){
-                                    swal({
-                                        title: 'Oops',
-                                        type: 'error',
-                                        html: '' + message,
-                                        confirmButtonColor: '#4e97d8'
-                                    })
-                                }
-
-                                return status;
-                            }
-
-
-                            function checkaddressint(){
-                                var status=true;
-                                var message = "";
-                                if($('#id').val() == ''){
-                                    message += "Collection State Not Chosen.<br>";
-                                }else{
-                                    d_state = $('#id').val();
-                                }
-
-                                if($('#ic').val() == ''){
-                                    message += "Deliver Country Not Chosen.<br>";
-                                }else{
-                                    c_state = $('#ic').val();
-                                }
-
-
-                                if($('#icp').val().trim().length==5 && $('#idp').val().trim().length==5){
-
-                                    if(message == ""){
-
-                                        $.ajax({
-                                            type  : "post",
-                                            url : "http://secure.easyparcel.my/pass/?ac=checkPostcode",
-                                            async : false,
-                                            data : {
-                                                cpostcode : $('#icp').val(),
-                                                cstate : c_state,
-                                                dpostcode : '',
-                                                dstate : ''
-                                            },
-                                            success : function(result){
-                                                if(result == true){
-                                                    status=true;
-                                                }else{
-                                                    message += result;
-                                                    status=false;
-                                                }
-                                            },
-                                            fail : function(result){
-                                                message += "Something Went Wrong. Please Try Again. If Problem Persist, Please Contact Our Customer Service.<br>";
-                                                status=false;
-                                            }
-                                        });
-
-                                    }
-                                }
-                                else if($('#icp').val().trim().length!=0 || $('#idp').val().trim().length!=0)
-                                {
-                                    if($('#icp').val().trim().length!=5 && $('#icp').val().trim().length!=0)
-                                    {
-                                        message += "Collection Postcode Does Not Match The Standard.<br>";
-                                        status=false;
-                                    }
-
-                                }
-
-
-                                if(message != ""){
-                                    swal({
-                                        title: 'Oops',
-                                        type: 'error',
-                                        html: '' + message,
-                                        confirmButtonColor: '#4e97d8'
-                                    })
-                                }
-
-                                return status;
-                            }
-                        </script>
-                    </div>
-                    <ol class="carousel-indicators hidden-xs hidden-sm">
-                        <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="4"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="5"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="6"></li>
-                    </ol>
-                    <div class="visible-xs visible-sm slider-static"></div>
-
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner hidden-xs hidden-sm">
-                        <div class="item">
-                            <div class="sliders slider-9">
-                                <div class="container carousel-caption hidden-sm hidden-xs">
-                                    <div class="col-xs-5 space padding-right-off" style="position: relative; z-index: 15; top: 50px;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item active">
-                            <div class="sliders slider-7">
-                                <div class="container carousel-caption hidden-sm hidden-xs">
-                                    <div class="col-xs-5 space padding-right-off" style="position: relative; z-index: 15;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="sliders slider-6">
-                                <div class="container carousel-caption hidden-sm hidden-xs">
-                                    <div class="col-xs-5 space padding-right-off" style="position: relative; z-index: 15;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="sliders slider-1">
-                                <div class="container carousel-caption hidden-sm hidden-xs">
-                                    <div class="col-xs-5 space padding-right-off" style="position: relative; z-index: 15;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="sliders slider-2">
-                                <div class="container carousel-caption hidden-sm hidden-xs">
-                                    <div class="col-xs-6 space padding-right-off" style="position: relative; z-index: 15;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="sliders slider-3">
-                                <div class="container carousel-caption hidden-sm hidden-xs">
-                                    <div class="col-xs-6 space padding-right-off" style="position: relative; z-index: 15;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="sliders slider-4">
-                                <div class="container carousel-caption hidden-sm hidden-xs">
-                                    <div class="col-xs-5 space padding-right-off" style="position: relative; z-index: 15;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Controls -->
-                    <a class="left carousel-control hidden-xs hidden-sm" href="#carousel-example-generic" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> </a> <a class="right carousel-control hidden-xs hidden-sm" href="#carousel-example-generic" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> </a>
-                </div>
-            </section>
-            <!--slider-->
-            <section class="visible-xs visible-sm" style="background-color: #1EE2FF; padding: 10px 0px;"></section>
-            <section class="pink-bg signup-bar hidden-xs">
-                <div class="container">
-                    <div class="col-md-10 col-xs-10">
-                        <h3>Sign up now for the new Online Shipping Tool! </h3>
-                    </div>
-                    <div class="col-md-2 col-xs-2">
-                        <a href="/ost-account/register" class="btn btn-primary pull-right">Sign Up Now</a>
-                    </div>
-                </div>
-            </section>
-            <a href="#" style="color:#fff;">
-            </a><section class="pink-bg signup-bar visible-xs" style="min-height: 60px;">
-                <a href="#" style="color:#fff;">
-                </a><div class="container">
-                    <a href="#" style="color:#fff;">
-                        <div class="col-md-10 col-xs-10">
-                            <h3>Sign up now for the new Online Shipping Tool! </h3>
-                        </div>
-                    </a><div class="col-md-2 col-xs-2">
-                        <a href="#" style="color:#fff;"><i class="epi-right-open" style="font-size: 22px; color: #fff; margin-top: 10px; position: absolute;"></i></a>
-                    </div>
-                </div>
-            </section>
-            <section class="steps-bg">
-                <div class="container space-small">
-                    <div class="col-sm-4 col-xs-12 steps padding-off">
-                        <div class="col-md-4 col-sm-12 col-xs-4"><img src="assets/custom/images/compare.png" class="fade-in-down invisible" /></div>
-                        <div class="col-md-8 col-sm-12 col-xs-8">
-                            <h3><span style="color:#f69; font-size:36px;">1.</span> Compare Prices</h3>
-                            <p>Use our price comparison engine to find the best prices today.</p>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-xs-offset-4 title-hr visible-xs">
-                        <p class="hr-home"></p>
-                    </div>
-                    <div class="col-sm-4 col-xs-12 steps padding-off">
-                        <div class="col-md-4 col-sm-12 col-xs-4"><img src="assets/custom/images/send.png" class="fade-in-down invisible" /></div>
-                        <div class="col-md-8 col-sm-12 col-xs-8">
-                            <h3><span style="color:#f69; font-size:36px;">2.</span> Send Parcels</h3>
-                            <p>Send your parcel with our partners, we'll even come and collect it.</p>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-xs-offset-4 title-hr visible-xs">
-                        <p class="hr-home"></p>
-                    </div>
-                    <div class="col-sm-4 col-xs-12 steps-last padding-off">
-                        <div class="col-md-4 col-sm-12 col-xs-4"><img src="assets/custom/images/save.png" class="fade-in-down invisible" /></div>
-                        <div class="col-md-8 col-sm-12 col-xs-8">
-                            <h3><span style="color:#f69; font-size:36px;">3.</span> Save Money</h3>
-                            <p>Our customers are saving money every time they use Pos OST!</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="light-bg stats-bg">
-                <div class="container space">
-                    <div class="container-fluid">
-                        <div class="col-md-8 col-sm-12 join-happy-members center-space-md">
-                            <h1>Online Shipping Tools by POS Malaysia!</h1>
-                            <h3>Number 1 courier service in Malaysia</h3>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="pink-bg">
-                <div class="container space quick-reg">
-                    <div class="col-xs-12 col-md-8 quick-reg-form">
-                        <h1>Free Registration</h1>
-                        <form action="#" method="post">
-
-                            <div class="col-md-6 col-sm-8 col-xs-12 padding-left-off">
-                                <a class="btn btn-lg btn-primary" align="middle" href="ost-account/register/">Sign Up Now</a>
-                                <a class="btn btn-lg btn-info" align="middle" href="#">Contact Us</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </section>
-            <div id="dialog"></div>
-            <script>
-                function SignUp(){
-                    ValidateResult = ValidateSignUp();
-                    var email = $(".quick-reg-form [name=txt_email]").val();
-                    email = email.trim();
-                    if(ValidateResult==true){
-                        return true;
-                    }else{
-                        window.exist = 0;
-                        swal({
-                            title: 'Oops',
-                            type: 'error',
-                            html: '' + ValidateResult,
-                            confirmButtonColor: '#4e97d8'
-                        })
-                        return false;
-                    }
-                }
-
-                function checkEmail(obj,check){
-                    var pass = true;
-                    var email = $(".quick-reg-form [name=txt_email]").val();
-                    email = email.trim();
-
-                    if(General.isTextEmpty($(obj)) || !General.validateEmail(email)){
-                        doFail(obj);
-                        window.outcome = 0;
-                    }else{
-                        doPadding(obj);
-                        if(check){
-                            $.ajax({
-                                type: "POST",
-                                url: "http://easyparcel.my/?ac=CheckUserEmail",
-                                data : {
-                                    email : email
-                                },
-                                async : false,
-                                success:function(response){
-                                    if(response == "pass"){
-                                        doPass(obj);
-                                        window.outcome = 2;
-                                    }else{
-                                        doFail(obj);
-                                        window.outcome = 1;
-                                    }
-                                }
-                            });
-                        }
-                    }
-                }
-
-                function checkEmpty(obj){
-                    if(!General.isTextEmpty($(obj))){
-                        doPass(obj);
-                    }else{
-                        doFail(obj);
-                    }
-                }
-
-                function hasValidate(obj){
-                    if($(obj).hasClass("pass") || $(obj).hasClass("padding") || $(obj).hasClass("fail"))
-                        return true;
-                    else
-                        return false;
-                }
-
-                function doPass(obj){
-                    $(obj).addClass("pass");
-                    $(obj).removeClass("padding");
-                    $(obj).removeClass("fail");
-                    $(obj).css("border-color","#0F0");
-                }
-
-                function doPadding(obj){
-                    $(obj).addClass("padding");
-                    $(obj).removeClass("pass");
-                    $(obj).removeClass("fail");
-                    $(obj).css("border-color","#F90");
-                }
-
-                function doFail(obj){
-                    $(obj).addClass("fail");
-                    $(obj).removeClass("padding");
-                    $(obj).removeClass("pass");
-                    $(obj).css("border-color","#F00");
-                }
-
-                function ValidateSignUp(){
-                    var email = $(".quick-reg-form [name=txt_email]");
-                    var returnResult = "";
-                    checkEmail(email,true);
-                    if(window.outcome == 0){
-                        returnResult += "Please Insert A Valid Email Into The Email Field.";
-                    }else if(window.outcome == 1){
-                        returnResult += "Another User With This Email Already Exists. Maybe It's Your Evil Twin. Spooky. If It Is You, Kindly Log In With The Email Or Click <br><a href='http://secure.easyparcel.my/pass/?pg=MemberForgotPassword'><b><u>HERE</u></b></a> To Reset A New Password.";;
-                    }else if(window.outcome == 2){
-                        returnResult = true;
-                    }
-
-                    return returnResult;
-                }
-            </script>
-            <script>
-                (function ($) {
-                    var $window = $(window),
-                    _watch = [],
-                    _buffer;
-
-                    function test($el) {
-                        var docViewTop = $window.scrollTop(),
-                        docViewBottom = docViewTop + $window.height(),
-                        elemTop = $el.offset().top,
-                        elemBottom = elemTop + $el.height();
-                        return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom)&& (elemBottom <= docViewBottom) &&  (elemTop >= docViewTop) );
-                    }
-
-                    $window.on('scroll', function ( e ) {
-                        if ( !_buffer ) {
-                            _buffer = setTimeout(function () {
-                                checkInView( e );
-                                _buffer = null;
-                            }, 300);
-                        }
-                    });
-
-                    function checkInView( e ) {
-                        $.each(_watch, function () {
-                            if ( test( this.element ) ) {
-                                if ( !this.invp ) {
-                                    this.invp = true;
-                                    if ( this.options.scrolledin ){
-                                        this.options.scrolledin.call( this.element, e );
-                                    }
-                                    this.element.trigger( 'scrolledin', e );
-                                }
-                            }
-                        });
-                    }
-
-                    function monitor( element, options ) {
-                        var item = { element: element, options: options, invp: false };
-                        _watch.push(item);
-                        return item;
-                    }
-
-                    function unmonitor( item ) {
-                        for ( var i=0;i<_watch.length;i++ ) {
-                            if ( _watch[i] === item ) {
-                                _watch.splice( i, 1 );
-                                item.element = null;
-                                break;
-                            }
-                        }
-                        console.log( _watch );
-                    }
-
-                    var pluginName = 'scrolledIntoView',
-                        settings = {
-                            scrolledin: null,
-                            scrolledout: null
-                        }
-
-
-                    $.fn[pluginName] = function( options ) {
-
-                        var options = $.extend({}, settings, options);
-
-                        this.each( function () {
-
-                            var $el = $(this),
-                                instance = $.data( this, pluginName );
-
-                            if ( instance ) {
-                                instance.options = options;
-                            } else {
-                                $.data( this, pluginName, monitor( $el, options ) );
-                                $el.on( 'remove', $.proxy( function () {
-
-                                    $.removeData(this, pluginName);
-                                    unmonitor( instance );
-
-                                }, this ) );
-                            }
-                        });
-
-                        return this;
-                    }
-
-
-                })(jQuery);
-
-                $('.odometer').scrolledIntoView().on('scrolledin', function () { getQuoteCount(); });
-
-                $(document).ready( function() {
-                    $("#list-fix").hide(); //hide your div initially
-                    var topOfOthDiv = $(".signup-bar").offset().top;
-                    $(window).scroll(function() {
-                        if($(window).scrollTop() > topOfOthDiv) { //scrolled past the other div?
-                            $("#list-fix").show(); //reached the desired point -- show div
-                        }
-                        if($(window).scrollTop() < topOfOthDiv) { //scrolled past the other div?
-                            $("#list-fix").hide(); //reached the desired point -- show div
-                        }
-                    });
-                });
-                $('#testimonialCarousel').carousel({
-                    interval: 2000,
-                    pause: true
-                });
-
-                function getQuoteCount(){
-                    AjaxGetQuoteCount();
-                    setInterval(function(){
-                        AjaxGetQuoteCount();
-                    }, 10000);
-                }
-
-                function AjaxGetQuoteCount(){
-                    getQuote = true;
-                    $.ajax({
-                        type : "post",
-                        url : "http://easyparcel.my/?ac=doQuoteCount",
-                        data : {getQuote : getQuote},
-                        success : function(result){
-                            if(result != "fail"){
-                                result = result;
-                            }else{
-                                result = 0;
-                            }
-                            $('.odometer').html(result);
-                        }
-                    });
-                }
-            </script>
-        </div>
-        <div id="mainTrackResult"></div>
-        <footer id="masterFooter" class="page-footer">
-            <div class="container">
-                <div class="footer-inner">
-                    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 footer-link-height">
-                        <ul class="links">
-                            <li class="title-link">Overview</li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Prohibited Item List</a></li>
-                            <li><a href="#">Terms &amp; Conditions</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 footer-link-height">
-                        <ul class="links">
-                            <li class="title-link">Quick Guide</li>
-                            <li><a href="#">Sign Up An Account</a></li>
-                            <li><a href="#">Place An Order</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 footer-link-height">
-                        <ul class="links">
-                            <li class="title-link">Tools</li>
-                            <li><a href="#">Track &amp; Trace</a></li>
-                            <li><a data-toggle="modal" href="#">Volumetric Calculator</a></li>
-                        </ul>
-                    </div>
-                </div>
+    <!-- Header
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img src="/images/Pos_Malaysia_Logo_500px.png" style="width:105px; height:33px" alt="">
+                </a>
             </div>
-        </footer>
-        <div class="page-copyright">
-            <div class="container">
-                <p class="text-center small">
-                    @DateTime.Today.Year &copy; Pos Malaysia. All Rights Reserved
-                </p>
-            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/shipment-volumetric">Volumetric Weight</a></li>
+                    <li><a href="/track-trace">Track & Trace</a></li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <a href="/ost-account/login" type="button" class="btn btn-danger">Log In</a>
+                    <a href="/ost-account/register" type="button" class="btn btn-default">Sign Up</a>
+                </form>
+            </div><!--/.navbar-collapse -->
         </div>
-        <div id="popupbox" class="modal fade in">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>Loading...</h3>
-                </div>
-                <div class="modal-body"></div>
-                <div class="modal-footer"></div>
-            </div>
-        </div>
-        <div class="list-fix hidden-xs" id="list-fix" style="display: none;">
-            <div class="wrapper">
-                <span id="top-link-block"> <a href="#top" onclick="$(&#39;html,body&#39;).animate({scrollTop:0},&#39;slow&#39;);return false;" style="color: #fff;"> <i class="epi-up-big"></i></a> </span>
-                <div class="tooltip">Back To Top</div>
-            </div>
-        </div>
-        <script>
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-
-            $('.list-fix').viewportChecker({
-                classToAdd: 'visible animated bounceIn',
-                removeClassAfterAnimation: true,
-                offset: "50%"
-            });
-
-            $('.fade-in-down').addClass("invisible").viewportChecker({
-                classToAddForFullView: 'visible animated fadeInDown',
-                classToRemove : 'invisible',
-                removeClassAfterAnimation: true,
-                offset: "20%"
-            });
-        </script>
-        <div class="swal2-container"><div class="swal2-overlay" tabindex="-1"></div><div class="swal2-modal" style="display: none" tabindex="-1"><div class="swal2-icon swal2-error"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span></div><div class="swal2-icon swal2-question">?</div><div class="swal2-icon swal2-warning">!</div><div class="swal2-icon swal2-info">i</div><div class="swal2-icon swal2-success"><span class="line tip"></span> <span class="line long"></span><div class="placeholder"></div> <div class="fix"></div></div><img class="swal2-image" /><h2></h2><div class="swal2-content"></div><input class="swal2-input" /><select class="swal2-select"></select><div class="swal2-radio"></div><label for="swal2-checkbox" class="swal2-checkbox"><input type="checkbox" id="swal2-checkbox" /></label><textarea class="swal2-textarea"></textarea><div class="swal2-validationerror"></div><hr class="swal2-spacer" /><button class="swal2-confirm">OK</button><button class="swal2-cancel">Cancel</button><span class="swal2-close">×</span></div></div>
     </div>
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+            <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item">
+                <img class="first-slide" src="/images/slide-01.jpg" alt="First slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Send Parcel With Us.</h1>
+                        <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+                        <p><a class="btn btn-lg btn-primary" href="/ost-account/register" role="button">Sign up today</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="item active">
+                <img class="second-slide" src="/images/slide-02.jpg" alt="Second slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Another Product by Pos Malaysia Berhad</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                        <p><a class="btn btn-lg btn-primary" href="" role="button">Learn more</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img class="third-slide" src="/images/slide-03.jpg" alt="Third slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Online Shipping Tools!</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                        <p><a class="btn btn-lg btn-primary" href="" role="button">Read more</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div><!-- /.carousel -->
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+    <div class="container marketing">
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div class="col-lg-4">
+                <img class="img-circle" src="/images/Icon_Transport_Red.png" alt="Generic placeholder image" width="140" height="140">
+                <h2>Express</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p><a class="btn btn-default" href="" role="button">View details »</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <img class="img-circle" src="/images/Icon_Money_Red.png" alt="Generic placeholder image" width="140" height="140">
+                <h2>Cashless</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p><a class="btn btn-default" href="" role="button">View details »</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <img class="img-circle" src="/images/Icon_Cart_Red.png" alt="Generic placeholder image" width="140" height="140">
+                <h2>Fast & Easy</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p><a class="btn btn-default" href="" role="button">View details »</a></p>
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+        <!-- START THE FEATURETTES -->
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Online Shipping Tools!. <span class="text-muted">Pos Malaysia Marketing Stuff!.</span></h2>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-responsive center-block" data-src="holder.js" alt="500x500" src="/images/marketing_mail_inbox.png" data-holder-rendered="true">
+            </div>
+        </div>
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7 col-md-push-5">
+                <h2 class="featurette-heading">Online Shipping Tools!. <span class="text-muted">Pos Malaysia Marketing Stuff!.</span></h2>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div class="col-md-5 col-md-pull-7">
+                <img class="featurette-image img-responsive center-block" data-src="holder.js" alt="500x500" src="/images/marketing_credit_cards.png" data-holder-rendered="true">
+            </div>
+        </div>
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Online Shipping Tools!. <span class="text-muted">Pos Malaysia Marketing Stuff!.</span></h2>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-responsive center-block" data-src="holder.js" alt="500x500" src="/images/marketing_shopping_cart.png" data-holder-rendered="true">
+            </div>
+        </div>
+        <hr class="featurette-divider">
+        <!-- /END THE FEATURETTES -->
+    </div><!-- /.container -->
+    <!-- Footer
+    ================================================== -->
+    <footer>
+        <div class="footer" id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3  col-md-3 col-sm-4 col-xs-6">
+                        <h3> Overview </h3>
+                        <ul>
+                            <li> <a href="/"> Home </a> </li>
+                            <li> <a href="/"> About Us </a> </li>
+                            <li> <a href="/"> Support </a> </li>
+                            <li> <a href="/"> Careers </a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3  col-md-3 col-sm-4 col-xs-6">
+                        <h3> Quick Guide </h3>
+                        <ul>
+                            <li> <a href="/"> Send Parcel </a> </li>
+                            <li> <a href="/"> Calculate Weight </a> </li>
+                            <li> <a href="/"> Volumetric </a> </li>
+                            <li> <a href="/"> Quote Parcel </a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3  col-md-3 col-sm-4 col-xs-6">
+                        
+                    </div>
+                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 pull-right">
+                        <h3> Follow Us </h3>
+                        <ul>
+                            <li> Subscribe to our newsletter! </li>
+                            <li>
+                                <div class="input-append newsletter-box text-center">
+                                    <input type="text" class="form-control" placeholder="Email ">
+                                    <button class="btn btn-danger btn-outline" type="button"> Subscribe <i class="fa fa-feed"> </i> </button>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="social">
+                            <li> <a href="/"> <i class="fa fa-facebook">   </i> </a> </li>
+                            @*<li> <a href="/"> <i class="fa fa-twitter">   </i> </a> </li>*@
+                            <li> <a href="/"> <i class="fa fa-google-plus">   </i> </a> </li>
+                            @*<li> <a href="/"> <i class="fa fa-pinterest">   </i> </a> </li>
+                            <li> <a href="/"> <i class="fa fa-youtube">   </i> </a> </li>*@
+                        </ul>
+                    </div>
+                </div>
+                <!--/.row-->
+            </div>
+            <!--/.container-->
+        </div>
+        <!--/.footer-->
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="pull-left"> © 2017 Online Shipping Tools, Pos Malaysia Berhad. </p>
+                <div class="pull-right">
+                    <ul class="nav nav-pills payments">
+                        <li><i class="fa fa-cc-visa"></i></li>
+                        <li><i class="fa fa-cc-mastercard"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--/.footer-bottom-->
+    </footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="@Url.Content("~/Scripts/jquery-3.1.1.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="@Url.Content("~/assets/public/scripts/holder.min.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/knockout-3.4.0.js")"></script>*@
 </body>
 </html>

@@ -2,18 +2,27 @@
     ViewBag.Title = "Email verification";
     Layout = "_Layout.cshtml";
 }
-
-@if (!ViewBag.success)
-{
-    <div>
-        <h3><span class="text-danger">Email verification unsuccessful</span></h3>
-        <p>
-            <span class="text-danger">@ViewBag.status</span><br />
-        </p>
-        <p>
-            Your email address has not been verified.<br />
-            Having problem? Resend verification email now.<br />
-            <a class="btn btn-info" href="/ost-account/send-verify-email">Resend</a>
-        </p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-8">
+            <div class="well">
+                @if (!ViewBag.success)
+                {
+                    <div>
+                        <h3><span class="text-danger">Email verification unsuccessful</span></h3>
+                        <p>
+                            <span class="text-danger">@ViewBag.status</span><br />
+                        </p>
+                        <p>
+                            Your email address has not been verified.<br />
+                            Having problem? Resend verification email now.<br />
+                            <a class="btn btn-info" href="/ost-account/send-verify-email">Resend</a>
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-2">&nbsp;</div>
     </div>
-}
+</div>

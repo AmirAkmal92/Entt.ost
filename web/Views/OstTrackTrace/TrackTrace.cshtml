@@ -2,75 +2,84 @@
     Layout = "~/Views/OstAccount/_Layout.cshtml";
 }
 
-<div class="row" style="height:inherit;">
-    <div class="portlet light bordered" id="panel-track">
-        <div class="portlet-title">
-            <div class="caption">
-                <i class="fa fa-map-marker"></i>
-                <span class="caption-subject bold uppercase">Track And Trace</span>
-            </div>
-        </div>
-        <div class="portlet-body form">
-            <form role="form">
-                <div class="form-body">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Insert Tracking Number" data-bind="value: conNote" />
-                            <span class="input-group-btn">
-                                <button class="btn red" type="button" data-bind="click: search">Track</button>
-                            </span>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-8">
+            <div class="well">
+                <div class="form-signin">
+                    <h3><i class="fa fa-map-marker"></i> Track And Trace</h3>
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <span>Track your parcel by entering tracking number.</span>
                         </div>
                     </div>
+                    <br /><br />
+                    <form role="form">
+                        <div class="form-body">
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Insert Tracking Number" data-bind="value: conNote" />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-danger" type="button" data-bind="click: search">Track</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <br /><br /><br />
+                    <table class="table table-striped table-hover table-bordered" data-bind="visible: busy">
+                        <thead>
+                            <tr>
+                                <th><i class="fa fa-calendar"></i> Date / Time </th>
+                                <th><i class="fa fa-cogs"></i> Process </th>
+                                <th><i class="fa fa-building-o"></i> Event </th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: results">
+                            <tr>
+                                <td class="font-grey-mint" data-bind="text:date"></td>
+                                <td class="font-grey-mint" data-bind="text:process"></td>
+                                <td class="font-grey-mint" data-bind="text:office"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </form>
-            <br /><br />
-            <table class="table table-striped table-hover table-bordered" data-bind="visible: busy">
-                <thead>
-                    <tr>
-                        <th><i class="fa fa-calendar"></i> Date / Time </th>
-                        <th><i class="fa fa-cogs"></i> Process </th>
-                        <th><i class="fa fa-building-o"></i> Event </th>
-                    </tr>
-                </thead>
-
-                <tbody data-bind="foreach: results">
-                    <tr>
-                        <td class="font-grey-mint" data-bind="text:date"></td>
-                        <td class="font-grey-mint" data-bind="text:process"></td>
-                        <td class="font-grey-mint" data-bind="text:office"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <script type="text/javascript">
-
-                var ViewModel = function () {
-                    var busy = ko.observable(false),
-                        conNote = ko.observable(),
-                        table = ko.observable("hidden"),
-                        results = ko.observableArray(),
-                        search = function () {
-
-                            busy(true);
-                            table("");
-                            return $.getJSON("/api/track-traces/" + ko.unwrap(conNote))
-                            .done(results);
-                        };
-
-                    return {
-                        busy: busy,
-                        conNote: conNote,
-                        results: results,
-                        table: table,
-                        search: search
-                    };
-                };
-
-                $(function () {
-
-                    var vm = new ViewModel();
-                    ko.applyBindings(vm, document.getElementById("panel-track"));
-                });
-            </script>
+            </div>
         </div>
     </div>
+    <div class="col-md-2">&nbsp;</div>
 </div>
+@section Scripts
+    {
+    <script type="text/javascript">
+
+        var ViewModel = function () {
+            var busy = ko.observable(false),
+                conNote = ko.observable(),
+                table = ko.observable("hidden"),
+                results = ko.observableArray(),
+                search = function () {
+
+                    busy(true);
+                    table("");
+                    return $.getJSON("/api/track-traces/" + ko.unwrap(conNote))
+                    .done(results);
+                };
+
+            return {
+                busy: busy,
+                conNote: conNote,
+                results: results,
+                table: table,
+                search: search
+            };
+        };
+
+        $(function () {
+
+            var vm = new ViewModel();
+            ko.applyBindings(vm, document.getElementById("panel-track"));
+        });
+    </script>
+}
