@@ -20,7 +20,7 @@ function (context, logger, router, config, app, system) {
                     entity().ReferenceNo(config.profile.Email);
                     entity().UserId(config.userName);
                     entity().ContactPerson(config.userName);
-                    entity().ProfilePictureUrl("/assets/images/user_default.png");
+                    entity().ProfilePictureUrl("/assets/admin/pages/img/avatars/user_default.png");
                     entity().ContactInformation().Email(config.profile.Email);
                     entity().Address().Country("MY");
                     var data = ko.mapping.toJSON(entity);

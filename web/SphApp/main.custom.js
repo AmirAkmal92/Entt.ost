@@ -3637,7 +3637,6 @@ define('durandal/system', ['require', 'jquery'], function (require, $) {
 
 require.config({
     paths: {
-        //'sweetalert': '../assets/global/plugins/bootstrap-sweetalert/sweetalert.min',
         "text": "/Scripts/text",
         'durandal': "/Scripts/durandal",
         'plugins': "/Scripts/durandal/plugins",
@@ -3652,16 +3651,11 @@ require.config({
             deps: ["jquery"],
             exports: "jQuery"
         },
-        //'sweetalert': {
-        //    exports: "sweetalert.min"
-        //},
         "jsPlumb": {
             exports: "jsPlumb"
         }
     }
 });
-
-//require(['sweetalert'], function (sweetalert) { });
 
 define("jquery", function () { return jQuery; });
 define("knockout", ko);
