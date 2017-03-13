@@ -1,31 +1,5 @@
 [
   {
-    "Parent": null,
-    "Controller": null,
-    "Action": null,
-    "Id": null,
-    "Claims": [
-      {
-        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
-        "Value": "administrators",
-        "Permission": "a",
-        "ValueType": null,
-        "IsInherited": false
-      },
-      {
-        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
-        "Value": "developers",
-        "Permission": "a",
-        "ValueType": null,
-        "IsInherited": false
-      }
-    ],
-    "IsInherited": false,
-    "HasParent": false,
-    "HasAction": false,
-    "HasController": false
-  },
-  {
     "Parent": "AddressBook",
     "Controller": null,
     "Action": null,
@@ -180,6 +154,25 @@
   {
     "Parent": "Custom",
     "Controller": "CustomConsignmentRequest",
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "customers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": true,
+    "HasAction": false,
+    "HasController": true
+  },
+  {
+    "Parent": "Custom",
+    "Controller": "OstPayment",
     "Action": null,
     "Id": null,
     "Claims": [
@@ -479,5 +472,31 @@
     "HasParent": true,
     "HasAction": false,
     "HasController": true
+  },
+  {
+    "Parent": null,
+    "Controller": null,
+    "Action": null,
+    "Id": null,
+    "Claims": [
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "administrators",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      },
+      {
+        "Type": "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        "Value": "developers",
+        "Permission": "a",
+        "ValueType": null,
+        "IsInherited": false
+      }
+    ],
+    "IsInherited": false,
+    "HasParent": false,
+    "HasAction": false,
+    "HasController": false
   }
 ]

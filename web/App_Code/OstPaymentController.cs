@@ -1,167 +1,140 @@
 ﻿using Bespoke.Ost.ConsigmentRequests.Domain;
 using Bespoke.Sph.Domain;
 using System;
-using System.IO;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Xml.Serialization;
 
 namespace web.sph.App_Code
 {
     [RoutePrefix("ost-payment")]
     public class OstPaymentController : Controller
     {
+        private string m_baseUrl;
+        private string m_paymentGatewayBaseUrl;
+        private string m_paymentGatewayApplicationId;
+        private string m_paymentGatewayEncryptionKey;
 
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("payment-gateway")]
-        public ActionResult PaymentGateway(PxRexModel model)
+        public OstPaymentController()
         {
-            // MOCK UP
-            ViewBag.Title = "Payment Gateway";
-            return View(model);
+            m_baseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl") ?? "http://localhost:50230";
+            m_paymentGatewayBaseUrl = ConfigurationManager.GetEnvironmentVariable("PaymentGatewayBaseUrl") ?? "http://testv2paymentgateway.posonline.com.my";
+            m_paymentGatewayApplicationId = ConfigurationManager.GetEnvironmentVariable("PaymentGatewayApplicationId") ?? "OST";
+            m_paymentGatewayEncryptionKey = ConfigurationManager.GetEnvironmentVariable("PaymentGatewayEncryptionKey") ?? "WdVxp54wmQlGFBmvOQgfmpAqCJ23gyGI";
         }
 
-        [HttpPost]
-        [Route("payment-accepted")]
-        public async Task<ActionResult> PaymentAccepted(PxResModel model)
+        [Authorize]
+        [HttpGet]
+        [Route("ps-request/{id}")]
+        public async Task<ActionResult> PsRequest(string id)
         {
-            var baseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl");
-            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(model.PX_PURCHASE_ID);
-            if (null == lo.Source) return HttpNotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + model.PX_PURCHASE_ID);
-            var item = lo.Source;
-
-            // MOCK UP
-            item.Payment.IsPaid = true;
-            item.Payment.Date = DateTime.Now;
-            await SaveConsigmentRequest(item);
-
-            // wait until the worker process it
-            await Task.Delay(1500);
-            return Redirect(baseUrl + "/ost#consignment-request-paid-summary/" + model.PX_PURCHASE_ID);
-        }
-
-        [HttpPost]
-        [Route("payment-rejected")]
-        public async Task<ActionResult> PaymentRejected(PxResModel model)
-        {
-            var baseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl");
-            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(model.PX_PURCHASE_ID);
-            if (null == lo.Source) return HttpNotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + model.PX_PURCHASE_ID);
-            var item = lo.Source;
-
-            // MOCK UP
-            item.Payment.IsPaid = false;
-            await SaveConsigmentRequest(item);
-
-            // wait until the worker process it
-            await Task.Delay(1500);
-            return Redirect(baseUrl + "/ost#consignment-request-summary/" + model.PX_PURCHASE_ID);
-        }
-
-        [HttpPost]
-        [Route("px-res")]
-        public async Task<ActionResult> PxRes(PxResModel model)
-        {
-            var baseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl");
-            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(model.PX_PURCHASE_ID);
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
             if (null == lo.Source)
-                return HttpNotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + model.PX_PURCHASE_ID);
+            {
+                Response.StatusCode = (int)HttpStatusCode.NotFound;
+                return Json(new { success = false, status = "ERROR", message = $"Cannot find ConsigmentRequest with Id/ReferenceNo: {id}." }, JsonRequestBehavior.AllowGet);
+            }
 
             var item = lo.Source;
+            var model = new PaymentSwitchRequestModel();
 
-            // TODO: validate model.PX_SIG
-
-            if (model.PX_ERROR_CODE == "000")
+            decimal gstPrice = 0;
+            decimal domesticPrice = 0;
+            decimal internationalPrice = 0;
+            decimal pickupPrice = 5.30m;
+            foreach (var consignment in item.Consignments)
             {
-                // transaction is successfull
-                // TODO: store related PxRes parameters in item
+                if (consignment.Produk.IsInternational)
+                {
+                    if (consignment.Produk.Price == 0)
+                    {
+                        internationalPrice += 0;
+                    }
+                    else
+                    {
+                        internationalPrice += consignment.Produk.Price;
+                    }
+                }
+                else
+                {
+                    if (consignment.Produk.Price == 0)
+                    {
+                        domesticPrice += 0;
+                    }
+                    else
+                    {
+                        domesticPrice += consignment.Produk.Price;
+                    }
+                }
+            }
+            gstPrice = decimal.Multiply(decimal.Divide((domesticPrice + pickupPrice), 1.06m), 0.06m);
+            
+            // required by payment gateway
+            model.TransactionId = item.ReferenceNo;
+            model.TransactionAmount = item.Payment.TotalPrice - gstPrice;
+            model.TransactionGST = gstPrice;
+            model.PurchaseDate = DateTime.Now;
+            model.Description = $"OST purchase by {item.ChangedBy} for RM{item.Payment.TotalPrice}";
+            model.CallbackUrl = $"{m_baseUrl}/ost-payment/ps-response"; //temp for testing
+
+            var rijndaelKey = new RijndaelEnhanced(m_paymentGatewayEncryptionKey);
+            var dataToEncrypt = string.Format("{0}|{1}|{2}|{3}|{4}", model.TransactionId, model.TransactionAmount, model.TransactionGST, model.PurchaseDate.ToString("MM/dd/yyyy hh:mm:ss"), model.Description);
+            if (!string.IsNullOrEmpty(model.CallbackUrl))
+                dataToEncrypt += "|" + model.CallbackUrl;
+            var encryptedData = rijndaelKey.Encrypt(dataToEncrypt);
+
+            Response.StatusCode = (int)HttpStatusCode.OK;
+            return Json(new { success = true, status = "OK", id = m_paymentGatewayApplicationId, data = encryptedData, url = $"{m_paymentGatewayBaseUrl}/pay" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("ps-response")]
+        public async Task<ActionResult> PsResponse()
+        {
+            var encryptedData = Request.Form["data"];
+
+            var rijndaelKey = new RijndaelEnhanced(m_paymentGatewayEncryptionKey);
+            var decryptedData = rijndaelKey.Decrypt(encryptedData);
+
+            var decryptedDataArr = decryptedData.Split(new char[] { '|' });
+            var model = new PaymentSwitchResponseModel();
+
+            model.TransactionId = decryptedDataArr[0];
+            model.TransactionAmount = decryptedDataArr[1];
+            model.TransactionGST = decryptedDataArr[2];
+            model.ServiceFee = decryptedDataArr[3];
+            model.ServiceGST = decryptedDataArr[4];
+            model.TotalAmount = decryptedDataArr[5];
+            model.Status = decryptedDataArr[6];
+            model.ErrorMessage = decryptedDataArr[7];
+
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(model.TransactionId);
+            if (null == lo.Source)
+            {
+                Response.StatusCode = (int)HttpStatusCode.NotFound;
+                return Json(new { success = false, status = "ERROR", message = $"Cannot find ConsigmentRequest with Id/ReferenceNo: {model.TransactionId}." }, JsonRequestBehavior.AllowGet);
+            }
+            var item = lo.Source;
+            if (model.Status.Equals("1"))
+            {
                 item.Payment.IsPaid = true;
                 item.Payment.Date = DateTime.Now;
+                await SaveConsigmentRequest(item);
+
+                // wait until the worker process it
+                await Task.Delay(1500);
+                return Redirect($"{m_baseUrl}/ost#consignment-request-paid-summary/{item.Id}");
             }
             else
             {
-                // error
-                // TODO: store related PxRes parameters  in item
                 item.Payment.IsPaid = false;
+                await SaveConsigmentRequest(item);
+
+                // wait until the worker process it
+                await Task.Delay(1500);
+                return Redirect($"{m_baseUrl}/ost#consignment-request-summary/{item.Id}");
             }
-
-            await SaveConsigmentRequest(item);
-            return Redirect(baseUrl + "/ost#consignment-request-paid-summary/" + model.PX_PURCHASE_ID);
-        }
-
-        [HttpPost]
-        [Route("px-inquiry-res")]
-        public async Task<ActionResult> PxInquiryRes(PxInquiryResModel model)
-        {
-            var baseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl");
-            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(model.PX_PURCHASE_ID);
-            if (null == lo.Source)
-                return HttpNotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + model.PX_PURCHASE_ID);
-
-            var item = lo.Source;
-
-            if (model.PX_ERROR_CODE == "000")
-            {
-                // transaction is successfull
-                // TODO: store related PxInquiryRes parameters in item
-            }
-            else
-            {
-                // error
-                // TODO: store related PxInquiryRes parameters  in item
-            }
-
-            await SaveConsigmentRequest(item);
-            return Redirect(baseUrl + "/ost#consignment-request-paid-summary/" + model.PX_PURCHASE_ID);
-        }
-
-        [HttpPost]
-        [Route("px-void-res")]
-        public async Task<ActionResult> PxVoidRes(PxVoidResModel model)
-        {
-            var baseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl");
-            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(model.PX_PURCHASE_ID);
-            if (null == lo.Source)
-                return HttpNotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + model.PX_PURCHASE_ID);
-
-            var item = lo.Source;
-
-            if (model.PX_ERROR_CODE == "000")
-            {
-                // transaction is successfull
-                // TODO: store related PxVoidRes parameters in item
-            }
-            else
-            {
-                // error
-                // TODO: store related PxVoidRes parameters  in item
-            }
-
-            await SaveConsigmentRequest(item);
-            return Redirect(baseUrl + "/ost#consignment-request-paid-summary/" + model.PX_PURCHASE_ID);
-        }
-
-        [HttpPost]
-        [Route("px-res-notify")]
-        public async Task<ActionResult> PxResNotify(PxResNotifyModel model)
-        {
-            var baseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl");
-
-            XmlSerializer serializer = new XmlSerializer(typeof(PxResNotify));
-            StringReader rdr = new StringReader(model.PX_INQ_REQ);
-            PxResNotify pxResNotify = (PxResNotify)serializer.Deserialize(rdr);
-
-            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(pxResNotify.PX_PURCHASE_ID);
-            if (null == lo.Source)
-                return HttpNotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + pxResNotify.PX_PURCHASE_ID);
-
-            var item = lo.Source;
-
-            // TODO: store related PxResNotify parameters in item
-
-            await SaveConsigmentRequest(item);
-            return Redirect(baseUrl + "/ost#consignment-request-paid-summary/" + pxResNotify.PX_PURCHASE_ID);
         }
 
         private static async Task<LoadData<ConsigmentRequest>> GetConsigmentRequest(string id)
@@ -185,173 +158,25 @@ namespace web.sph.App_Code
         }
     }
 
-    public class PxRexModel
+    public class PaymentSwitchRequestModel
     {
-        public string PX_VERSION { get; set; }
-        public string PX_TRANSACTION_TYPE { get; set; }
-        public string PX_PURCHASE_ID { get; set; }
-        public long PX_PAN { get; set; }
-        public string PX_EXPIRY { get; set; }
-        public int PX_MERCHANT_ID { get; set; }
-        public decimal PX_PURCHASE_AMOUNT { get; set; }
-        public string PX_PURCHASE_DESCRIPTION { get; set; }
-        public string PX_PURCHASE_DATE { get; set; }
-        public int PX_CVV2 { get; set; }
-        public string PX_CUSTOM_FIELD1 { get; set; }
-        public string PX_CUSTOM_FIELD2 { get; set; }
-        public string PX_CUSTOM_FIELD3 { get; set; }
-        public string PX_CUSTOM_FIELD4 { get; set; }
-        public string PX_CUSTOM_FIELD5 { get; set; }
-        public string PX_REF { get; set; }
-        public string PX_ALT_URL { get; set; }
-        public string PX_POLICY_NO { get; set; }
-        public string PX_SIG { get; set; }
+        public string TransactionId { get; set; }
+        public decimal TransactionAmount { get; set; }
+        public decimal TransactionGST { get; set; }
+        public DateTime PurchaseDate { get; set; }
+        public string Description { get; set; }
+        public string CallbackUrl { get; set; }
     }
 
-    public class PxResModel
+    public class PaymentSwitchResponseModel
     {
-        public string PX_VERSION { get; set; }
-        public string PX_TRANSACTION_TYPE { get; set; }
-        public string PX_PURCHASE_ID { get; set; }
-        public long PX_PAN { get; set; }
-        public decimal PX_PURCHASE_AMOUNT { get; set; }
-        public string PX_PURCHASE_DATE { get; set; }
-        public string PX_HOST_DATE { get; set; }
-        public string PX_ERROR_CODE { get; set; }
-        public string PX_ERROR_DESCRIPTION { get; set; }
-        public string PX_APPROVAL_CODE { get; set; }
-        public string PX_RRN { get; set; }
-        public string PX_3D_FLAG { get; set; }
-        public string PX_CUSTOM_FIELD1 { get; set; }
-        public string PX_CUSTOM_FIELD2 { get; set; }
-        public string PX_CUSTOM_FIELD3 { get; set; }
-        public string PX_CUSTOM_FIELD4 { get; set; }
-        public string PX_CUSTOM_FIELD5 { get; set; }
-        public string PX_SIG { get; set; }
-    }
-
-    public class PxCaptureReqModel
-    {
-        public string PX_VERSION { get; set; }
-        public string PX_TRANSACTION_TYPE { get; set; }
-        public string PX_PURCHASE_ID { get; set; }
-        public long PX_PAN { get; set; }
-        public string PX_EXPIRY { get; set; }
-        public int PX_MERCHANT_ID { get; set; }
-        public decimal PX_PURCHASE_AMOUNT { get; set; }
-        public string PX_PURCHASE_DESCRIPTION { get; set; }
-        public string PX_PURCHASE_DATE { get; set; }
-        public int PX_CVV2 { get; set; }
-        public string PX_CUSTOM_FIELD1 { get; set; }
-        public string PX_CUSTOM_FIELD2 { get; set; }
-        public string PX_CUSTOM_FIELD3 { get; set; }
-        public string PX_CUSTOM_FIELD4 { get; set; }
-        public string PX_CUSTOM_FIELD5 { get; set; }
-        public string PX_REF { get; set; }
-        public string PX_ALT_URL { get; set; }
-        public string PX_POLICY_NO { get; set; }
-        public string PX_SIG { get; set; }
-    }
-
-    public class PxCaptureResModel
-    {
-        public string PX_VERSION { get; set; }
-        public string PX_TRANSACTION_TYPE { get; set; }
-        public string PX_PURCHASE_ID { get; set; }
-        public long PX_PAN { get; set; }
-        public decimal PX_PURCHASE_AMOUNT { get; set; }
-        public string PX_TRANSACTION_DATE { get; set; }
-        public string PX_HOST_DATE { get; set; }
-        public string PX_ERROR_CODE { get; set; }
-        public string PX_ERROR_DESCRIPTION { get; set; }
-        public string PX_APPROVAL_CODE { get; set; }
-        public string PX_RRN { get; set; }
-        public string PX_3D_FLAG { get; set; }
-        public string PX_CUSTOM_FIELD1 { get; set; }
-        public string PX_CUSTOM_FIELD2 { get; set; }
-        public string PX_CUSTOM_FIELD3 { get; set; }
-        public string PX_CUSTOM_FIELD4 { get; set; }
-        public string PX_CUSTOM_FIELD5 { get; set; }
-        public string PX_SIG { get; set; }
-    }
-
-    public class PxInquiryReqModel
-    {
-        public string PX_VERSION { get; set; }
-        public string PX_TRANSACTION_TYPE { get; set; }
-        public string PX_PURCHASE_ID { get; set; }
-        public int PX_MERCHANT_ID { get; set; }
-        public string PX_REF { get; set; }
-        public string vcc_action { get; set; }
-    }
-
-    public class PxInquiryResModel
-    {
-        public string PX_VERSION { get; set; }
-        public string PX_TRANSACTION_TYPE { get; set; }
-        public string PX_PURCHASE_ID { get; set; }
-        public long PX_PAN { get; set; }
-        public decimal PX_PURCHASE_AMOUNT { get; set; }
-        public string PX_TRANSACTION_DATE { get; set; }
-        public string PX_HOST_DATE { get; set; }
-        public string PX_ERROR_CODE { get; set; }
-        public string PX_ERROR_DESCRIPTION { get; set; }
-        public string PX_APPROVAL_CODE { get; set; }
-        public string PX_RRN { get; set; }
-        public string PX_3D_FLAG { get; set; }
-        public string PX_CUSTOM_FIELD1 { get; set; }
-        public string PX_CUSTOM_FIELD2 { get; set; }
-        public string PX_CUSTOM_FIELD3 { get; set; }
-        public string PX_CUSTOM_FIELD4 { get; set; }
-        public string PX_CUSTOM_FIELD5 { get; set; }
-    }
-
-    public class PxVoidReqModel
-    {
-        public string PX_VERSION { get; set; }
-        public string PX_PURCHASE_ID { get; set; }
-        public string PX_TRANSACTION_TYPE { get; set; }
-        public int PX_MERCHANT_ID { get; set; }
-        public string PX_REF { get; set; }
-        public string vcc_action { get; set; }
-        public string PX_VOID_DATE { get; set; }
-    }
-
-    public class PxVoidResModel {
-        public string PX_VERSION { get; set; }
-        public string PX_PURCHASE_ID { get; set; }
-        public long PX_PAN { get; set; }
-        public decimal PX_PURCHASE_AMOUNT { get; set; }
-        public string PX_TRANSACTION_DATE { get; set; }
-        public string PX_HOST_DATE { get; set; }
-        public string PX_ERROR_CODE { get; set; }
-        public string PX_ERROR_DESCRIPTION { get; set; }
-    }
-
-    public class PxResNotifyModel
-    {
-        public string PX_INQ_REQ { get; set; }
-    }
-
-    public class PxResNotify
-    {
-        public string PX_VERSION { get; set; }
-        public int PX_MERCHANT_ID { get; set; }
-        public string PX_TRANSACTION_TYPE { get; set; }
-        public string PX_PURCHASE_ID { get; set; }
-        public long PX_PAN { get; set; }
-        public decimal PX_PURCHASE_AMOUNT { get; set; }
-        public string PX_TRANSACTION_DATE { get; set; }
-        public string PX_HOST_DATE { get; set; }
-        public string PX_ERROR_CODE { get; set; }
-        public string PX_ERROR_DESCRIPTION { get; set; }
-        public string PX_APPROVAL_CODE { get; set; }
-        public string PX_RRN { get; set; }
-        public string PX_3D_FLAG { get; set; }
-        public string PX_CUSTOM_FIELD1 { get; set; }
-        public string PX_CUSTOM_FIELD2 { get; set; }
-        public string PX_CUSTOM_FIELD3 { get; set; }
-        public string PX_CUSTOM_FIELD4 { get; set; }
-        public string PX_CUSTOM_FIELD5 { get; set; }
+        public string TransactionId { get; set; }
+        public string TransactionAmount { get; set; }
+        public string TransactionGST { get; set; }
+        public string ServiceFee { get; set; }
+        public string ServiceGST { get; set; }
+        public string TotalAmount { get; set; }
+        public string Status { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

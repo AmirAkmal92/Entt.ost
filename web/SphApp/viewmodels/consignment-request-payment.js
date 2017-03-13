@@ -8,19 +8,10 @@ function (context, logger, router, system, chart, config, app) {
         grandTotal = ko.observable(),
         totalDomestic = ko.observable(),
         totalInternational = ko.observable(),
-        creditCardNo = ko.observable(),
-        creditCardName = ko.observable(),
-        creditCardExpMM = ko.observable(),
-        creditCardExpYY = ko.observable(),
-        creditCardCvv2 = ko.observable(),
-        pxVersion = ko.observable(),
-        pxTransactionType = ko.observable(),
-        pxPurchaseDate = ko.observable(),
-        pxPurchaseId = ko.observableArray(),
-        pxPurchaseAmount = ko.observable(),
-        pxMerchantId = ko.observable(),
-        pxRef = ko.observable(),
-        pxSig = ko.observable(),
+        totalGst = ko.observable(),
+        appId = ko.observable(),
+        appData = ko.observable(),
+        appUrl = ko.observable(),
         activate = function (entityId) {
             id(entityId);
             return context.get("/api/consigment-requests/" + entityId)
@@ -33,16 +24,12 @@ function (context, logger, router, system, chart, config, app) {
                             return router.navigate("consignment-request-summary/" + entityId);
                         });
                     } else {
-                        return context.get("/consignment-request/generate-px-req-fields/" + entityId).then(function (res) {
-                            //console.log(res.pxreq);
-                            pxVersion(res.pxreq.PX_VERSION);
-                            pxTransactionType(res.pxreq.PX_TRANSACTION_TYPE);                            
-                            pxPurchaseDate(res.pxreq.PX_PURCHASE_DATE);
-                            pxPurchaseId(res.pxreq.PX_PURCHASE_ID);
-                            pxPurchaseAmount(res.pxreq.PX_PURCHASE_AMOUNT);
-                            pxMerchantId(res.pxreq.PX_MERCHANT_ID);
-                            pxRef(res.pxreq.PX_REF);
-                            pxSig(res.pxreq.PX_SIG);
+                        return context.get("/ost-payment/ps-request/" + entityId).then(function (result) {
+                            if (result.success) {
+                                appId(result.id);
+                                appData(result.data);
+                                appUrl(result.url);
+                            }
                         }, function (e) {
                             if (e.status == 404) {
                                 app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + entityId, "Ost", ["OK"]).done(function () {
@@ -98,6 +85,7 @@ function (context, logger, router, system, chart, config, app) {
             });
             totalDomestic(dtotal);
             totalInternational(itotal);
+            totalGst(((dtotal + 5.30)/1.06)*0.06)
         },
         attached = function (view) {
 
@@ -109,22 +97,14 @@ function (context, logger, router, system, chart, config, app) {
         activate: activate,
         attached: attached,
         entity: entity,
-        creditCardNo: creditCardNo,
-        creditCardName: creditCardName,
-        creditCardExpMM: creditCardExpMM,
-        creditCardExpYY: creditCardExpYY,
-        creditCardCvv2: creditCardCvv2,
-        pxVersion: pxVersion,
-        pxTransactionType: pxTransactionType,
-        pxPurchaseDate: pxPurchaseDate,
-        pxPurchaseId: pxPurchaseId,
-        pxPurchaseAmount: pxPurchaseAmount,
-        pxMerchantId: pxMerchantId,
-        pxRef: pxRef,
-        pxSig: pxSig,
+        config: config,
         grandTotal: grandTotal,
         totalDomestic: totalDomestic,
-        totalInternational: totalInternational
+        totalInternational: totalInternational,
+        totalGst: totalGst,
+        appId: appId,
+        appData: appData,
+        appUrl: appUrl
     };
 
     return vm;

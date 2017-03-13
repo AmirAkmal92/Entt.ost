@@ -17,6 +17,7 @@ namespace web.sph.App_Code
     [RoutePrefix("consignment-request")]
     public class CustomConsignmentRequestController : BaseApiController
     {
+        private string m_applicationName;
         private string m_sdsBaseUrl;
         private string m_sdsApi_GenerateConnote;
         private string m_sdsSecretKey_GenerateConnote;
@@ -25,8 +26,8 @@ namespace web.sph.App_Code
 
         public CustomConsignmentRequestController()
         {
-            //TODO: Set & Get from appSettings 
-            m_sdsBaseUrl = "http://stagingsds.pos.com.my/apigateway";
+            m_applicationName = ConfigurationManager.GetEnvironmentVariable("ApplicationFullName") ?? "OST";            
+            m_sdsBaseUrl = ConfigurationManager.GetEnvironmentVariable("SdsBaseUrl") ?? "http://stagingsds.pos.com.my/apigateway";
 
             m_sdsApi_GenerateConnote = "/as2corporate/api/generateconnote/v1";
             m_sdsSecretKey_GenerateConnote = "ODA2MzViZTAtODk3MS00OGU5LWFiNGEtYTcxYjAxMjU4NjM1";
@@ -42,20 +43,27 @@ namespace web.sph.App_Code
             if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
 
             var item = lo.Source;
-            decimal total = 0;
 
+            // calculate total price
+            decimal total = 0;
             foreach (var consignment in lo.Source.Consignments)
             {
                 total += consignment.Produk.Price;
             }
-
             if (!item.Pickup.DateReady.Equals(DateTime.MinValue)
                 && !item.Pickup.DateClose.Equals(DateTime.MinValue))
             {
                 total += 5.30m;
             }
-
             item.Payment.TotalPrice = total;
+
+            // construct new reference number
+            var referenceNo = new StringBuilder();
+            referenceNo.Append($"{m_applicationName.ToUpper()}-");
+            referenceNo.Append(DateTime.Now.ToString("ddMMyy-ss-"));
+            referenceNo.Append((item.Id.Split('-'))[1]);
+            item.ReferenceNo = referenceNo.ToString();
+
             await SaveConsigmentRequest(item);
 
             var result = new
@@ -68,43 +76,6 @@ namespace web.sph.App_Code
             // wait until the worker process it
             await Task.Delay(1000);
             return Accepted(result);
-        }
-
-        [HttpGet]
-        [Route("generate-px-req-fields/{id}")]
-        public async Task<IHttpActionResult> GeneratePxReqFields(string id)
-        {
-            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
-            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
-
-            var pxReq = new PxRexModel();
-            var item = lo.Source;
-
-            pxReq.PX_VERSION = "1.1";
-            pxReq.PX_TRANSACTION_TYPE = "SALS";
-            pxReq.PX_PURCHASE_ID = item.Id;
-
-            //TODO: Set & Get from appSettings 
-            var pxMerchantId = 20423109;
-            var pxRef = "enet96";
-
-            //TODO: PX_MERCHANT_ID = merchantId + checksum
-            pxReq.PX_MERCHANT_ID = pxMerchantId;
-            pxReq.PX_PURCHASE_AMOUNT = item.Payment.TotalPrice;
-            pxReq.PX_PURCHASE_DATE = DateTime.Now.ToString("ddMMyyyy HH:mm:ss");
-            pxReq.PX_REF = pxRef;
-            //TODO: generate PX_SIG using provided encryption algorithm
-            pxReq.PX_SIG = "todo-enrypted-px-sig";
-
-            var result = new
-            {
-                success = true,
-                status = "OK",
-                pxreq = pxReq,
-                id = item.Id
-            };
-
-            return Ok(result);
         }
 
         [HttpPut]
