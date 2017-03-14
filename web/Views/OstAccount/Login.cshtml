@@ -200,6 +200,9 @@
                         if (response.message.includes("registered")) {
                             window.location = "/ost-account/success?success=true&status=OK&operation=register";
                         }
+                    } else {
+                        // TODO: change alert to bootstrap dialog
+                        alert(response.message);
                     }
                 }
             });
@@ -214,8 +217,8 @@
     <script>
         window.fbAsyncInit = function () {
             FB.init({
-                appId: '273791976367235', //localhost
-                //appId: '239143563211423', //ost.pos.com.my
+                //appId: '273791976367235', //localhost
+                appId: '239143563211423', //ost.pos.com.my
                 cookie: true,
                 xfbml: true,
                 version: 'v2.8'

@@ -355,17 +355,17 @@ namespace web.sph.App_Code
         {
             if (string.IsNullOrEmpty(model.Email))
             {
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                Response.StatusCode = (int)HttpStatusCode.Accepted;
                 return Json(new { success = false, status = "ERROR", message = "Email cannot be set to null or empty." });
             }
             if (string.IsNullOrEmpty(model.Name))
             {
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                Response.StatusCode = (int)HttpStatusCode.Accepted;
                 return Json(new { success = false, status = "ERROR", message = "Name cannot be set to null or empty." });
             }
             if (string.IsNullOrEmpty(model.Id))
             {
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                Response.StatusCode = (int)HttpStatusCode.Accepted;
                 return Json(new { success = false, status = "ERROR", message = "Id cannot be set to null or empty." });
             }
 
@@ -406,7 +406,7 @@ namespace web.sph.App_Code
                 var designation = await context.LoadOneAsync<Designation>(d => d.Name == profile.Designation);
                 if (null == designation)
                 {
-                    Response.StatusCode = (int)HttpStatusCode.NotFound;
+                    Response.StatusCode = (int)HttpStatusCode.Accepted;
                     return Json(new { success = false, status = "ERROR", message = $"Cannot find designation {profile.Designation}." });
                 }
 
@@ -415,7 +415,7 @@ namespace web.sph.App_Code
                 var em = Membership.GetUser(profile.UserName);
                 if (null != em)
                 {
-                    Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                    Response.StatusCode = (int)HttpStatusCode.Accepted;
                     return Json(new { success = false, status = "ERROR", message = $"User {profile.UserName} already exist." });
                 }
 
@@ -426,7 +426,7 @@ namespace web.sph.App_Code
                 catch (MembershipCreateUserException ex)
                 {
                     ObjectBuilder.GetObject<ILogger>().Log(new LogEntry(ex));
-                    Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    Response.StatusCode = (int)HttpStatusCode.Accepted;
                     return Json(new { success = false, status = "ERROR", message = ex.Message });
                 }
 
@@ -435,6 +435,7 @@ namespace web.sph.App_Code
                 await SendVerificationEmail(profile.Email);
                 // TODO: create user's address book entry
 
+                Response.StatusCode = (int)HttpStatusCode.OK;
                 return Json(new { success = true, status = "OK", message = $"User {profile.UserName} with email {profile.Email} has been registered." });
             }
             else
@@ -456,7 +457,7 @@ namespace web.sph.App_Code
                     // user email address verification pending
                     if (!profile.HasChangedDefaultPassword)
                     {
-                        Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        Response.StatusCode = (int)HttpStatusCode.Accepted;
                         return Json(new { success = false, status = "ERROR", message = "Email verification pending. Please check your inbox for a verification email. You will be allowed to sign in after verification is complete." });
                     }
 
@@ -473,6 +474,7 @@ namespace web.sph.App_Code
                     return Json(new { success = true, status = "OK", message = $"User {profile.UserName} with email {profile.Email} has been authenticated." });
                 }
                 HttpContext.GetOwinContext().Authentication.SignIn(identity);
+
                 Response.StatusCode = (int)HttpStatusCode.OK;
                 return Json(new { success = true, status = "OK", message = $"User {profile.UserName} with email {profile.Email} has been authenticated." });
             }
