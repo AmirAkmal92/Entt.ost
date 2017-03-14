@@ -27,7 +27,8 @@ namespace web.sph.App_Code
         public CustomConsignmentRequestController()
         {
             m_applicationName = ConfigurationManager.GetEnvironmentVariable("ApplicationFullName") ?? "OST";            
-            m_sdsBaseUrl = ConfigurationManager.GetEnvironmentVariable("SdsBaseUrl") ?? "http://stagingsds.pos.com.my/apigateway";
+            m_sdsBaseUrl = "http://stagingsds.pos.com.my/apigateway"; // temp for pss & cms use staging 
+            //m_sdsBaseUrl = Bespoke.Sph.Domain.ConfigurationManager.GetEnvironmentVariable("SdsBaseUrl") ?? "https://apis.pos.com.my";
 
             m_sdsApi_GenerateConnote = "/as2corporate/api/generateconnote/v1";
             m_sdsSecretKey_GenerateConnote = "ODA2MzViZTAtODk3MS00OGU5LWFiNGEtYTcxYjAxMjU4NjM1";

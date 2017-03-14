@@ -15,8 +15,8 @@ public class TrackTraceController : BaseApiController
     private HttpClient m_client;
     public TrackTraceController()
     {
-        m_client = new HttpClient { BaseAddress = new Uri(Bespoke.Sph.Domain.ConfigurationManager.GetEnvironmentVariable("SdsBaseUrl") ?? "https://apis.pos.com.my") };
-        //m_client = new HttpClient { BaseAddress = new Uri(Bespoke.Sph.Domain.ConfigurationManager.GetEnvironmentVariable("SdsBaseUrl") ?? "http://stagingsds.pos.com.my") };
+        m_client = new HttpClient { BaseAddress = new Uri("https://apis.pos.com.my") }; // temp for track n trace use prod 
+        //m_client = new HttpClient { BaseAddress = new Uri(Bespoke.Sph.Domain.ConfigurationManager.GetEnvironmentVariable("SdsBaseUrl") ?? "https://apis.pos.com.my"") };
     }
 
 
