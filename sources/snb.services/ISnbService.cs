@@ -23,7 +23,7 @@ namespace Bespoke.PostEntt.Ost.Services
         {
             get
             {
-                var volumetric = (Width ?? 0) * (Length ?? 0) * (Height ?? 0) / 5000;
+                var volumetric = (Width ?? 0) * (Length ?? 0) * (Height ?? 0) / 6000;
                 return Math.Max(m_weight ?? 0, volumetric);
             }
             set { m_weight = value; }

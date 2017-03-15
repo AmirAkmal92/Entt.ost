@@ -206,7 +206,6 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 consignment().Pemberi(entity().Consignments()[editIndex].Pemberi());
                 consignment().Penerima(entity().Consignments()[editIndex].Penerima());
             }
-            calculatvolumetric();
             return context.get("ost/snb-services/products/?from=" + consignment().Pemberi().Address().Postcode()
                                 + "&to=" + consignment().Penerima().Address().Postcode()
                                 + "&country=" + consignment().Penerima().Address().Country()
@@ -263,7 +262,6 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         },
         recalculatePrice = function (serviceModel) {
             console.log(ko.toJS(serviceModel));
-            calculatvolumetric();
             return function () {
 
                 var editIndex = -1;
@@ -300,6 +298,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 return context.post(ko.toJSON(request), "/ost/snb-services/calculate-published-rate")
                 .done(function (result) {
                     console.log(result.Total);
+                    calculatvolumetric();
                     consignment().Produk().Price(result.Total);
                     consignment().Produk().Code(model.Code);
                     consignment().Produk().Name(model.Name);
