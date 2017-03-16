@@ -1,8 +1,8 @@
-define(['services/datacontext', 'services/logger', 'plugins/router'],
-    function (context, logger, router) {
+define(['services/datacontext', 'services/logger', 'plugins/router', objectbuilders.app],
+    function (context, logger, router, app) {
 
         var isBusy = ko.observable(false),
-            groupName = ko.observable("Add Group"),
+            groupName = ko.observable(""),
             contactsCount = ko.observable(".."),
             groups = ko.observableArray(),
             activate = function () {
@@ -15,8 +15,11 @@ define(['services/datacontext', 'services/logger', 'plugins/router'],
 
             },
             addGroup = function () {
+                if (groupName() == "") {
+                    return app.showMessage("Group name cannot be empty.", "Ost", ["OK"]);
+                }
                 groups.push({ group: ko.observable(groupName()), count: ko.observable(0) });
-                groupName("Add Group");
+                groupName("");
             };
 
         var vm = {

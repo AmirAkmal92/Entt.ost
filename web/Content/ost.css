@@ -7,4 +7,9 @@ select:invalid, input:invalid, textarea:invalid {
 .error {
     color: red;
 }
+
+.vakata-context {
+    display: none !important;
+}
+
 /*TODO: Minimize and minify all style and script*/
