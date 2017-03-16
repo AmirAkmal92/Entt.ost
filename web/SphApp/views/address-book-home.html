@@ -54,39 +54,41 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list, filterPlaceholder : 'Search your contacts...', filterTooltip :'Press Enter to execute search'}">
-                    <thead>
-                        <tr>
-                            <th>
-                                <!--<span data-bind="click: $root.partial.toggleCheckAll">
-                                    <i class="fa fa-square-o" data-bind="visible: !$root.partial.checkAll()"></i>
-                                    <i class="fa fa-check-square-o" data-bind="visible: $root.partial.checkAll()"></i>
-                                </span>-->
-                                &nbsp;
-                            </th>
-                            <th>Email</th>
-                            <th>Contact Person</th>
-                            <th>Company Name</th>
-                            <th>Group</th>
-                        </tr>
-                    </thead>
-                    <tbody data-bind="foreach :list">
-                        <tr>
-                            <td>
-                                <input type="checkbox" data-bind="checked : $root.partial.selectedAddresses, value:$data, attr: { name: 'check-contact-' + $index }" />
-                            </td>
-                            <td>
-                                <a class="contact-item" data-bind="attr : {href:'#address-book-details' + '/' + Id , 'data-id' : Id}" title="To add to a group drag it to the group panel on the left">
-                                    <i class="icon-user"></i>
-                                    <span data-bind="text:ContactInformation.Email"></span>
-                                </a>
-                            </td>
-                            <td data-bind="text:ContactPerson"></td>
-                            <td data-bind="text:CompanyName"></td>
-                            <td data-bind="text:Groups"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list, filterPlaceholder : 'Search your contacts...', filterTooltip :'Press Enter to execute search'}">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <!--<span data-bind="click: $root.partial.toggleCheckAll">
+                                        <i class="fa fa-square-o" data-bind="visible: !$root.partial.checkAll()"></i>
+                                        <i class="fa fa-check-square-o" data-bind="visible: $root.partial.checkAll()"></i>
+                                    </span>-->
+                                    &nbsp;
+                                </th>
+                                <th>Email</th>
+                                <th class="hidden-xs">Contact Person</th>
+                                <th class="hidden-xs">Company Name</th>
+                                <th class="hidden-xs">Group</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach :list">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" data-bind="checked : $root.partial.selectedAddresses, value:$data, attr: { name: 'check-contact-' + $index }" />
+                                </td>
+                                <td>
+                                    <a class="contact-item" data-bind="attr : {href:'#address-book-details' + '/' + Id , 'data-id' : Id}" title="To add to a group drag it to the group panel on the left">
+                                        <i class="icon-user"></i>
+                                        <span data-bind="text:ContactInformation.Email"></span>
+                                    </a>
+                                </td>
+                                <td class="hidden-xs" data-bind="text:ContactPerson"></td>
+                                <td class="hidden-xs" data-bind="text:CompanyName"></td>
+                                <td class="hidden-xs" data-bind="text:Groups"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <img src="/assets/admin/layouts/layout/img/loading.gif" alt="loading" class="absolute-center" style="display: none;">
             </div>
         </div>
