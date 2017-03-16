@@ -185,6 +185,20 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         }
                     }
                 }
+                consignment().Produk().Price(0);
+                findProductsAsync();
+            });
+            consignment().Produk().Width.subscribe(function (newWidth) {
+                consignment().Produk().Price(0);
+                findProductsAsync();
+            });
+            consignment().Produk().Length.subscribe(function (newLength) {
+                consignment().Produk().Price(0);
+                findProductsAsync();
+            });
+            consignment().Produk().Height.subscribe(function (newHeight) {
+                consignment().Produk().Price(0);
+                findProductsAsync();
             });
         },
         compositionComplete = function () {
@@ -193,18 +207,6 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         findProductsAsync = function () {
             if (!$("#consignment-request-produk-form").valid()) {
                 return;
-            }
-            var editIndex = -1;
-            for (var i = 0; i < entity().Consignments().length; i++) {
-                if (entity().Consignments()[i].WebId() === cid()) {
-                    editIndex = i;
-                    break;
-                }
-            }
-            if (editIndex != -1) {
-                consignment().Produk(entity().Consignments()[editIndex].Produk());
-                consignment().Pemberi(entity().Consignments()[editIndex].Pemberi());
-                consignment().Penerima(entity().Consignments()[editIndex].Penerima());
             }
             return context.get("ost/snb-services/products/?from=" + consignment().Pemberi().Address().Postcode()
                                 + "&to=" + consignment().Penerima().Address().Postcode()
@@ -222,15 +224,17 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                                             var evaluateValue = function () {
 
                                                 vas.isBusy(true);
+                                                consignment().Produk().Price(0);
                                                 var vm = {
                                                     product: v,
                                                     valueAddedService: vas,
-                                                    request: entity
+                                                    consignment: consignment
                                                 };
                                                 context.post(ko.mapping.toJSON(vm), "/ost/snb-services/calculate-value-added-service")
                                                     .done(function (result) {
                                                         vas.Value(result);
                                                         vas.isBusy(false);
+                                                        recalculatePrice(po)();
                                                     });
                                             };
 
@@ -263,19 +267,6 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         recalculatePrice = function (serviceModel) {
             console.log(ko.toJS(serviceModel));
             return function () {
-
-                var editIndex = -1;
-                for (var i = 0; i < entity().Consignments().length; i++) {
-                    if (entity().Consignments()[i].WebId() === cid()) {
-                        editIndex = i;
-                        break;
-                    }
-                }
-                if (editIndex != -1) {
-                    consignment().Produk(entity().Consignments()[editIndex].Produk());
-                    consignment().Pemberi(entity().Consignments()[editIndex].Pemberi());
-                    consignment().Penerima(entity().Consignments()[editIndex].Penerima());
-                }
                 var model = ko.toJS(serviceModel),
                 request = {
                     request: {

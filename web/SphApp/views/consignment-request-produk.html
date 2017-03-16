@@ -200,14 +200,22 @@
                                                     <div class="input-group-addon">RM</div>
                                                     <input class="form-control" required type="text"
                                                            placeholder=""
-                                                           data-bind="value: Value"
+                                                           data-bind="money: Value"
                                                            data-rule-number="true" data-rule-required="true"
-                                                           data-rule-min="0"
-                                                           data-rule-max="500000"
-                                                           id="b85482e0-231c-4008-a218-ca095966fddc" name="Produk.DeclaredValue">
+                                                           id="b85482e0-231c-4008-a218-ca095966fddc" name="Produk.DeclaredValue" />
                                                 </div>
                                                 <div class="form-control-focus"> </div>
                                                 <span class="help-block">Declared Value</span>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">RM</div>
+                                                    <input class="form-control" required type="text"
+                                                           placeholder=""
+                                                           data-bind="money: $parent.Value"
+                                                           data-rule-number="true" data-rule-required="true"
+                                                           id="b85482e0-231c-4008-a218-ca095966fddc" name="Produk.Charge" disabled />
+                                                </div>
+                                                <div class="form-control-focus"> </div>
+                                                <span class="help-block">Charged Value</span>
                                             </div>
                                         </div>
                                     </div>
@@ -231,7 +239,7 @@
                                         <button data-bind="command : $root.recalculatePrice.call($root, $data)" class="btn btn-info">
                                             <i class="fa fa-calculator"></i>
                                             Recalculate Price
-                                        </button>
+                                        </button>                                        
                                     </div>
                                 </div>
                                 <!-- /ko -->
@@ -247,7 +255,7 @@
                     <span> Next </span>
                 </button>
             </div>
-            <div data-bind="visible: false">
+            <div data-bind="if: false">
                 <div data-bind="if: products().length > 0">
                     <h4>Products</h4>
                     <ul data-bind="foreach: products">
@@ -265,7 +273,8 @@
                                     <ul data-bind="foreach: UserInputs">
                                         <li>
                                             <label>Name</label>: <span data-bind="text: Name"></span><br />
-                                            <label>Value</label>: <input type="number" data-bind="value: Value" /> [<span data-bind="text: $parent.Value"></span>]<br />
+                                            <label>Value</label>: RM <input type="number" data-bind="value: Value" /><br />
+                                            <label>Charge</label>: RM <input type="number" data-bind="value: $parent.Value" /><br />
                                         </li>
                                     </ul>
                                     <!-- /ko -->
