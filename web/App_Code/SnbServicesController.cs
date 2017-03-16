@@ -12,7 +12,7 @@ public class CalculateValueAddedServiceViewModel
 {
     public Product Product { get; set; }
     public ValueAddedService ValueAddedService { get; set; }
-    public Bespoke.Ost.ConsigmentRequests.Domain.ConsigmentRequest Request { get; set; }
+    public Bespoke.Ost.ConsigmentRequests.Domain.Consignment Consignment { get; set; }
 }
 [RoutePrefix("ost/snb-services")]
 public class SnbServicesController : BaseApiController
@@ -25,15 +25,15 @@ public class SnbServicesController : BaseApiController
         var snb = ObjectBuilder.GetObject<ISnbService>();
         var request = new QuotationRequest
         {
-            ItemCategory = vm.Request.Product.ItemCategory,
-            Weight = vm.Request.Product.Weight,
-            Height = vm.Request.Product.Volume.Height,
-            Length = vm.Request.Product.Volume.Length,
-            Width = vm.Request.Product.Volume.Width,
-            SenderCountry = vm.Request.Sender.Address.Country,
-            SenderPostcode = vm.Request.Sender.Address.Postcode,
-            ReceiverCountry = vm.Request.Receivers[0].Address.Country,
-            ReceiverPostcode = vm.Request.Receivers[0].Address.Postcode
+            ItemCategory = vm.Consignment.Produk.ItemCategory,
+            Weight = vm.Consignment.Produk.Weight,
+            Height = vm.Consignment.Produk.Height,
+            Length = vm.Consignment.Produk.Length,
+            Width = vm.Consignment.Produk.Width,
+            SenderCountry = vm.Consignment.Pemberi.Address.Country,
+            SenderPostcode = vm.Consignment.Pemberi.Address.Postcode,
+            ReceiverCountry = vm.Consignment.Penerima.Address.Country,
+            ReceiverPostcode = vm.Consignment.Penerima.Address.Postcode
         };
         var value = await snb.CalculateValueAddedServiceAsync(request, vm.Product, vm.ValueAddedService);
 

@@ -1,5 +1,5 @@
 {
-  "name": "all",
+  "name": "regular",
   "description": "Production on local machines",
   "isEnabled": true,
   "environment": "prod",
@@ -190,9 +190,9 @@
     }
   ],
   "createdBy": "erymuzuan",
-  "id": "all",
+  "id": "regular",
   "createdDate": "2016-10-07T00:00:00+08:00",
   "changedBy": "erymuzuan",
   "changedDate": "2016-10-07T00:00:00+08:00",
-  "webId": "all"
+  "webId": "regular"
 }
