@@ -2,8 +2,19 @@
 {
     public class QuotationRequest
     {
+        private decimal? m_weight;
         public string ItemCategory { get; set; }
-        public decimal? Weight { get; set; }
+
+        public decimal? Weight
+        {
+            get
+            {
+                var volumetric = (Width ?? 0) * (Length ?? 0) * (Height ?? 0) / 6000;
+                return System.Math.Max(m_weight ?? 0, volumetric);
+            }
+            set { m_weight = value; }
+        }
+
         public decimal? Width{ get; set; }
         public decimal? Length { get; set; }
         public decimal? Height { get; set; }
