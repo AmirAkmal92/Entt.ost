@@ -119,6 +119,7 @@ namespace web.sph.App_Code
             if (model.Status.Equals("1"))
             {
                 item.Payment.IsPaid = true;
+                item.Payment.Status = model.Status;
                 item.Payment.Date = DateTime.Now;
                 await SaveConsigmentRequest(item);
 
@@ -129,6 +130,8 @@ namespace web.sph.App_Code
             else
             {
                 item.Payment.IsPaid = false;
+                item.Payment.Status = model.Status;
+                item.Payment.Date = DateTime.Now;
                 await SaveConsigmentRequest(item);
 
                 // wait until the worker process it

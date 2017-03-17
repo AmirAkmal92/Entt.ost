@@ -17,7 +17,7 @@ public class CalculateValueAddedServiceViewModel
 [RoutePrefix("ost/snb-services")]
 public class SnbServicesController : BaseApiController
 {
-    
+
     [HttpPost]
     [Route("calculate-value-added-service")]
     public async Task<IHttpActionResult> CalculateSurchargeAsync([FromBody]CalculateValueAddedServiceViewModel vm)
@@ -43,9 +43,10 @@ public class SnbServicesController : BaseApiController
 
     [HttpGet]
     [Route("products/")]
-    public async Task<IHttpActionResult> GetProductsAsync( [FromUri(Name = "from")]string originPostcode,
-        [FromUri(Name = "to")]string destinationPostcode,
+    public async Task<IHttpActionResult> GetProductsAsync([FromUri(Name = "from")]string originPostcode,
+        [FromUri(Name = "to")]string destinationPostcode,        
         [FromUri(Name = "weight")]decimal? weight,
+        [FromUri(Name = "item-category")]string itemCategory = "Merchandise",
         [FromUri(Name = "country")]string destinationCountry = "MY",
         [FromUri(Name = "length")]decimal? length = null,
         [FromUri(Name = "width")]decimal? width = null,
@@ -62,10 +63,12 @@ public class SnbServicesController : BaseApiController
             Width = width
         };
 
-        var request = new QuotationRequest{
+        var request = new QuotationRequest
+        {
             SenderPostcode = originPostcode,
             ReceiverCountry = destinationCountry,
             ReceiverPostcode = destinationPostcode,
+            ItemCategory = itemCategory,
             Height = height,
             Length = length,
             Weight = weight,
@@ -74,7 +77,7 @@ public class SnbServicesController : BaseApiController
 
         var snb = ObjectBuilder.GetObject<ISnbService>();
         var products = (await snb.GetProductAsync(model, new CodedValueAddedServicesRule.CodedValuedAddedServicesRule())).ToList();
-        var tasks = from p  in products
+        var tasks = from p in products
                     select snb.CalculatePublishedRateAsync(request, p, Array.Empty<ValueAddedService>());
         var prices = (await Task.WhenAll(tasks)).ToList();
         for (int i = 0; i < products.Count; i++)
@@ -100,7 +103,7 @@ public class SnbServicesController : BaseApiController
     [Route("calculate-published-rate")]
     public async Task<IHttpActionResult> EstimatePrice(CalculatePublishedRateViewModel model)
     {
-        var snb = ObjectBuilder.GetObject<ISnbService>();        
+        var snb = ObjectBuilder.GetObject<ISnbService>();
         var rate = await snb.CalculatePublishedRateAsync(model.Request, model.Product, model.ValueAddedServices);
         return Ok(rate);
     }

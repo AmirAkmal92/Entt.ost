@@ -400,6 +400,7 @@ namespace web.sph.App_Code
                 profile.Password = password;
 
                 profile.Email = model.Email;
+                profile.FullName = model.Name;
                 profile.Designation = "No contract customer";
 
                 var context = new SphDataContext();
@@ -434,6 +435,23 @@ namespace web.sph.App_Code
                 await CreateProfile(profile, designation);
                 await SendVerificationEmail(profile.Email);
                 // TODO: create user's address book entry
+
+                var userAddress = new Bespoke.Ost.AddressBooks.Domain.AddressBook();
+                var guid = Guid.NewGuid().ToString();
+                userAddress.Id = guid;
+                userAddress.ReferenceNo = profile.Email;
+                userAddress.UserId = profile.UserName;
+                userAddress.ContactPerson = profile.FullName;
+                userAddress.ProfilePictureUrl = model.PictureUrl;
+                userAddress.ContactInformation.Email = profile.Email;
+                userAddress.Address.Country = "MY";
+                userAddress.CreatedBy = profile.UserName;
+                userAddress.ChangedBy = profile.UserName;
+                using (var session = context.OpenSession())
+                {
+                    session.Attach(userAddress);
+                    await session.SubmitChanges("Default");
+                }
 
                 Response.StatusCode = (int)HttpStatusCode.OK;
                 return Json(new { success = true, status = "OK", message = $"User {profile.UserName} with email {profile.Email} has been registered." });
@@ -518,7 +536,7 @@ namespace web.sph.App_Code
                 Value = DateTime.Now.ToString("s"),
                 Id = Strings.GenerateId()
             };
-            await SaveSetting(setting);
+            await SaveSetting(setting, "VerifyEmail");
 
             var emailSubject = ConfigurationManager.ApplicationFullName + " - Verify your email address";
             var emailBody = $@"Please click the link below to verify your email address.
@@ -535,7 +553,7 @@ namespace web.sph.App_Code
                 Value = DateTime.Now.ToString("s"),
                 Id = Strings.GenerateId()
             };
-            await SaveSetting(setting);
+            await SaveSetting(setting, "ForgotPassword");
 
             var emailSubject = ConfigurationManager.ApplicationFullName + " - Forgot your password";
             var emailBody = $@"Please click the link below to change your password.
@@ -557,13 +575,13 @@ namespace web.sph.App_Code
             }
         }
 
-        private static async Task SaveSetting(Setting setting)
+        private static async Task SaveSetting(Setting setting, string operation)
         {
             var context = new SphDataContext();
             using (var session = context.OpenSession())
             {
                 session.Attach(setting);
-                await session.SubmitChanges("ForgotPassword");
+                await session.SubmitChanges(operation);
             }
         }
     }

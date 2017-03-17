@@ -221,9 +221,16 @@ public class CalcHost
         public async Task<PublishedRate> CalculatePublishedRateAsync(QuotationRequest request, Product product, IEnumerable<ValueAddedService> valueAddedServices)
         {
             var url = new StringBuilder();
+
+            if (request.ReceiverCountry == "MY" || request.ReceiverCountry == "Malaysia")
+            {
+                request.ItemCategory = request.Weight < 2.01m ? "Document" : "Merchandise";
+            }
+
             url.Append("/calculator/CalculateRate2");
             url.Append($"?ProductCode={product.Code}");
             url.Append($"&SenderPostCode={request.SenderPostcode}&SenderCountryCode=MY&ReceiverPostCode={request.ReceiverPostcode}&ReceiverCountryCode={request.ReceiverCountry}");
+            url.Append($"&ItemCategoryName={request.ItemCategory}");
             url.Append($"&ActualWeight={request.Weight}&Width={request.Width}&Height={request.Height}&Length={request.Length}");
             url.Append($"&surcharge_S01=S01&surcharge_S03=S03&surcharge_S05=S05"); // 3 surcharge wajib
             

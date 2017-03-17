@@ -20,11 +20,11 @@
                             <thead>
                                 <tr>
                                     <th>Order No</th>
-                                    <th>Pickup Number</th>
-                                    <th>Tracking Number</th>
-                                    <th>Parcel</th>
+                                    <th class="hidden-xs">Pickup Number</th>
+                                    <th class="hidden-xs">Tracking Number</th>
+                                    <th class="hidden-xs">Parcel</th>
                                     <th>Total Price</th>
-                                    <th>Date</th>
+                                    <th class="hidden-xs">Date</th>
                                     <th>&nbsp;</th>
                                 </tr>
                             </thead>
@@ -35,15 +35,15 @@
                                             <span data-bind="text: ReferenceNo"></span>
                                         </a>
                                     </td>
-                                    <td data-bind="text: Pickup.Number"></td>
-                                    <td>
+                                    <td class="hidden-xs" data-bind="text: Pickup.Number"></td>
+                                    <td class="hidden-xs">
                                         <!--ko foreach: Consignments-->
                                         <span data-bind="text: ConNote"></span>&nbsp;
                                         <!--/ko-->
                                     </td>
-                                    <td data-bind="text:Consignments.length"></td>
+                                    <td class="hidden-xs" data-bind="text:Consignments.length"></td>
                                     <td data-bind="text:Payment.TotalPrice"></td>
-                                    <td data-bind="date:{ value:ChangedDate, format:&#39;D/M/YYYY HH:mm&#39;}"></td>
+                                    <td class="hidden-xs" data-bind="date:{ value:ChangedDate, format:&#39;D/M/YYYY HH:mm&#39;}"></td>
                                     <td>
                                         <a class="btn btn-success btn-xs" title="View Tax Invoice" data-bind="attr: { href: '#consignment-request-paid-invoice' + '/' + Id }">
                                             <i class="fa fa-clipboard"></i>
