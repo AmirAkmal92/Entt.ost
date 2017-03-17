@@ -162,7 +162,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         consignment().Produk().Weight(0.001);
                     }
                 } else { // international
-                    if (consignment().Produk().ItemCategory() === "merchandise") {
+                    if (consignment().Produk().ItemCategory() == "Merchandise") {
                         // From 0.001 to 30.000kg
                         if (newWeight > 30) {
                             consignment().Produk().Weight(30.000);
@@ -170,7 +170,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         if (newWeight <= 0) {
                             consignment().Produk().Weight(0.001);
                         }
-                    } else if (consignment().Produk().ItemCategory() === "document") {
+                    } else if (consignment().Produk().ItemCategory() == "Document") {
                         // Less than 1.000kg
                         if (newWeight > 1) {
                             consignment().Produk().Weight(1.000);
@@ -212,6 +212,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                                 + "&to=" + consignment().Penerima().Address().Postcode()
                                 + "&country=" + consignment().Penerima().Address().Country()
                                 + "&weight=" + consignment().Produk().Weight()
+                                + "&item-category=" + consignment().Produk().ItemCategory()
                                 + "&height=" + consignment().Produk().Height()
                                 + "&length=" + consignment().Produk().Length()
                                 + "&width=" + consignment().Produk().Width()).then(function (list) {
@@ -270,7 +271,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 var model = ko.toJS(serviceModel),
                 request = {
                     request: {
-                        ItemCategory: "",
+                        ItemCategory: consignment().Produk().ItemCategory(),
                         Weight: consignment().Produk().Weight(),
                         Width: consignment().Produk().Width(),
                         Length: consignment().Produk().Length(),
