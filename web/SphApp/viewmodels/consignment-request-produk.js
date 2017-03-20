@@ -8,6 +8,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         consignment = ko.observable(),
         produk = ko.observable(),
+        bill = ko.observable(),
         products = ko.observableArray(),
         volumetric = ko.observable(0),
         errors = ko.observableArray(),
@@ -46,9 +47,11 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
                 consignment(new bespoke.Ost_consigmentRequest.domain.Consignment(system.guid()));
                 produk(new bespoke.Ost_consigmentRequest.domain.Produk(system.guid()));
+                bill(new bespoke.Ost_consigmentRequest.domain.Bill(system.guid()));
                 products([]);
                 if (!cId || cId === "0") {
                     consignment().Produk(produk());
+                    consignment().Bill(bill());
                     entity().Consignments().push(consignment());
                     cid(consignment().WebId());
                 } else {
@@ -61,6 +64,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     }
                     if (editIndex != -1) {
                         consignment().Produk(entity().Consignments()[editIndex].Produk());
+                        consignment().Bill(entity().Consignments()[editIndex].Bill());
                         consignment().Pemberi(entity().Consignments()[editIndex].Pemberi());
                         consignment().Penerima(entity().Consignments()[editIndex].Penerima());
                         cid(entity().Consignments()[i].WebId());
@@ -283,6 +287,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     },
                     product: {
                         Code: model.Code,
+                        Name: model.Name,
                         Description: model.Description
                     },
                     valueAddedServices: _(model.ValueAddedServices).filter(function (v) { return v.IsSelected; })
@@ -305,6 +310,33 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         consignment().Produk().ValueAddedValue(0);
                         consignment().Produk().ValueAddedDeclaredValue(0);
                     }
+
+                    consignment().Bill().ProductCode(result.ProductCode);
+                    consignment().Bill().ProductName(result.ProductName);
+                    consignment().Bill().ItemCategory(result.ItemCategory);
+                    consignment().Bill().RateStepInfo(result.RateStepInfo);
+                    consignment().Bill().BaseRate(result.BaseRate);
+                    consignment().Bill().AddOnsA(result.AddOnsA);
+                    consignment().Bill().SubTotal1(result.SubTotal1);
+                    consignment().Bill().AddOnsB(result.AddOnsB);
+                    consignment().Bill().SubTotal2(result.SubTotal2);
+                    consignment().Bill().AddOnsC(result.AddOnsC);
+                    consignment().Bill().SubTotal3(result.SubTotal3);
+                    consignment().Bill().AddOnsD(result.AddOnsD);
+                    consignment().Bill().TotalBeforeDiscount(result.TotalBeforeDiscount);
+                    consignment().Bill().Total(result.Total);
+                    consignment().Bill().TaxRemark(result.TaxRemark);
+                    consignment().Bill().Length(result.Length);
+                    consignment().Bill().Width(result.Width);
+                    consignment().Bill().Height(result.Height);
+                    consignment().Bill().ActualWeight(result.ActualWeight);
+                    consignment().Bill().VolumetricWeight(result.VolumetricWeight);
+                    consignment().Bill().BranchCode(result.BranchCode);
+                    consignment().Bill().SenderPostcode(result.SenderPostcode);
+                    consignment().Bill().SenderCountryCode(result.SenderCountryCode);
+                    consignment().Bill().ReceiverPostcode(result.ReceiverPostcode);
+                    consignment().Bill().ReceiverCountryCode(result.ReceiverCountryCode);
+                    consignment().Bill().ZoneName(result.ZoneName);
                 });
             };
         },
