@@ -14,6 +14,13 @@ public class CalculateValueAddedServiceViewModel
     public ValueAddedService ValueAddedService { get; set; }
     public Bespoke.Ost.ConsigmentRequests.Domain.Consignment Consignment { get; set; }
 }
+
+public class CalculatePublishedRateViewModel
+{
+    public QuotationRequest Request { get; set; }
+    public Product Product { get; set; }
+    public IEnumerable<ValueAddedService> ValueAddedServices { get; set; }
+}
 [RoutePrefix("ost/snb-services")]
 public class SnbServicesController : BaseApiController
 {
@@ -107,11 +114,4 @@ public class SnbServicesController : BaseApiController
         var rate = await snb.CalculatePublishedRateAsync(model.Request, model.Product, model.ValueAddedServices);
         return Ok(rate);
     }
-}
-
-public class CalculatePublishedRateViewModel
-{
-    public QuotationRequest Request { get; set; }
-    public Product Product { get; set; }
-    public IEnumerable<ValueAddedService> ValueAddedServices { get; set; }
 }
