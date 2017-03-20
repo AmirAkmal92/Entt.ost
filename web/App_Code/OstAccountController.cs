@@ -434,8 +434,8 @@ namespace web.sph.App_Code
                 Roles.AddUserToRoles(profile.UserName, profile.Roles);
                 await CreateProfile(profile, designation);
                 await SendVerificationEmail(profile.Email);
-                // TODO: create user's address book entry
-
+                
+                //create user's address book entry
                 var userAddress = new Bespoke.Ost.AddressBooks.Domain.AddressBook();
                 var guid = Guid.NewGuid().ToString();
                 userAddress.Id = guid;
@@ -565,7 +565,7 @@ namespace web.sph.App_Code
         {
             using (var smtp = new SmtpClient())
             {
-                var mail = new MailMessage(ConfigurationManager.FromEmailAddress, emailTo)
+                var mail = new MailMessage("entt.admin@pos.com.my", emailTo)
                 {
                     Subject = emailSubject,
                     Body = emailBody,
