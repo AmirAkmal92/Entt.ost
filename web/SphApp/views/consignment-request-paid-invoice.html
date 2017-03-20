@@ -133,19 +133,13 @@
                                         </td>
                                         <td>
                                             <!--ko if: Produk().Weight() != null-->
-                                            <span data-bind="text: Produk().Weight().toFixed(3)"></span> kg
+                                            <span data-bind="text: Produk().Weight().toFixed(2)"></span> kg
                                             <!-- /ko -->
                                         </td>
                                         <td>
-                                            <!--ko if: Produk().Price() != null-->
-                                            <!--ko if: Produk().IsInternational-->
-                                            <span data-bind="text: Produk().Price().toFixed(2)" class="pull-right"></span>
+                                            <!--ko if: Bill().SubTotal3() != null-->
+                                            <span data-bind="text: Bill().SubTotal3().toFixed(2)" class="pull-right"></span>
                                             <!--/ko-->
-                                            <!--ko ifnot: Produk().IsInternational-->
-                                            <span data-bind="text: (Produk().Price()/1.06).toFixed(2)" class="pull-right"></span>
-                                            <!--/ko-->
-                                            <!--/ko-->
-
                                         </td>
                                     </tr>
                                     <!-- /ko -->
@@ -159,11 +153,11 @@
                                     </tr>
                                     <tr>
                                         <td colspan="4">Sub Total</td>
-                                        <td><span data-bind="text: (($root.totalDomestic() / 1.06) + $root.totalInternational() + 5).toFixed(2)" class="pull-right"></span></td>
+                                        <td><span data-bind="text: ($root.totalDomesticNoGst() + $root.totalInternationalNoGst() + 5.00).toFixed(2)" class="pull-right"></span></td>
                                     </tr>
                                     <tr>
                                         <td colspan="4">* GST 6%</td>
-                                        <td><span data-bind="text: ((($root.totalDomestic() / 1.06) * 0.06 ) + 0.3).toFixed(2)" class="pull-right"></span></td>
+                                        <td><span data-bind="text: ($root.totalDomesticGst() + $root.totalInternationalGst() + 0.30).toFixed(2)" class="pull-right"></span></td>
                                     </tr>
                                     <tr>
                                         <td colspan="4"><strong>Grand Total</strong></td>
@@ -193,13 +187,13 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="3"># Zero rated</td>
-                                        <td><span data-bind="text: $root.totalInternational().toFixed(2)" class="pull-right"></span></td>
-                                        <td><span class="pull-right">0.00</span></td>
+                                        <td><span data-bind="text: $root.totalInternationalNoGst().toFixed(2)" class="pull-right"></span></td>
+                                        <td><span data-bind="text: $root.totalInternationalGst().toFixed(2)" class="pull-right"></span></td>
                                     </tr>
                                     <tr>
                                         <td colspan="3">* GST 6%</td>
-                                        <td><span data-bind="text: ((($root.totalDomestic() / 1.06)) + 5).toFixed(2)" class="pull-right"></span></td>
-                                        <td><span data-bind="text: ((($root.totalDomestic() / 1.06) * 0.06) + 0.3).toFixed(2)" class="pull-right"></span></td>
+                                        <td><span data-bind="text: ($root.totalDomesticNoGst() + 5.00).toFixed(2)" class="pull-right"></span></td>
+                                        <td><span data-bind="text: ($root.totalDomesticGst() + 0.30).toFixed(2)" class="pull-right"></span></td>
                                     </tr>
                                 </tbody>
                             </table>
