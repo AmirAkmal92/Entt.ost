@@ -7,8 +7,11 @@ function (context, logger, router, system, chart, config, app) {
         id = ko.observable(),
         grandTotal = ko.observable(),
         totalDomestic = ko.observable(),
+        totalDomesticNoGst = ko.observable(),
+        totalDomesticGst = ko.observable(),
         totalInternational = ko.observable(),
-        totalGst = ko.observable(),
+        totalInternationalNoGst = ko.observable(),
+        totalInternationalGst = ko.observable(),
         appId = ko.observable(),
         appData = ko.observable(),
         appUrl = ko.observable(),
@@ -54,38 +57,58 @@ function (context, logger, router, system, chart, config, app) {
 
                 }
             });
-            if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
-                grandTotal(total.toFixed(2));
-            } else {
-                total += 5.3;
-                grandTotal(total.toFixed(2));
-            }
+            total += 5.3;
             grandTotal(total.toFixed(2));
         },
         calculateDomesticAndInternational = function () {
-            var dtotal = 0;
-            var itotal = 0;
+            var domesticTotalPrice = 0;
+            var domesticSubTotalPrice = 0;
+            var domesticGstTotal = 0;
+            var internationalTotalPrice = 0;
+            var internationalSubTotalPrice = 0;
+            var internationalGstTotal = 0;
             _.each(entity().Consignments(), function (v) {
                 if (!v.Produk().IsInternational()) {
                     if (!v.Produk().Price()) {
-                        dtotal += 0;
+                        domesticTotalPrice += 0;
                     } else {
-                        dtotal += v.Produk().Price();
+                        domesticTotalPrice += v.Produk().Price();
                     }
-                }                
-            });
-            _.each(entity().Consignments(), function (v) {
+                    if (!v.Bill().SubTotal3()) {
+                        domesticSubTotalPrice += 0;
+                    } else {
+                        domesticSubTotalPrice += v.Bill().SubTotal3();
+                    }
+                    if (!v.Bill().AddOnsD()[0].Charge()) {
+                        domesticGstTotal += 0;
+                    } else {
+                        domesticGstTotal += v.Bill().AddOnsD()[0].Charge();
+                    }
+                }
                 if (v.Produk().IsInternational()) {
                     if (!v.Produk().Price()) {
-                        itotal += 0;
+                        internationalTotalPrice += 0;
                     } else {
-                        itotal += v.Produk().Price();
+                        internationalTotalPrice += v.Produk().Price();
+                    }
+                    if (!v.Bill().SubTotal3()) {
+                        internationalSubTotalPrice += 0;
+                    } else {
+                        internationalSubTotalPrice += v.Bill().SubTotal3();
+                    }
+                    if (!v.Bill().AddOnsD()[0].Charge()) {
+                        internationalGstTotal += 0;
+                    } else {
+                        internationalGstTotal += v.Bill().AddOnsD()[0].Charge();
                     }
                 }
             });
-            totalDomestic(dtotal);
-            totalInternational(itotal);
-            totalGst(((dtotal + 5.30)/1.06)*0.06)
+            totalDomestic(domesticTotalPrice);
+            totalDomesticNoGst(domesticSubTotalPrice);
+            totalDomesticGst(domesticGstTotal);
+            totalInternational(internationalTotalPrice);
+            totalInternationalNoGst(internationalSubTotalPrice);
+            totalInternationalGst(internationalGstTotal);
         },
         attached = function (view) {
 
@@ -100,8 +123,11 @@ function (context, logger, router, system, chart, config, app) {
         config: config,
         grandTotal: grandTotal,
         totalDomestic: totalDomestic,
+        totalDomesticNoGst: totalDomesticNoGst,
+        totalDomesticGst: totalDomesticGst,
         totalInternational: totalInternational,
-        totalGst: totalGst,
+        totalInternationalNoGst: totalInternationalNoGst,
+        totalInternationalGst: totalInternationalGst,
         appId: appId,
         appData: appData,
         appUrl: appUrl
