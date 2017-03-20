@@ -247,6 +247,10 @@ public class CalcHost
             var json = JObject.Parse(response);
 
             var rate = new PublishedRate(json);
+            rate.ProductCode = product.Code;
+            rate.ProductName = product.Name;
+            rate.ItemCategory = request.ItemCategory;
+
             return rate;
         }
     }
