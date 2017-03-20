@@ -1,0 +1,83 @@
+.bg-overlay {
+    background: url("/assets/global/img/connotes/Domestic_Poslaju_Consignment_Note_Receiver_Copy.jpg") !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: initial !important;
+    /*height: 613px;
+            padding-top: 50px;*/
+}
+
+.bg-no-overlay {
+    background: url("/assets/global/img/connotes/Domestic_Poslaju_Consignment_Note_Receiver_Copy.jpg") no-repeat;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: #fff;
+    height: 613px;
+    padding-top: 50px;
+}
+
+@media print {
+    table {
+        background: url("/assets/global/img/connotes/Domestic_Poslaju_Consignment_Note_Receiver_Copy.jpg");
+    }
+}
+
+@media print {
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        background: transparent !important;
+    }
+}
+
+.container {
+    width: 1181px !important;
+}
+
+/*table, td, th {
+            border: 1px solid black !important;
+        }*/
+
+table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+}
+
+th, td {
+    height: 23px !important;
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    padding: 1px !important;
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    border-top: transparent !important;
+}
+
+.loose {
+    letter-spacing: 12px;
+}
+
+.loose2 {
+    letter-spacing: 32px;
+    font-size: xx-large;
+}
+
+.loose-conn {
+    letter-spacing: 5px;
+    font-size: 17px;
+}
+
+.loose-barcode {
+    /*letter-spacing: 3px;*/
+    font-size: 49px;
+}
+
+.td-hide {
+    visibility: hidden;
+}
+
+@font-face {
+    font-family: code-128;
+    src: url(/assets/global/plugins/code-128/fonts/code128.ttf);
+}
