@@ -38,40 +38,22 @@ namespace web.sph.App_Code
             var item = lo.Source;
             var model = new PaymentSwitchRequestModel();
 
+            decimal noGstPrice = 0;
             decimal gstPrice = 0;
-            decimal domesticPrice = 0;
-            decimal internationalPrice = 0;
-            decimal pickupPrice = 5.30m;
             foreach (var consignment in item.Consignments)
             {
-                if (consignment.Produk.IsInternational)
-                {
-                    if (consignment.Produk.Price == 0)
-                    {
-                        internationalPrice += 0;
-                    }
-                    else
-                    {
-                        internationalPrice += consignment.Produk.Price;
-                    }
-                }
-                else
-                {
-                    if (consignment.Produk.Price == 0)
-                    {
-                        domesticPrice += 0;
-                    }
-                    else
-                    {
-                        domesticPrice += consignment.Produk.Price;
-                    }
-                }
+                noGstPrice += consignment.Bill.SubTotal3;
+                gstPrice += consignment.Bill.AddOnsD[0].Charge;
             }
-            gstPrice = decimal.Multiply(decimal.Divide((domesticPrice + pickupPrice), 1.06m), 0.06m);
-            
+
+            // pickup charge = RM5.00
+            // pickup charge gst = RM0.30
+            noGstPrice += 5.00m;
+            gstPrice += 0.30m;
+
             // required by payment gateway
             model.TransactionId = item.ReferenceNo;
-            model.TransactionAmount = item.Payment.TotalPrice - gstPrice;
+            model.TransactionAmount = noGstPrice;
             model.TransactionGST = gstPrice;
             model.PurchaseDate = DateTime.Now;
             model.Description = $"OST purchase by {item.ChangedBy} for RM{item.Payment.TotalPrice}";
