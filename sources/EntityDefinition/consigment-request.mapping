@@ -168,6 +168,74 @@
         }
     }
 ,
+    "Bill":{
+        "type":  "object",
+        "properties":{
+             "ProductCode":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "ProductName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "ItemCategory":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "RateStepInfo":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "BaseRate":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+    "AddOnsA":{
+        "type":  "object",
+        "properties":{
+             "Code":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Name":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Formula":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Charge":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false}
+        }
+    }
+,
+             "SubTotal1":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+    "AddOnsB":{
+        "type":  "object",
+        "properties":{
+             "Code":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Name":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Formula":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Charge":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false}
+        }
+    }
+,
+             "SubTotal2":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+    "AddOnsC":{
+        "type":  "object",
+        "properties":{
+             "Code":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Name":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Formula":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Charge":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false}
+        }
+    }
+,
+             "SubTotal3":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+    "AddOnsD":{
+        "type":  "object",
+        "properties":{
+             "Code":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Name":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Formula":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Charge":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+             "TotalBeforeDiscount":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "Total":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "TaxRemark":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "Width":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "Length":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "Height":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "ActualWeight":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "VolumetricWeight":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+             "BranchCode":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "SenderPostcode":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "SenderCountryCode":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "ReceiverPostcode":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "ReceiverCountryCode":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "ZoneName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
              "ConNote":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
         }
     }
