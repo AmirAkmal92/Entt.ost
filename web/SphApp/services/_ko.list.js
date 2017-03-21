@@ -212,7 +212,12 @@ define([objectbuilders.datacontext, objectbuilders.logger], function (context, l
                     startLoad();
                     var url = ko.unwrap(query) + "?page=" + (page || 1) + "&size=" + (size || 20);
                     if (executedQuery) url += "&q=" + executedQuery;
-                    return $.getJSON(url)
+                    //return $.getJSON(url)
+                    return $.ajax({
+                        url: url,
+                        method: "GET",
+                        cache: false
+                    })
                          .then(function (lo) {
                              setItemsSource(lo._results);
                              endLoad();
@@ -224,7 +229,12 @@ define([objectbuilders.datacontext, objectbuilders.logger], function (context, l
                     var url = ko.unwrap(query) + "?page=" + (page || 1) + "&size=" + (size || 20);
                     if (ko.unwrap(query).indexOf("?") > -1) url = ko.unwrap(query) + "&page=" + (page || 1) + "&size=" + (size || 20);
                     if (executedQuery) url += "&q=" + executedQuery;
-                    $.getJSON(url)
+                    //$.getJSON(url)
+                    $.ajax({
+                        url: url,
+                        method: "GET",
+                        cache: false
+                    })
                         .then(function (lo) {
                             if (pager) {
                                 pager.update(lo._count);
