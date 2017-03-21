@@ -16,20 +16,6 @@ namespace web.sph.App_Code
             return View("Default");
         }
 
-        [AllowAnonymous]
-        [Route("contacts")]
-        public ActionResult Contacts()
-        {
-            return View();
-        }
-
-        [AllowAnonymous]
-        [Route("terms")]
-        public ActionResult Terms()
-        {
-            return View();
-        }
-
         [HttpGet]
         [Route("print-domestic-connote/consignment-requests/{crId}/consignments/{cId}")]
         public async Task<ActionResult> DomesticConnote(string crId, string cId)
