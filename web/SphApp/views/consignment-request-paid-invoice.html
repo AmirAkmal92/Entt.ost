@@ -160,7 +160,7 @@
                                         <td><span data-bind="text: ($root.totalDomesticGst() + $root.totalInternationalGst() + 0.30).toFixed(2)" class="pull-right"></span></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4"><strong>Grand Total</strong></td>
+                                        <td colspan="4"><strong><span class="text-uppercase">Grand Total</span></strong></td>
                                         <td><strong><span data-bind="text: Payment().TotalPrice().toFixed(2)" class="pull-right"></span></strong></td>
                                     </tr>
                                 </tbody>
@@ -186,12 +186,12 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td colspan="3"># Zero rated</td>
+                                        <td colspan="3"># Zero Rated (ZR)</td>
                                         <td><span data-bind="text: $root.totalInternationalNoGst().toFixed(2)" class="pull-right"></span></td>
                                         <td><span data-bind="text: $root.totalInternationalGst().toFixed(2)" class="pull-right"></span></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3">* GST 6%</td>
+                                        <td colspan="3">* Standard Rated (SR)</td>
                                         <td><span data-bind="text: ($root.totalDomesticNoGst() + 5.00).toFixed(2)" class="pull-right"></span></td>
                                         <td><span data-bind="text: ($root.totalDomesticGst() + 0.30).toFixed(2)" class="pull-right"></span></td>
                                     </tr>
