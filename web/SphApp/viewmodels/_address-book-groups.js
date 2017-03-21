@@ -6,10 +6,20 @@ define(['services/datacontext', 'services/logger', 'plugins/router', objectbuild
             contactsCount = ko.observable(".."),
             groups = ko.observableArray(),
             activate = function () {
-                context.get("/api/address-books/?page=1&size=0").done(function (result) {
+                //context.get("/api/address-books/?page=1&size=0")
+                $.ajax({
+                    url: "/api/address-books/?page=1&size=0",
+                    method: "GET",
+                    cache: false
+                }).done(function (result) {
                     contactsCount(result._count);
                 });
-                return context.get("/address-books/group-options?count=true").done(groups);
+                //return context.get("/address-books/group-options?count=true").done(groups);
+                return $.ajax({
+                    url: "/address-books/group-options?count=true",
+                    method: "GET",
+                    cache: false
+                }).done(groups);
             },
             attached = function (view) {
 
