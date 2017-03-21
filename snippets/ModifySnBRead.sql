@@ -24,7 +24,7 @@ SET [Ost] = 1,
 	[MinWeight] = 0.001,
 	[MaxWeight] = 30.000,
  	[DeliverySla] = '11 DAY'
-WHERE[SapCode] = '80000001'
+WHERE[Code] = 'PMI3001'
 GO
 
 UPDATE[dbo].[Product]
@@ -32,5 +32,13 @@ SET [Ost] = 1,
 	[MinWeight] = 0.001,
 	[MaxWeight] = 30.000,
  	[DeliverySla] = '1 DAY'
-WHERE[SapCode] = '80000000'
+WHERE[Code] = 'OST1001'
 GO
+
+--UPDATE[dbo].[Product]
+--SET [Ost] = 1,
+--	[MinWeight] = 0.001,
+--	[MaxWeight] = 30.000,
+-- 	[DeliverySla] = '1 DAY'
+--WHERE[Code] = 'PLD1001'
+--GO
