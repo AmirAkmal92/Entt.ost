@@ -1,10 +1,59 @@
-.bg-overlay {
+.connote-sheet-1 {
     background: url("/assets/global/img/connotes/Domestic_Poslaju_Consignment_Note_Receiver_Copy.jpg") !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-position: initial !important;
     /*height: 613px;
             padding-top: 50px;*/
+}
+
+.connote-sheet-2 {
+    background: url("/assets/global/img/connotes/Domestic_Poslaju_Consignment_Note_Transit_Office_Copy.jpg") !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: initial !important;
+}
+
+.connote-sheet-3 {
+    background: url("/assets/global/img/connotes/Domestic_Poslaju_Consignment_Note_Original_Office_Copy.jpg") !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: initial !important;
+}
+
+.connote-sheet-4 {
+    background: url("/assets/global/img/connotes/Domestic_Poslaju_Consignment_Note_Sender_Copy.jpg") !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: initial !important;
+}
+
+.connote-int-sheet-1 {
+    background: url("/assets/global/img/connotes/International_Poslaju_Consignment_Note_Receiver_Copy.jpg") !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: initial !important;
+}
+
+.connote-int-sheet-2 {
+    background: url("/assets/global/img/connotes/International_Poslaju_Consignment_Note_Receiver_Copy.jpg") !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: initial !important;
+}
+
+.connote-int-sheet-3 {
+    background: url("/assets/global/img/connotes/International_Poslaju_Consignment_Note_Receiver_Copy.jpg") !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: initial !important;
+}
+
+.connote-int-sheet-4 {
+    background: url("/assets/global/img/connotes/International_Poslaju_Consignment_Note_Receiver_Copy.jpg") !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: initial !important;
 }
 
 .bg-no-overlay {
@@ -33,9 +82,9 @@
     width: 1181px !important;
 }
 
-/*table, td, th {
-            border: 1px solid black !important;
-        }*/
+table, td, th {
+    border: 1px solid black !important;
+}
 
 table {
     border-collapse: collapse !important;
@@ -73,9 +122,9 @@ th, td {
     font-size: 49px;
 }
 
-.td-hide {
+/*.td-hide {
     visibility: hidden;
-}
+}*/
 
 @font-face {
     font-family: code-128;
