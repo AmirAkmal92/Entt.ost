@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "snb.services", "sources\snb
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "snb.read.sql", "sources\snb.read.sql\snb.read.sql.sqlproj", "{FD6782D5-ED5C-4F16-BA61-2821C1BE120E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sap.fi.posting", "sources\sap.fi.posting\sap.fi.posting.csproj", "{38C40739-BA2B-4DC3-8523-B36B732C311A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{FD6782D5-ED5C-4F16-BA61-2821C1BE120E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD6782D5-ED5C-4F16-BA61-2821C1BE120E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FD6782D5-ED5C-4F16-BA61-2821C1BE120E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{38C40739-BA2B-4DC3-8523-B36B732C311A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38C40739-BA2B-4DC3-8523-B36B732C311A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38C40739-BA2B-4DC3-8523-B36B732C311A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38C40739-BA2B-4DC3-8523-B36B732C311A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
