@@ -20,7 +20,7 @@ namespace sap.fi.posting
         public Program()
         {
             m_ostBaseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl") ?? "http://localhost:50230";
-            m_ostAdminToken = ConfigurationManager.GetEnvironmentVariable("AdminToken") ?? "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHlvdXJjb21wYW55LmNvbSIsInN1YiI6IjYzNjI1ODg3Nzc4NjYwMDg3NTVmMTgxMDQ0IiwibmJmIjoxNTA2MTU5Nzc5LCJpYXQiOjE0OTAyNjIxNzksImV4cCI6MTc2NzEzOTIwMCwiYXVkIjoiT3N0In0.DBMfLcyIdXsOl65p34hA7MOhUFimpGJYXGRn4-alfBI";
+            m_ostAdminToken = ConfigurationManager.GetEnvironmentVariable("AdminToken") ?? "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHlvdXJjb21wYW55LmNvbSIsInN1YiI6IjYzNjIwNDQ2NTgyNzk2MDA0NDYwOGNjMzdjIiwibmJmIjoxNTAwNDU5MzgzLCJpYXQiOjE0ODQ4MjA5ODMsImV4cCI6MTUxNDY3ODQwMCwiYXVkIjoiT3N0In0.qIA-b-0XTI_GpgMCGJC1yAAtw04UoPaNYoxMSXeBrPk";
             m_ostSapFolder = ConfigurationManager.GetEnvironmentVariable("SapFolder") ?? @"C:\temp";
         }
 
@@ -28,18 +28,16 @@ namespace sap.fi.posting
         {
             var startDate = string.Empty;
             var endDate = string.Empty;
-            var maxRecord = string.Empty;
             if (args.Length < 3)
             {
-                startDate = $"{DateTime.Today:yyyy-MM-dd}";
-                endDate = $"{DateTime.Today.AddDays(1):yyyy-MM-dd}";
-                maxRecord = "500";
+                startDate = $"{DateTime.Today.AddDays(-1):yyyy-MM-dd}";
+                endDate = $"{DateTime.Today:yyyy-MM-dd}";
             }
 
             try
             {
                 var program = new Program();
-                program.RunAsync(startDate, endDate, maxRecord).Wait();
+                program.RunAsync(startDate, endDate).Wait();
                 Console.WriteLine("Done ......");
             }
             catch (Exception ex)
@@ -48,7 +46,7 @@ namespace sap.fi.posting
             }
         }
 
-        public async Task RunAsync(string startDate, string endDate, string maxRecord)
+        public async Task RunAsync(string startDate, string endDate)
         {
 
             var engine = new FileHelperEngine<SapFiDelimited>();
@@ -57,24 +55,46 @@ namespace sap.fi.posting
 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
-            var requestUri = new Uri($"{m_ostBaseUrl}/api/consigment-requests/paid-within-range/{startDate}/{endDate}/?size={maxRecord}");
-            var response = await client.GetAsync(requestUri);
 
-            var output = string.Empty;
-            if (response.IsSuccessStatusCode)
-            {
-                output = await response.Content.ReadAsStringAsync();
-            }
-            else
-            {
-                return;
-            }
+            bool requestInvoice = true;
+            int invoiceCount = 0;
+            int invoicePage = 1;
+            int invoiceSize = 20;
 
-            var json = JObject.Parse(output).SelectToken("_results");
-            foreach (var jtok in json)
+            while (requestInvoice)
             {
-                var consigmentRequest = jtok.ToJson().DeserializeFromJson<ConsigmentRequest>();
-                consigmentRequests.Add(consigmentRequest);
+                var requestUri = new Uri($"{m_ostBaseUrl}/api/consigment-requests/paid-within-range/{startDate}/{endDate}/?size={invoiceSize}&page={invoicePage}");
+                var response = await client.GetAsync(requestUri);
+                var output = string.Empty;
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+                    Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
+                    output = await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+                    Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
+                    return;
+                }
+
+                var json = JObject.Parse(output).SelectToken("_results");
+                foreach (var jtok in json)
+                {
+                    var consigmentRequest = jtok.ToJson().DeserializeFromJson<ConsigmentRequest>();
+                    consigmentRequests.Add(consigmentRequest);
+                }
+                Console.WriteLine($"Invoice count: {consigmentRequests.Count} .....");
+
+                invoiceCount = JObject.Parse(output).SelectToken("_count").Value<int>();
+                invoicePage = JObject.Parse(output).SelectToken("_page").Value<int>();
+                invoiceSize = JObject.Parse(output).SelectToken("_size").Value<int>();
+                if ((invoicePage * invoiceSize) >= invoiceCount)
+                {
+                    requestInvoice = false;
+                }
+                invoicePage++;
             }
 
             int sequenceNumberCount = 1;
