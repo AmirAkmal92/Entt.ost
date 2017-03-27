@@ -1,0 +1,46 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "UserDetailUserProfileQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "UserId",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.FunctionField, domain.sph",
+          "CodeNamespace": "ff7617a0ca",
+          "Script": "ObjectBuilder.GetObject<IDirectoryService>().CurrentUserName",
+          "Name": "CurrentUser",
+          "Note": "",
+          "WebId": "7617a0ca-5679-497a-c479-66d10ab57261"
+        },
+        "WebId": "1a8b3e0c-680f-4e5b-b941-92c764c2a31d"
+      }
+    ]
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "User Profile",
+  "Route": "user-profile",
+  "IsReturnSource": "",
+  "Entity": "UserDetail",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "user-details",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "user-detail-user-profile",
+  "CreatedDate": "2017-03-24T14:48:05.0041489+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-03-24T14:49:26.0529081+08:00",
+  "WebId": "38469a05-91c4-4e28-e522-a3dc61a10b23"
+}
