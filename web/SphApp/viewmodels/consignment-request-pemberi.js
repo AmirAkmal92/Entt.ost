@@ -65,7 +65,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         cid(entity().Consignments()[i].WebId());
                         isUsingPickupAddress(false);
                     } else {
-                        isUsingPickupAddress(true);
+                        //isUsingPickupAddress(true);
                         app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "Ost", ["OK"]).done(function () {
                             router.navigate("consignment-request-cart/" + crId);
                         });
@@ -73,7 +73,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 }
 
                 // always check for pickup location
-                if (entity().Pickup().Address().Postcode() === undefined) {
+                if (entity().Pickup().Address().Postcode() === undefined) {                    
                     app.showMessage("You must set Pickup Location first before you can send any Parcel.", "Ost", ["OK"]).done(function () {
                         router.navigate("consignment-request-pickup/" + crId);
                     });
