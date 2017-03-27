@@ -11,6 +11,32 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
         headers = {},
         activate = function (entityId) {
             id(entityId);
+            //validate Personal Details, Default Billing Address, Default Pickup Address
+            var goToDashboard = false;
+            var userDetail = ko.observable();
+            $.ajax({
+                url: "/api/user-details/user-profile",
+                method: "GET",
+                cache: false
+            }).done(function (userDetailList) {
+
+                if (userDetailList._count == 0) {
+                    goToDashboard = true;
+                } else {
+                    userDetail(new bespoke.Ost_userDetail.domain.UserDetail(userDetailList._results[0]));
+                    if ((ko.unwrap(userDetail().Profile().Address().Postcode) == undefined)
+                        || (ko.unwrap(userDetail().PickupAddress().Address().Postcode) == undefined)
+                        || (ko.unwrap(userDetail().BillingAddress().Address().Postcode) == undefined))
+                    {
+                        goToDashboard = true;
+                    }
+                }
+                if (goToDashboard) {
+                    app.showMessage("Personal Details, Default Billing Address and Default Pickup Address must be set first before you can send any Parcel.", "Ost", ["OK"]).done(function () {
+                        router.navigate("customer-home");
+                    });
+                }
+            });
             //return context.get("/api/consigment-requests/" + entityId)
             return $.ajax({
                 url: "/api/consigment-requests/" + entityId,
