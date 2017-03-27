@@ -114,7 +114,7 @@ th, td {
 }
 
 .loose2 {
-    letter-spacing: 32px;
+    letter-spacing: 29px;
     font-size: xx-large;
 }
 
@@ -123,12 +123,16 @@ th, td {
     font-size: 17px;
 }
 
+.loose-conn-int {
+    letter-spacing: 5px;
+}
+
 .loose-barcode {
     /*letter-spacing: 3px;*/
     font-size: 49px;
 }
 .loose-barcode-int {
-    font-size: 49px;
+    font-size: 47px;
 }
 
 .td-hide {

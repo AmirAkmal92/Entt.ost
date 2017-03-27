@@ -74,7 +74,9 @@
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td rowspan="3" colspan="6">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode-int" id="my-connote1">@Html.Raw(Model.ConNote)</span></td>
+                <td rowspan="3" colspan="4">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode-int" id="my-connote1">@Html.Raw(Model.ConNote)</span></td>
+                <td class="td-hide">col-19</td>
+                <td class="td-hide">col-20</td>
                 <td class="td-hide">col-21</td>
                 <td class="td-hide">col-22</td>
                 <td class="td-hide">col-23</td>
@@ -138,7 +140,7 @@
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose-conn">@Html.Raw(Model.ConNote)</span></td>
+                <td colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose-conn-int">@Html.Raw(Model.ConNote)</span></td>
                 <td class="td-hide">col-21</td>
                 <td class="td-hide">col-22</td>
                 <td class="td-hide">col-23</td>
@@ -177,32 +179,32 @@
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
                 <td class="td-hide">col-04</td>
-                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;<span>Account No.</span></td>
+                <td class="td-hide" colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Account No.</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
-                <td colspan="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Importer's Reference</span></td>
+                <td class="td-hide" colspan="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Importer's Reference</span></td>
             </tr>
             @*======== ROW 8 ====== Name *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactPerson)</span></td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactPerson)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactPerson)</span></td>
+                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactPerson)</span></td>
             </tr>
             @*======== ROW 9 ====== Address Line 1 *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address1)</span></td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address1)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address1)</span></td>
+                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address1)</span></td>
             </tr>
             @*======== ROW 10 ====== Address Line 2 *@
             <tr>
@@ -210,7 +212,7 @@
                 <td class="td-hide">col-02</td>
                 <td colspan="10"><span>@Html.Raw(Model.Pemberi.Address.Address2)</span></td>
                 <td class="td-hide">col-13</td>
-                <td colspan="11"><span>@Html.Raw(Model.Penerima.Address.Address2)</span></td>
+                <td colspan="11">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address2)</span></td>
             </tr>
             @*======== ROW 11 ====== Address Line 3 *@
             <tr>
@@ -218,7 +220,7 @@
                 <td class="td-hide">col-02</td>
                 <td colspan="10"><span>@Html.Raw(Model.Pemberi.Address.Address3)</span></td>
                 <td class="td-hide">col-13</td>
-                <td colspan="11"><span>@Html.Raw(Model.Penerima.Address.Address3)</span></td>
+                <td colspan="11">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address3)</span></td>
             </tr>
             @*======== ROW 12 ====== Address Line 4 *@
             <tr>
@@ -226,24 +228,23 @@
                 <td class="td-hide">col-02</td>
                 <td colspan="10"><span>@Html.Raw(Model.Pemberi.Address.Address4)</span></td>
                 <td class="td-hide">col-13</td>
-                <td colspan="11"><span>@Html.Raw(Model.Penerima.Address.Address4)</span></td>
+                <td colspan="11">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address4)</span></td>
             </tr>
             @*======== ROW 13 ====== City, Country *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.City)</span></td>
+                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.City)</span></td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="3">&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
+                <td class="td-hide" colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.City)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.City)</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
-                <td colspan="3"><span>@Html.Raw(Model.Penerima.Address.Country)</span></td>
-                <td class="td-hide">col-23</td>
+                <td colspan="4"><span>@Html.Raw(Model.Penerima.Address.Country)</span></td>
                 <td class="td-hide">col-24</td>
             </tr>
             @*======== ROW 14 ====== Tel, Postcode *@
@@ -251,13 +252,13 @@
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.ContactNumber)</span></td>
+                <td colspan="4"><span>@Html.Raw(Model.Pemberi.ContactInformation.ContactNumber)</span></td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="3">&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Postcode)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Postcode)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.ContactNumber)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.ContactNumber)</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
                 <td colspan="3"><span>@Html.Raw(Model.Penerima.Address.Postcode)</span></td>
@@ -269,21 +270,10 @@
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.Email)</span></td>
-                <td class="td-hide">col-08</td>
-                <td class="td-hide">col-09</td>
-                <td class="td-hide">col-10</td>
-                <td class="td-hide">col-11</td>
-                <td class="td-hide">col-12</td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.Email)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.Email)</span></td>
-                <td class="td-hide">col-18</td>
-                <td class="td-hide">col-19</td>
-                <td class="td-hide">col-20</td>
-                <td class="td-hide">col-21</td>
-                <td class="td-hide">col-22</td>
-                <td class="td-hide">col-23</td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.Email)</span></td>
                 <td class="td-hide">col-24</td>
             </tr>
             @*======== ROW 16 ======*@
@@ -371,34 +361,34 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.Description)</span></td>
-                <td colspan="3"><span>@Html.Raw("1")</span></td>
-                <td colspan="2"><span>@Html.Raw(Model.Produk.Weight)</span>&nbsp;(kg)</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("1")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.Weight)</span>&nbsp;(kg)</td>
+                <td class="td-hide">col-15</td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
                 <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
-                <td class="td-hide">col-24</td>
+                <td colspan="4"><span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
             </tr>
             @*======== ROW 20 ====== Custom Declaration 2 *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="3"><span>@Html.Raw("")</span></td>
-                <td colspan="2"><span>@Html.Raw("")</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide">col-15</td>
                 <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td class="td-hide">col-24</td>
+                <td colspan="4"><span>@Html.Raw("")</span></td>
             </tr>
             @*======== ROW 21 ====== Custom Declaration 3  *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="3"><span>@Html.Raw("")</span></td>
-                <td colspan="2"><span>@Html.Raw("")</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide">col-15</td>
                 <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td class="td-hide">col-24</td>
+                <td colspan="4"><span>@Html.Raw("")</span></td>
             </tr>
             @*======== ROW 22 ====== Total *@
             <tr>
@@ -411,10 +401,10 @@
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="3"><span>@Html.Raw("1")</span></td>
-                <td colspan="2"><span>@Html.Raw(Model.Produk.Weight)</span></td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Total V")</span></td>
-                <td class="td-hide">col-17</td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("1")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.Weight)</span></td>
+                <td class="td-hide">col-15</td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
                 <td class="td-hide">col-20</td>
@@ -461,13 +451,14 @@
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                <td class="td-hide">col-10</td>
+                <td class="td-hide">&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
-                <td><span>✓</span></td>
+                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
                 <td class="td-hide">col-20</td>
@@ -479,21 +470,21 @@
             @*======== ROW 25 ====== Return Goods, Other, Explanation, Comments *@
             <tr>
                 <td class="td-hide">col-01</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                <td class="td-hide" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-04</td>
                 <td class="td-hide">col-05</td>
                 <td class="td-hide">col-06</td>
                 <td class="td-hide">col-07</td>
-                <td><span>✓</span></td>
+                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-09</td>
                 <td class="td-hide">col-10</td>
                 <td class="td-hide">col-11</td>
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide" colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td class="td-hide">col-17</td>
                 <td class="td-hide">col-18</td>
-                <td colspan="4">&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide" colspan="4">&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td class="td-hide">col-23</td>
                 <td class="td-hide">col-24</td>
             </tr>
@@ -562,7 +553,7 @@
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="4">&nbsp;<span>@DateTime.Today.Date</span></td>
+                <td colspan="4">&nbsp;&nbsp;<span>@DateTime.Today.Date</span></td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
@@ -786,7 +777,9 @@
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td rowspan="3" colspan="6">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode-int" id="my-connote2">@Html.Raw(Model.ConNote)</span></td>
+                <td rowspan="3" colspan="4">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode-int" id="my-connote2">@Html.Raw(Model.ConNote)</span></td>
+                <td class="td-hide">col-19</td>
+                <td class="td-hide">col-20</td>
                 <td class="td-hide">col-21</td>
                 <td class="td-hide">col-22</td>
                 <td class="td-hide">col-23</td>
@@ -850,7 +843,7 @@
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose-conn">@Html.Raw(Model.ConNote)</span></td>
+                <td colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose-conn-int">@Html.Raw(Model.ConNote)</span></td>
                 <td class="td-hide">col-21</td>
                 <td class="td-hide">col-22</td>
                 <td class="td-hide">col-23</td>
@@ -889,32 +882,32 @@
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
                 <td class="td-hide">col-04</td>
-                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;<span>Account No.</span></td>
+                <td class="td-hide" colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Account No.</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
-                <td colspan="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Importer's Reference</span></td>
+                <td class="td-hide" colspan="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Importer's Reference</span></td>
             </tr>
             @*======== ROW 8 ====== Name *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactPerson)</span></td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactPerson)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactPerson)</span></td>
+                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactPerson)</span></td>
             </tr>
             @*======== ROW 9 ====== Address Line 1 *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address1)</span></td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address1)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address1)</span></td>
+                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address1)</span></td>
             </tr>
             @*======== ROW 10 ====== Address Line 2 *@
             <tr>
@@ -922,7 +915,7 @@
                 <td class="td-hide">col-02</td>
                 <td colspan="10"><span>@Html.Raw(Model.Pemberi.Address.Address2)</span></td>
                 <td class="td-hide">col-13</td>
-                <td colspan="11"><span>@Html.Raw(Model.Penerima.Address.Address2)</span></td>
+                <td colspan="11">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address2)</span></td>
             </tr>
             @*======== ROW 11 ====== Address Line 3 *@
             <tr>
@@ -930,7 +923,7 @@
                 <td class="td-hide">col-02</td>
                 <td colspan="10"><span>@Html.Raw(Model.Pemberi.Address.Address3)</span></td>
                 <td class="td-hide">col-13</td>
-                <td colspan="11"><span>@Html.Raw(Model.Penerima.Address.Address3)</span></td>
+                <td colspan="11">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address3)</span></td>
             </tr>
             @*======== ROW 12 ====== Address Line 4 *@
             <tr>
@@ -938,24 +931,23 @@
                 <td class="td-hide">col-02</td>
                 <td colspan="10"><span>@Html.Raw(Model.Pemberi.Address.Address4)</span></td>
                 <td class="td-hide">col-13</td>
-                <td colspan="11"><span>@Html.Raw(Model.Penerima.Address.Address4)</span></td>
+                <td colspan="11">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address4)</span></td>
             </tr>
             @*======== ROW 13 ====== City, Country *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.City)</span></td>
+                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.City)</span></td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="3">&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
+                <td class="td-hide" colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.City)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.City)</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
-                <td colspan="3"><span>@Html.Raw(Model.Penerima.Address.Country)</span></td>
-                <td class="td-hide">col-23</td>
+                <td colspan="4"><span>@Html.Raw(Model.Penerima.Address.Country)</span></td>
                 <td class="td-hide">col-24</td>
             </tr>
             @*======== ROW 14 ====== Tel, Postcode *@
@@ -963,13 +955,13 @@
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.ContactNumber)</span></td>
+                <td colspan="4"><span>@Html.Raw(Model.Pemberi.ContactInformation.ContactNumber)</span></td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="3">&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Postcode)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Postcode)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.ContactNumber)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.ContactNumber)</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
                 <td colspan="3"><span>@Html.Raw(Model.Penerima.Address.Postcode)</span></td>
@@ -981,21 +973,10 @@
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.Email)</span></td>
-                <td class="td-hide">col-08</td>
-                <td class="td-hide">col-09</td>
-                <td class="td-hide">col-10</td>
-                <td class="td-hide">col-11</td>
-                <td class="td-hide">col-12</td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.Email)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.Email)</span></td>
-                <td class="td-hide">col-18</td>
-                <td class="td-hide">col-19</td>
-                <td class="td-hide">col-20</td>
-                <td class="td-hide">col-21</td>
-                <td class="td-hide">col-22</td>
-                <td class="td-hide">col-23</td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.Email)</span></td>
                 <td class="td-hide">col-24</td>
             </tr>
             @*======== ROW 16 ======*@
@@ -1083,34 +1064,34 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.Description)</span></td>
-                <td colspan="3"><span>@Html.Raw("1")</span></td>
-                <td colspan="2"><span>@Html.Raw(Model.Produk.Weight)</span>&nbsp;(kg)</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("1")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.Weight)</span>&nbsp;(kg)</td>
+                <td class="td-hide">col-15</td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
                 <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
-                <td class="td-hide">col-24</td>
+                <td colspan="4"><span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
             </tr>
             @*======== ROW 20 ====== Custom Declaration 2 *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="3"><span>@Html.Raw("")</span></td>
-                <td colspan="2"><span>@Html.Raw("")</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide">col-15</td>
                 <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td class="td-hide">col-24</td>
+                <td colspan="4"><span>@Html.Raw("")</span></td>
             </tr>
             @*======== ROW 21 ====== Custom Declaration 3  *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="3"><span>@Html.Raw("")</span></td>
-                <td colspan="2"><span>@Html.Raw("")</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide">col-15</td>
                 <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td class="td-hide">col-24</td>
+                <td colspan="4"><span>@Html.Raw("")</span></td>
             </tr>
             @*======== ROW 22 ====== Total *@
             <tr>
@@ -1123,10 +1104,10 @@
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="3"><span>@Html.Raw("1")</span></td>
-                <td colspan="2"><span>@Html.Raw(Model.Produk.Weight)</span></td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Total V")</span></td>
-                <td class="td-hide">col-17</td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("1")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.Weight)</span></td>
+                <td class="td-hide">col-15</td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
                 <td class="td-hide">col-20</td>
@@ -1173,13 +1154,14 @@
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                <td class="td-hide">col-10</td>
+                <td class="td-hide">&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
-                <td><span>✓</span></td>
+                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
                 <td class="td-hide">col-20</td>
@@ -1191,21 +1173,21 @@
             @*======== ROW 25 ====== Return Goods, Other, Explanation, Comments *@
             <tr>
                 <td class="td-hide">col-01</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                <td class="td-hide" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-04</td>
                 <td class="td-hide">col-05</td>
                 <td class="td-hide">col-06</td>
                 <td class="td-hide">col-07</td>
-                <td><span>✓</span></td>
+                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-09</td>
                 <td class="td-hide">col-10</td>
                 <td class="td-hide">col-11</td>
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide" colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td class="td-hide">col-17</td>
                 <td class="td-hide">col-18</td>
-                <td colspan="4">&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide" colspan="4">&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td class="td-hide">col-23</td>
                 <td class="td-hide">col-24</td>
             </tr>
@@ -1274,7 +1256,7 @@
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="4">&nbsp;<span>@DateTime.Today.Date</span></td>
+                <td colspan="4">&nbsp;&nbsp;<span>@DateTime.Today.Date</span></td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
@@ -1451,7 +1433,7 @@
             </tr>
         </table>
     </div>
-    <br /><br /><br />
+    <br /><br /><br /><br />
     <!-- Connote Sheet 3 -->
     <div class="container">
         <table class="table connote-int-sheet-3">
@@ -1498,7 +1480,9 @@
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td rowspan="3" colspan="6">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode-int" id="my-connote3">@Html.Raw(Model.ConNote)</span></td>
+                <td rowspan="3" colspan="4">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode-int" id="my-connote3">@Html.Raw(Model.ConNote)</span></td>
+                <td class="td-hide">col-19</td>
+                <td class="td-hide">col-20</td>
                 <td class="td-hide">col-21</td>
                 <td class="td-hide">col-22</td>
                 <td class="td-hide">col-23</td>
@@ -1562,7 +1546,7 @@
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose-conn">@Html.Raw(Model.ConNote)</span></td>
+                <td colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose-conn-int">@Html.Raw(Model.ConNote)</span></td>
                 <td class="td-hide">col-21</td>
                 <td class="td-hide">col-22</td>
                 <td class="td-hide">col-23</td>
@@ -1601,32 +1585,32 @@
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
                 <td class="td-hide">col-04</td>
-                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;<span>Account No.</span></td>
+                <td class="td-hide" colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Account No.</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
-                <td colspan="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Importer's Reference</span></td>
+                <td class="td-hide" colspan="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Importer's Reference</span></td>
             </tr>
             @*======== ROW 8 ====== Name *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactPerson)</span></td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactPerson)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactPerson)</span></td>
+                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactPerson)</span></td>
             </tr>
             @*======== ROW 9 ====== Address Line 1 *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address1)</span></td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address1)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address1)</span></td>
+                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address1)</span></td>
             </tr>
             @*======== ROW 10 ====== Address Line 2 *@
             <tr>
@@ -1634,7 +1618,7 @@
                 <td class="td-hide">col-02</td>
                 <td colspan="10"><span>@Html.Raw(Model.Pemberi.Address.Address2)</span></td>
                 <td class="td-hide">col-13</td>
-                <td colspan="11"><span>@Html.Raw(Model.Penerima.Address.Address2)</span></td>
+                <td colspan="11">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address2)</span></td>
             </tr>
             @*======== ROW 11 ====== Address Line 3 *@
             <tr>
@@ -1642,7 +1626,7 @@
                 <td class="td-hide">col-02</td>
                 <td colspan="10"><span>@Html.Raw(Model.Pemberi.Address.Address3)</span></td>
                 <td class="td-hide">col-13</td>
-                <td colspan="11"><span>@Html.Raw(Model.Penerima.Address.Address3)</span></td>
+                <td colspan="11">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address3)</span></td>
             </tr>
             @*======== ROW 12 ====== Address Line 4 *@
             <tr>
@@ -1650,24 +1634,23 @@
                 <td class="td-hide">col-02</td>
                 <td colspan="10"><span>@Html.Raw(Model.Pemberi.Address.Address4)</span></td>
                 <td class="td-hide">col-13</td>
-                <td colspan="11"><span>@Html.Raw(Model.Penerima.Address.Address4)</span></td>
+                <td colspan="11">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address4)</span></td>
             </tr>
             @*======== ROW 13 ====== City, Country *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.City)</span></td>
+                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.City)</span></td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="3">&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
+                <td class="td-hide" colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.City)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.City)</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
-                <td colspan="3"><span>@Html.Raw(Model.Penerima.Address.Country)</span></td>
-                <td class="td-hide">col-23</td>
+                <td colspan="4"><span>@Html.Raw(Model.Penerima.Address.Country)</span></td>
                 <td class="td-hide">col-24</td>
             </tr>
             @*======== ROW 14 ====== Tel, Postcode *@
@@ -1675,13 +1658,13 @@
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.ContactNumber)</span></td>
+                <td colspan="4"><span>@Html.Raw(Model.Pemberi.ContactInformation.ContactNumber)</span></td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="3">&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Postcode)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Postcode)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.ContactNumber)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.ContactNumber)</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
                 <td colspan="3"><span>@Html.Raw(Model.Penerima.Address.Postcode)</span></td>
@@ -1693,21 +1676,10 @@
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.Email)</span></td>
-                <td class="td-hide">col-08</td>
-                <td class="td-hide">col-09</td>
-                <td class="td-hide">col-10</td>
-                <td class="td-hide">col-11</td>
-                <td class="td-hide">col-12</td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.Email)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.Email)</span></td>
-                <td class="td-hide">col-18</td>
-                <td class="td-hide">col-19</td>
-                <td class="td-hide">col-20</td>
-                <td class="td-hide">col-21</td>
-                <td class="td-hide">col-22</td>
-                <td class="td-hide">col-23</td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.Email)</span></td>
                 <td class="td-hide">col-24</td>
             </tr>
             @*======== ROW 16 ======*@
@@ -1795,34 +1767,34 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.Description)</span></td>
-                <td colspan="3"><span>@Html.Raw("1")</span></td>
-                <td colspan="2"><span>@Html.Raw(Model.Produk.Weight)</span>&nbsp;(kg)</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("1")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.Weight)</span>&nbsp;(kg)</td>
+                <td class="td-hide">col-15</td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
                 <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
-                <td class="td-hide">col-24</td>
+                <td colspan="4"><span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
             </tr>
             @*======== ROW 20 ====== Custom Declaration 2 *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="3"><span>@Html.Raw("")</span></td>
-                <td colspan="2"><span>@Html.Raw("")</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide">col-15</td>
                 <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td class="td-hide">col-24</td>
+                <td colspan="4"><span>@Html.Raw("")</span></td>
             </tr>
             @*======== ROW 21 ====== Custom Declaration 3  *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="3"><span>@Html.Raw("")</span></td>
-                <td colspan="2"><span>@Html.Raw("")</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide">col-15</td>
                 <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td class="td-hide">col-24</td>
+                <td colspan="4"><span>@Html.Raw("")</span></td>
             </tr>
             @*======== ROW 22 ====== Total *@
             <tr>
@@ -1835,10 +1807,10 @@
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="3"><span>@Html.Raw("1")</span></td>
-                <td colspan="2"><span>@Html.Raw(Model.Produk.Weight)</span></td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Total V")</span></td>
-                <td class="td-hide">col-17</td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("1")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.Weight)</span></td>
+                <td class="td-hide">col-15</td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
                 <td class="td-hide">col-20</td>
@@ -1885,13 +1857,14 @@
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                <td class="td-hide">col-10</td>
+                <td class="td-hide">&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
-                <td><span>✓</span></td>
+                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
                 <td class="td-hide">col-20</td>
@@ -1903,21 +1876,21 @@
             @*======== ROW 25 ====== Return Goods, Other, Explanation, Comments *@
             <tr>
                 <td class="td-hide">col-01</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                <td class="td-hide" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-04</td>
                 <td class="td-hide">col-05</td>
                 <td class="td-hide">col-06</td>
                 <td class="td-hide">col-07</td>
-                <td><span>✓</span></td>
+                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-09</td>
                 <td class="td-hide">col-10</td>
                 <td class="td-hide">col-11</td>
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide" colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td class="td-hide">col-17</td>
                 <td class="td-hide">col-18</td>
-                <td colspan="4">&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide" colspan="4">&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td class="td-hide">col-23</td>
                 <td class="td-hide">col-24</td>
             </tr>
@@ -1986,7 +1959,7 @@
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="4">&nbsp;<span>@DateTime.Today.Date</span></td>
+                <td colspan="4">&nbsp;&nbsp;<span>@DateTime.Today.Date</span></td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
@@ -2210,7 +2183,9 @@
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td rowspan="3" colspan="6">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode-int" id="my-connote4">@Html.Raw(Model.ConNote)</span></td>
+                <td rowspan="3" colspan="4">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode-int" id="my-connote4">@Html.Raw(Model.ConNote)</span></td>
+                <td class="td-hide">col-19</td>
+                <td class="td-hide">col-20</td>
                 <td class="td-hide">col-21</td>
                 <td class="td-hide">col-22</td>
                 <td class="td-hide">col-23</td>
@@ -2274,7 +2249,7 @@
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose-conn">@Html.Raw(Model.ConNote)</span></td>
+                <td colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose-conn-int">@Html.Raw(Model.ConNote)</span></td>
                 <td class="td-hide">col-21</td>
                 <td class="td-hide">col-22</td>
                 <td class="td-hide">col-23</td>
@@ -2313,32 +2288,32 @@
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
                 <td class="td-hide">col-04</td>
-                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;<span>Account No.</span></td>
+                <td class="td-hide" colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Account No.</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
-                <td colspan="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Importer's Reference</span></td>
+                <td class="td-hide" colspan="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Importer's Reference</span></td>
             </tr>
             @*======== ROW 8 ====== Name *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactPerson)</span></td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactPerson)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactPerson)</span></td>
+                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactPerson)</span></td>
             </tr>
             @*======== ROW 9 ====== Address Line 1 *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address1)</span></td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address1)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address1)</span></td>
+                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address1)</span></td>
             </tr>
             @*======== ROW 10 ====== Address Line 2 *@
             <tr>
@@ -2346,7 +2321,7 @@
                 <td class="td-hide">col-02</td>
                 <td colspan="10"><span>@Html.Raw(Model.Pemberi.Address.Address2)</span></td>
                 <td class="td-hide">col-13</td>
-                <td colspan="11"><span>@Html.Raw(Model.Penerima.Address.Address2)</span></td>
+                <td colspan="11">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address2)</span></td>
             </tr>
             @*======== ROW 11 ====== Address Line 3 *@
             <tr>
@@ -2354,7 +2329,7 @@
                 <td class="td-hide">col-02</td>
                 <td colspan="10"><span>@Html.Raw(Model.Pemberi.Address.Address3)</span></td>
                 <td class="td-hide">col-13</td>
-                <td colspan="11"><span>@Html.Raw(Model.Penerima.Address.Address3)</span></td>
+                <td colspan="11">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address3)</span></td>
             </tr>
             @*======== ROW 12 ====== Address Line 4 *@
             <tr>
@@ -2362,24 +2337,23 @@
                 <td class="td-hide">col-02</td>
                 <td colspan="10"><span>@Html.Raw(Model.Pemberi.Address.Address4)</span></td>
                 <td class="td-hide">col-13</td>
-                <td colspan="11"><span>@Html.Raw(Model.Penerima.Address.Address4)</span></td>
+                <td colspan="11">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address4)</span></td>
             </tr>
             @*======== ROW 13 ====== City, Country *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.City)</span></td>
+                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.City)</span></td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="3">&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
+                <td class="td-hide" colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.City)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.City)</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
-                <td colspan="3"><span>@Html.Raw(Model.Penerima.Address.Country)</span></td>
-                <td class="td-hide">col-23</td>
+                <td colspan="4"><span>@Html.Raw(Model.Penerima.Address.Country)</span></td>
                 <td class="td-hide">col-24</td>
             </tr>
             @*======== ROW 14 ====== Tel, Postcode *@
@@ -2387,13 +2361,13 @@
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.ContactNumber)</span></td>
+                <td colspan="4"><span>@Html.Raw(Model.Pemberi.ContactInformation.ContactNumber)</span></td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="3">&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Postcode)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Postcode)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.ContactNumber)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.ContactNumber)</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
                 <td colspan="3"><span>@Html.Raw(Model.Penerima.Address.Postcode)</span></td>
@@ -2405,21 +2379,10 @@
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.Email)</span></td>
-                <td class="td-hide">col-08</td>
-                <td class="td-hide">col-09</td>
-                <td class="td-hide">col-10</td>
-                <td class="td-hide">col-11</td>
-                <td class="td-hide">col-12</td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.Email)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.Email)</span></td>
-                <td class="td-hide">col-18</td>
-                <td class="td-hide">col-19</td>
-                <td class="td-hide">col-20</td>
-                <td class="td-hide">col-21</td>
-                <td class="td-hide">col-22</td>
-                <td class="td-hide">col-23</td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.Email)</span></td>
                 <td class="td-hide">col-24</td>
             </tr>
             @*======== ROW 16 ======*@
@@ -2507,34 +2470,34 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.Description)</span></td>
-                <td colspan="3"><span>@Html.Raw("1")</span></td>
-                <td colspan="2"><span>@Html.Raw(Model.Produk.Weight)</span>&nbsp;(kg)</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("1")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.Weight)</span>&nbsp;(kg)</td>
+                <td class="td-hide">col-15</td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
                 <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
-                <td class="td-hide">col-24</td>
+                <td colspan="4"><span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
             </tr>
             @*======== ROW 20 ====== Custom Declaration 2 *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="3"><span>@Html.Raw("")</span></td>
-                <td colspan="2"><span>@Html.Raw("")</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide">col-15</td>
                 <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td class="td-hide">col-24</td>
+                <td colspan="4"><span>@Html.Raw("")</span></td>
             </tr>
             @*======== ROW 21 ====== Custom Declaration 3  *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="3"><span>@Html.Raw("")</span></td>
-                <td colspan="2"><span>@Html.Raw("")</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide">col-15</td>
                 <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td class="td-hide">col-24</td>
+                <td colspan="4"><span>@Html.Raw("")</span></td>
             </tr>
             @*======== ROW 22 ====== Total *@
             <tr>
@@ -2547,10 +2510,10 @@
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="3"><span>@Html.Raw("1")</span></td>
-                <td colspan="2"><span>@Html.Raw(Model.Produk.Weight)</span></td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Total V")</span></td>
-                <td class="td-hide">col-17</td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("1")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.Weight)</span></td>
+                <td class="td-hide">col-15</td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
                 <td class="td-hide">col-20</td>
@@ -2597,13 +2560,14 @@
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                <td class="td-hide">col-10</td>
+                <td class="td-hide">&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
-                <td><span>✓</span></td>
+                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
                 <td class="td-hide">col-20</td>
@@ -2615,21 +2579,21 @@
             @*======== ROW 25 ====== Return Goods, Other, Explanation, Comments *@
             <tr>
                 <td class="td-hide">col-01</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                <td class="td-hide" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-04</td>
                 <td class="td-hide">col-05</td>
                 <td class="td-hide">col-06</td>
                 <td class="td-hide">col-07</td>
-                <td><span>✓</span></td>
+                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-09</td>
                 <td class="td-hide">col-10</td>
                 <td class="td-hide">col-11</td>
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide" colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td class="td-hide">col-17</td>
                 <td class="td-hide">col-18</td>
-                <td colspan="4">&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide" colspan="4">&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td class="td-hide">col-23</td>
                 <td class="td-hide">col-24</td>
             </tr>
@@ -2698,7 +2662,7 @@
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="4">&nbsp;<span>@DateTime.Today.Date</span></td>
+                <td colspan="4">&nbsp;&nbsp;<span>@DateTime.Today.Date</span></td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
@@ -2922,7 +2886,9 @@
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td rowspan="3" colspan="6">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode-int" id="my-connote5">@Html.Raw(Model.ConNote)</span></td>
+                <td rowspan="3" colspan="4">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode-int" id="my-connote5">@Html.Raw(Model.ConNote)</span></td>
+                <td class="td-hide">col-19</td>
+                <td class="td-hide">col-20</td>
                 <td class="td-hide">col-21</td>
                 <td class="td-hide">col-22</td>
                 <td class="td-hide">col-23</td>
@@ -2986,7 +2952,7 @@
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose-conn">@Html.Raw(Model.ConNote)</span></td>
+                <td colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose-conn-int">@Html.Raw(Model.ConNote)</span></td>
                 <td class="td-hide">col-21</td>
                 <td class="td-hide">col-22</td>
                 <td class="td-hide">col-23</td>
@@ -3025,32 +2991,32 @@
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
                 <td class="td-hide">col-04</td>
-                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;<span>Account No.</span></td>
+                <td class="td-hide" colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Account No.</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
-                <td colspan="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Importer's Reference</span></td>
+                <td class="td-hide" colspan="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Importer's Reference</span></td>
             </tr>
             @*======== ROW 8 ====== Name *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactPerson)</span></td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactPerson)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactPerson)</span></td>
+                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactPerson)</span></td>
             </tr>
             @*======== ROW 9 ====== Address Line 1 *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address1)</span></td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address1)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address1)</span></td>
+                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address1)</span></td>
             </tr>
             @*======== ROW 10 ====== Address Line 2 *@
             <tr>
@@ -3058,7 +3024,7 @@
                 <td class="td-hide">col-02</td>
                 <td colspan="10"><span>@Html.Raw(Model.Pemberi.Address.Address2)</span></td>
                 <td class="td-hide">col-13</td>
-                <td colspan="11"><span>@Html.Raw(Model.Penerima.Address.Address2)</span></td>
+                <td colspan="11">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address2)</span></td>
             </tr>
             @*======== ROW 11 ====== Address Line 3 *@
             <tr>
@@ -3066,7 +3032,7 @@
                 <td class="td-hide">col-02</td>
                 <td colspan="10"><span>@Html.Raw(Model.Pemberi.Address.Address3)</span></td>
                 <td class="td-hide">col-13</td>
-                <td colspan="11"><span>@Html.Raw(Model.Penerima.Address.Address3)</span></td>
+                <td colspan="11">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address3)</span></td>
             </tr>
             @*======== ROW 12 ====== Address Line 4 *@
             <tr>
@@ -3074,24 +3040,23 @@
                 <td class="td-hide">col-02</td>
                 <td colspan="10"><span>@Html.Raw(Model.Pemberi.Address.Address4)</span></td>
                 <td class="td-hide">col-13</td>
-                <td colspan="11"><span>@Html.Raw(Model.Penerima.Address.Address4)</span></td>
+                <td colspan="11">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address4)</span></td>
             </tr>
             @*======== ROW 13 ====== City, Country *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.City)</span></td>
+                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.City)</span></td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="3">&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
+                <td class="td-hide" colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.City)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.City)</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
-                <td colspan="3"><span>@Html.Raw(Model.Penerima.Address.Country)</span></td>
-                <td class="td-hide">col-23</td>
+                <td colspan="4"><span>@Html.Raw(Model.Penerima.Address.Country)</span></td>
                 <td class="td-hide">col-24</td>
             </tr>
             @*======== ROW 14 ====== Tel, Postcode *@
@@ -3099,13 +3064,13 @@
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.ContactNumber)</span></td>
+                <td colspan="4"><span>@Html.Raw(Model.Pemberi.ContactInformation.ContactNumber)</span></td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="3">&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Postcode)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Postcode)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.ContactNumber)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.ContactNumber)</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
                 <td colspan="3"><span>@Html.Raw(Model.Penerima.Address.Postcode)</span></td>
@@ -3117,21 +3082,10 @@
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.Email)</span></td>
-                <td class="td-hide">col-08</td>
-                <td class="td-hide">col-09</td>
-                <td class="td-hide">col-10</td>
-                <td class="td-hide">col-11</td>
-                <td class="td-hide">col-12</td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.Email)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.Email)</span></td>
-                <td class="td-hide">col-18</td>
-                <td class="td-hide">col-19</td>
-                <td class="td-hide">col-20</td>
-                <td class="td-hide">col-21</td>
-                <td class="td-hide">col-22</td>
-                <td class="td-hide">col-23</td>
+                <td colspan="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.Email)</span></td>
                 <td class="td-hide">col-24</td>
             </tr>
             @*======== ROW 16 ======*@
@@ -3219,34 +3173,34 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.Description)</span></td>
-                <td colspan="3"><span>@Html.Raw("1")</span></td>
-                <td colspan="2"><span>@Html.Raw(Model.Produk.Weight)</span>&nbsp;(kg)</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("1")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.Weight)</span>&nbsp;(kg)</td>
+                <td class="td-hide">col-15</td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
                 <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
-                <td class="td-hide">col-24</td>
+                <td colspan="4"><span>@Html.Raw(Model.Pemberi.Address.Country)</span></td>
             </tr>
             @*======== ROW 20 ====== Custom Declaration 2 *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="3"><span>@Html.Raw("")</span></td>
-                <td colspan="2"><span>@Html.Raw("")</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide">col-15</td>
                 <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td class="td-hide">col-24</td>
+                <td colspan="4"><span>@Html.Raw("")</span></td>
             </tr>
             @*======== ROW 21 ====== Custom Declaration 3  *@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="3"><span>@Html.Raw("")</span></td>
-                <td colspan="2"><span>@Html.Raw("")</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide">col-15</td>
                 <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                <td class="td-hide">col-24</td>
+                <td colspan="4"><span>@Html.Raw("")</span></td>
             </tr>
             @*======== ROW 22 ====== Total *@
             <tr>
@@ -3259,10 +3213,10 @@
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="3"><span>@Html.Raw("1")</span></td>
-                <td colspan="2"><span>@Html.Raw(Model.Produk.Weight)</span></td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Total V")</span></td>
-                <td class="td-hide">col-17</td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("1")</span></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.Weight)</span></td>
+                <td class="td-hide">col-15</td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
                 <td class="td-hide">col-20</td>
@@ -3309,13 +3263,14 @@
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                <td class="td-hide">col-10</td>
+                <td class="td-hide">&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
-                <td><span>✓</span></td>
+                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-18</td>
                 <td class="td-hide">col-19</td>
                 <td class="td-hide">col-20</td>
@@ -3327,21 +3282,21 @@
             @*======== ROW 25 ====== Return Goods, Other, Explanation, Comments *@
             <tr>
                 <td class="td-hide">col-01</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                <td class="td-hide" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-04</td>
                 <td class="td-hide">col-05</td>
                 <td class="td-hide">col-06</td>
                 <td class="td-hide">col-07</td>
-                <td><span>✓</span></td>
+                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-09</td>
                 <td class="td-hide">col-10</td>
                 <td class="td-hide">col-11</td>
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-13</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide" colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td class="td-hide">col-17</td>
                 <td class="td-hide">col-18</td>
-                <td colspan="4">&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                <td class="td-hide" colspan="4">&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                 <td class="td-hide">col-23</td>
                 <td class="td-hide">col-24</td>
             </tr>
@@ -3410,7 +3365,7 @@
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
-                <td colspan="4">&nbsp;<span>@DateTime.Today.Date</span></td>
+                <td colspan="4">&nbsp;&nbsp;<span>@DateTime.Today.Date</span></td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
