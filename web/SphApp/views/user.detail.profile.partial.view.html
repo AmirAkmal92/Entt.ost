@@ -1,0 +1,174 @@
+﻿<div class="modal fade" tabindex="-1" role="dialog" id="user-detail-profile-dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Update Personal Details</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form action="#" class="form-horizontal" id="user-detail-profile-form" data-bind="with: $root.entity().Profile()">
+                            <div class="form-body">
+                                <div class="page-header">
+                                    <h4>Personal Info</h4>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                <small>Name<span class="text-danger"> * </span></small>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input class="form-control input-sm" type="text" placeholder="Name" data-bind="value: ContactPerson" name="ContactPerson" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                <small>Company Name</small>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input class="form-control input-sm" type="text" placeholder="Company Name" data-bind="value: CompanyName, visible :true, enable: true" name="CompanyName">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                <small>Contact No.<span class="text-danger"> * </span></small>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input class="form-control input-sm" type="text" placeholder="Contact Number" data-bind="value: ContactInformation().ContactNumber" name="ContactInformation.ContactNumber" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                <small>Email<span class="text-danger"> * </span></small>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input class="form-control input-sm" type="email" placeholder="Email" data-bind="value: ContactInformation().Email" name="ContactInformation.Email" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                <small>Alt. Contact No.</small>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input class="form-control input-sm" type="text" placeholder="Alternative Contact Number" data-bind="value: ContactInformation().AlternativeContactNumber" name="ContactInformation.AlternativeContactNumber">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="page-header">
+                                    <h4>Address</h4>
+                                </div>                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                <small>Address Line 1<span class="text-danger"> * </span></small>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input class="form-control input-sm" type="text" placeholder="Address Line 1" data-bind="value: Address().Address1" name="Address.Address1" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                <small>Address Line 2<span class="text-danger"> * </span></small>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input class="form-control input-sm" type="text" placeholder="Address Line 2" data-bind="value: Address().Address2" name="Address.Address2" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                <small>Address Line 3</small>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input class="form-control input-sm" type="text" placeholder="Address Line 3" data-bind="value: Address().Address3" name="Address.Address3">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                <small>Address Line 4</small>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input class="form-control input-sm" type="text" placeholder="Address Line 4" data-bind="value: Address().Address4" name="Address.Address4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                <small>Postcode<span class="text-danger"> * </span></small>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input class="form-control input-sm" type="text" placeholder="Postcode" data-bind="value: Address().Postcode" name="Address.Postcode" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                <small>City<span class="text-danger"> * </span></small>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input class="form-control input-sm" type="text" placeholder="City" data-bind="value: Address().City" name="Address.City" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                <small>State<span class="text-danger"> * </span></small>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input class="form-control input-sm" type="text" placeholder="State" data-bind="value: Address().State" name="Address.State" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                Country<span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <select class="form-control" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Address().Country, entity" name="Address.Country" required></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-bind="click: $root.resetUserDetailProfile">Reset</button>
+                <button type="button" class="btn btn-success" data-bind="click: $root.saveUserDetailProfile">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
