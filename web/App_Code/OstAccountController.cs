@@ -434,22 +434,19 @@ namespace web.sph.App_Code
                 Roles.AddUserToRoles(profile.UserName, profile.Roles);
                 await CreateProfile(profile, designation);
                 await SendVerificationEmail(profile.Email);
-                
-                //create user's address book entry
-                var userAddress = new Bespoke.Ost.AddressBooks.Domain.AddressBook();
+
+                //create user details
+                var userDetail = new Bespoke.Ost.UserDetails.Domain.UserDetail();
                 var guid = Guid.NewGuid().ToString();
-                userAddress.Id = guid;
-                userAddress.ReferenceNo = profile.Email;
-                userAddress.UserId = profile.UserName;
-                userAddress.ContactPerson = profile.FullName;
-                userAddress.ProfilePictureUrl = model.PictureUrl;
-                userAddress.ContactInformation.Email = profile.Email;
-                userAddress.Address.Country = "MY";
-                userAddress.CreatedBy = profile.UserName;
-                userAddress.ChangedBy = profile.UserName;
+                userDetail.Id = guid;
+                userDetail.UserId = profile.UserName;
+                userDetail.Profile.ContactPerson = profile.FullName;
+                userDetail.ProfilePictureUrl = model.PictureUrl;
+                userDetail.Profile.ContactInformation.Email = profile.Email;
+                userDetail.Profile.Address.Country = "MY";
                 using (var session = context.OpenSession())
                 {
-                    session.Attach(userAddress);
+                    session.Attach(userDetail);
                     await session.SubmitChanges("Default");
                 }
 

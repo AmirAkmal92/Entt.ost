@@ -1,150 +1,190 @@
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
-            <a href="index.html">Home</a>
+            <a href="#">Home</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>User</span>
+            <span>User Dashboard</span>
         </li>
     </ul>
 </div>
-<h1 class="page-title">
-    User Profile
-    <small></small>
-</h1>
-<div class="profile" data-bind="with: entity">
-    <div class="tabbable-line tabbable-full-width">
-        <ul class="nav nav-tabs">
-            <li class="active">
-                <a href="#tab_1_3" data-toggle="tab"> Overview </a>
-            </li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane active" id="tab_1_1">
-                <div class="row">
-                    <div class="col-md-3">
-                        <ul class="list-unstyled profile-nav">
-                            <li>
-                                <img data-bind="attr: { src: ProfilePictureUrl }" class="img-thumbnail"/>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="tab-content">
-                            <div id="tab_1-1" class="tab-pane active">
-                                <form role="form" action="#" id="customer-home-form">
-                                    <h3 class="form-section">Personal Info</h3>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group" data-bind="visible:true">
-                                                <label class="control-label">Name
-                                                    <span class="required" aria-required="true"> * </span></label>
-                                                <input required type="text" class="form-control" data-bind="value: ContactPerson">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group" data-bind="visible:true">
-                                                <label class="control-label">Company Name</label>
-                                                <input type="text" class="form-control" data-bind="value: CompanyName" name="CompanyName">
-                                            </div>
-                                        </div>
+<div class="row">
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption">
+                <div class="caption-subject font-red-sunglo bold"><h2>User Dashboard</h2></div>
+                <span class="caption-helper">User Details and Activities</span>
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <div class="row" data-bind="with: entity">
+                <div class="col-md-12">
+                    <div class="page-header"><h3>Contacts</h3></div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="panel-heading">
+                                <strong>Personal Details</strong>
+                                <div class="pull-right">
+                                    <span><i class="fa fa-pencil-square-o" data-bind="click: $root.launchUserDetailProfileDialog"></i></span>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <address>
+                                        <strong><span data-bind="text: Profile().ContactPerson"></span></strong><br />
+                                        <span data-bind="text: Profile().ContactInformation().Email"></span>
+                                    </address>
+                                    <address>
+                                        <strong><span data-bind="text: Profile().CompanyName"></span></strong><br />
+                                        <span data-bind="text: Profile().Address().Address1"></span>&nbsp;
+                                        <span data-bind="text: Profile().Address().Address2"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: Profile().Address().Address3"></span>&nbsp;
+                                        <span data-bind="text: Profile().Address().Address4"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: Profile().Address().Postcode"></span>&nbsp;
+                                        <span data-bind="text: Profile().Address().City"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: Profile().Address().State"></span>&nbsp;
+                                        <!--<span data-bind="text: Profile().Address().Country"></span>-->Malaysia&nbsp;
+                                        <br />
+                                        <!--ko if: Profile().ContactInformation().ContactNumber() != null-->
+                                        <abbr title="Contact Number">Phone 1:</abbr> <span data-bind="text: Profile().ContactInformation().ContactNumber"></span><br />
+                                        <!--/ko-->
+                                        <!--ko if: Profile().ContactInformation().AlternativeContactNumber() != null-->
+                                        <abbr title="Alternative Contact Number">Phone 2:</abbr> <span data-bind="text: Profile().ContactInformation().AlternativeContactNumber"></span>
+                                        <!--/ko-->
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <strong>Default Billing Address</strong>
+                                    <div class="pull-right">
+                                        <span><i class="fa fa-pencil-square-o" data-bind="click: $root.launchUserDetailBillingAddressDialog"></i></span>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group" data-bind="visible:true">
-                                                <label class="control-label">Email<span class="required" aria-required="true"> * </span></label>
-                                                <input required class="form-control" type="email" data-bind="value: ContactInformation().Email" name="ContactInformation.Email">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group" data-bind="visible:true">
-                                                <label class="control-label">Contact No.<span class="required" aria-required="true"> * </span></label>
-                                                <input required class="form-control" type="text" data-bind="value: ContactInformation().ContactNumber" name="ContactInformation.ContactNumber">
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="panel-body">
+                                    <address>
+                                        <strong><span data-bind="text: BillingAddress().ContactPerson"></span></strong><br />
+                                        <span data-bind="text: BillingAddress().ContactInformation().Email"></span>
+                                    </address>
+                                    <address>
+                                        <strong><span data-bind="text: BillingAddress().CompanyName"></span></strong><br />
+                                        <span data-bind="text: BillingAddress().Address().Address1"></span>&nbsp;
+                                        <span data-bind="text: BillingAddress().Address().Address2"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: BillingAddress().Address().Address3"></span>&nbsp;
+                                        <span data-bind="text: BillingAddress().Address().Address4"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: BillingAddress().Address().Postcode"></span>&nbsp;
+                                        <span data-bind="text: BillingAddress().Address().City"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: BillingAddress().Address().State"></span>&nbsp;
+                                        <!--<span data-bind="text: BillingAddress().Address().Country"></span>-->Malaysia&nbsp;
+                                        <br />
+                                        <!--ko if: BillingAddress().ContactInformation().ContactNumber() != null-->
+                                        <abbr title="Contact Number">Phone 1:</abbr> <span data-bind="text: BillingAddress().ContactInformation().ContactNumber"></span><br />
+                                        <!--/ko-->
+                                        <!--ko if: BillingAddress().ContactInformation().AlternativeContactNumber() != null-->
+                                        <abbr title="Alternative Contact Number">Phone 2:</abbr> <span data-bind="text: BillingAddress().ContactInformation().AlternativeContactNumber"></span>
+                                        <!--/ko-->
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <strong>Default Pickup Address</strong>
+                                    <div class="pull-right">
+                                        <span><i class="fa fa-pencil-square-o" data-bind="click: $root.launchUserDetailPickupAddressDialog"></i></span>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group" data-bind="visible:true">
-                                                <label class="control-label">Alternative Contact No.</label>
-                                                <input type="text" class="form-control" data-bind="value: ContactInformation().AlternativeContactNumber" name="ContactInformation.AlternativeContactNumber">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group" data-bind="visible:true">
-                                                <label class="control-label">Profile Picture Url</label>
-                                                <input type="text" class="form-control" data-bind="value: ProfilePictureUrl" name="ProfilePictureUrl">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h3 class="form-section">Address</h3>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group" data-bind="visible:true">
-                                                <label class="control-label">Address Line 1<span class="required" aria-required="true"> * </span></label>
-                                                <input required type="text" class="form-control" data-bind="value: Address().Address1" name="Address.Address1">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group" data-bind="visible:true">
-                                                <label class="control-label">Address Line 2<span class="required" aria-required="true"> * </span></label>
-                                                <input required type="text" class="form-control" data-bind="value: Address().Address2" name="Address.Address2">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group" data-bind="visible:true">
-                                                <label class="control-label">Address Line 3</label>
-                                                <input type="text" class="form-control" data-bind="value: Address().Address3" name="Pemberi.Address.Address3">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group" data-bind="visible:true">
-                                                <label class="control-label">Address Line 4</label>
-                                                <input type="text" class="form-control" data-bind="value: Address().Address4" name="Pemberi.Address.Address4">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group" data-bind="visible:true">
-                                                <label class="control-label">Postcode<span class="required" aria-required="true"> * </span></label>
-                                                <input required type="text" class="form-control" data-bind="value: Address().Postcode" name="Address.Postcode">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group" data-bind="visible:true">
-                                                <label class="control-label">City<span class="required" aria-required="true"> * </span></label>
-                                                <input required type="text" class="form-control" data-bind="value: Address().City" name="Address.City">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group" data-bind="visible:true">
-                                                <label class="control-label">State<span class="required" aria-required="true"> * </span></label>
-                                                <input required type="text" class="form-control" data-bind="value: Address().State" name="Address.State">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group" data-bind="visible:true">
-                                                <label class="control-label">Country<span class="required" aria-required="true"> * </span></label>
-                                                <select required class="form-control" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Address().Country" name="value: Address.Country"></select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="margiv-top-10 pull-right">
-                                        <button id="save-button" class="btn btn-info" data-bind="click: $root.saveProfile, visible :true, enable: true">
-                                            <i class="fa fa-save"></i>
-                                            <span data-i18n="Save"> Save </span>
-                                        </button>
-                                    </div>
-                                </form>
+                                </div>
+                                <div class="panel-body">
+                                    <address>
+                                        <strong><span data-bind="text: PickupAddress().ContactPerson"></span></strong><br />
+                                        <span data-bind="text: PickupAddress().ContactInformation().Email"></span>
+                                    </address>
+                                    <address>
+                                        <strong><span data-bind="text: PickupAddress().CompanyName"></span></strong><br />
+                                        <span data-bind="text: PickupAddress().Address().Address1"></span>&nbsp;
+                                        <span data-bind="text: PickupAddress().Address().Address2"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: PickupAddress().Address().Address3"></span>&nbsp;
+                                        <span data-bind="text: PickupAddress().Address().Address4"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: PickupAddress().Address().Postcode"></span>&nbsp;
+                                        <span data-bind="text: PickupAddress().Address().City"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: PickupAddress().Address().State"></span>&nbsp;
+                                        <!--<span data-bind="text: PickupAddress().Address().Country"></span>-->Malaysia&nbsp;
+                                        <br />
+                                        <!--ko if: PickupAddress().ContactInformation().ContactNumber() != null-->
+                                        <abbr title="Contact Number">Phone 1:</abbr> <span data-bind="text: PickupAddress().ContactInformation().ContactNumber"></span><br />
+                                        <!--/ko-->
+                                        <!--ko if: PickupAddress().ContactInformation().AlternativeContactNumber() != null-->
+                                        <abbr title="Alternative Contact Number">Phone 2:</abbr> <span data-bind="text: PickupAddress().ContactInformation().AlternativeContactNumber"></span>
+                                        <!--/ko-->
+                                    </address>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <!-- ko compose : {view: 'user.detail.profile.partial.view'}-->
+            <!--/ko-->
+            <!-- ko compose : {view: 'user.detail.billing.address.partial.view'}-->
+            <!--/ko-->
+            <!-- ko compose : {view: 'user.detail.pickup.address.partial.view'}-->
+            <!--/ko-->            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-header"><h3>Paid Orders</h3></div>
+                    <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list}">
+                        <thead>
+                            <tr>
+                                <th>Order No</th>
+                                <th class="hidden-xs">Pickup Number</th>
+                                <th class="hidden-xs">Tracking Number</th>
+                                <th class="hidden-xs">Parcel</th>
+                                <th>Total Price</th>
+                                <th class="hidden-xs">Date</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach :list">
+                            <tr data-bind="">
+                                <td>
+                                    <a data-bind="attr : {href:'#consignment-request-paid-summary' + '/' + Id, title:'Summary' }">
+                                        <span data-bind="text: ReferenceNo"></span>
+                                    </a>
+                                </td>
+                                <td class="hidden-xs" data-bind="text: Pickup.Number"></td>
+                                <td class="hidden-xs">
+                                    <!--ko foreach: Consignments-->
+                                    <span data-bind="text: ConNote"></span>&nbsp;
+                                    <!--/ko-->
+                                </td>
+                                <td class="hidden-xs" data-bind="text:Consignments.length"></td>
+                                <td><span data-bind="text:Payment.TotalPrice.toFixed(2)" class="pull-right"></span></td>
+                                <td class="hidden-xs" data-bind="date:{ value:ChangedDate, format:&#39;D/M/YYYY HH:mm&#39;}"></td>
+                                <td>
+                                    <a class="btn btn-success btn-xs" title="View Tax Invoice" data-bind="attr: { href: '#consignment-request-paid-invoice' + '/' + Id }">
+                                        <i class="fa fa-clipboard"></i>
+                                    </a>
+                                    <a class="btn btn-info btn-xs" title="Track &amp; Trace" data-bind="click: $root.partial.showParcelTrackTrace">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <img src="/Images/spinner-md.gif" alt="loading" class="absolute-center" data-bind="visible: isBusy" />
                 </div>
             </div>
         </div>
