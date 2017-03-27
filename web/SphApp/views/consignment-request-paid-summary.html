@@ -110,6 +110,13 @@
                                     <tr>
                                         <td>
                                             <span data-bind="text: Pemberi().ContactPerson"></span>
+                                            <!--ko if: showDetails()-->
+                                            <p>
+                                                <small>
+                                                    Postcode: <span data-bind="text: Pemberi().Address().Postcode()"></span>
+                                                </small>
+                                            </p>                                           
+                                            <!--/ko-->
                                         </td>
                                         <td>
                                             <span data-bind="text: Penerima().ContactPerson"></span>
@@ -158,7 +165,7 @@
                                             <a class="btn btn-info btn-xs" title="Track &amp; Trace" data-bind="click: $root.showParcelTrackTrace">
                                                 <i class="fa fa-search"></i>
                                             </a>
-                                            <a class="btn btn-success btn-xs" title="Summary">
+                                            <a class="btn btn-success btn-xs" title="Details" data-bind="click: $root.toggleShowParcelDetails">
                                                 <i class="fa fa-file-text-o"></i>
                                             </a>
                                         </td>

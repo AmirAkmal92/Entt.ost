@@ -22,6 +22,10 @@ function (context, logger, router, system, chart, config, app, app2) {
                         }
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
+                    for (var i = 0; i < entity().Consignments().length; i++) {
+                        var showDetails = ko.observable(false);
+                        entity().Consignments()[i].showDetails = showDetails;
+                    }
                 }, function (e) {
                     if (e.status == 404) {
                         app.showMessage("Sorry, but we cannot find any Paid Order with Id : " + entityId, "Ost", ["OK"]).done(function () {
@@ -85,6 +89,9 @@ function (context, logger, router, system, chart, config, app, app2) {
                     });
             });
         },
+        toggleShowParcelDetails = function (parcel) {
+            parcel.showDetails(!parcel.showDetails());
+        }
         attached = function (view) {
 
         },
@@ -123,6 +130,7 @@ function (context, logger, router, system, chart, config, app, app2) {
         schedulePickup: schedulePickup,
         generateConNotes: generateConNotes,
         showParcelTrackTrace: showParcelTrackTrace,
+        toggleShowParcelDetails: toggleShowParcelDetails,
         entity: entity
     };
 
