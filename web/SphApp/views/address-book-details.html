@@ -203,7 +203,7 @@
                     <div class="col-md-6">
                         <div class="row">
                             <div class="pull-right">
-                                <button class="btn default" data-bind="click: $root.removeCommand">
+                                <button class="btn default" data-bind="click: $root.removeCommand, visible: $root.id() != '0'">
                                     <i class="fa fa-trash-o"></i>
                                     <span data-i18n="Delete">Delete</span>
                                     <i class="fa fa-spin fa-circle-o-notch" style="display: none;"></i><i class="fa fa-warning" style="color: red; display: none;"></i>
