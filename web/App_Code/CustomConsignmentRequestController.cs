@@ -75,7 +75,7 @@ namespace web.sph.App_Code
             };
 
             // wait until the worker process it
-            await Task.Delay(1000);
+            await Task.Delay(1500);
             return Accepted(result);
         }
 
@@ -163,6 +163,8 @@ namespace web.sph.App_Code
                 id = item.Id
             };
 
+            // wait until the worker process it
+            await Task.Delay(1500);
             return Accepted(result);
         }
 
@@ -442,6 +444,8 @@ namespace web.sph.App_Code
                 pickup_close = item.Pickup.DateClose.ToString()
             };
 
+            // wait until the worker process it
+            await Task.Delay(1500);
             return Accepted(result);
         }
 
