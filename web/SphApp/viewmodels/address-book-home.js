@@ -39,14 +39,15 @@ function (context, logger, router, chart, config, app, koList, partial, contactG
                             context.post("{}", "address-books/" + storeId).done(function (result) {
                                 console.log(result);
                                 app.showMessage("Contacts successfuly imported from file.", "Ost", ["OK"]).done(function () {
-                                    contactGroups.activate();
-                                    $.ajax({
-                                        url: "/api/address-books/",
-                                        method: "GET",
-                                        cache: false
-                                    }).then(function (lo) {
-                                        list(lo._results);
-                                    });
+                                    //contactGroups.activate();
+                                    //$.ajax({
+                                    //    url: "/api/address-books/",
+                                    //    method: "GET",
+                                    //    cache: false
+                                    //}).then(function (lo) {
+                                    //    list(lo._results);
+                                    //});
+                                    window.location.reload(true);
                                 });
                             });
                         }

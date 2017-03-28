@@ -2,7 +2,7 @@ define([objectbuilders.datacontext, objectbuilders.app, "plugins/router", "servi
 function (context, app, router, logger, contactGroups, app2, dialog) {
     var groupName = ko.observable(),
         selectedAddresses = ko.observableArray([]),
-        //checkAll = ko.observable(false),
+        checkAll = ko.observable(false),
         removeAddresses = function () {
             var tcs = $.Deferred();
             app.showMessage(`Are you sure you want to remove ${selectedAddresses().length} contact(s)? This action cannot be undone.`, "OST", ["Yes", "No"])
@@ -15,8 +15,9 @@ function (context, app, router, logger, contactGroups, app2, dialog) {
                                 logger.info("Selected addresses has been successfully removed");
                                 selectedAddresses().forEach(v => rootList.remove(v));
                                 selectedAddresses.removeAll();
-                                contactGroups.activate();
+                                //contactGroups.activate();
                                 tcs.resolve(true);
+                                window.location.reload(true);
                             });
                     } else {
                         tcs.resolve(false);
@@ -100,18 +101,18 @@ function (context, app, router, logger, contactGroups, app2, dialog) {
         addContact = function () {
              return router.navigate("address-book-details/0");
         },
-        //toggleCheckAll = function () {
-        //    $("input[name^='check-contact-']").each(function () {
-        //        if (!checkAll()) {
-        //            if (!$(this).is(":checked")) {
-        //                $(this).click();
-        //            }
-        //        } else {
-        //            $(this).click();
-        //        }
-        //    });
-        //    checkAll(!checkAll());
-        //},
+        toggleCheckAll = function () {
+            $("input[name^='check-contact-']").each(function () {
+                if (!checkAll()) {
+                    if (!$(this).is(":checked")) {
+                        $(this).click();
+                    }
+                } else {
+                    $(this).click();
+                }
+            });
+            checkAll(!checkAll());
+        },
         map = function (v) {
              v.Groups = ko.observableArray(v.Groups);
              return v;
@@ -121,8 +122,8 @@ function (context, app, router, logger, contactGroups, app2, dialog) {
         selectedAddresses: selectedAddresses,
         removeAddresses: removeAddresses,
         addContact: addContact,
-        //checkAll: checkAll,
-        //toggleCheckAll: toggleCheckAll,
+        checkAll: checkAll,
+        toggleCheckAll: toggleCheckAll,
         renameGroup: renameGroup,
         map: map,
         groupName: groupName,
