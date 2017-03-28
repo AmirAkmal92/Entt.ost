@@ -91,33 +91,52 @@ function (context, logger, router, system, chart, config, app, app2) {
         },
         toggleShowParcelDetails = function (parcel) {
             parcel.showDetails(!parcel.showDetails());
-        }
+        },
+        toggleShowBusyLoadingDialog = function (dialogtText) {
+            //toggle busy loading dialog
+            $('#show-busy-loading-dialog-text').text(dialogtText);
+            $('#show-busy-loading-dialog').modal('toggle');
+        },
         attached = function (view) {
-
+            //initialize busy loading dialog
+            $('#show-busy-loading-dialog').modal({
+                keyboard: false,
+                show: false,
+                backdrop: 'static'
+            });
         },
         compositionComplete = function () {
             if ((entity().Payment().IsPaid()) && (!entity().Payment().IsConNoteReady()) && (!entity().Payment().IsPickupScheduled())) {
                 app.showMessage("Congratulation. Payment has been accepted. Please wait a moment while we generate your Pickup Number and Tracking Number(s). Thank you.", "Ost", ["OK"]).done(function () {
-                        var data = ko.mapping.toJSON(entity);
-                        if (entity().Pickup().Number() === undefined) {
-                            console.log("Schedule Pickup");
-                            context.put(data, "/consignment-request/schedule-pickup/" + ko.unwrap(entity().Id) + "").done(function (result) {
-                                if (result.success) {
-                                    app.showMessage("Pickup Number successfully generated.", "Ost", ["OK"]).done(function () {
-                                        if (entity().Consignments()[0].ConNote() === undefined) {
-                                            console.log("Generate Connotes");
-                                            context.put(data, "/consignment-request/generate-con-notes/" + ko.unwrap(entity().Id) + "").done(function (result) {
-                                                if (result.success) {
-                                                    app.showMessage("Tracking Number(s) successfully generated.", "Ost", ["OK"]).done(function () {
-                                                        router.activeItem().activate(result.id);
-                                                    });
-                                                }
-                                            });
-                                        }
-                                    });
-                                }
-                            });
-                        }
+                    var data = ko.mapping.toJSON(entity);
+                    if (entity().Pickup().Number() === undefined) {
+                        console.log("Schedule Pickup");
+                        toggleShowBusyLoadingDialog("Scheduling Pickup");
+                        context.put(data, "/consignment-request/schedule-pickup/" + ko.unwrap(entity().Id) + "").done(function (result) {
+                            toggleShowBusyLoadingDialog("Done");
+                            if (result.success) {
+                                app.showMessage("Pickup Number successfully generated.", "Ost", ["OK"]).done(function () {
+                                    if (entity().Consignments()[0].ConNote() === undefined) {
+                                        console.log("Generate Connotes");
+                                        toggleShowBusyLoadingDialog("Generating Tracking Number(s)");
+                                        context.put(data, "/consignment-request/generate-con-notes/" + ko.unwrap(entity().Id) + "").done(function (result) {
+                                            toggleShowBusyLoadingDialog("Done");
+                                            if (result.success) {
+                                                app.showMessage("Tracking Number(s) successfully generated.", "Ost", ["OK"]).done(function () {
+                                                    //router.activeItem().activate(result.id);
+                                                    toggleShowBusyLoadingDialog("Finalizing");
+                                                    setTimeout(function () {
+                                                        toggleShowBusyLoadingDialog("Done");
+                                                        window.location.reload(true);
+                                                    }, 2000);
+                                                });
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
                 });
             }
         };
@@ -131,6 +150,7 @@ function (context, logger, router, system, chart, config, app, app2) {
         generateConNotes: generateConNotes,
         showParcelTrackTrace: showParcelTrackTrace,
         toggleShowParcelDetails: toggleShowParcelDetails,
+        toggleShowBusyLoadingDialog: toggleShowBusyLoadingDialog,
         entity: entity
     };
 
