@@ -42,7 +42,7 @@
                                             <strong>Date</strong>
                                         </div>
                                         <div class="col-md-8">
-                                            <span data-bind="date:{ value: Pickup().DateReady, format:'D/M/YYYY HH:mm'}"></span>
+                                            <span data-bind="date:{ value: Pickup().DateReady, format:'D/M/YYYY'}"></span>
                                         </div>
                                     </td>
                                     <td class="col-md-6">
@@ -61,6 +61,7 @@
                                         </div>
                                         <div class="col-md-8">
                                             <span data-bind="date:{ value: Pickup().DateReady, format:'HH:mm'}"></span>
+                                            &nbsp;-&nbsp;
                                             <span data-bind="date:{ value: Pickup().DateClose, format:'HH:mm'}"></span>
                                         </div>
                                     </td>
