@@ -1,3 +1,48 @@
+.A4 {
+    background: white;
+    width: 21cm;
+    height: 29.7cm;
+    display: block;
+    margin: unset;
+    padding: 10px 25px;
+    margin-bottom: 0.5cm;
+    box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+    overflow-y: scroll;
+    box-sizing: border-box;
+    font-size: 12pt;
+}
+
+@media print {
+    .page-break {
+        display: block;
+        page-break-before: always;
+    }
+
+    size: A4 portrait;
+}
+
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .A4 {
+        box-shadow: none;
+        margin: 0;
+        width: auto;
+        height: auto;
+    }
+
+    .noprint {
+        display: none;
+    }
+
+    .enable-print {
+        display: block;
+    }
+}
+
 .connote-sheet-1 {
     background: url("/assets/global/img/connotes/Domestic_Poslaju_Consignment_Note_Receiver_Copy.jpg") !important;
     background-repeat: no-repeat !important;
@@ -55,6 +100,7 @@
     background-size: cover !important;
     background-position: initial !important;
 }
+
 .connote-int-sheet-5 {
     background: url("/assets/global/img/connotes/International_Poslaju_Consignment_Note_Sender_Copy.jpg") !important;
     background-repeat: no-repeat !important;
@@ -131,6 +177,7 @@ th, td {
     /*letter-spacing: 3px;*/
     font-size: 49px;
 }
+
 .loose-barcode-int {
     font-size: 47px;
 }
