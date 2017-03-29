@@ -26,7 +26,7 @@ define(['services/datacontext', 'services/logger', 'plugins/router', objectbuild
             },
             addGroup = function () {
                 if (groupName() == "") {
-                    return app.showMessage("Group name cannot be empty.", "Ost", ["OK"]);
+                    return app.showMessage("Group name cannot be empty.", "OST", ["OK"]);
                 }
                 groups.push({ group: ko.observable(groupName()), count: ko.observable(0) });
                 groupName("");

@@ -28,7 +28,7 @@ function (context, logger, router, system, chart, config, app, app2) {
                     }
                 }, function (e) {
                     if (e.status == 404) {
-                        app.showMessage("Sorry, but we cannot find any Paid Order with Id : " + entityId, "Ost", ["OK"]).done(function () {
+                        app.showMessage("Sorry, but we cannot find any Paid Order with Id : " + entityId, "OST", ["OK"]).done(function () {
                             router.navigate("consignment-requests-paid");
                         });
                     }
@@ -38,19 +38,19 @@ function (context, logger, router, system, chart, config, app, app2) {
             var data = ko.mapping.toJSON(entity);
             return context.put(data, "/consignment-request/schedule-pickup/" + ko.unwrap(entity().Id) + "")
                 .fail(function (response) {
-                    app.showMessage("Sorry, but we cannot process pickup for the Paid Order with Id : " + ko.unwrap(entity().Id), "Ost", ["OK"]).done(function () {
+                    app.showMessage("Sorry, but we cannot process pickup for the Paid Order with Id : " + ko.unwrap(entity().Id), "OST", ["OK"]).done(function () {
                         router.navigate("consignment-requests-paid");
                     });
                 })
                 .then(function (result) {
                     console.log(result);
                     if (result.success) {
-                        app.showMessage("Pickup successfully scheduled.", "Ost", ["OK"]).done(function () {
+                        app.showMessage("Pickup successfully scheduled.", "OST", ["OK"]).done(function () {
                             router.activeItem().activate(result.id);
                         });
                     } else {
                         console.log(result.status);
-                        app.showMessage("Sorry, but we cannot process pickup for the Paid Order with Id : " + result.id, "Ost", ["OK"]).done(function () {
+                        app.showMessage("Sorry, but we cannot process pickup for the Paid Order with Id : " + result.id, "OST", ["OK"]).done(function () {
                             router.navigate("consignment-requests-paid");
                         });
                     }
@@ -60,19 +60,19 @@ function (context, logger, router, system, chart, config, app, app2) {
             var data = ko.mapping.toJSON(entity);
             return context.put(data, "/consignment-request/generate-con-notes/" + ko.unwrap(entity().Id) + "")
                 .fail(function (response) {
-                    app.showMessage("Sorry, but we cannot process tracking number for the Paid Order with Id : " + ko.unwrap(entity().Id), "Ost", ["OK"]).done(function () {
+                    app.showMessage("Sorry, but we cannot process tracking number for the Paid Order with Id : " + ko.unwrap(entity().Id), "OST", ["OK"]).done(function () {
                         router.navigate("consignment-requests-paid");
                     });
                 })
                 .then(function (result) {
                     console.log(result);
                     if (result.success) {
-                        app.showMessage("Tracking number successfully generated.", "Ost", ["OK"]).done(function () {
+                        app.showMessage("Tracking number successfully generated.", "OST", ["OK"]).done(function () {
                             router.activeItem().activate(result.id);
                         });
                     } else {
                         console.log(result.status);
-                        app.showMessage("Sorry, but we cannot process tracking number for the Paid Order with Id : " + result.id, "Ost", ["OK"]).done(function () {
+                        app.showMessage("Sorry, but we cannot process tracking number for the Paid Order with Id : " + result.id, "OST", ["OK"]).done(function () {
                             router.navigate("consignment-requests-paid");
                         });
                     }
@@ -107,7 +107,7 @@ function (context, logger, router, system, chart, config, app, app2) {
         },
         compositionComplete = function () {
             if ((entity().Payment().IsPaid()) && (!entity().Payment().IsConNoteReady()) && (!entity().Payment().IsPickupScheduled())) {
-                app.showMessage("Congratulation. Payment has been accepted. Please wait a moment while we generate your Pickup Number and Tracking Number(s). Thank you.", "Ost", ["OK"]).done(function () {
+                app.showMessage("Congratulation. Payment has been accepted. Please wait a moment while we generate your Pickup Number and Tracking Number(s). Thank you.", "OST", ["OK"]).done(function () {
                     var data = ko.mapping.toJSON(entity);
                     if (entity().Pickup().Number() === undefined) {
                         console.log("Schedule Pickup");
@@ -115,14 +115,14 @@ function (context, logger, router, system, chart, config, app, app2) {
                         context.put(data, "/consignment-request/schedule-pickup/" + ko.unwrap(entity().Id) + "").done(function (result) {
                             toggleShowBusyLoadingDialog("Done");
                             if (result.success) {
-                                app.showMessage("Pickup Number successfully generated.", "Ost", ["OK"]).done(function () {
+                                app.showMessage("Pickup Number successfully generated.", "OST", ["OK"]).done(function () {
                                     if (entity().Consignments()[0].ConNote() === undefined) {
                                         console.log("Generate Connotes");
                                         toggleShowBusyLoadingDialog("Generating Tracking Number(s)");
                                         context.put(data, "/consignment-request/generate-con-notes/" + ko.unwrap(entity().Id) + "").done(function (result) {
                                             toggleShowBusyLoadingDialog("Done");
                                             if (result.success) {
-                                                app.showMessage("Tracking Number(s) successfully generated.", "Ost", ["OK"]).done(function () {
+                                                app.showMessage("Tracking Number(s) successfully generated.", "OST", ["OK"]).done(function () {
                                                     //router.activeItem().activate(result.id);
                                                     toggleShowBusyLoadingDialog("Finalizing");
                                                     setTimeout(function () {

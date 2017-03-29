@@ -66,7 +66,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         isUsingPickupAddress(false);
                     } else {
                         //isUsingPickupAddress(true);
-                        app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "Ost", ["OK"]).done(function () {
+                        app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "OST", ["OK"]).done(function () {
                             router.navigate("consignment-request-cart/" + crId);
                         });
                     }
@@ -74,7 +74,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
 
                 // always check for pickup location
                 if (entity().Pickup().Address().Postcode() === undefined) {                    
-                    app.showMessage("You must set Pickup Location first before you can send any Parcel.", "Ost", ["OK"]).done(function () {
+                    app.showMessage("You must set Pickup Location first before you can send any Parcel.", "OST", ["OK"]).done(function () {
                         router.navigate("consignment-request-pickup/" + crId);
                     });
                 }
@@ -82,7 +82,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 // always check for pickup schedule
                 if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
                 } else {
-                    app.showMessage("Pickup has been scheduled. No more changes are allowed to the Sender. You may proceed to make Payment now.", "Ost", ["OK"]).done(function () {
+                    app.showMessage("Pickup has been scheduled. No more changes are allowed to the Sender. You may proceed to make Payment now.", "OST", ["OK"]).done(function () {
                         router.navigate("consignment-request-summary/" + crId);
                     });
                 }
@@ -93,7 +93,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 }
             }, function (e) {
                 if (e.status == 404) {
-                    app.showMessage("Sorry, but we cannot find any ConsigmentRequest with Id : " + crId, "Ost", ["OK"]).done(function () {
+                    app.showMessage("Sorry, but we cannot find any ConsigmentRequest with Id : " + crId, "OST", ["OK"]).done(function () {
                         router.navigate("consignment-request-cart/" + crId);
                     });
                 }
