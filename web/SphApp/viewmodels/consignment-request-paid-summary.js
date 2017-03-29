@@ -9,7 +9,12 @@ function (context, logger, router, system, chart, config, app, app2) {
         headers = {},
         activate = function (entityId) {
             id(entityId);
-            return context.get("/api/consigment-requests/" + entityId)
+            //return context.get("/api/consigment-requests/" + entityId)
+            return $.ajax({
+                url: "/api/consigment-requests/" + entityId,
+                method: "GET",
+                cache: false
+            })
                 .then(function (b, textStatus, xhr) {
                     if (xhr) {
                         var etag = xhr.getResponseHeader("ETag"),
@@ -128,7 +133,7 @@ function (context, logger, router, system, chart, config, app, app2) {
                                                     setTimeout(function () {
                                                         toggleShowBusyLoadingDialog("Done");
                                                         window.location.reload(true);
-                                                    }, 2000);
+                                                    }, 5000);
                                                 });
                                             }
                                         });
