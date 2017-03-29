@@ -34,6 +34,9 @@
                                         Malaysia<br />
                                         <abbr title="Contact Number">Phone:</abbr> 1-300-300-300<br />
                                     </address>
+                                    <address>
+                                        <strong><span>GST Registration No</span></strong>: <span>001609433088</span>
+                                    </address>
                                 </div>
                                 <div class="col-md-6">
                                     <h4>INVOICED TO</h4>
@@ -152,7 +155,7 @@
                                         <td colspan="5">&nbsp;</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4">Sub Total</td>
+                                        <td colspan="4">Sub Total (GST exclusive)</td>
                                         <td><span data-bind="text: ($root.totalDomesticNoGst() + $root.totalInternationalNoGst() + 5.00).toFixed(2)" class="pull-right"></span></td>
                                     </tr>
                                     <tr>
@@ -160,12 +163,12 @@
                                         <td><span data-bind="text: ($root.totalDomesticGst() + $root.totalInternationalGst() + 0.30).toFixed(2)" class="pull-right"></span></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4"><strong><span class="text-uppercase">Grand Total</span></strong></td>
+                                        <td colspan="4"><strong><span class="text-uppercase">Grand Total</span></strong> (GST inclusive)</td>
                                         <td><strong><span data-bind="text: Payment().TotalPrice().toFixed(2)" class="pull-right"></span></strong></td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="row">
+                            <!--<div class="row">
                                 <div class="col-md-12">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
@@ -175,7 +178,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                             <table class="table table-hover table-condensed">
                                 <thead>
                                     <tr>
@@ -203,7 +206,9 @@
                                     <small>
                                         If you have any questions about your tax invoice please<br />
                                         call us at 1-300-300-300<br />
-                                        or drop us an email at care@pos.com.my<br />
+                                        or drop us an email at care@pos.com.my<br />                                        
+                                        <br />
+                                        This is a computer generated receipt and no signature is required
                                     </small>
                                 </center>
                             </p>
