@@ -1,133 +1,220 @@
-<div class="row">
-    <div class="col-md-2">&nbsp;</div>
-    <div class="col-md-8">
-        <div class="page-header">
-            <h1>Pickup Manifest</h1>
-        </div>
-        <form class="form-inline">
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon"><span class="fa fa-truck"></span></div>
-                    <input type="text" class="form-control" id="pickupNumber" placeholder="Pickup Number" aria-label="Pickup Number" data-bind="value: pickupNumber">
+<style>
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        #pickup-manifest, #pickup-manifest * {
+            visibility: visible;
+        }
+        #pickup-manifest {
+            position: absolute;
+            top: 0;
+        }
+    }
+</style>
+<div id="pickup-manifest">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-inline hidden-print">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="fa fa-truck"></span></div>
+                        <input type="text" class="form-control" id="pickupNumber" placeholder="Pickup Number" aria-label="Pickup Number" data-bind="value: pickupNumber">
+                    </div>
                 </div>
-            </div>
-            <button type="button" class="btn btn-primary" data-bind="click: searchPickupByNumber">Search Pickup</button>
-        </form>
-        <br />
-        <br />
-        <div data-bind="with: entity">
-            <!--ko ifnot: Pickup().Number() == null-->
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><span data-bind="text: Pickup().Number"></span></h3>
-                </div>
-                <div class="panel-body">
-                    <table class="table table-condensed">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-2">Consignment Id</td>
-                                <td class="col-md-10"><span data-bind="text: Id"></span></td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-2">Number</td>
-                                <td class="col-md-10"><strong><span data-bind="text: Pickup().Number"></span></strong></td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-2">Contact Person</td>
-                                <td class="col-md-10">
-                                    <strong>
-                                        <span data-bind="text: Pickup().ContactPerson"></span>&nbsp;
-                                        (<span data-bind="text: Pickup().ContactInformation().ContactNumber"></span>)
-                                    </strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-2">Address</td>
-                                <td class="col-md-10">
-                                    <address>
-                                        <span data-bind="text: Pickup().ContactPerson"></span>
-                                    </address>
-                                    <address>
-                                        <span data-bind="text: Pickup().CompanyName"></span><br />
-                                        <span data-bind="text: Pickup().Address().Address1"></span>&nbsp;
-                                        <span data-bind="text: Pickup().Address().Address2"></span>&nbsp;
-                                        <br />
-                                        <span data-bind="text: Pickup().Address().Address3"></span>&nbsp;
-                                        <span data-bind="text: Pickup().Address().Address4"></span>&nbsp;
-                                        <br />
-                                        <span data-bind="text: Pickup().Address().City"></span>&nbsp;
-                                        <span data-bind="text: Pickup().Address().State"></span>&nbsp;
-                                        <br />
-                                        <span data-bind="text: Pickup().Address().Postcode"></span>&nbsp;
-                                        <span data-bind="text: Pickup().Address().Country"></span>&nbsp;
-                                        <br />
-                                        Phone 1: <span data-bind="text: Pickup().ContactInformation().ContactNumber"></span><br />
-                                        Phone 2: <span data-bind="text: Pickup().ContactInformation().AlternativeContactNumber"></span><br />
-                                        Email: <span data-bind="text: Pickup().ContactInformation().Email"></span>
-                                    </address>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-2">From</td>
-                                <td class="col-md-10"><span data-bind="date:{ value: Pickup().DateReady, format:'D/M/YYYY HH:mm'}"></span></td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-2">To</td>
-                                <td class="col-md-10"><span data-bind="date:{ value: Pickup().DateClose, format:'D/M/YYYY HH:mm'}"></span></td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-2">Total Quantity</td>
-                                <td class="col-md-10"><span data-bind="text: Pickup().TotalQuantity"></span> item(s)</td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-2">Total Weight</td>
-                                <td class="col-md-10"><span data-bind="text: Pickup().TotalWeight"></span> kg</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <table class="table table-condensed table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Tracking Number</th>
-                                                <th>Weight</th>
-                                                <th>Volume</th>
-                                                <td>Product</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody data-bind="foreach: Consignments">
-                                            <tr>
-                                                <td><span data-bind="text: ConNote"></span></td>
-                                                <td><span data-bind="text: Produk().Weight"></span> kg</td>
-                                                <td>
-                                                    <span data-bind="text: Produk().Width"></span>cm&nbsp;x&nbsp;
-                                                    <span data-bind="text: Produk().Length"></span>cm&nbsp;x&nbsp;
-                                                    <span data-bind="text: Produk().Height"></span>cm&nbsp;
-                                                </td>
-                                                <td>
-                                                    <!--ko if: Produk().Name() != null-->
-                                                    <!--ko if: Produk().IsInternational-->
-                                                    <span data-bind="text: Produk().Name().replace(' Contract', '')"></span>
-                                                    <i class="fa fa-plane"></i>
-                                                    <!-- /ko -->
-                                                    <!--ko ifnot: Produk().IsInternational-->
-                                                    <span data-bind="text: Produk().Name()"></span>
-                                                    <i class="fa fa-truck"></i>
-                                                    <!-- /ko -->
-                                                    <!-- /ko -->
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                <a class="btn btn-primary" data-bind="click: searchPickupByNumber"><i class="fa fa-search"></i> Search</a>
+                <!--ko ifnot: entity().Pickup().Number() == null-->
+                <a class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</a>
+                <!--/ko-->
+            </form>
+            <div data-bind="with: entity">
+                <!--ko ifnot: Pickup().Number() == null-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">PICK-UP MANIFEST</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-condensed">
+                            <tbody>
+                                <tr>
+                                    <td class="col-md-6">
+                                        <div class="col-md-4">
+                                            <strong>Date</strong>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span data-bind="date:{ value: Pickup().DateReady, format:'D/M/YYYY HH:mm'}"></span>
+                                        </div>
+                                    </td>
+                                    <td class="col-md-6">
+                                        <div class="col-md-4">
+                                            <strong>Consignment No</strong>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span data-bind="text: ReferenceNo"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-6">
+                                        <div class="col-md-4">
+                                            <strong>Time</strong>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span data-bind="date:{ value: Pickup().DateReady, format:'HH:mm'}"></span>
+                                            <span data-bind="date:{ value: Pickup().DateClose, format:'HH:mm'}"></span>
+                                        </div>
+                                    </td>
+                                    <td class="col-md-6">
+                                        <div class="col-md-4">
+                                            <strong>Pickup No</strong>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span data-bind="text: Pickup().Number"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-6">
+                                        <div class="col-md-4">
+                                            <strong>Contact Person</strong>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span data-bind="text: Pickup().ContactPerson"></span>
+                                        </div>
+                                    </td>
+                                    <td class="col-md-6">
+                                        <div class="col-md-4">
+                                            <strong>Quantity</strong>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span data-bind="text: Pickup().TotalQuantity"></span> item(s)
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-6">
+                                        <div class="col-md-4">
+                                            <strong>Phone</strong>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span data-bind="text: Pickup().ContactInformation().ContactNumber"></span>
+                                            &nbsp;/&nbsp;
+                                            <span data-bind="text: Pickup().ContactInformation().AlternativeContactNumber"></span>
+                                        </div>
+                                    </td>
+                                    <td class="col-md-6">
+                                        <div class="col-md-4">
+                                            <strong>Weight</strong>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span data-bind="text: Pickup().TotalWeight"></span> kg
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="col-md-2"><strong>Address</strong></div>
+                                        <div class="col-md-10">
+                                            <span data-bind="text: Pickup().CompanyName"></span>&nbsp;
+                                            <span data-bind="text: Pickup().Address().Address1"></span>&nbsp;
+                                            <span data-bind="text: Pickup().Address().Address2"></span>&nbsp;
+                                            <!--ko if: Pickup().Address().Address3() != null-->
+                                            <span data-bind="text: Pickup().Address().Address3"></span>&nbsp;
+                                            <!--/ko-->
+                                            <!--ko if: Pickup().Address().Address4() != null-->
+                                            <span data-bind="text: Pickup().Address().Address4"></span>&nbsp;
+                                            <!--/ko-->
+                                            <span data-bind="text: Pickup().Address().City"></span>&nbsp;
+                                            <span data-bind="text: Pickup().Address().State"></span>&nbsp;
+                                            <span data-bind="text: Pickup().Address().Postcode"></span>&nbsp;
+                                            <!--<span data-bind="text: Pickup().Address().Country"></span>&nbsp;-->
+                                            Malaysia&nbsp;
+                                            <br />
+                                            <span data-bind="text: Pickup().ContactInformation().Email"></span>
+                                        </div>
+                                    </td>
 
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <p>&nbsp;</p>
+                                        <table class="table table-condensed table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <td><strong>No</strong></td>
+                                                    <td><strong>Tracking Number</strong></td>
+                                                    <td><strong>Weight</strong></td>
+                                                    <td><strong>Dimension</strong></td>
+                                                    <td><strong>Product</strong></td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-bind="foreach: Consignments">
+                                                <tr>
+                                                    <td><span data-bind="text: $index() + 1"></span></td>
+                                                    <td><span data-bind="text: ConNote"></span></td>
+                                                    <td><span data-bind="text: Produk().Weight"></span> kg</td>
+                                                    <td>
+                                                        <span data-bind="text: Produk().Width"></span>cm&nbsp;x&nbsp;
+                                                        <span data-bind="text: Produk().Length"></span>cm&nbsp;x&nbsp;
+                                                        <span data-bind="text: Produk().Height"></span>cm&nbsp;
+                                                    </td>
+                                                    <td>
+                                                        <!--ko if: Produk().Name() != null-->
+                                                        <!--ko if: Produk().IsInternational-->
+                                                        <span data-bind="text: Produk().Name().replace(' Contract', '')"></span>
+                                                        <!-- /ko -->
+                                                        <!--ko ifnot: Produk().IsInternational-->
+                                                        <span data-bind="text: Produk().Name()"></span> (NDD)
+                                                        <!-- /ko -->
+                                                        <!-- /ko -->
+                                                    </td>
+                                                    <td>
+                                                        <center><i class="fa fa-square-o fa-2x"></i></center>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-condensed">
+                            <tbody>
+                                <tr>
+                                    <td class="col-md-6">
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Customer Signature / Company Stamp
+                                            </div>
+                                            <div class="panel-body">
+                                                <p>&nbsp;</p>
+                                                <p>&nbsp;</p>
+                                                <p>&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col-md-6">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Courier Signature / Company Stamp
+                                            </div>
+                                            <div class="panel-body">
+                                                <p>&nbsp;</p>
+                                                <p>&nbsp;</p>
+                                                <p>&nbsp;</p>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+                <!--/ko-->
             </div>
-            <!--/ko-->
         </div>
     </div>
-    <div class="col-md-2">&nbsp;</div>
-
 </div>
