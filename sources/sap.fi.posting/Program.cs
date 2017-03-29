@@ -28,10 +28,15 @@ namespace sap.fi.posting
         {
             var startDate = string.Empty;
             var endDate = string.Empty;
-            if (args.Length < 3)
+            if (args.Length < 2)
             {
                 startDate = $"{DateTime.Today.AddDays(-1):yyyy-MM-dd}";
                 endDate = $"{DateTime.Today:yyyy-MM-dd}";
+            }
+            else
+            {
+                startDate = args[0];
+                endDate = args[1];
             }
 
             try
