@@ -38,24 +38,24 @@
                                 <div class="col-md-6">
                                     <h4>INVOICED TO</h4>
                                     <address>
-                                        <strong><span data-bind="text: Pickup().ContactPerson"></span></strong><br />
-                                        <span data-bind="text: Pickup().ContactInformation().Email"></span>
+                                        <strong><span data-bind="text: $root.userDetail().BillingAddress().ContactPerson"></span></strong><br />
+                                        <span data-bind="text: $root.userDetail().BillingAddress().ContactInformation().Email"></span>
                                     </address>
                                     <address>
-                                        <strong><span data-bind="text: Pickup().CompanyName"></span></strong><br />
-                                        <span data-bind="text: Pickup().Address().Address1"></span>&nbsp;
-                                        <span data-bind="text: Pickup().Address().Address2"></span>&nbsp;
+                                        <strong><span data-bind="text: $root.userDetail().BillingAddress().CompanyName"></span></strong><br />
+                                        <span data-bind="text: $root.userDetail().BillingAddress().Address().Address1"></span>&nbsp;
+                                        <span data-bind="text: $root.userDetail().BillingAddress().Address().Address2"></span>&nbsp;
                                         <br />
-                                        <span data-bind="text: Pickup().Address().Address3"></span>&nbsp;
-                                        <span data-bind="text: Pickup().Address().Address4"></span>&nbsp;
+                                        <span data-bind="text: $root.userDetail().BillingAddress().Address().Address3"></span>&nbsp;
+                                        <span data-bind="text: $root.userDetail().BillingAddress().Address().Address4"></span>&nbsp;
                                         <br />
-                                        <span data-bind="text: Pickup().Address().Postcode"></span>&nbsp;
-                                        <span data-bind="text: Pickup().Address().City"></span>&nbsp;
+                                        <span data-bind="text: $root.userDetail().BillingAddress().Address().Postcode"></span>&nbsp;
+                                        <span data-bind="text: $root.userDetail().BillingAddress().Address().City"></span>&nbsp;
                                         <br />
-                                        <span data-bind="text: Pickup().Address().State"></span>&nbsp;
-                                        <!--<span data-bind="text: Pickup().Address().Country"></span>-->Malaysia&nbsp;
+                                        <span data-bind="text: $root.userDetail().BillingAddress().Address().State"></span>&nbsp;
+                                        <!--<span data-bind="text: $root.userDetail().BillingAddress().Address().Country"></span>-->Malaysia&nbsp;
                                         <br />
-                                        <abbr title="Contact Number">Phone:</abbr> <span data-bind="text: Pickup().ContactInformation().ContactNumber"></span><br />
+                                        <abbr title="Contact Number">Phone:</abbr> <span data-bind="text: $root.userDetail().BillingAddress().ContactInformation().ContactNumber"></span><br />
                                     </address>
                                 </div>
                             </div>

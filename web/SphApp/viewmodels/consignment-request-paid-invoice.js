@@ -2,6 +2,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
 function (context, logger, router, system, koList, config, app) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
+        userDetail = ko.observable(new bespoke.Ost_userDetail.domain.UserDetail(system.guid())),
         id = ko.observable(),
         totalDomestic = ko.observable(),
         totalDomesticNoGst = ko.observable(),
@@ -26,6 +27,12 @@ function (context, logger, router, system, koList, config, app) {
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
                     calculateDomesticAndInternational();
+                    context.get("/api/user-details/user-profile")
+                        .done(function (userDetailList) {
+                            if (userDetailList._count > 0) {
+                                userDetail(new bespoke.Ost_userDetail.domain.UserDetail(userDetailList._results[0]));
+                            }
+                        });
                 }, function (e) {
                     if (e.status == 404) {
                         app.showMessage("Sorry, but we cannot find any Paid Order with Id : " + entityId, "OST", ["OK"]).done(function () {
@@ -95,6 +102,7 @@ function (context, logger, router, system, koList, config, app) {
         attached: attached,
         compositionComplete: compositionComplete,
         entity: entity,
+        userDetail: userDetail,
         totalDomestic: totalDomestic,
         totalDomesticNoGst: totalDomesticNoGst,
         totalDomesticGst: totalDomesticGst,
