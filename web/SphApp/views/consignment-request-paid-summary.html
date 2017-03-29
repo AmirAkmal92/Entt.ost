@@ -98,7 +98,6 @@
                                         <th>Sender</th>
                                         <th>Receiver</th>
                                         <th>Weight</th>
-                                        <th>Volume</th>
                                         <th>Product</th>
                                         <th>Total</th>
                                         <th>Tracking Number</th>
@@ -111,24 +110,79 @@
                                         <td>
                                             <span data-bind="text: Pemberi().ContactPerson"></span>
                                             <!--ko if: showDetails()-->
-                                            <p>
+                                            <br /><br />
+                                            <div class="well">
                                                 <small>
-                                                    Postcode: <span data-bind="text: Pemberi().Address().Postcode()"></span>
+                                                    <b>Sender Details</b>
+                                                    <hr>
+                                                    <span data-bind="text: Pemberi().ContactPerson()"></span>
+                                                    <br>
+                                                    <br>
+                                                    60-<span data-bind="text: Pemberi().ContactInformation().ContactNumber()"></span>
+                                                    <br>
+                                                    <span data-bind="text: Pemberi().ContactInformation().Email()"></span>
+                                                    <br>
+                                                    <span data-bind="text: Pemberi().Address().Address1()"></span>
+                                                    <span data-bind="text: Pemberi().Address().Address2()"></span>
+                                                    <br>
+                                                    <span data-bind="text: Pemberi().Address().Address3()"></span>
+                                                    <span data-bind="text: Pemberi().Address().Address4()"></span>
+                                                    <br>
+                                                    <span data-bind="text: Pemberi().Address().City()"></span>
+                                                    <span data-bind="text: Pemberi().Address().Postcode()"></span>
+                                                    <br>
+                                                    <span data-bind="text: Pemberi().Address().State()"></span>
+                                                    <span data-bind="text: Pemberi().Address().Country()"></span>
                                                 </small>
-                                            </p>
+                                            </div>
                                             <!--/ko-->
                                         </td>
                                         <td>
-                                            <span data-bind="text: Penerima().ContactPerson"></span>
+                                            <span data-bind="text: Penerima().ContactPerson()"></span>
+                                            <!--ko if: showDetails()-->
+                                            <br /><br />
+                                            <div class="well">
+                                                <small>
+                                                    <b>Receiver Details</b>
+                                                    <hr>
+                                                    <span data-bind="text: Penerima().ContactPerson()"></span>
+                                                    <br>
+                                                    <br>
+                                                    60-<span data-bind="text: Penerima().ContactInformation().ContactNumber()"></span>
+                                                    <br>
+                                                    <span data-bind="text: Penerima().ContactInformation().Email()"></span>
+                                                    <br>
+                                                    <span data-bind="text: Penerima().Address().Address1()"></span>
+                                                    <span data-bind="text: Penerima().Address().Address2()"></span>
+                                                    <br>
+                                                    <span data-bind="text: Penerima().Address().Address3()"></span>
+                                                    <span data-bind="text: Penerima().Address().Address4()"></span>
+                                                    <br>
+                                                    <span data-bind="text: Penerima().Address().City()"></span>
+                                                    <span data-bind="text: Penerima().Address().Postcode()"></span>
+                                                    <br>
+                                                    <span data-bind="text: Penerima().Address().State()"></span>
+                                                    <span data-bind="text: Penerima().Address().Country()"></span>
+                                                </small>
+                                            </div>
+                                            <!--/ko-->
                                         </td>
                                         <td>
                                             <!--ko if: Produk().Weight() != null-->
                                             <span data-bind="text: Produk().Weight() + ' kg'"></span>
-                                            <!-- /ko -->
-                                        </td>
-                                        <td>
-                                            <!--ko if: Produk().Width() != null-->
-                                            <span data-bind="text: Produk().Width() + 'cm x ' + Produk().Length() + 'cm x ' + Produk().Height() + 'cm'"></span>
+                                            <!--ko if: showDetails()-->
+                                            <br /><br />
+                                            <div class="well">
+                                                <small>
+                                                    <b>Volumetric</b>
+                                                    <hr>
+                                                    <span data-bind="text: Produk().Width() + 'cm x ' + Produk().Length() + 'cm x ' + Produk().Height() + 'cm'"></span>
+                                                    <br /><br />
+                                                    Volumetric weight : <span class="bold" data-bind="text: Bill().VolumetricWeight()"></span>
+                                                    <br />
+                                                </small>
+                                            </div>
+                                            <!--/ko-->
                                             <!-- /ko -->
                                         </td>
                                         <td>
@@ -142,6 +196,19 @@
                                             <i class="fa fa-truck"></i>
                                             <!-- /ko -->
                                             <!-- /ko -->
+                                            <!--ko if: showDetails()-->
+                                            <br /><br />
+                                            <div class="well">
+                                                <small>
+                                                    <b>Service</b>
+                                                    <hr>
+                                                    Code : <span data-bind="text: Bill().ProductCode()"></span>
+                                                    <br />
+                                                    Name : <span data-bind="text: Bill().ProductName()"></span>
+                                                    <br />
+                                                </small>
+                                            </div>
+                                            <!--/ko-->
                                         </td>
                                         <td>
                                             <!--ko if: Produk().Price() != null-->
@@ -166,19 +233,24 @@
                                                 <i class="fa fa-search"></i>
                                             </a>
                                             <a class="btn btn-success btn-xs" title="Details" data-bind="click: $root.toggleShowParcelDetails">
-                                                <i class="fa fa-file-text-o"></i>
+                                                <!--ko if: showDetails()-->
+                                                <i class="fa fa-chevron-circle-up"></i>
+                                                <!--/ko-->
+                                                <!--ko ifnot: showDetails()-->
+                                                <i class="fa fa-chevron-circle-down"></i>
+                                                <!--/ko-->
                                             </a>
                                         </td>
                                     </tr>
                                     <!-- /ko -->
                                     <tr>
-                                        <td colspan="5">Pickup</td>
+                                        <td colspan="4">Pickup</td>
                                         <td>RM <span class="pull-right">5.30</span></td>
                                         <td>&nbsp;</td>
                                         <td>&nbsp;</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="5"><strong>Grand Total</strong></td>
+                                        <td colspan="4"><strong>Grand Total</strong></td>
                                         <td>RM <span data-bind="text: Payment().TotalPrice().toFixed(2)" class="pull-right"></span></td>
                                         <td>&nbsp;</td>
                                         <td>&nbsp;</td>
