@@ -1,0 +1,1226 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "OST REST API",
+        "description": "Online Shipping Tools (OST) Application Programming Interface (API)"
+    },
+    "host": "ost.pos.com.my",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "basicAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "paths": {
+        "/api/address-books/": {
+            "get": {
+                "summary": "Get all address book created by current user",
+                "description": "* Description goes here  \n* Another description goes here  \n",
+                "tags": [
+                    "Address Book"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "type": "string",
+                        "description": "additional query (Elasticsearch Query DSL format)",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "type": "integer",
+                        "default": 1,
+                        "description": "page number",
+                        "required": false
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "type": "integer",
+                        "default": 20,
+                        "description": "item per page",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "_results": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/AddressBook"
+                                    }
+                                },
+                                "_count": {
+                                    "type": "integer"
+                                },
+                                "_page": {
+                                    "type": "integer"
+                                },
+                                "_link": {
+                                    "type": "string"
+                                },
+                                "_size": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Not Modified"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Add new address book",
+                "description": "* Description goes here  \n* Another description goes here  \n",
+                "tags": [
+                    "Address Book"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "AddressBook",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AddressBook"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/RxAcceptedPutPost"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request / Invalid"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "428": {
+                        "description": "Precondition Required"
+                    }
+                }
+            }
+        },
+        "/api/address-books/{id}/": {
+            "get": {
+                "summary": "Get address book by id",
+                "description": "* Description goes here  \n* Another description goes here  \n",
+                "tags": [
+                    "Address Book"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "address book id (GUID format)",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AddressBook"
+                        }
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Modify existing address book",
+                "description": "* Description goes here  \n* Another description goes here  \n",
+                "tags": [
+                    "Address Book"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "address book id (GUID format)",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "AddressBook",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AddressBook"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/RxAcceptedPutPost"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request / Invalid"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "428": {
+                        "description": "Precondition Required"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remove existing address book",
+                "description": "* Description goes here  \n* Another description goes here  \n",
+                "tags": [
+                    "Address Book"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "address book id (GUID format)",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/RxAcceptedDelete"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request / Invalid"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/user-details/": {
+            "get": {
+                "summary": "Get user details created by current user",
+                "description": "* Description goes here  \n* Another description goes here  \n",
+                "tags": [
+                    "User Detail"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "type": "string",
+                        "description": "additional query (Elasticsearch Query DSL format)",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "type": "integer",
+                        "default": 1,
+                        "description": "page number",
+                        "required": false
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "type": "integer",
+                        "default": 20,
+                        "description": "item per page",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "_results": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/UserDetail"
+                                    }
+                                },
+                                "_count": {
+                                    "type": "integer"
+                                },
+                                "_page": {
+                                    "type": "integer"
+                                },
+                                "_link": {
+                                    "type": "string"
+                                },
+                                "_size": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Not Modified"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Add new user detail",
+                "description": "* Description goes here  \n* Another description goes here  \n",
+                "tags": [
+                    "User Detail"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "UserDetail",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UserDetail"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/RxAcceptedPutPost"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request / Invalid"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "428": {
+                        "description": "Precondition Required"
+                    }
+                }
+            }
+        },
+        "/api/user-details/{id}/": {
+            "get": {
+                "summary": "Get user detail by id",
+                "description": "* Description goes here  \n* Another description goes here  \n",
+                "tags": [
+                    "User Detail"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "user detail id (GUID format)",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/UserDetail"
+                        }
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Modify existing user detail",
+                "description": "* Description goes here  \n* Another description goes here  \n",
+                "tags": [
+                    "User Detail"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "user detail id (GUID format)",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "UserDetail",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UserDetail"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/RxAcceptedPutPost"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request / Invalid"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "428": {
+                        "description": "Precondition Required"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remove existing user detail",
+                "description": "* Description goes here  \n* Another description goes here  \n",
+                "tags": [
+                    "User Detail"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "user detail id (GUID format)",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/RxAcceptedDelete"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request / Invalid"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/consigment-requests/": {
+            "get": {
+                "summary": "Get consignment request created by current user",
+                "description": "* Description goes here  \n* Another description goes here  \n",
+                "tags": [
+                    "Consignment Request"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "type": "string",
+                        "description": "additional query (Elasticsearch Query DSL format)",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "type": "integer",
+                        "default": 1,
+                        "description": "page number",
+                        "required": false
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "type": "integer",
+                        "default": 20,
+                        "description": "item per page",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "_results": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ConsignmentRequest"
+                                    }
+                                },
+                                "_count": {
+                                    "type": "integer"
+                                },
+                                "_page": {
+                                    "type": "integer"
+                                },
+                                "_link": {
+                                    "type": "string"
+                                },
+                                "_size": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    },
+                    "304": {
+                        "description": "Not Modified"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Add new consignment request",
+                "description": "* Description goes here  \n* Another description goes here  \n",
+                "tags": [
+                    "Consignment Request"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "ConsignmentRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ConsignmentRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/RxAcceptedPutPost"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request / Invalid"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "428": {
+                        "description": "Precondition Required"
+                    }
+                }
+            }
+        },
+        "/api/consigment-requests/{id}": {
+            "get": {
+                "summary": "Get consignment request by id",
+                "description": "* Description goes here  \n* Another description goes here  \n",
+                "tags": [
+                    "Consignment Request"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "consignment request id (GUID format)",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ConsignmentRequest"
+                        }
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Modify existing consignment request",
+                "description": "* Description goes here  \n* Another description goes here  \n",
+                "tags": [
+                    "Consignment Request"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "consignment request id (GUID format)",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "ConsignmentRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ConsignmentRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/RxAcceptedPutPost"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request / Invalid"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "428": {
+                        "description": "Precondition Required"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remove existing consignment request",
+                "description": "* Description goes here  \n* Another description goes here  \n",
+                "tags": [
+                    "Consignment Request"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "consignment request id (GUID format)",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/RxAcceptedDelete"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request / Invalid"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "GeoLocation": {
+            "type": "object",
+            "properties": {
+                "Lat": {
+                    "type": "number"
+                },
+                "Long": {
+                    "type": "number"
+                }
+            }
+        },
+        "Address": {
+            "type": "object",
+            "properties": {
+                "Address1": {
+                    "type": "string"
+                },
+                "Address2": {
+                    "type": "string"
+                },
+                "Address3": {
+                    "type": "string"
+                },
+                "Address4": {
+                    "type": "string"
+                },
+                "City": {
+                    "type": "string"
+                },
+                "State": {
+                    "type": "string"
+                },
+                "Country": {
+                    "type": "string"
+                },
+                "Postcode": {
+                    "type": "string"
+                },
+                "GeoLocation": {
+                    "$ref": "#/definitions/GeoLocation"
+                }
+            }
+        },
+        "ContactInformation": {
+            "type": "object",
+            "properties": {
+                "Email": {
+                    "type": "string"
+                },
+                "ContactNumber": {
+                    "type": "string"
+                },
+                "AlternativeContactNumber": {
+                    "type": "string"
+                }
+            }
+        },
+        "AddressBook": {
+            "type": "object",
+            "properties": {
+                "ReferenceNo": {
+                    "type": "string"
+                },
+                "CompanyName": {
+                    "type": "string"
+                },
+                "ContactPerson": {
+                    "type": "string"
+                },
+                "Groups": {
+                    "type": "string"
+                },
+                "ContactInformation": {
+                    "$ref": "#/definitions/ContactInformation"
+                },
+                "Address": {
+                    "$ref": "#/definitions/Address"
+                },
+                "ProfilePictureUrl": {
+                    "type": "string"
+                },
+                "UserId": {
+                    "type": "string"
+                }
+            }
+        },
+        "UserDetail": {
+            "type": "object",
+            "properties": {
+                "UserId": {
+                    "type": "string"
+                },
+                "Profile": {
+                    "type": "object",
+                    "properties": {
+                        "CompanyName": {
+                            "type": "string"
+                        },
+                        "ContactPerson": {
+                            "type": "string"
+                        },
+                        "Address": {
+                            "$ref": "#/definitions/Address"
+                        }
+                    }
+                },
+                "PickupAddress": {
+                    "type": "object",
+                    "properties": {
+                        "CompanyName": {
+                            "type": "string"
+                        },
+                        "ContactPerson": {
+                            "type": "string"
+                        },
+                        "Address": {
+                            "$ref": "#/definitions/Address"
+                        }
+                    }
+                },
+                "BillingAddress": {
+                    "type": "object",
+                    "properties": {
+                        "CompanyName": {
+                            "type": "string"
+                        },
+                        "ContactPerson": {
+                            "type": "string"
+                        },
+                        "Address": {
+                            "$ref": "#/definitions/Address"
+                        }
+                    }
+                },
+                "ProfilePictureUrl": {
+                    "type": "string"
+                }
+            }
+        },
+        "ConsignmentRequest": {
+            "type": "object",
+            "properties": {
+                "ReferenceNo": {
+                    "type": "string"
+                },
+                "Payment": {
+                    "type": "object",
+                    "properties": {
+                        "Status": {
+                            "type": "string"
+                        },
+                        "Date": {
+                            "type": "string"
+                        },
+                        "TotalPrice": {
+                            "type": "number"
+                        },
+                        "ReceiptNo": {
+                            "type": "string"
+                        },
+                        "IsPaid": {
+                            "type": "boolean"
+                        },
+                        "IsConNoteReady": {
+                            "type": "boolean"
+                        },
+                        "IsPickupScheduled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "Pickup": {
+                    "type": "object",
+                    "properties": {
+                        "Number": {
+                            "type": "string"
+                        },
+                        "CompanyName": {
+                            "type": "string"
+                        },
+                        "ContactPerson": {
+                            "type": "string"
+                        },
+                        "Address": {
+                            "$ref": "#/definitions/Address"
+                        },
+                        "ContactInformation": {
+                            "$ref": "#/definitions/ContactInformation"
+                        },
+                        "DateReady": {
+                            "type": "string"
+                        },
+                        "DateClose": {
+                            "type": "string"
+                        },
+                        "TotalDocument": {
+                            "type": "integer"
+                        },
+                        "TotalMerchandise": {
+                            "type": "integer"
+                        },
+                        "TotalParcel": {
+                            "type": "integer"
+                        },
+                        "TotalQuantity": {
+                            "type": "integer"
+                        },
+                        "TotalWeight": {
+                            "type": "number"
+                        },
+                        "Status": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "Consignments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Consignment"
+                    }
+                }
+            }
+        },
+        "Consignment": {
+            "type": "object",
+            "properties": {
+                "Pemberi": {
+                    "type": "object",
+                    "properties": {
+                        "CompanyName": {
+                            "type": "string"
+                        },
+                        "ContactPerson": {
+                            "type": "string"
+                        },
+                        "Address": {
+                            "$ref": "#/definitions/Address"
+                        },
+                        "ContactInformation": {
+                            "$ref": "#/definitions/ContactInformation"
+                        }
+                    }
+                },
+                "Penerima": {
+                    "type": "object",
+                    "properties": {
+                        "CompanyName": {
+                            "type": "string"
+                        },
+                        "ContactPerson": {
+                            "type": "string"
+                        },
+                        "Address": {
+                            "$ref": "#/definitions/Address"
+                        },
+                        "ContactInformation": {
+                            "$ref": "#/definitions/ContactInformation"
+                        }
+                    }
+                },
+                "Produk": {
+                    "type": "object",
+                    "properties": {
+                        "ItemCategory": {
+                            "type": "string"
+                        },
+                        "Weight": {
+                            "type": "number"
+                        },
+                        "Width": {
+                            "type": "number"
+                        },
+                        "Length": {
+                            "type": "number"
+                        },
+                        "Height": {
+                            "type": "number"
+                        },
+                        "Price": {
+                            "type": "number"
+                        },
+                        "Description": {
+                            "type": "string"
+                        },
+                        "Code": {
+                            "type": "string"
+                        },
+                        "Name": {
+                            "type": "string"
+                        },
+                        "IsInternational": {
+                            "type": "boolean"
+                        },
+                        "ValueAddedCode": {
+                            "type": "number"
+                        },
+                        "ValueAddedDeclaredValue": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "Bill": {
+                    "type": "object",
+                    "properties": {
+                        "ProductCode": {
+                            "type": "string"
+                        },
+                        "ProductName": {
+                            "type": "string"
+                        },
+                        "ItemCategory": {
+                            "type": "string"
+                        },
+                        "RateStepInfo": {
+                            "type": "string"
+                        },
+                        "BaseRate": {
+                            "type": "number"
+                        },
+                        "AddOnsA": {
+                            "type": "object",
+                            "properties": {
+                                "Code": {
+                                    "type": "string"
+                                },
+                                "Name": {
+                                    "type": "string"
+                                },
+                                "Formula": {
+                                    "type": "string"
+                                },
+                                "Charge": {
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "SubTotal1": {
+                            "type": "number"
+                        },
+                        "AddOnsB": {
+                            "type": "object",
+                            "properties": {
+                                "Code": {
+                                    "type": "string"
+                                },
+                                "Name": {
+                                    "type": "string"
+                                },
+                                "Formula": {
+                                    "type": "string"
+                                },
+                                "Charge": {
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "SubTotal2": {
+                            "type": "number"
+                        },
+                        "AddOnsC": {
+                            "type": "object",
+                            "properties": {
+                                "Code": {
+                                    "type": "string"
+                                },
+                                "Name": {
+                                    "type": "string"
+                                },
+                                "Formula": {
+                                    "type": "string"
+                                },
+                                "Charge": {
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "SubTotal3": {
+                            "type": "number"
+                        },
+                        "AddOnsD": {
+                            "type": "object",
+                            "properties": {
+                                "Code": {
+                                    "type": "string"
+                                },
+                                "Name": {
+                                    "type": "string"
+                                },
+                                "Formula": {
+                                    "type": "string"
+                                },
+                                "Charge": {
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "TotalBeforeDiscount": {
+                            "type": "number"
+                        },
+                        "Total": {
+                            "type": "number"
+                        },
+                        "TaxRemark": {
+                            "type": "string"
+                        },
+                        "Width": {
+                            "type": "number"
+                        },
+                        "Length": {
+                            "type": "number"
+                        },
+                        "Height": {
+                            "type": "number"
+                        },
+                        "ActualWeight": {
+                            "type": "number"
+                        },
+                        "VolumetricWeight": {
+                            "type": "number"
+                        },
+                        "BranchCode": {
+                            "type": "string"
+                        },
+                        "SenderPostcode": {
+                            "type": "string"
+                        },
+                        "SenderCountryCode": {
+                            "type": "string"
+                        },
+                        "ReceiverPostcode": {
+                            "type": "string"
+                        },
+                        "ReceiverCountryCode": {
+                            "type": "string"
+                        },
+                        "ZoneName": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "ConNote": {
+                    "type": "string"
+                }
+            }
+        },
+        "RxAcceptedPutPost": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "_link": {
+                    "type": "string"
+                }
+            }
+        },
+        "RxAcceptedDelete": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "_link": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

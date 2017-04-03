@@ -1,0 +1,417 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Online Shipping Tools API",
+        "description": "Related APIs Consume by Online Shipping Tools",
+        "version": "1.0.0"
+    },
+    "host": "apis.pos.com.my",
+    "basePath": "/apigateway/as2corporate",
+    "schemes": [
+        "https"
+    ],
+    "produces": [
+        "application/json",
+        "application/x-yaml"
+    ],
+    "securityDefinitions": {
+        "UserSecurity": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "Authorization"
+        }
+    },
+    "security": [
+        {
+            "UserSecurity": []
+        }
+    ],
+    "paths": {
+        "/api/v2trackntracewebapijson/v1": {
+            "get": {
+                "summary": "Track Consignment Number",
+                "description": "This api will allow to track the consignment event in details by single consignment note only.\n",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Consignment Note / Connote Number.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "culture",
+                        "in": "query",
+                        "description": "En or Ms.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Production"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of consignment events",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Connote"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/trackntracewebapiheader/v1": {
+            "get": {
+                "summary": "Track Consignment Numbers",
+                "description": "This api will allow to track more than one consignment latest event by entering consignment note separated by semicolon \" ; \".\n",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Consignment Note / Connote Number.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "culture",
+                        "in": "query",
+                        "description": "En or Ms.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Production"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of consignment latest events",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Connotes"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/pickupwebapi/v1": {
+            "get": {
+                "summary": "Get Pickup Number Collection Operation",
+                "description": "This api will allow to get pickup number that will use by couriers for making collection with customer.\n",
+                "parameters": [
+                    {
+                        "name": "callerNameF",
+                        "in": "query",
+                        "description": "Caller Name (Postman).",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "contactpersonf",
+                        "in": "query",
+                        "description": "Receiver Name.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "phoneNoF",
+                        "in": "query",
+                        "description": "Receiver's Phone No.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "callerPhoneF",
+                        "in": "query",
+                        "description": "Caller Phone No.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pickAddressF",
+                        "in": "query",
+                        "description": "Pickup Address.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "posCodeF",
+                        "in": "query",
+                        "description": "Postcode.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "totDocumentF",
+                        "in": "query",
+                        "description": "Total Documents.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "totMerchandiseF",
+                        "in": "query",
+                        "description": "Total Merchandise.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "totParcelF",
+                        "in": "query",
+                        "description": "Total Parcel.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "totQuantityF",
+                        "in": "query",
+                        "description": "Total Quantity.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "totWeightF",
+                        "in": "query",
+                        "description": "Total Weight.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "accNoF",
+                        "in": "query",
+                        "description": "Account No.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_readyF",
+                        "in": "query",
+                        "description": "Ready Time.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_closeF",
+                        "in": "query",
+                        "description": "End Time.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Staging"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of pickup numbers",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PickupNo"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/generateconnote/v1": {
+            "get": {
+                "summary": "Get Pickup Number Collection Operation",
+                "description": "This api will allow to get pickup number that will use by couriers for making collection with customer.\n",
+                "parameters": [
+                    {
+                        "name": "numberOfItem",
+                        "in": "query",
+                        "description": "Total number of connote.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Prefix",
+                        "in": "query",
+                        "description": "Prefix of the connote number.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ApplicationCode",
+                        "in": "query",
+                        "description": "Application code of CMS.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Secretid",
+                        "in": "query",
+                        "description": "Secret ID of CMS.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Orderid",
+                        "in": "query",
+                        "description": "Order ID /Transaction ID , must be unique.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "Username that use to request the connote.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Staging"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of pickup numbers",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/GenrateConnotes"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Connote": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique number representing a specific product combined with specific prefix for example \"ED282863779MY\"."
+                },
+                "culture": {
+                    "type": "string",
+                    "description": "Specific code for culture."
+                }
+            }
+        },
+        "Connotes": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique number representing a specific product combined with specific prefix for example \"ED282863779MY\"."
+                },
+                "culture": {
+                    "type": "string",
+                    "description": "Specific code for culture."
+                }
+            }
+        },
+        "PickupNo": {
+            "type": "object",
+            "properties": {
+                "callerNameF": {
+                    "type": "string",
+                    "description": "Caller Name (Postman)."
+                },
+                "contactpersonf": {
+                    "type": "string",
+                    "description": "Receiver Name."
+                },
+                "phoneNoF": {
+                    "type": "string",
+                    "description": "Receiver's Phone No."
+                },
+                "callerPhoneF": {
+                    "type": "string",
+                    "description": "Caller Phone No."
+                },
+                "pickAddressF": {
+                    "type": "string",
+                    "description": "Pickup Address."
+                },
+                "posCodeF": {
+                    "type": "string",
+                    "description": "Postcode."
+                },
+                "totDocumentF": {
+                    "type": "string",
+                    "description": "Total Documents."
+                },
+                "totMerchandiseF": {
+                    "type": "string",
+                    "description": "Total Merchandise."
+                },
+                "totParcelF": {
+                    "type": "string",
+                    "description": "Total Parcel."
+                },
+                "totQuantityF": {
+                    "type": "string",
+                    "description": "Total Quantity."
+                },
+                "totWeightF": {
+                    "type": "string",
+                    "description": "Total Weight."
+                },
+                "accNoF": {
+                    "type": "string",
+                    "description": "Account No."
+                },
+                "_readyF": {
+                    "type": "string",
+                    "description": "Ready Time."
+                },
+                "_closeF": {
+                    "type": "string",
+                    "description": "End Time."
+                }
+            }
+        },
+        "GenrateConnotes": {
+            "type": "object",
+            "properties": {
+                "numberOfItem": {
+                    "type": "string",
+                    "description": "Total number of connote."
+                },
+                "Prefix": {
+                    "type": "string",
+                    "description": "Prefix of the connote number."
+                },
+                "ApplicationCode": {
+                    "type": "string",
+                    "description": "Application code of CMS."
+                },
+                "Secretid": {
+                    "type": "string",
+                    "description": "Secret ID of CMS."
+                },
+                "Orderid": {
+                    "type": "string",
+                    "description": "Order ID /Transaction ID , must be unique."
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Username that use to request the connote."
+                }
+            }
+        }
+    }
+}
