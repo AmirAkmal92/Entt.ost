@@ -1,11 +1,13 @@
 define([objectbuilders.datacontext, objectbuilders.logger, objectbuilders.router,
-    objectbuilders.config, objectbuilders.app, objectbuilders.system, "services/_ko.list"],
+    objectbuilders.config, objectbuilders.app, objectbuilders.system, "services/_ko.list", "viewmodels/_consignment-request-cart"],
 
-function (context, logger, router, config, app, system, koList) {
+function (context, logger, router, config, app, system, koList, crCart) {
     var isBusy = ko.observable(false),
         errors = ko.observableArray(),
         entity = ko.observable(),
         availableCountries = ko.observableArray(),
+        crShippingCart = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
+        paidConsignments = ko.observableArray(),
         query = "/api/consigment-requests/paid",
         list = ko.observableArray([]),
         partial = partial || {},
@@ -56,6 +58,14 @@ function (context, logger, router, config, app, system, koList) {
                         entity().BillingAddress().Address().Country("MY");
                         entity().PickupAddress().Address().Country("MY");
                     }
+                });
+                return $.ajax({
+                    url: "/api/consigment-requests/paid/",
+                    method: "GET",
+                    cache: false
+                }).done(function (crList) {
+                    console.log(crList._results);
+                    paidConsignments(crList._results);
                 });
             });
         },
@@ -178,6 +188,9 @@ function (context, logger, router, config, app, system, koList) {
                 messages: {
                 }
             });
+        },
+        compositionComplete = function () {
+            crShippingCart(crCart.consignmentRequest());
         };
 
     var vm = {
@@ -201,8 +214,11 @@ function (context, logger, router, config, app, system, koList) {
         copyUserDetailProfileBillingAddress: copyUserDetailProfileBillingAddress,
         copyUserDetailProfilePickupAddress: copyUserDetailProfilePickupAddress,
         availableCountries: availableCountries,
+        crShippingCart: crShippingCart,
+        paidConsignments: paidConsignments,
         activate: activate,
         attached: attached,
+        compositionComplete: compositionComplete,
     };
     return vm;
 });
