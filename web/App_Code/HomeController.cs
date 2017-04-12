@@ -8,8 +8,8 @@ namespace web.sph.App_Code
         [Route("")]
         public ActionResult Index()
         {
-            //return View(); //disable homepage
-            return RedirectToAction("Login", "OstAccount");
+            return View(); //disable homepage
+            //return RedirectToAction("Login", "OstAccount");
         }
 
         [Route("track-trace")]
