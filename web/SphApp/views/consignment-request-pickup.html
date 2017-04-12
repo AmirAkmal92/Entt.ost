@@ -5,170 +5,240 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span> Send Parcel </span>
-            <i class="fa fa-circle"></i>
-        </li>
-        <li>
-            <span> Pickup </span>
+            <span> Shipment </span>
+            <!--<i class="fa fa-circle"></i>-->
         </li>
     </ul>
 </div>
-<div class="row mt-element-step">
-    <div class="mt-element-step">
-        <div class="row step-background-thin red">
-            <div class="col-md-3 bg-grey-steel mt-step-col active">
-                <div class="mt-step-number">1</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Pickup</div>
-                <div class="mt-step-content font-grey-cascade">Pickup Location</div>
-            </div>
-            <div class="col-md-3 bg-grey-steel mt-step-col">
-                <div class="mt-step-number">2</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Sender</div>
-                <div class="mt-step-content font-grey-cascade">Sender Information</div>
-            </div>
-            <div class="col-md-3 bg-grey-steel mt-step-col">
-                <div class="mt-step-number">3</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Receiver</div>
-                <div class="mt-step-content font-grey-cascade">Receiver Information</div>
-            </div>
-            <div class="col-md-3 bg-grey-steel mt-step-col">
-                <div class="mt-step-number">4</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Parcel</div>
-                <div class="mt-step-content font-grey-cascade">Parcel Information</div>
-            </div>            
-        </div>
-    </div>
-</div>
+<h1 class="page-title">
+    <small></small>
+</h1>
 <div class="row">
-    <div class="portlet light bordered">
-        <div class="portlet-title">
-            <div class="caption">
-                <div class="caption-subject font-red-sunglo bold"><h2>Send Parcel</h2></div>
-                <span class="caption-helper">Pickup Location</span>
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="mt-element-step">
+                    <div class="row step-thin">
+                        <div class="col-md-3 bg-grey done mt-step-col active">
+                            <div class="mt-step-number bg-white font-grey">1</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Pickup</div>
+                            <div class="mt-step-content font-grey-cascade">Pickup address</div>
+                        </div>
+                        <div class="col-md-3 bg-grey mt-step-col">
+                            <div class="mt-step-number bg-white font-grey">2</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Sender</div>
+                            <div class="mt-step-content font-grey-cascade">Sender address</div>
+                        </div>
+                        <div class="col-md-3 bg-grey mt-step-col">
+                            <div class="mt-step-number bg-white font-grey">3</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Receiver</div>
+                            <div class="mt-step-content font-grey-cascade">Receiver address</div>
+                        </div>
+                        <div class="col-md-3 bg-grey mt-step-col">
+                            <div class="mt-step-number bg-white font-grey">4</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Parcel</div>
+                            <div class="mt-step-content font-grey-cascade">Parcel details</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="portlet-body form">
-            <form data-bind="with: entity().Pickup()" role="form" id="consignment-request-pickup-form">
-                <div class="form-body">
-                    <h3 class="form-section"> Personal Info </h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Search Contact</label>
-                                <select class="form-control" name="SearchContact" id="pickup-company-name"></select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Sender Name
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required type="text" class="form-control" data-bind="value: ContactPerson" name="ContactPerson">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Company Name</label>
-                                <input type="text" class="form-control" data-bind="value: CompanyName" name="CompanyName">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Email
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required class="form-control" type="email" data-bind="value: ContactInformation().Email" name="ContactInformation.Email">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Contact No.
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required class="form-control" type="text" data-bind="value: ContactInformation().ContactNumber" name="ContactInformation.ContactNumber">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Alternative Contact No.</label>
-                                <input type="text" class="form-control" data-bind="value: ContactInformation().AlternativeContactNumber" name="ContactInformation.AlternativeContactNumber">
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="form-section">Address</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Address Line 1
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required type="text" class="form-control" data-bind="value: Address().Address1" name="Address.Address1">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Address Line 2
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required type="text" class="form-control" data-bind="value: Address().Address2" name="Address.Address2">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Address Line 3</label>
-                                <input type="text" class="form-control" data-bind="value: Address().Address3" name="Address.Address3">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Address Line 4</label>
-                                <input type="text" class="form-control" data-bind="value: Address().Address4" name="Address.Address4">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Postcode
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required type="text" class="form-control" data-bind="value: Address().Postcode" name="Address.Postcode">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">City
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required type="text" class="form-control" data-bind="value: Address().City" name="Address.City">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">State
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required type="text" class="form-control" data-bind="value: Address().State" name="Address.State">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Country
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <select class="form-control" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Address().Country" name="Address.Country" required></select>
-                            </div>
-                        </div>
-                    </div>
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <h4>
+                        <span class="caption-subject font-green bold uppercase">Pickup Information</span>
+                    </h4>
+                    <div class="caption-desc font-grey-cascade">All details about pickup</div>
                 </div>
-                <div class="form-actions right">
-                    <button id="save-button" class="btn btn-danger" data-bind="click: $root.saveCommand, visible :true, enable: $root.isPoscodeValid">
-                        <i class="icon-arrow-right"></i>
-                        <span data-i18n="Save"> Next </span>
-                    </button>
+                <div class="actions">
+                    <h3>
+                        <button id="save-button" class="btn btn-circle btn-sm green" data-bind="click: $root.saveCommand, visible :true, enable: $root.isPoscodeValid">
+                            <i class="icon-arrow-right"></i>
+                            <span data-i18n="Save"> Next </span>
+                        </button>
+                    </h3>
                 </div>
-            </form>
+            </div>
+            <div class="portlet-body">
+                <form class="form-horizontal" data-bind="with: entity().Pickup()" role="form" id="consignment-request-pickup-form">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" data-bind="visible:true">
+                                    <label class="control-label col-md-4"><small>Search Contact</small></label>
+                                    <div class="col-md-8">
+                                        <select class="form-control input-sm" name="SearchContact" id="pickup-company-name"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" data-bind="visible:true">
+                                    <label class="control-label col-md-4">
+                                        <small>
+                                            Sender Name
+                                            <span class="required" aria-required="true"> * </span>
+                                        </small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input required type="text" class="form-control input-sm" data-bind="value: ContactPerson" name="ContactPerson">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" data-bind="visible:true">
+                                    <label class="control-label col-md-4"><small>Company Name</small></label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control input-sm" data-bind="value: CompanyName" name="CompanyName">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" data-bind="visible:true">
+                                    <label class="control-label col-md-4">
+                                        <small>
+                                            Email
+                                            <span class="required" aria-required="true"> * </span>
+                                        </small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input required class="form-control input-sm" type="email" data-bind="value: ContactInformation().Email" name="ContactInformation.Email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" data-bind="visible:true">
+                                    <label class="control-label col-md-4">
+                                        <small>
+                                            Contact No.
+                                            <span class="required" aria-required="true"> * </span>
+                                        </small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input required class="form-control input-sm" type="text" data-bind="value: ContactInformation().ContactNumber" name="ContactInformation.ContactNumber">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" data-bind="visible:true">
+                                    <label class="control-label col-md-4"><small>Alternative Contact No.</small></label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control input-sm" data-bind="value: ContactInformation().AlternativeContactNumber" name="ContactInformation.AlternativeContactNumber">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" data-bind="visible:true">
+                                    <label class="control-label col-md-4">
+                                        <small>
+                                            Address Line 1
+                                            <span class="required" aria-required="true"> * </span>
+                                        </small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input required type="text" class="form-control input-sm" data-bind="value: Address().Address1" name="Address.Address1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" data-bind="visible:true">
+                                    <label class="control-label col-md-4">
+                                        <small>
+                                            Address Line 2
+                                            <span class="required" aria-required="true"> * </span>
+                                        </small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input required type="text" class="form-control input-sm" data-bind="value: Address().Address2" name="Address.Address2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" data-bind="visible:true">
+                                    <label class="control-label col-md-4"><small>Address Line 3</small></label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control input-sm" data-bind="value: Address().Address3" name="Address.Address3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" data-bind="visible:true">
+                                    <label class="control-label col-md-4"><small>Address Line 4</small></label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control input-sm" data-bind="value: Address().Address4" name="Address.Address4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" data-bind="visible:true">
+                                    <label class="control-label col-md-4">
+                                        <small>
+                                            Postcode
+                                            <span class="required" aria-required="true"> * </span>
+                                        </small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input required type="text" class="form-control input-sm" data-bind="value: Address().Postcode" name="Address.Postcode">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" data-bind="visible:true">
+                                    <label class="control-label col-md-4">
+                                        <small>
+                                            City
+                                            <span class="required" aria-required="true"> * </span>
+                                        </small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input required type="text" class="form-control input-sm" data-bind="value: Address().City" name="Address.City">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" data-bind="visible:true">
+                                    <label class="control-label col-md-4">
+                                        <small>
+                                            State
+                                            <span class="required" aria-required="true"> * </span>
+                                        </small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input required type="text" class="form-control input-sm" data-bind="value: Address().State" name="Address.State">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" data-bind="visible:true">
+                                    <label class="control-label col-md-4">
+                                        <small>
+                                            Country
+                                            <span class="required" aria-required="true"> * </span>
+                                        </small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select class="form-control input-sm" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Address().Country" name="Address.Country" required></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

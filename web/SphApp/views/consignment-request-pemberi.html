@@ -5,181 +5,239 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span> Send Parcel </span>
-            <i class="fa fa-circle"></i>
-        </li>
-        <li>
-            <span> Sender </span>
+            <span> Shipment </span>
+            <!--<i class="fa fa-circle"></i>-->
         </li>
     </ul>
 </div>
-<div class="row mt-element-step">
-    <div class="mt-element-step">
-        <div class="row step-background-thin red">
-            <div class="col-md-3 bg-grey-steel mt-step-col">
-                <div class="mt-step-number">1</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Pickup</div>
-                <div class="mt-step-content font-grey-cascade">Pickup Location</div>
-            </div>
-            <div class="col-md-3 bg-grey-steel mt-step-col active">
-                <div class="mt-step-number">2</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Sender</div>
-                <div class="mt-step-content font-grey-cascade">Sender Information</div>
-            </div>
-            <div class="col-md-3 bg-grey-steel mt-step-col">
-                <div class="mt-step-number">3</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Receiver</div>
-                <div class="mt-step-content font-grey-cascade">Receiver Information</div>
-            </div>
-            <div class="col-md-3 bg-grey-steel mt-step-col">
-                <div class="mt-step-number">4</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Parcel</div>
-                <div class="mt-step-content font-grey-cascade">Parcel Information</div>
-            </div>
-        </div>
-    </div>
-</div>
+<h1 class="page-title">
+    <small></small>
+</h1>
 <div class="row">
-    <div class="portlet light bordered">
-        <div class="portlet-title">
-            <div class="caption">
-                <div class="caption-subject font-red-sunglo bold"><h2>Send Parcel</h2></div>
-                <span class="caption-helper">Sender Information</span>
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="mt-element-step">
+                    <div class="row step-thin">
+                        <div class="col-md-3 bg-grey mt-step-col">
+                            <div class="mt-step-number bg-white font-grey">1</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Pickup</div>
+                            <div class="mt-step-content font-grey-cascade">Pickup address</div>
+                        </div>
+                        <div class="col-md-3 bg-grey done mt-step-col active">
+                            <div class="mt-step-number bg-white font-grey">2</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Sender</div>
+                            <div class="mt-step-content font-grey-cascade">Sender address</div>
+                        </div>
+                        <div class="col-md-3 bg-grey mt-step-col">
+                            <div class="mt-step-number bg-white font-grey">3</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Receiver</div>
+                            <div class="mt-step-content font-grey-cascade">Receiver address</div>
+                        </div>
+                        <div class="col-md-3 bg-grey mt-step-col">
+                            <div class="mt-step-number bg-white font-grey">4</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Parcel</div>
+                            <div class="mt-step-content font-grey-cascade">Parcel details</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="portlet-body form">
-            <form data-bind="with: consignment" role="form" id="consignment-request-pemberi-form">
-                <div class="form-body">
-                    <h3 class="form-section"> Personal Info </h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <i class="fa fa-toggle-on fa-2x" data-bind="visible: $root.isUsingPickupAddress()"></i>
-                                <i class="fa fa-toggle-off fa-2x" data-bind="visible: !$root.isUsingPickupAddress()"></i>
-                                <a class="btn btn-link" data-bind="click: $root.toggleIsUsingPickupAddress">
-                                    <label class="control-label" data-bind="visible: $root.isUsingPickupAddress()">Using Pickup Address. Change to Own Address?</label>
-                                    <label class="control-label" data-bind="visible: !$root.isUsingPickupAddress()">Using Own Address. Change to Pickup Address?</label>
-                                </a>
-                            </div>
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Search Contact</label>
-                                <select class="form-control" name="Pemberi.ContactPerson" id="sender-company-name" data-bind="disable: $root.isUsingPickupAddress()"></select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Sender Name
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required type="text" class="form-control" data-bind="value: Pemberi().ContactPerson, disable: $root.isUsingPickupAddress()">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Company Name</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().CompanyName, disable: $root.isUsingPickupAddress()" name="Pemberi.CompanyName">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Email
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required class="form-control" type="email" data-bind="value: Pemberi().ContactInformation().Email, disable: $root.isUsingPickupAddress()" name="Pemberi.ContactInformation.Email">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Contact No.
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required class="form-control" type="text" data-bind="value: Pemberi().ContactInformation().ContactNumber, disable: $root.isUsingPickupAddress()" name="Pemberi.ContactInformation.ContactNumber">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Alternative Contact No.</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().ContactInformation().AlternativeContactNumber, disable: $root.isUsingPickupAddress()" name="Pemberi.ContactInformation.AlternativeContactNumber">
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="form-section">Address</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Address Line 1
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required type="text" class="form-control" data-bind="value: Pemberi().Address().Address1, disable: $root.isUsingPickupAddress()" name="Pemberi.Address.Address1">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Address Line 2
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required type="text" class="form-control" data-bind="value: Pemberi().Address().Address2, disable: $root.isUsingPickupAddress()" name="Pemberi.Address.Address2">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Address Line 3</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Address3, disable: $root.isUsingPickupAddress()" name="Pemberi.Address.Address3">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Address Line 4</label>
-                                <input type="text" class="form-control" data-bind="value: Pemberi().Address().Address4, disable: $root.isUsingPickupAddress()" name="Pemberi.Address.Address4">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Postcode
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required type="text" class="form-control" data-bind="value: Pemberi().Address().Postcode, disable: $root.isUsingPickupAddress()" name="Pemberi.Address.Postcode">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">City
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required type="text" class="form-control" data-bind="value: Pemberi().Address().City, disable: $root.isUsingPickupAddress()" name="Pemberi.Address.City">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">State
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <input required type="text" class="form-control" data-bind="value: Pemberi().Address().State, disable: $root.isUsingPickupAddress()" name="Pemberi.Address.State">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" data-bind="visible:true">
-                                <label class="control-label">Country
-                                    <span class="required" aria-required="true"> * </span></label>
-                                <!--<input type="text" class="form-control" data-bind="value: Pemberi().Address().Country, visible :true, autocomplete :{ entity:'Country', field :'Name', query:'Id ne \'0\'' }" name="Pemberi.Address.Country">-->
-                                <select required class="form-control" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Pemberi().Address().Country, disable: $root.isUsingPickupAddress()" data-rule-required="true"></select>
-                            </div>
-                        </div>
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <h4>
+                        <span class="caption-subject font-green bold uppercase">Sender Information</span>
+                    </h4>
+                    <div class="caption-desc font-grey-cascade">All details about sender</div>
+                </div>
+                <div class="actions">
+                    <h3>
+                        <button type="submit" class="btn btn-circle btn-sm green" data-bind="click: $root.saveCommand">
+                            <i class="icon-arrow-right"></i>
+                            <span>Next</span>
+                            <i class="fa fa-spin fa-circle-o-notch" style="display: none;"></i>
+                            <i class="fa fa-warning" style="color: red; display: none;"></i>
+                        </button>
+                    </h3>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+                    <div class="form-group" data-bind="visible:true">
+                        <label class="control-label">
+                            <a class="btn btn-link" data-bind="click: $root.toggleIsUsingPickupAddress" role="button">
+                                <i class="fa fa-toggle-on fa-2x fa-rotate-180" style="color:grey;" data-bind="visible: $root.isUsingPickupAddress()"></i>
+                                <i class="fa fa-toggle-on fa-2x" style="color:dodgerblue" data-bind="visible: !$root.isUsingPickupAddress()"></i>
+                            </a>
+                        </label>
+                        <!--<a class="btn btn-link btn-xs" data-bind="click: $root.toggleIsUsingPickupAddress">-->
+                        <small><i data-bind="visible: $root.isUsingPickupAddress()">Using Pickup Address. Change to Own Address?</i></small>
+                        <small><i data-bind="visible: !$root.isUsingPickupAddress()">Using Own Address. Change to Pickup Address?</i></small>
+                        <!--</a>-->
                     </div>
                 </div>
-                <div class="form-actions right">
-                    <button type="submit" class="btn btn-danger" data-bind="click: $root.saveCommand">
-                        <i class="icon-arrow-right"></i>
-                        <span>Next</span>
-                        <i class="fa fa-spin fa-circle-o-notch" style="display: none;"></i>
-                        <i class="fa fa-warning" style="color: red; display: none;"></i>
-                    </button>
-                </div>
-            </form>
+                <form class="form-horizontal" data-bind="with: consignment" role="form" id="consignment-request-pemberi-form">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" data-bind="visible:true">
+                                    <label class="control-label col-md-4">
+                                        <small>Search Contact</small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select class="form-control input-sm" name="Pemberi.ContactPerson" id="sender-company-name" data-bind="disable: $root.isUsingPickupAddress()"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">
+                                        <small>Name<span class="text-danger"> * </span></small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input class="form-control input-sm" type="text" placeholder="Name" data-bind="value: Pemberi().ContactPerson, disable: $root.isUsingPickupAddress()" name="ContactPerson" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">
+                                        <small>Company Name</small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input class="form-control input-sm" type="text" placeholder="Company Name" data-bind="value: Pemberi().CompanyName, disable: $root.isUsingPickupAddress()" name="CompanyName">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">
+                                        <small>Contact No.<span class="text-danger"> * </span></small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input class="form-control input-sm" type="text" placeholder="Contact Number" data-bind="value: Pemberi().ContactInformation().ContactNumber, disable: $root.isUsingPickupAddress()" name="ContactInformation.ContactNumber" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">
+                                        <small>Email<span class="text-danger"> * </span></small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input class="form-control input-sm" type="email" placeholder="Email" data-bind="value: Pemberi().ContactInformation().Email, disable: $root.isUsingPickupAddress()" name="ContactInformation.Email" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">
+                                        <small>Alt. Contact No.</small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input class="form-control input-sm" type="text" placeholder="Alternative Contact Number" data-bind="value: Pemberi().ContactInformation().AlternativeContactNumber, disable: $root.isUsingPickupAddress()" name="ContactInformation.AlternativeContactNumber">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">
+                                        <small>Address Line 1<span class="text-danger"> * </span></small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input class="form-control input-sm" type="text" placeholder="Address Line 1" data-bind="value: Pemberi().Address().Address1, disable: $root.isUsingPickupAddress()" name="Address.Address1" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">
+                                        <small>Address Line 2<span class="text-danger"> * </span></small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input class="form-control input-sm" type="text" placeholder="Address Line 2" data-bind="value: Pemberi().Address().Address2, disable: $root.isUsingPickupAddress()" name="Address.Address2" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">
+                                        <small>Address Line 3</small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input class="form-control input-sm" type="text" placeholder="Address Line 3" data-bind="value: Pemberi().Address().Address3, disable: $root.isUsingPickupAddress()" name="Address.Address3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">
+                                        <small>Address Line 4</small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input class="form-control input-sm" type="text" placeholder="Address Line 4" data-bind="value: Pemberi().Address().Address4, disable: $root.isUsingPickupAddress()" name="Address.Address4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">
+                                        <small>Postcode<span class="text-danger"> * </span></small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input class="form-control input-sm" type="text" placeholder="Postcode" data-bind="value: Pemberi().Address().Postcode, disable: $root.isUsingPickupAddress()" name="Address.Postcode" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">
+                                        <small>City<span class="text-danger"> * </span></small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input class="form-control input-sm" type="text" placeholder="City" data-bind="value: Pemberi().Address().City, disable: $root.isUsingPickupAddress()" name="Address.City" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">
+                                        <small>State<span class="text-danger"> * </span></small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input class="form-control input-sm" type="text" placeholder="State" data-bind="value: Pemberi().Address().State, disable: $root.isUsingPickupAddress()" name="Address.State" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">
+                                        <small>Country<span class="text-danger"> * </span></small>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select required class="form-control input-sm" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Pemberi().Address().Country, disable: $root.isUsingPickupAddress()" data-rule-required="true"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
