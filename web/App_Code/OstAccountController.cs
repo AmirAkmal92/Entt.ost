@@ -170,7 +170,7 @@ namespace web.sph.App_Code
 
             Roles.AddUserToRoles(profile.UserName, profile.Roles);
             await CreateProfile(profile, designation);
-            await SendVerificationEmail(profile.Email);
+            await SendVerificationEmail(profile.Email, profile.UserName);
 
             return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "register" });
         }
@@ -238,18 +238,18 @@ namespace web.sph.App_Code
         [AllowAnonymous]
         [HttpPost]
         [Route("forgot-password")]
-        public async Task<ActionResult> ForgotPassword(string Email)
+        public async Task<ActionResult> ForgotPassword(string email)
         {
-            if (string.IsNullOrEmpty(Email))
+            if (string.IsNullOrEmpty(email))
                 return RedirectToAction("forgot-password", "ost-account", new { success = false, status = "Email cannot be set to null or empty." });
 
-            var username = Membership.GetUserNameByEmail(Email);
+            var username = Membership.GetUserNameByEmail(email);
             if (string.IsNullOrWhiteSpace(username))
             {
-                return RedirectToAction("forgot-password", "ost-account", new { success = false, status = $"Cannot find any user with email {Email}" });
+                return RedirectToAction("forgot-password", "ost-account", new { success = false, status = $"Cannot find any user with email {email}" });
             }
 
-            await SendForgotPasswordEmail(Email);
+            await SendForgotPasswordEmail(email, username);
 
             return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "forgot-password" });
         }
@@ -332,18 +332,18 @@ namespace web.sph.App_Code
         [AllowAnonymous]
         [HttpPost]
         [Route("send-verify-email")]
-        public async Task<ActionResult> SendVerifyEmail(string Email)
+        public async Task<ActionResult> SendVerifyEmail(string email)
         {
-            if (string.IsNullOrEmpty(Email))
+            if (string.IsNullOrEmpty(email))
                 return RedirectToAction("send-verify-email", "ost-account", new { success = false, status = "Email cannot be set to null or empty." });
 
-            var username = Membership.GetUserNameByEmail(Email);
+            var username = Membership.GetUserNameByEmail(email);
             if (string.IsNullOrWhiteSpace(username))
             {
-                return RedirectToAction("send-verify-email", "ost-account", new { success = false, status = $"Cannot find any user with email {Email}" });
+                return RedirectToAction("send-verify-email", "ost-account", new { success = false, status = $"Cannot find any user with email {email}" });
             }
 
-            await SendVerificationEmail(Email);
+            await SendVerificationEmail(email, username);
 
             return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "send-verify-email" });
         }
@@ -433,7 +433,7 @@ namespace web.sph.App_Code
 
                 Roles.AddUserToRoles(profile.UserName, profile.Roles);
                 await CreateProfile(profile, designation);
-                await SendVerificationEmail(profile.Email);
+                await SendVerificationEmail(profile.Email, profile.UserName);
 
                 //create user details
                 var userDetail = new Bespoke.Ost.UserDetails.Domain.UserDetail();
@@ -524,7 +524,7 @@ namespace web.sph.App_Code
             return usp;
         }
 
-        private static async Task SendVerificationEmail(string userEmail)
+        private static async Task SendVerificationEmail(string userEmail, string userName)
         {
             var setting = new Setting
             {
@@ -536,12 +536,15 @@ namespace web.sph.App_Code
             await SaveSetting(setting, "VerifyEmail");
 
             var emailSubject = ConfigurationManager.ApplicationFullName + " - Verify your email address";
-            var emailBody = $@"Please click the link below to verify your email address.
+            var emailBody = $@"Hello {userName},
+
+Please click the link below to verify your email address.
     {ConfigurationManager.BaseUrl}/ost-account/verify-email/{setting.Id}";
+
             await SendEmail(userEmail, emailSubject, emailBody);
         }
 
-        private static async Task SendForgotPasswordEmail(string userEmail)
+        private static async Task SendForgotPasswordEmail(string userEmail, string userName)
         {
             var setting = new Setting
             {
@@ -553,8 +556,11 @@ namespace web.sph.App_Code
             await SaveSetting(setting, "ForgotPassword");
 
             var emailSubject = ConfigurationManager.ApplicationFullName + " - Forgot your password";
-            var emailBody = $@"Please click the link below to change your password.
+            var emailBody = $@"Hello {userName},
+
+Please click the link below to change your password.
     {ConfigurationManager.BaseUrl}/ost-account/reset-password/{setting.Id}";
+
             await SendEmail(userEmail, emailSubject, emailBody);
         }
 
