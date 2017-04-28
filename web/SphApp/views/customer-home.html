@@ -5,13 +5,15 @@
         </li>
     </ul>
 </div>
+<h1 class="page-title"></h1>
+<small></small>
 <div class="row">
     <div class="portlet light bordered">
         <div class="portlet-title">
             <div class="caption">
                 <h4>
-                    <i class="fa fa-home font-green"></i>
-                    <span class="caption-subject font-green bold uppercase">Home</span>
+                    <i class="fa fa-home font-yellow-casablanca"></i>
+                    <span class="caption-subject font-yellow-casablanca bold uppercase">Home</span>
                 </h4>
                 <div class="caption-desc font-grey-cascade">Overview details</div>
             </div>
@@ -20,10 +22,10 @@
         <div class="portlet-body form">
             <div class="row" data-bind="with: entity">
                 <div class="col-md-12">
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <div class="row">
-                            <div class="panel panel-success">
-                                <div class="panel-heading" data-toggle="collapse" data-target="#accordion1_1">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading bg-yellow-casablanca bg-font-yellow-casablanca" data-toggle="collapse" data-target="#accordion1_1">
                                     <strong>Personal Details</strong>
                                     <div class="pull-right">
                                         <span><i class="fa fa-angle-double-down"></i></span>
@@ -67,8 +69,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="panel panel-success">
-                                <div class="panel-heading" data-toggle="collapse" data-target="#accordion2_1">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading bg-yellow-casablanca bg-font-yellow-casablanca" data-toggle="collapse" data-target="#accordion2_1">
                                     <strong>Default Billing Address</strong>
                                     <div class="pull-right">
                                         <span><i class="fa fa-angle-double-down"></i></span>
@@ -112,8 +114,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="panel panel-success">
-                                <div class="panel-heading" data-toggle="collapse" data-target="#accordion3_1">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading bg-yellow-casablanca bg-font-yellow-casablanca" data-toggle="collapse" data-target="#accordion3_1">
                                     <strong>Default Pickup Address</strong>
                                     <div class="pull-right">
                                         <span><i class="fa fa-angle-double-down"></i></span>
@@ -157,21 +159,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2">
-
-                    </div>
+                    <div class="col-md-1"></div>
                     <div class="col-md-4">
                         <div class="row">
                             <div class="portlet light portlet-fit bordered" style="height:476px;">
                                 <div class="portlet-title">
                                     <div class="caption">
-                                        <i class="fa fa-shopping-cart font-green"></i>
-                                        <span class="caption-subject font-green bold uppercase">Shipment</span>
+                                        <i class="fa fa-shopping-cart font-yellow-casablanca"></i>
+                                        <span class="caption-subject font-yellow-casablanca bold uppercase">Shipment</span>
                                         <div class="caption-desc font-grey-cascade">All active parcels in Shipping Cart</div>
                                     </div>
                                     <div class="actions">
                                         <div class="btn-group">
-                                            <a class="btn btn-circle btn-sm green" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $root.crShippingCart().Id + '/consignments/0' } ">
+                                            <a class="btn btn-circle btn-sm yellow-casablanca" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $root.crShippingCart().Id + '/consignments/0' } ">
                                                 <i class="fa fa-paper-plane"></i> Add Shipment
                                             </a>
                                         </div>
@@ -180,14 +180,14 @@
                                 <div class="portlet-body" style="padding-top: 45px;">
                                     <div class="mt-element-step">
                                         <div class="row step-default">
-                                            <div class="col-md-12 bg-grey mt-step-col active">
-                                                <div class="mt-step-number first bg-white font-grey"><span data-bind="text: $root.crShippingCart().Consignments.length">0</span></div>
+                                            <div class="col-md-12 bg-grey mt-step-col active" style="background-color:#f2784b!important;">
+                                                <div class="mt-step-number first bg-white font-grey"><span data-bind="text: $root.crShippingCart().Consignments.length" style="color:#f2784b!important;">0</span></div>
                                                 <div class="mt-step-title uppercase font-grey-cascade">
                                                     <!--ko if: $root.crShippingCart().Consignments.length > 1-->
-                                                    parcels
+                                                    items
                                                     <!--/ko-->
                                                     <!--ko ifnot: $root.crShippingCart().Consignments.length > 1-->
-                                                    parcel
+                                                    item
                                                     <!--/ko-->
                                                 </div>
                                                 <div class="mt-step-content font-grey-cascade">in Shipping Cart</div>
@@ -213,27 +213,27 @@
                 <div class="portlet light bordered">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="fa fa-file-text font-green"></i>
-                            <span class="caption-subject font-green sbold uppercase">Orders</span>
+                            <i class="fa fa-file-text font-yellow-casablanca"></i>
+                            <span class="caption-subject font-yellow-casablanca sbold uppercase">Orders</span>
                             <div class="caption-desc font-grey-cascade">Latest Orders</div>
 
                         </div>
                         <div class="actions">
                             <div class="btn-group btn-group-devided">
-                                <a href="ost#consignment-requests-paid" type="button" class="btn btn-transparent green btn-circle btn-sm" role="button">View All</a>
+                                <a href="ost#consignment-requests-paid" type="button" class="btn btn-transparent yellow-casablanca btn-circle btn-sm" role="button">View All</a>
                             </div>
                         </div>
                     </div>
                     <div class="portlet-body">
                         <div class="clearfix">
-                            <div class="panel panel-success">
+                            <div class="panel panel-danger">
                                 <table class="table table-striped table-bordered table-advance table-hover">
                                     <thead>
                                         <tr>
-                                            <th class="success"><center><strong> # </strong></center></th>
-                                            <th class="success"><strong> Order Number </strong></th>
-                                            <th class="success"><center><strong> Date </strong></center></th>
-                                            <th class="success"><center><strong> Action </strong></center></th>
+                                            <th class="bg-yellow-casablanca bg-font-yellow-casablanca"><center><strong> # </strong></center></th>
+                                            <th class="bg-yellow-casablanca bg-font-yellow-casablanca"><strong> Order Number </strong></th>
+                                            <th class="bg-yellow-casablanca bg-font-yellow-casablanca"><center><strong> Date </strong></center></th>
+                                            <th class="bg-yellow-casablanca bg-font-yellow-casablanca"><center><strong> Action </strong></center></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -245,10 +245,10 @@
                                             <td> <center> <span data-bind="date:{ value:ChangedDate, format:&#39;D/M/YYYY HH:mm&#39;}"></span> </center></td>
                                             <td>
                                                 <center>
-                                                    <a class="btn btn-success btn-circle btn-sm" data-bind="attr: { href: 'ost#consignment-request-paid-invoice/' + Id }">
+                                                    <a class="btn yellow-casablanca btn-circle btn-sm" data-bind="attr: { href: 'ost#consignment-request-paid-invoice/' + Id }">
                                                         <i class="fa fa-clipboard"></i> Invoice
                                                     </a>
-                                                    <a class="btn btn-info btn-circle btn-sm" data-bind="attr: { href: 'ost#consignment-request-paid-summary/' + Id }">
+                                                    <a class="btn btn-default btn-circle btn-sm" data-bind="attr: { href: 'ost#consignment-request-paid-summary/' + Id }">
                                                         <i class="fa fa-gear"></i> Manage
                                                     </a>
                                                 </center>
