@@ -225,38 +225,40 @@
                         </div>
                     </div>
                     <div class="portlet-body">
-                        <div class="table-scrollable">
-                            <table class="table table-striped table-bordered table-advance table-hover">
-                                <thead>
-                                    <tr>
-                                        <th><center> # </center></th>
-                                        <th> Order Number </th>
-                                        <th><center> Date </center></th>
-                                        <th><center> Action </center></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!--ko foreach: $root.paidConsignments-->
-                                    <!--ko if: $index() < 5-->
-                                    <tr>
-                                        <td> <center><span data-bind="text: $index() + 1"></span> </center></td>
-                                        <td> <span data-bind="text: ReferenceNo"></span> </td>
-                                        <td> <center> <span data-bind="date:{ value:ChangedDate, format:&#39;D/M/YYYY HH:mm&#39;}"></span> </center></td>
-                                        <td>
-                                            <center>
-                                                <a class="btn btn-success btn-circle btn-sm" data-bind="attr: { href: 'ost#consignment-request-paid-invoice/' + Id }">
-                                                    <i class="fa fa-clipboard"></i> Invoice
-                                                </a>
-                                                <a class="btn btn-info btn-circle btn-sm" data-bind="attr: { href: 'ost#consignment-request-paid-summary/' + Id }">
-                                                    <i class="fa fa-gear"></i> Manage
-                                                </a>
-                                            </center>
-                                        </td>
-                                    </tr>
-                                    <!--/ko-->
-                                    <!--/ko-->
-                                </tbody>
-                            </table>
+                        <div class="clearfix">
+                            <div class="panel panel-success">
+                                <table class="table table-striped table-bordered table-advance table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="success"><center><strong> # </strong></center></th>
+                                            <th class="success"><strong> Order Number </strong></th>
+                                            <th class="success"><center><strong> Date </strong></center></th>
+                                            <th class="success"><center><strong> Action </strong></center></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!--ko foreach: $root.paidConsignments-->
+                                        <!--ko if: $index() < 5-->
+                                        <tr>
+                                            <td> <center><span data-bind="text: $index() + 1"></span> </center></td>
+                                            <td> <span data-bind="text: ReferenceNo"></span> </td>
+                                            <td> <center> <span data-bind="date:{ value:ChangedDate, format:&#39;D/M/YYYY HH:mm&#39;}"></span> </center></td>
+                                            <td>
+                                                <center>
+                                                    <a class="btn btn-success btn-circle btn-sm" data-bind="attr: { href: 'ost#consignment-request-paid-invoice/' + Id }">
+                                                        <i class="fa fa-clipboard"></i> Invoice
+                                                    </a>
+                                                    <a class="btn btn-info btn-circle btn-sm" data-bind="attr: { href: 'ost#consignment-request-paid-summary/' + Id }">
+                                                        <i class="fa fa-gear"></i> Manage
+                                                    </a>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                        <!--/ko-->
+                                        <!--/ko-->
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

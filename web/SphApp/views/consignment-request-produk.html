@@ -148,18 +148,6 @@
                                                   id="01d1c388-d629-4283-bd25-56688c166c98" name="Produk.Description"></textarea>
                                     </div>
                                 </div>
-                                <div class="form-group" data-bind="visible:true">
-                                    <label data-i18n="Price" class="col-md-4 control-label" for="6465286c-a3af-46de-e7d8-9499b6bf7cf4"><small>Price</small></label>
-                                    <div class="col-md-8">
-                                        <div class="input-group input-group-sm">
-                                            <span class="input-group-addon">RM</span>
-                                            <input class="form-control" type="text"
-                                                   placeholder="calculated Price"
-                                                   data-bind="money: consignment().Produk().Price"
-                                                   id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Produk.Price" disabled />
-                                        </div>
-                                    </div>
-                                </div>
                                 <div data-bind="if: products().length > 0">
                                     <div class="form-group form-md-checkboxes" data-bind="with: products()[0]">
                                         <label class="col-md-4 control-label" for="form_control_1"><small>Insurance</small></label>
@@ -196,6 +184,18 @@
                                                     </label>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" data-bind="visible:true">
+                                    <label data-i18n="Price" class="col-md-4 control-label" for="6465286c-a3af-46de-e7d8-9499b6bf7cf4"><small>Price</small></label>
+                                    <div class="col-md-8">
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-addon">RM</span>
+                                            <input class="form-control" type="text"
+                                                   placeholder="calculated Price"
+                                                   data-bind="money: consignment().Produk().Price"
+                                                   id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Produk.Price" disabled />
                                         </div>
                                     </div>
                                 </div>

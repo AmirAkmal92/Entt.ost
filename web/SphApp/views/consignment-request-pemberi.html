@@ -31,8 +31,8 @@
                         </div>
                         <div class="col-md-3 bg-grey mt-step-col">
                             <div class="mt-step-number bg-white font-grey">3</div>
-                            <div class="mt-step-title uppercase font-grey-cascade">Receiver</div>
-                            <div class="mt-step-content font-grey-cascade">Receiver address</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Receipient</div>
+                            <div class="mt-step-content font-grey-cascade">Receipient address</div>
                         </div>
                         <div class="col-md-3 bg-grey mt-step-col">
                             <div class="mt-step-number bg-white font-grey">4</div>
@@ -47,13 +47,13 @@
             <div class="portlet-title">
                 <div class="caption">
                     <h4>
-                        <span class="caption-subject font-green bold uppercase">Sender Information</span>
+                        <span class="caption-subject font-yellow-casablanca bold uppercase">Sender Information</span>
                     </h4>
                     <div class="caption-desc font-grey-cascade">All details about sender</div>
                 </div>
                 <div class="actions">
                     <h3>
-                        <button type="submit" class="btn btn-circle btn-sm green" data-bind="click: $root.saveCommand">
+                        <button type="submit" class="btn btn-circle btn-sm yellow-casablanca" data-bind="click: $root.saveCommand">
                             <i class="icon-arrow-right"></i>
                             <span>Next</span>
                             <i class="fa fa-spin fa-circle-o-notch" style="display: none;"></i>
@@ -63,17 +63,28 @@
                 </div>
             </div>
             <div class="portlet-body">
+                <!--<div class="md-checkbox">
+                    <input type="checkbox" id="checkbox2_1" class="btn md-check" data-bind="css: { 'checked': $root.isUsingPickupAddress(), 'unchecked': !dimitri() }, checked: dimitri" "'checked': $root.toggleIsUsingPickupAddress, 'unchecked': $root.toggleIsUsingPickupAddress">
+                    <label for="checkbox2_1">
+                        <span></span>
+                        <span class="check"></span>
+                        <span class="box"></span>
+                        <small><i data-bind="visible: !$root.isUsingPickupAddress()"> Check this box if Sender Address and Pickup Address are the same.</i></small>
+                        <small><i data-bind="visible: $root.isUsingPickupAddress()"> Is using Pickup Address.</i></small>
+                    </label>
+                </div>-->
+                <br />
                 <div class="row">
                     <div class="form-group" data-bind="visible:true">
                         <label class="control-label">
                             <a class="btn btn-link" data-bind="click: $root.toggleIsUsingPickupAddress" role="button">
-                                <i class="fa fa-toggle-on fa-2x fa-rotate-180" style="color:grey;" data-bind="visible: $root.isUsingPickupAddress()"></i>
-                                <i class="fa fa-toggle-on fa-2x" style="color:dodgerblue" data-bind="visible: !$root.isUsingPickupAddress()"></i>
+                                <i class="fa fa-square-o fa-2x" style="color:grey;" data-bind="visible: !$root.isUsingPickupAddress()"></i>
+                                <i class="fa fa-check-square-o fa-2x" style="color:dodgerblue" data-bind="visible: $root.isUsingPickupAddress()"></i>
                             </a>
                         </label>
                         <!--<a class="btn btn-link btn-xs" data-bind="click: $root.toggleIsUsingPickupAddress">-->
-                        <small><i data-bind="visible: $root.isUsingPickupAddress()">Using Pickup Address. Change to Own Address?</i></small>
-                        <small><i data-bind="visible: !$root.isUsingPickupAddress()">Using Own Address. Change to Pickup Address?</i></small>
+                        <small><i data-bind="visible: !$root.isUsingPickupAddress()">Check this box if Sender Address and Pickup Address are the same.</i></small>
+                        <small><i data-bind="visible: $root.isUsingPickupAddress()">Is using Pickup Address.</i></small>
                         <!--</a>-->
                     </div>
                 </div>
@@ -230,7 +241,7 @@
                                         <small>Country<span class="text-danger"> * </span></small>
                                     </label>
                                     <div class="col-md-8">
-                                        <select required class="form-control input-sm" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Pemberi().Address().Country, disable: $root.isUsingPickupAddress()" data-rule-required="true"></select>
+                                        <select required class="form-control input-sm" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Pemberi().Address().Country, disable: $root.isUsingPickupAddress()" data-rule-required="true" style="text-transform: capitalize;"></select>
                                     </div>
                                 </div>
                             </div>

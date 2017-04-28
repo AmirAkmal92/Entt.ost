@@ -1,31 +1,45 @@
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="/"> Home </a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Orders </span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Paid Orders </span>
+        </li>
+    </ul>
+</div>
+<h1 class="page-title caption-subject font-red-sunglo bold uppercase"></h1>
+<small></small>
 <div class="row">
     <div class="col-md-12">
         <div class="portlet light bordered">
             <div class="portlet-title">
                 <div class="caption">
-                    <div class="caption-subject font-red-sunglo bold"><h2><span class="fa fa-file-text"> </span> Paid Orders </h2></div>
-                    <span class="caption-helper">Paid Orders</span>
+                    <h4>
+                        <i class="fa fa-file-text font-green"></i>
+                        <span class="caption-subject font-green bold uppercase">Paid Orders</span>
+                    </h4>
+                    <div class="caption-desc font-grey-cascade">All Paid Orders</div>
                 </div>
             </div>
-            <div class="invoice">
-                <div class="row invoice-logo">
-                    <div class="col-xs-6 invoice-logo-space">
-                        <img src="../assets/admin/pages/media/invoice/posost.png" class="img-responsive" alt="" />
-                    </div>
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col-md-12">
-                        <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list}">
+            <div class="portlet-body">
+                <div class="clearfix">
+                    <div class="panel">
+                        <table class="table table-striped table-bordered table-advance" data-bind="queryPaging :{ query: query, map : map, list:list}">
                             <thead>
                                 <tr>
-                                    <th>Order No</th>
-                                    <th class="hidden-xs">Pickup Number</th>
-                                    <th class="hidden-xs">Tracking Number</th>
-                                    <th class="hidden-xs">Parcel</th>
-                                    <th>Total Price</th>
-                                    <th class="hidden-xs">Date</th>
-                                    <th>&nbsp;</th>
+                                    <th class="success"><strong>Order No</strong></th>
+                                    <th class="hidden-xs success"><strong>Pickup Number</strong></th>
+                                    <th class="hidden-xs success"><strong>Tracking Number</strong></th>
+                                    <th class="hidden-xs success"><strong>Parcel</strong></th>
+                                    <th class="success"><strong>Total Price</strong></th>
+                                    <th class="hidden-xs success"><strong>Date</strong></th>
+                                    <th class="success"><strong>Action</strong></th>
                                 </tr>
                             </thead>
                             <tbody data-bind="foreach :list">
@@ -42,7 +56,9 @@
                                         <!--/ko-->
                                     </td>
                                     <td class="hidden-xs" data-bind="text:Consignments.length"></td>
-                                    <td><span data-bind="text:Payment.TotalPrice.toFixed(2)" class="pull-right"></span></td>
+                                    <td>
+                                        RM &nbsp;&nbsp;&nbsp;<span data-bind="text:Payment.TotalPrice.toFixed(2)"></span>
+                                    </td>
                                     <td class="hidden-xs" data-bind="date:{ value:ChangedDate, format:&#39;D/M/YYYY HH:mm&#39;}"></td>
                                     <td>
                                         <a class="btn btn-info btn-xs" title="Track &amp; Trace" data-bind="click: $root.partial.showParcelTrackTrace">

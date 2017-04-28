@@ -1,75 +1,66 @@
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 hidden-print">
         <div class="portlet light bordered">
             <div class="portlet-title">
                 <div class="caption">
                     <div class="caption-subject font-red-sunglo bold"><h2><span class="fa fa-clipboard"> </span> Tax Invoice</h2></div>
-                    <span class="caption-helper">Tax Invoice</span>
+                    <span class="caption-helper hidden-print">Tax Invoice</span>
                 </div>
             </div>
-            <div class="invoice" data-bind="with : entity">
-                <div class="row invoice-logo">
-                    <div class="col-md-6 invoice-logo-space">
-                        <img src="../assets/admin/pages/media/invoice/posost.png" class="img-responsive" alt="" />
-                    </div>
-                    <div class="col-md-6">
-                        &nbsp;
-                    </div>
-                </div>
-                <hr />
+            <div class="invoice hide" data-bind="with : entity">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <div class="col-md-6">
-                                    <h4>PAID TO</h4>
-                                    <address>
-                                        <strong>Pos Malaysia Berhad</strong> (22990-M)<br />
-                                        care@pos.com.my
-                                    </address>
-                                    <address>
-                                        Level 8 Pos Malaysia Headquarters<br />
-                                        Dayabumi Complex<br />
-                                        50670 Kuala Lumpur<br />
-                                        Malaysia<br />
-                                        <abbr title="Contact Number">Phone:</abbr> 1-300-300-300<br />
-                                    </address>
-                                    <address>
-                                        <strong><span>GST Registration No</span></strong>: <span>001609433088</span>
-                                    </address>
-                                </div>
-                                <div class="col-md-6">
-                                    <h4>INVOICED TO</h4>
-                                    <address>
-                                        <strong><span data-bind="text: $root.userDetail().BillingAddress().ContactPerson"></span></strong><br />
-                                        <span data-bind="text: $root.userDetail().BillingAddress().ContactInformation().Email"></span>
-                                    </address>
-                                    <address>
-                                        <strong><span data-bind="text: $root.userDetail().BillingAddress().CompanyName"></span></strong><br />
-                                        <span data-bind="text: $root.userDetail().BillingAddress().Address().Address1"></span>&nbsp;
-                                        <span data-bind="text: $root.userDetail().BillingAddress().Address().Address2"></span>&nbsp;
-                                        <br />
-                                        <span data-bind="text: $root.userDetail().BillingAddress().Address().Address3"></span>&nbsp;
-                                        <span data-bind="text: $root.userDetail().BillingAddress().Address().Address4"></span>&nbsp;
-                                        <br />
-                                        <span data-bind="text: $root.userDetail().BillingAddress().Address().Postcode"></span>&nbsp;
-                                        <span data-bind="text: $root.userDetail().BillingAddress().Address().City"></span>&nbsp;
-                                        <br />
-                                        <span data-bind="text: $root.userDetail().BillingAddress().Address().State"></span>&nbsp;
-                                        <!--<span data-bind="text: $root.userDetail().BillingAddress().Address().Country"></span>-->Malaysia&nbsp;
-                                        <br />
-                                        <abbr title="Contact Number">Phone:</abbr> <span data-bind="text: $root.userDetail().BillingAddress().ContactInformation().ContactNumber"></span><br />
-                                    </address>
-                                </div>
+                                <h4>PAID TO</h4>
+                                <address>
+                                    <strong>Pos Malaysia Berhad</strong> (22990-M)<br />
+                                    care@pos.com.my
+                                </address>
+                                <address>
+                                    Level 8 Pos Malaysia Headquarters<br />
+                                    Dayabumi Complex<br />
+                                    50670 Kuala Lumpur<br />
+                                    Malaysia<br />
+                                    <abbr title="Contact Number">Phone:</abbr> 1-300-300-300<br />
+                                </address>
+                                <address>
+                                    <strong><span>GST Registration No</span></strong>: <span>001609433088</span>
+                                </address>
                             </div>
                         </div>
                     </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="panel panel-default">
                             <div class="panel-body">
+                                <h4>INVOICED TO</h4>
+                                <address>
+                                    <strong><span data-bind="text: $root.userDetail().BillingAddress().ContactPerson"></span></strong><br />
+                                    <span data-bind="text: $root.userDetail().BillingAddress().ContactInformation().Email"></span>
+                                </address>
+                                <address>
+                                    <strong><span data-bind="text: $root.userDetail().BillingAddress().CompanyName"></span></strong><br />
+                                    <span data-bind="text: $root.userDetail().BillingAddress().Address().Address1"></span>&nbsp;
+                                    <span data-bind="text: $root.userDetail().BillingAddress().Address().Address2"></span>&nbsp;
+                                    <br />
+                                    <span data-bind="text: $root.userDetail().BillingAddress().Address().Address3"></span>&nbsp;
+                                    <span data-bind="text: $root.userDetail().BillingAddress().Address().Address4"></span>&nbsp;
+                                    <br />
+                                    <span data-bind="text: $root.userDetail().BillingAddress().Address().Postcode"></span>&nbsp;
+                                    <span data-bind="text: $root.userDetail().BillingAddress().Address().City"></span>&nbsp;
+                                    <br />
+                                    <span data-bind="text: $root.userDetail().BillingAddress().Address().State"></span>&nbsp;
+                                    <!--<span data-bind="text: $root.userDetail().BillingAddress().Address().Country"></span>-->Malaysia&nbsp;
+                                    <br />
+                                    <abbr title="Contact Number">Phone:</abbr> <span data-bind="text: $root.userDetail().BillingAddress().ContactInformation().ContactNumber"></span><br />
+                                </address>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h4>DETAILS</h4>
                                 <dl>
                                     <dt>Tax Invoice No</dt>
                                     <dd><span data-bind="text: ReferenceNo"></span></dd>
@@ -86,6 +77,7 @@
                         </div>
                     </div>
                 </div>
+                <br />
                 <div data-bind="visible: Consignments().length == 0">
                     <br />
                     <div class="panel panel-default">
@@ -206,16 +198,20 @@
                                     <small>
                                         If you have any questions about your tax invoice please<br />
                                         call us at 1-300-300-300<br />
-                                        or drop us an email at care@pos.com.my<br />                                        
+                                        or drop us an email at care@pos.com.my<br />
                                         <br />
                                         This is a computer generated receipt and no signature is required
                                     </small>
                                 </center>
                             </p>
                         </div>
+                        <span class="pull-right hidden-print">
+                            <a class="btn btn-primary" onclick="javascript:window.print();"><i class="fa fa-print"></i> Print</a>
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!--</div>-->

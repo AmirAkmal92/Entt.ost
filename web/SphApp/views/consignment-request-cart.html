@@ -1,7 +1,15 @@
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
-            <a href="/">Shipment</a>
+            <a href="/"> Home </a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Shipment </span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Shipping Cart </span>
         </li>
     </ul>
 </div>
@@ -13,24 +21,24 @@
             <div class="portlet-title">
                 <div class="caption">
                     <h4>
-                        <i class="fa fa-shopping-cart font-green"></i>
-                        <span class="caption-subject font-green bold uppercase">Shipping Cart</span>
+                        <i class="fa fa-shopping-cart font-yellow-casablanca"></i>
+                        <span class="caption-subject font-yellow-casablanca bold uppercase">Shipping Cart</span>
                     </h4>
                     <div class="caption-desc font-grey-cascade">All pending shipment</div>
                 </div>
                 <div class="actions">
                     <h3>
-                        <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }, css: { 'disabled': $root.isPickupDateTimeValid() }" class="btn btn-circle btn-sm green">
-                            <i class="fa fa-paper-plane"></i> Add Shipment
+                        <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }, css: { 'disabled': $root.isPickupDateTimeValid() }" class="btn btn-circle btn-sm yellow-casablanca">
+                            <i class="fa fa-paper-plane"></i> New Shipment
                         </a>
-                        <a data-bind="command: $root.importConsignments, css: { 'disabled': $root.isPickupDateTimeValid() }" class="btn btn-circle btn-sm green">
+                        <a data-bind="command: $root.importConsignments, css: { 'disabled': $root.isPickupDateTimeValid() }" class="btn btn-circle btn-sm yellow-casablanca">
                             <i class="fa fa-folder-open"></i> Import Shipment
                         </a>
-                        <a data-bind="click: $root.emptyConsignmentRequest, css: { 'disabled': $root.isPickupDateTimeValid() || Consignments().length == 0 }" class="btn btn-circle btn-sm green">
+                        <a data-bind="click: $root.emptyConsignmentRequest, css: { 'disabled': $root.isPickupDateTimeValid() || Consignments().length == 0 }" class="btn btn-circle btn-sm yellow-casablanca">
                             <i class="fa fa-trash"></i> Empty Cart
                         </a>
-                        <a data-bind="command: $root.goToSummary, css: { 'disabled': Consignments().length == 0 }" class="btn btn-circle btn-sm green">
-                            <i class="fa fa-credit-card"></i> Pay Now
+                        <a data-bind="command: $root.goToSummary, css: { 'disabled': Consignments().length == 0 }" class="btn btn-circle btn-sm yellow-casablanca">
+                            <i class="icon-arrow-right"></i> Next
                         </a>
                     </h3>
                 </div>
@@ -38,16 +46,16 @@
             <div class="portlet-body">
                 <div data-bind="visible: Consignments().length > 0">
                     <div class="clearfix">
-                        <div class="panel panel-success">
+                        <div class="panel panel-danger">
                             <table class="table table-striped table-bordered table-advance">
                                 <thead>
                                     <tr>
-                                        <th class="success"><center><strong>#</strong></center></th>
-                                        <th class="success"><strong>Sender</strong></th>
-                                        <th class="success"><strong>Receiver</strong></th>
-                                        <th class="success"><strong>Parcel</strong></th>
-                                        <th class="success"><strong>Total</strong></th>
-                                        <th class="success"><center><strong>Action</strong></center></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><center><strong>#</strong></center></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Sender</strong></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Receiver</strong></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Parcel</strong></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Total</strong></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><center><strong>Action</strong></center></th>
                                     </tr>
                                 </thead>
                                 <tbody>

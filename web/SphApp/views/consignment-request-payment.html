@@ -5,94 +5,116 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Send Parcel</span>
+            <span>Shipment</span>
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Sales Order</span>
-            <i class="fa fa-circle"></i>
+            <span>Order Summary</span>
         </li>
     </ul>
 </div>
-<h1 class="page-title">
-    Order Summary
-</h1>
-<div class="row">
-    <div class="col-md-1"></div>
-    <div class="invoice-content-2 bordered col-md-10" data-bind="with: entity">
-        <div class="row invoice-head">
-            <div class="col-md-6">
-                <div class="invoice-logo">
-                    <img src="../assets/admin/pages/media/invoice/posost.png" class="img-responsive" alt="" />
+<h1 class="page-title caption-subject font-red-sunglo bold uppercase"></h1>
+<small></small>
+<div class="row" data-bind="with : entity">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <h4>
+                        <i class="fa fa-list-ul font-green"></i>
+                        <span class="caption-subject font-green bold uppercase"> Order Summary</span>
+                    </h4>
+                    <div class="caption-desc font-grey-cascade">Order Summary</div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="company-address">
-                    <span class="bold uppercase">Order Number</span>
-                    <br /> <span data-bind="text: ReferenceNo"></span>
+            <div class="portlet-body">
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="clearfix">
+                            <div class="invoice-content-2 bordered col-md-10">
+                                <div class="row invoice-head">
+                                    <div class="col-md-6">
+                                        <div class="invoice-logo">
+                                            <img src="../assets/admin/pages/media/invoice/posost.png" class="img-responsive" alt="" style="height: 38px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="company-address">
+                                            <span class="bold uppercase">Order Number</span>
+                                            <br /> <span data-bind="text: ReferenceNo"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row invoice-body">
+                                    <div class="col-xs-12 table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th class="invoice-title uppercase col-md-3">Description</th>
+                                                    <th class="invoice-title uppercase col-md-3">Price</th>
+                                                    <th class="invoice-title uppercase col-md-3">GST</th>
+                                                    <th class="invoice-title uppercase col-md-3">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!--ko if: $root.totalDomestic() > 0-->
+                                                <tr>
+                                                    <td class="col-md-3"><strong>Domestic Parcel</strong></td>
+                                                    <td class="sbold col-md-3">RM <span data-bind="text: $root.totalDomesticNoGst().toFixed(2)" class="pull-right"></span></td>
+                                                    <td class="sbold col-md-3">RM <span data-bind="text: $root.totalDomesticGst().toFixed(2)" class="pull-right"></span></td>
+                                                    <td class="sbold col-md-3">RM <span data-bind="text: $root.totalDomestic().toFixed(2)" class="pull-right"></span></td>
+                                                </tr>
+                                                <!--/ko-->
+                                                <!--ko if: $root.totalInternational() > 0-->
+                                                <tr>
+                                                    <td class="col-md-3"><strong>International Parcel</strong></td>
+                                                    <td class="sbold col-md-3">RM <span data-bind="text: $root.totalInternationalNoGst().toFixed(2)" class="pull-right"></span></td>
+                                                    <td class="sbold col-md-3">RM <span data-bind="text: $root.totalInternationalGst().toFixed(2)" class="pull-right"></span></td>
+                                                    <td class="sbold col-md-3">RM <span data-bind="text: $root.totalInternational().toFixed(2)" class="pull-right"></span></td>
+                                                </tr>
+                                                <!--/ko-->
+                                                <tr>
+                                                    <td class="col-md-3"><strong>Pickup</strong></td>
+                                                    <td class="sbold col-md-3">RM <span class="pull-right">5.00</span></td>
+                                                    <td class="sbold col-md-3">RM <span class="pull-right">0.30</span></td>
+                                                    <td class="sbold col-md-3">RM <span class="pull-right">5.30</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"><strong>Sub Total</strong></td>
+                                                    <td class="sbold col-md-3">RM <span data-bind="text: (5.00 + $root.totalInternationalNoGst() + $root.totalDomesticNoGst()).toFixed(2)" class="pull-right"></span></td>
+                                                    <td class="sbold col-md-3">RM <span data-bind="text: (0.30 + $root.totalInternationalGst() + $root.totalDomesticGst()).toFixed(2)" class="pull-right"></span></td>
+                                                    <td class="sbold col-md-3">RM <span data-bind="text: Payment().TotalPrice().toFixed(2)" class="pull-right"></span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row invoice-subtotal">
+                                    <div class="col-md-6">
+                                        <h2 class="invoice-title uppercase">Grand Total</h2>
+                                        <h4><strong>RM <span data-bind="text: Payment().TotalPrice().toFixed(2)"></span></strong></h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <form method="post" data-bind="attr: { action: $root.appUrl }">
+                                        <div class="form-group">
+                                            <input type="hidden" name="applicationId" data-bind="attr: { value: $root.appId }" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" name="data" data-bind="attr: { value: $root.appData }" />
+                                        </div>
+                                        <button type="submit" class="btn btn-circle btn-sm green pull-right"><i class="fa fa-credit-card"></i> Pay Now</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row invoice-body">
-            <div class="col-xs-12 table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th class="invoice-title uppercase col-md-6">Description</th>
-                            <th class="invoice-title uppercase col-md-2">Price</th>
-                            <th class="invoice-title uppercase col-md-2">GST</th>
-                            <th class="invoice-title uppercase col-md-2">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!--ko if: $root.totalDomestic() > 0-->
-                        <tr>
-                            <td class="col-md-6"><strong>Domestic Parcel</strong></td>
-                            <td class="sbold col-md-2">RM <span data-bind="text: $root.totalDomesticNoGst().toFixed(2)" class="pull-right"></span></td>
-                            <td class="sbold col-md-2">RM <span data-bind="text: $root.totalDomesticGst().toFixed(2)" class="pull-right"></span></td>
-                            <td class="sbold col-md-2">RM <span data-bind="text: $root.totalDomestic().toFixed(2)" class="pull-right"></span></td>
-                        </tr>
-                        <!--/ko-->
-                        <!--ko if: $root.totalInternational() > 0-->
-                        <tr>
-                            <td class="col-md-6"><strong>International Parcel</strong></td>
-                            <td class="sbold col-md-2">RM <span data-bind="text: $root.totalInternationalNoGst().toFixed(2)" class="pull-right"></span></td>
-                            <td class="sbold col-md-2">RM <span data-bind="text: $root.totalInternationalGst().toFixed(2)" class="pull-right"></span></td>
-                            <td class="sbold col-md-2">RM <span data-bind="text: $root.totalInternational().toFixed(2)" class="pull-right"></span></td>
-                        </tr>
-                        <!--/ko-->
-                        <tr>
-                            <td class="col-md-6"><strong>Pickup</strong></td>
-                            <td class="sbold col-md-2">RM <span class="pull-right">5.00</span></td>
-                            <td class="sbold col-md-2">RM <span class="pull-right">0.30</span></td>
-                            <td class="sbold col-md-2">RM <span class="pull-right">5.30</span></td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-6"><strong>Sub Total</strong></td>
-                            <td class="sbold col-md-2">RM <span data-bind="text: (5.00 + $root.totalInternationalNoGst() + $root.totalDomesticNoGst()).toFixed(2)" class="pull-right"></span></td>
-                            <td class="sbold col-md-2">RM <span data-bind="text: (0.30 + $root.totalInternationalGst() + $root.totalDomesticGst()).toFixed(2)" class="pull-right"></span></td>
-                            <td class="sbold col-md-2">RM <span data-bind="text: Payment().TotalPrice().toFixed(2)" class="pull-right"></span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row invoice-subtotal">
-            <div class="col-md-6">
-                <h2 class="invoice-title uppercase">Grand Total</h2>
-                <h4><strong>RM <span data-bind="text: Payment().TotalPrice().toFixed(2)"></span></strong></h4>
-            </div>
-        </div>
-        <div class="row">
-            <form method="post" data-bind="attr: { action: $root.appUrl }">
-                <div class="form-group">
-                    <input type="hidden" name="applicationId" data-bind="attr: { value: $root.appId }" />
-                </div>
-                <div class="form-group">
-                    <input type="hidden" name="data" data-bind="attr: { value: $root.appData }" />
-                </div>
-                <button type="submit" class="btn btn-warning pull-right"><i class="fa fa-credit-card"></i> Pay Now</button>
-            </form>
         </div>
     </div>
 </div>
