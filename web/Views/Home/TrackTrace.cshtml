@@ -1,7 +1,6 @@
 ﻿@{
     Layout = "~/Views/OstAccount/_Layout.cshtml";
 }
-
 <div class="container">
     <div class="row form-login-ost">
         <div class="col-md-2">&nbsp;</div>
@@ -50,10 +49,10 @@
     </div>
     <div class="col-md-2">&nbsp;</div>
 </div>
+<script src="@Url.Content("~/Scripts/knockout-3.4.0.js")"></script>
 @section Scripts
     {
     <script type="text/javascript">
-
         var ViewModel = function () {
             var busy = ko.observable(false),
                 conNote = ko.observable(),

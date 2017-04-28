@@ -14,13 +14,13 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/ico/apple-touch-icon-72x72.png" />
     <link rel="apple-touch-icon-precomposed" href="/images/ico/apple-touch-icon-57x57.png" />
     <link rel="shortcut icon" href="/images/ico/apple-touch-icon.png" />
-    <title>Pos Malaysia | Online Shipping Tools</title>
+    <title>Pos Laju Online Shipping</title>
     <!-- Bootstrap core CSS -->
     <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
     <!-- Custom styles for this template -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+    <link href="~/assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/font-awesome.min.css")" rel="stylesheet" />
-    <link href="@Url.Content("~/assets/general/css/carousel.css")" rel="stylesheet" />
     <link href="@Url.Content("~/assets/general/css/styles.custom.css")" rel="stylesheet" />
 </head>
 <!-- NAVBAR
@@ -28,7 +28,7 @@
 <body>
     <!-- Header
     ================================================== -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -38,131 +38,273 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">
-                    <img src="/images/Pos_Malaysia_Logo_500px.png" style="width:105px; height:33px" alt="">
+                    <img src="/images/ez2send_darkfont_small_v4.png" style="width:93.6px; height:40px" alt="">
                 </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/shipment-volumetric">Volumetric Weight</a></li>
+                    <li><a href="/volumetric">Volumetric Weight</a></li>
                     <li><a href="/track-trace">Track & Trace</a></li>
+                    <li><a href="#">Rate Calculator</a></li>
+                    <li><a href="/tnc">T&C</a></li>
+                    <li><a href="/faq">FAQ</a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
-                    <a href="/ost-account/login" type="button" class="btn btn-danger">Log In</a>
+                    <a href="/ost-account/login" type="button" class="btn btn-sample">Log In</a>
                     <a href="/ost-account/register" type="button" class="btn btn-default">Sign Up</a>
                 </form>
             </div><!--/.navbar-collapse -->
         </div>
     </div>
-    <!-- Carousel
-    ================================================== -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+    <div class="stripe">
+
+    </div>
+
+    <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
+        <!-- Overlay -->
         <!-- Indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-            <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+            <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#bs-carousel" data-slide-to="1"></li>
+            <li data-target="#bs-carousel" data-slide-to="2"></li>
         </ol>
-        <div class="carousel-inner" role="listbox">
-            <div class="item">
-                <img class="first-slide" src="/images/slide-01.jpg" alt="First slide">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h1>Send Parcel With Us.</h1>
-                        <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-                        <p><a class="btn btn-lg btn-primary" href="/ost-account/register" role="button">Sign up today</a></p>
-                    </div>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item slides active">
+                <div class="overlay"></div>
+                <div class="slide-1"></div>
+                <div class="hero">
+                    <hgroup>
+                        <h1>Pos Laju Online Shipping</h1>
+                        <h4>Pos Laju has created an automated shipping solution exclusively to Pos Laju customers. With Pos Laju Online Shipping, customer can easily deliver the parcel just in the few click.</h4>
+                    </hgroup>
+                    <button class="btn btn-sample btn-lg" role="button">Sign Up</button>
                 </div>
             </div>
-            <div class="item active">
-                <img class="second-slide" src="/images/slide-02.jpg" alt="Second slide">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h1>Another Product by Pos Malaysia Berhad</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                        <p><a class="btn btn-lg btn-primary" href="" role="button">Learn more</a></p>
-                    </div>
+            <div class="item slides">
+                <div class="overlay"></div>
+                <div class="slide-2"></div>
+                <div class="hero">
+                    <hgroup>
+                        <h1>Pos Laju Online Shipping</h1>
+                        <h4>Pos Laju has created an automated shipping solution exclusively to Pos Laju customers. With Pos Laju Online Shipping, customer can easily deliver the parcel just in the few click.</h4>
+                    </hgroup>
+                    <button class="btn btn-sample btn-lg" role="button">Read More</button>
                 </div>
             </div>
-            <div class="item">
-                <img class="third-slide" src="/images/slide-03.jpg" alt="Third slide">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h1>Online Shipping Tools!</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                        <p><a class="btn btn-lg btn-primary" href="" role="button">Read more</a></p>
-                    </div>
+            <div class="item slides">
+                <div class="overlay"></div>
+                <div class="slide-3"></div>
+                <div class="hero">
+                    <hgroup>
+                        <h1>Pos Laju Online Shipping</h1>
+                        <h4>Pos Laju has created an automated shipping solution exclusively to Pos Laju customers. With Pos Laju Online Shipping, customer can easily deliver the parcel just in the few click.</h4>
+                    </hgroup>
+                    <button class="btn btn-sample btn-lg" role="button">Join Us</button>
                 </div>
             </div>
         </div>
-        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div><!-- /.carousel -->
+    </div>
+
+
+    <div hidden>
+        <h4>Sweet Alert Samples</h4>
+        <button class="btn btn-default mt-sweetalert" data-title="Sweet Alerts" data-message="Beautiful popup alerts" data-allow-outside-click="true" data-confirm-button-class="btn-default">Default Alert</button>
+        <button class="btn btn-primary mt-sweetalert" data-title="Sweet Alerts" data-message="Beautiful popup alerts" data-allow-outside-click="true" data-confirm-button-class="btn-primary">Primary Alert</button>
+        <button class="btn btn-info mt-sweetalert" data-title="Sweet Alerts" data-message="Beautiful popup alerts" data-allow-outside-click="true" data-confirm-button-class="btn-info">Info Alert</button>
+        <button class="btn btn-warning mt-sweetalert" data-title="Sweet Alerts" data-message="Beautiful popup alerts" data-allow-outside-click="true" data-confirm-button-class="btn-warning">Warning Alert</button>
+        <button class="btn btn-danger mt-sweetalert" data-title="Sweet Alerts" data-message="Beautiful popup alerts" data-allow-outside-click="true" data-confirm-button-class="btn-danger">Danger Alert</button>
+        <button class="btn btn-success mt-sweetalert" data-title="Sweet Alerts" data-message="Beautiful popup alerts" data-allow-outside-click="true" data-confirm-button-class="btn-success">Success Alert</button>
+        <h4 class="mt-sweetalert-title">Sweet Alert Samples with Icons</h4>
+        <button class="btn btn-success mt-sweetalert" data-title="Sweet Alerts with Icons" data-message="Success Icon" data-type="success" data-allow-outside-click="true" data-confirm-button-class="btn-success">Icon Success Alert</button>
+        <button class="btn btn-warning mt-sweetalert" data-title="Sweet Alerts with Icons" data-message="Warning Icon" data-type="warning" data-allow-outside-click="true" data-confirm-button-class="btn-warning">Icon Warning Alert</button>
+        <button class="btn btn-danger mt-sweetalert" data-title="Sweet Alerts with Icons" data-message="Error Icon" data-type="error" data-allow-outside-click="true" data-confirm-button-class="btn-danger">Icon Error Alert</button>
+        <button class="btn btn-info mt-sweetalert" data-title="Sweet Alerts with Icons" data-message="Info Icon" data-type="info" data-allow-outside-click="true" data-confirm-button-class="btn-info">Icon Info Alert</button>
+        <h4 class="mt-sweetalert-title">Sweet Alert Samples with Custom Buttons</h4>
+        <button class="btn btn-default mt-sweetalert" data-title="Do you agree to the Terms and Conditions?" data-type="info" data-allow-outside-click="true" data-confirm-button-text='Yes, I agree'
+                data-confirm-button-class="btn-info">
+            Custom Confirm Button
+        </button>
+        <button class="btn btn-warning mt-sweetalert" data-title="Do you agree to the Terms and Conditions?" data-type="error" data-allow-outside-click="true" data-show-confirm-button="false" data-show-cancel-button="true"
+                data-cancel-button-class="btn-danger" data-cancel-button-text='No, I do not agree'>
+            Custom Cancel Button
+        </button>
+        <button class="btn btn-primary mt-sweetalert" data-title="Do you agree to the Terms and Conditions?" data-type="warning" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true"
+                data-cancel-button-class="btn-danger" data-cancel-button-text='No, I do not agree' data-confirm-button-text='Yes, I agree' data-confirm-button-class="btn-info">
+            Custom Confirm & Cancel Button
+        </button>
+        <h4 class="mt-sweetalert-title">Sweet Alert Samples with Confimation Message</h4>
+        <button class="btn btn-default mt-sweetalert" data-title="Do you agree to the Terms and Conditions?" data-message="Duis mollis, est non commodo luctus, nisi erat porttitor ligula, mattis consectetur purus sit amet eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum."
+                data-type="info" data-show-confirm-button="true" data-confirm-button-class="btn-success" data-show-cancel-button="true" data-cancel-button-class="btn-default" data-close-on-confirm="false" data-close-on-cancel="false" data-confirm-button-text='Yes, I agree'
+                data-cancel-button-text='No, I disagree' data-popup-title-success="Thank you" data-popup-message-success="You have agreed to our Terms and Conditions" data-popup-title-cancel="Cancelled" data-popup-message-cancel="You have disagreed to our Terms and Conditions">
+            Agree to Terms & Conditions
+        </button>
+    </div>
+    <div class="stripe">
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h1 style="color: #d45500">3 Easy Steps!</h1>
+                <h3 style="color:darkgrey">Ship With Pos Laju In Just 3 Simple Steps!</h3>
+            </div>
+        </div>
+        <br /><br />
+        <div class="row process">
+            <div class="process-row">
+                <div class="col-lg-4 process-step">
+                    <button type="button" class="btn btn-sample btn-circle" disabled="disabled"><i class="fa fa-list-ol fa-3x"></i></button>
+                    <p><h4><strong> Step 1 </strong></h4></p>
+                    <p><h4 style="color:darkgrey">Prepare Shipment Information</h4></p>
+                </div>
+                <div class="col-lg-4 process-step">
+                    <button type="button" class="btn btn-sample btn-circle" disabled="disabled"><i class="fa fa-calendar fa-3x"></i></button>
+                    <p><h4><strong> Step 2 </strong></h4></p>
+                    <p><h4 style="color:darkgrey">Schedule a Pickup</h4></p>
+                </div>
+                <div class="col-lg-4 process-step">
+                    <button type="button" class="btn btn-sample btn-circle" disabled="disabled"><i class="fa fa-credit-card fa-3x"></i></button>
+                    <p><h4><strong> Step 3 </strong></h4></p>
+                    <p><h4 style="color:darkgrey">Make an Online Payment</h4></p>
+                </div>
+            </div>
+        </div>
+        <br /><br /><br />
+    </div>
+    <div class="stripe">
+
+    </div>
+    <div class="marketing">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h1 style="color: #d45500"> Why EziSend? </h1>
+                    <h3 style="color:darkgrey">These Will Make Your Life Easier!</h3>
+                </div>
+            </div>
+            <hr />
+            <br />
+            <div class="row">
+                <div class="col-lg-4">
+                    <img class="img-circle" src="/images/icon_contacts.png" alt="Generic placeholder image" width="140" height="140">
+                    <h3>Address Book Storage</h3>
+                    <p><button class="btn btn-default mt-sweetalert" data-type="info" data-title="Address Book Storage" data-message="Allow customer to manage Address Book details such as to add, delete, import and export address information in system" data-allow-outside-click="true" data-confirm-button-class="btn-info">View details »</button></p>
+                </div>
+                <div class="col-lg-4">
+                    <img class="img-circle" src="/images/icon_magnifyingglass.png" alt="Generic placeholder image" width="140" height="140">
+                    <h3>Real-time Track & Trace</h3>
+                    <p><button class="btn btn-default mt-sweetalert" data-type="info" data-title="Real-time Track & Trace" data-message="Allow customer to check real-time tracking event to track and trace event whenever it" data-allow-outside-click="true" data-confirm-button-class="btn-info">View details »</button></p>
+                </div>
+                <div class="col-lg-4">
+                    <img class="img-circle" src="/images/icon_truck.png" alt="Generic placeholder image" width="140" height="140">
+                    <h3>Online Pickup Request</h3>
+                    <p><button class="btn btn-default mt-sweetalert" data-type="info" data-title="Online Pickup Request" data-message="Allow customer to request Pickup service via online without customer no need to call for the service anymore" data-allow-outside-click="true" data-confirm-button-class="btn-info">View details »</button></p>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-4">
+                    <img class="img-circle" src="/images/icon_clipboard.png" alt="Generic placeholder image" width="140" height="140">
+                    <h3>Pre-Printed Consignment Note</h3>
+                    <p><button class="btn btn-default mt-sweetalert" data-type="info" data-title="Pre-Printed Consignment Note" data-message="Allow customer to request Pickup service via online without customer no need to call for the service anymore" data-allow-outside-click="true" data-confirm-button-class="btn-info">View details »</button></p>
+                </div>
+                <div class="col-lg-4">
+                    <img class="img-circle" src="/images/icon_creditcard.png" alt="Generic placeholder image" width="140" height="140">
+                    <h3>Fast Online Payment</h3>
+                    <p><button class="btn btn-default mt-sweetalert" data-type="info" data-title="Fast Online Payment" data-message="Allow customer to pay the service used via credit card, debit card and online payment transaction" data-allow-outside-click="true" data-confirm-button-class="btn-info">View details »</button></p>
+                </div>
+                <div class="col-lg-4">
+                    <img class="img-circle" src="/images/icon_trends.png" alt="Generic placeholder image" width="140" height="140">
+                    <h3>Manage Dashboard Transaction</h3>
+                    <p><button class="btn btn-default mt-sweetalert" data-type="info" data-title="Manage Dashboard Transaction" data-message="Allow customer to monitor past trasaction with bulk item tracking function" data-allow-outside-click="true" data-confirm-button-class="btn-info">View details »</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="stripe">
+
+    </div>
     <!-- Marketing messaging and featurettes
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
-    <div class="container marketing">
+    <div class="well" hidden>
+        <div class="container marketing">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Ship with Pos Laju in <span class="badge badge-success">3</span> easy step!</h2>
+                    @*<h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>*@
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-info"></i>
+                        <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Prepare Shipment Information</h4>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-info"></i>
+                        <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Schedule a pickup</h4>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-info"></i>
+                        <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Make an Online Payment</h4>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container marketing" hidden>
         <!-- Three columns of text below the carousel -->
         <div class="row">
-            <div class="col-lg-4">
-                <img class="img-circle" src="/images/Icon_Transport_Red.png" alt="Generic placeholder image" width="140" height="140">
-                <h2>Express</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <p><a class="btn btn-default" href="" role="button">View details »</a></p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-                <img class="img-circle" src="/images/Icon_Money_Red.png" alt="Generic placeholder image" width="140" height="140">
-                <h2>Cashless</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <p><a class="btn btn-default" href="" role="button">View details »</a></p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-                <img class="img-circle" src="/images/Icon_Cart_Red.png" alt="Generic placeholder image" width="140" height="140">
-                <h2>Fast & Easy</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <p><a class="btn btn-default" href="" role="button">View details »</a></p>
-            </div><!-- /.col-lg-4 -->
-        </div><!-- /.row -->
-        <!-- START THE FEATURETTES -->
-        <hr class="featurette-divider">
-        <div class="row featurette">
-            <div class="col-md-7">
-                <h2 class="featurette-heading">Online Shipping Tools!. <span class="text-muted">Pos Malaysia Marketing Stuff!.</span></h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <!-- START THE FEATURETTES -->
+            <hr class="featurette-divider">
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">POS Online Shipping! <span class="text-muted">Pos Malaysia Marketing Stuff!.</span></h2>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-responsive center-block" data-src="holder.js" alt="500x500" src="/images/marketing_mail_inbox.png" data-holder-rendered="true">
+                </div>
             </div>
-            <div class="col-md-5">
-                <img class="featurette-image img-responsive center-block" data-src="holder.js" alt="500x500" src="/images/marketing_mail_inbox.png" data-holder-rendered="true">
+            <hr class="featurette-divider">
+            <div class="row featurette">
+                <div class="col-md-7 col-md-push-5">
+                    <h2 class="featurette-heading">POS Online Shipping! <span class="text-muted">Pos Malaysia Marketing Stuff!.</span></h2>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div class="col-md-5 col-md-pull-7">
+                    <img class="featurette-image img-responsive center-block" data-src="holder.js" alt="500x500" src="/images/marketing_credit_cards.png" data-holder-rendered="true">
+                </div>
             </div>
-        </div>
-        <hr class="featurette-divider">
-        <div class="row featurette">
-            <div class="col-md-7 col-md-push-5">
-                <h2 class="featurette-heading">Online Shipping Tools!. <span class="text-muted">Pos Malaysia Marketing Stuff!.</span></h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <hr class="featurette-divider">
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">POS Online Shipping! <span class="text-muted">Pos Malaysia Marketing Stuff!.</span></h2>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-responsive center-block" data-src="holder.js" alt="500x500" src="/images/marketing_shopping_cart.png" data-holder-rendered="true">
+                </div>
             </div>
-            <div class="col-md-5 col-md-pull-7">
-                <img class="featurette-image img-responsive center-block" data-src="holder.js" alt="500x500" src="/images/marketing_credit_cards.png" data-holder-rendered="true">
-            </div>
-        </div>
-        <hr class="featurette-divider">
-        <div class="row featurette">
-            <div class="col-md-7">
-                <h2 class="featurette-heading">Online Shipping Tools!. <span class="text-muted">Pos Malaysia Marketing Stuff!.</span></h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            </div>
-            <div class="col-md-5">
-                <img class="featurette-image img-responsive center-block" data-src="holder.js" alt="500x500" src="/images/marketing_shopping_cart.png" data-holder-rendered="true">
-            </div>
-        </div>
-        <hr class="featurette-divider">
-        <!-- /END THE FEATURETTES -->
-    </div><!-- /.container -->
+            <hr class="featurette-divider">
+            <!-- /END THE FEATURETTES -->
+        </div><!-- /.container -->
+    </div>
     <!-- Footer
     ================================================== -->
     <footer>
@@ -196,7 +338,7 @@
                             <li>
                                 <div class="input-append newsletter-box text-center">
                                     <input type="text" class="form-control" placeholder="Email ">
-                                    <button class="btn btn-danger btn-outline" type="button"> Subscribe <i class="fa fa-feed"> </i> </button>
+                                    <button class="btn btn-sample btn-outline" type="button"> Subscribe <i class="fa fa-feed"> </i> </button>
                                 </div>
                             </li>
                         </ul>
@@ -213,7 +355,7 @@
         <!--/.footer-->
         <div class="footer-bottom">
             <div class="container">
-                <p class="pull-left"> @DateTime.Today.Year &copy; Online Shipping Tools, Pos Malaysia Berhad. </p>
+                <p class="pull-left"> @DateTime.Today.Year &copy; EziSend, Pos Malaysia Berhad. </p>
                 <div class="pull-right">
                     <ul class="nav nav-pills payments">
                         <li><i class="fa fa-cc-visa"></i></li>
@@ -230,7 +372,8 @@
     <script src="@Url.Content("~/Scripts/jquery-3.1.1.min.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
     <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="~/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="~/assets/admin/pages/scripts/ui-sweetalert.min.js" type="text/javascript"></script>
     <script src="@Url.Content("~/assets/general/scripts/holder.min.js")"></script>
     @*<script src="@Url.Content("~/Scripts/knockout-3.4.0.js")"></script>*@
 </body>
