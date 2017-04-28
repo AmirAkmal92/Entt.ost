@@ -1,3 +1,335 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+    /*padding-bottom: 40px;*/
+    /*color: #5a5a5a;*/
+    color: #9e4508;
+}
+
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 20;
+}
+
+    /* Flip around the padding for proper display in narrow viewports */
+    .navbar-wrapper > .container {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .navbar-wrapper .navbar {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+        .navbar-wrapper .navbar .container {
+            width: auto;
+        }
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+    height: 500px;
+    /*margin-bottom: 60px;*/
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+    z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+    height: 500px;
+    background-color: #777;
+}
+
+.carousel-inner > .item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 500px;
+}
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.marketing h2 {
+    font-weight: normal;
+}
+
+.marketing .col-lg-4 p {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+    margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+    /* Navbar positioning foo */
+    .navbar-wrapper {
+        margin-top: 20px;
+    }
+
+        .navbar-wrapper .container {
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .navbar-wrapper .navbar {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        /* The navbar becomes detached from the top, so we round the corners */
+        .navbar-wrapper .navbar {
+            border-radius: 4px;
+        }
+
+    /* Bump up size of carousel content */
+    .carousel-caption p {
+        margin-bottom: 20px;
+        font-size: 21px;
+        line-height: 1.4;
+    }
+
+    .featurette-heading {
+        font-size: 50px;
+    }
+}
+
+@media (min-width: 992px) {
+    .featurette-heading {
+        margin-top: 120px;
+    }
+}
+
+/*
+        Fade content bs-carousel with hero headers
+        Code snippet by maridlcrmn (Follow me on Twitter @maridlcrmn) for Bootsnipp.com
+        Image credits: unsplash.com
+        */
+
+/********************************/
+/*       Fade Bs-carousel       */
+/********************************/
+.fade-carousel {
+    position: relative;
+    /*height: 100vh;*/
+}
+
+    .fade-carousel .carousel-inner .item {
+        /*height: 100vh;*/
+    }
+
+    .fade-carousel .carousel-indicators > li {
+        margin: 0 2px;
+        /*background-color: #81E2EB;*/
+        border-color: #ffffff;
+        opacity: .7;
+    }
+
+        .fade-carousel .carousel-indicators > li.active {
+            width: 10px;
+            height: 10px;
+            opacity: 1;
+        }
+
+/********************************/
+/*          Hero Headers        */
+/********************************/
+.hero {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 rgba(0,0,0,.75);
+    -webkit-transform: translate3d(-50%,-50%,0);
+    -moz-transform: translate3d(-50%,-50%,0);
+    -ms-transform: translate3d(-50%,-50%,0);
+    -o-transform: translate3d(-50%,-50%,0);
+    transform: translate3d(-50%,-50%,0);
+}
+
+    .hero h1 {
+        font-size: 4em;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+    }
+
+.fade-carousel .carousel-inner .item .hero {
+    opacity: 0;
+    -webkit-transition: 2s all ease-in-out .1s;
+    -moz-transition: 2s all ease-in-out .1s;
+    -ms-transition: 2s all ease-in-out .1s;
+    -o-transition: 2s all ease-in-out .1s;
+    transition: 2s all ease-in-out .1s;
+}
+
+.fade-carousel .carousel-inner .item.active .hero {
+    opacity: 1;
+    -webkit-transition: 2s all ease-in-out .1s;
+    -moz-transition: 2s all ease-in-out .1s;
+    -ms-transition: 2s all ease-in-out .1s;
+    -o-transition: 2s all ease-in-out .1s;
+    transition: 2s all ease-in-out .1s;
+}
+
+/********************************/
+/*            Overlay           */
+/********************************/
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: #b1632f;
+    opacity: .6;
+}
+
+/********************************/
+/*          Custom Buttons      */
+/********************************/
+.btn.btn-lg a {
+    padding: 10px 40px;
+}
+
+.btn.btn-hero,
+.btn.btn-hero:hover,
+.btn.btn-hero:focus {
+    color: #f5f5f5;
+    background-color: #1abc9c;
+    border-color: #1abc9c;
+    outline: none;
+    margin: 20px auto;
+}
+
+.btn-sample {
+    color: #FFFFFF;
+    background-color: #F2784B;
+    border-color: #F06533;
+}
+
+    .btn-sample:hover,
+    .btn-sample:focus,
+    .btn-sample:active,
+    .btn-sample.active,
+    .open .dropdown-toggle.btn-sample {
+        color: #FFFFFF;
+        background-color: #E86231;
+        border-color: #F06533;
+    }
+
+    .btn-sample:active,
+    .btn-sample.active,
+    .open .dropdown-toggle.btn-sample {
+        background-image: none;
+    }
+
+    .btn-sample.disabled,
+    .btn-sample[disabled],
+    fieldset[disabled] .btn-sample,
+    .btn-sample.disabled:hover,
+    .btn-sample[disabled]:hover,
+    fieldset[disabled] .btn-sample:hover,
+    .btn-sample.disabled:focus,
+    .btn-sample[disabled]:focus,
+    fieldset[disabled] .btn-sample:focus,
+    .btn-sample.disabled:active,
+    .btn-sample[disabled]:active,
+    fieldset[disabled] .btn-sample:active,
+    .btn-sample.disabled.active,
+    .btn-sample[disabled].active,
+    fieldset[disabled] .btn-sample.active {
+        background-color: #F2784B;
+        border-color: #F06533;
+    }
+
+    .btn-sample .badge {
+        color: #F2784B;
+        background-color: #FFFFFF;
+    }
+/********************************/
+/*       Slides backgrounds     */
+/********************************/
+.fade-carousel .slides .slide-1,
+.fade-carousel .slides .slide-2,
+.fade-carousel .slides .slide-3 {
+    height: 100vh;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.fade-carousel .slides .slide-1 {
+    background-image: url("/images/slider-04.jpg");
+}
+
+.fade-carousel .slides .slide-2 {
+    background-image: url("/images/slider-03.jpg");
+}
+
+.fade-carousel .slides .slide-3 {
+    background-image: url("/images/slider-01.jpg");
+}
+
+/********************************/
+/*          Media Queries       */
+/********************************/
+@media screen and (min-width: 980px) {
+    .hero {
+        width: 980px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .hero h1 {
+        font-size: 4em;
+    }
+}
+
+
 /*
  * Start Bootstrap - Logo Nav (http://startbootstrap.com/)
  * Copyright 2013-2016 Start Bootstrap
@@ -14,7 +346,7 @@ body {
 
 @media(min-width:768px) {
     .navbar-fixed-top .navbar-brand {
-        padding: 10px 0;
+        padding: 5px 0;
     }
 }
 
@@ -34,13 +366,13 @@ body {
 }
 
 .footer {
-    background: #EDEFF1;
+    background: #feede2;
     height: auto;
     padding-bottom: 30px;
     position: relative;
     width: 100%;
-    border-bottom: 1px solid #CCCCCC;
-    border-top: 1px solid #DDDDDD;
+    border-bottom: 1px solid #ffc9a5;
+    border-top: 1px solid #ffc9a5;
 }
 
     .footer p {
@@ -53,7 +385,7 @@ body {
 
     .footer h3 {
         /*border-bottom: 1px solid #BAC1C8;*/
-        color: #54697E;
+        /*color: #54697E;*/
         font-size: 18px;
         font-weight: 600;
         line-height: 27px;
@@ -120,8 +452,8 @@ body {
 }
 
 .social li {
-    background: none repeat scroll 0 0 #B5B5B5;
-    border: 2px solid #B5B5B5;
+    background: none repeat scroll 0 0 #ffad8f;
+    border: 2px solid #e0a995;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -o-border-radius: 50%;
@@ -154,8 +486,8 @@ body {
     }
 
     .social li:hover {
-        border: 2px solid #2c3e50;
-        background: #2c3e50;
+        border: 2px solid #d05300;
+        background: #fa6400;
     }
 
     .social li a i {
@@ -164,9 +496,16 @@ body {
         color: #EDEFF1 !important;
     }
 
-.footer-bottom {
+/*.footer-bottom {
     background: #E3E3E3;
     border-top: 1px solid #DDDDDD;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}*/
+
+.footer-bottom {
+    background: #f6d7c3;
+    border-top: 1px solid #f6d7c3;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -180,7 +519,7 @@ body {
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
-    position: absolute !important;
+    /*position: absolute !important;*/
     width: 100% !important;
 }
 
@@ -198,4 +537,136 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     border: 1px solid #d9534f;
     border-left-width: 5px;
     border-radius: 3px;
+}
+
+h1 {
+    font-family: Ubuntu;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 26.4px;
+}
+
+h2 {
+    font-family: Ubuntu;
+    font-size: 19px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 15.4px;
+}
+
+h3 {
+    font-family: Ubuntu;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 15.4px;
+}
+
+p {
+    font-family: Ubuntu;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+blockquote {
+    font-family: Ubuntu;
+    font-size: 21px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+pre {
+    font-family: Ubuntu;
+    font-size: 13px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 18.5714px;
+}
+
+.stepwizard-step p {
+    margin-top: 10px;
+}
+
+.process-row {
+    display: table-row;
+}
+
+.process {
+    display: table;
+    width: 100%;
+    position: relative;
+}
+
+.process-step button[disabled] {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+}
+
+.process-row:before {
+    top: 50px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    z-order: 0;
+}
+
+.process-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+
+    .process-step p {
+        margin-top: 10px;
+    }
+
+.btn-circle {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+}
+
+div.stripe {
+    height: 5px;
+    background: #FA6400;
+    text-align: center;
+    /*margin-top: 30px;*/
+    font-size: 30px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.faqHeader {
+    font-size: 23px;
+    margin: 20px;
+}
+
+.panel-heading [data-toggle="collapse"]:after {
+    font-family: 'FontAwesome';
+    content: "\f078"; /* "play" icon */
+    float: right;
+    color: #F58723;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.panel-heading [data-toggle="collapse"].collapsed:after {
+    color: #454444;
 }
