@@ -21,29 +21,29 @@
             <div class="portlet-title">
                 <div class="caption">
                     <h4>
-                        <i class="fa fa-list-ul font-green"></i>
-                        <span class="caption-subject font-green bold uppercase"> Order Summary</span>
+                        <i class="fa fa-list-ul font-yellow-casablanca"></i>
+                        <span class="caption-subject font-yellow-casablanca bold uppercase"> Order Summary</span>
                     </h4>
-                    <div class="caption-desc font-grey-cascade">Order Summary</div>
+                    <div class="caption-desc font-grey-cascade">Order details summary for payment</div>
                 </div>
             </div>
             <div class="portlet-body">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-10">
                         <div class="clearfix">
                             <div class="invoice-content-2 bordered col-md-10">
                                 <div class="row invoice-head">
                                     <div class="col-md-6">
                                         <div class="invoice-logo">
-                                            <img src="../assets/admin/pages/media/invoice/posost.png" class="img-responsive" alt="" style="height: 38px;" />
+                                            <img src="../images/ez2send_darkfont_small_v4.png" class="img-responsive" alt="" style="height: 38px;" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="company-address">
-                                            <span class="bold uppercase">Order Number</span>
-                                            <br /> <span data-bind="text: ReferenceNo"></span>
+                                            <span class="bold uppercase" style="font-size:15px;">Order Number:</span>
+                                            <br /> <i><span data-bind="text: ReferenceNo" style="font-size:13px;"></span></i>
                                         </div>
                                     </div>
                                 </div>
@@ -52,10 +52,10 @@
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th class="invoice-title uppercase col-md-3">Description</th>
-                                                    <th class="invoice-title uppercase col-md-3">Price</th>
-                                                    <th class="invoice-title uppercase col-md-3">GST</th>
-                                                    <th class="invoice-title uppercase col-md-3">Total</th>
+                                                    <th class="invoice-title uppercase col-md-3"><h5><strong>Description</strong></h5></th>
+                                                    <th class="invoice-title uppercase col-md-3"><h5><strong>Price</strong></h5></th>
+                                                    <th class="invoice-title uppercase col-md-3"><h5><strong>GST</strong></h5></th>
+                                                    <th class="invoice-title uppercase col-md-3"><h5><strong>Total</strong></h5></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -96,22 +96,20 @@
                                         <h2 class="invoice-title uppercase">Grand Total</h2>
                                         <h4><strong>RM <span data-bind="text: Payment().TotalPrice().toFixed(2)"></span></strong></h4>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <form method="post" data-bind="attr: { action: $root.appUrl }">
+                                    <form class="pull-right" method="post" data-bind="attr: { action: $root.appUrl }">
                                         <div class="form-group">
                                             <input type="hidden" name="applicationId" data-bind="attr: { value: $root.appId }" />
                                         </div>
                                         <div class="form-group">
                                             <input type="hidden" name="data" data-bind="attr: { value: $root.appData }" />
                                         </div>
-                                        <button type="submit" class="btn btn-circle btn-sm green pull-right"><i class="fa fa-credit-card"></i> Pay Now</button>
+                                        <button type="submit" class="btn btn-circle btn-sm yellow-casablanca pull-right"><i class="fa fa-credit-card"></i> Pay Now</button>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                     </div>
                 </div>
             </div>
