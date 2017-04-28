@@ -1,18 +1,49 @@
-<div class="row">
-    <div class="col-md-12 hidden-print">
+<link href="../assets/general/css/print.css" rel="stylesheet" type="text/css" />
+
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="/"> Home </a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Orders </span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Tax Invoice </span>
+        </li>
+    </ul>
+</div>
+<h1 class="page-title caption-subject font-red-sunglo bold uppercase"></h1>
+<small></small>
+<div class="row" data-bind="with : entity">
+    <div class="col-md-12">
         <div class="portlet light bordered">
             <div class="portlet-title">
                 <div class="caption">
-                    <div class="caption-subject font-red-sunglo bold"><h2><span class="fa fa-clipboard"> </span> Tax Invoice</h2></div>
-                    <span class="caption-helper hidden-print">Tax Invoice</span>
+                    <h4>
+                        <i class="fa fa-clipboard font-yellow-casablanca"></i>
+                        <span class="caption-subject font-yellow-casablanca bold uppercase"> Tax Invoice</span>
+                    </h4>
+                    <div class="caption-desc font-grey-cascade">Tax invoice details</div>
+                </div>
+                <div class="actions hidden-print">
+                    <h3>
+                        <a role="button" class="btn btn-circle btn-sm yellow-casablanca" onclick="javascript:window.print();">
+                            <i class="fa fa-print"></i> Print
+                        </a>
+                    </h3>
                 </div>
             </div>
-            <div class="invoice hide" data-bind="with : entity">
+            <div class="invoice">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="panel panel-default">
+                            <div class="panel-heading bg-yellow-casablanca bg-font-yellow-casablanca">
+                                <strong>PAID TO</strong>
+                            </div>
                             <div class="panel-body">
-                                <h4>PAID TO</h4>
                                 <address>
                                     <strong>Pos Malaysia Berhad</strong> (22990-M)<br />
                                     care@pos.com.my
@@ -32,10 +63,12 @@
                     </div>
                     <div class="col-md-4">
                         <div class="panel panel-default">
+                            <div class="panel-heading bg-yellow-casablanca bg-font-yellow-casablanca">
+                                <strong>INVOICED TO</strong>
+                            </div>
                             <div class="panel-body">
-                                <h4>INVOICED TO</h4>
                                 <address>
-                                    <strong><span data-bind="text: $root.userDetail().BillingAddress().ContactPerson"></span></strong><br />
+                                    <strong><span class="text-capitalize" data-bind="text: $root.userDetail().BillingAddress().ContactPerson"></span></strong><br />
                                     <span data-bind="text: $root.userDetail().BillingAddress().ContactInformation().Email"></span>
                                 </address>
                                 <address>
@@ -59,8 +92,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="panel panel-default">
+                            <div class="panel-heading bg-yellow-casablanca bg-font-yellow-casablanca">
+                                <strong>DETAILS</strong>
+                            </div>
                             <div class="panel-body">
-                                <h4>DETAILS</h4>
                                 <dl>
                                     <dt>Tax Invoice No</dt>
                                     <dd><span data-bind="text: ReferenceNo"></span></dd>
@@ -92,7 +127,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <table class="table table-hover table-condensed">
-                                <thead>
+                                <thead style="background-color:#ff6a00; color:#ffffff;">
                                     <tr>
                                         <th>&nbsp;</th>
                                         <th>Tracking Number</th>
@@ -205,9 +240,6 @@
                                 </center>
                             </p>
                         </div>
-                        <span class="pull-right hidden-print">
-                            <a class="btn btn-primary" onclick="javascript:window.print();"><i class="fa fa-print"></i> Print</a>
-                        </span>
                     </div>
                 </div>
             </div>
