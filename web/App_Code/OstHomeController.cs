@@ -52,6 +52,24 @@ namespace web.sph.App_Code
             return View(connote);
         }
 
+        [HttpGet]
+        [Route("print-commercial-invoice/consignment-requests/{crId}/consignments/{cId}")]
+        public async Task<ActionResult> CommercialInvoice(string crId, string cId)
+        {
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(crId);
+            var item = lo.Source;
+            var connote = new Consignment();
+            foreach (var consignment in item.Consignments)
+            {
+                if (consignment.WebId == cId)
+                {
+                    connote = consignment;
+                    break;
+                }
+            }
+            return View(connote);
+        }
+
         private static async Task<LoadData<ConsigmentRequest>> GetConsigmentRequest(string id)
         {
             var repos = ObjectBuilder.GetObject<IReadonlyRepository<ConsigmentRequest>>();

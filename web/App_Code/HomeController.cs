@@ -23,5 +23,17 @@ namespace web.sph.App_Code
         {
             return View();
         }
+
+        [Route("tnc")]
+        public ActionResult Tnc()
+        {
+            return View();
+        }
+
+        [Route("faq")]
+        public ActionResult Faq()
+        {
+            return View();
+        }
     }
 }
