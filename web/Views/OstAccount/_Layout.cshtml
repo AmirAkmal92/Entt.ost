@@ -28,6 +28,7 @@
     <!-- Header
     ================================================== -->
     <div class="navbar navbar-default navbar-fixed-top">
+        <div class="stripe"></div>
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -37,17 +38,17 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">
-                    <img src="/images/ez2send_darkfont_small_v4.png" style="width:93.6px; height:40px" alt="">
+                    <img src="/images/ez2send_darkfont_small_v4.png" style="width:93.6px; height:40px;" alt="">
                 </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/volumetric">Volumetric Weight</a></li>
-                    <li><a href="/track-trace">Track & Trace</a></li>
-                    <li><a href="#">Rate Calculator</a></li>
-                    <li><a href="/tnc">T&C</a></li>
-                    <li><a href="/faq">FAQ</a></li>
+                    <li class="active" style="color: #fa6400;"><a href="/"><strong>Home</strong></a></li>
+                    <li style="color: #fa6400 !important;"><a href="/volumetric" style="color: #fa6400;"><strong>Volumetric Weight</strong></a></li>
+                    <li style="color: #fa6400 !important;"><a href="/track-trace" style="color: #fa6400;"><strong>Track & Trace</strong></a></li>
+                    <li style="color: #fa6400;"><a href="#" style="color: #fa6400;"><strong>Rate Calculator</strong></a></li>
+                    <li style="color: #fa6400;"><a href="/tnc" style="color: #fa6400;"><strong>T&C</strong></a></li>
+                    <li style="color: #fa6400;"><a href="/faq" style="color: #fa6400;"><strong>FAQ</strong></a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
                     <a href="/ost-account/login" type="button" class="btn btn-sample">Log In</a>
@@ -55,9 +56,6 @@
                 </form>
             </div><!--/.navbar-collapse -->
         </div>
-    </div>
-    <div class="stripe">
-
     </div>
     @RenderBody()
     <br /><br />
