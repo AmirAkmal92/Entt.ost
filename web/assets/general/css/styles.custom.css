@@ -225,8 +225,8 @@ body {
     width: 100%;
     height: 100%;
     z-index: 2;
-    /*background-color: #fa6400;*/
-    background-color: #b74900;
+    background-color: #fa6400;
+    /*background-color: #b74900;*/
     /*opacity: .6;*/
 }
 
@@ -248,9 +248,9 @@ body {
 }
 
 .btn-sample {
-    color: #FFFFFF;
-    background-color: #F2784B;
-    border-color: #F06533;
+    color: #fff;
+    background-color: #ff6a00;
+    border-color: #e86100;
 }
 
     .btn-sample:hover,
@@ -284,7 +284,7 @@ body {
     .btn-sample.disabled.active,
     .btn-sample[disabled].active,
     fieldset[disabled] .btn-sample.active {
-        background-color: #F2784B;
+        /*background-color: #F2784B;*/
         border-color: #F06533;
     }
 
@@ -548,7 +548,7 @@ h1 {
     font-style: normal;
     font-variant: normal;
     font-weight: 500;
-    line-height: 26.4px;
+    /*line-height: 26.4px;*/
 }
 
 h2 {
@@ -562,7 +562,7 @@ h2 {
 
 h3 {
     font-family: Ubuntu;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-variant: normal;
     font-weight: 500;

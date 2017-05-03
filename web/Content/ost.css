@@ -1,3 +1,29 @@
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: "Ubuntu"!important;
+}
+
+.font-yellow-casablanca {
+    color: #ff6a00!important;
+}
+
+.label, .table.table-light>thead>tr>th {
+    font-family: "Ubuntu"!important;
+}
+
+.dropdown-menu {
+    font-family: "Ubuntu"!important;
+}
+
+.bg-yellow-casablanca {
+    background: #ff6a00!important;
+}
+
+.btn.yellow-casablanca:not(.btn-outline) {
+    color: #fff;
+    background-color: #ff6a00;
+    border-color: #e86100;
+}
+
 select:invalid, input:invalid, textarea:invalid {
     background-image: url(/Images/red-bar.png) !important;
     background-repeat: repeat-y;
