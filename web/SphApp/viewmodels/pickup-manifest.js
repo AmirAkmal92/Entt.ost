@@ -14,7 +14,7 @@ define(["services/datacontext", "services/logger", "plugins/router", objectbuild
                     if (result._count > 0) {
                         entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(result._results[0]));
                     } else {
-                        app.showMessage("Sorry, but we cannot find any Consignment with Pickup Number : " + ko.unwrap(pickupNumber), "OST", ["OK"]).done(function () {
+                        app.showMessage("Sorry, but we cannot find any Consignment with Pickup Number : " + ko.unwrap(pickupNumber), "OST", ["Close"]).done(function () {
                             entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid()));
                         });
                     }
