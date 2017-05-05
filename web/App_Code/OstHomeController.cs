@@ -70,6 +70,15 @@ namespace web.sph.App_Code
             return View(connote);
         }
 
+        [HttpGet]
+        [Route("print-all-connote/consignment-requests/{crId}")]
+        public async Task<ActionResult> AllConnote(string crId)
+        {
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(crId);
+            var item = lo.Source;
+            return View(item);
+        }
+
         private static async Task<LoadData<ConsigmentRequest>> GetConsigmentRequest(string id)
         {
             var repos = ObjectBuilder.GetObject<IReadonlyRepository<ConsigmentRequest>>();
