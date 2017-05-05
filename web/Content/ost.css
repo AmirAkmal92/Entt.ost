@@ -1,21 +1,29 @@
 body, h1, h2, h3, h4, h5, h6 {
-    font-family: "Ubuntu"!important;
+    font-family: "Ubuntu" !important;
 }
 
 .font-yellow-casablanca {
-    color: #ff6a00!important;
+    color: #ff6a00 !important;
 }
 
-.label, .table.table-light>thead>tr>th {
-    font-family: "Ubuntu"!important;
+.label, .table.table-light > thead > tr > th {
+    font-family: "Ubuntu" !important;
 }
+
+.mt-element-step .step-thin .done {
+    background-color: #ff6a00 !important;
+}
+
+    .mt-element-step .step-thin .done .mt-step-number {
+        color: #ff6a00 !important;
+    }
 
 .dropdown-menu {
-    font-family: "Ubuntu"!important;
+    font-family: "Ubuntu" !important;
 }
 
 .bg-yellow-casablanca {
-    background: #ff6a00!important;
+    background: #ff6a00 !important;
 }
 
 .btn.yellow-casablanca:not(.btn-outline) {
@@ -30,6 +38,7 @@ select:invalid, input:invalid, textarea:invalid {
     background-position-x: -0.2%;
     background-position-y: 50%;
 }
+
 .error {
     color: red;
 }
