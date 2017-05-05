@@ -3,7 +3,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" data-bind="click : cancelClick">&times;</button>
-                <h3>Export Contacts (to CSV)</h3>
+                <h3>
+                    <i class="fa fa-cloud-download font-yellow-casablanca"></i> <span class="font-yellow-casablanca"> Download Contacts (to CSV)</span>
+                </h3>
             </div>
             <div class="modal-body" data-bind="with: options">
                 <h4>
@@ -11,12 +13,18 @@
                     from your Address Book
                     <br /><br />
                     The file is in *.csv format and can be opened <br />
-                    by <a href="https://en.wikipedia.org/wiki/Microsoft_Excel" target="_blank">Microsoft Excel</a> or any other similar program.                      
+                    by <a href="https://en.wikipedia.org/wiki/Microsoft_Excel" target="_blank">Microsoft Excel</a> or any other similar program.
                 </h4>
             </div>
             <div class="modal-footer">
-                <input data-dismiss="modal" type="submit" class="btn btn-primary" value="OK" data-bind="click: okClick" />
-                <a href="#" class="btn btn-default" data-dismiss="modal" data-bind="click : cancelClick">Cancel</a>
+                <style>
+                    a {
+                        text-shadow: none;
+                        color: #ff6a00;
+                    }
+                </style>
+                <input data-dismiss="modal" type="submit" class="btn btn-circle yellow-casablanca" value="Download" data-bind="click: okClick" />
+                <a href="#" class="btn btn-circle btn-default" data-dismiss="modal" data-bind="click : cancelClick">Cancel</a>
             </div>
         </div>
     </div>
