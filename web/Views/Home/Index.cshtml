@@ -39,14 +39,14 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">
-                    <img src="/images/ez2send_darkfont_small_v4.png" style="width:93.6px; height:40px;" alt="">
+                    <img src="/images/Pos_Laju_EziSend_RGB.png" style="width:101.69px; height:40px;" alt="">
                 </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active" style="color: #fa6400;"><a href="/"><strong>Home</strong></a></li>
                     <li style="color: #fa6400 !important;"><a href="/volumetric" style="color: #fa6400;"><strong>Weight Calculator</strong></a></li>
-                    <li style="color: #fa6400;"><a href="#" style="color: #fa6400;"><strong>Rate Calculator</strong></a></li>
+                    <li style="color: #fa6400;"><a href="/rates" style="color: #fa6400;"><strong>Rate Calculator</strong></a></li>
                     <li style="color: #fa6400 !important;"><a href="/track-trace" style="color: #fa6400;"><strong>Track & Trace</strong></a></li>
                     <li style="color: #fa6400;"><a href="/tnc" style="color: #fa6400;"><strong>T&C</strong></a></li>
                     <li style="color: #fa6400;"><a href="/faq" style="color: #fa6400;"><strong>FAQ</strong></a></li>
@@ -74,44 +74,47 @@
                 <div class="overlay"></div>
                 <div class="slide-1"></div>
                 <div class="hero">
-                    <hgroup>
-                        <h1>Need to send parcels?</h1>
-                        <h4 class="hidden-xs" style="margin-top: 68px; text-transform: uppercase;">Whether you’re sending it within Malaysia or around the world, we’ll deliver!</h4>
+                    <hgroup hidden>
+                        @*<h1>Need to send parcels?</h1>
+                        <h4 class="hidden-xs" style="margin-top: 68px; text-transform: uppercase;">Whether you’re sending it within Malaysia or around the world, we’ll deliver!</h4>*@
                     </hgroup>
-                    <!--<button class="btn btn-default btn-lg" role="button" style="margin-top: 65px;">Sign Up</button>-->
+                    <button href="/ost-account/register" type="button" class="btn btn-default btn-lg">Sign Up Now!</button>
                 </div>
             </div>
             <div class="item slides">
                 <div class="overlay"></div>
                 <div class="slide-2"></div>
                 <div class="hero">
-                    <hgroup>
+                    <hgroup hidden>
                         <h1>Find out where your</br>parcels are right now!</h1>
                         <h4 class="hidden-xs" style="margin-top: 68px; text-transform: uppercase;">Online real-time track and trace lets you know where your parcels are.</h4>
                     </hgroup>
                     <!--<button class="btn btn-default btn-lg" role="button" style="margin-top: 65px;">Read More</button>-->
+                    <button href="/ost-account/register" type="button" class="btn btn-default btn-lg">Sign Up Now!</button>
                 </div>
             </div>
             <div class="item slides">
                 <div class="overlay"></div>
                 <div class="slide-3"></div>
                 <div class="hero">
-                    <hgroup>
+                    <hgroup hidden>
                         <h1>We know</br>you’re busy.</h1>
                         <h4 class="hidden-xs" style="margin-top: 68px; text-transform: uppercase;">So just arrange for a pick-up and we’ll come to you!</h4>
                     </hgroup>
                     <!--<button class="btn btn-default btn-lg" role="button" style="margin-top: 65px;">Join Us</button>-->
+                    <button href="/ost-account/register" type="button" class="btn btn-default btn-lg">Sign Up Now!</button>
                 </div>
             </div>
             <div class="item slides">
                 <div class="overlay"></div>
                 <div class="slide-4"></div>
                 <div class="hero">
-                    <hgroup>
+                    <hgroup hidden>
                         <h1>Get coverage</br>for your parcels.</h1>
                         <h4 class="hidden-xs" style="margin-top: 68px; text-transform: uppercase;">Insure your parcels in case of lost or damage.</h4>
                     </hgroup>
                     <!--<button class="btn btn-default btn-lg" role="button" style="margin-top: 65px;">Join Us</button>-->
+                    <button href="/ost-account/register" type="button" class="btn btn-default btn-lg">Sign Up Now!</button>
                 </div>
             </div>
         </div>
@@ -125,22 +128,24 @@
             </div>
         </div>
         <br /><br />
-        <div class="row process">
-            <div class="process-row">
-                <div class="col-lg-4 process-step">
-                    <button type="button" class="btn btn-sample btn-circle" disabled="disabled"><i class="fa fa-list-ol fa-3x"></i></button>
-                    <p><h4 style="color:darkgrey"> Step 1 </h4></p>
-                    <p><h4><strong> Prepare Shipping</br>Information </strong></h4></p>
-                </div>
-                <div class="col-lg-4 process-step">
-                    <button type="button" class="btn btn-sample btn-circle" disabled="disabled"><i class="fa fa-calendar fa-3x"></i></button>
-                    <p><h4 style="color:darkgrey"> Step 2 </h4></p>
-                    <p><h4><strong> Schedule for</br>Pick-up </strong></h4></p>
-                </div>
-                <div class="col-lg-4 process-step">
-                    <button type="button" class="btn btn-sample btn-circle" disabled="disabled"><i class="fa fa-credit-card fa-3x"></i></button>
-                    <p><h4 style="color:darkgrey"> Step 3 </h4></p>
-                    <p><h4><strong> Pay Online </strong></h4></p>
+        <div class="row">
+            <div class="process">
+                <div class="process-row">
+                    <div class="col-lg-4 process-step">
+                        <img class="img-circle" src="/images/EZISEND_Step_Icon_Fill.png" alt="Generic placeholder image" width="140" height="140">
+                        <p><h4 style="color:darkgrey"> Step 1 </h4></p>
+                        <p><h4><strong> Prepare Shipping</br>Information </strong></h4></p>
+                    </div>
+                    <div class="col-lg-4 process-step">
+                        <img class="img-circle" src="/images/EZISEND_Step_Icon_Pickup.png" alt="Generic placeholder image" width="140" height="140">
+                        <p><h4 style="color:darkgrey"> Step 2 </h4></p>
+                        <p><h4><strong> Schedule for</br>Pick-up </strong></h4></p>
+                    </div>
+                    <div class="col-lg-4 process-step">
+                        <img class="img-circle" src="/images/EZISEND_Step_Icon_Pay.png" alt="Generic placeholder image" width="140" height="140">
+                        <p><h4 style="color:darkgrey"> Step 3 </h4></p>
+                        <p><h4><strong> Pay Online </strong></h4></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -159,17 +164,17 @@
             <br />
             <div class="row">
                 <div class="col-lg-4">
-                    <img class="img-circle" src="/images/icon_contacts.png" alt="Generic placeholder image" width="140" height="140">
+                    <img class="img-circle" src="/images/EZISEND_Why_Icon_Address.png" alt="Generic placeholder image" width="140" height="140">
                     <h3>Manage</br>Address Book</h3>
                     <p><button class="btn btn-default mt-sweetalert" data-type="warning" data-title="Manage Address Book" data-message="Easily update, import and export your customers’ shipping information" data-allow-outside-click="true" data-confirm-button-class="btn-sample">View details »</button></p>
                 </div>
                 <div class="col-lg-4">
-                    <img class="img-circle" src="/images/icon_magnifyingglass.png" alt="Generic placeholder image" width="140" height="140">
-                    <h3>Real time</br>Track & Trace</h3>
-                    <p><button class="btn btn-default mt-sweetalert" data-type="warning" data-title="Real-time Track & Trace" data-message="Track & trace your shipments online at real-time!" data-allow-outside-click="true" data-confirm-button-class="btn-sample">View details »</button></p>
+                    <img class="img-circle" src="/images/EZISEND_Why_Icon_Dashboard.png" alt="Generic placeholder image" width="140" height="140">
+                    <h3>Manage Dashboard</h3>
+                    <p><button class="btn btn-default mt-sweetalert" data-type="warning" data-title="Manage Dashboard" data-message="Monitor and manage your shipping and transaction history as well as bulk item tracking" data-allow-outside-click="true" data-confirm-button-class="btn-sample">View details »</button></p>
                 </div>
                 <div class="col-lg-4">
-                    <img class="img-circle" src="/images/icon_truck.png" alt="Generic placeholder image" width="140" height="140">
+                    <img class="img-circle" src="/images/EZISEND_Why_Icon_Pickup.png" alt="Generic placeholder image" width="140" height="140">
                     <h3>Arrange for</br>Pick-up</h3>
                     <p><button class="btn btn-default mt-sweetalert" data-type="warning" data-title="Arrange for Pick-up" data-message="Why call when you can conveniently arrange for pick-up online?" data-allow-outside-click="true" data-confirm-button-class="btn-sample">View details »</button></p>
                 </div>
@@ -177,19 +182,19 @@
             <br />
             <div class="row">
                 <div class="col-lg-4">
-                    <img class="img-circle" src="/images/icon_clipboard.png" alt="Generic placeholder image" width="140" height="140">
+                    <img class="img-circle" src="/images/EZISEND_Why_Icon_Payment.png" alt="Generic placeholder image" width="140" height="140">
+                    <h3>Pay Online</h3>
+                    <p><button class="btn btn-default mt-sweetalert" data-type="warning" data-title="Pay Online" data-message="Pay for shipment using credit or debit card online" data-allow-outside-click="true" data-confirm-button-class="btn-sample">View details »</button></p>
+                </div>
+                <div class="col-lg-4">
+                    <img class="img-circle" src="/images/EZISEND_Why_Icon_Print.png" alt="Generic placeholder image" width="140" height="140">
                     <h3>Print</br>Consignment Notes</h3>
                     <p><button class="btn btn-default mt-sweetalert" data-type="warning" data-title="Print Consignment Notes" data-message="Fill and print out consignment notes from your computer!" data-allow-outside-click="true" data-confirm-button-class="btn-sample">View details »</button></p>
                 </div>
                 <div class="col-lg-4">
-                    <img class="img-circle" src="/images/icon_creditcard.png" alt="Generic placeholder image" width="140" height="140">
-                    <h3>Pay Online</h3>
-                    <p><button class="btn btn-default mt-sweetalert" data-type="warning" data-title="Pay Online" data-message="Pay for shipment using credit or card via online payment transaction" data-allow-outside-click="true" data-confirm-button-class="btn-sample">View details »</button></p>
-                </div>
-                <div class="col-lg-4">
-                    <img class="img-circle" src="/images/icon_trends.png" alt="Generic placeholder image" width="140" height="140">
-                    <h3>Manage Dashboard</h3>
-                    <p><button class="btn btn-default mt-sweetalert" data-type="warning" data-title="Manage Dashboard" data-message="Monitor and manage your shipping and transaction history as well as bulk item tracking" data-allow-outside-click="true" data-confirm-button-class="btn-sample">View details »</button></p>
+                    <img class="img-circle" src="/images/EZISEND_Why_Icon_Track.png" alt="Generic placeholder image" width="140" height="140">
+                    <h3>Real time</br>Track & Trace</h3>
+                    <p><button class="btn btn-default mt-sweetalert" data-type="warning" data-title="Real-time Track & Trace" data-message="Track & trace your shipments online at real-time!" data-allow-outside-click="true" data-confirm-button-class="btn-sample">View details »</button></p>
                 </div>
             </div>
         </div>
