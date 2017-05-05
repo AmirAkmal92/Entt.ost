@@ -69,7 +69,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         consignment().Penerima(entity().Consignments()[editIndex].Penerima());
                         cid(entity().Consignments()[i].WebId());
                     } else {
-                        app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "OST", ["OK"]).done(function () {
+                        app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "OST", ["Close"]).done(function () {
                             router.navigate("consignment-request-cart/" + crId);
                         });
                     }
@@ -86,7 +86,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
 
                 // always check for pickup location 
                 if (entity().Pickup().Address().Postcode() === undefined) {
-                    app.showMessage("You must set Pickup Location first before you can send any Parcel.", "OST", ["OK"]).done(function () {
+                    app.showMessage("You must set Pickup Location first before you can send any Parcel.", "OST", ["Close"]).done(function () {
                         router.navigate("consignment-request-pickup/" + crId);
                     });
                 }
@@ -94,13 +94,13 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 // always check for pickup schedule
                 if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
                 } else {
-                    app.showMessage("Pickup has been scheduled. No more changes are allowed to the Information. You may proceed to make Payment now.", "OST", ["OK"]).done(function () {
+                    app.showMessage("Pickup has been scheduled. No more changes are allowed to the Information. You may proceed to make Payment now.", "OST", ["Close"]).done(function () {
                         router.navigate("consignment-request-summary/" + crId);
                     });
                 }
             }, function (e) {
                 if (e.status == 404) {
-                    app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + crId, "OST", ["OK"]);
+                    app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + crId, "OST", ["Close"]);
                 }
             }).always(function () {
                 if (typeof partial.activate === "function") {
@@ -352,7 +352,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return defaultCommand()
                 .then(function (result) {
                     if (result.success) {
-                        return app.showMessage("Parcel Information has been successfully saved.", "OST", ["OK"]);
+                        return app.showMessage("Parcel Information has been successfully saved.", "OST", ["Close"]);
                     } else {
                         return Task.fromResult(false);
                     }

@@ -61,7 +61,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         }
                     }
                     if (goToDashboard) {
-                        app.showMessage("Personal Details, Default Billing Address or Default Pickup Address must be set first before you can send any Parcel.", "OST", ["OK"]).done(function () {
+                        app.showMessage("Personal Details, Default Billing Address or Default Pickup Address must be set first before you can send any Parcel.", "OST", ["Close"]).done(function () {
                             router.navigate("customer-home");
                         });
                     //user choose to use Default Pickup Address or own pickup address
@@ -116,7 +116,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 });
             }, function (e) {
                 if (e.status == 404) {
-                    app.showMessage("Sorry, but we cannot find any ConsigmentRequest with Id : " + id, "OST", ["OK"]).done(function () {
+                    app.showMessage("Sorry, but we cannot find any ConsigmentRequest with Id : " + id, "OST", ["Close"]).done(function () {
                         router.navigate("consignment-request-cart/" + id);
                     });
                 }
@@ -273,7 +273,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     if (e.status == 404) {
                         app.showMessage("Sorry, no pickup coverage for given location / postcode: "
                             + postcode
-                            + ". Please choose another Pickup Location.", "OST", ["OK"]).done(function () {
+                            + ". Please choose another Pickup Location.", "OST", ["Close"]).done(function () {
                                 entity().Pickup().CompanyName("");
                                 entity().Pickup().ContactPerson("");
                                 entity().Pickup().Address().Address1("");
@@ -297,7 +297,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return defaultCommand()
                 .then(function (result) {
                     if (result.success) {
-                        return app.showMessage("Pickup details has been successfully saved. Return to Shipping Cart and start adding Parcel. ", "OST", ["OK"]).done(function () {
+                        return app.showMessage("Pickup details has been successfully saved. Return to Shipping Cart and start adding Parcel. ", "OST", ["Close"]).done(function () {
                             crCart.activate();
                         });
                     } else {

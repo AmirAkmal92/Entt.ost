@@ -28,11 +28,14 @@
                 </div>
                 <div class="actions">
                     <h3>
-                        <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }, css: { 'disabled': $root.isPickupDateTimeValid() }" class="btn btn-circle btn-sm yellow-casablanca">
-                            <i class="fa fa-paper-plane"></i> New Shipment
+                        <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }, css: { 'disabled': $root.isPickupDateTimeValid() }, visible: Consignments().length > 0" class="btn btn-circle btn-sm yellow-casablanca">
+                            <i class="fa fa-paper-plane"></i> Add Parcel
+                        </a>
+                        <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }, css: { 'disabled': $root.isPickupDateTimeValid() }, visible: Consignments().length == 0" class="btn btn-circle btn-sm yellow-casablanca">
+                            <i class="fa fa-paper-plane"></i> Send Parcel
                         </a>
                         <a data-bind="command: $root.importConsignments, css: { 'disabled': $root.isPickupDateTimeValid() }" class="btn btn-circle btn-sm yellow-casablanca">
-                            <i class="fa fa-folder-open"></i> Import Shipment
+                            <i class="fa fa-cloud-upload"></i> Bulk Upload
                         </a>
                         <a data-bind="click: $root.emptyConsignmentRequest, css: { 'disabled': $root.isPickupDateTimeValid() || Consignments().length == 0 }" class="btn btn-circle btn-sm yellow-casablanca">
                             <i class="fa fa-trash"></i> Empty Cart
@@ -52,7 +55,7 @@
                                     <tr>
                                         <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><center><strong>#</strong></center></th>
                                         <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Sender</strong></th>
-                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Receiver</strong></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Recipient</strong></th>
                                         <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Parcel</strong></th>
                                         <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Total</strong></th>
                                         <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><center><strong>Action</strong></center></th>
@@ -75,7 +78,7 @@
                                         <td>
                                             <!--<a class="btn btn-link btn-sm" data-bind="attr: { href: 'ost#consignment-request-produk/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': $root.isPickupDateTimeValid() }">-->
                                             <!--ko if: Produk().Weight() != null-->
-                                            <span data-bind="text: Produk().Weight() + ' kg'"></span>
+                                            <span data-bind="text: Bill().ActualWeight() + ' kg'"></span>
                                             <!--ko if: Produk().IsInternational-->
                                             <span class="label label-sm label-success label-mini pull-right"><i class="fa fa-plane"></i> International </span>                                            <!-- /ko -->
                                             <!--ko ifnot: Produk().IsInternational-->
@@ -99,10 +102,10 @@
                                         <!--</td>-->
                                         <td>
                                             <center>
-                                                <a class="btn btn-circle btn-icon-only btn-outline blue" title="Edit" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': $root.isPickupDateTimeValid() }">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Edit" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': $root.isPickupDateTimeValid() }">
                                                     <i class="icon-note"></i>
                                                 </a>
-                                                <a class="btn btn-circle btn-icon-only btn-outline red" title="Delete" data-bind="click: $root.deleteConsignment, css: { 'disabled': $root.isPickupDateTimeValid() }">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Delete" data-bind="click: $root.deleteConsignment, css: { 'disabled': $root.isPickupDateTimeValid() }">
                                                     <i class="icon-trash"></i>
                                                 </a>
                                             </center>

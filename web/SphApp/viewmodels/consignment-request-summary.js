@@ -34,14 +34,14 @@ function (context, logger, router, system, chart, config, app) {
                 }
                 entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
                 if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
-                    app.showMessage("Pickup not scheduled. Please Schedule Pickup before payment can be made.", "OST", ["OK"]);
+                    app.showMessage("Pickup not scheduled. Please Schedule Pickup before payment can be made.", "OST", ["Close"]);
                 } else {
                     isPickupDateTimeValid(true);
                 }
                 calculateGrandTotal();
             }, function (e) {
                 if (e.status == 404) {
-                    app.showMessage("Sorry, but we cannot find any Order Summary with Id : " + entityId, "OST", ["OK"]).done(function () {
+                    app.showMessage("Sorry, but we cannot find any Order Summary with Id : " + entityId, "OST", ["Close"]).done(function () {
                         router.navigate("consignment-requests-paid");
                     });
                 }
@@ -51,7 +51,7 @@ function (context, logger, router, system, chart, config, app) {
             var data = ko.mapping.toJSON(entity);
             context.put(data, "/consignment-request/calculate-total-price/" + ko.unwrap(entity().Id) + "")
                 .fail(function (response) {
-                    app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id : " + ko.unwrap(entity().Id), "OST", ["OK"]).done(function () {
+                    app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id : " + ko.unwrap(entity().Id), "OST", ["Close"]).done(function () {
                         router.navigate("consignment-request-cart/" + ko.unwrap(entity().Id));
                     });
                 })
@@ -66,20 +66,20 @@ function (context, logger, router, system, chart, config, app) {
 
             context.put(data, "/consignment-request/propose-pickup/" + ko.unwrap(entity().Id) + "?timeReady=" + tReady + "&timeClose=" + tClose)
                 .fail(function (response) {
-                    app.showMessage("Sorry, but we cannot shedule a pickup for the Consignment Request with Id : " + ko.unwrap(entity().Id), "OST", ["OK"]).done(function () {
+                    app.showMessage("Sorry, but we cannot shedule a pickup for the Consignment Request with Id : " + ko.unwrap(entity().Id), "OST", ["Close"]).done(function () {
                         router.navigate("consignment-requests-cart/" + ko.unwrap(entity().Id));
                     });
                 })
                 .then(function (result) {
                     console.log(result);
                     if (result.success) {
-                        app.showMessage("Pickup successfully scheduled. You can now proceed with Payment.", "OST", ["OK"]).done(function () {
+                        app.showMessage("Pickup successfully scheduled. You can now proceed with payment.", "OST", ["Close"]).done(function () {
                             showPickupScheduleForm(false);
                             router.activeItem().activate(result.id);
                         });
                     } else {
                         console.log(result.status);
-                        app.showMessage("Sorry, but we cannot shedule a pickup for the Consignment Request with Id : " + result.id, "OST", ["OK"]).done(function () {
+                        app.showMessage("Sorry, but we cannot shedule a pickup for the Consignment Request with Id : " + result.id, "OST", ["Close"]).done(function () {
                             router.navigate("consignment-requests-cart/" + result.id);
                         });
                     }

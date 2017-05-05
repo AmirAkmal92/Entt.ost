@@ -47,9 +47,9 @@
             <div class="portlet-title">
                 <div class="caption">
                     <h4>
-                        <span class="caption-subject font-yellow-casablanca bold uppercase">Receiver Information</span>
+                        <span class="caption-subject font-yellow-casablanca bold uppercase">Recipient Information</span>
                     </h4>
-                    <div class="caption-desc font-grey-cascade">All details about receiver</div>
+                    <div class="caption-desc font-grey-cascade">All details about recipient</div>
                 </div>
                 <div class="actions">
                     <h3>
@@ -70,7 +70,12 @@
                                         <small>Search Contact</small>
                                     </label>
                                     <div class="col-md-8">
-                                        <select class="form-control input-sm" name="Penerima.CompanyName" id="sender-company-name"></select>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-search font-yellow-casablanca"></i>
+                                            </span>
+                                            <select class="form-control input-sm" placeholder="Search Contact" name="Penerima.CompanyName" id="sender-company-name"></select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +85,7 @@
                                 <div class="form-group" data-bind="visible:true">
                                     <label class="control-label col-md-4">
                                         <small>
-                                            Receiver Name
+                                            Recipient Name
                                             <span class="required" aria-required="true"> * </span>
                                         </small>
                                     </label>

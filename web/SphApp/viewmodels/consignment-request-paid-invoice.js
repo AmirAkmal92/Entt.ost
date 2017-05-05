@@ -35,7 +35,7 @@ function (context, logger, router, system, koList, config, app) {
                         });
                 }, function (e) {
                     if (e.status == 404) {
-                        app.showMessage("Sorry, but we cannot find any Paid Order with Id : " + entityId, "OST", ["OK"]).done(function () {
+                        app.showMessage("Sorry, but we cannot find any Paid Order with Id : " + entityId, "OST", ["Close"]).done(function () {
                             router.navigate("consignment-requests-paid");
                         });
                     }

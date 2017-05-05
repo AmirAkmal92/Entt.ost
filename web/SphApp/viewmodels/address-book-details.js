@@ -54,7 +54,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     entity(new bespoke.Ost_addressBook.domain.AddressBook(b[0] || b));
                 }, function (e) {
                     if (e.status == 404) {
-                        app.showMessage("Sorry, but we cannot find any AddressBook with location : " + "/api/address-books/" + entityId, "OST", ["OK"]);
+                        app.showMessage("Sorry, but we cannot find any AddressBook with location : " + "/api/address-books/" + entityId, "OST", ["Close"]);
                     }
                 }).always(function () {
                     context.get("/api/countries/available-country?size=300").done(function (cList) {
@@ -113,7 +113,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         }, remove = function () {
             return context.sendDelete("/api/address-books/" + ko.unwrap(entity().Id))
                 .then(function (result) {
-                    return app.showMessage("Your contact has been deleted.", "OST", ["OK"]);
+                    return app.showMessage("Your contact has been deleted.", "OST", ["Close"]);
                 })
                 .then(function (result) {
                     router.navigate("address-book-home/-");
@@ -149,7 +149,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return defaultCommand()
                 .then(function (result) {
                     if (result.success) {
-                        return app.showMessage("Your contact has been updated.", "OST", ["OK"]);
+                        return app.showMessage("Sender details have been successfully saved.", "OST", ["Close"]);
                     } else {
                         return Task.fromResult(false);
                     }

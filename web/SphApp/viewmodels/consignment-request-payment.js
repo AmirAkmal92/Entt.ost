@@ -23,7 +23,7 @@ function (context, logger, router, system, chart, config, app) {
                     calculateGrandTotal();
                     calculateDomesticAndInternational();
                     if (grandTotal() != entity().Payment().TotalPrice()) {
-                        app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + entityId, "OST", ["OK"]).done(function () {
+                        app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + entityId, "OST", ["Close"]).done(function () {
                             return router.navigate("consignment-request-summary/" + entityId);
                         });
                     } else {
@@ -35,7 +35,7 @@ function (context, logger, router, system, chart, config, app) {
                             }
                         }, function (e) {
                             if (e.status == 404) {
-                                app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + entityId, "OST", ["OK"]).done(function () {
+                                app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + entityId, "OST", ["Close"]).done(function () {
                                     return router.navigate("consignment-request-summary/" + entityId);
                                 });
                             }
@@ -43,7 +43,7 @@ function (context, logger, router, system, chart, config, app) {
                     }
                 }, function (e) {
                     if (e.status == 404) {
-                        app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "OST", ["OK"]);
+                        app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "OST", ["Close"]);
                     }
                 });
         },

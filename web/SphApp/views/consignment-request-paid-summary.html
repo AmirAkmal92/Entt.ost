@@ -21,8 +21,8 @@
             <div class="portlet-title">
                 <div class="caption">
                     <h4>
-                        <i class="fa fa-file-text-o font-green"></i>
-                        <span class="caption-subject font-green bold uppercase">Paid Order Summary</span>
+                        <i class="fa fa-file-text-o font-yellow-casablanca"></i>
+                        <span class="caption-subject font-yellow-casablanca bold uppercase">Paid Order Summary</span>
                     </h4>
                     <div class="caption-desc font-grey-cascade">Paid Order Summary</div>
                 </div>
@@ -34,12 +34,12 @@
                         <button class="btn btn-circle btn-sm green" data-bind="click: $root.generateConNotes, visible: !Payment().IsConNoteReady()">
                             <i class="fa fa-print"></i> Generate Tracking Number
                         </button>
-                        <a class="btn btn-circle btn-sm green" data-bind="attr: { href: '#consignment-request-paid-invoice' + '/' + Id() }">
+                        <a class="btn btn-circle btn-sm yellow-casablanca" data-bind="attr: { href: 'ost/print-all-connote/consignment-requests/' + Id()}" target="_blank" visible: Payment().IsConNoteReady()">
+                            <i class="fa fa-print"></i> Print All Consignment Notes
+                        </a>
+                        <a class="btn btn-circle btn-sm yellow-casablanca" data-bind="attr: { href: '#consignment-request-paid-invoice' + '/' + Id() }">
                             <i class="fa fa-clipboard"></i> Tax Invoice
                         </a>
-                        <!--<a href="ost#consignment-requests-paid" class="btn btn-circle btn-sm green">
-                            <i class="fa fa-file-text"></i> Back
-                        </a>-->
                     </h3>
                 </div>
             </div>
@@ -90,6 +90,23 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div id="accordion_pickup" class="col-md-8 well">
+                            <div class="note note-warning">
+                                <h4 class="block">Disclaimer</h4>
+                                <p>
+                                    <ul>
+                                        <li>
+                                            For international posting, kindly print commercial invoice for custom purpose
+                                        </li>
+                                        <li>
+                                            For parcel safety, kindly write down the Tracking Number on your parcel
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div data-bind="visible: Consignments().length == 0">
                     <br />
@@ -104,17 +121,17 @@
                 <br />
                 <div data-bind="visible: Consignments().length > 0">
                     <div class="clearfix">
-                        <div class="panel panel-success">
+                        <div class="panel panel-danger">
                             <table class="table table-striped table-bordered table-advance table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="success"><strong>Sender</strong></th>
-                                        <th class="success"><strong>Receiver</strong></th>
-                                        <th class="success"><strong>Weight</strong></th>
-                                        <th class="success"><strong>Product</strong></th>
-                                        <th class="success"><strong>Total</strong></th>
-                                        <th class="success"><strong>Tracking Number</strong></th>
-                                        <th class="success"><center><strong>Action</strong></center></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Sender</strong></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Receipient</strong></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Weight</strong></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Product</strong></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Total</strong></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Tracking Number</strong></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><center><strong>Action</strong></center></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -156,7 +173,7 @@
                                             <br /><br />
                                             <div class="well">
                                                 <small>
-                                                    <b>Receiver Details</b>
+                                                    <b>Receipient Details</b>
                                                     <hr>
                                                     <span data-bind="text: Penerima().ContactPerson()"></span>
                                                     <br>
@@ -182,7 +199,7 @@
                                         </td>
                                         <td>
                                             <!--ko if: Produk().Weight() != null-->
-                                            <span data-bind="text: Produk().Weight() + ' kg'"></span>
+                                            <span data-bind="text: Bill().ActualWeight() + ' kg'"></span>
                                             <!--ko if: showDetails()-->
                                             <br /><br />
                                             <div class="well">
@@ -234,19 +251,19 @@
                                         <td>
                                             <center>
                                                 <!--ko ifnot: Produk().IsInternational-->
-                                                <a class="btn btn-circle btn-icon-only btn-outline blue" title="Print Consignment Note" data-bind="attr: { href: 'ost/print-domestic-connote/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }" target="_blank">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="attr: { href: 'ost/print-domestic-connote/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }" target="_blank">
                                                     <i class="icon-printer"></i>
                                                 </a>
                                                 <!-- /ko -->
                                                 <!--ko if: Produk().IsInternational-->
-                                                <a class="btn btn-circle btn-icon-only btn-outline blue" title="Print Consignment Note" data-bind="attr: { href: 'ost/print-international-connote/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }" target="_blank">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="attr: { href: 'ost/print-international-connote/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }" target="_blank">
                                                     <i class="icon-printer"></i>
                                                 </a>
                                                 <!-- /ko -->
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow" title="Track &amp; Trace" data-bind="click: $root.showParcelTrackTrace">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Track &amp; Trace" data-bind="click: $root.showParcelTrackTrace">
                                                     <i class="icon-magnifier"></i>
                                                 </a>
-                                                <a class="btn btn-circle btn-icon-only btn-outline green" title="Details" data-bind="click: $root.toggleShowParcelDetails">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Details" data-bind="click: $root.toggleShowParcelDetails">
                                                     <!--ko if: showDetails()-->
                                                     <i class="icon-arrow-up"></i>
                                                     <!--/ko-->
@@ -258,7 +275,7 @@
                                             <br />
                                             <!--ko if: showDetails()-->
                                             <center>
-                                                <a class="btn btn-circle btn-sm green" title="Print Commercial Invoice" data-bind="attr: { href: 'ost/print-commercial-invoice/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }" target="_blank">
+                                                <a class="btn btn-circle btn-sm yellow-casablanca" title="Print Commercial Invoice" data-bind="attr: { href: 'ost/print-commercial-invoice/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }" target="_blank">
                                                     <i class="fa fa-print"></i> Commercial Invoice
                                                 </a>
                                             </center>

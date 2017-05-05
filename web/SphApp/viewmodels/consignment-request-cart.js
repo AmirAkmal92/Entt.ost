@@ -32,7 +32,7 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                     }
                 }
                 if (goToDashboard) {
-                    app.showMessage("Personal Details, Default Billing Address and Default Pickup Address must be set first before you can send any Parcel.", "OST", ["OK"]).done(function () {
+                    app.showMessage("Personal Details, Default Billing Address and Default Pickup Address must be set first before you can send any Parcel.", "OST", ["Close"]).done(function () {
                         router.navigate("customer-home");
                     });
                 }
@@ -57,14 +57,14 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
                     if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
                     } else {
-                        app.showMessage("Pickup has been scheduled. No more changes are allowed to the Shipping Cart. You may proceed to make Payment now.", "OST", ["OK"]);
+                        app.showMessage("Pickup has been scheduled. No more changes are allowed to the Shipping Cart. You may proceed to make Payment now.", "OST", ["Close"]);
                         isPickupDateTimeValid(true);
                     }
                     calculateGrandTotal();
                     crCart.activate();
                 }, function (e) {
                     if (e.status == 404) {
-                        app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "OST", ["OK"]);
+                        app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "OST", ["Close"]);
                     }
                 });
 
@@ -117,7 +117,7 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                         entity().Consignments.remove(consignment);
                         return defaultCommand().then(function (result) {
                             if (result.success) {
-                                app.showMessage("Parcel has been successfully removed.", "OST", ["OK"]).done(function () {
+                                app.showMessage("Parcel has been successfully removed.", "OST", ["Close"]).done(function () {
                                     activate(id());
                                 });
                             } else {
@@ -139,7 +139,7 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                         entity().Pickup(new bespoke.Ost_consigmentRequest.domain.Pickup());
                         return defaultCommand().then(function (result) {
                             if (result.success) {
-                                return app.showMessage("Cart has been successfully emptied.", "OST", ["OK"]).done(function () {
+                                return app.showMessage("Cart has been successfully emptied.", "OST", ["Close"]).done(function () {
                                     activate(id());
                                 });
                             } else {
@@ -155,7 +155,7 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
             var tcs = new $.Deferred();
             // always check for pickup location
             if (entity().Pickup().Address().Postcode() === undefined) {
-                app.showMessage("You must set Pickup Location first before you can import any Parcel.", "OST", ["OK"]).done(function () {
+                app.showMessage("You must set Pickup Location first before you can import any Parcel.", "OST", ["Close"]).done(function () {
                     tcs.resolve("OK");
                     router.navigate("consignment-request-pickup/" + id());
                 });
@@ -169,7 +169,7 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                                 var storeId = ko.unwrap(dialog.item().storeId);
                                 context.post("{}", "/consignment-request/import-consignments/" + id() + "/store-id/" + storeId).done(function (result) {
                                     console.log(result);
-                                    app.showMessage("Parcels successfuly imported from file.", "OST", ["OK"]).done(function () {
+                                    app.showMessage("Parcels successfuly imported from file.", "OST", ["Close"]).done(function () {
                                         activate(id());
                                     });
                                 });
@@ -190,7 +190,7 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                 }
             }
             if (needToCalculatePrice) {
-                app.showMessage("Some parcels are yet to be finalized. Please verify Sender, Receiver, Parcel Information and Price before payment can be made.", "OST", ["OK"])
+                app.showMessage("Some parcels are yet to be finalized. Please verify Sender, Receiver, Parcel Information and Price before payment can be made.", "OST", ["Close"])
                     .done(function () {
                         tcs.resolve(false);
                     });

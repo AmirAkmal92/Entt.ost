@@ -31,8 +31,8 @@
                         </div>
                         <div class="col-md-3 bg-grey mt-step-col">
                             <div class="mt-step-number bg-white font-grey">3</div>
-                            <div class="mt-step-title uppercase font-grey-cascade">Receiver</div>
-                            <div class="mt-step-content font-grey-cascade">Receiver address</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Recipient</div>
+                            <div class="mt-step-content font-grey-cascade">Recipient address</div>
                         </div>
                         <div class="col-md-3 bg-grey done mt-step-col active">
                             <div class="mt-step-number bg-white font-grey">4</div>
@@ -47,13 +47,13 @@
             <div class="portlet-title">
                 <div class="caption">
                     <h4>
-                        <span class="caption-subject font-green bold uppercase">Parcel Information</span>
+                        <span class="caption-subject font-yellow-casablanca bold uppercase">Parcel Information</span>
                     </h4>
                     <div class="caption-desc font-grey-cascade">All details about parcel</div>
                 </div>
                 <div class="actions">
                     <h3>
-                        <button id="save-button" class="btn btn-circle btn-sm green" data-bind="click: $root.saveCommand, visible :true, enable: consignment().Produk().Price() != 0">
+                        <button id="save-button" class="btn btn-circle btn-sm yellow-casablanca" data-bind="click: $root.saveCommand, visible :true, enable: consignment().Produk().Price() != 0">
                             <i class="icon-arrow-right"></i>
                             <span> Next </span>
                         </button>
@@ -131,9 +131,25 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group" data-bind="visible:true">
-                                        <label class="col-md-4 control-label"><small>Volumetric Weight</small></label>
+                                        <label class="col-md-4 control-label" data-toggle="collapse" data-target="#accordion1_1">
+                                            <small>
+                                                <a class="btn" title="Disclaimer"><i class="fa fa-question-circle" style="color:#ff6a00"></i></a>
+                                                Volumetric Weight
+                                            </small>
+                                        </label>
                                         <div class="col-md-8">
                                             <input class="form-control input-sm" type="text" placeholder="volumetric weight in kg" data-bind="value: $root.volumetric().toFixed(2)" data-rule-number="true" name="Volumetric" disabled />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-4 control-label"><small></small></label>
+                                    <div id="accordion1_1" class="col-md-8 well collapse" aria-expanded="false">
+                                        <div class="note note-warning">
+                                            <h4 class="block">Disclaimer - (Volumetric Weight)</h4>
+                                            <p>
+                                                Rates are based on the total actual weight or the total dimensional weight of all packages in a shipment, whichever is greater
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -149,8 +165,13 @@
                                     </div>
                                 </div>
                                 <div data-bind="if: products().length > 0">
-                                    <div class="form-group form-md-checkboxes" data-bind="with: products()[0]">
-                                        <label class="col-md-4 control-label" for="form_control_1"><small>Insurance</small></label>
+                                    <div class="form-group form-checkboxes" data-bind="with: products()[0]">
+                                        <label class="col-md-4 control-label" for="form_control_1" data-toggle="collapse" data-target="#accordion_insurance">
+                                            <small>
+                                                <a class="btn" title="Disclaimer"><i class="fa fa-question-circle" style="color:#ff6a00"></i></a>
+                                                Insurance
+                                            </small>
+                                        </label>
                                         <div class="col-md-8">
                                             <div class="col-md-4 text-success" hidden>
                                                 <input type="checkbox" data-bind="checked: true" disabled />
@@ -185,17 +206,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="form-group" data-bind="visible:true">
-                                    <label data-i18n="Price" class="col-md-4 control-label" for="6465286c-a3af-46de-e7d8-9499b6bf7cf4"><small>Price</small></label>
-                                    <div class="col-md-8">
-                                        <div class="input-group input-group-sm">
-                                            <span class="input-group-addon">RM</span>
-                                            <input class="form-control" type="text"
-                                                   placeholder="calculated Price"
-                                                   data-bind="money: consignment().Produk().Price"
-                                                   id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Produk.Price" disabled />
+                                        <div id="accordion_insurance" class="col-md-8 well collapse" aria-expanded="false">
+                                            <div class="note note-warning">
+                                                <h4 class="block">Disclaimer - (Insurance)</h4>
+                                                <p>
+                                                    This price is include insurance. If you are not wish to pay for the insurace, please uncheck the checkbox.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -234,11 +251,23 @@
                                         <!-- /ko -->
                                     </div>
                                 </div>
+                                <div class="form-group" data-bind="visible:true">
+                                    <label data-i18n="Price" class="col-md-4 control-label" for="6465286c-a3af-46de-e7d8-9499b6bf7cf4"><small>Price</small></label>
+                                    <div class="col-md-8">
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-addon">RM</span>
+                                            <input class="form-control" type="text"
+                                                   placeholder="calculated Price"
+                                                   data-bind="money: consignment().Produk().Price"
+                                                   id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Produk.Price" disabled />
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <!--ko ifnot: products().length > 0-->
                                     <div class="col-md-4">&nbsp;</div>
                                     <div class="col-md-8">
-                                        <button data-bind="command : $root.findProductsAsync" class="btn btn-circle btn-sm green">
+                                        <button data-bind="command : $root.findProductsAsync" class="btn btn-circle btn-sm yellow-casablanca">
                                             <i class="fa fa-calculator"></i>
                                             Calculate Price
                                         </button>
@@ -248,7 +277,7 @@
                                     <div data-bind="with: products()[0]">
                                         <div class="col-md-4">&nbsp;</div>
                                         <div class="col-md-8">
-                                            <button data-bind="command : $root.recalculatePrice.call($root, $data)" class="btn btn-circle btn-sm green">
+                                            <button data-bind="command : $root.recalculatePrice.call($root, $data)" class="btn btn-circle btn-sm yellow-casablanca">
                                                 <i class="fa fa-calculator"></i>
                                                 Recalculate Price
                                             </button>
@@ -286,7 +315,7 @@
                                         <!-- /ko -->
                                     </li>
                                 </ul>
-                                <button class="btn btn-circle btn-sm green" data-bind="command : $root.recalculatePrice.call($root, $data)">
+                                <button class="btn btn-circle btn-sm yellow-casablanca" data-bind="command : $root.recalculatePrice.call($root, $data)">
                                     <i class="fa fa-calculator"></i>
                                     Calculate Price
                                 </button>

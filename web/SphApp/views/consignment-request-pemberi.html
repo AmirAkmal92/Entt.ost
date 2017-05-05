@@ -31,8 +31,8 @@
                         </div>
                         <div class="col-md-3 bg-grey mt-step-col">
                             <div class="mt-step-number bg-white font-grey">3</div>
-                            <div class="mt-step-title uppercase font-grey-cascade">Receipient</div>
-                            <div class="mt-step-content font-grey-cascade">Receipient address</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Recipient</div>
+                            <div class="mt-step-content font-grey-cascade">Recipient address</div>
                         </div>
                         <div class="col-md-3 bg-grey mt-step-col">
                             <div class="mt-step-number bg-white font-grey">4</div>
@@ -79,7 +79,7 @@
                         <label class="control-label">
                             <a class="btn btn-link" data-bind="click: $root.toggleIsUsingPickupAddress" role="button">
                                 <i class="fa fa-square-o fa-2x" style="color:grey;" data-bind="visible: !$root.isUsingPickupAddress()"></i>
-                                <i class="fa fa-check-square-o fa-2x" style="color:dodgerblue" data-bind="visible: $root.isUsingPickupAddress()"></i>
+                                <i class="fa fa-check-square-o fa-2x" style="color:#ff6a00" data-bind="visible: $root.isUsingPickupAddress()"></i>
                             </a>
                         </label>
                         <!--<a class="btn btn-link btn-xs" data-bind="click: $root.toggleIsUsingPickupAddress">-->
@@ -97,7 +97,12 @@
                                         <small>Search Contact</small>
                                     </label>
                                     <div class="col-md-8">
-                                        <select class="form-control input-sm" name="Pemberi.ContactPerson" id="sender-company-name" data-bind="disable: $root.isUsingPickupAddress()"></select>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-search font-yellow-casablanca"></i>
+                                            </span>
+                                            <select class="form-control input-sm" placeholder="Search Contact" name="Pemberi.CompanyName" id="sender-company-name" data-bind="disable: $root.isUsingPickupAddress()"></select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +111,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label col-md-4">
-                                        <small>Name<span class="text-danger"> * </span></small>
+                                        <small>Sender Name<span class="text-danger"> * </span></small>
                                     </label>
                                     <div class="col-md-8">
                                         <input class="form-control input-sm" type="text" placeholder="Name" data-bind="value: Pemberi().ContactPerson, disable: $root.isUsingPickupAddress()" name="ContactPerson" required>
