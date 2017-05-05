@@ -160,7 +160,7 @@ function (context, logger, router, config, app, system, koList, crCart) {
                 logger.error("There are errors in your entity, !!!");
             }).then(function (result) {
                 if (result.success) {
-                    return app.showMessage("User Contacts has been successfully saved.", "OST", ["OK"]).done(function () {
+                    return app.showMessage("User Contacts details have been successfully saved.", "OST", ["Close"]).done(function () {
                         //
                     });
                 }
