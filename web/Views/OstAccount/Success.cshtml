@@ -10,7 +10,7 @@
                 @if (ViewBag.success && ViewBag.operation.Equals("register"))
                 {
                     <div>
-                        <h3><span class="text-success">Sign up successful</span></h3>
+                        <h3><span class="text-success">Thank you for signing up!</span></h3>
                         <p>
                             Please check your inbox for a verification email from us.<br />
                             You will be allowed to sign in after verification is complete.
@@ -31,10 +31,9 @@
                 @if (ViewBag.success && ViewBag.operation.Equals("forgot-password"))
                 {
                     <div>
-                        <h3><span class="text-success">Forgot password email sent</span></h3>
+                        <h3><span class="text-success">Success!</span></h3>
                         <p>
-                            Please check your inbox for a forgot password email from us.<br />
-                            You will be allowed to reset your password by following the instructions given in the email.
+                            Please check your email to reset your password
                         </p>
                     </div>
                 }
