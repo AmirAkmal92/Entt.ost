@@ -9,7 +9,7 @@
             <a href="/ost#address-book-home/-" class="nav-link">
                 <i class="fa fa-user"></i>
                 <span class="title"> All Contacts </span>
-                <span class="badge badge-info" data-bind="text: contactsCount">852</span>
+                <span class="badge bg-yellow-casablanca bg-font-yellow-casablanca" data-bind="text: contactsCount">852</span>
             </a>
         </li>
         <!-- ko foreach : groups -->
@@ -17,14 +17,14 @@
             <a href="/ost#address-book-home/**" data-bind="attr : {'href' : '/ost#/address-book-home/' + ko.unwrap(group)}" class="nav-link">
                 <i class="fa fa-users"></i>
                 <span class="title" data-bind="text : group"></span>
-                <span class="badge badge-success" data-bind="text: count"></span>
+                <span class="badge badge-warning" data-bind="text: count"></span>
             </a>
         </li>
         <!-- /ko -->
         <li class="nav-item">
             <a class="nav-link">
                 <input type="text" data-bind="value: groupName" placeholder="Add Group" style="width:150px" />
-                <span class="badge badge-warning" data-bind="click: addGroup">+</span>
+                <span class="badge bg-yellow-casablanca bg-font-yellow-casablanca" data-bind="click: addGroup">+</span>
             </a>
         </li>
     </ul>
