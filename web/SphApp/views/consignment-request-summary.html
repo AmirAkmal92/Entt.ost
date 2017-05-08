@@ -38,7 +38,7 @@
                         </a>
                         <a href="#" class="btn btn-circle btn-sm yellow-casablanca" data-bind="click: $root.goToPayment, css: { 'disabled': !$root.isPickupDateTimeValid() }">
                             <i class="fa fa-credit-card"></i>
-                            Pay Now
+                            Make a Payment
                         </a>
                     </h3>
                 </div>
@@ -55,7 +55,7 @@
                             <div class="panel-body">
                                 <div class="col-md-6">
                                     <h4>Pickup Number</h4>
-                                    <a class="btn btn-circle btn-sm yellow-casablanca" role="button" data-bind="click: $root.toggleShowPickupScheduleForm, visible: !$root.isPickupDateTimeValid()">Schedule a Pickup</a>
+                                    <span data-bind="visible: !$root.isPickupDateTimeValid()">Pending pickup shedule</span>
                                     <span data-bind="visible: $root.isPickupDateTimeValid()">Pending payment approval</span>
                                     <br /><br />
                                     <div data-bind="visible: $root.isPickupDateTimeValid()">
@@ -65,7 +65,7 @@
                                         Total Quantity: <span data-bind="text: Pickup().TotalQuantity"></span> parcel(s)<br />
                                         Total Weight: <span data-bind="text: Pickup().TotalWeight"></span> kg<br />
                                     </div>
-                                    <div data-bind="if: $root.showPickupScheduleForm">
+                                    <div data-bind="if: !$root.isPickupDateTimeValid()">
                                         <h4>Schedule Pickup</h4>
                                         <form class="form-horizontal">
                                             <div class="form-group">
@@ -115,7 +115,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <a class="btn btn-circle btn-sm yellow-casablanca" data-bind="click: $root.schedulePickup"><i class="fa fa-list"></i> Schedule a Pickup</a>
+                                                <a class="btn btn-circle btn-sm yellow-casablanca" data-bind="click: $root.schedulePickup">Proceed</a>
                                             </div>
                                         </form>
                                     </div>
@@ -149,11 +149,11 @@
                     </div>
 
                     <div class="col-md-6">
-                        <div id="accordion_pickup" class="col-md-8 well collapse" aria-expanded="false">
+                        <div id="accordion_pickup" class="col-md-8 well collapse in" aria-expanded="false">
                             <div class="note note-warning">
                                 <h4 class="block">Disclaimer - (Pickup)</h4>
                                 <p>
-                                    Same date of pickup applicable before 12.00pm. Otherwise the pickup will be at the next day
+                                    Same day pickup is applicable for transactions before 12.00pm. Otherwise pickup will be done the next day
                                 </p>
                             </div>
                         </div>
@@ -197,8 +197,8 @@
                                                 <span class="text-capitalize" data-bind="text: Penerima().ContactPerson"></span>
                                             </td>
                                             <td>
-                                                <!--ko if: Produk().Weight() != null-->
-                                                <span data-bind="text: Bill().ActualWeight() + ' kg'"></span>
+                                                <!--ko if: Bill().ActualWeight() != null-->
+                                                <span data-bind="text: Bill().ActualWeight().toFixed(1) + ' kg'"></span>
                                                 <!-- /ko -->
                                             </td>
                                             <td>
@@ -231,7 +231,7 @@
                                             <td>&nbsp;</td>
 
                                             <td data-bind="visible: !$root.isPickupDateTimeValid()" colspan="5">
-                                                Pickup not scheduled. Please <a data-bind="click: $root.toggleShowPickupScheduleForm">Schedule a Pickup</a> before payment can be made.
+                                                Pickup not scheduled. Please Schedule a Pickup before payment can be made.
                                             </td>
                                             <td data-bind="visible: !$root.isPickupDateTimeValid()">RM <span class="pull-right">0.00</span></td>
 

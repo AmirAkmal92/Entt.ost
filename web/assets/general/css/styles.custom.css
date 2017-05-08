@@ -186,7 +186,7 @@ body {
 /********************************/
 .hero {
     position: absolute;
-    top: 50%;
+    top: 83%;
     left: 50%;
     z-index: 3;
     color: #fff;
@@ -572,7 +572,7 @@ h1 {
 
 h2 {
     font-family: Ubuntu;
-    font-size: 19px;
+    font-size: 25px;
     font-style: normal;
     font-variant: normal;
     font-weight: 500;
@@ -590,7 +590,7 @@ h3 {
 
 p {
     font-family: Ubuntu;
-    font-size: 14px !important;
+    font-size: 17px !important;
     font-style: normal;
     font-variant: normal;
     font-weight: 400;
@@ -599,7 +599,7 @@ p {
 
 a {
     font-family: Ubuntu;
-    font-size: 14px !important;
+    font-size: 17px !important;
     font-style: normal;
     font-variant: normal;
     font-weight: 400;

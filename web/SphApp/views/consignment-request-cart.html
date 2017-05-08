@@ -41,7 +41,7 @@
                             <i class="fa fa-trash"></i> Empty Cart
                         </a>
                         <a data-bind="command: $root.goToSummary, css: { 'disabled': Consignments().length == 0 }" class="btn btn-circle btn-sm yellow-casablanca">
-                            <i class="icon-arrow-right"></i> Next
+                            <i class="icon-arrow-right"></i> Proceed for Payment
                         </a>
                     </h3>
                 </div>
@@ -77,8 +77,8 @@
                                         </td>
                                         <td>
                                             <!--<a class="btn btn-link btn-sm" data-bind="attr: { href: 'ost#consignment-request-produk/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': $root.isPickupDateTimeValid() }">-->
-                                            <!--ko if: Produk().Weight() != null-->
-                                            <span data-bind="text: Bill().ActualWeight() + ' kg'"></span>
+                                            <!--ko if: Bill().ActualWeight() != null-->
+                                            <span data-bind="text: Bill().ActualWeight().toFixed(1) + ' kg'"></span>
                                             <!--ko if: Produk().IsInternational-->
                                             <span class="label label-sm label-success label-mini pull-right"><i class="fa fa-plane"></i> International </span>                                            <!-- /ko -->
                                             <!--ko ifnot: Produk().IsInternational-->

@@ -34,7 +34,7 @@ function (context, logger, router, system, chart, config, app) {
                 }
                 entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
                 if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
-                    app.showMessage("Pickup not scheduled. Please Schedule Pickup before payment can be made.", "OST", ["Close"]);
+                    app.showMessage("Please Schedule Pickup before payment can be made.", "OST", ["Next"]);
                 } else {
                     isPickupDateTimeValid(true);
                 }

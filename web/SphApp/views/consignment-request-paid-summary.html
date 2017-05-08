@@ -28,10 +28,10 @@
                 </div>
                 <div class="actions">
                     <h3>
-                        <button class="btn btn-circle btn-sm green" data-bind="click: $root.schedulePickup, visible: !Payment().IsPickupScheduled()">
+                        <button class="btn btn-circle btn-sm yellow-casablanca" data-bind="click: $root.schedulePickup, visible: !Payment().IsPickupScheduled()">
                             <i class="fa fa-list"></i> Shedule Pickup
                         </button>
-                        <button class="btn btn-circle btn-sm green" data-bind="click: $root.generateConNotes, visible: !Payment().IsConNoteReady()">
+                        <button class="btn btn-circle btn-sm yellow-casablanca" data-bind="click: $root.generateConNotes, visible: !Payment().IsConNoteReady()">
                             <i class="fa fa-print"></i> Generate Tracking Number
                         </button>
                         <a class="btn btn-circle btn-sm yellow-casablanca" data-bind="attr: { href: 'ost/print-all-connote/consignment-requests/' + Id()}" target="_blank" visible: Payment().IsConNoteReady()">
@@ -60,7 +60,7 @@
                                         From: <span data-bind="date:{ value: Pickup().DateReady, format:'D/M/YYYY HH:mm'}"></span><br />
                                         To: <span data-bind="date:{ value: Pickup().DateClose, format:'D/M/YYYY HH:mm'}"></span><br />
                                         Total Quantity: <span data-bind="text: Pickup().TotalQuantity"></span> parcel(s)<br />
-                                        Total Weight: <span data-bind="text: Pickup().TotalWeight"></span> kg<br />
+                                        Total Weight: <span data-bind="text: Pickup().TotalWeight().toFixed(1)"></span> kg<br />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -97,7 +97,7 @@
                                 <p>
                                     <ul>
                                         <li>
-                                            For international posting, kindly print commercial invoice for custom purpose
+                                            For international postings, kindly print commercial invoice for custom purposes
                                         </li>
                                         <li>
                                             For parcel safety, kindly write down the Tracking Number on your parcel
@@ -198,8 +198,8 @@
                                             <!--/ko-->
                                         </td>
                                         <td>
-                                            <!--ko if: Produk().Weight() != null-->
-                                            <span data-bind="text: Bill().ActualWeight() + ' kg'"></span>
+                                            <!--ko if: Bill().ActualWeight() != null-->
+                                            <span data-bind="text: Bill().ActualWeight().toFixed(1) + ' kg'"></span>
                                             <!--ko if: showDetails()-->
                                             <br /><br />
                                             <div class="well">
@@ -208,7 +208,7 @@
                                                     <hr>
                                                     <span data-bind="text: Produk().Width() + 'cm x ' + Produk().Length() + 'cm x ' + Produk().Height() + 'cm'"></span>
                                                     <br /><br />
-                                                    Volumetric weight : <span class="bold" data-bind="text: Bill().VolumetricWeight()"></span>
+                                                    Volumetric weight : <span class="bold" data-bind="text: Bill().VolumetricWeight().toFixed(1)"></span>
                                                     <br />
                                                 </small>
                                             </div>
