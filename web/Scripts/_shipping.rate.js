@@ -42,19 +42,21 @@
         formatRepo = function (address) {
             if (!address) return "";
             if (address.loading) return address.text;
-            var markup = "<div class='select2-result-repository clearfix'>" +
-                "<div class='select2-result-repository__avatar'><img src='/assets/layouts/layout/img/avatar3_small.jpg' /></div>" +
-                "<div class='select2-result-repository__meta'>" +
-                "<div class='select2-result-repository__title'>" + address.Location + "</div>";
+            //var markup = "<div class='select2-result-repository portlet-light-bordered'>" +
+            //    "<div class='select2-result-repository__avatar'><img src='/assets/layouts/layout/img/avatar3_small.jpg' /></div>" +
+            //    "<div class='select2-result-repository__meta'>" +
+            //    "<div class='select2-result-repository__title'><i class='fa fa-map-pin'></i> " + address.Location + "</div>";
 
-            markup += "<div class='select2-result-repository__description'>" + address.City + "</div>";
+            //markup += "<div class='select2-result-repository__description'><i class='fa fa-building-o'></i> " + address.City + "</div>";
 
 
-            markup += "<div class='select2-result-repository__statistics'>" +
-                "<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> " + address.State + " </div>" +
-                "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> " + address.Postcode + " </div>" +
-                "</div>" +
-                "</div></div>";
+            //markup += "<div class='select2-result-repository__statistics'>" +
+            //    "<div class='select2-result-repository__forks'><i class='fa fa-globe'></i> " + address.State + " </div>" +
+            //    "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> " + address.Postcode + " </div>" +
+            //    "</div>" +
+            //    "</div></div>";
+
+            var markup = "<div class='select2-result-repository__stargazers'><i class='fa fa-map-pin'></i> " + address.Postcode + " </div><div class='select2-result-repository__description'><i class='fa fa-building-o'></i> " + address.City + "</div>";
 
             return markup;
         },
@@ -93,11 +95,11 @@
         minimumInputLength: 3,
         templateResult: formatRepo,
         templateSelection: function (o) {
-            if (o.Location && o.Postcode) {
-                return o.Location + ", " + o.Postcode + " " + o.City + ", " + o.State;
-            }
-            return o.text;
-            //return o.Postcode;
+            //if (o.Location && o.Postcode) {
+            //    return o.Location + ", " + o.Postcode + " " + o.City + ", " + o.State;
+            //}
+            //return o.text;
+            return " (" + o.Postcode + ") - <i>" + o.City + ", " + o.State + "</i>";
         }
     })
         .on("select2:select", function (e) {

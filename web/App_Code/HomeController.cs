@@ -35,5 +35,11 @@ namespace web.sph.App_Code
         {
             return View();
         }
+
+        [Route("rates")]
+        public ActionResult Rates()
+        {
+            return View();
+        }
     }
 }
