@@ -78,7 +78,7 @@ namespace web.sph.App_Code
 
             if (string.IsNullOrEmpty(encryptedData))
             {
-                return Redirect($"{m_baseUrl}/ost#customer-home");
+                return Redirect($"{m_baseUrl}/ost");
             }
             
             var rijndaelKey = new RijndaelEnhanced(m_paymentGatewayEncryptionKey);
