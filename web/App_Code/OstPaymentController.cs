@@ -76,6 +76,11 @@ namespace web.sph.App_Code
         {
             var encryptedData = Request.Form["data"];
 
+            if (string.IsNullOrEmpty(encryptedData))
+            {
+                return Redirect($"{m_baseUrl}/ost#customer-home");
+            }
+            
             var rijndaelKey = new RijndaelEnhanced(m_paymentGatewayEncryptionKey);
             var decryptedData = rijndaelKey.Decrypt(encryptedData);
 
