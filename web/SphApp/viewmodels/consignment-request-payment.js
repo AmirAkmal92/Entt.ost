@@ -15,6 +15,7 @@ function (context, logger, router, system, chart, config, app) {
         appId = ko.observable(),
         appData = ko.observable(),
         appUrl = ko.observable(),
+        paymentGatewayReminder = ko.observable(false);
         activate = function (entityId) {
             id(entityId);
             return context.get("/api/consigment-requests/" + entityId)
@@ -110,6 +111,11 @@ function (context, logger, router, system, chart, config, app) {
             totalInternationalNoGst(internationalSubTotalPrice);
             totalInternationalGst(internationalGstTotal);
         },
+        paymentGatewayReminderDialog = function () {
+            app.showMessage("You will be redirect to Pos Malaysia Payment Switch.<br /> Please do not leave or refresh your browser until payment is successful.", "OST", ["Close"]).done(function () {
+                paymentGatewayReminder(true);
+            });
+        },
         attached = function (view) {
 
         },
@@ -130,7 +136,9 @@ function (context, logger, router, system, chart, config, app) {
         totalInternationalGst: totalInternationalGst,
         appId: appId,
         appData: appData,
-        appUrl: appUrl
+        appUrl: appUrl,
+        paymentGatewayReminder: paymentGatewayReminder,
+        paymentGatewayReminderDialog: paymentGatewayReminderDialog
     };
 
     return vm;
