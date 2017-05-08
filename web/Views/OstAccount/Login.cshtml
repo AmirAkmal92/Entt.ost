@@ -4,24 +4,32 @@
 }
 
 <div class="container">
-    <div class="row form-login-ost">
+    <br />
+    <br />
+    <h1>Log In</h1>
+    <div class="page-header">
+        <h2 style="color:#555"><strong>Log in to your account and start manage your shipments</strong></h2>
+    </div>
+    <div class="row">
         <div class="col-md-2">&nbsp;</div>
         <div class="col-md-8">
-            <div class="well">
+            <div class="well" style="padding-top: 30px;">
                 <form class="form-signin" id="login-form" action="/ost-account/login" method="post">
-                    <h3>Log In</h3>
+                    @*<h3>Log In</h3>*@
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             <input class="form-control" type="text" autocomplete="off" placeholder="Username" aria-label="Username" name="UserName" id="UserName" />
                         </div>
                     </div>
+                    <label id="UserName-error" class="error" for="UserName" style="color: red; display:none"></label>
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                             <input class="form-control" type="password" autocomplete="off" placeholder="Password" aria-label="Password" name="Password" id="Password" />
                         </div>
                     </div>
+                    <label id="Password-error" class="error" for="Password" style="color: red; display:none"></label>
                     @*<div class="form-group">
                             <input type="hidden" name="ReturnUrl" value="@Request.RawUrl" />
                         </div>*@

@@ -4,12 +4,18 @@
 }
 
 <div class="container">
-    <div class="row form-login-ost">
+    <br />
+    <br />
+    <h1>Sign Up</h1>
+    <div class="page-header">
+        <h2 style="color:#555"><strong>Sign up now for free and start shipping with us</strong></h2>
+    </div>
+    <div class="row">
         <div class="col-md-2">&nbsp;</div>
         <div class="col-md-8">
             <div class="well">
                 <form class="form-signin" id="register-form" action="/ost-account/register" method="post">
-                    <h3>Sign Up</h3>
+                    @*<h3>Sign Up</h3>*@
                     <p>Please enter account details:</p>
                     <div class="form-group">
                         <div class="input-group">
@@ -17,49 +23,60 @@
                             <input class="form-control input-block-level" type="text" autocomplete="off" placeholder="Username" aria-label="Username" name="UserName" id="UserName" />
                         </div>
                     </div>
+                    <label id="UserName-error" class="error" for="UserName" style="color: red; display:none"></label>
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                             <input class="form-control input-block-level" type="email" autocomplete="off" placeholder="Email Address" aria-label="Email Address" name="Email" id="Email" />
                         </div>
                     </div>
+                    <label id="Email-error" class="error" for="Email" style="color: red; display:none"></label>
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                             <input class="form-control input-block-level" type="password" autocomplete="off" placeholder="Password" aria-label="Password" name="Password" id="Password" />
                         </div>
                     </div>
+                    <label id="Password-error" class="error" for="Password" style="color: red; display:none"></label>
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-check"></i></span>
                             <input class="form-control input-block-level" type="password" autocomplete="off" placeholder="Confirm Password" aria-label="Confirm Password" name="ConfirmPassword" id="ConfirmPassword" />
                         </div>
                     </div>
+                    <label id="ConfirmPassword-error" class="error" for="ConfirmPassword" style="color: red; display:none"></label>
                     <div class="form-group">
                         <input type="hidden" name="Designation" value="No contract customer" />
                     </div>
                     <div class="checkbox">
                         <p>
                             Please read and agree to our
-                            <a href="#">Terms of Service</a>,
-                            <a href="#">Privacy Policy</a> &
-                            <a href="#">Personal Data Protection Act</a>
+                            <a href="https://www.posonline.com.my/ecommerce/New1/terms.htm" target="_blank">Terms of Service</a>,
+                            <a href="http://www.poslaju.com.my/media/documents/pdpa-notice-eng-as-at-7-jan-2015-v2.pdf" target="_blank">Privacy Policy</a> &
+                            <a href="http://www.pos.com.my/media/1141/pdpa-notice-eng-as-at-7-jan-2015-v2.pdf" target="_blank">Personal Data Protection Act</a>
                         </p>
                         <label>
-                            <input type="checkbox" name="Agree" id="Agree"> Yes, I agree.
+                            <input type="checkbox" name="Agree" id="Agree">
+                            <label id="Agree-error" class="error" for="Agree" style="color: red; display:none; font-weight: 700;"></label> Yes, I agree.
                         </label>
                     </div>
+                    <button type="button" class="btn btn-primary" id="facebook-sign-in">
+                        <i class="fa fa-facebook"></i> Sign Up with Facebook
+                    </button>
+                    <button type="button" class="btn btn-danger" id="google-sign-in">
+                        <i class="fa fa-google"></i> Sign Up with Google
+                    </button>
                     <button type="submit" class="btn btn-sample pull-right">Sign Up</button>
                     <br /><br /><br />
                     @if (!ViewBag.success)
                     {
-                    <div class="alert alert-danger" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="text-danger">Sign up unsuccessful</h4>
-                        <p>
-                            <span class="text-danger">@ViewBag.status</span>
-                        </p>
-                    </div>
+                        <div class="alert alert-danger" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="text-danger">Sign up unsuccessful</h4>
+                            <p>
+                                <span class="text-danger">@ViewBag.status</span>
+                            </p>
+                        </div>
                     }
                 </form>
             </div>
