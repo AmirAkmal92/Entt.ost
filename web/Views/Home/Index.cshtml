@@ -18,7 +18,7 @@
     <!-- Bootstrap core CSS -->
     <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
     <link href="~/assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/font-awesome.min.css")" rel="stylesheet" />
     <link href="@Url.Content("~/assets/general/css/styles.custom.css")" rel="stylesheet" />
@@ -58,75 +58,69 @@
             </div><!--/.navbar-collapse -->
         </div>
     </div>
-    <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
-        <!-- Overlay -->
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="padding-top: 7px;">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
-            <li data-target="#bs-carousel" data-slide-to="1"></li>
-            <li data-target="#bs-carousel" data-slide-to="2"></li>
-            <li data-target="#bs-carousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
         </ol>
-
         <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-            <div class="item slides active">
-                <div class="overlay"></div>
-                <div class="slide-1"></div>
-                <div class="hero">
-                    <hgroup hidden>
-                        @*<h1>Need to send parcels?</h1>
-                        <h4 class="hidden-xs" style="margin-top: 68px; text-transform: uppercase;">Whether you’re sending it within Malaysia or around the world, we’ll deliver!</h4>*@
-                    </hgroup>
-                    <button href="/ost-account/register" type="button" class="btn btn-default btn-lg">Sign Up Now!</button>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="/images/EZISEND_webbanner_3.png" alt="Chania" width="100%" height="100%">
+                <div class="carousel-caption">
+                    <a href="/ost-account/register" role="button" class="btn btn-lg btn-default hidden-xs">Sign Up Now!</a>
+                    <p>&nbsp;</p>
                 </div>
             </div>
-            <div class="item slides">
-                <div class="overlay"></div>
-                <div class="slide-2"></div>
-                <div class="hero">
-                    <hgroup hidden>
-                        <h1>Find out where your<br />parcels are right now!</h1>
-                        <h4 class="hidden-xs" style="margin-top: 68px; text-transform: uppercase;">Online real-time track and trace lets you know where your parcels are.</h4>
-                    </hgroup>
-                    <a href="/ost-account/register" type="button" class="btn btn-default">Sign Up Now!</a>
+            <div class="item">
+                <img src="/images/EZISEND_webbanner_4.png" alt="Chania" width="100%" height="100%">
+                <div class="carousel-caption">
+                    <a href="/ost-account/register" role="button" class="btn btn-lg btn-default hidden-xs">Sign Up Now!</a>
+                    <p>&nbsp;</p>
                 </div>
             </div>
-            <div class="item slides">
-                <div class="overlay"></div>
-                <div class="slide-3"></div>
-                <div class="hero">
-                    <hgroup hidden>
-                        <h1>We know<br />you’re busy.</h1>
-                        <h4 class="hidden-xs" style="margin-top: 68px; text-transform: uppercase;">So just arrange for a pick-up and we’ll come to you!</h4>
-                    </hgroup>
-                    <button href="/ost-account/register" type="button" class="btn btn-default btn-lg">Sign Up Now!</button>
+            <div class="item">
+                <img src="/images/EZISEND_webbanner_1.png" alt="Chania" width="100%" height="100%">
+                <div class="carousel-caption">
+                    <a href="/ost-account/register" role="button" class="btn btn-lg btn-default hidden-xs">Sign Up Now!</a>
+                    <p>&nbsp;</p>
                 </div>
             </div>
-            <div class="item slides">
-                <div class="overlay"></div>
-                <div class="slide-4"></div>
-                <div class="hero">
-                    <hgroup hidden>
-                        <h1>Get coverage<br />for your parcels.</h1>
-                        <h4 class="hidden-xs" style="margin-top: 68px; text-transform: uppercase;">Insure your parcels in case of lost or damage.</h4>
-                    </hgroup>
-                    <button href="/ost-account/register" type="button" class="btn btn-default btn-lg">Sign Up Now!</button>
+            <div class="item">
+                <img src="/images/EZISEND_webbanner_2.png" alt="Chania" width="100%" height="100%">
+                <div class="carousel-caption">
+                    <a href="/ost-account/register" role="button" class="btn btn-lg btn-default hidden-xs">Sign Up Now!</a>
+                    <p>&nbsp;</p>
                 </div>
             </div>
         </div>
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
+
     <div class="stripe"></div>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 text-center">
-                <h1 style="font-size: 40px;font-weight: bold;">It’s as easy as 1, 2, 3!</h1>
+                <h1 class="hidden-xs" style="font-size: 40px;font-weight: bold;">It’s as easy as 1, 2, 3!</h1>
+                <h1 class="visible-xs" style="font-size: 25px;font-weight: bold;">It’s as easy as 1, 2, 3!</h1>
             </div>
         </div>
         <br /><br />
         <div class="row">
             <div class="process">
-                <div class="process-row">
+                <div class="process-row hidden-xs">
                     <div class="col-lg-4 process-step">
                         <img class="img-circle" src="/images/EZISEND_Step_Icon_Fill.png" alt="Generic placeholder image" width="140" height="140">
                         <p><h4 style="color:darkgrey"> Step 1 </h4></p>
@@ -141,6 +135,27 @@
                         <img class="img-circle" src="/images/EZISEND_Step_Icon_Pay.png" alt="Generic placeholder image" width="140" height="140">
                         <p><h4 style="color:darkgrey"> Step 3 </h4></p>
                         <p><h4><strong> Pay Online </strong></h4></p>
+                    </div>
+                </div>
+                <div class="process-row visible-xs">
+                    <div class="col-lg-4 process-step">
+                        <div class="row">
+                            <img class="img-circle" src="/images/EZISEND_Step_Icon_Fill.png" alt="Generic placeholder image" width="100" height="100">
+                            <p><h5><strong> Prepare Shipping<br />Information </strong></h5></p>
+                        </div>
+                        <div>
+                            <p><h5 style="color:darkgrey"> Step 1 </h5></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 process-step">
+                        <img class="img-circle" src="/images/EZISEND_Step_Icon_Pickup.png" alt="Generic placeholder image" width="100" height="100">
+                        <p><h5 style="color:darkgrey"> Step 2 </h5></p>
+                        <p><h5><strong> Schedule for<br />Pick-up </strong></h5></p>
+                    </div>
+                    <div class="col-lg-4 process-step">
+                        <img class="img-circle" src="/images/EZISEND_Step_Icon_Pay.png" alt="Generic placeholder image" width="100" height="100">
+                        <p><h5 style="color:darkgrey"> Step 3 </h5></p>
+                        <p><h5><strong> Pay Online </strong></h5></p>
                     </div>
                 </div>
             </div>

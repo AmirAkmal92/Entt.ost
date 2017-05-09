@@ -1,6 +1,17 @@
 body, h1, h2, h3, h4, h5, h6 {
     font-family: "Ubuntu" !important;
 }
+body {
+    font-size: 17px;
+}
+
+h4 {
+    font-size: 20px !important;
+}
+
+.note p, .page-loading, .panel .panel-body {
+    font-size: 15px !important;
+}
 
 .font-yellow-casablanca {
     color: #ff6a00 !important;

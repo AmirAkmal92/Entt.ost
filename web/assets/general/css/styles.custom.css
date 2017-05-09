@@ -1,3 +1,66 @@
+/********************************/
+/*          Custom Buttons      */
+/********************************/
+.btn.btn-lg a {
+    padding: 10px 40px;
+}
+
+.btn.btn-hero,
+.btn.btn-hero:hover,
+.btn.btn-hero:focus {
+    color: #f5f5f5;
+    background-color: #1abc9c;
+    border-color: #1abc9c;
+    outline: none;
+    margin: 20px auto;
+}
+
+.btn-sample {
+    color: #fff;
+    background-color: #ff6a00;
+    border-color: #e86100;
+}
+
+    .btn-sample:hover,
+    .btn-sample:focus,
+    .btn-sample:active,
+    .btn-sample.active,
+    .open .dropdown-toggle.btn-sample {
+        color: #FFFFFF;
+        background-color: #E86231;
+        border-color: #F06533;
+    }
+
+    .btn-sample:active,
+    .btn-sample.active,
+    .open .dropdown-toggle.btn-sample {
+        background-image: none;
+    }
+
+    .btn-sample.disabled,
+    .btn-sample[disabled],
+    fieldset[disabled] .btn-sample,
+    .btn-sample.disabled:hover,
+    .btn-sample[disabled]:hover,
+    fieldset[disabled] .btn-sample:hover,
+    .btn-sample.disabled:focus,
+    .btn-sample[disabled]:focus,
+    fieldset[disabled] .btn-sample:focus,
+    .btn-sample.disabled:active,
+    .btn-sample[disabled]:active,
+    fieldset[disabled] .btn-sample:active,
+    .btn-sample.disabled.active,
+    .btn-sample[disabled].active,
+    fieldset[disabled] .btn-sample.active {
+        /*background-color: #F2784B;*/
+        border-color: #F06533;
+    }
+
+    .btn-sample .badge {
+        color: #F2784B;
+        background-color: #FFFFFF;
+    }
+
 .orange-input {
     fill: #FA6400 !important;
 }
@@ -46,32 +109,7 @@ body {
         }
 
 
-/* CUSTOMIZE THE CAROUSEL
--------------------------------------------------- */
 
-/* Carousel base class */
-.carousel {
-    height: 500px;
-    /*margin-bottom: 60px;*/
-}
-/* Since positioning the image, we need to help out the caption */
-.carousel-caption {
-    z-index: 10;
-}
-
-/* Declare heights because of positioning of img element */
-.carousel .item {
-    height: 500px;
-    background-color: #777;
-}
-
-.carousel-inner > .item > img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    height: 500px;
-}
 
 
 /* MARKETING CONTENT
@@ -150,206 +188,10 @@ body {
     }
 }
 
-/*
-        Fade content bs-carousel with hero headers
-        Code snippet by maridlcrmn (Follow me on Twitter @maridlcrmn) for Bootsnipp.com
-        Image credits: unsplash.com
-        */
-
-/********************************/
-/*       Fade Bs-carousel       */
-/********************************/
-.fade-carousel {
-    position: relative;
-    height: 64vh;
-}
-
-    .fade-carousel .carousel-inner .item {
-        height: 64vh;
-    }
-
-    .fade-carousel .carousel-indicators > li {
-        margin: 0 2px;
-        /*background-color: #81E2EB;*/
-        border-color: #ffffff;
-        opacity: .7;
-    }
-
-        .fade-carousel .carousel-indicators > li.active {
-            width: 10px;
-            height: 10px;
-            opacity: 1;
-        }
-
-/********************************/
-/*          Hero Headers        */
-/********************************/
-.hero {
-    position: absolute;
-    top: 83%;
-    left: 50%;
-    z-index: 3;
-    color: #fff;
-    font-family: Ubuntu;
-    text-align: center;
-    text-transform: capitalize;
-    text-shadow: 1px 1px 0 rgba(0,0,0,.75);
-    -webkit-transform: translate3d(-50%,-50%,0);
-    -moz-transform: translate3d(-50%,-50%,0);
-    -ms-transform: translate3d(-50%,-50%,0);
-    -o-transform: translate3d(-50%,-50%,0);
-    transform: translate3d(-50%,-50%,0);
-}
-
-    .hero h1 {
-        font-size: 4em;
-        font-weight: bold;
-        margin: 0;
-        padding: 0;
-    }
-
-.fade-carousel .carousel-inner .item .hero {
-    opacity: 0;
-    -webkit-transition: 2s all ease-in-out .1s;
-    -moz-transition: 2s all ease-in-out .1s;
-    -ms-transition: 2s all ease-in-out .1s;
-    -o-transition: 2s all ease-in-out .1s;
-    transition: 2s all ease-in-out .1s;
-}
-
-.fade-carousel .carousel-inner .item.active .hero {
-    opacity: 1;
-    -webkit-transition: 2s all ease-in-out .1s;
-    -moz-transition: 2s all ease-in-out .1s;
-    -ms-transition: 2s all ease-in-out .1s;
-    -o-transition: 2s all ease-in-out .1s;
-    transition: 2s all ease-in-out .1s;
-}
-
 body {
     font-family: "Ubuntu";
     font-size: 14px;
 }
-
-/********************************/
-/*            Overlay           */
-/********************************/
-.overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    /*background-color: #fa6400;*/
-    /*background-color: #b74900;*/
-    /*opacity: .6;*/
-}
-
-/********************************/
-/*          Custom Buttons      */
-/********************************/
-.btn.btn-lg a {
-    padding: 10px 40px;
-}
-
-.btn.btn-hero,
-.btn.btn-hero:hover,
-.btn.btn-hero:focus {
-    color: #f5f5f5;
-    background-color: #1abc9c;
-    border-color: #1abc9c;
-    outline: none;
-    margin: 20px auto;
-}
-
-.btn-sample {
-    color: #fff;
-    background-color: #ff6a00;
-    border-color: #e86100;
-}
-
-    .btn-sample:hover,
-    .btn-sample:focus,
-    .btn-sample:active,
-    .btn-sample.active,
-    .open .dropdown-toggle.btn-sample {
-        color: #FFFFFF;
-        background-color: #E86231;
-        border-color: #F06533;
-    }
-
-    .btn-sample:active,
-    .btn-sample.active,
-    .open .dropdown-toggle.btn-sample {
-        background-image: none;
-    }
-
-    .btn-sample.disabled,
-    .btn-sample[disabled],
-    fieldset[disabled] .btn-sample,
-    .btn-sample.disabled:hover,
-    .btn-sample[disabled]:hover,
-    fieldset[disabled] .btn-sample:hover,
-    .btn-sample.disabled:focus,
-    .btn-sample[disabled]:focus,
-    fieldset[disabled] .btn-sample:focus,
-    .btn-sample.disabled:active,
-    .btn-sample[disabled]:active,
-    fieldset[disabled] .btn-sample:active,
-    .btn-sample.disabled.active,
-    .btn-sample[disabled].active,
-    fieldset[disabled] .btn-sample.active {
-        /*background-color: #F2784B;*/
-        border-color: #F06533;
-    }
-
-    .btn-sample .badge {
-        color: #F2784B;
-        background-color: #FFFFFF;
-    }
-/********************************/
-/*       Slides backgrounds     */
-/********************************/
-.fade-carousel .slides .slide-1,
-.fade-carousel .slides .slide-2,
-.fade-carousel .slides .slide-3,
-.fade-carousel .slides .slide-4 {
-    height: 64vh;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-}
-
-.fade-carousel .slides .slide-1 {
-    background-image: url("/images/EZISEND_webbanner_3.png");
-}
-
-.fade-carousel .slides .slide-2 {
-    background-image: url("/images/EZISEND_webbanner_4.png");
-}
-
-.fade-carousel .slides .slide-3 {
-    background-image: url("/images/EZISEND_webbanner_1.png");
-}
-
-.fade-carousel .slides .slide-4 {
-    background-image: url("/images/EZISEND_webbanner_2.png");
-}
-
-/********************************/
-/*          Media Queries       */
-/********************************/
-@media screen and (min-width: 980px) {
-    .hero {
-        width: 980px;
-    }
-}
-
-@media screen and (max-width: 640px) {
-    .hero h1 {
-        font-size: 4em;
-    }
-}
-
 
 /*
  * Start Bootstrap - Logo Nav (http://startbootstrap.com/)
@@ -599,7 +441,7 @@ p {
 
 a {
     font-family: Ubuntu;
-    font-size: 17px !important;
+    /*font-size: 17px !important;*/
     font-style: normal;
     font-variant: normal;
     font-weight: 400;
