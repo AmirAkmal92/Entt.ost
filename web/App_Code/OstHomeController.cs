@@ -54,7 +54,12 @@ namespace web.sph.App_Code
                     break;
                 }
             }
-            return View(connote);
+            var pcm = new printConnoteModel
+            {
+                referenceNo = item.ReferenceNo,
+                consignment = connote,
+            };
+            return View(pcm);
         }
 
         [HttpGet]
