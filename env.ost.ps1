@@ -7,6 +7,7 @@ $env:RX_OST_WebsitePort = "50230"
 $env:RX_OST_BaseUrl = "http://localhost:50230"
 $env:RX_OST_IisExpressExecutable = "$RxHome\IIS Express\iisexpress.exe"
 
+$env:RX_Ost_ApplicationFullName = "Pos Laju EziSend"
 
 $env:RX_OST_RabbitMqPassword = "guest"
 $env:RX_OST_RabbitMqManagementPort = "15672"
