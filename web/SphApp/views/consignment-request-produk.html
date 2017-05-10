@@ -53,7 +53,7 @@
                 </div>
                 <div class="actions">
                     <h3>
-                        <button id="save-button" class="btn btn-circle btn-sm yellow-casablanca" data-bind="click: $root.saveCommand, visible :true, enable: consignment().Produk().Price() != 0">
+                        <button id="save-button" class="btn btn-circle yellow-casablanca" data-bind="click: $root.saveCommand, visible :true, enable: consignment().Produk().Price() != 0">
                             <i class="icon-arrow-right"></i>
                             <span> Next </span>
                         </button>
@@ -277,7 +277,7 @@
                                     <!--ko ifnot: products().length > 0-->
                                     <div class="col-md-4">&nbsp;</div>
                                     <div class="col-md-8">
-                                        <button data-bind="command : $root.findProductsAsync" class="btn btn-circle btn-sm yellow-casablanca">
+                                        <button data-bind="command : $root.findProductsAsync" class="btn btn-circle yellow-casablanca">
                                             <i class="fa fa-calculator"></i>
                                             Calculate Price
                                         </button>
@@ -287,7 +287,7 @@
                                     <div data-bind="with: products()[0]">
                                         <div class="col-md-4">&nbsp;</div>
                                         <div class="col-md-8">
-                                            <button data-bind="command : $root.recalculatePrice.call($root, $data)" class="btn btn-circle btn-sm yellow-casablanca">
+                                            <button data-bind="command : $root.recalculatePrice.call($root, $data)" class="btn btn-circle yellow-casablanca">
                                                 <i class="fa fa-calculator"></i>
                                                 Recalculate Price
                                             </button>
@@ -325,7 +325,7 @@
                                         <!-- /ko -->
                                     </li>
                                 </ul>
-                                <button class="btn btn-circle btn-sm yellow-casablanca" data-bind="command : $root.recalculatePrice.call($root, $data)">
+                                <button class="btn btn-circle yellow-casablanca" data-bind="command : $root.recalculatePrice.call($root, $data)">
                                     <i class="fa fa-calculator"></i>
                                     Calculate Price
                                 </button>

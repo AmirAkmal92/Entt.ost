@@ -28,16 +28,16 @@
                 </div>
                 <div class="actions">
                     <h3>
-                        <button class="btn btn-circle btn-sm yellow-casablanca" data-bind="click: $root.schedulePickup, visible: !Payment().IsPickupScheduled()">
+                        <button class="btn btn-circle yellow-casablanca" data-bind="click: $root.schedulePickup, visible: !Payment().IsPickupScheduled()">
                             <i class="fa fa-list"></i> Shedule Pickup
                         </button>
-                        <button class="btn btn-circle btn-sm yellow-casablanca" data-bind="click: $root.generateConNotes, visible: !Payment().IsConNoteReady()">
+                        <button class="btn btn-circle yellow-casablanca" data-bind="click: $root.generateConNotes, visible: !Payment().IsConNoteReady()">
                             <i class="fa fa-print"></i> Generate Tracking Number
                         </button>
-                        <a class="btn btn-circle btn-sm yellow-casablanca" data-bind="attr: { href: 'ost/print-all-connote/consignment-requests/' + Id()}" target="_blank" visible: Payment().IsConNoteReady()">
+                        <a class="btn btn-circle yellow-casablanca" data-bind="attr: { href: 'ost/print-all-connote/consignment-requests/' + Id()}" target="_blank" visible: Payment().IsConNoteReady()">
                             <i class="fa fa-print"></i> Print All Consignment Notes
                         </a>
-                        <a class="btn btn-circle btn-sm yellow-casablanca" data-bind="attr: { href: '#consignment-request-paid-invoice' + '/' + Id() }">
+                        <a class="btn btn-circle yellow-casablanca" data-bind="attr: { href: '#consignment-request-paid-invoice' + '/' + Id() }">
                             <i class="fa fa-clipboard"></i> Tax Invoice
                         </a>
                     </h3>

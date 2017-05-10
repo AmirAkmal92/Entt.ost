@@ -24,16 +24,16 @@
                 </div>
                 <div class="actions">
                     <h3>
-                        <a class="btn btn-circle btn-sm yellow-casablanca" data-bind="click : $root.partial.addContact, visible: true, enable: true">
+                        <a class="btn btn-circle yellow-casablanca" data-bind="click : $root.partial.addContact, visible: true, enable: true">
                             <i class="fa fa-plus"></i> Add
                         </a>
-                        <a class="btn btn-circle btn-sm yellow-casablanca" data-bind="command : $root.partial.removeAddresses, css: { 'disabled': $root.partial.selectedAddresses().length == 0 }">
+                        <a class="btn btn-circle yellow-casablanca" data-bind="command : $root.partial.removeAddresses, css: { 'disabled': $root.partial.selectedAddresses().length == 0 }">
                             <i class="fa fa-archive"></i> Delete
                         </a>
-                        <a class="btn btn-circle btn-sm yellow-casablanca" data-bind="command : $root.importContacts, visible: true">
+                        <a class="btn btn-circle yellow-casablanca" data-bind="command : $root.importContacts, visible: true">
                             <i class="fa fa-cloud-upload"></i> Bulk Upload
                         </a>
-                        <a class="btn btn-circle btn-sm yellow-casablanca" data-bind="command : $root.exportToCsv, visible: true">
+                        <a class="btn btn-circle yellow-casablanca" data-bind="command : $root.exportToCsv, visible: true">
                             <i class="fa fa-cloud-download"></i> Download
                         </a>
                         <a class="btn btn-circle btn-sm yellow-casablanca" data-bind="visible: $root.partial.groupName() != '-', command : $root.partial.renameGroup">

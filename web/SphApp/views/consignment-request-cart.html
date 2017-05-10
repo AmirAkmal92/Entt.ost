@@ -28,19 +28,19 @@
                 </div>
                 <div class="actions">
                     <h3>
-                        <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }, css: { 'disabled': $root.isPickupDateTimeValid() }, visible: Consignments().length > 0" class="btn btn-circle btn-sm yellow-casablanca">
+                        <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }, css: { 'disabled': $root.isPickupDateTimeValid() }, visible: Consignments().length > 0" class="btn btn-circle yellow-casablanca">
                             <i class="fa fa-paper-plane"></i> Add Parcel
                         </a>
-                        <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }, css: { 'disabled': $root.isPickupDateTimeValid() }, visible: Consignments().length == 0" class="btn btn-circle btn-sm yellow-casablanca">
+                        <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }, css: { 'disabled': $root.isPickupDateTimeValid() }, visible: Consignments().length == 0" class="btn btn-circle yellow-casablanca">
                             <i class="fa fa-paper-plane"></i> Send Parcel
                         </a>
-                        <a data-bind="command: $root.importConsignments, css: { 'disabled': $root.isPickupDateTimeValid() }" class="btn btn-circle btn-sm yellow-casablanca">
+                        <a data-bind="command: $root.importConsignments, css: { 'disabled': $root.isPickupDateTimeValid() }" class="btn btn-circle yellow-casablanca">
                             <i class="fa fa-cloud-upload"></i> Bulk Upload
                         </a>
-                        <a data-bind="click: $root.emptyConsignmentRequest, css: { 'disabled': $root.isPickupDateTimeValid() || Consignments().length == 0 }" class="btn btn-circle btn-sm yellow-casablanca">
+                        <a data-bind="click: $root.emptyConsignmentRequest, css: { 'disabled': $root.isPickupDateTimeValid() || Consignments().length == 0 }" class="btn btn-circle yellow-casablanca">
                             <i class="fa fa-trash"></i> Empty Cart
                         </a>
-                        <a data-bind="command: $root.goToSummary, css: { 'disabled': Consignments().length == 0 }" class="btn btn-circle btn-sm yellow-casablanca">
+                        <a data-bind="command: $root.goToSummary, css: { 'disabled': Consignments().length == 0 }" class="btn btn-circle yellow-casablanca">
                             <i class="icon-arrow-right"></i> Proceed for Payment
                         </a>
                     </h3>
@@ -80,7 +80,8 @@
                                             <!--ko if: Bill().ActualWeight() != null-->
                                             <span data-bind="text: Bill().ActualWeight().toFixed(1) + ' kg'"></span>
                                             <!--ko if: Produk().IsInternational-->
-                                            <span class="label label-sm label-success label-mini pull-right"><i class="fa fa-plane"></i> International </span>                                            <!-- /ko -->
+                                            <span class="label label-sm label-success label-mini pull-right"><i class="fa fa-plane"></i> International </span>
+                                            <!-- /ko -->
                                             <!--ko ifnot: Produk().IsInternational-->
                                             <span class="label label-sm label-info label-mini pull-right"><i class="fa fa-truck"></i> Domestic </span>
                                             <!-- /ko -->
