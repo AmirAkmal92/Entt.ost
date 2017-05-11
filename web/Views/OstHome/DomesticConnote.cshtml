@@ -1,4 +1,4 @@
-﻿@model Bespoke.Ost.ConsigmentRequests.Domain.Consignment
+﻿@model web.sph.App_Code.printConnoteModel
 @{
     Layout = null;
 }
@@ -69,11 +69,9 @@
                 <td class="td-hide">col-06</td>
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
+                <td rowspan="2" colspan="3"><br />&nbsp;<strong><span style="font-size:12px;">@Html.Raw(Model.referenceNo)</span></strong></td>
                 <td class="td-hide">col-09</td>
                 <td class="td-hide">col-10</td>
-                <td class="td-hide">col-11</td>
-                <td class="td-hide">col-12</td>
-                <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
@@ -98,15 +96,10 @@
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
                 <td class="td-hide">col-10</td>
-                <td class="td-hide">col-11</td>
-                <td class="td-hide">col-12</td>
-                <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
-                <td rowspan="2" colspan="8"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose-conn">@Html.Raw(Model.ConNote)</span></td>
-                @*
-                    <td class="td-hide">col-24</td>*@
+                <td rowspan="2" colspan="8"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose-conn">@Html.Raw(Model.consignment.ConNote)</span></td>
             </tr>
             @*======== ROW 4 ======*@
             <tr>
@@ -131,12 +124,12 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
-                <td colspan="10" class="td"><span>@Html.Raw(Model.Pemberi.ContactPerson)</span></td>
+                <td colspan="10" class="td"><span>@Html.Raw(Model.consignment.Pemberi.ContactPerson)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
-                <td rowspan="3" colspan="8">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode" id="my-connote1">@Html.Raw(Model.ConNote)</span></td>
+                <td rowspan="3" colspan="8">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode" id="my-connote1">@Html.Raw(Model.consignment.ConNote)</span></td>
                 @*
                     <td class="td-hide">col-24</td>*@
             </tr>
@@ -144,7 +137,7 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
-                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address1)</span></td>
+                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Pemberi.Address.Address1)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
@@ -154,7 +147,7 @@
             </tr>
             @*======== ROW 7 ====== Address Line 2 *@
             <tr>
-                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address2)</span></td>
+                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Pemberi.Address.Address2)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
@@ -164,7 +157,7 @@
             </tr>
             @*======== ROW 8 ====== Address Line 3 *@
             <tr>
-                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address3)</span></td>
+                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Pemberi.Address.Address3)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
@@ -180,7 +173,7 @@
             </tr>
             @*======== ROW 9 ====== Address Line 4 *@
             <tr>
-                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address4)</span></td>
+                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Pemberi.Address.Address4)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
@@ -198,14 +191,14 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
-                <td colspan="3"><span>@Html.Raw(Model.Pemberi.Address.City)</span></td>
+                <td colspan="3"><span>@Html.Raw(Model.consignment.Pemberi.Address.City)</span></td>
                 <td class="td-hide">col-06</td>
                 <td class="td-hide">col-07</td>
-                <td colspan="5"><span>@Html.Raw(Model.Pemberi.Address.State)</span></td>
+                <td colspan="5"><span>@Html.Raw(Model.consignment.Pemberi.Address.State)</span></td>
                 <td class="td-hide">col-13</td>
-                <td rowspan="3" colspan="4"><br /><span>@Html.Raw(Model.Produk.Description)</span></td>
-                <td rowspan="3" colspan="2"><br />&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
-                <td class="td-hide">col-20</td>
+                <td rowspan="3" colspan="4"><br /><span>@Html.Raw(Model.consignment.Produk.Description)</span></td>
+                <td rowspan="3"><br /><span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</span></td>
+                <td rowspan="3"><br />&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.Weight)</span></td>
                 <td class="td-hide">col-21</td>
                 <td class="td-hide">col-22</td>
                 <td class="td-hide">col-23</td>
@@ -215,11 +208,11 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose">@Html.Raw(Model.Pemberi.Address.Postcode)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose">@Html.Raw(Model.consignment.Pemberi.Address.Postcode)</span></td>
                 <td class="td-hide">col-06</td>
                 @*
                     <td class="td-hide">col-07</td>*@
-                <td colspan="5">&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.ContactNumber)</span></td>
+                <td colspan="5">&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Pemberi.ContactInformation.ContactNumber)</span></td>
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-20</td>
                 <td class="td-hide">col-21</td>
@@ -278,7 +271,7 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
-                <td colspan="10" class="td"><span>@Html.Raw(Model.Penerima.ContactPerson)</span></td>
+                <td colspan="10" class="td"><span>@Html.Raw(Model.consignment.Penerima.ContactPerson)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
@@ -296,7 +289,7 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
-                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address1)</span></td>
+                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Penerima.Address.Address1)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
@@ -311,14 +304,14 @@
             </tr>
             @*======== ROW 16 ====== Address Line 2 *@
             <tr>
-                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address2)</span></td>
+                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Penerima.Address.Address2)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td>&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-16</td>
                 <td class="td-hide">col-17</td>
                 <td class="td-hide">col-18</td>
-                <td colspan="2">&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
+                <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</span></td>
                 <td class="td-hide">col-21</td>
                 <td class="td-hide">col-22</td>
                 <td class="td-hide">col-23</td>
@@ -326,7 +319,7 @@
             </tr>
             @*======== ROW 17 ====== Address Line 3 *@
             <tr>
-                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address3)</span></td>
+                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Penerima.Address.Address3)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
@@ -342,7 +335,7 @@
             </tr>
             @*======== ROW 18 ====== Address Line 4 *@
             <tr>
-                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address4)</span></td>
+                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Penerima.Address.Address4)</span></td>
                 <td class="td-hide">col-13</td>
                 <td rowspan="6" colspan="3"><div id="bcTarget1"></div></td>
                 <td class="td-hide">col-17</td>
@@ -358,7 +351,7 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
-                <td colspan="10">&nbsp;<span>@Html.Raw(Model.Penerima.Address.City)</span></td>
+                <td colspan="10">&nbsp;<span>@Html.Raw(Model.consignment.Penerima.Address.City)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-17</td>
                 <td class="td-hide">col-18</td>
@@ -373,7 +366,7 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
-                <td colspan="10">&nbsp;<span>@Html.Raw(Model.Penerima.Address.State)</span></td>
+                <td colspan="10">&nbsp;<span>@Html.Raw(Model.consignment.Penerima.Address.State)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-17</td>
                 <td class="td-hide">col-18</td>
@@ -389,7 +382,7 @@
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="9"><span>@Html.Raw(Model.Penerima.ContactInformation.ContactNumber)</span> / <span>@Html.Raw(Model.Penerima.ContactInformation.Email)</span></td>
+                <td colspan="9"><span>@Html.Raw(Model.consignment.Penerima.ContactInformation.ContactNumber)</span> / <span>@Html.Raw(Model.consignment.Penerima.ContactInformation.Email)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-17</td>
                 <td class="td-hide">col-18</td>
@@ -461,11 +454,7 @@
                 <td class="td-hide">col-09</td>
                 <td class="td-hide">col-10</td>
                 <td class="td-hide">col-11</td>
-                <td rowspan="2" colspan="6" style="background: transparent;"><span class="loose2">@Html.Raw(Model.Penerima.Address.Postcode)</span></td>
-                @*
-                    <td class="td-hide">col-17</td>*@
-                @*
-                    <td class="td-hide">col-18</td>*@
+                <td rowspan="2" colspan="6" style="background: transparent;"><span class="loose2">@Html.Raw(Model.consignment.Penerima.Address.Postcode)</span></td>
                 <td class="td-hide">col-19</td>
                 <td class="td-hide">col-20</td>
                 <td class="td-hide">col-21</td>
@@ -563,11 +552,9 @@
                 <td class="td-hide">col-06</td>
                 <td class="td-hide">col-07</td>
                 <td class="td-hide">col-08</td>
+                <td rowspan="2" colspan="3"><br />&nbsp;<span style="font-size:11px;">@Html.Raw("OST-110517-05-1427")</span></td>
                 <td class="td-hide">col-09</td>
                 <td class="td-hide">col-10</td>
-                <td class="td-hide">col-11</td>
-                <td class="td-hide">col-12</td>
-                <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
@@ -592,15 +579,10 @@
                 <td class="td-hide">col-08</td>
                 <td class="td-hide">col-09</td>
                 <td class="td-hide">col-10</td>
-                <td class="td-hide">col-11</td>
-                <td class="td-hide">col-12</td>
-                <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
-                <td rowspan="2" colspan="8"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose-conn">@Html.Raw(Model.ConNote)</span></td>
-                @*
-                    <td class="td-hide">col-24</td>*@
+                <td rowspan="2" colspan="8"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose-conn">@Html.Raw(Model.consignment.ConNote)</span></td>
             </tr>
             @*======== ROW 4 ======*@
             <tr>
@@ -625,12 +607,12 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
-                <td colspan="10" class="td"><span>@Html.Raw(Model.Pemberi.ContactPerson)</span></td>
+                <td colspan="10" class="td"><span>@Html.Raw(Model.consignment.Pemberi.ContactPerson)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
                 <td class="td-hide">col-16</td>
-                <td rowspan="3" colspan="8">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode" id="my-connote2">@Html.Raw(Model.ConNote)</span></td>
+                <td rowspan="3" colspan="8">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode" id="my-connote2">@Html.Raw(Model.consignment.ConNote)</span></td>
                 @*
                     <td class="td-hide">col-24</td>*@
             </tr>
@@ -638,7 +620,7 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
-                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address1)</span></td>
+                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Pemberi.Address.Address1)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
@@ -648,7 +630,7 @@
             </tr>
             @*======== ROW 7 ====== Address Line 2 *@
             <tr>
-                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address2)</span></td>
+                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Pemberi.Address.Address2)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
@@ -658,7 +640,7 @@
             </tr>
             @*======== ROW 8 ====== Address Line 3 *@
             <tr>
-                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address3)</span></td>
+                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Pemberi.Address.Address3)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
@@ -674,7 +656,7 @@
             </tr>
             @*======== ROW 9 ====== Address Line 4 *@
             <tr>
-                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.Address.Address4)</span></td>
+                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Pemberi.Address.Address4)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
@@ -692,14 +674,14 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
-                <td colspan="3"><span>@Html.Raw(Model.Pemberi.Address.City)</span></td>
+                <td colspan="3"><span>@Html.Raw(Model.consignment.Pemberi.Address.City)</span></td>
                 <td class="td-hide">col-06</td>
                 <td class="td-hide">col-07</td>
-                <td colspan="5"><span>@Html.Raw(Model.Pemberi.Address.State)</span></td>
+                <td colspan="5"><span>@Html.Raw(Model.consignment.Pemberi.Address.State)</span></td>
                 <td class="td-hide">col-13</td>
-                <td rowspan="3" colspan="4"><br /><span>@Html.Raw(Model.Produk.Description)</span></td>
-                <td rowspan="3" colspan="2"><br />&nbsp;&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
-                <td class="td-hide">col-20</td>
+                <td rowspan="3" colspan="4"><br /><span>@Html.Raw(Model.consignment.Produk.Description)</span></td>
+                <td rowspan="3"><br /><span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</span></td>
+                <td rowspan="3"><br />&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.Weight)</span></td>
                 <td class="td-hide">col-21</td>
                 <td class="td-hide">col-22</td>
                 <td class="td-hide">col-23</td>
@@ -709,11 +691,11 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
-                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose">@Html.Raw(Model.Pemberi.Address.Postcode)</span></td>
+                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose">@Html.Raw(Model.consignment.Pemberi.Address.Postcode)</span></td>
                 <td class="td-hide">col-06</td>
                 @*
                     <td class="td-hide">col-07</td>*@
-                <td colspan="5">&nbsp;&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.ContactNumber)</span></td>
+                <td colspan="5">&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Pemberi.ContactInformation.ContactNumber)</span></td>
                 <td class="td-hide">col-12</td>
                 <td class="td-hide">col-20</td>
                 <td class="td-hide">col-21</td>
@@ -772,7 +754,7 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
-                <td colspan="10" class="td"><span>@Html.Raw(Model.Penerima.ContactPerson)</span></td>
+                <td colspan="10" class="td"><span>@Html.Raw(Model.consignment.Penerima.ContactPerson)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
@@ -790,7 +772,7 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
-                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address1)</span></td>
+                <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Penerima.Address.Address1)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
@@ -805,14 +787,14 @@
             </tr>
             @*======== ROW 16 ====== Address Line 2 *@
             <tr>
-                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address2)</span></td>
+                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Penerima.Address.Address2)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td>&nbsp;&nbsp;<span>✓</span></td>
                 <td class="td-hide">col-16</td>
                 <td class="td-hide">col-17</td>
                 <td class="td-hide">col-18</td>
-                <td colspan="2">&nbsp;<span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span></td>
+                <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</span></td>
                 <td class="td-hide">col-21</td>
                 <td class="td-hide">col-22</td>
                 <td class="td-hide">col-23</td>
@@ -820,7 +802,7 @@
             </tr>
             @*======== ROW 17 ====== Address Line 3 *@
             <tr>
-                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address3)</span></td>
+                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Penerima.Address.Address3)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-14</td>
                 <td class="td-hide">col-15</td>
@@ -836,7 +818,7 @@
             </tr>
             @*======== ROW 18 ====== Address Line 4 *@
             <tr>
-                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.Penerima.Address.Address4)</span></td>
+                <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Penerima.Address.Address4)</span></td>
                 <td class="td-hide">col-13</td>
                 <td rowspan="6" colspan="3"><div id="bcTarget2"></div></td>
                 <td class="td-hide">col-17</td>
@@ -852,7 +834,7 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
-                <td colspan="10">&nbsp;<span>@Html.Raw(Model.Penerima.Address.City)</span></td>
+                <td colspan="10">&nbsp;<span>@Html.Raw(Model.consignment.Penerima.Address.City)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-17</td>
                 <td class="td-hide">col-18</td>
@@ -867,7 +849,7 @@
             <tr>
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
-                <td colspan="10">&nbsp;<span>@Html.Raw(Model.Penerima.Address.State)</span></td>
+                <td colspan="10">&nbsp;<span>@Html.Raw(Model.consignment.Penerima.Address.State)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-17</td>
                 <td class="td-hide">col-18</td>
@@ -883,7 +865,7 @@
                 <td class="td-hide">col-01</td>
                 <td class="td-hide">col-02</td>
                 <td class="td-hide">col-03</td>
-                <td colspan="9"><span>@Html.Raw(Model.Penerima.ContactInformation.ContactNumber)</span> / <span>@Html.Raw(Model.Penerima.ContactInformation.Email)</span></td>
+                <td colspan="9"><span>@Html.Raw(Model.consignment.Penerima.ContactInformation.ContactNumber)</span> / <span>@Html.Raw(Model.consignment.Penerima.ContactInformation.Email)</span></td>
                 <td class="td-hide">col-13</td>
                 <td class="td-hide">col-17</td>
                 <td class="td-hide">col-18</td>
@@ -955,7 +937,7 @@
                 <td class="td-hide">col-09</td>
                 <td class="td-hide">col-10</td>
                 <td class="td-hide">col-11</td>
-                <td rowspan="2" colspan="6" style="background: transparent;"><span class="loose2">@Html.Raw(Model.Penerima.Address.Postcode)</span></td>
+                <td rowspan="2" colspan="6" style="background: transparent;"><span class="loose2">@Html.Raw(Model.consignment.Penerima.Address.Postcode)</span></td>
                 @*
                     <td class="td-hide">col-17</td>*@
                 @*
@@ -1046,15 +1028,15 @@
             $("#my-connote1").text(String.fromCharCode(type128 + 100) + str + checksum + String.fromCharCode(typeClose + 100));
             $("#my-connote2").text(String.fromCharCode(type128 + 100) + str + checksum + String.fromCharCode(typeClose + 100));
         }
-        textTo128('@Html.Raw(Model.ConNote)');
+        textTo128('@Html.Raw(Model.consignment.ConNote)');
         jQuery(document).ready(function () {
             window.print();
-            
+
         });
     </script>
     <script>
         $(document).ready(function () {
-            var text = ('@Html.Raw(Model.ConNote)');
+            var text = ('@Html.Raw(Model.consignment.ConNote)');
             $("#bcTarget1").barcode(text, "datamatrix");
             $("#bcTarget2").barcode(text, "datamatrix");
         });

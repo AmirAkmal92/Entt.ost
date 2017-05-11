@@ -31,7 +31,12 @@ namespace web.sph.App_Code
                     break;
                 }
             }
-            return View(connote);
+            var pcm = new printConnoteModel
+            {
+                referenceNo = item.ReferenceNo,
+                consignment = connote,
+            };
+            return View(pcm);
         }
 
         [HttpGet]
@@ -87,5 +92,11 @@ namespace web.sph.App_Code
                 lo = await repos.LoadOneAsync("ReferenceNo", id);
             return lo;
         }
+    }
+
+    public class printConnoteModel
+    {
+        public string referenceNo { get; set; }
+        public Consignment consignment { get; set; }
     }
 }
