@@ -26,7 +26,7 @@ namespace web.sph.App_Code
 
         public CustomConsignmentRequestController()
         {
-            m_applicationName = ConfigurationManager.GetEnvironmentVariable("ApplicationFullName") ?? "OST";            
+            m_applicationName = ConfigurationManager.GetEnvironmentVariable("ApplicationName") ?? "OST";            
             m_sdsBaseUrl = "http://stagingsds.pos.com.my/apigateway"; // temp for pss & cms use staging 
             //m_sdsBaseUrl = Bespoke.Sph.Domain.ConfigurationManager.GetEnvironmentVariable("SdsBaseUrl") ?? "https://apis.pos.com.my";
 
