@@ -251,12 +251,12 @@
                                         <td>
                                             <center>
                                                 <!--ko ifnot: Produk().IsInternational-->
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="attr: { href: 'ost/print-domestic-connote/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }" target="_blank">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="click: $root.printNddConnote, css: { 'disabled': !ConNote() }">
                                                     <i class="icon-printer"></i>
                                                 </a>
                                                 <!-- /ko -->
                                                 <!--ko if: Produk().IsInternational-->
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="attr: { href: 'ost/print-international-connote/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }" target="_blank">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="click: $root.printEmsConnote, css: { 'disabled': !ConNote() }">
                                                     <i class="icon-printer"></i>
                                                 </a>
                                                 <!-- /ko -->

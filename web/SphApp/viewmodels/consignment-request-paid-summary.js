@@ -102,6 +102,30 @@ function (context, logger, router, system, chart, config, app, app2) {
             $('#show-busy-loading-dialog-text').text(dialogtText);
             $('#show-busy-loading-dialog').modal('toggle');
         },
+        printNddConnote = function (data) {
+            var msg = "";
+            msg += "    <p>Before you start printing, please set your printer setting as below:</p>";
+            msg += "    <ul class='list-unstyled'>";
+            msg += "        <li><i class='fa fa-chrome'></i> <a href='../../Content/Files/Chrome_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Chrome guide</li>";
+            msg += "        <li><i class='fa fa-firefox'></i> <a href='../../Content/Files/FireFox_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Firefox guide</li>";
+            msg += "        <li><i class='fa fa-opera'></i> <a href='../../Content/Files/Opera_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Opera guide</li>";
+            msg += "    </ul>";
+            app.showMessage(msg, "OST", ["Close"]).done(function () {
+                window.open('http://localhost:50230/ost/print-domestic-connote/consignment-requests/' + id() + '/consignments/' + data.WebId());
+            });
+        },
+        printEmsConnote = function (data) {
+            var msg = "";
+            msg += "    <p>Before you start printing, please set your printer setting as below:</p>";
+            msg += "    <ul class='list-unstyled'>";
+            msg += "        <li><i class='fa fa-chrome'></i> <a href='../../Content/Files/Chrome_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Chrome guide</li>";
+            msg += "        <li><i class='fa fa-firefox'></i> <a href='../../Content/Files/FireFox_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Firefox guide</li>";
+            msg += "        <li><i class='fa fa-opera'></i> <a href='../../Content/Files/Opera_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Opera guide</li>";
+            msg += "    </ul>";
+            app.showMessage(msg, "OST", ["Close"]).done(function () {
+                window.open('http://localhost:50230/ost/print-international-connote/consignment-requests/' + id() + '/consignments/' + data.WebId());
+            });
+        },
         attached = function (view) {
             //initialize busy loading dialog
             $('#show-busy-loading-dialog').modal({
@@ -156,7 +180,9 @@ function (context, logger, router, system, chart, config, app, app2) {
         showParcelTrackTrace: showParcelTrackTrace,
         toggleShowParcelDetails: toggleShowParcelDetails,
         toggleShowBusyLoadingDialog: toggleShowBusyLoadingDialog,
-        entity: entity
+        entity: entity,
+        printNddConnote: printNddConnote,
+        printEmsConnote: printEmsConnote
     };
 
     return vm;
