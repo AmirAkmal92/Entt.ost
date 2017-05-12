@@ -28,7 +28,8 @@
     ================================================== -->
     <div class="navbar navbar-default navbar-fixed-top">        
         <div class="container">
-            <div class="navbar-header" style="height: 75px;">
+            <br class="visible-lg" />
+            <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -36,11 +37,12 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">
-                    <img src="/images/Pos_Laju_EziSend_RGB.png" style="width:165.25px; height:65px;" alt="">
+                    <img src="/images/Pos_Laju_EziSend_RGB.png" style="width:127.11px; height:50px;" alt="" class="visible-lg">
+                    <img src="/images/Pos_Laju_EziSend_RGB.png" style="width:101.69px; height:40px;" alt="" class="visible-xs visible-sm visible-md">
                 </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav visible-lg">
                     <li style="color: #fa6400; font-size: 20px;"><a href="/" style="color: #fa6400;">Home</a></li>
                     <li style="color: #fa6400; font-size: 20px;"><a href="/volumetric" style="color: #fa6400;">Weight Calculator</a></li>
                     <li style="color: #fa6400; font-size: 20px;"><a href="http://pos.com.my/postal-services/quick-access/?calculate-postage" style="color: #fa6400;" target="_blank">Rate Calculator</a></li>
@@ -48,12 +50,21 @@
                     <li style="color: #fa6400; font-size: 20px;"><a href="/tnc" style="color: #fa6400;">T&amp;C</a></li>
                     <li style="color: #fa6400; font-size: 20px;"><a href="/faq" style="color: #fa6400;">FAQ</a></li>
                 </ul>
+                <ul class="nav navbar-nav visible-xs visible-sm visible-md">
+                    <li style="color: #fa6400;"><a href="/" style="color: #fa6400;"><strong>Home</strong></a></li>
+                    <li style="color: #fa6400;"><a href="/volumetric" style="color: #fa6400;"><strong>Weight Calculator</strong></a></li>
+                    <li style="color: #fa6400;"><a href="http://pos.com.my/postal-services/quick-access/?calculate-postage" style="color: #fa6400;" target="_blank"><strong>Rate Calculator</strong></a></li>
+                    <li style="color: #fa6400;"><a href="/track-trace" style="color: #fa6400;"><strong>Track &amp; Trace</strong></a></li>
+                    <li style="color: #fa6400;"><a href="/tnc" style="color: #fa6400;"><strong>T&amp;C</strong></a></li>
+                    <li style="color: #fa6400;"><a href="/faq" style="color: #fa6400;"><strong>FAQ</strong></a></li>
+                </ul>
                 <form class="navbar-form navbar-right">
                     <a href="/ost-account/login" type="button" class="btn btn-sample">Log In</a>
                     <a href="/ost-account/register" type="button" class="btn btn-default">Sign Up</a>
                 </form>
             </div><!--/.navbar-collapse -->
         </div>
+        <br class="visible-lg" />
         <div class="stripe"></div>
     </div>
     @RenderBody()
@@ -108,7 +119,7 @@
 
         <div class="footer-bottom" hidden>
             <div class="container">
-                <p class="pull-left"> @DateTime.Today.Year &copy; Pos Laju EziSend Pos Malaysia Berhad (229990-M) All Rights Reserved</p>
+                <span class="pull-left"> @DateTime.Today.Year &copy; Pos Laju EziSend, Pos Malaysia Berhad (229990-M). All Rights Reserved</span>
                 <div class="pull-right">
                     <ul class="nav nav-pills payments">
                         <li><i class="fa fa-cc-visa"></i></li>
