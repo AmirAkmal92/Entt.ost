@@ -171,7 +171,7 @@
                                     </div>
                                     <div class="actions">
                                         <div class="btn-group">
-                                            <a class="btn btn-circle yellow-casablanca" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $root.crShippingCart().Id + '/consignments/0' } ">
+                                            <a class="btn btn-circle yellow-casablanca" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + ko.unwrap($root.crShippingCart().Id) + '/consignments/0' } ">
                                                 <i class="fa fa-paper-plane"></i> Send Parcel
                                             </a>
                                         </div>
