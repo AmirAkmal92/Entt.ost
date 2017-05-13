@@ -2861,12 +2861,10 @@
             $("#my-connote2").text(String.fromCharCode(type128 + 100) + str + checksum + String.fromCharCode(typeClose + 100));
             $("#my-connote3").text(String.fromCharCode(type128 + 100) + str + checksum + String.fromCharCode(typeClose + 100));
             $("#my-connote4").text(String.fromCharCode(type128 + 100) + str + checksum + String.fromCharCode(typeClose + 100));
-            $("#my-connote5").text(String.fromCharCode(type128 + 100) + str + checksum + String.fromCharCode(typeClose + 100));
         }
         textTo128('@Html.Raw(Model.consignment.ConNote)');
         jQuery(document).ready(function () {
             window.print();
-            textTo128('@Html.Raw(Model.consignment.ConNote)');
         });
     </script>
     <script>
