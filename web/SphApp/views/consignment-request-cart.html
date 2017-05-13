@@ -46,6 +46,22 @@
                     </h3>
                 </div>
             </div>
+            <div data-bind="visible: Consignments().length > 0">
+                <div class="col-md-12">
+                    <div id="accordion_pickup" class="well collapse in" aria-expanded="false">
+                        <div class="note note-warning">
+                            <h4 class="block">Reminder (Parcel Weight)</h4>
+                            <p>
+                                <ul>
+                                    <li>
+                                        Please be advised that Pos Malaysia Berhad reserves the right to deny pick up in the event the actual weight is more than the declared weight
+                                    </li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="portlet-body">
                 <div data-bind="visible: Consignments().length > 0">
                     <div class="clearfix">
