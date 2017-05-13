@@ -79,7 +79,7 @@
                         <td class="td-hide">col-12</td>
                         <td class="td-hide">col-13</td>
                         <td class="td-hide">col-14</td>
-                        <td rowspan="3" colspan="4">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode-int" id="barcode-@Html.Raw(count)">@Html.Raw(item.ConNote)</span></td>
+                        <td rowspan="3" colspan="4">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode-int" id="barcode-ems-s1-@Html.Raw(count)">@Html.Raw(item.ConNote)</span></td>
                         <td class="td-hide">col-19</td>
                         <td class="td-hide">col-20</td>
                         <td class="td-hide">col-21</td>
@@ -735,6 +735,7 @@
                     </tr>
                 </table>
             </div>
+            <hr /><br /><br />
         }
         else
         {
@@ -777,11 +778,8 @@
                         <td class="td-hide">col-06</td>
                         <td class="td-hide">col-07</td>
                         <td class="td-hide">col-08</td>
-                        <td class="td-hide">col-09</td>
+                        <td rowspan="2" colspan="4"><br />&nbsp;<span>@Html.Raw(Model.ReferenceNo)</span></td>
                         <td class="td-hide">col-10</td>
-                        <td class="td-hide">col-11</td>
-                        <td class="td-hide">col-12</td>
-                        <td class="td-hide">col-13</td>
                         <td class="td-hide">col-14</td>
                         <td class="td-hide">col-15</td>
                         <td class="td-hide">col-16</td>
@@ -803,18 +801,12 @@
                         <td class="td-hide">col-05</td>
                         <td class="td-hide">col-06</td>
                         <td class="td-hide">col-07</td>
-                        <td class="td-hide">col-08</td>
                         <td class="td-hide">col-09</td>
                         <td class="td-hide">col-10</td>
-                        <td class="td-hide">col-11</td>
-                        <td class="td-hide">col-12</td>
-                        <td class="td-hide">col-13</td>
                         <td class="td-hide">col-14</td>
                         <td class="td-hide">col-15</td>
                         <td class="td-hide">col-16</td>
                         <td rowspan="2" colspan="8"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose-conn">@Html.Raw(item.ConNote)</span></td>
-                        @*
-                            <td class="td-hide">col-24</td>*@
                     </tr>
                     @*======== ROW 4 ======*@
                     <tr>
@@ -844,7 +836,487 @@
                         <td class="td-hide">col-14</td>
                         <td class="td-hide">col-15</td>
                         <td class="td-hide">col-16</td>
-                        <td rowspan="3" colspan="8">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode" id="barcode-@Html.Raw(count)">@Html.Raw(item.ConNote)</span></td>
+                        <td rowspan="3" colspan="8">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode" id="barcode-ndd-s1-@Html.Raw(count)">@Html.Raw(item.ConNote)</span></td>
+                        @*
+                <td class="td-hide">col-24</td>*@
+                    </tr>
+                    @*======== ROW 6 ====== Address Line 1 *@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Pemberi.Address.Address1)</span></td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-14</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide">col-16</td>
+                        @*
+                <td class="td-hide">col-24</td>*@
+                    </tr>
+                    @*======== ROW 7 ====== Address Line 2 *@
+                    <tr>
+                        <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Pemberi.Address.Address2)</span></td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-14</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide">col-16</td>
+                        @*
+                <td class="td-hide">col-24</td>*@
+                    </tr>
+                    @*======== ROW 8 ====== Address Line 3 *@
+                    <tr>
+                        <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Pemberi.Address.Address3)</span></td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-14</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide">col-16</td>
+                        <td class="td-hide">col-17</td>
+                        <td class="td-hide">col-18</td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 9 ====== Address Line 4 *@
+                    <tr>
+                        <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Pemberi.Address.Address4)</span></td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-14</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide">col-16</td>
+                        <td class="td-hide">col-17</td>
+                        <td class="td-hide">col-18</td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 10 ====== Address Line 5 *@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td colspan="3"><span>@Html.Raw(item.Pemberi.Address.City)</span></td>
+                        <td class="td-hide">col-06</td>
+                        <td class="td-hide">col-07</td>
+                        <td colspan="5"><span>@Html.Raw(item.Pemberi.Address.State)</span></td>
+                        <td class="td-hide">col-13</td>
+                        <td rowspan="3" colspan="4"><br /><span>@Html.Raw(item.Produk.Description)</span></td>
+                        <td rowspan="3"><br /><span>@Html.Raw(item.Produk.ValueAddedDeclaredValue)</span></td>
+                        <td rowspan="3"><br />&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.Weight)</span></td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 11 ====== City, State *@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose">@Html.Raw(item.Pemberi.Address.Postcode)</span></td>
+                        <td class="td-hide">col-06</td>
+                        @*
+                <td class="td-hide">col-07</td>*@
+                        <td colspan="5">&nbsp;&nbsp;<span>@Html.Raw(item.Pemberi.ContactInformation.ContactNumber)</span></td>
+                        <td class="td-hide">col-12</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 12 ====== Postcode, Telephone, Email *@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td class="td-hide">col-03</td>
+                        <td class="td-hide">col-04</td>
+                        <td class="td-hide">col-05</td>
+                        <td class="td-hide">col-06</td>
+                        <td class="td-hide">col-07</td>
+                        <td class="td-hide">col-08</td>
+                        <td class="td-hide">col-09</td>
+                        <td class="td-hide">col-10</td>
+                        <td class="td-hide">col-11</td>
+                        <td class="td-hide">col-12</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 13 ======*@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td class="td-hide">col-03</td>
+                        <td class="td-hide">col-04</td>
+                        <td class="td-hide">col-05</td>
+                        <td class="td-hide">col-06</td>
+                        <td class="td-hide">col-07</td>
+                        <td class="td-hide">col-08</td>
+                        <td class="td-hide">col-09</td>
+                        <td class="td-hide">col-10</td>
+                        <td class="td-hide">col-11</td>
+                        <td class="td-hide">col-12</td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-14</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide">col-16</td>
+                        <td class="td-hide">col-17</td>
+                        <td class="td-hide">col-18</td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 14 ====== Name Receiver *@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td colspan="10" class="td"><span>@Html.Raw(item.Penerima.ContactPerson)</span></td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-14</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide">col-16</td>
+                        <td class="td-hide">col-17</td>
+                        <td class="td-hide">col-18</td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 15 ====== Address Line 1 *@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Penerima.Address.Address1)</span></td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-14</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide">col-16</td>
+                        <td class="td-hide">col-17</td>
+                        <td class="td-hide">col-18</td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@DateTime.Today.Date.ToShortDateString()</span></td>
+                    </tr>
+                    @*======== ROW 16 ====== Address Line 2 *@
+                    <tr>
+                        <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Penerima.Address.Address2)</span></td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-14</td>
+                        <td>&nbsp;&nbsp;<span>✓</span></td>
+                        <td class="td-hide">col-16</td>
+                        <td class="td-hide">col-17</td>
+                        <td class="td-hide">col-18</td>
+                        <td colspan="2">&nbsp;<span>@Html.Raw(item.Produk.ValueAddedDeclaredValue)</span></td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 17 ====== Address Line 3 *@
+                    <tr>
+                        <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Penerima.Address.Address3)</span></td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-14</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide">col-16</td>
+                        <td class="td-hide">col-17</td>
+                        <td class="td-hide">col-18</td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 18 ====== Address Line 4 *@
+                    <tr>
+                        <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Penerima.Address.Address4)</span></td>
+                        <td class="td-hide">col-13</td>
+                        <td rowspan="6" colspan="3"><div id="datamatrix-ndd-s1-@Html.Raw(count)"></div></td>
+                        <td class="td-hide">col-17</td>
+                        <td class="td-hide">col-18</td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 19 ====== City *@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td colspan="10">&nbsp;<span>@Html.Raw(item.Penerima.Address.City)</span></td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-17</td>
+                        <td class="td-hide">col-18</td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 20 ====== State *@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td colspan="10">&nbsp;<span>@Html.Raw(item.Penerima.Address.State)</span></td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-17</td>
+                        <td class="td-hide">col-18</td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 21 ====== Telephone, Email *@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td class="td-hide">col-03</td>
+                        <td colspan="9"><span>@Html.Raw(item.Penerima.ContactInformation.ContactNumber)</span> / <span>@Html.Raw(item.Penerima.ContactInformation.Email)</span></td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-17</td>
+                        <td class="td-hide">col-18</td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 22 ======*@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td class="td-hide">col-03</td>
+                        <td class="td-hide">col-04</td>
+                        <td class="td-hide">col-05</td>
+                        <td class="td-hide">col-06</td>
+                        <td class="td-hide">col-07</td>
+                        <td class="td-hide">col-08</td>
+                        <td class="td-hide">col-09</td>
+                        <td class="td-hide">col-10</td>
+                        <td class="td-hide">col-11</td>
+                        <td class="td-hide">col-12</td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-17</td>
+                        <td class="td-hide">col-18</td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 23 ======*@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td class="td-hide">col-03</td>
+                        <td class="td-hide">col-04</td>
+                        <td class="td-hide">col-05</td>
+                        <td class="td-hide">col-06</td>
+                        <td class="td-hide">col-07</td>
+                        <td class="td-hide">col-08</td>
+                        <td class="td-hide">col-09</td>
+                        <td class="td-hide">col-10</td>
+                        <td class="td-hide">col-11</td>
+                        <td class="td-hide">col-12</td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-17</td>
+                        <td class="td-hide">col-18</td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 24 ====== Big Postcode *@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td class="td-hide">col-03</td>
+                        <td class="td-hide">col-04</td>
+                        <td class="td-hide">col-05</td>
+                        <td class="td-hide">col-06</td>
+                        <td class="td-hide">col-07</td>
+                        <td class="td-hide">col-08</td>
+                        <td class="td-hide">col-09</td>
+                        <td class="td-hide">col-10</td>
+                        <td class="td-hide">col-11</td>
+                        <td rowspan="2" colspan="6" style="background: transparent;"><span class="loose2">@Html.Raw(item.Penerima.Address.Postcode)</span></td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 25 ====== Big Postcode *@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td class="td-hide">col-03</td>
+                        <td class="td-hide">col-04</td>
+                        <td class="td-hide">col-05</td>
+                        <td class="td-hide">col-06</td>
+                        <td class="td-hide">col-07</td>
+                        <td class="td-hide">col-08</td>
+                        <td class="td-hide">col-09</td>
+                        <td class="td-hide">col-10</td>
+                        <td class="td-hide">col-11</td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 26 ======*@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td class="td-hide">col-03</td>
+                        <td class="td-hide">col-04</td>
+                        <td class="td-hide">col-05</td>
+                        <td class="td-hide">col-06</td>
+                        <td class="td-hide">col-07</td>
+                        <td class="td-hide">col-08</td>
+                        <td class="td-hide">col-09</td>
+                        <td class="td-hide">col-10</td>
+                        <td class="td-hide">col-11</td>
+                        <td class="td-hide">col-12</td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-14</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide">col-16</td>
+                        <td class="td-hide">col-17</td>
+                        <td class="td-hide">col-18</td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                </table>
+            </div>
+            <hr /><br /><br />
+            <div class="container">
+                <table class="table connote-sheet-2">
+                    @*======== ROW 1 ======*@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td class="td-hide">col-03</td>
+                        <td class="td-hide">col-04</td>
+                        <td class="td-hide">col-05</td>
+                        <td class="td-hide">col-06</td>
+                        <td class="td-hide">col-07</td>
+                        <td class="td-hide">col-08</td>
+                        <td class="td-hide">col-09</td>
+                        <td class="td-hide">col-10</td>
+                        <td class="td-hide">col-11</td>
+                        <td class="td-hide">col-12</td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-14</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide">col-16</td>
+                        <td class="td-hide">col-17</td>
+                        <td class="td-hide">col-18</td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 2 ======*@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td class="td-hide">col-03</td>
+                        <td class="td-hide">col-04</td>
+                        <td class="td-hide">col-05</td>
+                        <td class="td-hide">col-06</td>
+                        <td class="td-hide">col-07</td>
+                        <td class="td-hide">col-08</td>
+                        <td rowspan="2" colspan="4"><br />&nbsp;<span>@Html.Raw(Model.ReferenceNo)</span></td>
+                        <td class="td-hide">col-10</td>
+                        <td class="td-hide">col-14</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide">col-16</td>
+                        <td class="td-hide">col-17</td>
+                        <td class="td-hide">col-18</td>
+                        <td class="td-hide">col-19</td>
+                        <td class="td-hide">col-20</td>
+                        <td class="td-hide">col-21</td>
+                        <td class="td-hide">col-22</td>
+                        <td class="td-hide">col-23</td>
+                        <td class="td-hide">col-24</td>
+                    </tr>
+                    @*======== ROW 3 ======*@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td class="td-hide">col-03</td>
+                        <td class="td-hide">col-04</td>
+                        <td class="td-hide">col-05</td>
+                        <td class="td-hide">col-06</td>
+                        <td class="td-hide">col-07</td>
+                        <td class="td-hide">col-08</td>
+                        <td class="td-hide">col-10</td>
+                        <td class="td-hide">col-14</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide">col-16</td>
+                        <td rowspan="2" colspan="8"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loose-conn">@Html.Raw(item.ConNote)</span></td>
+                    </tr>
+                    @*======== ROW 4 ======*@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td class="td-hide">col-03</td>
+                        <td class="td-hide">col-04</td>
+                        <td class="td-hide">col-05</td>
+                        <td class="td-hide">col-06</td>
+                        <td class="td-hide">col-07</td>
+                        <td class="td-hide">col-08</td>
+                        <td class="td-hide">col-09</td>
+                        <td class="td-hide">col-10</td>
+                        <td class="td-hide">col-11</td>
+                        <td class="td-hide">col-12</td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-14</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide">col-16</td>
+                    </tr>
+                    @*======== ROW 5 ====== Name Sender *@
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide">col-02</td>
+                        <td colspan="10" class="td"><span>@Html.Raw(item.Pemberi.ContactPerson)</span></td>
+                        <td class="td-hide">col-13</td>
+                        <td class="td-hide">col-14</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide">col-16</td>
+                        <td rowspan="3" colspan="8">&nbsp;&nbsp;&nbsp;<span style="font-family:code-128;" class="loose-barcode" id="barcode-ndd-s2-@Html.Raw(count)">@Html.Raw(item.ConNote)</span></td>
                         @*
                             <td class="td-hide">col-24</td>*@
                     </tr>
@@ -912,8 +1384,8 @@
                         <td colspan="5"><span>@Html.Raw(item.Pemberi.Address.State)</span></td>
                         <td class="td-hide">col-13</td>
                         <td rowspan="3" colspan="4"><br /><span>@Html.Raw(item.Produk.Description)</span></td>
-                        <td rowspan="3" colspan="2"><br />&nbsp;&nbsp;<span>@Html.Raw(item.Produk.ValueAddedDeclaredValue)</span></td>
-                        <td class="td-hide">col-20</td>
+                        <td rowspan="3"><br /><span>@Html.Raw(item.Produk.ValueAddedDeclaredValue)</span></td>
+                        <td rowspan="3"><br />&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.Weight)</span></td>
                         <td class="td-hide">col-21</td>
                         <td class="td-hide">col-22</td>
                         <td class="td-hide">col-23</td>
@@ -1052,7 +1524,7 @@
                     <tr>
                         <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Penerima.Address.Address4)</span></td>
                         <td class="td-hide">col-13</td>
-                        <td rowspan="6" colspan="3"><div id="datamatrix-@Html.Raw(count)"></div></td>
+                        <td rowspan="6" colspan="3"><div id="datamatrix-ndd-s2-@Html.Raw(count)"></div></td>
                         <td class="td-hide">col-17</td>
                         <td class="td-hide">col-18</td>
                         <td class="td-hide">col-19</td>
@@ -1230,8 +1702,8 @@
                     </tr>
                 </table>
             </div>
+            <hr /><br /><br />
         }
-        <hr /><br /><br />
         count++;
     }
     <!-- BEGIN CORE PLUGINS -->
@@ -1260,7 +1732,9 @@
             var checksum = String.fromCharCode(modVal + 32);
 
             if (modVal + 32 > 126) { alert(modVal + 32); };
-            $('#barcode-' + id).text(String.fromCharCode(type128 + 100) + str + checksum + String.fromCharCode(typeClose + 100));
+            $('#barcode-ndd-s1-' + id).text(String.fromCharCode(type128 + 100) + str + checksum + String.fromCharCode(typeClose + 100));
+            $('#barcode-ndd-s2-' + id).text(String.fromCharCode(type128 + 100) + str + checksum + String.fromCharCode(typeClose + 100));
+            $('#barcode-ems-s1-' + id).text(String.fromCharCode(type128 + 100) + str + checksum + String.fromCharCode(typeClose + 100));
         }
 
         jQuery(document).ready(function () {
@@ -1274,7 +1748,8 @@
         {
             <text>
         textTo128('@Html.Raw(item.ConNote)', '@Html.Raw(count)');
-        $('#datamatrix-' + '@Html.Raw(count)').barcode('@Html.Raw(item.ConNote)', 'datamatrix');
+        $('#datamatrix-ndd-s1-' + '@Html.Raw(count)').barcode('@Html.Raw(item.ConNote)', 'datamatrix');
+        $('#datamatrix-ndd-s2-' + '@Html.Raw(count)').barcode('@Html.Raw(item.ConNote)', 'datamatrix');
         </text>
             count++;
         }
