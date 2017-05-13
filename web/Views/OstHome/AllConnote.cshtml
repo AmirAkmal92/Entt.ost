@@ -367,7 +367,7 @@
                         <td class="td-hide">col-01</td>
                         <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.Description)</span></td>
                         <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("1")</span></td>
-                        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.Weight)</span>&nbsp;(kg)</td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Bill.ActualWeight)</span>&nbsp;(kg)</td>
                         <td class="td-hide">col-15</td>
                         <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.ValueAddedDeclaredValue)</span></td>
                         <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
@@ -407,7 +407,7 @@
                         <td class="td-hide">col-08</td>
                         <td class="td-hide">col-09</td>
                         <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("1")</span></td>
-                        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.Weight)</span></td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Bill.ActualWeight)</span></td>
                         <td class="td-hide">col-15</td>
                         <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.ValueAddedDeclaredValue)</span></td>
                         <td class="td-hide">col-18</td>
@@ -674,9 +674,7 @@
                         <td class="td-hide">col-18</td>
                         <td class="td-hide">col-19</td>
                         <td class="td-hide">col-20</td>
-                        <td class="td-hide">col-21</td>
-                        <td class="td-hide">col-22</td>
-                        <td class="td-hide">col-23</td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;<span style="font-size:10px">@Model.ReferenceNo</span></td>
                         <td class="td-hide">col-24</td>
                     </tr>
                     @*======== ROW 33 ======*@
