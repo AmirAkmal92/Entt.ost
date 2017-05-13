@@ -112,7 +112,7 @@ function (context, logger, router, system, chart, config, app) {
             totalInternationalGst(internationalGstTotal);
         },
         paymentGatewayReminderDialog = function () {
-            app.showMessage("You will be redirect to Pos Malaysia Payment Switch.<br /> Do not leave or refresh your browser until payment is successful.<br /> Please click 'Pay Now' again.", "OST", ["Close"]).done(function () {
+            app.showMessage("You will be redirected to Pos Malaysia Payment Switch.<br /> Do not leave or refresh your browser until payment is successful.<br /> Please click 'Pay Now' again.", "OST", ["Close"]).done(function () {
                 paymentGatewayReminder(true);
             });
         },

@@ -38,7 +38,7 @@ function (context, logger, router, chart, config, app, koList, partial, contactG
                             var storeId = ko.unwrap(dialog.item().storeId);
                             context.post("{}", "address-books/" + storeId).done(function (result) {
                                 console.log(result);
-                                app.showMessage("Contacts successfuly imported from file.", "OST", ["Close"]).done(function () {
+                                app.showMessage("Contacts successfully imported from file.", "OST", ["Close"]).done(function () {
                                     //contactGroups.activate();
                                     //$.ajax({
                                     //    url: "/api/address-books/",
