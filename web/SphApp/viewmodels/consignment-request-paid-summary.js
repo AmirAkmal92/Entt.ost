@@ -111,7 +111,7 @@ function (context, logger, router, system, chart, config, app, app2) {
             msg += "        <li><i class='fa fa-opera'></i> <a href='../../Content/Files/Opera_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Opera guide</li>";
             msg += "    </ul>";
             app.showMessage(msg, "OST", ["Close"]).done(function () {
-                window.open('http://localhost:50230/ost/print-domestic-connote/consignment-requests/' + id() + '/consignments/' + data.WebId());
+                window.open('/ost/print-domestic-connote/consignment-requests/' + id() + '/consignments/' + data.WebId());
             });
         },
         printEmsConnote = function (data) {
@@ -123,7 +123,7 @@ function (context, logger, router, system, chart, config, app, app2) {
             msg += "        <li><i class='fa fa-opera'></i> <a href='../../Content/Files/Opera_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Opera guide</li>";
             msg += "    </ul>";
             app.showMessage(msg, "OST", ["Close"]).done(function () {
-                window.open('http://localhost:50230/ost/print-international-connote/consignment-requests/' + id() + '/consignments/' + data.WebId());
+                window.open('/ost/print-international-connote/consignment-requests/' + id() + '/consignments/' + data.WebId());
             });
         },
         attached = function (view) {
