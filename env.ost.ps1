@@ -9,9 +9,9 @@ $env:RX_OST_IisExpressExecutable = "$RxHome\IIS Express\iisexpress.exe"
 
 $env:RX_Ost_ApplicationFullName = "Pos Laju EziSend"
 
-$env:RX_OST_RabbitMqPassword = "guest"
 $env:RX_OST_RabbitMqManagementPort = "15672"
 $env:RX_OST_RabbitMqUserName = "guest"
+$env:RX_OST_RabbitMqPassword = "guest"
 
 $env:RABBITMQ_BASE = "$RxHome\rabbitmq_base"
 $env:RX_OST_RabbitMqBase = "$RxHome\rabbitmq_base"
@@ -32,11 +32,23 @@ $env:RX_OST_SqlConnectionString = "Data Source=(localdb)\ProjectsV13;Initial Cat
 $env:RX_OST_SnbReadSqlConnectionString = "Data Source=(localdb)\ProjectsV13;Initial Catalog=SnBRead;Integrated Security=True;"
 $env:RX_OST_SnbWebApp = "http://localhost:20597"
 $env:RX_OST_SnbWebApi = "http://localhost:3330"
-$env:RX_OST_SdsBaseUrl = "http://stagingsds.pos.com.my/apigateway"
 
-$env:RX_OST_PaymentGatewayBaseUrl = "http://testv2paymentgateway.posonline.com.my"
+$env:RX_OST_SdsBaseUrl = "https://apis.pos.com.my"
+$env:RX_OST_SdsApi_GenerateConnote = "apigateway/as01/api/genconnote/v1";
+$env:RX_OST_SdsSecretKey_GenerateConnote = "MjkzYjA5YmItZjMyMS00YzNmLWFmODktYTc2ZTAxMDgzY2Mz";
+$env:RX_OST_SdsApi_PickupWebApi = "apigateway/as2poslaju/api/pickupwebapi/v1";
+$env:RX_OST_SdsSecretKey_PickupWebApi = "Nzc1OTk0OTktYzYyNC00MzhhLTk5OTAtYTc2ZTAxMGJiYmMz";
+$env:RX_OST_SdsApi_SdsTrackTrace_WebApi = "apigateway/as2corporate/api/v2trackntracewebapijson/v1";
+$env:RX_OST_SdsSecretKey_SdsTrackTrace_WebApi = "YTk3ZDYyNTgtMzAwMS00ZDQ0LWJjZGUtYTZlYzAxMTY5NDE3";
+$env:RX_OST_SdsApi_SdsTrackTrace_WebApiHeader = "apigateway/as2corporate/api/trackntracewebapiheader/v1";
+$env:RX_OST_SdsSecretKey_SdsTrackTrace_WebApiHeader = "ZjE3NTc3ZTgtNDg0NC00ZGFhLTlkNWEtYTcyODAwYzk2MGU1";
+
+$env:RX_OST_PaymentGatewayBaseUrl = "https://www.posonline.com.my/PosOnline.PaymentGateway"
 $env:RX_OST_PaymentGatewayApplicationId = "OST"
 $env:RX_OST_PaymentGatewayEncryptionKey = "WdVxp54wmQlGFBmvOQgfmpAqCJ23gyGI"
+
+$env:RX_OST_AdminToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHlvdXJjb21wYW55LmNvbSIsInN1YiI6IjYzNjIwNDQ2NTgyNzk2MDA0NDYwOGNjMzdjIiwibmJmIjoxNTAwNDU5MzgzLCJpYXQiOjE0ODQ4MjA5ODMsImV4cCI6MTUxNDY3ODQwMCwiYXVkIjoiT3N0In0.qIA-b-0XTI_GpgMCGJC1yAAtw04UoPaNYoxMSXeBrPk"
+$env:RX_OST_SapFolder = "C:\temp"
 
 $computerName = $env:COMPUTERNAME
 if((Test-Path("env.ost.$computerName.ps1")) -eq $true){

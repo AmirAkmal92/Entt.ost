@@ -18,7 +18,7 @@ namespace web.sph.App_Code
         public OstPaymentController()
         {
             m_baseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl") ?? "http://localhost:50230";
-            m_paymentGatewayBaseUrl = ConfigurationManager.GetEnvironmentVariable("PaymentGatewayBaseUrl") ?? "http://testv2paymentgateway.posonline.com.my";
+            m_paymentGatewayBaseUrl = ConfigurationManager.GetEnvironmentVariable("PaymentGatewayBaseUrl") ?? "https://www.posonline.com.my/PosOnline.PaymentGateway";
             m_paymentGatewayApplicationId = ConfigurationManager.GetEnvironmentVariable("PaymentGatewayApplicationId") ?? "OST";
             m_paymentGatewayEncryptionKey = ConfigurationManager.GetEnvironmentVariable("PaymentGatewayEncryptionKey") ?? "WdVxp54wmQlGFBmvOQgfmpAqCJ23gyGI";
         }

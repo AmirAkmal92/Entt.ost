@@ -27,13 +27,12 @@ namespace web.sph.App_Code
         public CustomConsignmentRequestController()
         {
             m_applicationName = ConfigurationManager.GetEnvironmentVariable("ApplicationName") ?? "OST";            
-            m_sdsBaseUrl = "http://stagingsds.pos.com.my/apigateway"; // temp for pss & cms use staging 
-            //m_sdsBaseUrl = Bespoke.Sph.Domain.ConfigurationManager.GetEnvironmentVariable("SdsBaseUrl") ?? "https://apis.pos.com.my";
+            m_sdsBaseUrl = ConfigurationManager.GetEnvironmentVariable("SdsBaseUrl") ?? "https://apis.pos.com.my";
 
-            m_sdsApi_GenerateConnote = "/as2corporate/api/generateconnote/v1";
-            m_sdsSecretKey_GenerateConnote = "ODA2MzViZTAtODk3MS00OGU5LWFiNGEtYTcxYjAxMjU4NjM1";
-            m_sdsApi_PickupWebApi = "/devposlaju/api/pickupwebapi/v1";
-            m_sdsSecretKey_PickupWebApi = "ZGQxNGJjMDEtZGMyMy00YjQwLWFiODUtYTcxYjAxMzAyMjdk";
+            m_sdsApi_GenerateConnote = ConfigurationManager.GetEnvironmentVariable("SdsApi_GenerateConnote") ?? "apigateway/as01/api/genconnote/v1";
+            m_sdsSecretKey_GenerateConnote = ConfigurationManager.GetEnvironmentVariable("SdsSecretKey_GenerateConnote") ?? "MjkzYjA5YmItZjMyMS00YzNmLWFmODktYTc2ZTAxMDgzY2Mz";
+            m_sdsApi_PickupWebApi = ConfigurationManager.GetEnvironmentVariable("SdsApi_PickupWebApi") ?? "apigateway/as2poslaju/api/pickupwebapi/v1";
+            m_sdsSecretKey_PickupWebApi = ConfigurationManager.GetEnvironmentVariable("SdsSecretKey_PickupWebApi") ?? "Nzc1OTk0OTktYzYyNC00MzhhLTk5OTAtYTc2ZTAxMGJiYmMz";
         }
 
         [HttpPut]
@@ -99,7 +98,7 @@ namespace web.sph.App_Code
                     if (totalConsignments > 0)
                     {
                         var client = new HttpClient();
-                        client.DefaultRequestHeaders.Add("x-user-key", m_sdsSecretKey_GenerateConnote);
+                        client.DefaultRequestHeaders.Add("X-User-Key", m_sdsSecretKey_GenerateConnote);
                         var url = new StringBuilder();
                         url.Append(m_sdsApi_GenerateConnote);
                         url.Append("?Prefix=ES");
@@ -109,7 +108,7 @@ namespace web.sph.App_Code
                         url.Append($"&numberOfItem={totalConsignments.ToString()}");
                         url.Append($"&Orderid={item.Id}");
 
-                        var output = await client.GetStringAsync(m_sdsBaseUrl + url.ToString());
+                        var output = await client.GetStringAsync($"{m_sdsBaseUrl}/{url.ToString()}");
 
                         var json = JObject.Parse(output);
                         var sdsConnote = new SdsConnote(json);
@@ -341,7 +340,7 @@ namespace web.sph.App_Code
                     if (!string.IsNullOrEmpty(item.Pickup.Address.Postcode))
                     {
                         var client = new HttpClient();
-                        client.DefaultRequestHeaders.Add("x-user-key", m_sdsSecretKey_PickupWebApi);
+                        client.DefaultRequestHeaders.Add("X-User-Key", m_sdsSecretKey_PickupWebApi);
                         var url = new StringBuilder();
                         url.Append(m_sdsApi_PickupWebApi);
                         url.Append($"?callerNameF={item.Pickup.ContactPerson}");
@@ -376,7 +375,7 @@ namespace web.sph.App_Code
                         url.Append($"&_readyF={timeReady}");
                         url.Append($"&_closeF={timeClose}");
 
-                        var output = await client.GetStringAsync(m_sdsBaseUrl + url.ToString());
+                        var output = await client.GetStringAsync($"{m_sdsBaseUrl}/{url.ToString()}");
 
                         var json = JObject.Parse(output);
                         var sdsPickup = new SdsPickup(json);
@@ -526,9 +525,9 @@ namespace web.sph.App_Code
             {
                 resultSuccess = false;
                 resultStatus = "Consignment Request has been paid";
-            }
+            }            
 
-            
+
 
             var result = new
             {

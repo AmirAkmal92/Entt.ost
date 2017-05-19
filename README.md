@@ -67,17 +67,38 @@ Once set up, you can use `RebuildAll.ps1` script to invoke `tool\sph.builder.exe
 `RebuildAll.ps1` and `RunControlCenter.ps1` use `env.ost.ps1` to set the default environment variable for your app, to custom the setting, do not edit `env.ost.ps1` but create a new file, called
 `env.ost.<computer-name>.ps` to get the `computer-name` variable run `$env:COMPUTERNAME` in your powershell
 
+
+Below is the suggested environment variables for development / testing where you change environment variables from **production mode** to **staging mode**.
+
 ```
 ### env.ost.<computer-name>.ps
-
-### for email subject
-$env:RX_Ost_ApplicationFullName = "Ost"
 
 ### for calculating product price from Snb Staging
 $env:RX_OST_SnbWebApp = "http://10.1.1.119:9001"
 $env:RX_OST_SnbWebApi = "http://10.1.1.119:9002/api"
 
-### for SAP-FI Posting
+### for SAP-FI Posting (development)
 $env:RX_OST_AdminToken = "your-admin-token-here"
 $env:RX_OST_SapFolder = "C:\temp"
+
+### for Payment Gateway (Staging)
+$env:RX_OST_PaymentGatewayBaseUrl = "http://testv2paymentgateway.posonline.com.my"
+$env:RX_OST_PaymentGatewayApplicationId = "OST"
+$env:RX_OST_PaymentGatewayEncryptionKey = "WdVxp54wmQlGFBmvOQgfmpAqCJ23gyGI"
+
+### for SDS (Staging)
+$env:RX_OST_SdsBaseUrl = "http://stagingsds.pos.com.my/apigateway"
+$env:RX_OST_SdsApi_GenerateConnote = "as2corporate/api/generateconnote/v1";
+$env:RX_OST_SdsSecretKey_GenerateConnote = "ODA2MzViZTAtODk3MS00OGU5LWFiNGEtYTcxYjAxMjU4NjM1";
+$env:RX_OST_SdsApi_PickupWebApi = "devposlaju/api/pickupwebapi/v1";
+$env:RX_OST_SdsSecretKey_PickupWebApi = "ZGQxNGJjMDEtZGMyMy00YjQwLWFiODUtYTcxYjAxMzAyMjdk";
 ```
+
+By doing this, Track N Trace will be pointed to staging mode resulting in 'result not found'.  
+You may change Track N Trace back to production mode by uncommenting this line:
+
+```
+//m_client = new HttpClient { BaseAddress = new Uri("https://apis.pos.com.my") };
+
+```
+in `...\web\App_Code\TrackTraceController.cs`.
