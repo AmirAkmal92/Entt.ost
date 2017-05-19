@@ -164,6 +164,8 @@ namespace web.sph.App_Code
 
             }
 
+            await store.DeleteAsync(storeId);
+
             return Ok(new { errors });
         }
 

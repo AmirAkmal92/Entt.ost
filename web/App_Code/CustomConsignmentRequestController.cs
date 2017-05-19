@@ -26,7 +26,7 @@ namespace web.sph.App_Code
 
         public CustomConsignmentRequestController()
         {
-            m_applicationName = ConfigurationManager.GetEnvironmentVariable("ApplicationName") ?? "OST";            
+            m_applicationName = ConfigurationManager.GetEnvironmentVariable("ApplicationName") ?? "OST";
             m_sdsBaseUrl = ConfigurationManager.GetEnvironmentVariable("SdsBaseUrl") ?? "https://apis.pos.com.my";
 
             m_sdsApi_GenerateConnote = ConfigurationManager.GetEnvironmentVariable("SdsApi_GenerateConnote") ?? "apigateway/as01/api/genconnote/v1";
@@ -365,7 +365,7 @@ namespace web.sph.App_Code
                         foreach (var consignment in item.Consignments)
                         {
                             totalWeight += consignment.Produk.Weight;
-                        }                        
+                        }
                         url.Append($"&totWeightF={totalWeight}");
                         url.Append($"&accNoF=ENTT-OST-{item.Id}");
                         string timeReady = item.Pickup.DateReady.ToShortTimeString();
@@ -521,13 +521,12 @@ namespace web.sph.App_Code
                 }
 
                 await SaveConsigmentRequest(item);
-            } else
+            }
+            else
             {
                 resultSuccess = false;
                 resultStatus = "Consignment Request has been paid";
-            }            
-
-
+            }
 
             var result = new
             {
@@ -535,6 +534,8 @@ namespace web.sph.App_Code
                 status = resultStatus,
                 id = item.Id
             };
+
+            await store.DeleteAsync(storeId);
 
             // wait until the worker process it
             await Task.Delay(1500);
