@@ -3,8 +3,9 @@
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-position: initial !important;
-    /*height: 613px;
-            padding-top: 50px;*/
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
 }
 
 .connote-sheet-2 {
@@ -12,6 +13,9 @@
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-position: initial !important;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
 }
 
 .connote-sheet-3 {
@@ -19,6 +23,9 @@
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-position: initial !important;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
 }
 
 .connote-sheet-4 {
@@ -26,6 +33,9 @@
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-position: initial !important;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
 }
 
 .connote-int-sheet-1 {
@@ -33,6 +43,9 @@
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-position: initial !important;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
 }
 
 .connote-int-sheet-2 {
@@ -40,6 +53,9 @@
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-position: initial !important;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
 }
 
 .connote-int-sheet-3 {
@@ -47,6 +63,9 @@
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-position: initial !important;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
 }
 
 .connote-int-sheet-4 {
@@ -54,12 +73,19 @@
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-position: initial !important;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
 }
+
 .connote-int-sheet-5 {
     background: url("/assets/global/img/connotes/International_Poslaju_Consignment_Note_Sender_Copy.jpg") !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-position: initial !important;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
 }
 
 .bg-no-overlay {
@@ -72,9 +98,19 @@
     padding-top: 50px;
 }
 
+@page {
+    size: A4 portrait;
+    margin: 0px;
+}
+
 @media print {
     table {
         background: url("/assets/global/img/connotes/Domestic_Poslaju_Consignment_Note_Receiver_Copy.jpg");
+    }
+    .connote-page {
+        page-break-inside: avoid;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 }
 
@@ -128,9 +164,9 @@ th, td {
 }
 
 .loose-barcode {
-    /*letter-spacing: 3px;*/
     font-size: 49px;
 }
+
 .loose-barcode-int {
     font-size: 47px;
 }
