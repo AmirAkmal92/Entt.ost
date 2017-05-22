@@ -101,7 +101,7 @@ namespace web.sph.App_Code
                         client.DefaultRequestHeaders.Add("X-User-Key", m_sdsSecretKey_GenerateConnote);
                         var url = new StringBuilder();
                         url.Append(m_sdsApi_GenerateConnote);
-                        url.Append("?Prefix=ES");
+                        url.Append("?Prefix=EU");
                         url.Append("&ApplicationCode=OST");
                         url.Append("&Secretid=ost@1234");
                         url.Append("&username=entt.ost");
