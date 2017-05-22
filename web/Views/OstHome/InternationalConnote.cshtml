@@ -373,22 +373,22 @@
                 @*======== ROW 20 ====== Custom Declaration 2 *@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Content Description 2")</span></td>
+                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Quantity 2")</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Weight 2")</span></td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Value 2")</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                     <td colspan="4"><span>@Html.Raw("")</span></td>
                 </tr>
                 @*======== ROW 21 ====== Custom Declaration 3  *@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Content Description 3")</span></td>
+                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Quantity 3")</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Weight 3")</span></td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Value 3")</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                     <td colspan="4"><span>@Html.Raw("")</span></td>
                 </tr>
@@ -585,14 +585,11 @@
                     <td class="td-hide">col-13</td>
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
-                    <td class="td-hide">col-16</td>
-                    <td class="td-hide">col-17</td>
+                    <td colspan="2" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.Weight)</span> (kg)<br /></td>
                     <td class="td-hide">col-18</td>
                     <td class="td-hide">col-19</td>
                     <td class="td-hide">col-20</td>
-                    <td class="td-hide">col-21</td>
-                    <td class="td-hide">col-22</td>
-                    <td class="td-hide">col-23</td>
+                    <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(Model.consignment.Bill.Total)</span><br /></td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 30 ======*@
@@ -612,14 +609,9 @@
                     <td class="td-hide">col-13</td>
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
-                    <td class="td-hide">col-16</td>
-                    <td class="td-hide">col-17</td>
                     <td class="td-hide">col-18</td>
                     <td class="td-hide">col-19</td>
                     <td class="td-hide">col-20</td>
-                    <td class="td-hide">col-21</td>
-                    <td class="td-hide">col-22</td>
-                    <td class="td-hide">col-23</td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 31 ======*@
@@ -1074,22 +1066,22 @@
                 @*======== ROW 20 ====== Custom Declaration 2 *@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Content Description 2")</span></td>
+                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Quantity 2")</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Weight 2")</span></td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Value 2")</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                     <td colspan="4"><span>@Html.Raw("")</span></td>
                 </tr>
                 @*======== ROW 21 ====== Custom Declaration 3  *@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Content Description 3")</span></td>
+                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Quantity 3")</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Weight 3")</span></td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Value 3")</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                     <td colspan="4"><span>@Html.Raw("")</span></td>
                 </tr>
@@ -1286,14 +1278,11 @@
                     <td class="td-hide">col-13</td>
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
-                    <td class="td-hide">col-16</td>
-                    <td class="td-hide">col-17</td>
+                    <td colspan="2" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.Weight)</span> (kg)<br /></td>
                     <td class="td-hide">col-18</td>
                     <td class="td-hide">col-19</td>
                     <td class="td-hide">col-20</td>
-                    <td class="td-hide">col-21</td>
-                    <td class="td-hide">col-22</td>
-                    <td class="td-hide">col-23</td>
+                    <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(Model.consignment.Bill.Total)</span><br /></td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 30 ======*@
@@ -1313,14 +1302,9 @@
                     <td class="td-hide">col-13</td>
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
-                    <td class="td-hide">col-16</td>
-                    <td class="td-hide">col-17</td>
                     <td class="td-hide">col-18</td>
                     <td class="td-hide">col-19</td>
                     <td class="td-hide">col-20</td>
-                    <td class="td-hide">col-21</td>
-                    <td class="td-hide">col-22</td>
-                    <td class="td-hide">col-23</td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 31 ======*@
@@ -1777,22 +1761,22 @@
                 @*======== ROW 20 ====== Custom Declaration 2 *@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Content Description 2")</span></td>
+                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Quantity 2")</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Weight 2")</span></td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Value 2")</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                     <td colspan="4"><span>@Html.Raw("")</span></td>
                 </tr>
                 @*======== ROW 21 ====== Custom Declaration 3  *@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Content Description 3")</span></td>
+                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Quantity 3")</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Weight 3")</span></td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Value 3")</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                     <td colspan="4"><span>@Html.Raw("")</span></td>
                 </tr>
@@ -1989,14 +1973,11 @@
                     <td class="td-hide">col-13</td>
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
-                    <td class="td-hide">col-16</td>
-                    <td class="td-hide">col-17</td>
+                    <td colspan="2" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.Weight)</span> (kg)<br /></td>
                     <td class="td-hide">col-18</td>
                     <td class="td-hide">col-19</td>
                     <td class="td-hide">col-20</td>
-                    <td class="td-hide">col-21</td>
-                    <td class="td-hide">col-22</td>
-                    <td class="td-hide">col-23</td>
+                    <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(Model.consignment.Bill.Total)</span><br /></td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 30 ======*@
@@ -2016,14 +1997,9 @@
                     <td class="td-hide">col-13</td>
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
-                    <td class="td-hide">col-16</td>
-                    <td class="td-hide">col-17</td>
                     <td class="td-hide">col-18</td>
                     <td class="td-hide">col-19</td>
                     <td class="td-hide">col-20</td>
-                    <td class="td-hide">col-21</td>
-                    <td class="td-hide">col-22</td>
-                    <td class="td-hide">col-23</td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 31 ======*@
@@ -2478,22 +2454,22 @@
                 @*======== ROW 20 ====== Custom Declaration 2 *@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Content Description 2")</span></td>
+                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Quantity 2")</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Weight 2")</span></td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Value 2")</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                     <td colspan="4"><span>@Html.Raw("")</span></td>
                 </tr>
                 @*======== ROW 21 ====== Custom Declaration 3  *@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Content Description 3")</span></td>
+                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Quantity 3")</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Weight 3")</span></td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw("Value 3")</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw("")</span></td>
                     <td colspan="4"><span>@Html.Raw("")</span></td>
                 </tr>
@@ -2690,14 +2666,11 @@
                     <td class="td-hide">col-13</td>
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
-                    <td class="td-hide">col-16</td>
-                    <td class="td-hide">col-17</td>
+                    <td colspan="2" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.Weight)</span> (kg)<br /></td>
                     <td class="td-hide">col-18</td>
                     <td class="td-hide">col-19</td>
                     <td class="td-hide">col-20</td>
-                    <td class="td-hide">col-21</td>
-                    <td class="td-hide">col-22</td>
-                    <td class="td-hide">col-23</td>
+                    <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(Model.consignment.Bill.Total)</span><br /></td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 30 ======*@
@@ -2717,14 +2690,9 @@
                     <td class="td-hide">col-13</td>
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
-                    <td class="td-hide">col-16</td>
-                    <td class="td-hide">col-17</td>
                     <td class="td-hide">col-18</td>
                     <td class="td-hide">col-19</td>
                     <td class="td-hide">col-20</td>
-                    <td class="td-hide">col-21</td>
-                    <td class="td-hide">col-22</td>
-                    <td class="td-hide">col-23</td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 31 ======*@
