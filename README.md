@@ -94,7 +94,8 @@ $env:RX_OST_SdsApi_PickupWebApi = "devposlaju/api/pickupwebapi/v1";
 $env:RX_OST_SdsSecretKey_PickupWebApi = "ZGQxNGJjMDEtZGMyMy00YjQwLWFiODUtYTcxYjAxMzAyMjdk";
 ```
 
-By doing this, Track N Trace will be pointed to staging mode resulting in 'result not found'.  
+#### Note:
+1. By doing this, Track N Trace will be pointed to staging mode resulting in 'result not found'.  
 You may change Track N Trace back to production mode by uncommenting this line:
 
 ```
@@ -102,3 +103,12 @@ You may change Track N Trace back to production mode by uncommenting this line:
 
 ```
 in `...\web\App_Code\TrackTraceController.cs`.
+
+2. Staging mode only support "ES" for connote prefix. 
+You may change connote prefix by swapping between "EU" and "ES":
+
+```
+//url.Append("?Prefix=EU");
+url.Append("?Prefix=ES");
+```
+in `...\web\App_Code\CustomConsignmentRequestController.cs`
