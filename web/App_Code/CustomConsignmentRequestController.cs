@@ -102,6 +102,7 @@ namespace web.sph.App_Code
                         var url = new StringBuilder();
                         url.Append(m_sdsApi_GenerateConnote);
                         url.Append("?Prefix=EU");
+                        //url.Append("?Prefix=ES");
                         url.Append("&ApplicationCode=OST");
                         url.Append("&Secretid=ost@1234");
                         url.Append("&username=entt.ost");
