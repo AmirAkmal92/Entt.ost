@@ -66,6 +66,122 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row">
+                                    <div class="form-group" data-bind="visible:true">
+                                        <label data-i18n="Price" class="col-md-4 control-label" for="6465286c-a3af-46de-e7d8-9499b6bf7cf4"><small>Price</small></label>
+                                        <div class="col-md-8">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-addon">RM</span>
+                                                <input class="form-control" type="text"
+                                                       placeholder="calculated Price"
+                                                       data-bind="money: consignment().Produk().Price"
+                                                       id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Produk.Price" disabled />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <!--ko ifnot: products().length > 0-->
+                                        <div class="col-md-4">&nbsp;</div>
+                                        <div class="col-md-8">
+                                            <button data-bind="command : $root.findProductsAsync" class="btn btn-circle yellow-casablanca">
+                                                <i class="fa fa-calculator"></i>
+                                                Calculate Price
+                                            </button>
+                                        </div>
+                                        <!-- /ko -->
+                                        <!--ko if: products().length > 0-->
+                                        <div data-bind="with: products()[0]">
+                                            <div class="col-md-4">&nbsp;</div>
+                                            <div class="col-md-8">
+                                                <button data-bind="command : $root.recalculatePrice.call($root, $data)" class="btn btn-circle yellow-casablanca">
+                                                    <i class="fa fa-calculator"></i>
+                                                    Recalculate Price
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- /ko -->
+                                    </div>
+                                    <div data-bind="if: products().length > 0">
+                                        <div class="form-group form-checkboxes" data-bind="with: products()[0]">
+                                            <label class="col-md-4 control-label" for="form_control_1" data-toggle="collapse" data-target="#accordion_insurance">
+                                                <small>
+                                                    <a class="btn" title="Disclaimer"><i class="fa fa-question-circle" style="color:#ff6a00"></i></a>
+                                                    Insurance
+                                                </small>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <div class="col-md-4 text-success" hidden>
+                                                    <input type="checkbox" data-bind="checked: true" disabled />
+                                                    <i class="fa fa-archive fa-4x"></i>
+                                                    <h5><span data-bind="text: Code"></span> / <span data-bind="text: Description"></span></h5>
+                                                </div>
+                                                <div class="col-md-4 text-success" hidden>
+                                                    <input type="checkbox" data-bind="checked: true" disabled />
+                                                    <!--ko if: IsInternational-->
+                                                    <i class="fa fa-plane fa-4x"></i>
+                                                    <!-- /ko -->
+                                                    <!--ko ifnot: IsInternational-->
+                                                    <i class="fa fa-truck fa-4x"></i>
+                                                    <!-- /ko -->
+                                                    <h5><span data-bind="text: Name"></span></h5>
+                                                </div>
+                                                <!--<div data-bind="with: ValueAddedServices()[0]">
+                                                    <div class="col-md-4 text-success">
+                                                        <input type="checkbox" data-bind="checked: IsSelected" />
+                                                        <i class="fa fa-shield fa-4x"></i>
+                                                        <h5><span data-bind="text: Name"></span></h5>
+                                                    </div>
+                                                </div>-->
+                                                <div class="md-checkbox-inline" data-bind="with: ValueAddedServices()[0]">
+                                                    <div class="md-checkbox">
+                                                        <input type="checkbox" id="checkbox1_3" class="md-check" data-bind="checked: IsSelected">
+                                                        <label for="checkbox1_3">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span><small data-bind="text: Name"> </small>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-bind="with: products()[0]">
+                                        <div data-bind="with: ValueAddedServices()[0]">
+                                            <!--ko if: IsSelected-->
+                                            <div data-bind="with: UserInputs()[0]">
+                                                <div class="form-group" data-bind="visible:true">
+                                                    <label data-i18n="Weight" class="col-md-4 control-label" for="b85482e0-231c-4008-a218-ca095966fddc"><small></small></label>
+                                                    <div class="col-md-4">
+                                                        <div class="input-group input-group-sm">
+                                                            <div class="input-group-addon">RM</div>
+                                                            <input class="form-control" type="text"
+                                                                   placeholder=""
+                                                                   data-bind="money: Value"
+                                                                   data-rule-number="true"
+                                                                   id="b85482e0-231c-4008-a218-ca095966fddc" name="Produk.DeclaredValue" />
+                                                        </div>
+                                                        <div class="form-control-focus"> </div>
+                                                        <span class="help-block"><small>Declared Value</small></span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="input-group input-group-sm">
+                                                            <div class="input-group-addon">RM</div>
+                                                            <input class="form-control" type="text"
+                                                                   placeholder=""
+                                                                   data-bind="money: $parent.Value"
+                                                                   data-rule-number="true"
+                                                                   id="b85482e0-231c-4008-a218-ca095966fddc" name="Produk.Charge" disabled />
+                                                        </div>
+                                                        <div class="form-control-focus"> </div>
+                                                        <span class="help-block"><small>Charged Value</small></span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /ko -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="form-group " data-bind="if: consignment().Penerima().Address().Country() != 'MY'">
                                         <label data-i18n="ItemCategory" class="col-md-4 control-label" for="c28f91ae-ae5d-448e-991f-5b4065d3464f"><small>Item Category</small></label>
                                         <div class="col-md-8">
@@ -75,7 +191,6 @@
                                                 <option value="Document">Document (Less than 1.000kg)</option>
                                                 <option value="Merchandise">Merchandise (From 0.001 to 30.000kg)</option>
                                             </select>
-                                            <span class="help-block">&nbsp;</span>
                                         </div>
                                     </div>
                                 </div>
@@ -143,18 +258,47 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">&nbsp;</div>
-                                    <div class="col-md-8">
+                                    <div class="form-group" data-bind="visible:true">
+                                        <label data-i18n="Description of Content" class="col-md-4 control-label" for="01d1c388-d629-4283-bd25-56688c166c98"><small>Description of Content<span class="required" aria-required="true"> * </span></small></label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control input-sm" required rows="3"
+                                                      placeholder="parcel description"
+                                                      data-bind="value: consignment().Produk().Description"
+                                                      id="01d1c388-d629-4283-bd25-56688c166c98" name="Produk.Description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <label class="col-md-1 control-label">&nbsp;</label>
+                                    <div class="col-md-11">
                                         <div class="alert alert-danger" role="alert">
                                             Reminder
                                             <br />
-                                            <small>Please be advised that Pos Malaysia Berhad reserves the right to deny pick up in the event the actual weight is more than the delared weight.</small>
+                                            <small>Please be advised that Pos Malaysia Berhad reserves the right to deny pick up in the event the actual weight is more than the declared weight.</small>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-md-4 control-label"><small></small></label>
-                                    <div id="accordion1_1" class="col-md-8 well collapse" aria-expanded="false">
+                                    <label class="col-md-1 control-label">&nbsp;</label>
+                                    <div id="accordion_insurance" class="col-md-11 well collapse" aria-expanded="false">
+                                        <div class="note note-warning">
+                                            <h4 class="block">Disclaimer (Insurance)</h4>
+                                            <p>
+                                                <ul>
+                                                    <li>This price is include insurance. If you are not wish to pay for the insurace, please uncheck the checkbox.</li>
+                                                    <li>EziSend only provide normal insurance services which offers our customers financial protection against all risks of physical loss or damage of goods/items during transit anywhere within domestic and international destinations.</li>
+                                                    <li>Only 4 items are categorized under high risks hand phone, payphone card, airline ticket and redemption voucher.</li>
+                                                </ul>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-1 control-label">&nbsp;</label>
+                                    <div id="accordion1_1" class="col-md-11 well collapse" aria-expanded="false">
                                         <div class="note note-warning">
                                             <h4 class="block">Disclaimer (Volumetric Weight)</h4>
                                             <p>
@@ -167,143 +311,6 @@
                                             </p>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row form-group" data-bind="visible:true">
-                                    <label data-i18n="Description of Content" class="col-md-4 control-label" for="01d1c388-d629-4283-bd25-56688c166c98"><small>Description of Content<span class="required" aria-required="true"> * </span></small></label>
-                                    <div class="col-md-8">
-                                        <textarea class="form-control input-sm" required rows="3"
-                                                  placeholder="parcel description"
-                                                  data-bind="value: consignment().Produk().Description"
-                                                  id="01d1c388-d629-4283-bd25-56688c166c98" name="Produk.Description"></textarea>
-                                    </div>
-                                </div>
-                                <div data-bind="if: products().length > 0">
-                                    <div class="form-group form-checkboxes" data-bind="with: products()[0]">
-                                        <label class="col-md-4 control-label" for="form_control_1" data-toggle="collapse" data-target="#accordion_insurance">
-                                            <small>
-                                                <a class="btn" title="Disclaimer"><i class="fa fa-question-circle" style="color:#ff6a00"></i></a>
-                                                Insurance
-                                            </small>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <div class="col-md-4 text-success" hidden>
-                                                <input type="checkbox" data-bind="checked: true" disabled />
-                                                <i class="fa fa-archive fa-4x"></i>
-                                                <h5><span data-bind="text: Code"></span> / <span data-bind="text: Description"></span></h5>
-                                            </div>
-                                            <div class="col-md-4 text-success" hidden>
-                                                <input type="checkbox" data-bind="checked: true" disabled />
-                                                <!--ko if: IsInternational-->
-                                                <i class="fa fa-plane fa-4x"></i>
-                                                <!-- /ko -->
-                                                <!--ko ifnot: IsInternational-->
-                                                <i class="fa fa-truck fa-4x"></i>
-                                                <!-- /ko -->
-                                                <h5><span data-bind="text: Name"></span></h5>
-                                            </div>
-                                            <!--<div data-bind="with: ValueAddedServices()[0]">
-                                                <div class="col-md-4 text-success">
-                                                    <input type="checkbox" data-bind="checked: IsSelected" />
-                                                    <i class="fa fa-shield fa-4x"></i>
-                                                    <h5><span data-bind="text: Name"></span></h5>
-                                                </div>
-                                            </div>-->
-                                            <div class="md-checkbox-inline" data-bind="with: ValueAddedServices()[0]">
-                                                <div class="md-checkbox">
-                                                    <input type="checkbox" id="checkbox1_3" class="md-check" data-bind="checked: IsSelected">
-                                                    <label for="checkbox1_3">
-                                                        <span></span>
-                                                        <span class="check"></span>
-                                                        <span class="box"></span><small data-bind="text: Name"> </small>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="accordion_insurance" class="col-md-8 well collapse" aria-expanded="false">
-                                            <div class="note note-warning">
-                                                <h4 class="block">Disclaimer (Insurance)</h4>
-                                                <p>
-                                                    <ul>
-                                                        <li>This price is include insurance. If you are not wish to pay for the insurace, please uncheck the checkbox.</li>
-                                                        <li>EziSend only provide normal insurance services which offers our customers financial protection against all risks of physical loss or damage of goods/items during transit anywhere within domestic and international destinations.</li>
-                                                        <li>Only 4 items are categorized under high risks hand phone, payphone card, airline ticket and redemption voucher.</li>
-                                                    </ul>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div data-bind="with: products()[0]">
-                                    <div data-bind="with: ValueAddedServices()[0]">
-                                        <!--ko if: IsSelected-->
-                                        <div data-bind="with: UserInputs()[0]">
-                                            <div class="form-group" data-bind="visible:true">
-                                                <label data-i18n="Weight" class="col-md-4 control-label" for="b85482e0-231c-4008-a218-ca095966fddc"><small></small></label>
-                                                <div class="col-md-4">
-                                                    <div class="input-group input-group-sm">
-                                                        <div class="input-group-addon">RM</div>
-                                                        <input class="form-control" type="text"
-                                                               placeholder=""
-                                                               data-bind="money: Value"
-                                                               data-rule-number="true"
-                                                               id="b85482e0-231c-4008-a218-ca095966fddc" name="Produk.DeclaredValue" />
-                                                    </div>
-                                                    <div class="form-control-focus"> </div>
-                                                    <span class="help-block"><small>Declared Value</small></span>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="input-group input-group-sm">
-                                                        <div class="input-group-addon">RM</div>
-                                                        <input class="form-control" type="text"
-                                                               placeholder=""
-                                                               data-bind="money: $parent.Value"
-                                                               data-rule-number="true"
-                                                               id="b85482e0-231c-4008-a218-ca095966fddc" name="Produk.Charge" disabled />
-                                                    </div>
-                                                    <div class="form-control-focus"> </div>
-                                                    <span class="help-block"><small>Charged Value</small></span>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /ko -->
-                                    </div>
-                                </div>
-                                <div class="form-group" data-bind="visible:true">
-                                    <label data-i18n="Price" class="col-md-4 control-label" for="6465286c-a3af-46de-e7d8-9499b6bf7cf4"><small>Price</small></label>
-                                    <div class="col-md-8">
-                                        <div class="input-group input-group-sm">
-                                            <span class="input-group-addon">RM</span>
-                                            <input class="form-control" type="text"
-                                                   placeholder="calculated Price"
-                                                   data-bind="money: consignment().Produk().Price"
-                                                   id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Produk.Price" disabled />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <!--ko ifnot: products().length > 0-->
-                                    <div class="col-md-4">&nbsp;</div>
-                                    <div class="col-md-8">
-                                        <button data-bind="command : $root.findProductsAsync" class="btn btn-circle yellow-casablanca">
-                                            <i class="fa fa-calculator"></i>
-                                            Calculate Price
-                                        </button>
-                                    </div>
-                                    <!-- /ko -->
-                                    <!--ko if: products().length > 0-->
-                                    <div data-bind="with: products()[0]">
-                                        <div class="col-md-4">&nbsp;</div>
-                                        <div class="col-md-8">
-                                            <button data-bind="command : $root.recalculatePrice.call($root, $data)" class="btn btn-circle yellow-casablanca">
-                                                <i class="fa fa-calculator"></i>
-                                                Recalculate Price
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <!-- /ko -->
                                 </div>
                             </div>
                         </div>
