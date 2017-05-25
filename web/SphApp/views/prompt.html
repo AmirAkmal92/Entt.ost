@@ -1,0 +1,30 @@
+﻿
+<!-- saved from url=(0047)http://localhost:50230/SphApp/views/prompt.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><section class="view-model-modal" id="prompt-dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" data-bind="click : cancelClick">×</button>
+                <img src="/images/EziSend_RGB.png" style="width:70px">
+            </div>
+            <div class="modal-body">
+                <form class="form-inline" id="prompt-dialog-form">
+                    <div class="form-group">
+                        <label for="prompt-value" class="control-label" data-bind="text: label"></label>
+                        <div class="input-group">
+                            <input type="text" data-bind="value: value" class="form-control" id="prompt-value" autofocus="">
+                            <a class="input-group-addon btn btn-default" href="javascript:;" data-bind="visible: $root.canCopy, click: copy, tooltip: &#39;Copy the value to clipboard&#39;">
+                                <i class="fa fa-copy"></i>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <input form="ID-form" data-dismiss="modal" type="submit" class="btn btn-circle btn-outline yellow-casablanca" value="OK" data-bind="click: okClick">
+                <a href="http://localhost:50230/SphApp/views/prompt.html#" class="btn btn-circle btn-outline yellow-casablanca" data-dismiss="modal" data-bind="click : cancelClick">Cancel</a>
+            </div>
+        </div>
+    </div>
+</section></body></html>
