@@ -257,7 +257,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" data-bind="if: consignment().Penerima().Address().Country() == 'MY'">
                                     <div class="form-group" data-bind="visible:true">
                                         <label data-i18n="Description of Content" class="col-md-4 control-label" for="01d1c388-d629-4283-bd25-56688c166c98"><small>Description of Content<span class="required" aria-required="true"> * </span></small></label>
                                         <div class="col-md-8">
@@ -268,7 +268,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <br />
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
@@ -283,33 +283,102 @@
                                 </div>
                                 <div class="row">
                                     <label class="col-md-1 control-label">&nbsp;</label>
-                                    <div id="accordion_insurance" class="col-md-11 well collapse" aria-expanded="false">
-                                        <div class="note note-warning">
-                                            <h4 class="block">Disclaimer (Insurance)</h4>
-                                            <p>
-                                                <ul>
-                                                    <li>This price is include insurance. If you are not wish to pay for the insurace, please uncheck the checkbox.</li>
-                                                    <li>EziSend only provide normal insurance services which offers our customers financial protection against all risks of physical loss or damage of goods/items during transit anywhere within domestic and international destinations.</li>
-                                                    <li>Only 4 items are categorized under high risks hand phone, payphone card, airline ticket and redemption voucher.</li>
-                                                </ul>
-                                            </p>
+                                    <div class="col-md-11">
+                                        <div id="accordion_insurance" class="well collapse" aria-expanded="false">
+                                            <div class="note note-warning">
+                                                <h4 class="block">Disclaimer (Insurance)</h4>
+                                                <p>
+                                                    <ul>
+                                                        <li>This price is include insurance. If you are not wish to pay for the insurace, please uncheck the checkbox.</li>
+                                                        <li>EziSend only provide normal insurance services which offers our customers financial protection against all risks of physical loss or damage of goods/items during transit anywhere within domestic and international destinations.</li>
+                                                        <li>Only 4 items are categorized under high risks hand phone, payphone card, airline ticket and redemption voucher.</li>
+                                                    </ul>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <label class="col-md-1 control-label">&nbsp;</label>
-                                    <div id="accordion1_1" class="col-md-11 well collapse" aria-expanded="false">
-                                        <div class="note note-warning">
-                                            <h4 class="block">Disclaimer (Volumetric Weight)</h4>
-                                            <p>
-                                                <ul>
-                                                    <li>
-                                                        Parcel weight will be determined by either actual or volumetric weight (VW) or whichever is higher.
-                                                        VW also applies if either one dimension is above 30cm.
-                                                    </li>
-                                                </ul>
-                                            </p>
+                                    <div class="col-md-11">
+                                        <div id="accordion1_1" class="well collapse" aria-expanded="false">
+                                            <div class="note note-warning">
+                                                <h4 class="block">Disclaimer (Volumetric Weight)</h4>
+                                                <p>
+                                                    <ul>
+                                                        <li>
+                                                            Parcel weight will be determined by either actual or volumetric weight (VW) or whichever is higher.
+                                                            VW also applies if either one dimension is above 30cm.
+                                                        </li>
+                                                    </ul>
+                                                </p>
+                                            </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" data-bind="if: consignment().Penerima().Address().Country() != 'MY'">
+                                <h4>Customs Declaration</h4>
+                                <div class="caption-desc font-grey-cascade">Customs Declaration is compulsory for international parcel</div>
+                                <hr />
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label class="control-label" for="f32b2b9f-f6c7-4e82-894b-cc130b303b27"><small>Content Desc<span class="required" aria-required="true"> * </span></small></label>
+                                        <input class="form-control input-sm" required type="text" placeholder="Content Desc" data-bind="value: consignment().Produk().CustomDeclaration().ContentDescription1" data-rule-required="true" id="f32b2b9f-f6c7-4e82-894b-cc130b303b27" name="Produk.CustomDeclaration.ContentDescription1">
+                                        <label id="f32b2b9f-f6c7-4e82-894b-cc130b303b27-error" class="error" for="f32b2b9f-f6c7-4e82-894b-cc130b303b27" style="display: none;">This field is required.</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label" for="47f4e12c-1fd8-45e2-8f35-eaf1391028dd"><small>Quantity<span class="required" aria-required="true"> * </span></small></label>
+                                        <input class="form-control input-sm" required type="text" placeholder="Qty" data-bind="value: consignment().Produk().CustomDeclaration().Quantity1" data-rule-number="true" data-rule-required="true" id="47f4e12c-1fd8-45e2-8f35-eaf1391028dd" name="Produk.CustomDeclaration.Quantity1">
+                                        <label id="47f4e12c-1fd8-45e2-8f35-eaf1391028dd-error" class="error" for="47f4e12c-1fd8-45e2-8f35-eaf1391028dd" style="display: none;">This field is required.</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label" for="d061cb1f-a906-41e3-af6e-dc580f2e13df"><small>Weight (KG)<span class="required" aria-required="true"> * </span></small></label>
+                                        <input type="text" required placeholder="Weight" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().Weight1" data-rule-number="true" data-rule-required="true" id="d061cb1f-a906-41e3-af6e-dc580f2e13df" name="Produk.CustomDeclaration.Weight1">
+                                        <label id="d061cb1f-a906-41e3-af6e-dc580f2e13df-error" class="error" for="d061cb1f-a906-41e3-af6e-dc580f2e13df" style="display: none;">This field is required.</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label" for="bda77e50-1d8c-4576-a551-0e5b06718756"><small>Value (MYR)<span class="required" aria-required="true"> * </span></small></label>
+                                        <input type="text" required placeholder="Value" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().Value1" data-rule-number="true" data-rule-required="true" id="bda77e50-1d8c-4576-a551-0e5b06718756" name="Produk.CustomDeclaration.Value1">
+                                        <label id="bda77e50-1d8c-4576-a551-0e5b06718756-error" class="error" for="bda77e50-1d8c-4576-a551-0e5b06718756" style="display: none;">This field is required.</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label"><small>Origin Country<span class="required" aria-required="true"> * </span></small></label>
+                                        <input type="text" placeholder="Origin Country" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().OriginCountry1" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <input type="text" placeholder="Content Desc" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().ContentDescription2">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Qty" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().Quantity2">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Weight" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().Weight2">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Value" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().Value2">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Origin Country" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().OriginCountry2">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <input type="text" placeholder="Content Desc" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().ContentDescription3">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Qty" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().Quantity3">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Weight" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().Weight3">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Value" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().Value3">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Origin Country" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().OriginCountry3">
                                     </div>
                                 </div>
                             </div>
