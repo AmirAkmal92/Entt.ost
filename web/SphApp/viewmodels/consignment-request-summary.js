@@ -60,30 +60,33 @@ function (context, logger, router, system, chart, config, app) {
                 });
         },
         schedulePickup = function () {
-            var data = ko.mapping.toJSON(entity),
-                tReady = pickupReadyHH() + ":" + pickupReadyMM() + " PM",
-                tClose = pickupCloseHH() + ":" + pickupCloseMM() + " PM";
-
-            context.put(data, "/consignment-request/propose-pickup/" + ko.unwrap(entity().Id) + "?timeReady=" + tReady + "&timeClose=" + tClose)
-                .fail(function (response) {
-                    app.showMessage("Sorry, but we cannot shedule a pickup for the Consignment Request with Id : " + ko.unwrap(entity().Id), "OST", ["Close"]).done(function () {
-                        router.navigate("consignment-requests-cart/" + ko.unwrap(entity().Id));
+            if (pickupReadyHH() <= pickupCloseHH()) {
+                var data = ko.mapping.toJSON(entity),
+                    tReady = pickupReadyHH() + ":" + pickupReadyMM() + " PM",
+                    tClose = pickupCloseHH() + ":" + pickupCloseMM() + " PM";
+                context.put(data, "/consignment-request/propose-pickup/" + ko.unwrap(entity().Id) + "?timeReady=" + tReady + "&timeClose=" + tClose)
+                    .fail(function (response) {
+                        app.showMessage("Sorry, but we cannot shedule a pickup for the Consignment Request with Id : " + ko.unwrap(entity().Id), "OST", ["Close"]).done(function () {
+                            router.navigate("consignment-requests-cart/" + ko.unwrap(entity().Id));
+                        });
+                    })
+                    .then(function (result) {
+                        console.log(result);
+                        if (result.success) {
+                            app.showMessage("Pickup successfully scheduled. You can now proceed with payment.", "OST", ["Close"]).done(function () {
+                                showPickupScheduleForm(false);
+                                router.activeItem().activate(result.id);
+                            });
+                        } else {
+                            console.log(result.status);
+                            app.showMessage("Sorry, but we cannot shedule a pickup for the Consignment Request with Id : " + result.id, "OST", ["Close"]).done(function () {
+                                router.navigate("consignment-requests-cart/" + result.id);
+                            });
+                        }
                     });
-                })
-                .then(function (result) {
-                    console.log(result);
-                    if (result.success) {
-                        app.showMessage("Pickup successfully scheduled. You can now proceed with payment.", "OST", ["Close"]).done(function () {
-                            showPickupScheduleForm(false);
-                            router.activeItem().activate(result.id);
-                        });
-                    } else {
-                        console.log(result.status);
-                        app.showMessage("Sorry, but we cannot shedule a pickup for the Consignment Request with Id : " + result.id, "OST", ["Close"]).done(function () {
-                            router.navigate("consignment-requests-cart/" + result.id);
-                        });
-                    }
-                });
+            } else {
+                app.showMessage("Pickup time is invalid. Please set a valid pickup time.", "OST", ["Close"]);
+            }
         },
         toggleShowPickupScheduleForm = function () {
             showPickupScheduleForm(!showPickupScheduleForm());
