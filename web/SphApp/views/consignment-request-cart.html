@@ -37,7 +37,7 @@
                         <a data-bind="command: $root.importConsignments, css: { 'disabled': $root.isPickupDateTimeValid() }" class="btn btn-circle yellow-casablanca">
                             <i class="fa fa-cloud-upload"></i> Bulk Upload
                         </a>
-                        <a data-bind="click: $root.emptyConsignmentRequest, css: { 'disabled': $root.isPickupDateTimeValid() || Consignments().length == 0 }" class="btn btn-circle yellow-casablanca">
+                        <a data-bind="click: $root.emptyConsignmentRequest, css: { 'disabled': Consignments().length == 0 }" class="btn btn-circle yellow-casablanca">
                             <i class="fa fa-trash"></i> Empty Cart
                         </a>
                         <a data-bind="command: $root.goToSummary, css: { 'disabled': Consignments().length == 0 }" class="btn btn-circle yellow-casablanca">

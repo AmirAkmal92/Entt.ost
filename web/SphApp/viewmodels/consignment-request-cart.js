@@ -56,6 +56,7 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
                     if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
+                        isPickupDateTimeValid(false);
                     } else {
                         app.showMessage("Pickup has been scheduled. No changes are allowed to the Shipping Cart. You may proceed to make Payment now.", "OST", ["Close"]);
                         isPickupDateTimeValid(true);
