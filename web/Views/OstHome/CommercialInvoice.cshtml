@@ -1,6 +1,9 @@
 ﻿@model Bespoke.Ost.ConsigmentRequests.Domain.Consignment
 @{
     Layout = null;
+    var pcsValue1 = (Model.Produk.CustomDeclaration.Value1 / Model.Produk.CustomDeclaration.Quantity1);
+    var pcsValue2 = (Model.Produk.CustomDeclaration.Value2 / Model.Produk.CustomDeclaration.Quantity2);
+    var pcsValue3 = (Model.Produk.CustomDeclaration.Value3 / Model.Produk.CustomDeclaration.Quantity3);
 }
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -134,10 +137,10 @@
                                     <tr>
                                         <th> # </th>
                                         <th> Item </th>
-                                        <th class="hidden-xs"> Box No </th>
-                                        <th class="hidden-xs"> Origin Country </th>
-                                        <th class="hidden-xs"> Quantity (pcs) </th>
-                                        <th class="hidden-xs"> Value (pcs) </th>
+                                        <th class="hidden-print"> Box No </th>
+                                        <th> Origin Country </th>
+                                        <th> Quantity (pcs) </th>
+                                        <th class="hidden-print"> Value (pcs) </th>
                                         <th> Total </th>
                                     </tr>
                                 </thead>
@@ -148,12 +151,30 @@
                                         }*@
                                     <tr>
                                         <td> 1 </td>
-                                        <td> <span>@Html.Raw(Model.Produk.Description)</span> </td>
-                                        <td class="hidden-xs"> 1 of 1 </td>
-                                        <td class="hidden-xs"> <span>@Html.Raw(Model.Penerima.Address.Country)</span> </td>
-                                        <td> 1 </td>
-                                        <td> MYR <span>@Html.Raw(Model.Produk.ValueAddedDeclaredValue)</span> </td>
-                                        <td> MYR <span>@Html.Raw(Model.Produk.Price)</span> </td>
+                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription1)</span> </td>
+                                        <td class="hidden-print"> 1 of 1 </td>
+                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.OriginCountry1)</span> </td>
+                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.Quantity1)</span> </td>
+                                        <td class="hidden-print"> MYR <span>@Html.Raw(pcsValue1)</span> </td>
+                                        <td> MYR <span>@Html.Raw(Model.Produk.CustomDeclaration.Value1)</span> </td>
+                                    </tr>
+                                    <tr>
+                                        <td> 2 </td>
+                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription2)</span> </td>
+                                        <td class="hidden-print"> 1 of 1 </td>
+                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.OriginCountry2)</span> </td>
+                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.Quantity2)</span> </td>
+                                        <td class="hidden-print"> MYR <span>@Html.Raw(pcsValue2)</span> </td>
+                                        <td> MYR <span>@Html.Raw(Model.Produk.CustomDeclaration.Value2)</span> </td>
+                                    </tr>
+                                    <tr>
+                                        <td> 3 </td>
+                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription3)</span> </td>
+                                        <td class="hidden-print"> 1 of 1 </td>
+                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.OriginCountry3)</span> </td>
+                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.Quantity3)</span> </td>
+                                        <td class="hidden-print"> MYR <span>@Html.Raw(pcsValue3)</span> </td>
+                                        <td> MYR <span>@Html.Raw(Model.Produk.CustomDeclaration.Value3)</span> </td>
                                     </tr>
                                 </tbody>
                             </table>
