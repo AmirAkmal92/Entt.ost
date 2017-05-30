@@ -39,7 +39,6 @@
     @*<link href="~/assets/admin/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />*@
     <link href="~/assets/admin/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
-    <link rel="shortcut icon" href="favicon.ico" />
 </head>
 <!-- END HEAD -->
 <body>
@@ -113,7 +112,6 @@
                                 <li> <span>@Html.Raw(Model.Penerima.Address.Postcode)</span> <span>@Html.Raw(Model.Penerima.Address.City)</span> </li>
                                 <li> <span>@Html.Raw(Model.Penerima.Address.State)</span> </li>
                                 <li> <span>@Html.Raw(Model.Penerima.Address.Country)</span> </li>
-                                @*<li> <span>Malaysia</span> </li>*@
                             </ul>
                         </div>
                         <div class="col-xs-4">
@@ -135,9 +133,8 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th> # </th>
-                                        <th> Item </th>
-                                        <th class="hidden-print"> Box No </th>
+                                        <th> Number </th>
+                                        <th> Content Description </th>
                                         <th> Origin Country </th>
                                         <th> Quantity (pcs) </th>
                                         <th class="hidden-print"> Value (pcs) </th>
@@ -152,29 +149,26 @@
                                     <tr>
                                         <td> 1 </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription1)</span> </td>
-                                        <td class="hidden-print"> 1 of 1 </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.OriginCountry1)</span> </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.Quantity1)</span> </td>
-                                        <td class="hidden-print"> MYR <span>@Html.Raw(pcsValue1)</span> </td>
-                                        <td> MYR <span>@Html.Raw(Model.Produk.CustomDeclaration.Value1)</span> </td>
+                                        <td class="hidden-print"> MYR <span>@Html.Raw(pcsValue1.ToString("0.##"))</span> </td>
+                                        <td> MYR <span>@Html.Raw(Model.Produk.CustomDeclaration.Value1.ToString("0.##"))</span> </td>
                                     </tr>
                                     <tr>
                                         <td> 2 </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription2)</span> </td>
-                                        <td class="hidden-print"> 1 of 1 </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.OriginCountry2)</span> </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.Quantity2)</span> </td>
-                                        <td class="hidden-print"> MYR <span>@Html.Raw(pcsValue2)</span> </td>
-                                        <td> MYR <span>@Html.Raw(Model.Produk.CustomDeclaration.Value2)</span> </td>
+                                        <td class="hidden-print"> MYR <span>@Html.Raw(pcsValue2.ToString("0.##"))</span> </td>
+                                        <td> MYR <span>@Html.Raw(Model.Produk.CustomDeclaration.Value2.ToString("0.##"))</span> </td>
                                     </tr>
                                     <tr>
                                         <td> 3 </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription3)</span> </td>
-                                        <td class="hidden-print"> 1 of 1 </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.OriginCountry3)</span> </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.Quantity3)</span> </td>
-                                        <td class="hidden-print"> MYR <span>@Html.Raw(pcsValue3)</span> </td>
-                                        <td> MYR <span>@Html.Raw(Model.Produk.CustomDeclaration.Value3)</span> </td>
+                                        <td class="hidden-print"> MYR <span>@Html.Raw(pcsValue3.ToString("0.##"))</span> </td>
+                                        <td> MYR <span>@Html.Raw(Model.Produk.CustomDeclaration.Value3.ToString("0.##"))</span> </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -188,14 +182,14 @@
                                     <strong>Total Weight:</strong> <span>@Html.Raw(Model.Produk.Weight)</span> kg
                                 </address>
                                 <address>
-                                    <strong>Dim Weight:</strong> <span>@Html.Raw(Model.Bill.VolumetricWeight)</span> kg
+                                    <strong>Dim Weight:</strong> <span>@Html.Raw(Model.Bill.VolumetricWeight.ToString("0.#"))</span> kg
                                 </address>
                             </div>
                         </div>
                         <div class="col-xs-8 invoice-block">
                             <ul class="list-unstyled amounts">
                                 <li>
-                                    <strong>Total Invoice Value:</strong> <span>@Html.Raw(Model.Produk.Price)</span>
+                                    <strong>Total Invoice Value:</strong> <span>MYR @Html.Raw(Model.Produk.Price.ToString("0.##"))</span>
                                 </li>
                             </ul>
                             <br />
