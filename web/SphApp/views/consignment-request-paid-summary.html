@@ -274,11 +274,13 @@
                                             </center>
                                             <br />
                                             <!--ko if: showDetails()-->
-                                            <center>
-                                                <a class="btn btn-circle btn-sm yellow-casablanca" title="Print Commercial Invoice" data-bind="attr: { href: 'ost/print-commercial-invoice/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }" target="_blank">
-                                                    <i class="fa fa-print"></i> Commercial Invoice
-                                                </a>
-                                            </center>
+                                                <!--ko if: Produk().IsInternational-->
+                                                <center>
+                                                    <a class="btn btn-circle btn-sm yellow-casablanca" title="Print Commercial Invoice" data-bind="attr: { href: 'ost/print-commercial-invoice/consignment-requests/' + $parent.Id() + '/consignments/' + WebId() }, css: { 'disabled': !ConNote() }" target="_blank">
+                                                        <i class="fa fa-print"></i> Commercial Invoice
+                                                    </a>
+                                                </center>
+                                                <!--/ko-->
                                             <!--/ko-->
                                         </td>
                                     </tr>
