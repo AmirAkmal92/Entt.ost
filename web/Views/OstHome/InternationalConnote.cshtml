@@ -352,27 +352,59 @@
                     <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry1)</span></td>
                 </tr>
                 @*======== ROW 20 ====== Custom Declaration 2 *@
-                <tr>
-                    <td class="td-hide">col-01</td>
-                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription2)</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity2)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
-                    <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value2))</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo2)</span></td>
-                    <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry2)</span></td>
-                </tr>
+                @if (String.IsNullOrEmpty(Model.consignment.Produk.CustomDeclaration.ContentDescription2))
+                {
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide" colspan="8">&nbsp;</td>
+                        <td class="td-hide" colspan="3">&nbsp;</td>
+                        <td class="td-hide" colspan="2">&nbsp;</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide" colspan="2">&nbsp;</td>
+                        <td class="td-hide" colspan="3">&nbsp;</td>
+                        <td class="td-hide" colspan="4">&nbsp;</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription2)</span></td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity2)</span></td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
+                        <td class="td-hide">col-15</td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value2))</span></td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo2)</span></td>
+                        <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry2)</span></td>
+                    </tr>
+                }
                 @*======== ROW 21 ====== Custom Declaration 3  *@
-                <tr>
-                    <td class="td-hide">col-01</td>
-                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription3)</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity3)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
-                    <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value3))</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo3)</span></td>
-                    <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry3)</span></td>
-                </tr>
+                @if (String.IsNullOrEmpty(Model.consignment.Produk.CustomDeclaration.ContentDescription3))
+                {
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide" colspan="8">&nbsp;</td>
+                        <td class="td-hide" colspan="3">&nbsp;</td>
+                        <td class="td-hide" colspan="2">&nbsp;</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide" colspan="2">&nbsp;</td>
+                        <td class="td-hide" colspan="3">&nbsp;</td>
+                        <td class="td-hide" colspan="4">&nbsp;</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription3)</span></td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity3)</span></td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
+                        <td class="td-hide">col-15</td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value3))</span></td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo3)</span></td>
+                        <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry3)</span></td>
+                    </tr>
+                }
                 @*======== ROW 22 ====== Total *@
                 <tr>
                     <td class="td-hide">col-01</td>
@@ -1022,27 +1054,59 @@
                     <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry1)</span></td>
                 </tr>
                 @*======== ROW 20 ====== Custom Declaration 2 *@
-                <tr>
-                    <td class="td-hide">col-01</td>
-                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription2)</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity2)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
-                    <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value2))</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo2)</span></td>
-                    <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry2)</span></td>
-                </tr>
+                @if (String.IsNullOrEmpty(Model.consignment.Produk.CustomDeclaration.ContentDescription2))
+                {
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide" colspan="8">&nbsp;</td>
+                        <td class="td-hide" colspan="3">&nbsp;</td>
+                        <td class="td-hide" colspan="2">&nbsp;</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide" colspan="2">&nbsp;</td>
+                        <td class="td-hide" colspan="3">&nbsp;</td>
+                        <td class="td-hide" colspan="4">&nbsp;</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription2)</span></td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity2)</span></td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
+                        <td class="td-hide">col-15</td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value2))</span></td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo2)</span></td>
+                        <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry2)</span></td>
+                    </tr>
+                }
                 @*======== ROW 21 ====== Custom Declaration 3  *@
-                <tr>
-                    <td class="td-hide">col-01</td>
-                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription3)</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity3)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
-                    <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value3))</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo3)</span></td>
-                    <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry3)</span></td>
-                </tr>
+                @if (String.IsNullOrEmpty(Model.consignment.Produk.CustomDeclaration.ContentDescription3))
+                {
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide" colspan="8">&nbsp;</td>
+                        <td class="td-hide" colspan="3">&nbsp;</td>
+                        <td class="td-hide" colspan="2">&nbsp;</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide" colspan="2">&nbsp;</td>
+                        <td class="td-hide" colspan="3">&nbsp;</td>
+                        <td class="td-hide" colspan="4">&nbsp;</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription3)</span></td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity3)</span></td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
+                        <td class="td-hide">col-15</td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value3))</span></td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo3)</span></td>
+                        <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry3)</span></td>
+                    </tr>
+                }
                 @*======== ROW 22 ====== Total *@
                 <tr>
                     <td class="td-hide">col-01</td>
@@ -1694,27 +1758,59 @@
                     <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry1)</span></td>
                 </tr>
                 @*======== ROW 20 ====== Custom Declaration 2 *@
-                <tr>
-                    <td class="td-hide">col-01</td>
-                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription2)</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity2)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
-                    <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value2))</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo2)</span></td>
-                    <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry2)</span></td>
-                </tr>
+                @if (String.IsNullOrEmpty(Model.consignment.Produk.CustomDeclaration.ContentDescription2))
+                {
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide" colspan="8">&nbsp;</td>
+                        <td class="td-hide" colspan="3">&nbsp;</td>
+                        <td class="td-hide" colspan="2">&nbsp;</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide" colspan="2">&nbsp;</td>
+                        <td class="td-hide" colspan="3">&nbsp;</td>
+                        <td class="td-hide" colspan="4">&nbsp;</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription2)</span></td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity2)</span></td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
+                        <td class="td-hide">col-15</td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value2))</span></td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo2)</span></td>
+                        <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry2)</span></td>
+                    </tr>
+                }
                 @*======== ROW 21 ====== Custom Declaration 3  *@
-                <tr>
-                    <td class="td-hide">col-01</td>
-                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription3)</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity3)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
-                    <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value3))</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo3)</span></td>
-                    <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry3)</span></td>
-                </tr>
+                @if (String.IsNullOrEmpty(Model.consignment.Produk.CustomDeclaration.ContentDescription3))
+                {
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide" colspan="8">&nbsp;</td>
+                        <td class="td-hide" colspan="3">&nbsp;</td>
+                        <td class="td-hide" colspan="2">&nbsp;</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide" colspan="2">&nbsp;</td>
+                        <td class="td-hide" colspan="3">&nbsp;</td>
+                        <td class="td-hide" colspan="4">&nbsp;</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription3)</span></td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity3)</span></td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
+                        <td class="td-hide">col-15</td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value3))</span></td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo3)</span></td>
+                        <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry3)</span></td>
+                    </tr>
+                }
                 @*======== ROW 22 ====== Total *@
                 <tr>
                     <td class="td-hide">col-01</td>
@@ -2364,27 +2460,59 @@
                     <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry1)</span></td>
                 </tr>
                 @*======== ROW 20 ====== Custom Declaration 2 *@
-                <tr>
-                    <td class="td-hide">col-01</td>
-                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription2)</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity2)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
-                    <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value2))</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo2)</span></td>
-                    <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry2)</span></td>
-                </tr>
+                @if (String.IsNullOrEmpty(Model.consignment.Produk.CustomDeclaration.ContentDescription2))
+                {
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide" colspan="8">&nbsp;</td>
+                        <td class="td-hide" colspan="3">&nbsp;</td>
+                        <td class="td-hide" colspan="2">&nbsp;</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide" colspan="2">&nbsp;</td>
+                        <td class="td-hide" colspan="3">&nbsp;</td>
+                        <td class="td-hide" colspan="4">&nbsp;</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription2)</span></td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity2)</span></td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
+                        <td class="td-hide">col-15</td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value2))</span></td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo2)</span></td>
+                        <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry2)</span></td>
+                    </tr>
+                }
                 @*======== ROW 21 ====== Custom Declaration 3  *@
-                <tr>
-                    <td class="td-hide">col-01</td>
-                    <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription3)</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity3)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
-                    <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value3))</span></td>
-                    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo3)</span></td>
-                    <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry3)</span></td>
-                </tr>
+                @if (String.IsNullOrEmpty(Model.consignment.Produk.CustomDeclaration.ContentDescription3))
+                {
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td class="td-hide" colspan="8">&nbsp;</td>
+                        <td class="td-hide" colspan="3">&nbsp;</td>
+                        <td class="td-hide" colspan="2">&nbsp;</td>
+                        <td class="td-hide">col-15</td>
+                        <td class="td-hide" colspan="2">&nbsp;</td>
+                        <td class="td-hide" colspan="3">&nbsp;</td>
+                        <td class="td-hide" colspan="4">&nbsp;</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td class="td-hide">col-01</td>
+                        <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription3)</span></td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity3)</span></td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
+                        <td class="td-hide">col-15</td>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value3))</span></td>
+                        <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo3)</span></td>
+                        <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry3)</span></td>
+                    </tr>
+                }
                 @*======== ROW 22 ====== Total *@
                 <tr>
                     <td class="td-hide">col-01</td>

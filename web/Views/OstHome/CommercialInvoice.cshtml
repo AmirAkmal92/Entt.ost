@@ -1,9 +1,21 @@
 ﻿@model Bespoke.Ost.ConsigmentRequests.Domain.Consignment
 @{
     Layout = null;
-    var pcsValue1 = (Model.Produk.CustomDeclaration.Value1 / Model.Produk.CustomDeclaration.Quantity1);
-    var pcsValue2 = (Model.Produk.CustomDeclaration.Value2 / Model.Produk.CustomDeclaration.Quantity2);
-    var pcsValue3 = (Model.Produk.CustomDeclaration.Value3 / Model.Produk.CustomDeclaration.Quantity3);
+    decimal pcsValue1 = 0;
+    decimal pcsValue2 = 0;
+    decimal pcsValue3 = 0;
+    if ((Model.Produk.CustomDeclaration.Value1 != 0) && (Model.Produk.CustomDeclaration.Quantity1 != 0))
+    {
+        pcsValue1 = (Model.Produk.CustomDeclaration.Value1 / Model.Produk.CustomDeclaration.Quantity1);
+    }
+    if ((Model.Produk.CustomDeclaration.Value2 != 0) && (Model.Produk.CustomDeclaration.Quantity2 != 0))
+    {
+        pcsValue2 = (Model.Produk.CustomDeclaration.Value2 / Model.Produk.CustomDeclaration.Quantity2);
+    }
+    if ((Model.Produk.CustomDeclaration.Value3 != 0) && (Model.Produk.CustomDeclaration.Quantity3 != 0))
+    {
+        pcsValue1 = (Model.Produk.CustomDeclaration.Value3 / Model.Produk.CustomDeclaration.Quantity3);
+    }
 }
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -13,7 +25,6 @@
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-
     <meta charset="utf-8" />
     <title>Pos Laju EziSend</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,7 +47,6 @@
     <!-- END PAGE LEVEL STYLES -->
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="~/assets/admin/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
-    @*<link href="~/assets/admin/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />*@
     <link href="~/assets/admin/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
 </head>
@@ -77,7 +87,6 @@
                                 <li> <span>@Html.Raw(Model.Pemberi.Address.Address3)</span>, <span>@Html.Raw(Model.Pemberi.Address.Address4)</span> </li>
                                 <li> <span>@Html.Raw(Model.Pemberi.Address.Postcode)</span> <span>@Html.Raw(Model.Pemberi.Address.City)</span> </li>
                                 <li> <span>@Html.Raw(Model.Pemberi.Address.State)</span> </li>
-                                @*<li> <span>@Html.Raw(Model.Pemberi.Address.Country)</span> </li>*@
                                 <li> <span>Malaysia</span> </li>
                             </ul>
                         </div>
@@ -142,10 +151,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @*@foreach (var item in Model.Produk.Description)
-                                        {
-
-                                        }*@
                                     <tr>
                                         <td> 1 </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription1)</span> </td>
@@ -154,22 +159,28 @@
                                         <td class="hidden-print"> MYR <span>@Html.Raw(String.Format("{0:F2}", pcsValue1))</span> </td>
                                         <td> MYR <span>@Html.Raw(String.Format("{0:F2}", Model.Produk.CustomDeclaration.Value1))</span> </td>
                                     </tr>
-                                    <tr>
-                                        <td> 2 </td>
-                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription2)</span> </td>
-                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.OriginCountry2)</span> </td>
-                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.Quantity2)</span> </td>
-                                        <td class="hidden-print"> MYR <span>@Html.Raw(String.Format("{0:F2}", pcsValue2))</span> </td>
-                                        <td> MYR <span>@Html.Raw(String.Format("{0:F2}", Model.Produk.CustomDeclaration.Value2))</span> </td>
-                                    </tr>
-                                    <tr>
-                                        <td> 3 </td>
-                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription3)</span> </td>
-                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.OriginCountry3)</span> </td>
-                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.Quantity3)</span> </td>
-                                        <td class="hidden-print"> MYR <span>@Html.Raw(String.Format("{0:F2}", pcsValue3))</span> </td>
-                                        <td> MYR <span>@Html.Raw(String.Format("{0:F2}", Model.Produk.CustomDeclaration.Value3))</span> </td>
-                                    </tr>
+                                    @if (!String.IsNullOrEmpty(Model.Produk.CustomDeclaration.ContentDescription2))
+                                    {
+                                        <tr>
+                                            <td> 2 </td>
+                                            <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription2)</span> </td>
+                                            <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.OriginCountry2)</span> </td>
+                                            <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.Quantity2)</span> </td>
+                                            <td class="hidden-print"> MYR <span>@Html.Raw(String.Format("{0:F2}", pcsValue2))</span> </td>
+                                            <td> MYR <span>@Html.Raw(String.Format("{0:F2}", Model.Produk.CustomDeclaration.Value2))</span> </td>
+                                        </tr>
+                                    }
+                                    @if (!String.IsNullOrEmpty(Model.Produk.CustomDeclaration.ContentDescription3))
+                                    {
+                                        <tr>
+                                            <td> 3 </td>
+                                            <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription3)</span> </td>
+                                            <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.OriginCountry3)</span> </td>
+                                            <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.Quantity3)</span> </td>
+                                            <td class="hidden-print"> MYR <span>@Html.Raw(String.Format("{0:F2}", pcsValue3))</span> </td>
+                                            <td> MYR <span>@Html.Raw(String.Format("{0:F2}", Model.Produk.CustomDeclaration.Value3))</span> </td>
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>
