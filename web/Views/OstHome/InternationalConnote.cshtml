@@ -345,9 +345,9 @@
                     <td class="td-hide">col-01</td>
                     <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription1)</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity1)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Weight1)</span>&nbsp;(kg)</td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight1))</span>&nbsp;(kg)</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Value1)</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value1))</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo1)</span></td>
                     <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry1)</span></td>
                 </tr>
@@ -356,9 +356,9 @@
                     <td class="td-hide">col-01</td>
                     <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription2)</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity2)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Weight2)</span>&nbsp;(kg)</td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Value2)</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value2))</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo2)</span></td>
                     <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry2)</span></td>
                 </tr>
@@ -367,9 +367,9 @@
                     <td class="td-hide">col-01</td>
                     <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription3)</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity3)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Weight3)</span>&nbsp;(kg)</td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Value3)</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value3))</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo3)</span></td>
                     <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry3)</span></td>
                 </tr>
@@ -385,9 +385,9 @@
                     <td class="td-hide">col-08</td>
                     <td class="td-hide">col-09</td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(TotalQuantity)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(TotalWeight)</span>&nbsp;(kg)</td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", TotalWeight))</span>&nbsp;(kg)</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(TotalValue)</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", TotalValue))</span></td>
                     <td class="td-hide">col-18</td>
                     <td class="td-hide">col-19</td>
                     <td class="td-hide">col-20</td>
@@ -566,11 +566,11 @@
                     <td class="td-hide">col-13</td>
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.Weight)</span> (kg)<br /></td>
+                    <td colspan="2" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.Weight))</span> (kg)<br /></td>
                     <td class="td-hide">col-18</td>
                     <td class="td-hide">col-19</td>
                     <td class="td-hide">col-20</td>
-                    <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(Model.consignment.Bill.Total)</span><br /></td>
+                    <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Bill.Total))</span><br /></td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 30 ======*@
@@ -1015,9 +1015,9 @@
                     <td class="td-hide">col-01</td>
                     <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription1)</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity1)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Weight1)</span>&nbsp;(kg)</td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight1))</span>&nbsp;(kg)</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Value1)</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value1))</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo1)</span></td>
                     <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry1)</span></td>
                 </tr>
@@ -1026,9 +1026,9 @@
                     <td class="td-hide">col-01</td>
                     <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription2)</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity2)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Weight2)</span>&nbsp;(kg)</td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Value2)</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value2))</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo2)</span></td>
                     <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry2)</span></td>
                 </tr>
@@ -1037,9 +1037,9 @@
                     <td class="td-hide">col-01</td>
                     <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription3)</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity3)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Weight3)</span>&nbsp;(kg)</td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Value3)</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value3))</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo3)</span></td>
                     <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry3)</span></td>
                 </tr>
@@ -1055,9 +1055,9 @@
                     <td class="td-hide">col-08</td>
                     <td class="td-hide">col-09</td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(TotalQuantity)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(TotalWeight)</span>&nbsp;(kg)</td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", TotalWeight))</span>&nbsp;(kg)</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(TotalValue)</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", TotalValue))</span></td>
                     <td class="td-hide">col-18</td>
                     <td class="td-hide">col-19</td>
                     <td class="td-hide">col-20</td>
@@ -1236,11 +1236,11 @@
                     <td class="td-hide">col-13</td>
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.Weight)</span> (kg)<br /></td>
+                    <td colspan="2" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.Weight))</span> (kg)<br /></td>
                     <td class="td-hide">col-18</td>
                     <td class="td-hide">col-19</td>
                     <td class="td-hide">col-20</td>
-                    <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(Model.consignment.Bill.Total)</span><br /></td>
+                    <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Bill.Total))</span><br /></td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 30 ======*@
@@ -1687,9 +1687,9 @@
                     <td class="td-hide">col-01</td>
                     <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription1)</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity1)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Weight1)</span>&nbsp;(kg)</td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight1))</span>&nbsp;(kg)</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Value1)</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value1))</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo1)</span></td>
                     <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry1)</span></td>
                 </tr>
@@ -1698,9 +1698,9 @@
                     <td class="td-hide">col-01</td>
                     <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription2)</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity2)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Weight2)</span>&nbsp;(kg)</td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Value2)</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value2))</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo2)</span></td>
                     <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry2)</span></td>
                 </tr>
@@ -1709,9 +1709,9 @@
                     <td class="td-hide">col-01</td>
                     <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription3)</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity3)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Weight3)</span>&nbsp;(kg)</td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Value3)</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value3))</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo3)</span></td>
                     <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry3)</span></td>
                 </tr>
@@ -1727,9 +1727,9 @@
                     <td class="td-hide">col-08</td>
                     <td class="td-hide">col-09</td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(TotalQuantity)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(TotalWeight)</span>&nbsp;(kg)</td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", TotalWeight))</span>&nbsp;(kg)</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(TotalValue)</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", TotalValue))</span></td>
                     <td class="td-hide">col-18</td>
                     <td class="td-hide">col-19</td>
                     <td class="td-hide">col-20</td>
@@ -1908,11 +1908,11 @@
                     <td class="td-hide">col-13</td>
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.Weight)</span> (kg)<br /></td>
+                    <td colspan="2" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.Weight))</span> (kg)<br /></td>
                     <td class="td-hide">col-18</td>
                     <td class="td-hide">col-19</td>
                     <td class="td-hide">col-20</td>
-                    <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(Model.consignment.Bill.Total)</span><br /></td>
+                    <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Bill.Total))</span><br /></td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 30 ======*@
@@ -2357,9 +2357,9 @@
                     <td class="td-hide">col-01</td>
                     <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription1)</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity1)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Weight1)</span>&nbsp;(kg)</td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight1))</span>&nbsp;(kg)</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Value1)</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value1))</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo1)</span></td>
                     <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry1)</span></td>
                 </tr>
@@ -2368,9 +2368,9 @@
                     <td class="td-hide">col-01</td>
                     <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription2)</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity2)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Weight2)</span>&nbsp;(kg)</td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Value2)</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value2))</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo2)</span></td>
                     <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry2)</span></td>
                 </tr>
@@ -2379,9 +2379,9 @@
                     <td class="td-hide">col-01</td>
                     <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription3)</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity3)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Weight3)</span>&nbsp;(kg)</td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Value3)</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value3))</span></td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.HSTariffNo3)</span></td>
                     <td colspan="4"><span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry3)</span></td>
                 </tr>
@@ -2397,9 +2397,9 @@
                     <td class="td-hide">col-08</td>
                     <td class="td-hide">col-09</td>
                     <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(TotalQuantity)</span></td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(TotalWeight)</span>&nbsp;(kg)</td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", TotalWeight))</span>&nbsp;(kg)</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(TotalValue)</span></td>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", TotalValue))</span></td>
                     <td class="td-hide">col-18</td>
                     <td class="td-hide">col-19</td>
                     <td class="td-hide">col-20</td>
@@ -2578,11 +2578,11 @@
                     <td class="td-hide">col-13</td>
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
-                    <td colspan="2" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Produk.Weight)</span> (kg)<br /></td>
+                    <td colspan="2" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Produk.Weight))</span> (kg)<br /></td>
                     <td class="td-hide">col-18</td>
                     <td class="td-hide">col-19</td>
                     <td class="td-hide">col-20</td>
-                    <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(Model.consignment.Bill.Total)</span><br /></td>
+                    <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Bill.Total))</span><br /></td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 30 ======*@

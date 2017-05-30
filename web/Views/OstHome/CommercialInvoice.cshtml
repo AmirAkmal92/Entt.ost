@@ -151,24 +151,24 @@
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription1)</span> </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.OriginCountry1)</span> </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.Quantity1)</span> </td>
-                                        <td class="hidden-print"> MYR <span>@Html.Raw(pcsValue1.ToString("0.##"))</span> </td>
-                                        <td> MYR <span>@Html.Raw(Model.Produk.CustomDeclaration.Value1.ToString("0.##"))</span> </td>
+                                        <td class="hidden-print"> MYR <span>@Html.Raw(String.Format("{0:F2}", pcsValue1))</span> </td>
+                                        <td> MYR <span>@Html.Raw(String.Format("{0:F2}", Model.Produk.CustomDeclaration.Value1))</span> </td>
                                     </tr>
                                     <tr>
                                         <td> 2 </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription2)</span> </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.OriginCountry2)</span> </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.Quantity2)</span> </td>
-                                        <td class="hidden-print"> MYR <span>@Html.Raw(pcsValue2.ToString("0.##"))</span> </td>
-                                        <td> MYR <span>@Html.Raw(Model.Produk.CustomDeclaration.Value2.ToString("0.##"))</span> </td>
+                                        <td class="hidden-print"> MYR <span>@Html.Raw(String.Format("{0:F2}", pcsValue2))</span> </td>
+                                        <td> MYR <span>@Html.Raw(String.Format("{0:F2}", Model.Produk.CustomDeclaration.Value2))</span> </td>
                                     </tr>
                                     <tr>
                                         <td> 3 </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription3)</span> </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.OriginCountry3)</span> </td>
                                         <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.Quantity3)</span> </td>
-                                        <td class="hidden-print"> MYR <span>@Html.Raw(pcsValue3.ToString("0.##"))</span> </td>
-                                        <td> MYR <span>@Html.Raw(Model.Produk.CustomDeclaration.Value3.ToString("0.##"))</span> </td>
+                                        <td class="hidden-print"> MYR <span>@Html.Raw(String.Format("{0:F2}", pcsValue3))</span> </td>
+                                        <td> MYR <span>@Html.Raw(String.Format("{0:F2}", Model.Produk.CustomDeclaration.Value3))</span> </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -179,17 +179,17 @@
                         <div class="col-xs-4">
                             <div>
                                 <address>
-                                    <strong>Total Weight:</strong> <span>@Html.Raw(Model.Produk.Weight)</span> kg
+                                    <strong>Total Weight:</strong> <span>@Html.Raw(String.Format("{0:F1}", Model.Produk.Weight))</span> kg
                                 </address>
                                 <address>
-                                    <strong>Dim Weight:</strong> <span>@Html.Raw(Model.Bill.VolumetricWeight.ToString("0.#"))</span> kg
+                                    <strong>Dim Weight:</strong> <span>@Html.Raw(String.Format("{0:F1}", Model.Bill.VolumetricWeight))</span> kg
                                 </address>
                             </div>
                         </div>
                         <div class="col-xs-8 invoice-block">
                             <ul class="list-unstyled amounts">
                                 <li>
-                                    <strong>Total Invoice Value:</strong> <span>MYR @Html.Raw(Model.Produk.Price.ToString("0.##"))</span>
+                                    <strong>Total Invoice Value:</strong> <span>MYR @Html.Raw(String.Format("{0:F2}", Model.Produk.Price))</span>
                                 </li>
                             </ul>
                             <br />
