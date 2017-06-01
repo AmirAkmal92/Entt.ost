@@ -41,5 +41,11 @@ namespace web.sph.App_Code
         {
             return View();
         }
+
+        [Route("est-registration-type")]
+        public ActionResult EstRegistrationType()
+        {
+            return View();
+        }
     }
 }
