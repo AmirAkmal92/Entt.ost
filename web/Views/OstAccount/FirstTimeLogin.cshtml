@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "EST First Time Login";
+    Layout = "~/Views/OstAccount/_Layout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <br />
+    <h1>EST Sign Up</h1>
+    <div class="page-header">
+        <h2 style="color:#555"><strong>Sign up EST now for free and start shipping with us</strong></h2>
+    </div>
+    <div class="row">
+        <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-8">
+            <div class="well" style="padding-top: 30px;">
+                <form id="est-firsttime-form" action="/ost-account/first-time-login/step/@ViewBag.step" method="post">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            @if (ViewBag.step == 1)
+                            {
+                                <input class="form-control" type="text" autocomplete="off" placeholder="AccountNo" aria-label="AccountNo" name="AccountNo" id="AccountNo" />
+                            }
+                            @if (ViewBag.step == 2)
+                            {
+                                <input onchange="checkEmailAddress(value)" class="form-control" type="text" autocomplete="off" placeholder="AccountNo" aria-label="AccountNo" name="AccountNo" id="AccountNo" />
+                            }
+                        </div>
+                    </div>
+                    <label id="AccountNo-error" class="error" for="AccountNo" style="color: red; display:none"></label>
+                    @if (ViewBag.step == 2)
+                    {
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                <input class="form-control input-block-level" type="email" autocomplete="off" placeholder="Email Address" aria-label="Email Address" name="Email" id="Email" />
+                            </div>
+                            <div class="hint" style="display:none" id="hintEmail">
+                                <span>
+                                    Your current email address is zak*****yahoo.com
+                                    <br />
+                                    Please confirm your email address
+                                </span>
+                            </div>
+                        </div>
+                    }
+                    <span class="pull-right">
+                        <button class="btn btn-sample" type="submit">Sign Up</button>
+                    </span>
+                    <br /><br /><br />
+                    @if (ViewBag.step == 1)
+                    {
+                        <div class="form-group">
+                            <strong>No EST account yet?</strong>
+                            <p><small>Register your EST account <a href="/est-registration-type">here</a>.</small></p>
+                        </div>
+                        <br />
+                    }
+                    @if (!ViewBag.success)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="text-danger">Sign up unsuccessful</h4>
+                            <p>
+                                <span class="text-danger">@ViewBag.status</span>
+                            </p>
+                        </div>
+                    }
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2">&nbsp;</div>
+    </div>
+</div>
+
+@section Scripts
+  {
+    <script>
+        function checkEmailAddress(value) {
+            if (value == "1234567890") {
+                document.getElementById('hintEmail').style.display = "block";
+            }
+        }
+        jQuery(document).ready(function () {
+            $("#est-firsttime-form").validate({
+                rules: {
+                    AccountNo: {
+                        required: true,
+                        minlength: 10
+                    }
+                },
+                messages: {
+                    AccountNo: {
+                        required: "Please provide an account number.",
+                        minlength: "Account number not valid, must consist of at least 10 characters."
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+

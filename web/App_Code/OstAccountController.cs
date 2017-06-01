@@ -15,6 +15,44 @@ namespace web.sph.App_Code
     [RoutePrefix("ost-account")]
     public class OstAccountController : Controller
     {
+        [AllowAnonymous]
+        [Route("first-time-login/step/{step}")]
+        public ActionResult FirstTimeLogin(int step, bool success = true, string status = "OK")
+        {
+            ViewBag.step = step;
+            ViewBag.success = success;
+            ViewBag.status = status;
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("first-time-login/step/{step}")]
+        public ActionResult FirstTimeLogin(int step, EstLoginModel model)
+        {
+            if (step == 1)
+            {
+                if (model.AccountNo != "1234567890")
+                {
+                    return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = "Your account do not have email for verification. Please contact administrator." });
+                }
+                return RedirectToAction("first-time-login/step/2", "ost-account");
+            }
+            else if (step == 2)
+            {
+                if (model.Email != "zakirin@yahoo.com")
+                {
+                    return RedirectToAction("first-time-login/step/2", "ost-account", new { success = false, status = "You have entered invalid email. Please contact administrator." });
+                }
+                return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "verify-email" });
+            }
+            else
+            {
+                //todo
+                return RedirectToAction("first-time-login/step/3", "ost-account");
+            }
+        }
+
         [Route("logout")]
         public async Task<ActionResult> Logoff()
         {
@@ -587,6 +625,12 @@ Please click the link below to change your password.
                 await session.SubmitChanges(operation);
             }
         }
+    }
+
+    public class EstLoginModel
+    {
+        public string AccountNo { get; set; }
+        public string Email { get; set; }
     }
 
     public class OstLoginModel
