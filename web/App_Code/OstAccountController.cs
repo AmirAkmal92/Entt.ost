@@ -214,6 +214,25 @@ namespace web.sph.App_Code
         }
 
         [AllowAnonymous]
+        [Route("register-est")]
+        public ActionResult RegisterEst(bool success = true, string status = "OK")
+        {
+            ViewBag.success = success;
+            ViewBag.status = status;
+
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("register-est")]
+        public async Task<ActionResult> RegisterEst()
+        {
+            //TODO
+            return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "register" });
+        }
+
+        [AllowAnonymous]
         [Route("verify-email/{id}")]
         public async Task<ActionResult> VerifyEmail(string id)
         {
