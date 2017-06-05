@@ -1,0 +1,55 @@
+{
+  "$type": "Bespoke.Sph.Domain.Designation, domain.sph",
+  "RoleCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": [
+      "contract_customer",
+      "contract_customers",
+      "customer",
+      "customers"
+    ]
+  },
+  "Owner": {
+    "$type": "Bespoke.Sph.Domain.Owner, domain.sph",
+    "Address": {
+      "$type": "Bespoke.Sph.Domain.Address, domain.sph",
+      "UnitNo": "",
+      "Floor": "",
+      "Block": "",
+      "Street": "",
+      "City": "",
+      "Postcode": "",
+      "State": "",
+      "Country": "",
+      "WebId": null
+    },
+    "Name": "",
+    "TelephoneNo": "",
+    "FaxNo": "",
+    "Email": "",
+    "WebId": null
+  },
+  "SearchableEntityCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": [
+      "AddressBook"
+    ]
+  },
+  "Name": "Contract customer",
+  "Description": "",
+  "IsActive": false,
+  "StartModule": "pickup-manifest",
+  "EnforceStartModule": true,
+  "IsSearchVisible": true,
+  "IsMessageVisible": true,
+  "IsHelpVisible": false,
+  "HelpUri": "",
+  "Title": "",
+  "Option": 0,
+  "CreatedBy": "nazrulhisham",
+  "Id": "contract-customer",
+  "CreatedDate": "2017-06-05T11:50:00.7385818+08:00",
+  "ChangedBy": "nazrulhisham",
+  "ChangedDate": "2017-06-05T12:09:25.0201987+08:00",
+  "WebId": "677def7a-6a0b-47ca-8aff-a5b30550521c"
+}
