@@ -102,8 +102,9 @@ namespace web.sph.App_Code
 
                     HttpContext.GetOwinContext().Authentication.SignIn(identity);
 
-                    if (string.IsNullOrEmpty(profile.Designation) ||
-                        !profile.Designation.Equals("No contract customer"))
+                    if (string.IsNullOrEmpty(profile.Designation) 
+                        || !profile.Designation.Equals("No contract customer")
+                        || !profile.Designation.Equals("Contract customer"))
                         return Redirect("/sph");
 
                     if (returnUrl == "/" ||
