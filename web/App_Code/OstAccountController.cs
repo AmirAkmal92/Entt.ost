@@ -1,10 +1,14 @@
 ﻿using Bespoke.Sph.Domain;
+using Newtonsoft.Json;
+using ServiceStack;
 using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
 using System.Security.Claims;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -15,42 +19,10 @@ namespace web.sph.App_Code
     [RoutePrefix("ost-account")]
     public class OstAccountController : Controller
     {
-        [AllowAnonymous]
-        [Route("first-time-login/step/{step}")]
-        public ActionResult FirstTimeLogin(int step, bool success = true, string status = "OK")
+        private HttpClient m_baseUrlClient;
+        public OstAccountController()
         {
-            ViewBag.step = step;
-            ViewBag.success = success;
-            ViewBag.status = status;
-            return View();
-        }
-
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("first-time-login/step/{step}")]
-        public ActionResult FirstTimeLogin(int step, EstLoginModel model)
-        {
-            if (step == 1)
-            {
-                if (model.AccountNo != "1234567890")
-                {
-                    return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = "Your account do not have email for verification. Please contact administrator." });
-                }
-                return RedirectToAction("first-time-login/step/2", "ost-account");
-            }
-            else if (step == 2)
-            {
-                if (model.Email != "zakirin@yahoo.com")
-                {
-                    return RedirectToAction("first-time-login/step/2", "ost-account", new { success = false, status = "You have entered invalid email. Please contact administrator." });
-                }
-                return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "verify-email" });
-            }
-            else
-            {
-                //todo
-                return RedirectToAction("first-time-login/step/3", "ost-account");
-            }
+            m_baseUrlClient = new HttpClient { BaseAddress = new Uri(ConfigurationManager.GetEnvironmentVariable("BaseUrl") ?? "http://localhost:50230") };
         }
 
         [Route("logout")]
@@ -211,6 +183,127 @@ namespace web.sph.App_Code
             await SendVerificationEmail(profile.Email, profile.UserName);
 
             return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "register" });
+        }
+
+        [AllowAnonymous]
+        [Route("first-time-login/step/{step}")]
+        public ActionResult FirstTimeLogin(int step = 1, bool success = true, string status = "OK", string accNo = "", string email = "")
+        {
+            ViewBag.step = step;
+            ViewBag.success = success;
+            ViewBag.status = status;
+
+            var encodedEmail = Convert.ToBase64String(Encoding.UTF8.GetBytes(email));
+            var decodedEmail = string.Empty;
+            try
+            {
+                decodedEmail = Encoding.UTF8.GetString(Convert.FromBase64String(email));
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("first-time-login/step/1", "ost-account");
+            }
+            var estData = new EstUserInputModel
+            {
+                AccountNo = accNo
+            };
+            if (step == 2)
+            {
+                if (!IsValidEmail(decodedEmail))
+                {
+                    return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your registered email address is invalid.", accNo = accNo, email = encodedEmail });
+                }
+                var tempEmail = Regex.Split(decodedEmail, "@");
+                for (var i = 0; i < decodedEmail.Length; i++)
+                {
+                    var frontEmail = tempEmail[0];
+                    var changeFront = frontEmail.Substring(2, (frontEmail.Length - 3));
+                    var hashedFront = Regex.Replace(changeFront, @"[\w]", "*");
+                    string frontEmailAfter = frontEmail.Substring(0, 2) + hashedFront + frontEmail.Substring(frontEmail.Length - 1);
+
+                    var endEmail = tempEmail[1];
+                    var changeEnd = endEmail.Substring(2, (endEmail.Length - 4));
+                    var hashedEnd = Regex.Replace(changeEnd, @"[\w]", "*");
+                    string endEmailAfter = endEmail.Substring(0, 2) + hashedEnd + endEmail.Substring(endEmail.Length - 2);
+
+                    estData.HintEmailAddress = (frontEmailAfter + "@" + endEmailAfter);
+                }
+            }
+            return View(estData);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("first-time-login/step/{step}")]
+        public async Task<ActionResult> FirstTimeLogin(int step, EstUserInputModel model)
+        {
+            var pointingUrl = $"/api/est-registration/" + model.AccountNo;
+            var outputString = await m_baseUrlClient.GetAsync(pointingUrl);
+            var output = string.Empty;
+            var errorMessage = "Please go to the nearest Pusat Pos Laju (PPL) to reactivate your account.";
+            if (outputString.IsSuccessStatusCode)
+            {
+                output = await outputString.Content.ReadAsStringAsync();
+                var items = JsonConvert.DeserializeObject<EstRegisterModel>(output);
+                var encodedEmail = Convert.ToBase64String(Encoding.UTF8.GetBytes(items.EmailAddress));
+                if (step == 1)
+                {
+                    if (model.AccountNo == items.AccountNo)
+                    {
+                        if (items.AccountStatus == 0)
+                        {
+                            if (items.EmailAddress != null)
+                            {
+                                if (IsValidEmail(items.EmailAddress))
+                                {
+                                    return RedirectToAction("first-time-login/step/2", "ost-account", new { accNo = items.AccountNo, email = encodedEmail });
+                                }
+                                else
+                                {
+                                    return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your registered email address is invalid. {errorMessage}", accNo = items.AccountNo, email = encodedEmail });
+                                }
+                            }
+                            else
+                            {
+                                return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your registered email address is invalid. {errorMessage}", accNo = items.AccountNo, email = encodedEmail });
+                            }
+                        }
+                        else if (items.AccountStatus == 1)
+                        {
+                            return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your account has been blocked. {errorMessage}", accNo = items.AccountNo, email = encodedEmail });
+                        }
+                        else
+                        {
+                            return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your account has been terminated. {errorMessage}", accNo = items.AccountNo, email = encodedEmail });
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your account number is invalid. {errorMessage}", accNo = items.AccountNo, email = encodedEmail });
+                    }
+                }
+                else if (step == 2)
+                {
+                    if (IsValidEmail(model.EmailAddress) && IsValidEmail(items.EmailAddress))
+                    {
+                        if ((model.EmailAddress != items.EmailAddress)
+                            || (model.AccountNo != items.AccountNo))
+                        {
+                            return RedirectToAction("first-time-login/step/2", "ost-account", new { success = false, status = $"Your email address cannot be verified. {errorMessage}", accNo = items.AccountNo, email = encodedEmail });
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your registered email address is invalid. {errorMessage}", accNo = items.AccountNo, email = encodedEmail });
+                    }
+                    return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "register" });
+                }
+            }
+            else
+            {
+                return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Account number {model.AccountNo} is not exist. {errorMessage}" });
+            }
+            return RedirectToAction("first-time-login/step/1", "ost-account");
         }
 
         [AllowAnonymous]
@@ -644,12 +737,19 @@ Please click the link below to change your password.
                 await session.SubmitChanges(operation);
             }
         }
+
+        private static bool IsValidEmail(string emailAddress)
+        {
+            var regex = new Regex(@"([a-z0-9][-a-z0-9_\+\.]*[a-z0-9])@([a-z0-9][-a-z0-9\.]*[a-z0-9]\.(arpa|root|aero|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cu|cv|cx|cy|cz|de|dj|dk|dm|do|dz|ec|ee|eg|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sk|sl|sm|sn|so|sr|st|su|sv|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|um|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)|([0-9]{1,3}\.{3}[0-9]{1,3}))");
+            return regex.IsMatch(emailAddress);
+        }
     }
 
-    public class EstLoginModel
+    public class EstUserInputModel
     {
         public string AccountNo { get; set; }
-        public string Email { get; set; }
+        public string EmailAddress { get; set; }
+        public string HintEmailAddress { get; set; }
     }
 
     public class OstLoginModel
