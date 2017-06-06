@@ -320,7 +320,7 @@ namespace web.sph.App_Code
         [AllowAnonymous]
         [HttpPost]
         [Route("register-est")]
-        public async Task<ActionResult> RegisterEst()
+        public ActionResult RegisterEst()
         {
             //TODO
             return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "register" });
