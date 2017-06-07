@@ -102,18 +102,21 @@ namespace web.sph.App_Code
 
                     HttpContext.GetOwinContext().Authentication.SignIn(identity);
 
-                    if (string.IsNullOrEmpty(profile.Designation) 
-                        || !profile.Designation.Equals("No contract customer")
-                        || !profile.Designation.Equals("Contract customer"))
-                        return Redirect("/sph");
-
-                    if (returnUrl == "/" ||
-                        returnUrl.Equals("/ost", StringComparison.InvariantCultureIgnoreCase) ||
-                        returnUrl.Equals("/ost#", StringComparison.InvariantCultureIgnoreCase) ||
-                        returnUrl.Equals("/ost/", StringComparison.InvariantCultureIgnoreCase) ||
-                        returnUrl.Equals("/ost/#", StringComparison.InvariantCultureIgnoreCase) ||
-                        string.IsNullOrWhiteSpace(returnUrl))
-                        return Redirect("/ost#" + profile.StartModule);
+                    if (!string.IsNullOrEmpty(profile.Designation))
+                    {
+                        if (profile.Designation.Equals("No contract customer")
+                            || profile.Designation.Equals("Contract customer"))
+                        {
+                            if (returnUrl == "/" ||
+                                returnUrl.Equals("/ost", StringComparison.InvariantCultureIgnoreCase) ||
+                                returnUrl.Equals("/ost#", StringComparison.InvariantCultureIgnoreCase) ||
+                                returnUrl.Equals("/ost/", StringComparison.InvariantCultureIgnoreCase) ||
+                                returnUrl.Equals("/ost/#", StringComparison.InvariantCultureIgnoreCase) ||
+                                string.IsNullOrWhiteSpace(returnUrl))
+                                return Redirect("/ost#" + profile.StartModule);
+                        }
+                    }
+                    return Redirect("/sph");
                 }
                 HttpContext.GetOwinContext().Authentication.SignIn(identity);
                 if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
@@ -154,34 +157,21 @@ namespace web.sph.App_Code
             if (string.IsNullOrEmpty(model.Email))
                 return RedirectToAction("register", "ost-account", new { success = false, status = "Email cannot be set to null or empty." });
 
-            Profile profile = new Profile();
-            profile.UserName = model.UserName;
-            profile.Email = model.Email;
-            profile.Password = model.Password;
-
-            var context = new SphDataContext();
-            var designation = await context.LoadOneAsync<Designation>(d => d.Name == model.Designation);
-            if (null == designation) throw new InvalidOperationException("Cannot find designation " + model.Designation);
-
-            profile.Designation = model.Designation;
-            profile.Roles = designation.RoleCollection.ToArray();
-
-            var em = Membership.GetUser(profile.UserName);
-            if (null != em) return RedirectToAction("register", "ost-account", new { success = false, status = $"User {profile.UserName} already exist." });
-
-            try
+            model.FullName = model.UserName;
+            var result = await CreateAccount(model);
+            if (!result.Success)
             {
-                Membership.CreateUser(profile.UserName, profile.Password, profile.Email);
-            }
-            catch (MembershipCreateUserException ex)
-            {
-                ObjectBuilder.GetObject<ILogger>().Log(new LogEntry(ex));
-                return RedirectToAction("register", "ost-account", new { success = false, status = ex.Message });
+                return RedirectToAction("register", "ost-account", new { success = result.Success, status = result.Status });
             }
 
-            Roles.AddUserToRoles(profile.UserName, profile.Roles);
-            await CreateProfile(profile, designation);
-            await SendVerificationEmail(profile.Email, profile.UserName);
+            var emailModel = new OstCreateEmailModel
+            {
+                UserEmail = model.Email,
+                UserName = model.UserName,
+                EmailSubject = "Verify your email address",
+                EmailBody = $"To finish setting up this {ConfigurationManager.ApplicationFullName} account, we just need to make sure this email address is yours."
+            };
+            await SendVerificationEmail(emailModel);
 
             return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "register" });
         }
@@ -245,58 +235,133 @@ namespace web.sph.App_Code
             if (outputString.IsSuccessStatusCode)
             {
                 output = await outputString.Content.ReadAsStringAsync();
-                var items = JsonConvert.DeserializeObject<EstRegisterModel>(output);
-                var encodedEmail = Convert.ToBase64String(Encoding.UTF8.GetBytes(items.EmailAddress));
+                var item = JsonConvert.DeserializeObject<EstRegisterModel>(output);
+                var encodedEmail = Convert.ToBase64String(Encoding.UTF8.GetBytes(item.EmailAddress));
                 if (step == 1)
                 {
-                    if (model.AccountNo == items.AccountNo)
+                    if (model.AccountNo == item.AccountNo)
                     {
-                        if (items.AccountStatus == 0)
+                        if (item.AccountStatus == 0)
                         {
-                            if (items.EmailAddress != null)
+                            if (item.EmailAddress != null)
                             {
-                                if (IsValidEmail(items.EmailAddress))
+                                if (IsValidEmail(item.EmailAddress))
                                 {
-                                    return RedirectToAction("first-time-login/step/2", "ost-account", new { accNo = items.AccountNo, email = encodedEmail });
+                                    return RedirectToAction("first-time-login/step/2", "ost-account", new { accNo = item.AccountNo, email = encodedEmail });
                                 }
                                 else
                                 {
-                                    return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your registered email address is invalid. {errorMessage}", accNo = items.AccountNo, email = encodedEmail });
+                                    return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your registered email address is invalid. {errorMessage}", accNo = item.AccountNo, email = encodedEmail });
                                 }
                             }
                             else
                             {
-                                return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your registered email address is invalid. {errorMessage}", accNo = items.AccountNo, email = encodedEmail });
+                                return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your registered email address is invalid. {errorMessage}", accNo = item.AccountNo, email = encodedEmail });
                             }
                         }
-                        else if (items.AccountStatus == 1)
+                        else if (item.AccountStatus == 1)
                         {
-                            return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your account has been blocked. {errorMessage}", accNo = items.AccountNo, email = encodedEmail });
+                            return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your account has been blocked. {errorMessage}", accNo = item.AccountNo, email = encodedEmail });
                         }
                         else
                         {
-                            return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your account has been terminated. {errorMessage}", accNo = items.AccountNo, email = encodedEmail });
+                            return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your account has been terminated. {errorMessage}", accNo = item.AccountNo, email = encodedEmail });
                         }
                     }
                     else
                     {
-                        return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your account number is invalid. {errorMessage}", accNo = items.AccountNo, email = encodedEmail });
+                        return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your account number is invalid. {errorMessage}", accNo = item.AccountNo, email = encodedEmail });
                     }
                 }
                 else if (step == 2)
                 {
-                    if (IsValidEmail(model.EmailAddress) && IsValidEmail(items.EmailAddress))
+                    if (IsValidEmail(model.EmailAddress) && IsValidEmail(item.EmailAddress))
                     {
-                        if ((model.EmailAddress != items.EmailAddress)
-                            || (model.AccountNo != items.AccountNo))
+                        if ((model.EmailAddress != item.EmailAddress)
+                            || (model.AccountNo != item.AccountNo))
                         {
-                            return RedirectToAction("first-time-login/step/2", "ost-account", new { success = false, status = $"Your email address cannot be verified. {errorMessage}", accNo = items.AccountNo, email = encodedEmail });
+                            return RedirectToAction("first-time-login/step/2", "ost-account", new { success = false, status = $"Your email address cannot be verified. {errorMessage}", accNo = item.AccountNo, email = encodedEmail });
                         }
                     }
                     else
                     {
-                        return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your registered email address is invalid. {errorMessage}", accNo = items.AccountNo, email = encodedEmail });
+                        return RedirectToAction("first-time-login/step/1", "ost-account", new { success = false, status = $"Your registered email address is invalid. {errorMessage}", accNo = item.AccountNo, email = encodedEmail });
                     }
+
+                    //register customer as Ezisend user; designation - "Contract customer"
+                    string password = Membership.GeneratePassword(8, 1);
+                    var registerModel = new OstRegisterModel
+                    {
+                        UserName = model.AccountNo,
+                        FullName = item.CustomerName,
+                        Password = password,
+                        ConfirmPassword = password,
+                        Email = model.EmailAddress,
+                        Designation = "Contract customer"
+                    };
+                    var result = await CreateAccount(registerModel);
+                    if (!result.Success)
+                    {
+                        return RedirectToAction("first-time-login/step/1", "ost-account", new { success = result.Success, status = result.Status, accNo = item.AccountNo, email = encodedEmail });
+                    }
+
+                    var emailModel = new OstCreateEmailModel
+                    {
+                        UserEmail = registerModel.Email,
+                        UserName = registerModel.UserName,
+                        EmailSubject = "Create your password",
+                        EmailBody = $"Thank you for registering on {ConfigurationManager.ApplicationFullName}. To complete your account registration, you must create a new password.",
+                    };
+                    await SendForgotPasswordEmail(emailModel);                    
+
+                    //create user details
+                    var context = new SphDataContext();
+                    var userDetail = new Bespoke.Ost.UserDetails.Domain.UserDetail();
+                    var guid = Guid.NewGuid().ToString();
+                    userDetail.Id = guid;
+                    userDetail.UserId = registerModel.UserName;
+                    userDetail.Profile.CompanyName = item.CompanyName;
+                    userDetail.Profile.ContactPerson = item.CustomerName;
+                    userDetail.ProfilePictureUrl = "/assets/admin/pages/img/avatars/user_default.png";
+                    userDetail.Profile.ContactInformation.Email = registerModel.Email;
+                    userDetail.Profile.ContactInformation.ContactNumber = item.ContactNo;
+                    userDetail.Profile.ContactInformation.AlternativeContactNumber = item.AltContactNo;
+
+                    userDetail.Profile.Address.Address1 = item.Address.Address1;
+                    userDetail.Profile.Address.Address2 = item.Address.Address2;
+                    userDetail.Profile.Address.Address3 = item.Address.Address3;
+                    userDetail.Profile.Address.Address4 = $"{item.Address.Address4} {item.Address.Address5}";
+                    userDetail.Profile.Address.City = item.Address.City;
+                    userDetail.Profile.Address.State = item.Address.State;
+                    userDetail.Profile.Address.Country = "MY"; //item.Address.Country;
+                    userDetail.Profile.Address.Postcode = item.Address.Postcode;
+
+                    userDetail.PickupAddress.Address.Address1 = item.PickupAddress.Address1;
+                    userDetail.PickupAddress.Address.Address2 = item.PickupAddress.Address2;
+                    userDetail.PickupAddress.Address.Address3 = item.PickupAddress.Address3;
+                    userDetail.PickupAddress.Address.Address4 = $"{item.PickupAddress.Address4} {item.PickupAddress.Address5}";
+                    userDetail.PickupAddress.Address.City = item.PickupAddress.City;
+                    userDetail.PickupAddress.Address.State = item.PickupAddress.State;
+                    userDetail.PickupAddress.Address.Country = "MY"; //item.PickupAddress.Country;
+                    userDetail.PickupAddress.Address.Postcode = item.PickupAddress.Postcode;
+
+                    userDetail.BillingAddress.Address.Address1 = item.BillingAddress.Address1;
+                    userDetail.BillingAddress.Address.Address2 = item.BillingAddress.Address2;
+                    userDetail.BillingAddress.Address.Address3 = item.BillingAddress.Address3;
+                    userDetail.BillingAddress.Address.Address4 = $"{item.BillingAddress.Address4} {item.BillingAddress.Address5}";
+                    userDetail.BillingAddress.Address.City = item.BillingAddress.City;
+                    userDetail.BillingAddress.Address.State = item.BillingAddress.State;
+                    userDetail.BillingAddress.Address.Country = "MY"; //item.BillingAddress.Country;
+                    userDetail.BillingAddress.Address.Postcode = item.BillingAddress.Postcode;
+
+                    using (var session = context.OpenSession())
+                    {
+                        session.Attach(userDetail);
+                        await session.SubmitChanges("Default");
+                    }
+
+                    await SetVerifyEmailFlag(registerModel.UserName);
+
                     return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "register" });
                 }
             }
@@ -365,13 +430,7 @@ namespace web.sph.App_Code
             }
 
             // email address verification complete
-            var userProfile = await context.LoadOneAsync<UserProfile>(p => p.UserName == username);
-            userProfile.HasChangedDefaultPassword = true;
-            using (var session = context.OpenSession())
-            {
-                session.Attach(userProfile);
-                await session.SubmitChanges();
-            }
+            await SetVerifyEmailFlag(username);
 
             return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "verify-email" });
         }
@@ -400,7 +459,14 @@ namespace web.sph.App_Code
                 return RedirectToAction("forgot-password", "ost-account", new { success = false, status = $"Cannot find any user with email {email}" });
             }
 
-            await SendForgotPasswordEmail(email, username);
+            var emailModel = new OstCreateEmailModel
+            {
+                UserEmail = email,
+                UserName = username,
+                EmailSubject = "Forgot your password",
+                EmailBody = $"You're receiving this e-mail because you requested a password reset for your user account at {ConfigurationManager.ApplicationFullName}.",
+            };
+            await SendForgotPasswordEmail(emailModel);
 
             return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "forgot-password" });
         }
@@ -494,7 +560,14 @@ namespace web.sph.App_Code
                 return RedirectToAction("send-verify-email", "ost-account", new { success = false, status = $"Cannot find any user with email {email}" });
             }
 
-            await SendVerificationEmail(email, username);
+            var emailModel = new OstCreateEmailModel
+            {
+                UserEmail = email,
+                UserName = username,
+                EmailSubject = "Verify your email address",
+                EmailBody = $"To finish setting up this {ConfigurationManager.ApplicationFullName} account, we just need to make sure this email address is yours."
+            };
+            await SendVerificationEmail(emailModel);
 
             return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "send-verify-email" });
         }
@@ -538,62 +611,48 @@ namespace web.sph.App_Code
             if (null == username)
             {
                 //register
-                Profile profile = new Profile();
                 string strippedName = new string(model.Name.ToCharArray()
                     .Where(c => !char.IsWhiteSpace(c))
                     .ToArray()).ToLower();
                 Random rnd = new Random();
                 int rndTail = rnd.Next(1000, 10000);
                 var newUserName = strippedName + rndTail.ToString();
-                profile.UserName = newUserName;
-
                 string password = Membership.GeneratePassword(8, 1);
-                profile.Password = password;
 
-                profile.Email = model.Email;
-                profile.FullName = model.Name;
-                profile.Designation = "No contract customer";
-
-                var context = new SphDataContext();
-                var designation = await context.LoadOneAsync<Designation>(d => d.Name == profile.Designation);
-                if (null == designation)
+                var registerModel = new OstRegisterModel
+                {
+                    UserName = newUserName,
+                    FullName = model.Name,
+                    Email = model.Email,
+                    Password = password,
+                    ConfirmPassword = password,
+                    Designation = "No contract customer"
+                };
+                var result = await CreateAccount(registerModel);
+                if (!result.Success)
                 {
                     Response.StatusCode = (int)HttpStatusCode.Accepted;
-                    return Json(new { success = false, status = "ERROR", message = $"Cannot find designation {profile.Designation}." });
+                    return Json(new { success = result.Success, status = "ERROR", message = result.Status });
                 }
 
-                profile.Roles = designation.RoleCollection.ToArray();
-
-                var em = Membership.GetUser(profile.UserName);
-                if (null != em)
+                var emailModel = new OstCreateEmailModel
                 {
-                    Response.StatusCode = (int)HttpStatusCode.Accepted;
-                    return Json(new { success = false, status = "ERROR", message = $"User {profile.UserName} already exist." });
-                }
-
-                try
-                {
-                    Membership.CreateUser(profile.UserName, profile.Password, profile.Email);
-                }
-                catch (MembershipCreateUserException ex)
-                {
-                    ObjectBuilder.GetObject<ILogger>().Log(new LogEntry(ex));
-                    Response.StatusCode = (int)HttpStatusCode.Accepted;
-                    return Json(new { success = false, status = "ERROR", message = ex.Message });
-                }
-
-                Roles.AddUserToRoles(profile.UserName, profile.Roles);
-                await CreateProfile(profile, designation);
-                await SendVerificationEmail(profile.Email, profile.UserName);
+                    UserEmail = registerModel.Email,
+                    UserName = registerModel.UserName,
+                    EmailSubject = "Verify your email address",
+                    EmailBody = $"To finish setting up this {ConfigurationManager.ApplicationFullName} account, we just need to make sure this email address is yours."
+                };
+                await SendVerificationEmail(emailModel);
 
                 //create user details
+                var context = new SphDataContext();
                 var userDetail = new Bespoke.Ost.UserDetails.Domain.UserDetail();
                 var guid = Guid.NewGuid().ToString();
                 userDetail.Id = guid;
-                userDetail.UserId = profile.UserName;
-                userDetail.Profile.ContactPerson = profile.FullName;
+                userDetail.UserId = registerModel.UserName;
+                userDetail.Profile.ContactPerson = registerModel.FullName;
                 userDetail.ProfilePictureUrl = model.PictureUrl;
-                userDetail.Profile.ContactInformation.Email = profile.Email;
+                userDetail.Profile.ContactInformation.Email = registerModel.Email;
                 userDetail.Profile.Address.Country = "MY";
                 using (var session = context.OpenSession())
                 {
@@ -602,7 +661,7 @@ namespace web.sph.App_Code
                 }
 
                 Response.StatusCode = (int)HttpStatusCode.OK;
-                return Json(new { success = true, status = "OK", message = $"User {profile.UserName} with email {profile.Email} has been registered." });
+                return Json(new { success = true, status = "OK", message = $"User {registerModel.UserName} with email {registerModel.Email} has been registered." });
             }
             else
             {
@@ -646,6 +705,58 @@ namespace web.sph.App_Code
             }
         }
 
+        private static async Task<OstRegisterStatusModel> CreateAccount(OstRegisterModel model)
+        {
+            var result = new OstRegisterStatusModel
+            {
+                Success = true,
+                Status = "OK"
+            };
+
+            Profile profile = new Profile();
+            profile.UserName = model.UserName;
+            profile.FullName = model.FullName;
+            profile.Email = model.Email;
+            profile.Password = model.Password;
+
+            var context = new SphDataContext();
+            var designation = await context.LoadOneAsync<Designation>(d => d.Name == model.Designation);
+            if (null == designation)
+            {
+                result.Success = false;
+                result.Status = $"Cannot find designation {model.Designation}";
+                return result;
+            }
+
+            profile.Designation = model.Designation;
+            profile.Roles = designation.RoleCollection.ToArray();
+
+            var em = Membership.GetUser(profile.UserName);
+            if (null != em)
+            {
+                result.Success = false;
+                result.Status = $"User {profile.UserName} already exist.";
+                return result;
+            }
+
+            try
+            {
+                Membership.CreateUser(profile.UserName, profile.Password, profile.Email);
+            }
+            catch (MembershipCreateUserException ex)
+            {
+                ObjectBuilder.GetObject<ILogger>().Log(new LogEntry(ex));
+                result.Success = false;
+                result.Status = ex.Message;
+                return result;
+            }
+
+            Roles.AddUserToRoles(profile.UserName, profile.Roles);
+            await CreateProfile(profile, designation);
+
+            return result;
+        }
+
         private static async Task<UserProfile> CreateProfile(Profile profile, Designation designation)
         {
             if (null == profile) throw new ArgumentNullException(nameof(profile));
@@ -675,44 +786,46 @@ namespace web.sph.App_Code
             return usp;
         }
 
-        private static async Task SendVerificationEmail(string userEmail, string userName)
+        private static async Task SendVerificationEmail(OstCreateEmailModel model)
         {
             var setting = new Setting
             {
-                UserName = userEmail,
+                UserName = model.UserEmail,
                 Key = "VerifyEmail",
                 Value = DateTime.Now.ToString("s"),
                 Id = Strings.GenerateId()
             };
             await SaveSetting(setting, "VerifyEmail");
 
-            var emailSubject = ConfigurationManager.ApplicationFullName + " - Verify your email address";
-            var emailBody = $@"Hello {userName},
+            var emailSubject = $"{ConfigurationManager.ApplicationFullName} - {model.EmailSubject}";
+            var emailBody = $@"Hello {model.UserName},
 
-Please click the link below to verify your email address.
+{model.EmailBody}
+Please click the link below to proceed.
     {ConfigurationManager.BaseUrl}/ost-account/verify-email/{setting.Id}";
 
-            await SendEmail(userEmail, emailSubject, emailBody);
+            await SendEmail(model.UserEmail, emailSubject, emailBody);
         }
 
-        private static async Task SendForgotPasswordEmail(string userEmail, string userName)
+        private static async Task SendForgotPasswordEmail(OstCreateEmailModel model)
         {
             var setting = new Setting
             {
-                UserName = userEmail,
+                UserName = model.UserEmail,
                 Key = "ForgotPassword",
                 Value = DateTime.Now.ToString("s"),
                 Id = Strings.GenerateId()
             };
             await SaveSetting(setting, "ForgotPassword");
 
-            var emailSubject = ConfigurationManager.ApplicationFullName + " - Forgot your password";
-            var emailBody = $@"Hello {userName},
+            var emailSubject = $"{ConfigurationManager.ApplicationFullName} - {model.EmailSubject}";
+            var emailBody = $@"Hello {model.UserName},
 
-Please click the link below to change your password.
+{model.EmailBody}
+Please click the link below to proceed.
     {ConfigurationManager.BaseUrl}/ost-account/reset-password/{setting.Id}";
 
-            await SendEmail(userEmail, emailSubject, emailBody);
+            await SendEmail(model.UserEmail, emailSubject, emailBody);
         }
 
         private static async Task SendEmail(string emailTo, string emailSubject, string emailBody)
@@ -739,18 +852,23 @@ Please click the link below to change your password.
             }
         }
 
+        private static async Task SetVerifyEmailFlag(string username)
+        {
+            var context = new SphDataContext();
+            var userProfile = await context.LoadOneAsync<UserProfile>(p => p.UserName == username);
+            userProfile.HasChangedDefaultPassword = true;
+            using (var session = context.OpenSession())
+            {
+                session.Attach(userProfile);
+                await session.SubmitChanges();
+            }
+        }
+
         private static bool IsValidEmail(string emailAddress)
         {
             var regex = new Regex(@"([a-z0-9][-a-z0-9_\+\.]*[a-z0-9])@([a-z0-9][-a-z0-9\.]*[a-z0-9]\.(arpa|root|aero|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cu|cv|cx|cy|cz|de|dj|dk|dm|do|dz|ec|ee|eg|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sk|sl|sm|sn|so|sr|st|su|sv|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|um|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)|([0-9]{1,3}\.{3}[0-9]{1,3}))");
             return regex.IsMatch(emailAddress);
         }
-    }
-
-    public class EstUserInputModel
-    {
-        public string AccountNo { get; set; }
-        public string EmailAddress { get; set; }
-        public string HintEmailAddress { get; set; }
     }
 
     public class OstLoginModel
@@ -773,6 +891,7 @@ Please click the link below to change your password.
     public class OstRegisterModel
     {
         public string UserName { get; set; }
+        public string FullName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
@@ -785,5 +904,19 @@ Please click the link below to change your password.
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public string Id { get; set; }
+    }
+
+    public class OstRegisterStatusModel
+    {
+        public bool Success { get; set; }
+        public string Status { get; set; }
+    }
+
+    public class OstCreateEmailModel
+    {
+        public string UserName { get; set; }
+        public string UserEmail { get; set; }
+        public string EmailSubject { get; set; }
+        public string EmailBody { get; set; }
     }
 }

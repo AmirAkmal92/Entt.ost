@@ -38,7 +38,7 @@
   "Name": "Contract customer",
   "Description": "",
   "IsActive": false,
-  "StartModule": "pickup-manifest",
+  "StartModule": "customer-home",
   "EnforceStartModule": true,
   "IsSearchVisible": true,
   "IsMessageVisible": true,
