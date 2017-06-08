@@ -6,50 +6,29 @@
                     <span></span>
                 </div>
             </li>
-            <li class="sidebar-search-wrapper">
-                @*<form class="sidebar-search" method="POST">
-                    <a href="javascript:;" class="remove">
-                        <i class="icon-close"></i>
-                    </a>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                            <a href="javascript:;" class="btn submit">
-                                <i class="icon-magnifier"></i>
-                            </a>
-                        </span>
-                    </div>
-                </form>*@
-            </li>
-            @*<li class="heading">
-                <h3 class="uppercase"> Home </h3>
-            </li>*@
             <li class="nav-item">
                 <a href="/ost#customer-home" class="nav-link">
                     <i class="fa fa-dashboard"></i>
                     <span class="title"> HOME </span>
                 </a>
             </li>
-            @*<li class="heading">
-                <h3 class="uppercase"> Contacts </h3>
-            </li>*@
             <!-- ko compose : {view : '_address-book-groups' }-->
             <!--/ko-->
         </ul>
-        <div id="consignment-request-cart">
-            <!-- ko compose : {view : '_consignment-request-cart' }-->
-            <!--/ko-->
-        </div>
-        <ul class="page-sidebar-menu page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
-            @*<li class="heading">
-                <h3 class="uppercase"> Orders </h3>
-            </li>*@
-            <li class="nav-item">
-                <a class="nav-link" href="ost#consignment-requests-paid">
-                    <i class="fa fa-file-text"></i>
-                    <span class="title"> ORDERS </span>
-                </a>
-            </li>
-        </ul>
+        @if (Model.Designation == "No contract customer")
+        {
+            <div id="consignment-request-cart">
+                <!-- ko compose : {view : '_consignment-request-cart' }-->
+                <!--/ko-->
+            </div>
+            <ul class="page-sidebar-menu page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                <li class="nav-item">
+                    <a class="nav-link" href="ost#consignment-requests-paid">
+                        <i class="fa fa-file-text"></i>
+                        <span class="title"> ORDERS </span>
+                    </a>
+                </li>
+            </ul>
+        }
     </div>
 </div>

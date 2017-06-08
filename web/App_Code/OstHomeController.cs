@@ -13,7 +13,16 @@ namespace web.sph.App_Code
         {
             if (!User.Identity.IsAuthenticated)
                 return RedirectToAction("Login", "OstAccount");
-            return View("Default");
+            var username = User.Identity.Name;
+            var directory = new SphDataContext();
+            var up = directory.LoadOneAsync<UserProfile>(u => u.UserName == username).Result;
+
+            var userDetail = new UserTypeModel
+            {
+                Designation = up.Designation
+            };
+
+            return View("Default", userDetail);
         }
 
         [HttpGet]
@@ -103,5 +112,10 @@ namespace web.sph.App_Code
     {
         public string referenceNo { get; set; }
         public Consignment consignment { get; set; }
+    }
+
+    public class UserTypeModel
+    {
+        public string Designation { get; set; }
     }
 }
