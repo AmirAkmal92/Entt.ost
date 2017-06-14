@@ -1,0 +1,136 @@
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="/"> Home </a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Shipment </span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Shipping Cart </span>
+        </li>
+    </ul>
+</div>
+<h1 class="page-title caption-subject font-red-sunglo bold uppercase"></h1>
+<small></small>
+<div class="row" data-bind="with : entity">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <h4>
+                        <i class="fa fa-shopping-cart font-yellow-casablanca"></i>
+                        <span class="caption-subject font-yellow-casablanca bold uppercase">Shipping Cart</span>
+                    </h4>
+                    <div class="caption-desc font-grey-cascade">All pending shipment</div>
+                </div>
+                <div class="actions">
+                    <h3>
+                        <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }" class="btn btn-circle yellow-casablanca">
+                            <i class="fa fa-paper-plane"></i> Add Parcel
+                        </a>
+                        <a class="btn btn-circle yellow-casablanca">
+                            <i class="fa fa-barcode"></i> Get Consignment Note
+                        </a>
+                    </h3>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase">
+                                <span>PICKUP INFORMATION</span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-6">
+                                    <h4>Pickup Address</h4>
+                                    <address>
+                                        <strong><span class="text-capitalize" data-bind="text: Pickup().ContactPerson"></span></strong><br />
+                                        <span data-bind="text: Pickup().ContactInformation().Email"></span>
+                                    </address>
+                                    <address>
+                                        <strong><span data-bind="text: Pickup().CompanyName"></span></strong><br />
+                                        <span data-bind="text: Pickup().Address().Address1"></span>&nbsp;
+                                        <span data-bind="text: Pickup().Address().Address2"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: Pickup().Address().Address3"></span>&nbsp;
+                                        <span data-bind="text: Pickup().Address().Address4"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: Pickup().Address().City"></span>&nbsp;
+                                        <span data-bind="text: Pickup().Address().State"></span>&nbsp;
+                                        <br />
+                                        <span data-bind="text: Pickup().Address().Postcode"></span>&nbsp;
+                                        <span data-bind="text: Pickup().Address().Country"></span>&nbsp;
+                                        <br />
+                                        <abbr title="Contact Number">Phone 1:</abbr> <span data-bind="text: Pickup().ContactInformation().ContactNumber"></span><br />
+                                        <abbr title="Alternative Contact Number">Phone 2:</abbr> <span data-bind="text: Pickup().ContactInformation().AlternativeContactNumber"></span>
+                                    </address>
+                                </div>
+                                <div class="col-md-6">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-bind="visible: Consignments().length > 0">
+                    <div class="clearfix">
+                        <div class="panel panel-danger">
+                            <table class="table table-striped table-bordered table-advance">
+                                <thead>
+                                    <tr>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><center><strong>#</strong></center></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Sender</strong></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Recipient</strong></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Parcel</strong></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Consignment Note</strong></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><center><strong>Action</strong></center></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!--ko foreach: Consignments-->
+                                    <tr>
+                                        <td><center><span data-bind="text: $index() + 1"></span></center></td>
+                                        <td>
+                                            <span class="text-capitalize" data-bind="text: Pemberi().ContactPerson"></span>
+                                        </td>
+                                        <td>
+                                            <span class="text-capitalize" data-bind="text: Penerima().ContactPerson"></span>
+                                        </td>
+                                        <td>
+                                            <!--ko if: Produk().Weight() != null-->
+                                            <span data-bind="text: Produk().Weight().toFixed(1) + ' kg'"></span>
+                                            <!--ko if: Produk().IsInternational-->
+                                            <span class="label label-sm label-success label-mini pull-right"><i class="fa fa-plane"></i> International </span>
+                                            <!-- /ko -->
+                                            <!--ko ifnot: Produk().IsInternational-->
+                                            <span class="label label-sm label-info label-mini pull-right"><i class="fa fa-truck"></i> Domestic </span>
+                                            <!-- /ko -->
+                                            <!-- /ko -->
+                                        </td>
+                                        <td>
+                                            Connote
+                                        </td>
+                                        <td>
+                                            <center>
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Edit" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }">
+                                                    <i class="icon-note"></i>
+                                                </a>
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Delete" data-bind="click: $root.deleteConsignment">
+                                                    <i class="icon-trash"></i>
+                                                </a>
+                                            </center>
+                                        </td>
+                                    </tr>
+                                    <!-- /ko -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

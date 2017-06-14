@@ -168,6 +168,20 @@
     "startPageRoute": null
   },
   {
+    "role": "customers",
+    "groupName": null,
+    "route": "consignment-request-cart-est/:entityId",
+    "moduleId": "viewmodels/consignment-request-cart-est",
+    "title": "Consignment Request Cart Est",
+    "nav": false,
+    "icon": "fa fa-calculator",
+    "caption": "Consignment Request Cart Est",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
+  },
+  {
     "role": "everybody",
     "groupName": null,
     "route": "pickup-manifest",
