@@ -15,12 +15,12 @@
             <!-- ko compose : {view : '_address-book-groups' }-->
             <!--/ko-->
         </ul>
+        <div id="consignment-request-cart">
+            <!-- ko compose : {view : '_consignment-request-cart' }-->
+            <!--/ko-->
+        </div>
         @if (Model.Designation == "No contract customer")
         {
-            <div id="consignment-request-cart">
-                <!-- ko compose : {view : '_consignment-request-cart' }-->
-                <!--/ko-->
-            </div>
             <ul class="page-sidebar-menu page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
                 <li class="nav-item">
                     <a class="nav-link" href="ost#consignment-requests-paid">

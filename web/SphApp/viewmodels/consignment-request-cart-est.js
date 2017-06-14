@@ -1,5 +1,5 @@
 define(["services/datacontext", "services/logger", "plugins/router", "services/system",
-    "services/chart", objectbuilders.config, objectbuilders.app, "viewmodels/_consignment-request-cart-est",
+    "services/chart", objectbuilders.config, objectbuilders.app, "viewmodels/_consignment-request-cart",
     "services/app", "plugins/dialog"],
 function (context, logger, router, system, chart, config, app, crCart, app2, dialog) {
 

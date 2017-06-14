@@ -1,9 +1,18 @@
 <ul class="page-sidebar-menu page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
     <li class="nav-item">
+        <!--ko if: config.profile.Designation == "No contract customer"-->
         <a class="nav-link" data-bind="attr: { href: 'ost#consignment-request-cart/' + ko.unwrap(consignmentRequest().Id) }">
             <i class="fa fa-shopping-cart"></i>
             <span class="title"> SHIPMENTS </span>
             <span class="badge bg-yellow-casablanca bg-font-yellow-casablanca" data-bind="text: consignmentRequest().Consignments.length"></span>
         </a>
+        <!--/ko-->
+        <!--ko if: config.profile.Designation == "Contract customer"-->
+        <a class="nav-link" data-bind="attr: { href: 'ost#consignment-request-cart-est/' + ko.unwrap(consignmentRequest().Id) }">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="title"> SHIPMENTS </span>
+            <span class="badge bg-yellow-casablanca bg-font-yellow-casablanca" data-bind="text: consignmentRequest().Consignments.length"></span>
+        </a>
+        <!--/ko-->
     </li>
 </ul>

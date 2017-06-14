@@ -1,5 +1,5 @@
-define(['services/datacontext', 'services/logger', 'plugins/router', objectbuilders.system],
-    function (context, logger, router, system) {
+define(['services/datacontext', 'services/logger', 'plugins/router', objectbuilders.system, objectbuilders.config],
+    function (context, logger, router, system, config) {
         var isBusy = ko.observable(true),
             consignmentRequest = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
             activate = function () {
@@ -30,7 +30,8 @@ define(['services/datacontext', 'services/logger', 'plugins/router', objectbuild
             isBusy: isBusy,
             consignmentRequest: consignmentRequest,
             activate: activate,
-            attached: attached
+            attached: attached,
+            config: config
         };
         return vm;
     });
