@@ -238,7 +238,11 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 })
                 .then(function (result) {
                     if (result) {
-                        router.navigate("consignment-request-produk/" + crid() + "/consignments/" + cid());
+                        if (config.profile.Designation == "Contract customer") {
+                            router.navigate("consignment-request-produk-est/" + crid() + "/consignments/" + cid());
+                        } else {
+                            router.navigate("consignment-request-produk/" + crid() + "/consignments/" + cid());
+                        }
                     }
                 });
         };
