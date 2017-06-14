@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="portlet-body">
-                <div class="row">
+                <div class="row" data-bind="visible: Pickup().Address().Postcode() != undefined">
                     <div class="col-md-6">
                         <div class="panel panel-danger">
                             <div class="panel-heading bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase">

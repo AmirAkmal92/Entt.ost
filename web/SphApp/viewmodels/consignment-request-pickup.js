@@ -312,7 +312,11 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 })
                 .then(function (result) {
                     if (result) {
-                        router.navigate("consignment-request-cart/" + id());
+                        if (config.profile.Designation == "Contract customer") {
+                            router.navigate("consignment-request-cart-est/" + id());
+                        } else {
+                            router.navigate("consignment-request-cart/" + id());
+                        }
                     }
                 });
         };
