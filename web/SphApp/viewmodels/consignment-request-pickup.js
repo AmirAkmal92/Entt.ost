@@ -66,58 +66,60 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         });
                         //user choose to use Default Pickup Address or own pickup address
                     } else {
-                        var msg = `<address>`
-                            + `     <strong>${userDetail().PickupAddress().ContactPerson()}</strong><br />`
-                            + `     ${userDetail().PickupAddress().ContactInformation().Email()}`
-                            + `</address>`
-                        if ((ko.unwrap(userDetail().PickupAddress().CompanyName()) != undefined)) {
-                            msg += `     <strong>${userDetail().PickupAddress().CompanyName()}</strong><br />`
-                        }
-                        msg += `<address>`
-                        + `     ${userDetail().PickupAddress().Address().Address1()}&nbsp;`
-                        + `     ${userDetail().PickupAddress().Address().Address2()}&nbsp;`
+                        if ((ko.unwrap(entity().Pickup().Address().Postcode)) == undefined) {
+                            var msg = `<address>`
+                                + `     <strong>${userDetail().PickupAddress().ContactPerson()}</strong><br />`
+                                + `     ${userDetail().PickupAddress().ContactInformation().Email()}`
+                                + `</address>`
+                            if ((ko.unwrap(userDetail().PickupAddress().CompanyName()) != undefined)) {
+                                msg += `     <strong>${userDetail().PickupAddress().CompanyName()}</strong><br />`
+                            }
+                            msg += `<address>`
+                            + `     ${userDetail().PickupAddress().Address().Address1()}&nbsp;`
+                            + `     ${userDetail().PickupAddress().Address().Address2()}&nbsp;`
                         
-                        if ((ko.unwrap(userDetail().PickupAddress().Address().Address3) != undefined)) {
+                            if ((ko.unwrap(userDetail().PickupAddress().Address().Address3) != undefined)) {
+                                msg += `     <br />`
+                                + `     ${userDetail().PickupAddress().Address().Address3()}&nbsp;`
+                            }
+                            if ((ko.unwrap(userDetail().PickupAddress().Address().Address4) != undefined)) {
+                                msg += `     ${userDetail().PickupAddress().Address().Address4()}&nbsp;`
+                            }
                             msg += `     <br />`
-                            + `     ${userDetail().PickupAddress().Address().Address3()}&nbsp;`
-                        }
-                        if ((ko.unwrap(userDetail().PickupAddress().Address().Address4) != undefined)) {
-                            msg += `     ${userDetail().PickupAddress().Address().Address4()}&nbsp;`
-                        }
-                        msg += `     <br />`
-                        + `     ${userDetail().PickupAddress().Address().Postcode()}&nbsp;`
-                        + `     ${userDetail().PickupAddress().Address().City()}&nbsp;`
-                        + `     <br />`
-                        + `     ${userDetail().PickupAddress().Address().State()}&nbsp;`
-                        + `     Malaysia&nbsp;`
-                        + `     <br />`
-                        + `     Phone 1:&nbsp;${userDetail().PickupAddress().ContactInformation().ContactNumber()}<br />`
-                        if ((ko.unwrap(userDetail().PickupAddress().ContactInformation().AlternativeContactNumber()) != undefined)) {
-                            msg += `     Phone 2:&nbsp;${userDetail().PickupAddress().ContactInformation().AlternativeContactNumber()}`
-                        }
-                        msg += `</address>`
-                        + `Do you want to use it as your current Pickup details?`;
-                        app.showMessage(msg, "OST", ["Yes", "No"]).done(function (dialogResult) {
-                            if (dialogResult === "Yes") {
-                                //use default pickup address                                  
-                                entity().Pickup().CompanyName(userDetail().PickupAddress().CompanyName());
-                                entity().Pickup().ContactPerson(userDetail().PickupAddress().ContactPerson());
-                                entity().Pickup().Address().Address1(userDetail().PickupAddress().Address().Address1());
-                                entity().Pickup().Address().Address2(userDetail().PickupAddress().Address().Address2());
-                                entity().Pickup().Address().Address3(userDetail().PickupAddress().Address().Address3());
-                                entity().Pickup().Address().Address4(userDetail().PickupAddress().Address().Address4());
-                                entity().Pickup().Address().Postcode(userDetail().PickupAddress().Address().Postcode());
-                                entity().Pickup().Address().City(userDetail().PickupAddress().Address().City());
-                                entity().Pickup().Address().State(userDetail().PickupAddress().Address().State());
-                                entity().Pickup().Address().Country(userDetail().PickupAddress().Address().Country());
-                                entity().Pickup().ContactInformation().Email(userDetail().PickupAddress().ContactInformation().Email());
-                                entity().Pickup().ContactInformation().AlternativeContactNumber(userDetail().PickupAddress().ContactInformation().AlternativeContactNumber());
-                                entity().Pickup().ContactInformation().ContactNumber(userDetail().PickupAddress().ContactInformation().ContactNumber());
+                            + `     ${userDetail().PickupAddress().Address().Postcode()}&nbsp;`
+                            + `     ${userDetail().PickupAddress().Address().City()}&nbsp;`
+                            + `     <br />`
+                            + `     ${userDetail().PickupAddress().Address().State()}&nbsp;`
+                            + `     Malaysia&nbsp;`
+                            + `     <br />`
+                            + `     Phone 1:&nbsp;${userDetail().PickupAddress().ContactInformation().ContactNumber()}<br />`
+                            if ((ko.unwrap(userDetail().PickupAddress().ContactInformation().AlternativeContactNumber()) != undefined)) {
+                                msg += `     Phone 2:&nbsp;${userDetail().PickupAddress().ContactInformation().AlternativeContactNumber()}`
                             }
-                            if (dialogResult === "No") {
-                                //fall trough
-                            }
-                        });
+                            msg += `</address>`
+                            + `Do you want to use it as your current Pickup details?`;
+                            app.showMessage(msg, "OST", ["Yes", "No"]).done(function (dialogResult) {
+                                if (dialogResult === "Yes") {
+                                    //use default pickup address                                  
+                                    entity().Pickup().CompanyName(userDetail().PickupAddress().CompanyName());
+                                    entity().Pickup().ContactPerson(userDetail().PickupAddress().ContactPerson());
+                                    entity().Pickup().Address().Address1(userDetail().PickupAddress().Address().Address1());
+                                    entity().Pickup().Address().Address2(userDetail().PickupAddress().Address().Address2());
+                                    entity().Pickup().Address().Address3(userDetail().PickupAddress().Address().Address3());
+                                    entity().Pickup().Address().Address4(userDetail().PickupAddress().Address().Address4());
+                                    entity().Pickup().Address().Postcode(userDetail().PickupAddress().Address().Postcode());
+                                    entity().Pickup().Address().City(userDetail().PickupAddress().Address().City());
+                                    entity().Pickup().Address().State(userDetail().PickupAddress().Address().State());
+                                    entity().Pickup().Address().Country(userDetail().PickupAddress().Address().Country());
+                                    entity().Pickup().ContactInformation().Email(userDetail().PickupAddress().ContactInformation().Email());
+                                    entity().Pickup().ContactInformation().AlternativeContactNumber(userDetail().PickupAddress().ContactInformation().AlternativeContactNumber());
+                                    entity().Pickup().ContactInformation().ContactNumber(userDetail().PickupAddress().ContactInformation().ContactNumber());
+                                }
+                                if (dialogResult === "No") {
+                                    //fall trough
+                                }
+                            });
+                        }
                     }
                 });
             }, function (e) {

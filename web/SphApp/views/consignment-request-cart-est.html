@@ -45,14 +45,14 @@
                                 <span>PICKUP INFORMATION</span>
                             </div>
                             <div class="panel-body">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <h4>Pickup Address</h4>
                                     <address>
                                         <strong><span class="text-capitalize" data-bind="text: Pickup().ContactPerson"></span></strong><br />
                                         <span data-bind="text: Pickup().ContactInformation().Email"></span>
                                     </address>
                                     <address>
-                                        <strong><span data-bind="text: Pickup().CompanyName"></span></strong><br />
+                                        <strong><span data-bind="text: Pickup().CompanyName"></span></strong><a class="btn btn-circle btn-icon-only btn-default pull-right" data-bind="attr: { href: 'ost#consignment-request-pickup/' + Id() }" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a><br />
                                         <span data-bind="text: Pickup().Address().Address1"></span>&nbsp;
                                         <span data-bind="text: Pickup().Address().Address2"></span>&nbsp;
                                         <br />
@@ -68,8 +68,6 @@
                                         <abbr title="Contact Number">Phone 1:</abbr> <span data-bind="text: Pickup().ContactInformation().ContactNumber"></span><br />
                                         <abbr title="Alternative Contact Number">Phone 2:</abbr> <span data-bind="text: Pickup().ContactInformation().AlternativeContactNumber"></span>
                                     </address>
-                                </div>
-                                <div class="col-md-6">
                                 </div>
                             </div>
                         </div>
