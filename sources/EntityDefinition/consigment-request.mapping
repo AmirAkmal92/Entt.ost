@@ -188,7 +188,18 @@
              "IsInternational":{"type":"boolean","index":"not_analyzed","boost":1,"include_in_all":true},
              "ValueAddedCode":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
              "ValueAddedValue":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
-             "ValueAddedDeclaredValue":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false}
+             "ValueAddedDeclaredValue":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
+    "Est":{
+        "type":  "object",
+        "properties":{
+             "ItemProduct":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "AdditionalProduct":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "ValueAddedService1":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "ValueAddedService2":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "ValueAddedService3":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+
         }
     }
 ,
@@ -260,7 +271,9 @@
         }
     }
 ,
-             "ConNote":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+             "ConNote":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "BabyConnotes":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "BabyConnotesTotal":{"type":"integer","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false}
         }
     }
 
