@@ -1,0 +1,313 @@
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="#"> Home </a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Shipment </span>
+        </li>
+    </ul>
+</div>
+<h1 class="page-title">
+    <small></small>
+</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="mt-element-step">
+                    <div class="row step-thin">
+                        <div class="col-md-3 bg-grey mt-step-col">
+                            <div class="mt-step-number bg-white font-grey">1</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Pickup</div>
+                            <div class="mt-step-content font-grey-cascade">Pickup address</div>
+                        </div>
+                        <div class="col-md-3 bg-grey mt-step-col">
+                            <div class="mt-step-number bg-white font-grey">2</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Sender</div>
+                            <div class="mt-step-content font-grey-cascade">Sender address</div>
+                        </div>
+                        <div class="col-md-3 bg-grey mt-step-col">
+                            <div class="mt-step-number bg-white font-grey">3</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Recipient</div>
+                            <div class="mt-step-content font-grey-cascade">Recipient address</div>
+                        </div>
+                        <div class="col-md-3 bg-grey done mt-step-col active">
+                            <div class="mt-step-number bg-white font-grey">4</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Parcel</div>
+                            <div class="mt-step-content font-grey-cascade">Parcel details</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <h4>
+                        <span class="caption-subject font-yellow-casablanca bold uppercase">Parcel Information</span>
+                    </h4>
+                    <div class="caption-desc font-grey-cascade">All details about parcel</div>
+                </div>
+                <div class="actions">
+                    <h3>
+                        <button id="save-button" class="btn btn-circle yellow-casablanca" data-bind="click: $root.saveCommand">
+                            <i class="icon-arrow-right"></i>
+                            <span> Next </span>
+                        </button>
+                    </h3>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <form class="form-horizontal" id="consignment-request-produk-form">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label data-i18n="ItemCategory" class="col-md-3 control-label" for="c28f91ae-ae5d-448e-991f-5b4065d3464f"><small>Item Category<span class="required" aria-required="true">* </span></small></label>
+                                    <div class="col-md-9">
+                                        <select class="form-control input-sm" id="c28f91ae-ae5d-448e-991f-5b4065d3464f" data-bind="options: estProductService, optionsText: 'Category', optionsValue: 'CategoryCode', value: consignment().Produk().ItemCategory"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group form-checkboxes">
+                                    <label class="col-md-3 control-label" for="form_control_1">
+                                        <small>Multiple Piece Shipment</small>
+                                    </label>
+                                    <div class="col-md-1 md-checkbox-inline">
+                                        <div class="md-checkbox">
+                                            <input type="checkbox" id="checkbox1_3" class="md-check" data-bind="checked: IsMPS">
+                                            <label for="checkbox1_3">
+                                                <span></span>
+                                                <span class="check"></span>
+                                                <span class="box"></span><small>Yes</small>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <label class="col-md-3 control-label" for="form_control_2">
+                                        <small>Total Pieces</small>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input class="form-control input-sm" required type="text" placeholder="" data-rule-number="true" data-rule-required="true" data-bind="enable: IsMPS">
+                                        <span class="help-block"><small><i>(Including parent)</i></small></span>
+                                    </div>
+                                </div>
+                                <div class="form-group " data-bind="visible:true">
+                                    <label data-i18n="Weight" class="col-md-3 control-label" for="6465286c-a3af-46de-e7d8-0499b6bf7cf4"><small>Weight<span class="required" aria-required="true"> * </span></small></label>
+                                    <div class="col-md-9">
+                                        <input class="form-control input-sm" required type="text"
+                                               placeholder="weight in kg"
+                                               data-bind="value: consignment().Produk().Weight"
+                                               data-rule-number="true" data-rule-required="true"
+                                               data-rule-min="0"
+                                               data-rule-max="30"
+                                               id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Produk.Weight" />
+                                        <span class="help-block"><small><i>Total weight of all pieces if this is an MPS</i></small></span>
+                                    </div>
+                                </div>
+                                <div class="form-group" data-bind="visible:true">
+                                    <label data-i18n="Width" class="col-md-3 control-label" for="61040711-a759-4cf8-ea32-47b1cdee2f44"><small>Width<span class="required" aria-required="true"> * </span></small></label>
+                                    <div class="col-md-9">
+                                        <input class="form-control input-sm" required type="text"
+                                               placeholder="width in cm"
+                                               data-bind="value: consignment().Produk().Width"
+                                               data-rule-number="true" data-rule-required="true"
+                                               id="61040711-a759-4cf8-ea32-47b1cdee2f44" name="Produk.Width" />
+                                    </div>
+                                </div>
+                                <div class="form-group" data-bind="visible:true">
+                                    <label data-i18n="Length" class="col-md-3 control-label" for="38c9d5fd-8458-4ce4-9575-da6edf8b0c9d"><small>Length<span class="required" aria-required="true"> * </span></small></label>
+                                    <div class="col-md-9">
+                                        <input class="form-control input-sm" required type="text"
+                                               placeholder="length in cm"
+                                               data-bind="value: consignment().Produk().Length"
+                                               data-rule-number="true" data-rule-required="true"
+                                               id="38c9d5fd-8458-4ce4-9575-da6edf8b0c9d" name="Produk.Length">
+                                    </div>
+                                </div>
+                                <div class="form-group" data-bind="visible:true">
+                                    <label data-i18n="Height" class="col-md-3 control-label" for="a044e320-f819-4adf-fc9d-f130079818fe"><small>Height<span class="required" aria-required="true"> * </span></small></label>
+                                    <div class="col-md-9">
+                                        <input class="form-control input-sm" required type="text"
+                                               placeholder="height in cm"
+                                               data-bind="value: consignment().Produk().Height"
+                                               data-rule-number="true" data-rule-required="true"
+                                               id="a044e320-f819-4adf-fc9d-f130079818fe" name="Produk.Height">
+                                    </div>
+                                </div>
+                                <div class="form-group" data-bind="visible:true">
+                                    <label class="col-md-3 control-label">
+                                        <small>Volumetric Weight</small>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <input class="form-control input-sm" type="text" placeholder="volumetric weight in kg" data-rule-number="true" data-bind="value: $root.volumetric().toFixed(2)" name="Volumetric" disabled />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-3">&nbsp;</div>
+                                    <div class="col-md-9">
+                                        <button class="btn btn-circle yellow-casablanca" data-bind="click: calculateVolumetric">
+                                            <i class="fa fa-calculator"></i>
+                                            Calculate Volumetric
+                                        </button>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" data-bind="visible:true">
+                                    <label data-i18n="Description of Content" class="col-md-3 control-label" for="01d1c388-d629-4283-bd25-56688c166c98"><small>Description of Content<span class="required" aria-required="true"> * </span></small></label>
+                                    <div class="col-md-9">
+                                        <textarea class="form-control input-sm" required rows="3"
+                                                  placeholder="parcel description"
+                                                  data-bind="value: consignment().Produk().Description"
+                                                  id="01d1c388-d629-4283-bd25-56688c166c98" name="Produk.Description"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="ItemProduct" class="col-md-3 control-label"><small>Item Product</small></label>
+                                    <div class="col-md-9" data-bind="with: estProductService()[estProductService().findIndex(x => x.CategoryCode == consignment().Produk().ItemCategory())]">
+                                        <select class="form-control input-sm" data-bind="options: Products, optionsText: 'Product', optionsValue: 'ProductCode', value: $root.consignment().Produk().Est().ItemProduct"></select>
+                                    </div>
+                                </div>
+                                <div data-bind="with: estProductService()[estProductService().findIndex(x => x.CategoryCode == consignment().Produk().ItemCategory())]">
+                                    <div class="form-group" data-bind="with: $data.Products()[$data.Products().findIndex(x => x.ProductCode == $root.consignment().Produk().Est().ItemProduct())]">
+                                        <label class="col-md-3 control-label">
+                                            <small>Additional Products</small>
+                                        </label>
+                                        <div class="col-md-9">
+                                            <div class="md-checkbox-inline" data-bind="foreach: $data.AdditionalProduct">
+                                                <div class="md-checkbox">
+                                                    <input type="checkbox" class="md-check" data-bind="attr: {id: 'AddtionalProduct'+ ($index() + 1), value: name}, checked: $root.consignment().Produk().Est().AdditionalProduct">
+                                                    <label for="" data-bind="attr: {for: 'AddtionalProduct'+ ($index() + 1)}">
+                                                        <span class="inc"></span>
+                                                        <span class="check"></span>
+                                                        <span class="box"></span> <i data-bind="text: name"></i>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div data-bind="with: estProductService()[estProductService().findIndex(x => x.CategoryCode == consignment().Produk().ItemCategory())]">
+                                    <div class="form-group" data-bind="with: $data.Products()[$data.Products().findIndex(x => x.ProductCode == $root.consignment().Produk().Est().ItemProduct())]">
+                                        <div class="row" data-bind="foreach: $data.AdditionalService">
+                                            <!--ko if: $index() == 0-->
+                                            <label class="col-md-3 control-label">
+                                                <small>Value Added Service</small>
+                                            </label>
+                                            <!--/ko-->
+                                            <!--ko if: $index() > 0-->
+                                            <label class="col-md-3 control-label">
+                                                <small>&nbsp;</small>
+                                            </label>
+                                            <!--/ko-->
+                                            <!--ko if: name == "Insurance Zurich"-->
+                                            <div class="col-md-9">
+                                                <div class="md-checkbox-inline">
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="ValueAddedService1_1" name="ValueAddedService1" value="0406" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService1" />
+                                                        <label for="ValueAddedService1_1">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span><i>Insurance Zurich</i>
+                                                        </label>
+                                                    </div>
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="ValueAddedService1_2" name="ValueAddedService1" value="none" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService1" />
+                                                        <label for="ValueAddedService1_2">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span> <i>None</i>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/ko-->
+                                            <!--ko if: name == "Insurance"-->
+                                            <div class="col-md-9">
+                                                <div class="md-checkbox-inline">
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="ValueAddedService1_1" name="ValueAddedService1" value="0401" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService1" />
+                                                        <label for="ValueAddedService1_1">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span><i>Insurance High Value</i>
+                                                        </label>
+                                                    </div>
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="ValueAddedService1_2" name="ValueAddedService1" value="0402" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService1" />
+                                                        <label for="ValueAddedService1_2">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span><i>Insurance Normal</i>
+                                                        </label>
+                                                    </div>
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="ValueAddedService1_3" name="ValueAddedService1" value="none" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService1" />
+                                                        <label for="ValueAddedService1_3">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span> <i>None</i>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/ko-->
+                                            <!--ko if: name == "Packaging"-->
+                                            <div class="col-md-9">
+                                                <div class="md-checkbox-inline">
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="ValueAddedService2_1" name="ValueAddedService2" value="0502" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService2" />
+                                                        <label for="ValueAddedService2_1">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span><i>Packaging Standard</i>
+                                                        </label>
+                                                    </div>
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="ValueAddedService2_2" name="ValueAddedService2" value="none" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService2" />
+                                                        <label for="ValueAddedService2_2">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span> <i>None</i>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/ko-->
+                                            <!--ko if: name == "DO Acknowledgement"-->
+                                            <div class="col-md-9">
+                                                <div class="md-checkbox-inline">
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="ValueAddedService3_1" name="ValueAddedService3" value="0601" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService3" />
+                                                        <label for="ValueAddedService3_1">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span><i>Do Acknowledgement Normal</i>
+                                                        </label>
+                                                    </div>
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="ValueAddedService3_2" name="ValueAddedService3" value="none" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService3" />
+                                                        <label for="ValueAddedService3_2">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span> <i>None</i>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/ko-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
