@@ -86,6 +86,20 @@
   {
     "role": "customers",
     "groupName": null,
+    "route": "consignment-request-produk-est/:crId/consignments/:cId",
+    "moduleId": "viewmodels/consignment-request-produk-est",
+    "title": "Consignment Request Produk Est",
+    "nav": false,
+    "icon": "fa fa-paper-plane",
+    "caption": "Consignment Request Produk Est",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
+  },
+  {
+    "role": "customers",
+    "groupName": null,
     "route": "consignment-request-cart/:entityId",
     "moduleId": "viewmodels/consignment-request-cart",
     "title": "Consignment Request Cart",
