@@ -76,6 +76,7 @@ Below is the suggested environment variables for development / testing where you
 ### for calculating product price from Snb Staging
 $env:RX_OST_SnbWebApp = "http://10.1.1.119:9001"
 $env:RX_OST_SnbWebApi = "http://10.1.1.119:9002/api"
+$env:RX_OST_SnbReadSqlConnectionString = "Data Source=10.1.1.120;Initial Catalog=SnBReadProdOst;User Id=sa;Password=P@ssw0rd;"
 
 ### for SAP-FI Posting (development)
 $env:RX_OST_AdminToken = "your-admin-token-here"
