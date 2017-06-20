@@ -248,11 +248,15 @@ objectbuilders.app],
                                     break;
                                 }
                             }
-                            
+
                             if (editIndex != -1) {
                                 consignment().Produk(entity().Consignments()[editIndex].Produk());
                                 consignment().Pemberi(entity().Consignments()[editIndex].Pemberi());
                                 consignment().Penerima(entity().Consignments()[editIndex].Penerima());
+                            }
+
+                            if (consignment().Penerima().Address().Country() != "MY") {
+                                consignment().Produk().IsInternational(true);
                             }
                         }
                     }, function (e) {
