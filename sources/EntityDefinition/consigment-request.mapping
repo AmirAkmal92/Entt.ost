@@ -276,7 +276,8 @@
              "BabyConnotesTotal":{"type":"integer","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false}
         }
     }
-
+,
+             "GenerateConnoteCounter":{"type":"integer","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false}
         }
     }
 }

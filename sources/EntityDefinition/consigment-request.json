@@ -3800,6 +3800,37 @@
         "AllowMultiple": true,
         "DefaultValue": null,
         "WebId": "d48c717b-676c-471f-9347-780d546118dc"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+        "TypeName": "System.Int32, mscorlib",
+        "IsNullable": false,
+        "IsNotIndexed": false,
+        "IsAnalyzed": false,
+        "IsFilterable": false,
+        "IsExcludeInAll": false,
+        "Boost": 0,
+        "FullName": null,
+        "PropertyAttribute": null,
+        "MemberCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "FieldPermissionCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": "GenerateConnoteCounter",
+        "AllowMultiple": false,
+        "DefaultValue": {
+          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+          "TypeName": "System.Int32, mscorlib",
+          "Value": 0,
+          "Name": "StartValue",
+          "Note": "",
+          "WebId": "7d648491-9cce-43f5-e155-30e942561186"
+        },
+        "WebId": "bc0eaa5a-1e64-4d16-9d05-5bccbbb64146"
       }
     ]
   },
@@ -3841,6 +3872,6 @@
   "Id": "consigment-request",
   "CreatedDate": "2016-10-29T07:26:06.8492482+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-06-16T10:45:24.3554811+08:00",
+  "ChangedDate": "2017-06-20T11:32:01.5554698+08:00",
   "WebId": "b8808d89-54c8-4d91-8396-7627974f1138"
 }
