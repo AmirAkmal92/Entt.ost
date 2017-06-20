@@ -56,14 +56,8 @@ namespace web.sph.App_Code
                 total += 5.30m;
             }
             item.Payment.TotalPrice = total;
-
-            // construct new reference number
-            var referenceNo = new StringBuilder();
-            referenceNo.Append($"{m_applicationName.ToUpper()}-");
-            referenceNo.Append(DateTime.Now.ToString("ddMMyy-ss-"));
-            referenceNo.Append((item.Id.Split('-'))[1]);
-            item.ReferenceNo = referenceNo.ToString();
-
+            
+            item.ReferenceNo = GenerateCustomRefNo(item);
             await SaveConsigmentRequest(item);
 
             var result = new
@@ -77,7 +71,7 @@ namespace web.sph.App_Code
             await Task.Delay(1500);
             return Accepted(result);
         }
-
+        
         [HttpPut]
         [Route("generate-con-notes/{id}")]
         public async Task<IHttpActionResult> GenerateAndSaveConNotes(string id)
@@ -101,8 +95,8 @@ namespace web.sph.App_Code
                         client.DefaultRequestHeaders.Add("X-User-Key", m_sdsSecretKey_GenerateConnote);
                         var url = new StringBuilder();
                         url.Append(m_sdsApi_GenerateConnote);
-                        url.Append("?Prefix=EU");
-                        //url.Append("?Prefix=ES");
+                        //url.Append("?Prefix=EU");
+                        url.Append("?Prefix=ES");
                         url.Append("&ApplicationCode=OST");
                         url.Append("&Secretid=ost@1234");
                         url.Append("&username=entt.ost");
@@ -154,6 +148,111 @@ namespace web.sph.App_Code
             {
                 resultSuccess = false;
                 resultStatus = "Consignment Request has not been paid";
+            }
+
+            var result = new
+            {
+                success = resultSuccess,
+                status = resultStatus,
+                id = item.Id
+            };
+
+            // wait until the worker process it
+            await Task.Delay(1500);
+            return Accepted(result);
+        }
+
+        [HttpPut]
+        [Route("generate-con-notes-est/{id}")]
+        public async Task<IHttpActionResult> GenerateAndSaveConNotesEst(string id)
+        {
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
+            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
+
+            var resultSuccess = true;
+            var resultStatus = "OK";
+            var item = lo.Source;
+            var totalEmptyConNote = 0;
+            var totalConsignments = item.Consignments.Count;
+            
+            Guid guidResult = Guid.Parse(id);
+            bool isValid = Guid.TryParse(item.ReferenceNo, out guidResult);
+
+            item.GenerateConnoteCounter += 1;
+
+            if (isValid || !item.ReferenceNo.Contains(m_applicationName.ToUpper()))
+            {
+                var referenceNo = new StringBuilder();
+                referenceNo.Append(GenerateCustomRefNo(item));
+                referenceNo.Append("-" + item.GenerateConnoteCounter.ToString());
+                item.ReferenceNo = referenceNo.ToString();
+            }
+            else
+            {
+                string[] splitId = item.ReferenceNo.Split('-');
+                splitId[4] = item.GenerateConnoteCounter.ToString();
+                item.ReferenceNo = splitId[0] + "-" + splitId[1] + "-" + splitId[2] + "-" + splitId[3] + "-" + splitId[4];
+            }
+
+            foreach (var a in item.Consignments)
+            {
+                if (a.ConNote == null && a.Penerima.Address.Postcode != null && a.Produk.Weight > 0)
+                {
+                    totalEmptyConNote++;
+                }
+            }
+
+            if (totalEmptyConNote > 0)
+            {
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Add("X-User-Key", m_sdsSecretKey_GenerateConnote);
+                var url = new StringBuilder();
+                url.Append(m_sdsApi_GenerateConnote);
+                //url.Append("?Prefix=EU");
+                url.Append("?Prefix=ES");
+                url.Append("&ApplicationCode=OST");
+                url.Append("&Secretid=ost@1234");
+                url.Append("&username=entt.ost");
+                url.Append($"&numberOfItem={totalEmptyConNote.ToString()}");
+                url.Append($"&Orderid={item.ReferenceNo}");
+
+                var output = await client.GetStringAsync($"{m_sdsBaseUrl}/{url.ToString()}");
+
+                var json = JObject.Parse(output);
+                var sdsConnote = new SdsConnote(json);
+                var countSdsConnote = 0;
+
+                if (sdsConnote.StatusCode == "01")
+                {
+                    if (sdsConnote.ConnoteNumbers.Count >= totalEmptyConNote)
+                    {
+                        for (int i = 0; i < totalConsignments; i++)
+                        {
+                            if (item.Consignments[i].ConNote == null && item.Consignments[i].Produk.Weight > 0 && item.Consignments[i].Penerima.Address.Postcode != null)
+                            {
+                                item.Consignments[i].ConNote = sdsConnote.ConnoteNumbers[countSdsConnote];
+                                countSdsConnote += 1;
+                            }
+                        }
+                        item.Payment.IsConNoteReady = true;
+                        await SaveConsigmentRequest(item);
+                    }
+                    else
+                    {
+                        resultSuccess = false;
+                        resultStatus = "Generated consignment note not enough";
+                    }
+                }
+                else
+                {
+                    resultSuccess = false;
+                    resultStatus = "StatusCode: " + sdsConnote.StatusCode + " Message: " + sdsConnote.Message;
+                }
+            }
+            else
+            {
+                resultSuccess = false;
+                resultStatus = "All Consignment note was already generated";
             }
 
             var result = new
@@ -370,9 +469,9 @@ namespace web.sph.App_Code
                         url.Append($"&totWeightF={totalWeight}");
                         url.Append($"&accNoF=ENTT-OST-{item.Id}");
                         string timeReady = item.Pickup.DateReady.ToShortTimeString();
-                        timeReady = sanitizeShortTimeString(timeReady);
+                        timeReady = SanitizeShortTimeString(timeReady);
                         string timeClose = item.Pickup.DateClose.ToShortTimeString();
-                        timeClose = sanitizeShortTimeString(timeClose);
+                        timeClose = SanitizeShortTimeString(timeClose);
                         url.Append($"&_readyF={timeReady}");
                         url.Append($"&_closeF={timeClose}");
 
@@ -562,7 +661,7 @@ namespace web.sph.App_Code
             }
         }
 
-        private static string sanitizeShortTimeString(string timeReady)
+        private static string SanitizeShortTimeString(string timeReady)
         {
             var format = timeReady.Split(':');
             if (format[0].Length == 1)
@@ -571,6 +670,15 @@ namespace web.sph.App_Code
             }
 
             return timeReady;
+        }
+
+        private string GenerateCustomRefNo(ConsigmentRequest item)
+        {
+            var referenceNo = new StringBuilder();
+            referenceNo.Append($"{m_applicationName.ToUpper()}-");
+            referenceNo.Append(DateTime.Now.ToString("ddMMyy-ss-"));
+            referenceNo.Append((item.Id.Split('-'))[1]);
+            return referenceNo.ToString();
         }
     }
 

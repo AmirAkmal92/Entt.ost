@@ -31,7 +31,7 @@
                         <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }" class="btn btn-circle yellow-casablanca">
                             <i class="fa fa-paper-plane"></i> Add Parcel
                         </a>
-                        <a class="btn btn-circle yellow-casablanca">
+                        <a class="btn btn-circle yellow-casablanca" data-bind="click: $root.generateConNotes">
                             <i class="fa fa-barcode"></i> Get Consignment Note
                         </a>
                     </h3>
@@ -109,16 +109,32 @@
                                             <!-- /ko -->
                                         </td>
                                         <td>
-                                            Connote
+                                            <!--ko if: ConNote() != null-->
+                                            <span data-bind="text: ConNote()"></span>
+                                            <!--/ko-->
+                                            <!--ko if: ConNote() == null-->
+                                            <span>Not Available</span>
+                                            <!--/ko-->
                                         </td>
                                         <td>
                                             <center>
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Edit" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Edit" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }, , css: { 'disabled': ConNote() }">
                                                     <i class="icon-note"></i>
                                                 </a>
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Delete" data-bind="click: $root.deleteConsignment">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Delete" data-bind="click: $root.deleteConsignment, css: { 'disabled': ConNote() }">
                                                     <i class="icon-trash"></i>
                                                 </a>
+                                                <!--ko ifnot: Produk().IsInternational-->
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="css: { 'disabled': !ConNote() }">
+                                                    <i class="icon-printer"></i>
+                                                </a>
+                                                <!--/ko-->
+                                                <!--ko if: Produk().IsInternational-->
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="css: { 'disabled': !ConNote() }">
+                                                    <i class="icon-printer"></i>
+                                                </a>
+                                                <!--/ko-->
+                                                
                                             </center>
                                         </td>
                                     </tr>
