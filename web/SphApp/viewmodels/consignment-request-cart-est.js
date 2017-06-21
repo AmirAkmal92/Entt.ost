@@ -58,7 +58,6 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                             app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "OST", ["Close"]);
                         }
                     });
-
             },
             defaultCommand = function () {
                 var data = ko.mapping.toJSON(entity),
@@ -108,6 +107,11 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                         }
                     });
             },
+            toggleShowBusyLoadingDialog = function (dialogtText) {
+                //toggle busy loading dialog
+                $('#show-busy-loading-dialog-text').text(dialogtText);
+                $('#show-busy-loading-dialog').modal('toggle');
+            },
             generateConNotes = function () {
                 var notComplete = false;
                 var connotesFilled = false;
@@ -130,6 +134,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     }
                     if (connotesFilled) {
                         var data = ko.mapping.toJSON(entity);
+                        toggleShowBusyLoadingDialog("Generating Tracking Number(s)");
                         return context.put(data, "/consignment-request/generate-con-notes-est/" + ko.unwrap(entity().Id) + "")
                             .fail(function (response) {
                                 app.showMessage("Sorry, but we cannot process tracking number for the Paid Order with Id : " + ko.unwrap(entity().Id), "OST", ["Close"]).done(function () {
@@ -137,6 +142,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                                 });
                             })
                             .then(function (result) {
+                                toggleShowBusyLoadingDialog("Done");
                                 console.log(result);
                                 if (result.success) {
                                     app.showMessage("Tracking number(s) successfully generated.", "OST", ["Close"]).done(function () {
@@ -153,8 +159,31 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     else {
                         app.showMessage("All parcels' consignment notes have been generated.", "OST", ["Close"]);
                     }
-                }
-                
+                }  
+            },
+            printNddConnote = function (data) {
+                var msg = "";
+                msg += "    <p>Before you start printing, please set your printer setting as below:</p>";
+                msg += "    <ul class='list-unstyled'>";
+                msg += "        <li><i class='fa fa-chrome'></i> <a href='../../Content/Files/Chrome_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Chrome guide</li>";
+                msg += "        <li><i class='fa fa-firefox'></i> <a href='../../Content/Files/FireFox_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Firefox guide</li>";
+                msg += "        <li><i class='fa fa-opera'></i> <a href='../../Content/Files/Opera_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Opera guide</li>";
+                msg += "    </ul>";
+                app.showMessage(msg, "OST", ["Close"]).done(function () {
+                    window.open('/ost/print-domestic-connote/consignment-requests/' + id() + '/consignments/' + data.WebId());
+                });
+            },
+            printEmsConnote = function (data) {
+                var msg = "";
+                msg += "    <p>Before you start printing, please set your printer setting as below:</p>";
+                msg += "    <ul class='list-unstyled'>";
+                msg += "        <li><i class='fa fa-chrome'></i> <a href='../../Content/Files/Chrome_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Chrome guide</li>";
+                msg += "        <li><i class='fa fa-firefox'></i> <a href='../../Content/Files/FireFox_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Firefox guide</li>";
+                msg += "        <li><i class='fa fa-opera'></i> <a href='../../Content/Files/Opera_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Opera guide</li>";
+                msg += "    </ul>";
+                app.showMessage(msg, "OST", ["Close"]).done(function () {
+                    window.open('/ost/print-international-connote/consignment-requests/' + id() + '/consignments/' + data.WebId());
+                });
             },
             attached = function (view) {
 
@@ -169,8 +198,10 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             errors: errors,
             entity: entity,
             deleteConsignment: deleteConsignment,
-            generateConNotes: generateConNotes
+            generateConNotes: generateConNotes,
+            printNddConnote: printNddConnote,
+            printEmsConnote: printEmsConnote,
+            toggleShowBusyLoadingDialog: toggleShowBusyLoadingDialog
         };
-
         return vm;
     });

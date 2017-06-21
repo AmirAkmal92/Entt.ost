@@ -34,6 +34,9 @@
                         <a class="btn btn-circle yellow-casablanca" data-bind="click: $root.generateConNotes">
                             <i class="fa fa-barcode"></i> Get Consignment Note
                         </a>
+                        <a class="btn btn-circle yellow-casablanca" data-bind="attr: { href: 'ost/print-all-connote/consignment-requests/' + Id()}, visible: Payment().IsConNoteReady()" target="_blank">
+                            <i class="fa fa-print"></i> Print All Consignment Notes
+                        </a>
                     </h3>
                 </div>
             </div>
@@ -56,9 +59,15 @@
                                         <span data-bind="text: Pickup().Address().Address1"></span>&nbsp;
                                         <span data-bind="text: Pickup().Address().Address2"></span>&nbsp;
                                         <br />
+                                        <!--ko if: Pickup().Address().Address3() != null-->
                                         <span data-bind="text: Pickup().Address().Address3"></span>&nbsp;
+                                        <!--/ko-->
+                                        <!--ko if: Pickup().Address().Address4() != null-->
                                         <span data-bind="text: Pickup().Address().Address4"></span>&nbsp;
+                                        <!--/ko-->
+                                        <!--ko if: Pickup().Address().Address3() != null || Pickup().Address().Address4() != null-->
                                         <br />
+                                        <!--/ko-->
                                         <span data-bind="text: Pickup().Address().City"></span>&nbsp;
                                         <span data-bind="text: Pickup().Address().State"></span>&nbsp;
                                         <br />
@@ -125,12 +134,12 @@
                                                     <i class="icon-trash"></i>
                                                 </a>
                                                 <!--ko ifnot: Produk().IsInternational-->
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="css: { 'disabled': !ConNote() }">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="click: $root.printNddConnote, css: { 'disabled': !ConNote() }">
                                                     <i class="icon-printer"></i>
                                                 </a>
                                                 <!--/ko-->
                                                 <!--ko if: Produk().IsInternational-->
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="css: { 'disabled': !ConNote() }">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="click: $root.printEmsConnote, css: { 'disabled': !ConNote() }">
                                                     <i class="icon-printer"></i>
                                                 </a>
                                                 <!--/ko-->
@@ -147,4 +156,8 @@
             </div>
         </div>
     </div>
+</div>
+<div>
+    <!-- ko compose : {view: 'show.busy.loading.dialog.view'}-->
+    <!--/ko-->
 </div>
