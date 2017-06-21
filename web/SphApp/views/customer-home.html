@@ -47,9 +47,15 @@
                                     <span data-bind="text: Profile().Address().Address1"></span>&nbsp;
                                     <span data-bind="text: Profile().Address().Address2"></span>&nbsp;
                                     <br />
+                                    <!--ko if: Profile().Address().Address3() != null-->
                                     <span data-bind="text: Profile().Address().Address3"></span>&nbsp;
+                                    <!--/ko-->
+                                    <!--ko if: Profile().Address().Address4() != null-->
                                     <span data-bind="text: Profile().Address().Address4"></span>&nbsp;
+                                    <!--/ko-->
+                                    <!--ko if: Profile().Address().Address3() != null || Profile().Address().Address4() != null-->
                                     <br />
+                                    <!--/ko-->
                                     <span data-bind="text: Profile().Address().Postcode"></span>&nbsp;
                                     <span data-bind="text: Profile().Address().City"></span>&nbsp;
                                     <br />
@@ -92,9 +98,15 @@
                                     <span data-bind="text: BillingAddress().Address().Address1"></span>&nbsp;
                                     <span data-bind="text: BillingAddress().Address().Address2"></span>&nbsp;
                                     <br />
+                                    <!--ko if: BillingAddress().Address().Address3() != null-->
                                     <span data-bind="text: BillingAddress().Address().Address3"></span>&nbsp;
+                                    <!--/ko-->
+                                    <!--ko if: BillingAddress().Address().Address4() != null-->
                                     <span data-bind="text: BillingAddress().Address().Address4"></span>&nbsp;
+                                    <!--/ko-->
+                                    <!--ko if: BillingAddress().Address().Address3() != null || BillingAddress().Address().Address4() != null-->
                                     <br />
+                                    <!--/ko-->
                                     <span data-bind="text: BillingAddress().Address().Postcode"></span>&nbsp;
                                     <span data-bind="text: BillingAddress().Address().City"></span>&nbsp;
                                     <br />
@@ -137,9 +149,15 @@
                                     <span data-bind="text: PickupAddress().Address().Address1"></span>&nbsp;
                                     <span data-bind="text: PickupAddress().Address().Address2"></span>&nbsp;
                                     <br />
+                                    <!--ko if: PickupAddress().Address().Address3() != null-->
                                     <span data-bind="text: PickupAddress().Address().Address3"></span>&nbsp;
+                                    <!--/ko-->
+                                    <!--ko if: PickupAddress().Address().Address4() != null-->
                                     <span data-bind="text: PickupAddress().Address().Address4"></span>&nbsp;
+                                    <!--/ko-->
+                                    <!--ko if: PickupAddress().Address().Address3() != null || PickupAddress().Address().Address4() != null-->
                                     <br />
+                                    <!--/ko-->
                                     <span data-bind="text: PickupAddress().Address().Postcode"></span>&nbsp;
                                     <span data-bind="text: PickupAddress().Address().City"></span>&nbsp;
                                     <br />
@@ -186,9 +204,15 @@
                                             <span data-bind="text: Profile().Address().Address1"></span>&nbsp;
                                             <span data-bind="text: Profile().Address().Address2"></span>&nbsp;
                                             <br />
+                                            <!--ko if: Profile().Address().Address3() != null-->
                                             <span data-bind="text: Profile().Address().Address3"></span>&nbsp;
+                                            <!--/ko-->
+                                            <!--ko if: Profile().Address().Address4() != null-->
                                             <span data-bind="text: Profile().Address().Address4"></span>&nbsp;
+                                            <!--/ko-->
+                                            <!--ko if: Profile().Address().Address3() != null || Profile().Address().Address4() != null-->
                                             <br />
+                                            <!--/ko-->
                                             <span data-bind="text: Profile().Address().Postcode"></span>&nbsp;
                                             <span data-bind="text: Profile().Address().City"></span>&nbsp;
                                             <br />
@@ -231,9 +255,15 @@
                                             <span data-bind="text: BillingAddress().Address().Address1"></span>&nbsp;
                                             <span data-bind="text: BillingAddress().Address().Address2"></span>&nbsp;
                                             <br />
+                                            <!--ko if: BillingAddress().Address().Address3() != null-->
                                             <span data-bind="text: BillingAddress().Address().Address3"></span>&nbsp;
+                                            <!--/ko-->
+                                            <!--ko if: BillingAddress().Address().Address4() != null-->
                                             <span data-bind="text: BillingAddress().Address().Address4"></span>&nbsp;
+                                            <!--/ko-->
+                                            <!--ko if: BillingAddress().Address().Address3() != null || BillingAddress().Address().Address4() != null-->
                                             <br />
+                                            <!--/ko-->
                                             <span data-bind="text: BillingAddress().Address().Postcode"></span>&nbsp;
                                             <span data-bind="text: BillingAddress().Address().City"></span>&nbsp;
                                             <br />
@@ -276,9 +306,15 @@
                                             <span data-bind="text: PickupAddress().Address().Address1"></span>&nbsp;
                                             <span data-bind="text: PickupAddress().Address().Address2"></span>&nbsp;
                                             <br />
+                                            <!--ko if: PickupAddress().Address().Address3() != null-->
                                             <span data-bind="text: PickupAddress().Address().Address3"></span>&nbsp;
+                                            <!--/ko-->
+                                            <!--ko if: PickupAddress().Address().Address4() != null-->
                                             <span data-bind="text: PickupAddress().Address().Address4"></span>&nbsp;
+                                            <!--/ko-->
+                                            <!--ko if: PickupAddress().Address().Address3() != null || PickupAddress().Address().Address4() != null-->
                                             <br />
+                                            <!--/ko-->
                                             <span data-bind="text: PickupAddress().Address().Postcode"></span>&nbsp;
                                             <span data-bind="text: PickupAddress().Address().City"></span>&nbsp;
                                             <br />
