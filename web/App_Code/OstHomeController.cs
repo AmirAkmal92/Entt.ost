@@ -9,17 +9,16 @@ namespace web.sph.App_Code
     public class OstHomeController : Controller
     {
         [Route("")]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             if (!User.Identity.IsAuthenticated)
                 return RedirectToAction("Login", "OstAccount");
-            var username = User.Identity.Name;
-            var directory = new SphDataContext();
-            var up = directory.LoadOneAsync<UserProfile>(u => u.UserName == username).Result;
+
+            UserProfile userProfile = await GetDesignation();
 
             var userDetail = new UserTypeModel
             {
-                Designation = up.Designation
+                Designation = userProfile.Designation
             };
 
             return View("Default", userDetail);
@@ -93,8 +92,28 @@ namespace web.sph.App_Code
         [Route("print-all-connote/consignment-requests/{crId}")]
         public async Task<ActionResult> AllConnote(string crId)
         {
+            UserProfile userProfile = await GetDesignation();
+            
             LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(crId);
             var item = lo.Source;
+
+            if (userProfile.Designation == "Contract customer")
+            {
+                var itemsToRemove = new ConsigmentRequest();
+                foreach (var temp in item.Consignments)
+                {
+                    if (temp.ConNote == null)
+                    {
+                        itemsToRemove.Consignments.Add(temp);
+                    }
+                }
+
+                foreach (var itemRemove in itemsToRemove.Consignments)
+                {
+                    item.Consignments.Remove(itemRemove);
+                }
+            }
+            
             return View(item);
         }
 
@@ -105,6 +124,14 @@ namespace web.sph.App_Code
             if (null == lo.Source)
                 lo = await repos.LoadOneAsync("ReferenceNo", id);
             return lo;
+        }
+
+        private async Task<UserProfile> GetDesignation()
+        {
+            var username = User.Identity.Name;
+            var directory = new SphDataContext();
+            var userProfile = await directory.LoadOneAsync<UserProfile>(p => p.UserName == username) ?? new UserProfile();
+            return userProfile;
         }
     }
 
