@@ -174,6 +174,7 @@ namespace web.sph.App_Code
             var item = lo.Source;
             var totalEmptyConNote = 0;
             var totalConsignments = item.Consignments.Count;
+            var orderId = item.ReferenceNo;
             
             Guid guidResult = Guid.Parse(id);
             bool isValid = Guid.TryParse(item.ReferenceNo, out guidResult);
@@ -184,14 +185,12 @@ namespace web.sph.App_Code
             {
                 var referenceNo = new StringBuilder();
                 referenceNo.Append(GenerateCustomRefNo(item));
-                referenceNo.Append("-" + item.GenerateConnoteCounter.ToString());
+                orderId = referenceNo.ToString();
                 item.ReferenceNo = referenceNo.ToString();
             }
             else
             {
-                string[] splitId = item.ReferenceNo.Split('-');
-                splitId[4] = item.GenerateConnoteCounter.ToString();
-                item.ReferenceNo = splitId[0] + "-" + splitId[1] + "-" + splitId[2] + "-" + splitId[3] + "-" + splitId[4];
+                orderId = orderId + item.GenerateConnoteCounter.ToString();
             }
 
             foreach (var a in item.Consignments)
@@ -214,7 +213,7 @@ namespace web.sph.App_Code
                 url.Append("&Secretid=ost@1234");
                 url.Append("&username=entt.ost");
                 url.Append($"&numberOfItem={totalEmptyConNote.ToString()}");
-                url.Append($"&Orderid={item.ReferenceNo}");
+                url.Append($"&Orderid={orderId}");
 
                 var output = await client.GetStringAsync($"{m_sdsBaseUrl}/{url.ToString()}");
 
