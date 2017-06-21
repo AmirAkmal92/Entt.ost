@@ -258,6 +258,18 @@ objectbuilders.app],
                             if (consignment().Penerima().Address().Country() != "MY") {
                                 consignment().Produk().IsInternational(true);
                             }
+
+                            if (consignment().Produk().Est().ValueAddedService1() == undefined) {
+                                consignment().Produk().Est().ValueAddedService1("none");
+                            }
+
+                            if (consignment().Produk().Est().ValueAddedService2() == undefined) {
+                                consignment().Produk().Est().ValueAddedService2("none");
+                            }
+
+                            if (consignment().Produk().Est().ValueAddedService3() == undefined) {
+                                consignment().Produk().Est().ValueAddedService3("none");
+                            }
                         }
                     }, function (e) {
                         if (e.status == 404) {
