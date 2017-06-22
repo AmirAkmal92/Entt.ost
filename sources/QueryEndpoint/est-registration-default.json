@@ -1,0 +1,31 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "EstRegistrationDefaultQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "Default",
+  "Route": "",
+  "IsReturnSource": "",
+  "Entity": "EstRegistration",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "est-registrations",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "est-registration-default",
+  "CreatedDate": "2017-06-22T12:55:34.7342832+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-06-22T12:56:34.0691388+08:00",
+  "WebId": "d6982d54-65b9-49cd-93e1-31d2a80f88d3"
+}
