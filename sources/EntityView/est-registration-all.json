@@ -1,0 +1,43 @@
+{
+  "$type": "Bespoke.Sph.Domain.EntityView, domain.sph",
+  "ViewColumnCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ViewColumn, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "ConditionalFormattingCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "Performer": {
+    "$type": "Bespoke.Sph.Domain.Performer, domain.sph",
+    "UserProperty": null,
+    "Value": null,
+    "IsPublic": false,
+    "WebId": null
+  },
+  "RouteParameterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.RouteParameter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "IconClass": null,
+  "IconStoreId": null,
+  "EntityDefinitionId": "est-registration",
+  "Name": "All EstRegistrations",
+  "Route": "est-registration-all",
+  "Note": null,
+  "IsPublished": false,
+  "Visibilty": null,
+  "TileColour": null,
+  "CountMessage": null,
+  "Entity": "EstRegistration",
+  "Partial": null,
+  "Template": null,
+  "DisplayOnDashboard": false,
+  "Endpoint": null,
+  "CreatedBy": "admin",
+  "Id": "est-registration-all",
+  "CreatedDate": "2017-06-21T13:04:26.8700361+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-06-21T13:04:26.8700361+08:00",
+  "WebId": "3b02fc43-4179-49e4-9387-7f0faeec3998"
+}
