@@ -1,0 +1,40 @@
+{
+  "$type": "Bespoke.Sph.Domain.OperationEndpoint, domain.sph",
+  "EntityPermissionCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.EntityPermission, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "Rules": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "SetterActionChildCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.SetterActionChild, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "PatchPathCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.PatchSetter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "ReferencedAssemblyCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ReferencedAssembly, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "Name": "Default",
+  "Route": "",
+  "IsHttpPut": true,
+  "IsHttpPatch": false,
+  "IsHttpPost": true,
+  "IsHttpDelete": true,
+  "Note": "",
+  "Entity": "EstRegistration",
+  "Resource": "est-registrations",
+  "IsPublished": true,
+  "IsConflictDetectionEnabled": false,
+  "CreatedBy": "admin",
+  "Id": "est-registration-default",
+  "CreatedDate": "2017-06-23T08:48:49.2030771+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-06-23T08:49:18.1390548+08:00",
+  "WebId": "ec6698de-a597-4b03-8f95-9f3f9f539453"
+}
