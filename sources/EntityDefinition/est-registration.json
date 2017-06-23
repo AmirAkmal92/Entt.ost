@@ -1358,7 +1358,7 @@
     "CodeNamespace": "Bespoke.Ost.IntegrationApis",
     "FullSearchEndpoint": {
       "$type": "Bespoke.Sph.Domain.FullSearchEndpoint, domain.sph",
-      "IsAllowed": false,
+      "IsAllowed": true,
       "WebId": null
     },
     "OdataEndpoint": {
@@ -1368,7 +1368,7 @@
     },
     "EntityResourceEndpoint": {
       "$type": "Bespoke.Sph.Domain.EntityResourceEndpoint, domain.sph",
-      "IsAllowed": false,
+      "IsAllowed": true,
       "FilterExpression": "",
       "WebId": null
     },
@@ -1376,7 +1376,7 @@
   },
   "Name": "EstRegistration",
   "Plural": "EstRegistrations",
-  "IconClass": "",
+  "IconClass": "fa fa-wpforms",
   "RecordName": "UserId",
   "IsPublished": true,
   "TreatDataAsSource": false,
@@ -1387,6 +1387,6 @@
   "Id": "est-registration",
   "CreatedDate": "2017-06-21T13:04:26.8700361+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-06-22T12:44:29.2497136+08:00",
+  "ChangedDate": "2017-06-23T08:48:51.2931708+08:00",
   "WebId": "f948cbc8-1b4b-4712-bc5a-65746f008b2c"
 }
