@@ -1,0 +1,27 @@
+<h1>All EstRegistrations</h1>
+<div class="row">
+    <div class="col-md-8">
+        <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list}">
+            <thead>
+                <tr>
+                    <th>User Id</th>
+                    <th>Contact Person</th>
+                    <th>IC</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach :list">
+                <tr data-bind="">
+                    <td>
+                        <a data-bind="attr : {href:'#est-registration-details' + '/' + Id, title:'User Id' }">
+                            <i class="fa fa-wpforms"></i>
+                                                        <span data-bind="text:UserId"></span>
+                        </a>
+                    </td>
+                    <td data-bind="text:PersonalDetail.ContactPersonName"></td>
+                    <td data-bind="text:PersonalDetail.ContactPersonIc"></td>
+                </tr>
+            </tbody>
+        </table>
+        <img src="/Images/spinner-md.gif" alt="loading" class="absolute-center" data-bind="visible: isBusy" />
+    </div>
+</div>

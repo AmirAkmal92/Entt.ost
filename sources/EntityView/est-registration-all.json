@@ -2,7 +2,59 @@
   "$type": "Bespoke.Sph.Domain.EntityView, domain.sph",
   "ViewColumnCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ViewColumn, domain.sph]], domain.sph",
-    "$values": []
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
+        "ConditionalFormattingCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Path": "UserId",
+        "Header": "User Id",
+        "Sort": "",
+        "IsLinkColumn": true,
+        "FormRoute": "est-registration-details",
+        "IconCssClass": "fa fa-wpforms",
+        "IconStoreId": "",
+        "Format": "text:{0}",
+        "RouteValueField": "",
+        "WebId": "4a412fd8-ab82-4ff9-80f0-90aa2ef7da08"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
+        "ConditionalFormattingCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Path": "PersonalDetail.ContactPersonName",
+        "Header": "Contact Person",
+        "Sort": "",
+        "IsLinkColumn": false,
+        "FormRoute": null,
+        "IconCssClass": "",
+        "IconStoreId": "",
+        "Format": "text:{0}",
+        "RouteValueField": "",
+        "WebId": "eff769a7-1718-44d6-8484-7e8dc093699f"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
+        "ConditionalFormattingCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Path": "PersonalDetail.ContactPersonIc",
+        "Header": "IC",
+        "Sort": "",
+        "IsLinkColumn": false,
+        "FormRoute": null,
+        "IconCssClass": "",
+        "IconStoreId": "",
+        "Format": "text:{0}",
+        "RouteValueField": "",
+        "WebId": "51708396-4636-46d6-85f8-ba47402a7b94"
+      }
+    ]
   },
   "ConditionalFormattingCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
@@ -10,9 +62,9 @@
   },
   "Performer": {
     "$type": "Bespoke.Sph.Domain.Performer, domain.sph",
-    "UserProperty": null,
+    "UserProperty": "",
     "Value": null,
-    "IsPublic": false,
+    "IsPublic": true,
     "WebId": null
   },
   "RouteParameterCollection": {
@@ -25,19 +77,19 @@
   "Name": "All EstRegistrations",
   "Route": "est-registration-all",
   "Note": null,
-  "IsPublished": false,
+  "IsPublished": true,
   "Visibilty": null,
-  "TileColour": null,
+  "TileColour": "bblue",
   "CountMessage": null,
   "Entity": "EstRegistration",
   "Partial": null,
   "Template": null,
   "DisplayOnDashboard": false,
-  "Endpoint": null,
+  "Endpoint": "est-registration-default",
   "CreatedBy": "admin",
   "Id": "est-registration-all",
   "CreatedDate": "2017-06-21T13:04:26.8700361+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-06-21T13:04:26.8700361+08:00",
+  "ChangedDate": "2017-06-23T09:59:29.8271362+08:00",
   "WebId": "3b02fc43-4179-49e4-9387-7f0faeec3998"
 }
