@@ -103,12 +103,3 @@ You may change Track N Trace back to production mode by uncommenting this line:
 
 ```
 in `...\web\App_Code\TrackTraceController.cs`.
-
-2. Staging mode only support "ES" for connote prefix. 
-You may change connote prefix by swapping between "EU" and "ES":
-
-```
-//url.Append("?Prefix=EU");
-url.Append("?Prefix=ES");
-```
-in `...\web\App_Code\CustomConsignmentRequestController.cs`
