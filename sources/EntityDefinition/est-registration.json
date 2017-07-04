@@ -317,6 +317,54 @@
           "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
           "$values": [
             {
+              "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+              "TypeName": "System.String, mscorlib",
+              "IsNullable": false,
+              "IsNotIndexed": false,
+              "IsAnalyzed": false,
+              "IsFilterable": false,
+              "IsExcludeInAll": false,
+              "Boost": 0,
+              "FullName": null,
+              "PropertyAttribute": null,
+              "MemberCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "FieldPermissionCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "Name": "ContactPersonName",
+              "AllowMultiple": false,
+              "DefaultValue": null,
+              "WebId": "f8ad4156-88c9-4465-bfca-25ec33c400fd"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+              "TypeName": "System.String, mscorlib",
+              "IsNullable": false,
+              "IsNotIndexed": false,
+              "IsAnalyzed": false,
+              "IsFilterable": false,
+              "IsExcludeInAll": false,
+              "Boost": 0,
+              "FullName": null,
+              "PropertyAttribute": null,
+              "MemberCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "FieldPermissionCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "Name": "ContactPersonIc",
+              "AllowMultiple": false,
+              "DefaultValue": null,
+              "WebId": "d849c27d-00ac-45e9-f964-e1bdf0f4acef"
+            },
+            {
               "$type": "Bespoke.Sph.Domain.ValueObjectMember, domain.sph",
               "MemberCollection": {
                 "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
@@ -1376,7 +1424,7 @@
   },
   "Name": "EstRegistration",
   "Plural": "EstRegistrations",
-  "IconClass": "",
+  "IconClass": "fa fa-wpforms",
   "RecordName": "UserId",
   "IsPublished": true,
   "TreatDataAsSource": false,
@@ -1387,6 +1435,6 @@
   "Id": "est-registration",
   "CreatedDate": "2017-06-21T13:04:26.8700361+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-06-22T12:54:06.4680709+08:00",
+  "ChangedDate": "2017-06-23T09:36:24.7642952+08:00",
   "WebId": "f948cbc8-1b4b-4712-bc5a-65746f008b2c"
 }

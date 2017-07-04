@@ -1,0 +1,77 @@
+<h1 data-i18n="Est Registration Details">Est Registration Details</h1>
+<div id="error-list" class="row" data-bind="visible:errors().length">
+    <!-- ko foreach : errors -->
+    <div class="col-sm-8 col-sm-offset-2 alert alert-dismissable alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <i class="fa fa-exclamation"></i>
+        <span data-bind="text:Message"></span>
+    </div>
+    <div class="col-sm-2"></div>
+    <!-- /ko-->
+</div>
+<div class="row">
+    <div class="col-sm-8">
+<form class="form-horizontal" data-bind="with : entity" id="est-registration-details-form">
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="User Id" for="9b3c79c1-0930-4c80-a549-d86092fdd348" class="col-md-4">User Id</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: UserId"
+                   id="9b3c79c1-0930-4c80-a549-d86092fdd348" type="text" name="UserId" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Contact Person Name" for="8a79dca9-039b-4e32-df45-06ff5e344145" class="col-md-4">Contact Person Name</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: PersonalDetail().ContactPersonName"
+                   id="8a79dca9-039b-4e32-df45-06ff5e344145" type="text" name="PersonalDetail.ContactPersonName" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Contact Person IC" for="bb4dd593-99ad-4944-fbac-65f8de3df1eb" class="col-md-4">Contact Person IC</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: PersonalDetail().ContactPersonIc"
+                   id="bb4dd593-99ad-4944-fbac-65f8de3df1eb" type="text" name="PersonalDetail.ContactPersonIc" />
+        </div>
+    </div>
+<div data-bind="visible:true">
+    <table class="table table-condensed table-striped">
+        <thead>
+            <tr>
+                    <th data-i18n="Document">Document</th>
+                    <th data-i18n="Download">Download</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach :SupportingDocument">
+            <tr>
+                    <td>
+    <input class="form-control "
+           data-bind="kendoUpload : DocumentId, visible :true"
+           id="" type="file" name="files" />
+                    </td>
+                    <td>
+    <a data-bind="attr : {'href':'/sph/binarystore/get/' + DocumentId()}, visible:true" download>
+        Download
+    </a>
+                    </td>
+                <td>
+                    <a title="remove" href="#" data-bind="click : $parent.removeChildItem.call($parent,$parent.SupportingDocument, $data)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a data-i18n="Supporting Document" class="btn btn-link" data-bind="click : addChildItem(SupportingDocument, bespoke.Ost_estRegistration.domain.SupportingDocument)">
+        <i class="fa fa-plus-circle"></i>
+        Supporting Document
+    </a>
+</div>
+</form>
+    </div>
+    <div class="col-sm-4">
+    </div>
+</div>
