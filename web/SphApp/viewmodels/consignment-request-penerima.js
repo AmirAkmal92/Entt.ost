@@ -76,13 +76,16 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     });
                 }
 
-                // always check for pickup schedule
-                if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
-                } else {
-                    app.showMessage("Pickup has been scheduled. No more changes are allowed to the Recipient. You may proceed to make Payment now.", "OST", ["Close"]).done(function () {
-                        router.navigate("consignment-request-summary/" + crId);
-                    });
+                if (config.profile.Designation != "Contract customer") {
+                    // always check for pickup schedule
+                    if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
+                    } else {
+                        app.showMessage("Pickup has been scheduled. No more changes are allowed to the Recipient. You may proceed to make Payment now.", "OST", ["Close"]).done(function () {
+                            router.navigate("consignment-request-summary/" + crId);
+                        });
+                    }
                 }
+                
             }, function (e) {
                 if (e.status == 404) {
                     app.showMessage("Sorry, but we cannot find any ConsigmentRequest with Id : " + crId, "OST", ["Close"]).done(function () {
