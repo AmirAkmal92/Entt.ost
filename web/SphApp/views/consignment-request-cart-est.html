@@ -43,11 +43,19 @@
             <div class="portlet-body">
                 <div class="row" data-bind="visible: Pickup().Address().Postcode() != undefined">
                     <div class="col-md-6">
-                        <div class="panel panel-danger">
-                            <div class="panel-heading bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase">
-                                <span>PICKUP INFORMATION</span>
-                            </div>
+                        <div class="panel panel-default">
                             <div class="panel-body">
+                                <div class="col-md-12">
+                                    <h4>Pickup Number</h4>
+                                    <address>
+                                        <!--ko if: Pickup().Number() == undefined-->
+                                        <span>Pending pickup confirmation</span><br />
+                                        <!--/ko-->
+                                        <!--ko if: Pickup().Number() != null-->
+                                        <span class="text-capitalize" data-bind="text: Pickup().Number"></span><br />
+                                        <!--/ko-->
+                                    </address>
+                                </div>
                                 <div class="col-md-12">
                                     <h4>Pickup Address</h4>
                                     <address>
@@ -55,7 +63,7 @@
                                         <span data-bind="text: Pickup().ContactInformation().Email"></span>
                                     </address>
                                     <address>
-                                        <strong><span data-bind="text: Pickup().CompanyName"></span></strong><a class="btn btn-circle btn-icon-only btn-default pull-right" data-bind="attr: { href: 'ost#consignment-request-pickup/' + Id() }" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a><br />
+                                        <strong><span data-bind="text: Pickup().CompanyName"></span></strong><br />
                                         <span data-bind="text: Pickup().Address().Address1"></span>&nbsp;
                                         <span data-bind="text: Pickup().Address().Address2"></span>&nbsp;
                                         <br />
@@ -74,9 +82,24 @@
                                         <span data-bind="text: Pickup().Address().Postcode"></span>&nbsp;
                                         <span data-bind="text: Pickup().Address().Country"></span>&nbsp;
                                         <br />
-                                        <abbr title="Contact Number">Phone 1:</abbr> <span data-bind="text: Pickup().ContactInformation().ContactNumber"></span><br />
+                                        <abbr title="Contact Number">Phone 1:</abbr> <span data-bind="text: Pickup().ContactInformation().ContactNumber"></span>
+                                        <!--ko if: Pickup().ContactInformation().AlternativeContactNumber() != null-->
+                                        <br />
                                         <abbr title="Alternative Contact Number">Phone 2:</abbr> <span data-bind="text: Pickup().ContactInformation().AlternativeContactNumber"></span>
+                                        <!--/ko-->
                                     </address>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <span class="pull-right">
+                                            <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="attr: { href: 'ost#consignment-request-pickup/' + Id() }" title="Edit">
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                            </a>
+                                            <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="click: $root.launchSchedulerDetailDialog" title="Request for Pickup">
+                                                <i class="fa fa-calendar-minus-o"></i>
+                                            </a>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +166,7 @@
                                                     <i class="icon-printer"></i>
                                                 </a>
                                                 <!--/ko-->
-                                                
+
                                             </center>
                                         </td>
                                     </tr>
@@ -159,5 +182,7 @@
 </div>
 <div>
     <!-- ko compose : {view: 'show.busy.loading.dialog.view'}-->
+    <!--/ko-->
+    <!-- ko compose : {view: 'scheduler.detail.partial.view'}-->
     <!--/ko-->
 </div>
