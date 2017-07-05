@@ -361,7 +361,10 @@ namespace web.sph.App_Code
             var resultStatus = "OK";
             var item = lo.Source;
 
-            if (!item.Payment.IsPaid)
+            UserProfile userProfile = await GetDesignation();
+
+            if ((userProfile.Designation == "No contract customer" && item.Payment.IsPaid)
+                || (userProfile.Designation == "Contract customer" && !item.Payment.IsPaid))
             {
                 if (string.IsNullOrEmpty(item.Pickup.Number))
                 {
@@ -676,6 +679,14 @@ namespace web.sph.App_Code
             referenceNo.Append(DateTime.Now.ToString("ddMMyy-ss-"));
             referenceNo.Append((item.Id.Split('-'))[1]);
             return referenceNo.ToString();
+        }
+
+        private async Task<UserProfile> GetDesignation()
+        {
+            var username = User.Identity.Name;
+            var directory = new SphDataContext();
+            var userProfile = await directory.LoadOneAsync<UserProfile>(p => p.UserName == username) ?? new UserProfile();
+            return userProfile;
         }
     }
 
