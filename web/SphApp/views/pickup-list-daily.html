@@ -1,8 +1,28 @@
 <h1>Pickup List All</h1>
 <!--<h1>Pickup List Daily</h1>-->
 <div class="row">
+    <div class="well well-sm pull-right">
+        <div class="btn-group btn-group-xs">
+            <a class="btn btn-primary" data-bind="click: previousPage, css: { 'disabled': !hasPreviousPage() }">&laquo;</a>
+            <a class="btn btn-default disabled">Page <span data-bind="text: page">1</span></a>
+            <a class="btn btn-primary" data-bind="click: nextPage, css: { 'disabled': !hasNextPage() }">&raquo;</a>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+        <select id="pager-page-size" data-bind="options: availablePageSize, value: size"></select>
+        items per page
+        &nbsp;&nbsp;&nbsp;
+        <span data-bind="text: (1 + ((page() - 1) * size()))"></span>
+        -
+        <span data-bind="text: ((size() + ((page() - 1) * size())) < count()) ? (size() + ((page() - 1) * size())) : count()"></span>
+        of
+        <span data-bind="text: count()"></span>
+        items
+        &nbsp;&nbsp;&nbsp;
+    </div>
+</div>
+<div class="row">
     <div class="col-md-12">
-        <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list}">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Order No</th>
@@ -17,7 +37,6 @@
                 </tr>
             </thead>
             <tbody data-bind="foreach :list">
-                <!--ko if: Payment.IsPaid-->
                 <tr data-bind="">
                     <td data-bind="text:ReferenceNo"></td>
                     <td data-bind="text:Pickup.Number"></td>
@@ -103,7 +122,6 @@
                         </table>
                     </td>
                 </tr>
-                <!--/ko-->
             </tbody>
         </table>
         <img src="/Images/spinner-md.gif" alt="loading" class="absolute-center" data-bind="visible: isBusy" />
