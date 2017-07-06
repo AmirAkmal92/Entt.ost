@@ -56,7 +56,7 @@ namespace web.sph.App_Code
                 total += 5.30m;
             }
             item.Payment.TotalPrice = total;
-            
+
             item.ReferenceNo = GenerateCustomRefNo(item);
             await SaveConsigmentRequest(item);
 
@@ -71,7 +71,7 @@ namespace web.sph.App_Code
             await Task.Delay(1500);
             return Accepted(result);
         }
-        
+
         [HttpPut]
         [Route("generate-con-notes/{id}")]
         public async Task<IHttpActionResult> GenerateAndSaveConNotes(string id)
@@ -174,7 +174,7 @@ namespace web.sph.App_Code
             var totalEmptyConNote = 0;
             var totalConsignments = item.Consignments.Count;
             var orderId = item.ReferenceNo;
-            
+
             Guid guidResult = Guid.Parse(id);
             bool isValid = Guid.TryParse(item.ReferenceNo, out guidResult);
 
@@ -360,11 +360,8 @@ namespace web.sph.App_Code
             var resultSuccess = true;
             var resultStatus = "OK";
             var item = lo.Source;
-
-            UserProfile userProfile = await GetDesignation();
-
-            if ((userProfile.Designation == "No contract customer" && item.Payment.IsPaid)
-                || (userProfile.Designation == "Contract customer" && !item.Payment.IsPaid))
+            
+            if (!item.Payment.IsPaid)
             {
                 if (string.IsNullOrEmpty(item.Pickup.Number))
                 {
@@ -423,6 +420,37 @@ namespace web.sph.App_Code
         }
 
         [HttpPut]
+        [Route("renew-pickup/{id}")]
+        public async Task<IHttpActionResult> RenewPickup(string id)
+        {
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
+            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
+            
+            var item = lo.Source;
+
+            item.Pickup.DateReady = DateTime.MinValue;
+            item.Pickup.DateClose = DateTime.MinValue;
+            item.Pickup.Number = null;
+            item.Pickup.TotalParcel = 0;
+            item.Pickup.TotalQuantity = 0;
+            item.Pickup.TotalWeight = 0;
+            item.Payment.IsPickupScheduled = false;
+
+            await SaveConsigmentRequest(item);
+
+            var result = new
+            {
+                success = true,
+                status = "OK",
+                id = item.Id
+            };
+
+            // wait until the worker process it
+            await Task.Delay(1500);
+            return Accepted(result);
+        }
+
+        [HttpPut]
         [Route("schedule-pickup/{id}")]
         public async Task<IHttpActionResult> ScheduleAndSavePickup(string id)
         {
@@ -433,7 +461,10 @@ namespace web.sph.App_Code
             var resultStatus = "OK";
             var item = lo.Source;
 
-            if (item.Payment.IsPaid)
+            UserProfile userProfile = await GetDesignation();
+
+            if ((userProfile.Designation == "No contract customer" && item.Payment.IsPaid)
+                || (userProfile.Designation == "Contract customer" && !item.Payment.IsPaid))
             {
                 if (!item.Payment.IsPickupScheduled)
                 {
@@ -458,15 +489,9 @@ namespace web.sph.App_Code
                         url.Append($"&posCodeF={item.Pickup.Address.Postcode}");
                         url.Append("&totDocumentF=0");
                         url.Append("&totMerchandiseF=0");
-                        var totalConsignments = item.Consignments.Count;
-                        url.Append($"&totParcelF={totalConsignments}");
-                        url.Append($"&totQuantityF={totalConsignments}");
-                        decimal totalWeight = 0;
-                        foreach (var consignment in item.Consignments)
-                        {
-                            totalWeight += consignment.Produk.Weight;
-                        }
-                        url.Append($"&totWeightF={totalWeight}");
+                        url.Append($"&totParcelF={item.Pickup.TotalParcel}");
+                        url.Append($"&totQuantityF={item.Pickup.TotalQuantity}");
+                        url.Append($"&totWeightF={item.Pickup.TotalWeight}");
                         url.Append($"&accNoF=ENTT-OST-{item.Id}");
                         string timeReady = item.Pickup.DateReady.ToShortTimeString();
                         timeReady = SanitizeShortTimeString(timeReady);
@@ -503,9 +528,9 @@ namespace web.sph.App_Code
                             item.Pickup.Number = sdsPickup.PickupNumber;
                             item.Pickup.TotalDocument = 0;
                             item.Pickup.TotalMerchandise = 0;
-                            item.Pickup.TotalParcel = totalConsignments;
-                            item.Pickup.TotalQuantity = totalConsignments;
-                            item.Pickup.TotalWeight = totalWeight;
+                            item.Pickup.TotalParcel = item.Pickup.TotalParcel;
+                            item.Pickup.TotalQuantity = item.Pickup.TotalQuantity;
+                            item.Pickup.TotalWeight = item.Pickup.TotalWeight;
                             item.Payment.IsPickupScheduled = true;
                             await SaveConsigmentRequest(item);
                         }
