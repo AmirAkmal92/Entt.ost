@@ -49,7 +49,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                                 .then(function (result) {
                                     console.log(result);
                                     if (result.success) {
-                                        activate(ko.unwrap(entity().Id);
+                                        activate(ko.unwrap(entity().Id));
                                     } else {
                                         console.log(result.status);
                                     }
