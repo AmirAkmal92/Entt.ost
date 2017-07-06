@@ -1,0 +1,111 @@
+<h1>Pickup List All</h1>
+<!--<h1>Pickup List Daily</h1>-->
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list}">
+            <thead>
+                <tr>
+                    <th>Order No</th>
+                    <th>Pickup No</th>
+                    <th>Contact Person</th>
+                    <th>Pickup Address</th>
+                    <th>Pickup Date</th>
+                    <th>Pickup Time</th>
+                    <th>Quantity</th>
+                    <th>Weight (kg)</th>
+                    <th>Consignments</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach :list">
+                <!--ko if: Payment.IsPaid-->
+                <tr data-bind="">
+                    <td data-bind="text:ReferenceNo"></td>
+                    <td data-bind="text:Pickup.Number"></td>
+                    <td>
+                        <span data-bind="text: Pickup.ContactPerson"></span>
+                        <br />
+                        <span data-bind="text: Pickup.ContactInformation.ContactNumber"></span>
+                    </td>
+                    <td>
+                        <span data-bind="text: Pickup.Address.Address1"></span>
+                        &nbsp;<span data-bind="text: Pickup.Address.Address2"></span>
+                        &nbsp;<span data-bind="text: Pickup.Address.Address3"></span>
+                        &nbsp;<span data-bind="text: Pickup.Address.Address4"></span>
+                        &nbsp;<span data-bind="text: Pickup.Address.Postcode"></span>
+                        &nbsp;<span data-bind="text: Pickup.Address.City"></span>
+                        &nbsp;<span data-bind="text: Pickup.Address.State"></span>
+                        &nbsp;<span data-bind="text: Pickup.Address.Country"></span>
+                    </td>
+                    <td>
+                        <span data-bind="date:{ value: Pickup.DateReady, format:'D/M/YYYY'}"></span>
+                    </td>
+                    <td>
+                        <span data-bind="date:{ value: Pickup.DateReady, format:'HH:mm'}"></span>-<span data-bind="date:{ value: Pickup.DateClose, format:'HH:mm'}"></span>
+                    </td>
+                    <td data-bind="text:Consignments.length"></td>
+                    <td data-bind="text:Pickup.TotalWeight"></td>
+                    <td>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Consignment No</th>
+                                    <th>Sender</th>
+                                    <th>Receiver</th>
+                                    <th>Actual Weight (kg)</th>
+                                    <th>Volumetric Weight (kg)</th>
+                                    <th>Product</th>
+                                    <th>Comm. Invoice</th>
+                                    <th>Insurance</th>
+                                    <th>Price (RM)</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: Consignments">
+                                <tr>
+                                    <td><span data-bind="text: ConNote"></span></td>
+                                    <td>
+                                        <span data-bind="text: Pemberi.ContactPerson"></span>
+                                        &nbsp;<span data-bind="text: Pemberi.CompanyName"></span>
+                                        &nbsp;<span data-bind="text: Pemberi.Address.Address1"></span>
+                                        &nbsp;<span data-bind="text: Pemberi.Address.Address2"></span>
+                                        &nbsp;<span data-bind="text: Pemberi.Address.Address3"></span>
+                                        &nbsp;<span data-bind="text: Pemberi.Address.Address4"></span>
+                                        &nbsp;<span data-bind="text: Pemberi.Address.Postcode"></span>
+                                        &nbsp;<span data-bind="text: Pemberi.Address.City"></span>
+                                        &nbsp;<span data-bind="text: Pemberi.Address.State"></span>
+                                        &nbsp;<span data-bind="text: Pemberi.Address.Country"></span>
+                                    </td>
+                                    <td>
+                                        <span data-bind="text: Penerima.ContactPerson"></span>
+                                        &nbsp;<span data-bind="text: Penerima.CompanyName"></span>
+                                        &nbsp;<span data-bind="text: Penerima.Address.Address1"></span>
+                                        &nbsp;<span data-bind="text: Penerima.Address.Address2"></span>
+                                        &nbsp;<span data-bind="text: Penerima.Address.Address3"></span>
+                                        &nbsp;<span data-bind="text: Penerima.Address.Address4"></span>
+                                        &nbsp;<span data-bind="text: Penerima.Address.Postcode"></span>
+                                        &nbsp;<span data-bind="text: Penerima.Address.City"></span>
+                                        &nbsp;<span data-bind="text: Penerima.Address.State"></span>
+                                        &nbsp;<span data-bind="text: Penerima.Address.Country"></span>
+                                    </td>
+                                    <td><span data-bind="text: Bill.ActualWeight"></span></td>
+                                    <td><span data-bind="text: Bill.VolumetricWeight"></span></td>
+                                    <td><span data-bind="text: Produk.Name"></span></td>
+                                    <td>
+                                        <span data-bind="if: Produk.IsInternational">Yes</span>
+                                        <span data-bind="ifnot: Produk.IsInternational">No</span>
+                                    </td>
+                                    <td>
+                                        <span data-bind="if: Bill.AddOnsA.length == 0">No</span>
+                                        <span data-bind="ifnot: Bill.AddOnsA.length == 0">Yes</span>
+                                    </td>
+                                    <td><span data-bind="text: Produk.Price"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <!--/ko-->
+            </tbody>
+        </table>
+        <img src="/Images/spinner-md.gif" alt="loading" class="absolute-center" data-bind="visible: isBusy" />
+    </div>
+</div>
