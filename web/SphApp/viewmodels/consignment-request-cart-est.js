@@ -39,6 +39,23 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                             router.navigate("customer-home");
                         });
                     }
+                    var data = ko.mapping.toJSON(entity);
+                    if (entity().Pickup().DateClose() < moment().format()) {
+                        if (entity().Pickup().Number() != null) {
+                            context.put(data, "/consignment-request/renew-pickup/" + ko.unwrap(entity().Id))
+                                .fail(function (response) {
+                                    console.log("Sorry, but we cannot renew pickup schedule for the Consignment Request with Id : " + ko.unwrap(entity().Id));
+                                })
+                                .then(function (result) {
+                                    console.log(result);
+                                    if (result.success) {
+                                        activate(ko.unwrap(entity().Id);
+                                    } else {
+                                        console.log(result.status);
+                                    }
+                                });
+                        }
+                    }
                 });
                 //return context.get("/api/consigment-requests/" + entityId)
                 return $.ajax({
@@ -202,6 +219,13 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 }
                 sumWeight(totalParcelWeight);
                 sumConsignment(totalValidConsignment);
+                
+                if (entity().Pickup().TotalParcel() == undefined) {
+                    entity().Pickup().TotalParcel(sumConsignment());
+                }
+                if (entity().Pickup().TotalWeight() == undefined) {
+                    entity().Pickup().TotalWeight(sumWeight());
+                }
 
                 if (sumConsignment() == 0) {
                     app.showMessage("Sorry, but we cannot shedule a pickup for the Consignment Request with Id : " + ko.unwrap(entity().Id), "OST", ["Close"]).done(function () {
@@ -209,47 +233,12 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     });
                 } else {
                     if (entity().Pickup().Number() != null) {
-                        app.showMessage("Sorry, schedule for pickup already being set.<br />Pickup Number: " + entity().Pickup().Number()
-                            + "<br />Total Weight:" + entity().Pickup().TotalParcel()
-                            + " kg<br /> Total Quantity: " + entity().Pickup().TotalQuantity() + " parcel(s)<br />Pickup Date: "
-                            + moment(entity().Pickup().DateReady()).format("DD-MM-YYYY")
-                            + "<br /> From: " + moment(entity().Pickup().DateReady()).format("HH:mm") + ", To: " + moment(entity().Pickup().DateClose()).format("HH:mm")
-                            , "OST", ["Close"]).done(function () {
+                        app.showMessage("Sorry, schedule for pickup already being set.", "OST", ["Close"]).done(function () {
                             router.navigate("consignment-request-cart-est/" + ko.unwrap(entity().Id));
                         });
                     } else {
                         $("#scheduler-detail-dialog").modal("show");
                     }
-                }
-            },
-            proposePickup = function () {
-                $("#scheduler-detail-dialog").modal("hide");
-                if (pickupReadyHH() <= pickupCloseHH()) {
-                    var data = ko.mapping.toJSON(entity),
-                        tReady = pickupReadyHH() + ":" + pickupReadyMM() + " PM",
-                        tClose = pickupCloseHH() + ":" + pickupCloseMM() + " PM";
-                    context.put(data, "/consignment-request/propose-pickup/" + ko.unwrap(entity().Id) + "?timeReady=" + tReady + "&timeClose=" + tClose)
-                        .fail(function (response) {
-                            app.showMessage("Sorry, but we cannot shedule a pickup for the Consignment Request with Id : " + ko.unwrap(entity().Id), "OST", ["Close"]).done(function () {
-                                router.navigate("consignment-requests-cart-est/" + ko.unwrap(entity().Id));
-                            });
-                        })
-                        .then(function (result) {
-                            console.log(result);
-                            if (result.success) {
-                                app.showMessage("Pickup successfully scheduled.", "OST", ["Close"]).done(function () {
-                                    //showPickupScheduleForm(false);
-                                    router.activeItem().activate(result.id);
-                                });
-                            } else {
-                                console.log(result.status);
-                                app.showMessage("Sorry, but we cannot shedule a pickup for the Consignment Request with Id : " + result.id, "OST", ["Close"]).done(function () {
-                                    router.navigate("consignment-request-cart-est/" + result.id);
-                                });
-                            }
-                        });
-                } else {
-                    app.showMessage("Pickup time is invalid. Please set a valid pickup time.", "OST", ["Close"]);
                 }
             },
             schedulePickup = function () {
@@ -280,7 +269,32 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             },
             compositionComplete = function () {
 
+            },
+            saveCommand = function () {
+                //set TotalParcel == TotalQuantity (current flow OST)
+                entity().Pickup().TotalQuantity(entity().Pickup().TotalParcel());
+                var hourReady = parseInt(pickupReadyHH()) + 12;
+                var hourClose = parseInt(pickupCloseHH()) + 12;
+                entity().Pickup().DateReady(moment().format("YYYY-MM-DDT" + hourReady + ":" + pickupReadyMM() + ":ss"));
+                entity().Pickup().DateClose(moment().format("YYYY-MM-DDT" + hourClose + ":" + pickupCloseMM() + ":ss"));
+                return defaultCommand()
+                    .then(function (result) {
+                        if (result.success) {
+                            $("#scheduler-detail-dialog").modal("hide");
+                            return app.showMessage("Sender details has been successfully saved.", "OST", ["Close"]).done(function () {
+                                activate(id());
+                            });
+                        } else {
+                            return Task.fromResult(false);
+                        }
+                    })
+                    .then(function (result) {
+                        if (result) {
+                            activate(ko.unwrap(entity().Id));
+                        }
+                    });
             };
+
         var vm = {
             activate: activate,
             config: config,
@@ -296,11 +310,11 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             sumWeight: sumWeight,
             sumConsignment: sumConsignment,
             schedulePickup: schedulePickup,
-            proposePickup: proposePickup,
             pickupReadyHH: pickupReadyHH,
             pickupReadyMM: pickupReadyMM,
             pickupCloseHH: pickupCloseHH,
-            pickupCloseMM: pickupCloseMM
+            pickupCloseMM: pickupCloseMM,
+            saveCommand: saveCommand
         };
         return vm;
     });
