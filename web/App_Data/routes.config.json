@@ -208,5 +208,19 @@
     "showWhenLoggedIn": false,
     "isAdminPage": false,
     "startPageRoute": null
+  },
+  {
+    "role": "everybody",
+    "groupName": null,
+    "route": "pickup-list-daily",
+    "moduleId": "viewmodels/pickup-list-daily",
+    "title": "Pickup List Daily",
+    "nav": true,
+    "icon": "fa fa-archive",
+    "caption": "Pickup List Daily",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
   }
 ]
