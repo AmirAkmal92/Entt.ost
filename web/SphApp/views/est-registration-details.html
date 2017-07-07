@@ -1,4 +1,4 @@
-<h1 data-i18n="Est Registration Details">Est Registration Details</h1>
+<h1 data-i18n="Est Registration Details">Register New Customer</h1>
 <div id="error-list" class="row" data-bind="visible:errors().length">
     <!-- ko foreach : errors -->
     <div class="col-sm-8 col-sm-offset-2 alert alert-dismissable alert-danger">
@@ -9,51 +9,781 @@
     <div class="col-sm-2"></div>
     <!-- /ko-->
 </div>
-<div class="row">
-    <div class="col-sm-8">
-<form class="form-horizontal" data-bind="with : entity" id="est-registration-details-form">
-    <div data-bind="visible:true" class="form-group">
-        <label data-i18n="User Id" for="9b3c79c1-0930-4c80-a549-d86092fdd348" class="col-md-4">User Id</label>
-        <div class="col-md-8">
-            <input class="form-control input-large"
-                   data-bind="value: UserId"
-                   id="9b3c79c1-0930-4c80-a549-d86092fdd348" type="text" name="UserId" />
+<div class="portlet-body form">
+    <!-- BEGIN FORM-->
+    <form action="/ost-account/register-est" class="horizontal-form" method="post" data-bind="with : entity" id="est-registration-details-form">
+        <div class="form-body">
+            <span style="font-size:19px"><strong>Company Information</strong></span>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Company Name<span class="red-danger"> * </span></label>
+                        <input type="text" id="CompanyName1" class="form-control" data-bind="value: CompanyInformation().CompanyName">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Type of Posting</label><br />
+                            <div class="mt-checkbox-list">
+                                <label class="mt-checkbox">
+                                    <input type="checkbox" value="1" name="domestic">
+                                    Domestic
+                                    <span></span>
+                                </label>
+                                <label class="mt-checkbox">
+                                    <input type="checkbox" value="2" name="international">
+                                    International
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">PosLaju Agent</label><br />
+                            <div class="radio-list">
+                                <label class="radio-inline">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">GST ID<span class="red-danger"> * </span></label>
+                        <input type="text" id="GstId" class="form-control" data-bind="value: CompanyInformation().GstId">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Company Type<span class="red-danger"> * </span></label>
+                        <select class="form-control" data-bind="options:$root.companyOptions, optionsText: 'text', optionsValue: 'value', value: $root.chosenCompany"></select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">ROC Number<span class="red-danger"> * </span></label>
+                        <input type="text" class="form-control" placeholder="e.g: 001234567-A" data-bind="value: CompanyInformation().RocNumber">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Industry<span class="red-danger"> * </span></label>
+                        <select class="form-control" data-placeholder="Choose Industry" tabindex="1">
+                            <option value="" disabled selected>Select...</option>
+                            <option value="">Communication and Media</option>
+                            <option value="">Construction</option>
+                            <option value="">Consulting</option>
+                            <option value="">DRB Group</option>
+                            <option value="">Financial</option>
+                            <option value="">Government</option>
+                            <option value="">Health</option>
+                            <option value="">Insurance</option>
+                            <option value="">Manufacturing</option>
+                            <option value="">Poslaju Agent</option>
+                            <option value="">Production</option>
+                            <option value="">Real Estate</option>
+                            <option value="">Retail</option>
+                            <option value="">Services</option>
+                            <option value="">Transportation</option>
+                            <option value="">Wholesale</option>
+                            <option value="">Others</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                </div>
+            </div>
+            <br />
+            <br />
+            <span style="font-size:19px"><strong>Director / Owner Information</strong></span>
+            <hr />
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="form-group mt-repeater">
+                        <div data-repeater-list="group-c">
+                            <div data-repeater-item="" class="mt-repeater-item">
+                                <div class="row mt-repeater-row">
+                                    <div class="col-md-8">
+                                        <label class="control-label">Director's Name</label>
+                                        <input type="text" placeholder="" class="form-control">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="control-label">Director's IC No</label>
+                                        <input type="text" placeholder="" class="form-control">
+                                    </div>
+                                    <div class="col-md-1">
+                                        <a href="javascript:;" data-repeater-delete="" class="btn btn-danger mt-repeater-delete" title="Remove">
+                                            <i class="fa fa-close"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <a href="javascript:;" data-repeater-create="" class="btn btn-info mt-repeater-add">
+                            <i class="fa fa-plus"></i>  Add Another Director
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <span style="font-size:19px"><strong>Mailing / Contact Information</strong></span>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Address<span class="red-danger"> * </span></label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().MailingAddress().Address1" placeholder="Address Line 1">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label"><span>&nbsp;</span></label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().MailingAddress().Address2" placeholder="Address Line 2">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().MailingAddress().Address3" placeholder="Address Line 3">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().MailingAddress().Address4" placeholder="Address Line 4">
+                    </div>
+                </div>
+            </div>
+            <!--<div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>-->
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Postcode<span class="red-danger"> * </span></label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().MailingAddress().Postcode" placeholder="Postcode">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Town / City<span class="red-danger"> * </span></label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().MailingAddress().City" placeholder="City">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>State<span class="red-danger"> * </span></label>
+                        <select class="form-control" id="sort">
+                            <option value="" disabled selected>Select...</option>
+                            <option value="">Johor</option>
+                            <option value="">Kedah</option>
+                            <option value="">Kelantan</option>
+                            <option value="">Melaka</option>
+                            <option value="">Negeri Sembilan</option>
+                            <option value="">Pahang</option>
+                            <option value="">Perak</option>
+                            <option value="">Perlis</option>
+                            <option value="">Pulau Pinang</option>
+                            <option value="">Sabah</option>
+                            <option value="">Sarawak</option>
+                            <option value="">Selangor</option>
+                            <option value="">Terengganu</option>
+                            <option value="">Wilayah Persekutuan Kuala Lumpur</option>
+                            <option value="">Wilayah Persekutuan Labuan</option>
+                            <option value="">Wilayah Persekutuan Putrajaya</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Contact Person Name<span class="red-danger"> * </span></label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().ContactPersonName" placeholder="Name">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Contact Person IC No</label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().ContactPersonIc" placeholder="I/C Number">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Contact Email<span class="red-danger"> * </span></label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().ContactInformation().Email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Phone No.<span class="red-danger"> * </span></label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().ContactInformation().ContactNumber" placeholder="Phone No.">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Fax No.</label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().ContactInformation().AlternativeContactNumber" placeholder="Fax No.">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Communication Media</label><br /><br />
+                        <input type="checkbox" value="1" name="e-Billing">
+                        e-Billing
+                    </div>
+                </div>
+                <!--<div class="col-md-6">
+                    <div class="form-group">
+                        <label>Mobile Phone No.</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>-->
+            </div>
+            <br />
+            <br />
+            <span style="font-size:19px"><strong>Billing Address Information</strong></span>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label></label>
+                        <input type="checkbox" value="1" name="Billing-Address">
+                        Billing address is same as above
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Address<span class="red-danger"> * </span></label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().BillingAddress().Address1" placeholder="Address Line 1">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label"><span>&nbsp;</span></label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().BillingAddress().Address2" placeholder="Address Line 2">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().BillingAddress().Address3" placeholder="Address Line 3">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().BillingAddress().Address4" placeholder="Address Line 4">
+                    </div>
+                </div>
+            </div>
+            <!--<div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>-->
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Postcode<span class="red-danger"> * </span></label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().BillingAddress().Postcode" placeholder="Postcode">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Town / City<span class="red-danger"> * </span></label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().BillingAddress().City" placeholder="City">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>State<span class="red-danger"> * </span></label>
+                        <select class="form-control" id="sort">
+                            <option value="" disabled selected>Select...</option>
+                            <option value="">Johor</option>
+                            <option value="">Kedah</option>
+                            <option value="">Kelantan</option>
+                            <option value="">Melaka</option>
+                            <option value="">Negeri Sembilan</option>
+                            <option value="">Pahang</option>
+                            <option value="">Perak</option>
+                            <option value="">Perlis</option>
+                            <option value="">Pulau Pinang</option>
+                            <option value="">Sabah</option>
+                            <option value="">Sarawak</option>
+                            <option value="">Selangor</option>
+                            <option value="">Terengganu</option>
+                            <option value="">Wilayah Persekutuan Kuala Lumpur</option>
+                            <option value="">Wilayah Persekutuan Labuan</option>
+                            <option value="">Wilayah Persekutuan Putrajaya</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <span style="font-size:19px">Pickup Information</span>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label></label>
+                        <input type="checkbox" value="1" name="Pickup-Address">
+                        Pick address is the same as mailing / contact information
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Address<span class="red-danger"> * </span></label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().PickupAddress().Address1" placeholder="Address Line 1">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label"><span>&nbsp;</span></label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().PickupAddress().Address2" placeholder="Address Line 2">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().PickupAddress().Address3" placeholder="Address Line 3">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().PickupAddress().Address4" placeholder="Address Line 4">
+                    </div>
+                </div>
+            </div>
+            <!--<div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>-->
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Postcode<span class="red-danger"> * </span></label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().PickupAddress().Postcode" placeholder="Postcode">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Town / City<span class="red-danger"> * </span></label>
+                        <input type="text" class="form-control" data-bind="value: PersonalDetail().PickupAddress().City" placeholder="City">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>State<span class="red-danger"> * </span></label>
+                        <select class="form-control" id="sort">
+                            <option value="" disabled selected>Select...</option>
+                            <option value="">Johor</option>
+                            <option value="">Kedah</option>
+                            <option value="">Kelantan</option>
+                            <option value="">Melaka</option>
+                            <option value="">Negeri Sembilan</option>
+                            <option value="">Pahang</option>
+                            <option value="">Perak</option>
+                            <option value="">Perlis</option>
+                            <option value="">Pulau Pinang</option>
+                            <option value="">Sabah</option>
+                            <option value="">Sarawak</option>
+                            <option value="">Selangor</option>
+                            <option value="">Terengganu</option>
+                            <option value="">Wilayah Persekutuan Kuala Lumpur</option>
+                            <option value="">Wilayah Persekutuan Labuan</option>
+                            <option value="">Wilayah Persekutuan Putrajaya</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Contact Name<span class="red-danger"> * </span></label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Contact No.<span class="red-danger"> * </span></label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <span style="font-size:19px"><strong>Supporting Documents</strong></span>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet light bordered">
+                        <div class="portlet-body">
+                            <div class="table-scrollable">
+                                <table class="table table-striped table-bordered table-advance">
+                                    <thead>
+                                        <tr>
+                                            <th class="bold uppercase" style="background-color: #002050;color:white;"><strong>Document Name</strong></th>
+                                            <th class="bold uppercase" style="background-color: #002050;color:white;"><strong>Upload Document</strong></th>
+                                            <th class="bold uppercase" style="background-color: #002050;color:white;"><center><strong>Download Document</strong></center></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
+                                                    $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                        <tr>
+                                            <td>
+                                                <span>Form P13 And TnC</span>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-large" data-bind="kendoUpload : FormP13AndTnc().BinaryStoreId, visible :true" type="file" name="files" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <a class="btn btn-info" data-bind="attr : {'href':'/sph/binarystore/get/' + FormP13AndTnc().BinaryStoreId()}, visible:true" download>
+                                                        <i class="fa fa-download"></i><span>&nbsp; Download</span>
+                                                    </a>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko -->
+                                        <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
+                                                    $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                        <tr>
+                                            <td>
+                                                <span>CTOS - Company</span>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-large" data-bind="kendoUpload : CtosCompany().BinaryStoreId, visible :true" type="file" name="files" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <a class="btn btn-info" data-bind="attr : {'href':'/sph/binarystore/get/' + CtosCompany().BinaryStoreId()}, visible:true" download>
+                                                        <i class="fa fa-download"></i><span>&nbsp; Download</span>
+                                                    </a>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko -->
+                                        <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
+                                                    $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                        <tr>
+                                            <td>
+                                                <span>CTOS - Owner / Directors</span>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-large" data-bind="kendoUpload : CtosOwnerDirectors().BinaryStoreId, visible :true" type="file" name="files" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <a class="btn btn-info" data-bind="attr : {'href':'/sph/binarystore/get/' + CtosOwnerDirectors().BinaryStoreId()}, visible:true" download>
+                                                        <i class="fa fa-download"></i><span>&nbsp; Download</span>
+                                                    </a>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko -->
+                                        <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
+                                                    $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                        <tr>
+                                            <td>
+                                                <span>IC Copy</span>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-large" data-bind="kendoUpload : IcCopy().BinaryStoreId, visible :true" type="file" name="files" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <a class="btn btn-info" data-bind="attr : {'href':'/sph/binarystore/get/' + IcCopy().BinaryStoreId()}, visible:true" download>
+                                                        <i class="fa fa-download"></i><span>&nbsp; Download</span>
+                                                    </a>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko -->
+                                        <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
+                                                    $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                        <tr>
+                                            <td>
+                                                <span>Business Card</span>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-large" data-bind="kendoUpload : BusinessCard().BinaryStoreId, visible :true" type="file" name="files" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <a class="btn btn-info" data-bind="attr : {'href':'/sph/binarystore/get/' + BusinessCard().BinaryStoreId()}, visible:true" download>
+                                                        <i class="fa fa-download"></i><span>&nbsp; Download</span>
+                                                    </a>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko -->
+                                        <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD'-->
+                                        <tr>
+                                            <td>
+                                                <span>Form 9 / 13</span>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-large" data-bind="kendoUpload : Form913().BinaryStoreId, visible :true" type="file" name="files" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center><a class="btn btn-info" data-bind="attr : {'href':'/sph/binarystore/get/' + Form913().BinaryStoreId()}, visible:true" download><i class="fa fa-download"></i><span>&nbsp; Download</span></a></center>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko -->
+                                        <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD'-->
+                                        <tr>
+                                            <td>
+                                                <span>Form 24</span>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-large" data-bind="kendoUpload : Form24().BinaryStoreId, visible :true" type="file" name="files" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center><a class="btn btn-info" data-bind="attr : {'href':'/sph/binarystore/get/' + Form24().BinaryStoreId()}, visible:true" download><i class="fa fa-download"></i><span>&nbsp; Download</span></a></center>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko -->
+                                        <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD'-->
+                                        <tr>
+                                            <td>
+                                                <span>Form 49</span>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-large" data-bind="kendoUpload : Form49().BinaryStoreId, visible :true" type="file" name="files" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center><a class="btn btn-info" data-bind="attr : {'href':'/sph/binarystore/get/' + Form49().BinaryStoreId()}, visible:true" download><i class="fa fa-download"></i><span>&nbsp; Download</span></a></center>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko -->
+                                        <!--ko if:  $root.chosenCompany() == 'BHD'-->
+                                        <tr>
+                                            <td>
+                                                <span>Borang 48</span>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-large" data-bind="kendoUpload : Borang48().BinaryStoreId, visible :true" type="file" name="files" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center><a class="btn btn-info" data-bind="attr : {'href':'/sph/binarystore/get/' + Borang48().BinaryStoreId()}, visible:true" download><i class="fa fa-download"></i><span>&nbsp; Download</span></a></center>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko -->
+                                        <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
+                                                    $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                        <tr>
+                                            <td>
+                                                <span>Deposit Slip</span>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-large" data-bind="kendoUpload : DepositSlip().BinaryStoreId, visible :true" type="file" name="files" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center><a class="btn btn-info" data-bind="attr : {'href':'/sph/binarystore/get/' + DepositSlip().BinaryStoreId()}, visible:true" download><i class="fa fa-download"></i><span>&nbsp; Download</span></a></center>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko -->
+                                        <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
+                                                    $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR' || $root.chosenCompany() == 'GOV'-->
+                                        <tr>
+                                            <td>
+                                                <span>Authorize Letter (with letterhead)</span>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-large" data-bind="kendoUpload : AuthorizeLetter().BinaryStoreId, visible :true" type="file" name="files" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center><a class="btn btn-info" data-bind="attr : {'href':'/sph/binarystore/get/' + AuthorizeLetter().BinaryStoreId()}, visible:true" download><i class="fa fa-download"></i><span>&nbsp; Download</span></a></center>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko -->
+                                        <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD'-->
+                                        <tr>
+                                            <td>
+                                                <span>GST Certification Letter</span>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-large" data-bind="kendoUpload : GstCertificationLetter().BinaryStoreId, visible :true" type="file" name="files" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center><a class="btn btn-info" data-bind="attr : {'href':'/sph/binarystore/get/' + GstCertificationLetter().BinaryStoreId()}, visible:true" download><i class="fa fa-download"></i><span>&nbsp; Download</span></a></center>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko -->
+                                        <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
+                                                    $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                        <tr>
+                                            <td>
+                                                <span>Other Documents</span>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-large" data-bind="kendoUpload : OtherDocuments().BinaryStoreId, visible :true" type="file" name="files" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center><a class="btn btn-info" data-bind="attr : {'href':'/sph/binarystore/get/' + OtherDocuments().BinaryStoreId()}, visible:true" download><i class="fa fa-download"></i><span>&nbsp; Download</span></a></center>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko -->
+                                        <!--ko if: $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                        <tr>
+                                            <td>
+                                                <span>Form D / E</span>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-large" data-bind="kendoUpload : FormDE().BinaryStoreId, visible :true" type="file" name="files" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center><a class="btn btn-info" data-bind="attr : {'href':'/sph/binarystore/get/' + FormDE().BinaryStoreId()}, visible:true" download><i class="fa fa-download"></i><span>&nbsp; Download</span></a></center>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko -->
+                                        <!--ko if: $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                        <tr>
+                                            <td>
+                                                <span>Borang SSM - Maklumat Perniagaan</span>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-large" data-bind="kendoUpload : BorangSsmMaklumatPerniagaan().BinaryStoreId, visible :true" type="file" name="files" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center><a class="btn btn-info" data-bind="attr : {'href':'/sph/binarystore/get/' + BorangSsmMaklumatPerniagaan().BinaryStoreId()}, visible:true" download><i class="fa fa-download"></i><span>&nbsp; Download</span></a></center>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko -->
+                                        <!--ko if: $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                        <tr>
+                                            <td>
+                                                <span>Borang SSM - Maklumat pemilik masa kini</span>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-large" data-bind="kendoUpload : BorangSsmMaklumatPemilik().BinaryStoreId, visible :true" type="file" name="files" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <center><a class="btn btn-info" data-bind="attr : {'href':'/sph/binarystore/get/' + BorangSsmMaklumatPemilik().BinaryStoreId()}, visible:true" download><i class="fa fa-download"></i><span>&nbsp; Download</span></a></center>
+                                            </td>
+                                        </tr>
+                                        <!-- /ko -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <span style="font-size:19px"><strong>Rate Proposal</strong></span>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label></label>
+                        <input type="checkbox" value="1" name="rate-proposal">
+                        Specify rate proposal
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div data-bind="visible:true" class="form-group">
-        <label data-i18n="Contact Person Name" for="8a79dca9-039b-4e32-df45-06ff5e344145" class="col-md-4">Contact Person Name</label>
-        <div class="col-md-8">
-            <input class="form-control input-large"
-                   data-bind="value: PersonalDetail().ContactPersonName"
-                   id="8a79dca9-039b-4e32-df45-06ff5e344145" type="text" name="PersonalDetail.ContactPersonName" />
+        <br /><br />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">Comment</label>
+                    <textarea class="form-control" rows="3" placeholder=""></textarea>
+                </div>
+            </div>
         </div>
-    </div>
-    <div data-bind="visible:true" class="form-group">
-        <label data-i18n="Contact Person IC" for="bb4dd593-99ad-4944-fbac-65f8de3df1eb" class="col-md-4">Contact Person IC</label>
-        <div class="col-md-8">
-            <input class="form-control input-large"
-                   data-bind="value: PersonalDetail().ContactPersonIc"
-                   id="bb4dd593-99ad-4944-fbac-65f8de3df1eb" type="text" name="PersonalDetail.ContactPersonIc" />
+        <div class="form-actions right">
+            <button type="submit" class="btn btn-info pull-right" data-bind="click: $root.saveCommand">Submit Registration</button>
         </div>
-    </div>
-    <div data-bind="visible:true" class="form-group">
-        <label data-i18n="Upload Suppporting Document" for="69a4d807-9575-46e1-db6f-ed95fb7eaef8" class="col-md-4">Upload Suppporting Document</label>
-        <div class="col-md-8">
-            <input class="form-control input-large"
-                   data-bind="kendoUpload : FormP13AndTnc().BinaryStoreId, visible :true"
-                   id="69a4d807-9575-46e1-db6f-ed95fb7eaef8" type="file" name="files" />
-        </div>
-    </div>
-    <div class="form-group" data-bind="visible:true">
-        <label data-i18n="Download Suppporting Document" for="d1c0e6be-a335-43fa-b11c-47272aa81953" class=""></label>
-        <div class="col-md-8">
-            <a data-i18n="Download Suppporting Document" id="d1c0e6be-a335-43fa-b11c-47272aa81953" data-bind="attr : {'href':'/sph/binarystore/get/' + FormP13AndTnc().BinaryStoreId()}, visible:true" download>
-                Download Suppporting Document
-            </a>
-        </div>
-    </div>
-</form>
-    </div>
-    <div class="col-sm-4">
-    </div>
+    </form>
+    <!-- END FORM-->
 </div>
+
