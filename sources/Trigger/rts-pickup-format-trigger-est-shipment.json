@@ -1,0 +1,203 @@
+{
+  "$type": "Bespoke.Sph.Domain.Trigger, domain.sph",
+  "RuleCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Rule, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "ActionCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.CustomAction, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.EmailAction, domain.sph",
+        "From": "tech.dev@bespoke.com.my",
+        "To": "nazrulhisham@bespoke.com.my",
+        "SubjectTemplate": "Pickup Notification",
+        "BodyTemplate": "Hello,\n\nThank you for using our service.\nYour item @Model.ConsignmentNo has been successfully picked up at @Model.PickupDateTime with pickup number @Model.PickupNo.",
+        "Bcc": null,
+        "Cc": null,
+        "Title": "Send Pickup Notification",
+        "IsActive": true,
+        "TriggerId": null,
+        "Note": null,
+        "WebId": "b60da72d-bac6-4643-e62e-03e2c1711f32"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.AssemblyAction, domain.sph",
+        "IsAsyncMethod": true,
+        "Assembly": "rts.pickup.ezisend",
+        "TypeName": "Bespoke.PosEntt.CustomActions.NotifyEzisendPickup",
+        "Method": "SendNotifyEmail",
+        "ReturnType": "System.Threading.Tasks.Task",
+        "IsVoid": false,
+        "IsStatic": false,
+        "MethodArgCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.MethodArg, domain.sph]], domain.sph",
+          "$values": [
+            {
+              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
+              "Name": "emailTo",
+              "TypeName": "System.String, mscorlib",
+              "ValueProvider": {
+                "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+                "TypeName": "System.String, mscorlib",
+                "Value": "nazrulhisham@outlook.com",
+                "Name": "myemail",
+                "Note": "",
+                "WebId": "4a1d709a-14ce-4408-f0a4-c65527d0beb4"
+              },
+              "AttributeCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+                "$values": []
+              },
+              "Default": null,
+              "WebId": "b27a9da5-8b14-4d46-d1a6-f5a26519ba9a"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
+              "Name": "emailSubject",
+              "TypeName": "System.String, mscorlib",
+              "ValueProvider": {
+                "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+                "TypeName": "System.String, mscorlib",
+                "Value": "Pickup Notification",
+                "Name": "mysubject",
+                "Note": "",
+                "WebId": "bbc1387e-46ae-4983-ceb2-997626a4473f"
+              },
+              "AttributeCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+                "$values": []
+              },
+              "Default": null,
+              "WebId": "94a9d1bb-a7c0-43ab-d226-e8b52bda358f"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
+              "Name": "emailMessage",
+              "TypeName": "System.String, mscorlib",
+              "ValueProvider": {
+                "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+                "TypeName": "System.String, mscorlib",
+                "Value": "Thank you for using our service",
+                "Name": "mymessage",
+                "Note": "",
+                "WebId": "f192f0b8-fc52-4773-f407-c43e0513e79f"
+              },
+              "AttributeCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+                "$values": []
+              },
+              "Default": null,
+              "WebId": "16794b1a-b6a5-4d2a-c460-b8001b7fcb31"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
+              "Name": "consignmentNo",
+              "TypeName": "System.String, mscorlib",
+              "ValueProvider": {
+                "$type": "Bespoke.Sph.Domain.DocumentField, domain.sph",
+                "XPath": "",
+                "NamespacePrefix": "",
+                "TypeName": "",
+                "Path": "ConsignmentNo",
+                "Name": "ConsignmentNo",
+                "Note": "",
+                "WebId": "47abaf30-8eb1-474c-92c8-773c109a9617"
+              },
+              "AttributeCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+                "$values": []
+              },
+              "Default": null,
+              "WebId": "d3d646f9-6078-4d96-afb2-2db030207147"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
+              "Name": "pickupDateTime",
+              "TypeName": "System.DateTime, mscorlib",
+              "ValueProvider": {
+                "$type": "Bespoke.Sph.Domain.DocumentField, domain.sph",
+                "XPath": "",
+                "NamespacePrefix": "",
+                "TypeName": "",
+                "Path": "PickupDateTime",
+                "Name": "PickupDateTime",
+                "Note": "",
+                "WebId": "a6352cfc-ad9e-4b9a-9839-441738408f95"
+              },
+              "AttributeCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+                "$values": []
+              },
+              "Default": null,
+              "WebId": "8d815db7-a4af-455e-f71c-0e3346bec056"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
+              "Name": "pickupNo",
+              "TypeName": "System.String, mscorlib",
+              "ValueProvider": {
+                "$type": "Bespoke.Sph.Domain.DocumentField, domain.sph",
+                "XPath": "",
+                "NamespacePrefix": "",
+                "TypeName": "",
+                "Path": "PickupNo",
+                "Name": "PickupNo",
+                "Note": "",
+                "WebId": "a77eb125-ed2d-43e8-cab3-32d0ea78ebb8"
+              },
+              "AttributeCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+                "$values": []
+              },
+              "Default": null,
+              "WebId": "d77d8569-8334-4e1f-c8dd-08f061022230"
+            }
+          ]
+        },
+        "Title": "Rts Pickup Ezisend",
+        "IsActive": true,
+        "TriggerId": null,
+        "Note": null,
+        "WebId": "54c2e0d9-7146-4aad-f999-72bdeebaa4ad"
+      }
+    ]
+  },
+  "ReferencedAssemblyCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ReferencedAssembly, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.ReferencedAssembly, domain.sph",
+        "Name": "rts.pickup.ezisend",
+        "FullName": "rts.pickup.ezisend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "Version": "0.0.0.0",
+        "Location": "C:\\project\\work\\entt.ost\\tools\\rts.pickup.ezisend.dll",
+        "IsGac": false,
+        "IsStrongName": false,
+        "RuntimeVersion": "v4.0.30319",
+        "WebId": null
+      }
+    ]
+  },
+  "RequeueFilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ExceptionFilter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "Name": "TriggerEstShipment",
+  "Entity": "RtsPickupFormat",
+  "TypeOf": "Bespoke.Ost.RtsPickupFormats.Domain.RtsPickupFormat, Ost.RtsPickupFormat",
+  "Note": "",
+  "IsActive": true,
+  "IsFiredOnAdded": false,
+  "IsFiredOnDeleted": false,
+  "IsFiredOnChanged": false,
+  "FiredOnOperations": "Default",
+  "ClassName": "RtsPickupFormatTriggerEstShipmentTriggerSubscriber",
+  "CodeNamespace": "Bespoke.Ost.TriggerSubscribers",
+  "CreatedBy": "admin",
+  "Id": "rts-pickup-format-trigger-est-shipment",
+  "CreatedDate": "2017-07-07T17:43:12.9239222+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-10T19:06:38.0279074+08:00",
+  "WebId": "b5fb76b3-698b-46ee-a47f-4bcb4e0296e5"
+}
