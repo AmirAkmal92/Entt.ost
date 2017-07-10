@@ -136,22 +136,6 @@
       "instancesCount": 1,
       "prefetchCount": 1,
       "priority": 0,
-      "queueName": "trigger_subs_sales-order-post-snb",
-      "fullName": "Bespoke.DevV1.TriggerSubscribers.SalesOrderPostSnbTriggerSubscriber",
-      "assembly": "subscriber.trigger.sales-order-post-snb"
-    },
-    {
-      "instancesCount": 1,
-      "prefetchCount": 1,
-      "priority": 0,
-      "queueName": "trigger_subs_sap-fi-account-create-account-with-snbweb-api",
-      "fullName": "Bespoke.DevV1.TriggerSubscribers.SapFiAccountCreateAccountWithSnbwebApiTriggerSubscriber",
-      "assembly": "subscriber.trigger.sap-fi-account-create-account-with-snbweb-api"
-    },
-    {
-      "instancesCount": 1,
-      "prefetchCount": 1,
-      "priority": 0,
       "queueName": "source_queue",
       "fullName": "subscriber.version.control.SourceSubscriber",
       "assembly": "subscriber.version.control"
@@ -187,6 +171,14 @@
       "queueName": "workflow_execution",
       "fullName": "Bespoke.Sph.WorkflowsExecution.WorkflowSubscriber",
       "assembly": "subscriber.workflow"
+    },
+    {
+      "instancesCount": 1,
+      "prefetchCount": 1,
+      "priority": 0,
+      "queueName": "trigger_subs_rts-pickup-format-trigger-est-shipment",
+      "fullName": "Bespoke.Ost.TriggerSubscribers.RtsPickupFormatTriggerEstShipmentTriggerSubscriber",
+      "assembly": "subscriber.trigger.rts-pickup-format-trigger-est-shipment"
     }
   ],
   "createdBy": "erymuzuan",
