@@ -33,6 +33,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "snb.read.sql", "sources\snb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sap.fi.posting", "sources\sap.fi.posting\sap.fi.posting.csproj", "{38C40739-BA2B-4DC3-8523-B36B732C311A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rts.pickup.ezisend", "sources\rts.pickup.ezisend\rts.pickup.ezisend.csproj", "{8D792818-C5EF-47EC-A185-60ED7E6DE22D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{38C40739-BA2B-4DC3-8523-B36B732C311A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38C40739-BA2B-4DC3-8523-B36B732C311A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38C40739-BA2B-4DC3-8523-B36B732C311A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D792818-C5EF-47EC-A185-60ED7E6DE22D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D792818-C5EF-47EC-A185-60ED7E6DE22D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D792818-C5EF-47EC-A185-60ED7E6DE22D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D792818-C5EF-47EC-A185-60ED7E6DE22D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
