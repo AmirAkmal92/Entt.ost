@@ -156,10 +156,51 @@
           ]
         },
         "Title": "Rts Pickup Ezisend",
-        "IsActive": true,
+        "IsActive": false,
         "TriggerId": null,
         "Note": null,
         "WebId": "54c2e0d9-7146-4aad-f999-72bdeebaa4ad"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.AssemblyAction, domain.sph",
+        "IsAsyncMethod": false,
+        "Assembly": "rts.pickup.ezisend",
+        "TypeName": "Bespoke.PosEntt.CustomActions.NotifyEzisendPickup",
+        "Method": "PrintMyConnote",
+        "ReturnType": "System.Void",
+        "IsVoid": true,
+        "IsStatic": false,
+        "MethodArgCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.MethodArg, domain.sph]], domain.sph",
+          "$values": [
+            {
+              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
+              "Name": "consignmentNo",
+              "TypeName": "System.String, mscorlib",
+              "ValueProvider": {
+                "$type": "Bespoke.Sph.Domain.DocumentField, domain.sph",
+                "XPath": "",
+                "NamespacePrefix": "",
+                "TypeName": "",
+                "Path": "ConsignmentNo",
+                "Name": "ConsignmentNo",
+                "Note": "",
+                "WebId": "8f4e2f51-15db-4908-db44-0075a24fac12"
+              },
+              "AttributeCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+                "$values": []
+              },
+              "Default": null,
+              "WebId": "89adeaa0-b2e8-4fe8-95bb-0acc10ae5b1f"
+            }
+          ]
+        },
+        "Title": "Rts Pickup Ezisend2",
+        "IsActive": true,
+        "TriggerId": null,
+        "Note": null,
+        "WebId": "1518c75c-feb8-41c4-f641-ff4cef4b56db"
       }
     ]
   },
@@ -170,7 +211,7 @@
         "$type": "Bespoke.Sph.Domain.ReferencedAssembly, domain.sph",
         "Name": "rts.pickup.ezisend",
         "FullName": "rts.pickup.ezisend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        "Version": "0.0.0.0",
+        "Version": "1.0.0.0",
         "Location": "C:\\project\\work\\entt.ost\\tools\\rts.pickup.ezisend.dll",
         "IsGac": false,
         "IsStrongName": false,
@@ -188,16 +229,16 @@
   "TypeOf": "Bespoke.Ost.RtsPickupFormats.Domain.RtsPickupFormat, Ost.RtsPickupFormat",
   "Note": "",
   "IsActive": true,
-  "IsFiredOnAdded": false,
+  "IsFiredOnAdded": true,
   "IsFiredOnDeleted": false,
   "IsFiredOnChanged": false,
-  "FiredOnOperations": "Default",
+  "FiredOnOperations": "",
   "ClassName": "RtsPickupFormatTriggerEstShipmentTriggerSubscriber",
   "CodeNamespace": "Bespoke.Ost.TriggerSubscribers",
   "CreatedBy": "admin",
   "Id": "rts-pickup-format-trigger-est-shipment",
   "CreatedDate": "2017-07-07T17:43:12.9239222+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-07-10T19:06:38.0279074+08:00",
+  "ChangedDate": "2017-07-11T13:03:17.8207136+08:00",
   "WebId": "b5fb76b3-698b-46ee-a47f-4bcb4e0296e5"
 }

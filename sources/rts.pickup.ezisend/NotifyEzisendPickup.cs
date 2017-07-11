@@ -26,5 +26,10 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
                 await smtp.SendMailAsync(mail);
             }
         }
+
+        public void PrintMyConnote(string consignmentNo)
+        {
+            Console.WriteLine($"My connote is:{consignmentNo}");
+        }
     }
 }

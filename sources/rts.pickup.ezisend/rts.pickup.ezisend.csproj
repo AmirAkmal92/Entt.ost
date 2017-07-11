@@ -56,7 +56,10 @@
 copy $(TargetDir)$(TargetName).pdb $(SolutionDir)tools
 
 copy $(TargetDir)$(TargetName).dll $(SolutionDir)subscribers
-copy $(TargetDir)$(TargetName).pdb $(SolutionDir)subscribers</PostBuildEvent>
+copy $(TargetDir)$(TargetName).pdb $(SolutionDir)subscribers
+
+copy $(TargetDir)$(TargetName).dll $(SolutionDir)web\bin
+copy $(TargetDir)$(TargetName).pdb $(SolutionDir)web\bin</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

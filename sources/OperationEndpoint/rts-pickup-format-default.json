@@ -36,10 +36,10 @@
   },
   "Name": "Default",
   "Route": "",
-  "IsHttpPut": false,
+  "IsHttpPut": true,
   "IsHttpPatch": false,
   "IsHttpPost": true,
-  "IsHttpDelete": false,
+  "IsHttpDelete": true,
   "Note": "",
   "Entity": "RtsPickupFormat",
   "Resource": "rts-pickup-formats",
@@ -49,6 +49,6 @@
   "Id": "rts-pickup-format-default",
   "CreatedDate": "2017-07-07T17:21:38.8611221+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-07-10T19:04:58.1117154+08:00",
+  "ChangedDate": "2017-07-11T13:05:16.7805868+08:00",
   "WebId": "d043b4cc-d945-4957-ae72-47b7d97acf74"
 }
