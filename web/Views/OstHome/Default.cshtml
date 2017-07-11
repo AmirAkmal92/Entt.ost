@@ -27,18 +27,33 @@
     <div class="page-wrapper">
         @Html.Partial("_header")
         <div class="page-container">
-            @Html.Partial("_sidebar")
-            <div class="page-content-wrapper">
-                <div id="applicationHost" class="page-content">
-                    <center>
-                        <p>
-                            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-                            <h3>One Moment Please</h3>
-                            <h4>Loading... </h4>
-                        </p>
-                    </center>
+            @if (Model.Designation == "Contract customer registrar")
+            {
+                    <div id="applicationHost" class="page-content">
+                        <center>
+                            <p>
+                                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                                <h3>One Moment Please</h3>
+                                <h4>Loading... </h4>
+                            </p>
+                        </center>
+                    </div>
+            }
+            else
+            {
+                @Html.Partial("_sidebar")
+                <div class="page-content-wrapper">
+                    <div id="applicationHost" class="page-content">
+                        <center>
+                            <p>
+                                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                                <h3>One Moment Please</h3>
+                                <h4>Loading... </h4>
+                            </p>
+                        </center>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
         @if (HttpContext.Current.IsDebuggingEnabled)
         {
