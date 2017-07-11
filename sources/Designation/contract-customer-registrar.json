@@ -1,0 +1,51 @@
+{
+  "$type": "Bespoke.Sph.Domain.Designation, domain.sph",
+  "RoleCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": [
+      "contract_customers",
+      "contract_customer"
+    ]
+  },
+  "Owner": {
+    "$type": "Bespoke.Sph.Domain.Owner, domain.sph",
+    "Address": {
+      "$type": "Bespoke.Sph.Domain.Address, domain.sph",
+      "UnitNo": "",
+      "Floor": "",
+      "Block": "",
+      "Street": "",
+      "City": "",
+      "Postcode": "",
+      "State": "",
+      "Country": "",
+      "WebId": null
+    },
+    "Name": "",
+    "TelephoneNo": "",
+    "FaxNo": "",
+    "Email": "",
+    "WebId": null
+  },
+  "SearchableEntityCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "Name": "Contract customer registrar",
+  "Description": "",
+  "IsActive": false,
+  "StartModule": "est-registration-form",
+  "EnforceStartModule": false,
+  "IsSearchVisible": false,
+  "IsMessageVisible": false,
+  "IsHelpVisible": false,
+  "HelpUri": "",
+  "Title": "",
+  "Option": 0,
+  "CreatedBy": "admin",
+  "Id": "contract-customer-registrar",
+  "CreatedDate": "2017-07-10T19:35:30.0608029+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-10T20:03:34.6726457+08:00",
+  "WebId": "e58c286d-2954-44a6-bea7-b304f96dca67"
+}
