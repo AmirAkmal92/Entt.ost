@@ -385,10 +385,92 @@ namespace web.sph.App_Code
         [AllowAnonymous]
         [HttpPost]
         [Route("register-est")]
-        public ActionResult RegisterEst()
+        public async Task<ActionResult> RegisterEst(string email)
         {
-            //TODO
-            return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "register" });
+            if (string.IsNullOrEmpty(email))
+                return RedirectToAction("register-est", "ost-account", new { success = false, status = "Email cannot be set to null or empty." });
+
+            //TODO: Check with SnB if email existed proceed to first time login
+            //if (true)
+            //{
+            //    //return RedirectToAction("register-est", "ost-account", new { success = false, status = $"Your email address {email} already existed. You may proceed to first time login." });
+            //}
+
+            var emailModel = new OstCreateEmailModel
+            {
+                UserEmail = email,
+                UserName = email,
+                EmailSubject = "New EST Registration",
+                EmailBody = $"You're receiving this e-mail because you have requested to register a new account as EST user in {ConfigurationManager.ApplicationFullName}.",
+            };
+            await SendEstRegistrationEmail(emailModel);
+
+            return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "register-est" });
+        }
+
+        [AllowAnonymous]
+        [Route("register-est-user/{id}")]
+        public async Task<ActionResult> EstRegistration(string id, bool success = true, string status = "OK")
+        {
+            ViewBag.success = success;
+            ViewBag.status = status;
+
+            var context = new SphDataContext();
+            var setting = await context.LoadOneAsync<Setting>(x => x.Id == id);
+            if (null == setting)
+            {
+                ViewBag.success = false;
+                ViewBag.status = "The link is invalid.";
+                return View();
+            }
+
+            if ((DateTime.Now - setting.CreatedDate).TotalHours > 3)
+            {
+                ViewBag.success = false;
+                ViewBag.status = "The link has expired.";
+                return View();
+            }
+
+            if (!setting.Key.Equals("EstRegistration"))
+            {
+                ViewBag.success = false;
+                ViewBag.status = "The link is not associated with EST Registration Form.";
+                return View();
+            }
+
+            var logger = ObjectBuilder.GetObject<ILogger>();
+
+            var directory = ObjectBuilder.GetObject<IDirectoryService>();
+            var tempUsername = "registrar";
+            var tempPassword = "r3g1str4r";
+            if (await directory.AuthenticateAsync(tempUsername, tempPassword))
+            {
+                var identity = new ClaimsIdentity(ConfigurationManager.ApplicationName + "Cookie");
+                identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, tempUsername));
+                identity.AddClaim(new Claim(ClaimTypes.Name, tempUsername));
+                var roles = Roles.GetRolesForUser(tempUsername).Select(x => new Claim(ClaimTypes.Role, x));
+                identity.AddClaims(roles);
+                
+                var profile = await context.LoadOneAsync<UserProfile>(u => u.UserName == tempUsername);
+                await logger.LogAsync(new LogEntry { Log = EventLog.Security });
+                if (null != profile)
+                {
+                    var claims = profile.GetClaims();
+                    identity.AddClaims(claims);
+
+                    HttpContext.GetOwinContext().Authentication.SignIn(identity);
+
+                    if (!string.IsNullOrEmpty(profile.Designation))
+                    {
+                        if (profile.Designation.Equals("Contract customer registrar"))
+                        {
+                            return Redirect("/ost#est-registration-form");
+                        }
+                    }
+                    return Redirect("/");
+                }
+            }
+            return Redirect("/");
         }
 
         [AllowAnonymous]
@@ -824,6 +906,27 @@ Please click the link below to proceed.
 {model.EmailBody}
 Please click the link below to proceed.
     {ConfigurationManager.BaseUrl}/ost-account/reset-password/{setting.Id}";
+
+            await SendEmail(model.UserEmail, emailSubject, emailBody);
+        }
+
+        private static async Task SendEstRegistrationEmail(OstCreateEmailModel model)
+        {
+            var setting = new Setting
+            {
+                UserName = model.UserEmail,
+                Key = "EstRegistration",
+                Value = DateTime.Now.ToString("s"),
+                Id = Strings.GenerateId()
+            };
+            await SaveSetting(setting, "EstRegistration");
+
+            var emailSubject = $"{ConfigurationManager.ApplicationFullName} - {model.EmailSubject}";
+            var emailBody = $@"Hello {model.UserName},
+
+{model.EmailBody}
+Please click the link below to proceed.
+    {ConfigurationManager.BaseUrl}/ost-account/register-est-user/{setting.Id}";
 
             await SendEmail(model.UserEmail, emailSubject, emailBody);
         }
