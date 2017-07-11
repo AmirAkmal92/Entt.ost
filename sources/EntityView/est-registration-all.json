@@ -13,7 +13,7 @@
         "Header": "User Id",
         "Sort": "",
         "IsLinkColumn": true,
-        "FormRoute": "est-registration-details",
+        "FormRoute": "est-registration-form/:entityId",
         "IconCssClass": "fa fa-wpforms",
         "IconStoreId": "",
         "Format": "text:{0}",
@@ -90,6 +90,6 @@
   "Id": "est-registration-all",
   "CreatedDate": "2017-06-21T13:04:26.8700361+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-06-23T09:59:29.8271362+08:00",
+  "ChangedDate": "2017-07-11T11:24:57.9656132+08:00",
   "WebId": "3b02fc43-4179-49e4-9387-7f0faeec3998"
 }

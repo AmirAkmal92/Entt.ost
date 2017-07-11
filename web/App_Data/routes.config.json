@@ -226,7 +226,7 @@
   {
     "role": "everybody",
     "groupName": null,
-    "route": "est-registration-form",
+    "route": "est-registration-form/:entityId",
     "moduleId": "viewmodels/est-registration-form",
     "title": "EST Registration",
     "nav": false,
