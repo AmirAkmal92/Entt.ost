@@ -999,9 +999,12 @@
     </script>
     <script>
         $(document).ready(function () {
-            var text = ('@Html.Raw(Model.consignment.ConNote)');
-            $("#bcTarget1").barcode(text, "datamatrix");
-            $("#bcTarget2").barcode(text, "datamatrix");
+
+            // TODO checking for designation
+
+            var text = ('A1^@Html.Raw(Model.consignment.ConNote)^@Html.Raw(Model.consignment.Penerima.Address.Postcode)^@Html.Raw(Model.consignment.Penerima.Address.Country)^@Html.Raw(Model.consignment.Bill.ProductCode)^^^@Html.Raw(Model.consignment.Pemberi.ContactInformation.ContactNumber)^@Html.Raw(Model.consignment.Pemberi.ContactInformation.Email)^^@Html.Raw(Model.consignment.Penerima.ContactInformation.ContactNumber)^@Html.Raw(Model.consignment.Penerima.ContactInformation.Email)^@Html.Raw(Model.consignment.Produk.Weight)^@Html.Raw(Model.consignment.Produk.Height) x @Html.Raw(Model.consignment.Produk.Width) x @Html.Raw(Model.consignment.Produk.Length)^^^@Html.Raw(Model.consignment.Produk.ValueAddedValue)^@Html.Raw(Model.consignment.Produk.ItemCategory)^@Html.Raw(Model.amountPaid)^@Html.Raw(Model.consignment.Bill.ZoneName)');
+            $("#bcTarget1").barcode(text, "datamatrix", { showHRI: false });
+            $("#bcTarget2").barcode(text, "datamatrix", { showHRI: false });
             window.print();
         });
     </script>

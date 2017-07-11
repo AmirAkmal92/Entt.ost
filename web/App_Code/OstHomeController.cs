@@ -39,10 +39,14 @@ namespace web.sph.App_Code
                     break;
                 }
             }
+            UserProfile userProfile = await GetDesignation();
             var pcm = new printConnoteModel
             {
                 referenceNo = item.ReferenceNo,
                 consignment = connote,
+                accountNo = item.CreatedBy,
+                amountPaid = item.Payment.TotalPrice,
+                designation = userProfile.Designation,
             };
             return View(pcm);
         }
@@ -138,6 +142,9 @@ namespace web.sph.App_Code
     public class printConnoteModel
     {
         public string referenceNo { get; set; }
+        public string accountNo { get; set; }
+        public decimal amountPaid { get; set; }
+        public string designation { get; set; }
         public Consignment consignment { get; set; }
     }
 
