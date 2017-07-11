@@ -5,40 +5,46 @@
             <a href="/ost">
                 <img class="logo-default" src="/images/Pos_Laju_EziSend_RGB.png" title="EziSend" style="width:101.69px; height:40px" alt="logo">
             </a>
-            <div class="menu-toggler sidebar-toggler">
-                <span></span>
-            </div>
+            @if (Model.Designation != "Contract customer registrar")
+            {
+                <div class="menu-toggler sidebar-toggler">
+                    <span></span>
+                </div>
+            }
         </div>
         <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
             <span></span>
         </a>
         <div class="top-menu">
-            <ul class="nav navbar-nav pull-right">
-                <li class="dropdown dropdown-user">
-                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                        <img alt="" class="img-circle" src="~/assets/admin/pages/img/avatars/user_default.png" />
-                        <span class="username username-hide-on-mobile"> @User.Identity.Name </span>
-                        <i class="fa fa-angle-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-default">
-                        <li>
-                            <a href="/ost#customer-home">
-                                <i class="icon-user"></i> My Profile
-                            </a>
-                        </li>
-                        @*<li>
-                            <a href="@Url.Action("ChangePassword","OstAccount")">
-                                <i class="icon-settings"></i> Change Password
-                            </a>
-                        </li>*@
-                        <li>
-                            <a href="/ost-account/logout">
-                                <i class="icon-key"></i> Log Out
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            @if (Model.Designation != "Contract customer registrar")
+            {
+                <ul class="nav navbar-nav pull-right">
+                    <li class="dropdown dropdown-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <img alt="" class="img-circle" src="~/assets/admin/pages/img/avatars/user_default.png" />
+                            <span class="username username-hide-on-mobile"> @User.Identity.Name </span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a href="/ost#customer-home">
+                                    <i class="icon-user"></i> My Profile
+                                </a>
+                            </li>
+                            @*<li>
+                                    <a href="@Url.Action("ChangePassword","OstAccount")">
+                                        <i class="icon-settings"></i> Change Password
+                                    </a>
+                                </li>*@
+                            <li>
+                                <a href="/ost-account/logout">
+                                    <i class="icon-key"></i> Log Out
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            }
         </div>
     </div>
 </div>

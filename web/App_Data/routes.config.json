@@ -222,5 +222,19 @@
     "showWhenLoggedIn": false,
     "isAdminPage": false,
     "startPageRoute": null
+  },
+  {
+    "role": "everybody",
+    "groupName": null,
+    "route": "est-registration-form",
+    "moduleId": "viewmodels/est-registration-form",
+    "title": "EST Registration",
+    "nav": false,
+    "icon": "fa fa-users",
+    "caption": "EST Registration",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
   }
 ]
