@@ -301,10 +301,10 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     consignment().Produk().Name(model.Name);
                     consignment().Produk().IsInternational(model.IsInternational);
                     // always take the first VAS
-                    if (model.ValueAddedServices[0].IsSelected) {
-                        consignment().Produk().ValueAddedCode(model.ValueAddedServices[0].Code);
-                        consignment().Produk().ValueAddedValue(model.ValueAddedServices[0].Value);
-                        consignment().Produk().ValueAddedDeclaredValue(model.ValueAddedServices[0].UserInputs[0].Value);
+                    if (model.ValueAddedServices[1].IsSelected) {
+                        consignment().Produk().ValueAddedCode(model.ValueAddedServices[1].Code);
+                        consignment().Produk().ValueAddedValue(model.ValueAddedServices[1].Value);
+                        consignment().Produk().ValueAddedDeclaredValue(model.ValueAddedServices[1].UserInputs[0].Value);
                     } else {
                         consignment().Produk().ValueAddedCode("");
                         consignment().Produk().ValueAddedValue(0);

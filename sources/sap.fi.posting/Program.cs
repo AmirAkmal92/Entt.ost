@@ -185,7 +185,10 @@ namespace sap.fi.posting
                     {
                         if (consigment.Produk.IsInternational)
                         {
-                            if (a.Code.Equals("V01") || a.Name.Equals("Insurance PosLaju-Normal "))
+                            if (a.Code.Equals("V01") 
+                                || a.Name.Equals("Insurance PosLaju-Normal ")
+                                || a.Code.Equals("V29") 
+                                || a.Name.Equals("Ezisend Insurance - General"))
                             {
                                 internationalInsuranceTotal += a.Charge;
                                 internationalInsuranceProductCount += 1;
@@ -193,7 +196,10 @@ namespace sap.fi.posting
                         }
                         else
                         {
-                            if (a.Code.Equals("V01") || a.Name.Equals("Insurance PosLaju-Normal "))
+                            if (a.Code.Equals("V01") 
+                                || a.Name.Equals("Insurance PosLaju-Normal ")
+                                || a.Code.Equals("V29") 
+                                || a.Name.Equals("Ezisend Insurance - General"))
                             {
                                 domesticInsuranceTotal += a.Charge;
                                 domesticInsuranceProductCount += 1;
@@ -302,7 +308,7 @@ namespace sap.fi.posting
                     Quantity = domesticInsuranceProductCount + internationalInsuranceProductCount,
                     TaxCode = "SR",
                     Assignment = consigmentRequest.ReferenceNo,
-                    Text = "1 00000 Insurance PosLaju-Normal",
+                    Text = "1 00000 Ezisend Insurance-General",
                     ReferenceKey = "-",
                     SequenceNumber = sequenceNumberCount
                 };
