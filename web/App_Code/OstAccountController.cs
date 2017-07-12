@@ -464,7 +464,7 @@ namespace web.sph.App_Code
                     {
                         if (profile.Designation.Equals("Contract customer registrar"))
                         {
-                            return Redirect("/ost#est-registration-form");
+                            return Redirect("/ost#est-registration-form/0");
                         }
                     }
                     return Redirect("/");

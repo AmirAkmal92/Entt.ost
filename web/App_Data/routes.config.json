@@ -229,7 +229,7 @@
     "route": "est-registration-form/:entityId",
     "moduleId": "viewmodels/est-registration-form",
     "title": "EST Registration",
-    "nav": false,
+    "nav": true,
     "icon": "fa fa-users",
     "caption": "EST Registration",
     "settings": null,
