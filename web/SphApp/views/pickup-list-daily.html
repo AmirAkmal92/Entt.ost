@@ -1,25 +1,55 @@
-<h1>Pickup List All</h1>
-<!--<h1>Pickup List Daily</h1>-->
+<h1>Pickup List Daily</h1>
+<br /><br /><br />
+<div class="row">
+    <div class="col-md-4 well well-sm">
+        <form>
+            <div class="form-group">
+                <label class="col-md-4" for="DateFrom">Pickup Date From</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="DateFrom" name="DateFrom" data-bind="value: dateFrom" placeholder="Date" aria-required="true" />
+                    <br />
+                    <!--<label id="DateFrom-error" class="error text-danger" for="DateFrom" style="display:none"></label>-->
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4" for="DateTo">Pickup Date To</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="DateTo" name="DateTo" data-bind="value: dateTo" placeholder="Date" aria-required="true" />
+                    <br />
+                    <!--<label id="DateTo-error" class="error text-danger" for="DateTo" style="display:none"></label>-->
+                </div>
+            </div>
+            <button class="btn btn-primary" type="button" data-bind="click: search">Search</button>
+            <button class="btn btn-default" type="button" data-bind="click: clearSearch">Clear</button>
+        </form>
+    </div>
+    <div class="col-md-8">&nbsp;</div>
+</div>
 <div class="row">
     <div class="well well-sm pull-right">
         <div class="btn-group btn-group-xs">
-            <a class="btn btn-primary" data-bind="click: previousPage, css: { 'disabled': !hasPreviousPage() }">&laquo;</a>
+            <a class="btn btn-primary" title="Next Page" data-bind="click: previousPage, css: { 'disabled': !hasPreviousPage() }">&laquo;</a>
             <a class="btn btn-default disabled">Page <span data-bind="text: page">1</span></a>
-            <a class="btn btn-primary" data-bind="click: nextPage, css: { 'disabled': !hasNextPage() }">&raquo;</a>
+            <a class="btn btn-primary" title="Previous Page" data-bind="click: nextPage, css: { 'disabled': !hasNextPage() }">&raquo;</a>
         </div>
         &nbsp;&nbsp;&nbsp;
         <select id="pager-page-size" data-bind="options: availablePageSize, value: size"></select>
         items per page
         &nbsp;&nbsp;&nbsp;
+        <!--ko if: count() > 0-->
         <span data-bind="text: (1 + ((page() - 1) * size()))"></span>
         -
         <span data-bind="text: ((size() + ((page() - 1) * size())) < count()) ? (size() + ((page() - 1) * size())) : count()"></span>
         of
+        <!--/ko-->
         <span data-bind="text: count()"></span>
-        items
+        item(s)
+        &nbsp;&nbsp;&nbsp;
+        <a class="btn btn-link btn-xs" title="Reload Page" data-bind="click: reloadPage"><i class="fa fa-repeat"></i></a>
         &nbsp;&nbsp;&nbsp;
     </div>
 </div>
+
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped">
@@ -33,6 +63,7 @@
                     <th>Pickup Time</th>
                     <th>Quantity</th>
                     <th>Weight (kg)</th>
+                    <th>Payment Date</th>
                     <th>Consignments</th>
                 </tr>
             </thead>
@@ -56,15 +87,18 @@
                         &nbsp;<span data-bind="text: Pickup.Address.Country"></span>
                     </td>
                     <td>
-                        <span data-bind="date:{ value: Pickup.DateReady, format:'D/M/YYYY'}"></span>
+                        <span data-bind="date:{ value: Pickup.DateReady, format:'YYYY-MM-DD'}"></span>
                     </td>
                     <td>
                         <span data-bind="date:{ value: Pickup.DateReady, format:'HH:mm'}"></span>-<span data-bind="date:{ value: Pickup.DateClose, format:'HH:mm'}"></span>
                     </td>
                     <td data-bind="text:Consignments.length"></td>
-                    <td data-bind="text:Pickup.TotalWeight"></td>
+                    <td data-bind="text:Pickup.TotalWeight.toFixed(2)"></td>
                     <td>
-                        <table class="table table-condensed">
+                        <span data-bind="date:{ value: Payment.Date, format:'YYYY-MM-DD HH:mm:ss'}"></span>
+                    </td>
+                    <td>
+                        <table class="table table-condensed" data-bind="if: true">
                             <thead>
                                 <tr>
                                     <th>Consignment No</th>
@@ -105,8 +139,8 @@
                                         &nbsp;<span data-bind="text: Penerima.Address.State"></span>
                                         &nbsp;<span data-bind="text: Penerima.Address.Country"></span>
                                     </td>
-                                    <td><span data-bind="text: Bill.ActualWeight"></span></td>
-                                    <td><span data-bind="text: Bill.VolumetricWeight"></span></td>
+                                    <td><span data-bind="text: Bill.ActualWeight.toFixed(2)"></span></td>
+                                    <td><span data-bind="text: Bill.VolumetricWeight.toFixed(2)"></span></td>
                                     <td><span data-bind="text: Produk.Name"></span></td>
                                     <td>
                                         <span data-bind="if: Produk.IsInternational">Yes</span>

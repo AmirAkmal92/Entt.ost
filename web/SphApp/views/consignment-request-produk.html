@@ -131,7 +131,7 @@
                                                         <h5><span data-bind="text: Name"></span></h5>
                                                     </div>
                                                 </div>-->
-                                                <div class="md-checkbox-inline" data-bind="with: ValueAddedServices()[0]">
+                                                <div class="md-checkbox-inline" data-bind="with: ValueAddedServices()[1]">
                                                     <div class="md-checkbox">
                                                         <input type="checkbox" id="checkbox1_3" class="md-check" data-bind="checked: IsSelected">
                                                         <label for="checkbox1_3">
@@ -145,7 +145,7 @@
                                         </div>
                                     </div>
                                     <div data-bind="with: products()[0]">
-                                        <div data-bind="with: ValueAddedServices()[0]">
+                                        <div data-bind="with: ValueAddedServices()[1]">
                                             <!--ko if: IsSelected-->
                                             <div data-bind="with: UserInputs()[0]">
                                                 <div class="form-group" data-bind="visible:true">
