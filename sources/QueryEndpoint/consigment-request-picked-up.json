@@ -6,7 +6,7 @@
     "$values": [
       {
         "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
-        "Term": "CreatedBy",
+        "Term": "UserId",
         "Operator": "Eq",
         "Field": {
           "$type": "Bespoke.Sph.Domain.FunctionField, domain.sph",
@@ -62,6 +62,6 @@
   "Id": "consigment-request-picked-up",
   "CreatedDate": "2017-07-12T14:45:41.7207958+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-07-12T15:08:23.4907409+08:00",
+  "ChangedDate": "2017-07-13T15:55:57.2080708+08:00",
   "WebId": "0419ae56-50ff-457b-ff12-e7a33533ba81"
 }

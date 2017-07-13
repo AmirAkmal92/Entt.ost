@@ -15,8 +15,8 @@
         "BodyTemplate": "Hello,\n\nThank you for using our service.\nYour item @Model.ConsignmentNo has been successfully picked up at @Model.PickupDateTime with pickup number @Model.PickupNo.",
         "Bcc": null,
         "Cc": null,
-        "Title": "Send Pickup Notification",
-        "IsActive": true,
+        "Title": "Send Pickup Notification 1",
+        "IsActive": false,
         "TriggerId": null,
         "Note": null,
         "WebId": "b60da72d-bac6-4643-e62e-03e2c1711f32"
@@ -155,7 +155,7 @@
             }
           ]
         },
-        "Title": "Rts Pickup Ezisend",
+        "Title": "Send Pickup Notification 2",
         "IsActive": false,
         "TriggerId": null,
         "Note": null,
@@ -163,12 +163,12 @@
       },
       {
         "$type": "Bespoke.Sph.Domain.AssemblyAction, domain.sph",
-        "IsAsyncMethod": false,
+        "IsAsyncMethod": true,
         "Assembly": "rts.pickup.ezisend",
         "TypeName": "Bespoke.PosEntt.CustomActions.NotifyEzisendPickup",
-        "Method": "PrintMyConnote",
-        "ReturnType": "System.Void",
-        "IsVoid": true,
+        "Method": "GetRtsPickupEvent",
+        "ReturnType": "System.Threading.Tasks.Task",
+        "IsVoid": false,
         "IsStatic": false,
         "MethodArgCollection": {
           "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.MethodArg, domain.sph]], domain.sph",
@@ -185,22 +185,64 @@
                 "Path": "ConsignmentNo",
                 "Name": "ConsignmentNo",
                 "Note": "",
-                "WebId": "8f4e2f51-15db-4908-db44-0075a24fac12"
+                "WebId": "115b77d7-bec2-461b-b95a-53428d8abfea"
               },
               "AttributeCollection": {
                 "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
                 "$values": []
               },
               "Default": null,
-              "WebId": "89adeaa0-b2e8-4fe8-95bb-0acc10ae5b1f"
+              "WebId": "aebcfda9-2e2f-4bec-9912-87502e70dc28"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
+              "Name": "pickupDateTime",
+              "TypeName": "System.DateTime, mscorlib",
+              "ValueProvider": {
+                "$type": "Bespoke.Sph.Domain.DocumentField, domain.sph",
+                "XPath": "",
+                "NamespacePrefix": "",
+                "TypeName": "",
+                "Path": "PickupDateTime",
+                "Name": "PickupDateTime",
+                "Note": "",
+                "WebId": "1aff669e-4e44-4c21-9d68-f7b963db5df1"
+              },
+              "AttributeCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+                "$values": []
+              },
+              "Default": null,
+              "WebId": "ce328a95-f0b8-4e2f-e53c-de2722342b54"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
+              "Name": "pickupNo",
+              "TypeName": "System.String, mscorlib",
+              "ValueProvider": {
+                "$type": "Bespoke.Sph.Domain.DocumentField, domain.sph",
+                "XPath": "",
+                "NamespacePrefix": "",
+                "TypeName": "",
+                "Path": "PickupNo",
+                "Name": "PickupNo",
+                "Note": "",
+                "WebId": "c3c71e3b-6cc2-4bc8-e4c3-07d0393a36bf"
+              },
+              "AttributeCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+                "$values": []
+              },
+              "Default": null,
+              "WebId": "a06ece98-53fb-4243-d9f6-1650a0d65bd4"
             }
           ]
         },
-        "Title": "Rts Pickup Ezisend2",
+        "Title": "Rts Pickup Ezisend",
         "IsActive": true,
         "TriggerId": null,
         "Note": null,
-        "WebId": "1518c75c-feb8-41c4-f641-ff4cef4b56db"
+        "WebId": "542fc333-c19d-4d0a-f163-7511f6ec984b"
       }
     ]
   },
@@ -239,6 +281,6 @@
   "Id": "rts-pickup-format-trigger-est-shipment",
   "CreatedDate": "2017-07-07T17:43:12.9239222+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-07-11T13:03:17.8207136+08:00",
+  "ChangedDate": "2017-07-13T19:38:42.1159227+08:00",
   "WebId": "b5fb76b3-698b-46ee-a47f-4bcb4e0296e5"
 }

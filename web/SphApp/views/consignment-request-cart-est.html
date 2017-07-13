@@ -81,7 +81,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <span class="pull-right">
-                                            <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="attr: { href: 'ost#consignment-request-pickup/' + Id() }, css: {'disabled': Pickup().Number() != null}" title="Edit">
+                                            <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="attr: { href: 'ost#consignment-request-pickup/' + Id() }, css: {'disabled': Pickup().Number() != null}" title="Edit Pickup Address">
                                                 <i class="glyphicon glyphicon-pencil"></i>
                                             </a>
                                         </span>
@@ -147,10 +147,10 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <span class="pull-right">
-                                            <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="click: $root.launchSchedulerDetailDialog, css: {'disabled': Pickup().Number() != null}" title="Request for Pickup">
+                                            <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="click: $root.launchSchedulerDetailDialog, css: {'disabled': Pickup().Number() != null}" title="Schedule Pickup">
                                                 <i class="glyphicon glyphicon-pencil"></i>
                                             </a>
-                                            <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="click: $root.schedulePickup, css: {'disabled': Pickup().DateClose() == '0001-01-01T00:00:00' || Pickup().Number() != null}" title="Confirm for Pickup">
+                                            <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="click: $root.schedulePickup, css: {'disabled': Pickup().DateClose() == '0001-01-01T00:00:00' || Pickup().Number() != null}" title="Request Pickup">
                                                 <i class="fa fa-calendar-minus-o"></i>
                                             </a>
                                         </span>

@@ -28,6 +28,30 @@
         "WebId": "55ddfa7f-9e3e-40ae-ccc9-e0869349e0e3"
       },
       {
+        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+        "TypeName": "System.String, mscorlib",
+        "IsNullable": false,
+        "IsNotIndexed": false,
+        "IsAnalyzed": false,
+        "IsFilterable": false,
+        "IsExcludeInAll": false,
+        "Boost": 0,
+        "FullName": null,
+        "PropertyAttribute": null,
+        "MemberCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "FieldPermissionCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": "UserId",
+        "AllowMultiple": false,
+        "DefaultValue": null,
+        "WebId": "612f0794-6c95-44a2-ceb9-9b1cb624e417"
+      },
+      {
         "$type": "Bespoke.Sph.Domain.ComplexMember, domain.sph",
         "EmptyField": "",
         "TypeName": "Payment",
@@ -3903,6 +3927,6 @@
   "Id": "consigment-request",
   "CreatedDate": "2016-10-29T07:26:06.8492482+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-07-12T12:17:46.10533+08:00",
+  "ChangedDate": "2017-07-13T15:52:48.0638816+08:00",
   "WebId": "b8808d89-54c8-4d91-8396-7627974f1138"
 }
