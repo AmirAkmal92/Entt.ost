@@ -41,11 +41,6 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
             }
         }
 
-        public void PrintMyConnote(string consignmentNo)
-        {
-            Console.WriteLine($"My connote is:{consignmentNo}");
-        }
-
         public async Task GetRtsPickupEvent(string consignmentNo, DateTime pickupDateTime, string pickupNo)
         {
             var context = new SphDataContext();
@@ -65,10 +60,13 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
                     ConsigmentRequest consignmentRequestCart = CloneConsignmentRequestCart(consignmentRequestsCart);
 
                     //Move
-                    MoveConsignmentFromCartToPickup(consignmentNo, consignmentRequestCart, consignmentRequestPickup);
+                    var needSaving = MoveConsignmentFromCartToPickup(consignmentNo, consignmentRequestCart, consignmentRequestPickup);
 
                     //Save
-                    await SaveChanges(context, consignmentRequestPickup, consignmentRequestCart);
+                    if (needSaving)
+                    {
+                        await SaveChanges(context, consignmentRequestPickup, consignmentRequestCart);
+                    }
                 }
                 else //Cart not exist
                 {
@@ -95,16 +93,19 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
                         Id = Guid.NewGuid().ToString(),
                         WebId = Guid.NewGuid().ToString()
                     };
-                    Console.WriteLine($"Pickup created");
 
                     //Set IsPickedUp
-                    consignmentRequestPickup.Pickup.IsPickedUp = true;                    
+                    consignmentRequestPickup.Pickup.IsPickedUp = true;
 
                     //Move
-                    MoveConsignmentFromCartToPickup(consignmentNo, consignmentRequestCart, consignmentRequestPickup);
+                    var needSaving = MoveConsignmentFromCartToPickup(consignmentNo, consignmentRequestCart, consignmentRequestPickup);
 
                     //Save
-                    await SaveChanges(context, consignmentRequestPickup, consignmentRequestCart);
+                    if (needSaving)
+                    {
+                        Console.WriteLine($"Pickup created");
+                        await SaveChanges(context, consignmentRequestPickup, consignmentRequestCart);
+                    }
                 }
                 else //Cart not exist
                 {
@@ -149,19 +150,25 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
             }
         }
 
-        private static void MoveConsignmentFromCartToPickup(string consignmentNo, ConsigmentRequest consignmentRequestCart, ConsigmentRequest consignmentRequestPickup)
+        private static bool MoveConsignmentFromCartToPickup(string consignmentNo, ConsigmentRequest consignmentRequestCart, ConsigmentRequest consignmentRequestPickup)
         {
+            var isMatch = false;
             var consignment = new Consignment();
             foreach (var item in consignmentRequestCart.Consignments)
             {
                 if (item.ConNote == consignmentNo)
                 {
                     consignment = item;
+                    isMatch = true;
                     break;
                 }
             }
-            consignmentRequestCart.Consignments.Remove(consignment);
-            consignmentRequestPickup.Consignments.Add(consignment);
+            if (isMatch)
+            {
+                consignmentRequestCart.Consignments.Remove(consignment);
+                consignmentRequestPickup.Consignments.Add(consignment);
+            }
+            return isMatch;
         }
 
         private static ConsigmentRequest CloneConsignmentRequestCart(List<ConsigmentRequest> consignmentRequestsCart)
