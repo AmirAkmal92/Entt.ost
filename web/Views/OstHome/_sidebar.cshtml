@@ -30,5 +30,16 @@
                 </li>
             </ul>
         }
+        @if (Model.Designation == "Contract customer")
+        {
+            <ul class="page-sidebar-menu page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                <li class="nav-item">
+                    <a class="nav-link" href="ost#consignment-requests-pickedup">
+                        <i class="fa fa-file-text"></i>
+                        <span class="title"> PICKUPS </span>
+                    </a>
+                </li>
+            </ul>
+        }
     </div>
 </div>

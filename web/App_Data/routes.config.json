@@ -236,5 +236,19 @@
     "showWhenLoggedIn": false,
     "isAdminPage": false,
     "startPageRoute": null
+  },
+  {
+    "role": "customers",
+    "groupName": null,
+    "route": "consignment-requests-pickedup",
+    "moduleId": "viewmodels/consignment-requests-pickedup",
+    "title": "Consignment Requests Picked Up",
+    "nav": false,
+    "icon": "fa fa-file-text",
+    "caption": "Consignment Requests Picked Up",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
   }
 ]

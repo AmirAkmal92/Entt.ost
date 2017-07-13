@@ -389,13 +389,23 @@
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="fa fa-file-text font-yellow-casablanca"></i>
+                            <!--ko if: $root.config.profile.Designation == "No contract customer"-->
                             <span class="caption-subject font-yellow-casablanca sbold uppercase">Order History</span>
                             <div class="caption-desc font-grey-cascade">Latest five orders</div>
-
+                            <!--/ko-->
+                            <!--ko if: $root.config.profile.Designation == "Contract customer"-->
+                            <span class="caption-subject font-yellow-casablanca sbold uppercase">Pickup History</span>
+                            <div class="caption-desc font-grey-cascade">Latest five pickups</div>
+                            <!--/ko-->
                         </div>
                         <div class="actions">
                             <div class="btn-group btn-group-devided">
+                                <!--ko if: $root.config.profile.Designation == "No contract customer"-->
                                 <a href="ost#consignment-requests-paid" type="button" class="btn btn-transparent yellow-casablanca btn-circle" role="button">View All</a>
+                                <!--/ko-->
+                                <!--ko if: $root.config.profile.Designation == "Contract customer"-->
+                                <a href="ost#consignment-requests-pickedup" type="button" class="btn btn-transparent yellow-casablanca btn-circle" role="button">View All</a>
+                                <!--/ko-->
                             </div>
                         </div>
                     </div>
@@ -413,7 +423,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!--ko foreach: $root.paidConsignments-->
+                                        <!--ko foreach: $root.consignmentRequestsHistory-->
                                         <!--ko if: $index() < 5-->
                                         <tr>
                                             <td> <center><span data-bind="text: $index() + 1"></span> </center></td>
@@ -437,7 +447,28 @@
                             </div>
                             <!--/ko-->
                             <!--ko if: $root.config.profile.Designation == "Contract customer"-->
-                            <!-- TODO -->
+                            <div class="panel panel-danger">
+                                <table class="table table-striped table-bordered table-advance table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><center><strong> # </strong></center></th>
+                                            <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong> Pickup Number </strong></th>
+                                            <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><center><strong> Date </strong></center></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!--ko foreach: $root.consignmentRequestsHistory-->
+                                        <!--ko if: $index() < 5-->
+                                        <tr>
+                                            <td> <center><span data-bind="text: $index() + 1"></span> </center></td>
+                                            <td> <span data-bind="text: Pickup.Number"></span> </td>
+                                            <td> <center> <span data-bind="date:{ value:ChangedDate, format:&#39;D/M/YYYY HH:mm&#39;}"></span> </center></td>
+                                        </tr>
+                                        <!--/ko-->
+                                        <!--/ko-->
+                                    </tbody>
+                                </table>
+                            </div>
                             <!--/ko-->
                         </div>
                     </div>

@@ -7,7 +7,7 @@ function (context, logger, router, config, app, system, koList, crCart) {
         entity = ko.observable(),
         availableCountries = ko.observableArray(),
         crShippingCart = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
-        paidConsignments = ko.observableArray(),
+        consignmentRequestsHistory = ko.observableArray(),
         query = "/api/consigment-requests/paid",
         list = ko.observableArray([]),
         partial = partial || {},
@@ -59,13 +59,17 @@ function (context, logger, router, config, app, system, koList, crCart) {
                         entity().PickupAddress().Address().Country("MY");
                     }
                 });
+                var urlApi = "/api/consigment-requests/paid/";
+                if (config.profile.Designation == "Contract customer") {
+                    urlApi = "/api/consigment-requests/pickedup/";
+                }
                 return $.ajax({
-                    url: "/api/consigment-requests/paid/",
+                    url: urlApi,
                     method: "GET",
                     cache: false
                 }).done(function (crList) {
                     console.log(crList._results);
-                    paidConsignments(crList._results);
+                    consignmentRequestsHistory(crList._results);
                 });
             });
         },
@@ -215,7 +219,7 @@ function (context, logger, router, config, app, system, koList, crCart) {
         copyUserDetailProfilePickupAddress: copyUserDetailProfilePickupAddress,
         availableCountries: availableCountries,
         crShippingCart: crShippingCart,
-        paidConsignments: paidConsignments,
+        consignmentRequestsHistory: consignmentRequestsHistory,
         activate: activate,
         attached: attached,
         compositionComplete: compositionComplete,

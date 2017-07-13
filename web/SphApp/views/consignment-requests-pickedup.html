@@ -1,0 +1,74 @@
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="/"> Home </a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Pickups </span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Pickup History </span>
+        </li>
+    </ul>
+</div>
+<h1 class="page-title caption-subject font-red-sunglo bold uppercase"></h1>
+<small></small>
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <h4>
+                        <i class="fa fa-file-text font-yellow-casablanca"></i>
+                        <span class="caption-subject font-yellow-casablanca bold uppercase">Pickup History</span>
+                    </h4>
+                    <div class="caption-desc font-grey-cascade">All Picked Up Parcel</div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="clearfix">
+                    <div class="panel panel-danger">
+                        <style>
+                            .btn-success {
+                                color: #fff;
+                                background-color: #ff6a00;
+                                border-color: #c76926;
+                            }
+
+                                .btn-success.active, .btn-success:active, .btn-success:hover, .open > .btn-success.dropdown-toggle {
+                                    color: #fff;
+                                    background-color: #cc5500;
+                                    border-color: #e66d16;
+                                }
+                        </style>
+                        <table class="table table-striped table-bordered table-advance" data-bind="queryPaging :{ query: query, map : map, list:list}">
+                            <thead>
+                                <tr>
+                                    <th class="hidden-xs bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Pickup Number</strong></th>
+                                    <th class="hidden-xs bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Tracking Number</strong></th>
+                                    <th class="hidden-xs bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Parcel</strong></th>
+                                    <th class="hidden-xs bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Date</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach :list">
+                                <tr data-bind="">
+                                    <td class="hidden-xs" data-bind="text: Pickup.Number"></td>
+                                    <td class="hidden-xs">
+                                        <!--ko foreach: Consignments-->
+                                        <span data-bind="text: ConNote"></span>&nbsp;
+                                        <!--/ko-->
+                                    </td>
+                                    <td class="hidden-xs" data-bind="text:Consignments.length"></td>
+                                    <td class="hidden-xs" data-bind="date:{ value:ChangedDate, format:&#39;D/M/YYYY HH:mm&#39;}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <img src="/Images/spinner-md.gif" alt="loading" class="absolute-center" data-bind="visible: isBusy" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
