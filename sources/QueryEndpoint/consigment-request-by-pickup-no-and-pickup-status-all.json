@@ -1,0 +1,64 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "ConsigmentRequestByPickupNoAndPickupStatusAllQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Pickup.Number",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.RouteParameterField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "DefaultValue": "",
+          "IsOptional": false,
+          "Constraints": "",
+          "Name": "pickupno",
+          "Note": "",
+          "WebId": "fe5c61f7-5caf-4fd2-fc76-111b305701f7"
+        },
+        "WebId": "b511209c-d8a1-4da6-c99b-6b7fd9ef3eb3"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Pickup.IsPickedUp",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.RouteParameterField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "DefaultValue": "",
+          "IsOptional": false,
+          "Constraints": "",
+          "Name": "pickupstatus",
+          "Note": "",
+          "WebId": "ae4e6608-3fd9-46b8-e583-748df6d1595f"
+        },
+        "WebId": "3809d519-386d-45b4-abbf-b33f88d89f05"
+      }
+    ]
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "ByPickupNoAndPickupStatusAll",
+  "Route": "pickup-no/{pickupno}/pickup-status/{pickupstatus}",
+  "IsReturnSource": "",
+  "Entity": "ConsigmentRequest",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "consigment-requests",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "consigment-request-by-pickup-no-and-pickup-status-all",
+  "CreatedDate": "2017-07-12T11:26:21.6239183+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-12T14:40:49.5525639+08:00",
+  "WebId": "5845e045-b573-45dc-df3a-ace5ecdcf7c8"
+}
