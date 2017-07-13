@@ -6884,19 +6884,19 @@ define('viewmodels/shell.custom', ["durandal/system", "services/system", "plugin
                         $("div.modal-header>button.close").trigger("click");
                     }
                 });
+                if (config.profile.Designation != "Contract customer registrar") {
+                    contactGroups.activate().done(function () {
+                        if (!ko.dataFor(document.getElementById("contact-group-list"))) {
+                            ko.applyBindings(contactGroups, document.getElementById("contact-group-list"));
+                        }
+                    });
 
-                contactGroups.activate().done(function () {
-                    if (!ko.dataFor(document.getElementById("contact-group-list"))) {
-                        ko.applyBindings(contactGroups, document.getElementById("contact-group-list"));
-                    }
-                });
-
-                crCart.activate().done(function () {
-                    if (!ko.dataFor(document.getElementById("consignment-request-cart"))) {
-                        ko.applyBindings(crCart, document.getElementById("consignment-request-cart"));
-                    }
-                });
-
+                    crCart.activate().done(function () {
+                        if (!ko.dataFor(document.getElementById("consignment-request-cart"))) {
+                            ko.applyBindings(crCart, document.getElementById("consignment-request-cart"));
+                        }
+                    });
+                }
                 return messagesConfig.attached(view).done(function () {
                     var inboxHeader = document.getElementById("header_inbox_bar");
 

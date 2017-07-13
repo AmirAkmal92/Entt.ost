@@ -10,7 +10,21 @@
   },
   "SetterActionChildCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.SetterActionChild, domain.sph]], domain.sph",
-    "$values": []
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.SetterActionChild, domain.sph",
+        "Path": "UserId",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.FunctionField, domain.sph",
+          "CodeNamespace": "ff91c064ab",
+          "Script": "Guid.NewGuid().ToString()",
+          "Name": "guid",
+          "Note": "",
+          "WebId": "91c064ab-9acf-4490-886d-af58e865f9b1"
+        },
+        "WebId": "74064545-87c0-4012-fd97-2bc6e2423701"
+      }
+    ]
   },
   "PatchPathCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.PatchSetter, domain.sph]], domain.sph",
@@ -35,6 +49,6 @@
   "Id": "est-registration-default",
   "CreatedDate": "2017-06-23T08:48:49.2030771+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-06-23T08:49:18.1390548+08:00",
+  "ChangedDate": "2017-07-13T10:54:16.0209448+08:00",
   "WebId": "ec6698de-a597-4b03-8f95-9f3f9f539453"
 }

@@ -18,16 +18,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label">User ID<span class="red-danger"> * </span></label>
-                        <input type="text" id="UserId" class="form-control" data-bind="value: UserId" required>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
                         <label class="control-label">Company Name<span class="red-danger"> * </span></label>
-                        <input type="text" id="CompanyName1" class="form-control" data-bind="value: CompanyInformation().CompanyName">
+                        <input type="text" id="CompanyName1" class="form-control" data-bind="value: CompanyInformation().CompanyName" required>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -67,7 +59,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label">GST ID<span class="red-danger"> * </span></label>
-                        <input type="text" id="GstId" class="form-control" data-bind="value: CompanyInformation().GstId">
+                        <input type="text" id="GstId" class="form-control" data-bind="value: CompanyInformation().GstId" required>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -83,7 +75,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label">ROC Number<span class="red-danger"> * </span></label>
-                        <input type="text" class="form-control" placeholder="e.g: 001234567-A" data-bind="value: CompanyInformation().RocNumber">
+                        <input type="text" class="form-control" placeholder="e.g: 001234567-A" data-bind="value: CompanyInformation().RocNumber" required>
                     </div>
                 </div>
             </div>
@@ -122,29 +114,40 @@
             <hr />
             <div class="row">
                 <div class="col-md-12 ">
-                    <div class="form-group mt-repeater">
-                        <div data-repeater-list="group-c">
-                            <div data-repeater-item="" class="mt-repeater-item">
-                                <div class="row mt-repeater-row">
-                                    <div class="col-md-8">
-                                        <label class="control-label">Director's Name</label>
-                                        <input type="text" placeholder="" class="form-control">
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label class="control-label">Director's IC No</label>
-                                        <input type="text" placeholder="" class="form-control">
-                                    </div>
-                                    <div class="col-md-1">
-                                        <a href="javascript:;" data-repeater-delete="" class="btn btn-danger mt-repeater-delete" title="Remove">
-                                            <i class="fa fa-close"></i>
+                    <div class="form-group">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-8"><label>Director's Name</label></th>
+                                    <th class="col-md-3"><label>Director's IC No</label></th>
+                                    <th class="col-md-1"><label>Action</label></th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach :DirectorInformation">
+                                <tr>
+                                    <td class="col-md-8">
+                                        <input class="form-control "
+                                               data-bind="value: DirectorName, visible :true, enable :true ,uniqueName:true"
+                                               type="text"
+                                               name="DirectorName" />
+                                    </td>
+                                    <td class="col-md-3">
+                                        <input class="form-control "
+                                               data-bind="value: DirectorIcNumber, visible :true, enable :true ,uniqueName:true"
+                                               type="text"
+                                               name="DirectorIcNumber" />
+                                    </td>
+                                    <td class="col-md-1">
+                                        <a class="btn btn-danger" title="remove" href="#" data-bind="click : $parent.removeChildItem.call($parent,$parent.DirectorInformation, $data)">
+                                            <span class="glyphicon glyphicon-remove"></span>
                                         </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-                        <a href="javascript:;" data-repeater-create="" class="btn btn-info mt-repeater-add">
-                            <i class="fa fa-plus"></i>  Add Another Director
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a data-i18n="Add director" class="btn btn-info" data-bind="click : addChildItem(DirectorInformation, bespoke.Ost_estRegistration.domain.DirectorInformation)">
+                            <i class="fa fa-plus"></i>
+                            Add Director
                         </a>
                     </div>
                 </div>
@@ -179,18 +182,6 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
-            </div>-->
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-group">
@@ -207,25 +198,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>State<span class="red-danger"> * </span></label>
-                        <select class="form-control" id="sort">
-                            <option value="" disabled selected>Select...</option>
-                            <option value="">Johor</option>
-                            <option value="">Kedah</option>
-                            <option value="">Kelantan</option>
-                            <option value="">Melaka</option>
-                            <option value="">Negeri Sembilan</option>
-                            <option value="">Pahang</option>
-                            <option value="">Perak</option>
-                            <option value="">Perlis</option>
-                            <option value="">Pulau Pinang</option>
-                            <option value="">Sabah</option>
-                            <option value="">Sarawak</option>
-                            <option value="">Selangor</option>
-                            <option value="">Terengganu</option>
-                            <option value="">Wilayah Persekutuan Kuala Lumpur</option>
-                            <option value="">Wilayah Persekutuan Labuan</option>
-                            <option value="">Wilayah Persekutuan Putrajaya</option>
-                        </select>
+                        <select data-bind="visible :true, enable :true, comboBoxLookupOptions : { value: PersonalDetail().MailingAddress().State, entity : 'State' , valuePath : 'Abbreviation' , displayPath: 'Name' , query :'Id ne \'0\''}" name="PersonalDetail.MailingAddress.State" class="input-large form-control"></select>
                     </div>
                 </div>
             </div>
@@ -490,7 +463,7 @@
                                     </thead>
                                     <tbody>
                                         <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
-                                                    $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                            $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
                                         <tr>
                                             <td>
                                                 <span>Form P13 And TnC</span>
@@ -510,7 +483,7 @@
                                         </tr>
                                         <!-- /ko -->
                                         <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
-                                                    $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                            $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
                                         <tr>
                                             <td>
                                                 <span>CTOS - Company</span>
@@ -530,7 +503,7 @@
                                         </tr>
                                         <!-- /ko -->
                                         <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
-                                                    $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                            $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
                                         <tr>
                                             <td>
                                                 <span>CTOS - Owner / Directors</span>
@@ -550,7 +523,7 @@
                                         </tr>
                                         <!-- /ko -->
                                         <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
-                                                    $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                            $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
                                         <tr>
                                             <td>
                                                 <span>IC Copy</span>
@@ -570,7 +543,7 @@
                                         </tr>
                                         <!-- /ko -->
                                         <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
-                                                    $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                            $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
                                         <tr>
                                             <td>
                                                 <span>Business Card</span>
@@ -650,7 +623,7 @@
                                         </tr>
                                         <!-- /ko -->
                                         <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
-                                                    $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                            $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
                                         <tr>
                                             <td>
                                                 <span>Deposit Slip</span>
@@ -666,7 +639,7 @@
                                         </tr>
                                         <!-- /ko -->
                                         <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
-                                                    $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR' || $root.chosenCompany() == 'GOV'-->
+                                            $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR' || $root.chosenCompany() == 'GOV'-->
                                         <tr>
                                             <td>
                                                 <span>Authorize Letter (with letterhead)</span>
@@ -697,7 +670,7 @@
                                         </tr>
                                         <!-- /ko -->
                                         <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
-                                                    $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                            $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
                                         <tr>
                                             <td>
                                                 <span>Other Documents</span>
@@ -788,8 +761,8 @@
             </div>
         </div>
         <div class="form-actions right">
-            <a href="/ost-account/logout" type="button" class="btn btn-info pull-right">Logout</a>
-            <button type="submit" class="btn btn-info pull-right" data-bind="click: $root.saveCommand">Submit Registration</button>
+            <a href="/ost-account/logout" type="button" class="btn btn-info">Cancel</a>&nbsp;&nbsp;
+            <a class="btn btn-info" data-bind="click: $root.saveCommand">Submit Registration</a>
         </div>
     </form>
     <!-- END FORM-->

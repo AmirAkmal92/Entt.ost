@@ -136,14 +136,14 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             return defaultCommand()
                 .then(function (result) {
                     if (result.success) {
-                        return app.showMessage("Added / Edited", ["OK"]);
+                        return app.showMessage("Your application for Ezisend Contract Customer will be review and process. You will be notify immediately once your application was successful.", "Pos Laju EziSend", ["OK"]);
                     } else {
                         return Task.fromResult(false);
                     }
                 })
                 .then(function (result) {
                     if (result) {
-                        router.navigate("est-registration-all");
+                        window.location.href = "/ost-account/logout";
                     }
                 });
         };
