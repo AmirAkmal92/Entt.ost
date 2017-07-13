@@ -112,12 +112,147 @@
         }
     }
 ,
-    "SupportingDocument":{
+    "FormP13AndTnc":{
         "type":  "object",
         "properties":{
-             "DocumentName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
-             "DocumentId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
-             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocTypeId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+    "CtosCompany":{
+        "type":  "object",
+        "properties":{
+             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocTypeId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+    "CtosOwnerDirectors":{
+        "type":  "object",
+        "properties":{
+             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocTypeId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+    "IcCopy":{
+        "type":  "object",
+        "properties":{
+             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocTypeId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+    "BusinessCard":{
+        "type":  "object",
+        "properties":{
+             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocTypeId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+    "Form913":{
+        "type":  "object",
+        "properties":{
+             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocTypeId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+    "Form24":{
+        "type":  "object",
+        "properties":{
+             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocTypeId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+    "Form49":{
+        "type":  "object",
+        "properties":{
+             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocTypeId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+    "Borang48":{
+        "type":  "object",
+        "properties":{
+             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocTypeId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+    "DepositSlip":{
+        "type":  "object",
+        "properties":{
+             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocTypeId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+    "AuthorizeLetter":{
+        "type":  "object",
+        "properties":{
+             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocTypeId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+    "GstCertificationLetter":{
+        "type":  "object",
+        "properties":{
+             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocTypeId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+    "OtherDocuments":{
+        "type":  "object",
+        "properties":{
+             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocTypeId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+    "FormDE":{
+        "type":  "object",
+        "properties":{
+             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocTypeId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+    "BorangSsmMaklumatPerniagaan":{
+        "type":  "object",
+        "properties":{
+             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocTypeId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+        }
+    }
+,
+    "BorangSsmMaklumatPemilik":{
+        "type":  "object",
+        "properties":{
+             "BinaryStoreId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "DocTypeId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
         }
     }
 
