@@ -1,0 +1,11 @@
+{
+  "$type": "Bespoke.Ost.States.Domain.State, Ost.State",
+  "Name": "Perlis",
+  "Abbreviation": "PEL",
+  "CreatedBy": "excel",
+  "Id": "PEL",
+  "CreatedDate": "2017-07-11T00:00:00+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-11T18:54:10.354386+08:00",
+  "WebId": "9645b720-804a-4ad3-a402-959825e5a386"
+}

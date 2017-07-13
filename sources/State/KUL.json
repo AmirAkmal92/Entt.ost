@@ -1,0 +1,11 @@
+{
+  "$type": "Bespoke.Ost.States.Domain.State, Ost.State",
+  "Name": "Wilayah Persekutuan Kuala Lumpur",
+  "Abbreviation": "KUL",
+  "CreatedBy": "excel",
+  "Id": "KUL",
+  "CreatedDate": "2017-07-11T00:00:00+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-11T18:54:10.4874053+08:00",
+  "WebId": "9e13caa0-8731-49ee-b08b-ced5cc08f27a"
+}

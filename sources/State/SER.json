@@ -1,0 +1,11 @@
+{
+  "$type": "Bespoke.Ost.States.Domain.State, Ost.State",
+  "Name": "Negeri Sembilan",
+  "Abbreviation": "SER",
+  "CreatedBy": "excel",
+  "Id": "SER",
+  "CreatedDate": "2017-07-11T00:00:00+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-11T18:54:10.4717798+08:00",
+  "WebId": "be604c21-97e5-4c15-a122-a38bacffc2f2"
+}

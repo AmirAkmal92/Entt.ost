@@ -1,0 +1,11 @@
+{
+  "$type": "Bespoke.Ost.States.Domain.State, Ost.State",
+  "Name": "Terengganu",
+  "Abbreviation": "TRE",
+  "CreatedBy": "excel",
+  "Id": "TRE",
+  "CreatedDate": "2017-07-11T00:00:00+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-11T18:54:10.3871432+08:00",
+  "WebId": "f692b667-eb88-4422-b8a9-507f421f0666"
+}

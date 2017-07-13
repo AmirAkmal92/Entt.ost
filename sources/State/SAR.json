@@ -1,0 +1,11 @@
+{
+  "$type": "Bespoke.Ost.States.Domain.State, Ost.State",
+  "Name": "Sarawak",
+  "Abbreviation": "SAR",
+  "CreatedBy": "excel",
+  "Id": "SAR",
+  "CreatedDate": "2017-07-11T00:00:00+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-11T18:54:10.418394+08:00",
+  "WebId": "9f668bc7-be3d-43c8-b962-021ea454f5e7"
+}

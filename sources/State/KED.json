@@ -1,0 +1,11 @@
+{
+  "$type": "Bespoke.Ost.States.Domain.State, Ost.State",
+  "Name": "Kedah",
+  "Abbreviation": "KED",
+  "CreatedBy": "excel",
+  "Id": "KED",
+  "CreatedDate": "2017-07-11T00:00:00+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-11T18:54:10.2511204+08:00",
+  "WebId": "19420959-b3c2-42b3-b9f8-8bdd2b6db207"
+}

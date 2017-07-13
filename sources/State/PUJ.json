@@ -1,0 +1,11 @@
+{
+  "$type": "Bespoke.Ost.States.Domain.State, Ost.State",
+  "Name": "Wilayah Persekutuan Putrajaya",
+  "Abbreviation": "PUJ",
+  "CreatedBy": "excel",
+  "Id": "PUJ",
+  "CreatedDate": "2017-07-11T00:00:00+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-11T18:54:10.5186561+08:00",
+  "WebId": "ac377c88-94f8-42db-9093-c34be81a11ac"
+}

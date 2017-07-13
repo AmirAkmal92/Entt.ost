@@ -22,10 +22,10 @@
           "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
           "$values": []
         },
-        "Name": "Abbreviation",
+        "Name": "Name",
         "AllowMultiple": false,
         "DefaultValue": null,
-        "WebId": "d4b33a1e-e6dc-408a-94d4-9784e87c53db"
+        "WebId": "e6321cbb-f0d9-4f5b-8caa-90d23863aac4"
       },
       {
         "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
@@ -46,34 +46,10 @@
           "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
           "$values": []
         },
-        "Name": "Name",
+        "Name": "Abbreviation",
         "AllowMultiple": false,
         "DefaultValue": null,
-        "WebId": "e6321cbb-f0d9-4f5b-8caa-90d23863aac4"
-      },
-      {
-        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-        "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
-        "IsNotIndexed": false,
-        "IsAnalyzed": false,
-        "IsFilterable": true,
-        "IsExcludeInAll": false,
-        "Boost": 5,
-        "FullName": null,
-        "PropertyAttribute": null,
-        "MemberCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "FieldPermissionCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "Name": "Country",
-        "AllowMultiple": false,
-        "DefaultValue": null,
-        "WebId": "51d0a90b-90a0-484d-99a6-3e0af1e57237"
+        "WebId": "d4b33a1e-e6dc-408a-94d4-9784e87c53db"
       }
     ]
   },
@@ -86,7 +62,7 @@
     "CodeNamespace": "Bespoke.Ost.IntegrationApis",
     "FullSearchEndpoint": {
       "$type": "Bespoke.Sph.Domain.FullSearchEndpoint, domain.sph",
-      "IsAllowed": false,
+      "IsAllowed": true,
       "WebId": null
     },
     "OdataEndpoint": {
@@ -115,6 +91,6 @@
   "Id": "state",
   "CreatedDate": "2014-04-19T10:07:12.2060219+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-10-27T07:52:25.6447844+08:00",
+  "ChangedDate": "2017-07-11T18:52:27.2998716+08:00",
   "WebId": "5d31c43-852d-4a9d-b3be-1fc94d5cea05"
 }

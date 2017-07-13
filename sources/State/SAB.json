@@ -1,0 +1,11 @@
+{
+  "$type": "Bespoke.Ost.States.Domain.State, Ost.State",
+  "Name": "Sabah",
+  "Abbreviation": "SAB",
+  "CreatedBy": "excel",
+  "Id": "SAB",
+  "CreatedDate": "2017-07-11T00:00:00+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-11T18:54:10.3181327+08:00",
+  "WebId": "32d5b473-5716-4a3e-8629-41f3cb8eee04"
+}

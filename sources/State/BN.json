@@ -1,0 +1,11 @@
+{
+  "$type": "Bespoke.Ost.States.Domain.State, Ost.State",
+  "Name": "Brunei",
+  "Abbreviation": "BN",
+  "CreatedBy": "excel",
+  "Id": "BN",
+  "CreatedDate": "2017-07-11T00:00:00+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-11T18:54:10.3715177+08:00",
+  "WebId": "4469bc50-8904-4b6a-b3c5-0fc2ee4ff23a"
+}

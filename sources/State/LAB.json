@@ -1,0 +1,11 @@
+{
+  "$type": "Bespoke.Ost.States.Domain.State, Ost.State",
+  "Name": "Wilayah Persekutuan Labuan",
+  "Abbreviation": "LAB",
+  "CreatedBy": "excel",
+  "Id": "LAB",
+  "CreatedDate": "2017-07-11T00:00:00+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-11T18:54:10.2868807+08:00",
+  "WebId": "3c8e278e-c593-44cd-90e2-121a8c71737a"
+}

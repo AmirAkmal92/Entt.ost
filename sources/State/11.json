@@ -1,0 +1,11 @@
+{
+  "$type": "Bespoke.Ost.States.Domain.State, Ost.State",
+  "Name": "Belgium",
+  "Abbreviation": "11",
+  "CreatedBy": "excel",
+  "Id": "11",
+  "CreatedDate": "2017-07-11T00:00:00+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-11T18:54:10.4027694+08:00",
+  "WebId": "1b328683-2e30-4b4b-b516-f9f8e1eadae1"
+}

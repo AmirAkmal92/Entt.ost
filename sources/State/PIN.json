@@ -1,0 +1,11 @@
+{
+  "$type": "Bespoke.Ost.States.Domain.State, Ost.State",
+  "Name": "Pulau Pinang",
+  "Abbreviation": "PIN",
+  "CreatedBy": "excel",
+  "Id": "PIN",
+  "CreatedDate": "2017-07-11T00:00:00+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-11T18:54:10.3337532+08:00",
+  "WebId": "8785982c-438b-473f-b818-5b77bbed18e4"
+}
