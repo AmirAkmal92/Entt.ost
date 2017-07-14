@@ -1,6 +1,6 @@
-define(["services/datacontext", "services/logger", "plugins/router", "services/chart", objectbuilders.config, "services/_ko.list"],
+define(["services/datacontext", "services/logger", "plugins/router", "services/chart", objectbuilders.config, "services/_ko.list", "partial/consignment-requests-pickedup"],
 
-function(context, logger, router, chart, config, koList) {
+function(context, logger, router, chart, config, koList, partial) {
 
     var isBusy = ko.observable(false),
         query = "/api/consigment-requests/pickedup",
@@ -17,7 +17,6 @@ function(context, logger, router, chart, config, koList) {
                 return partial.activate(list);
             }
             return true;
-            debugger
         },
         attached = function(view) {
             if (typeof partial.attached === "function") {

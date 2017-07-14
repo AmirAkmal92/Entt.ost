@@ -1,5 +1,5 @@
-define(["plugins/dialog", "services/datacontext"],
-    function (dialog, context) {
+define(["plugins/dialog", "services/datacontext", objectbuilders.config],
+    function (dialog, context, config) {
         var item = ko.observableArray([]),
             conNote = ko.observable(),
             activate = function () {
@@ -26,6 +26,7 @@ define(["plugins/dialog", "services/datacontext"],
             deactivate: deactivate,
             item: item,
             conNote: conNote,
+            config: config,
             trackConNote: trackConNote,
             okClick: okClick,
             cancelClick: cancelClick
