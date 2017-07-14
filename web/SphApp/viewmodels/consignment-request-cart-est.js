@@ -231,7 +231,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 }
 
                 if (sumConsignment() == 0) {
-                    app.showMessage("Sorry, but we cannot shedule a pickup for the Consignment Request with Id : " + ko.unwrap(entity().Id), "OST", ["Close"]).done(function () {
+                    app.showMessage("Some parcels are yet to be finalized. At least one Consignment Note must be generated/printed.", "OST", ["Close"]).done(function () {
                         router.navigate("consignment-request-cart-est/" + ko.unwrap(entity().Id));
                     });
                 } else {
