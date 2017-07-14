@@ -360,6 +360,8 @@ namespace web.sph.App_Code
                         await session.SubmitChanges("Default");
                     }
 
+                    // wait until the worker process it
+                    await Task.Delay(2500);
                     await SetVerifyEmailFlag(registerModel.UserName);
 
                     return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "register" });
