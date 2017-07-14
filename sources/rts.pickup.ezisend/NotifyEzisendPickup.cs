@@ -97,6 +97,9 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
                     //Set IsPickedUp
                     consignmentRequestPickup.Pickup.IsPickedUp = true;
 
+                    //Set IsPaid
+                    consignmentRequestPickup.Payment.IsPaid = true;
+
                     //Move
                     var needSaving = MoveConsignmentFromCartToPickup(consignmentNo, consignmentRequestCart, consignmentRequestPickup);
 
@@ -141,12 +144,15 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
 
             if (consignmentRequestCart.Consignments.Count == 0)
             {
+                //Empty Cart
+                consignmentRequestCart.Pickup = new Bespoke.Ost.ConsigmentRequests.Domain.Pickup();
+                consignmentRequestCart.Payment = new Bespoke.Ost.ConsigmentRequests.Domain.Payment();
                 using (var session = context.OpenSession())
                 {
-                    session.Delete(consignmentRequestCart);
+                    session.Attach(consignmentRequestCart);
                     await session.SubmitChanges("Default");
                 }
-                Console.WriteLine($"Cart Deleted");
+                Console.WriteLine($"Cart Emptied");
             }
         }
 
