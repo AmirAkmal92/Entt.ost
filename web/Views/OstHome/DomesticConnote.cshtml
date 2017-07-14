@@ -215,9 +215,16 @@
                     <td class="td-hide">col-01</td>
                     <td class="td-hide">col-02</td>
                     <td class="td-hide">col-03</td>
-                    <td class="td-hide">col-04</td>
-                    <td class="td-hide">col-05</td>
-                    <td class="td-hide">col-06</td>
+                    @if (Model.designation == "Contract customer")
+                    {
+                        <td colspan="3">&nbsp;&nbsp;<span>@Html.Raw(Model.accountNo)</span></td>
+                    }
+                    else
+                    {
+                        <td class="td-hide">col-04</td>
+                        <td class="td-hide">col-05</td>
+                        <td class="td-hide">col-06</td>
+                    }
                     <td class="td-hide">col-07</td>
                     <td class="td-hide">col-08</td>
                     <td class="td-hide">col-09</td>
@@ -687,9 +694,15 @@
                     <td class="td-hide">col-01</td>
                     <td class="td-hide">col-02</td>
                     <td class="td-hide">col-03</td>
-                    <td class="td-hide">col-04</td>
-                    <td class="td-hide">col-05</td>
-                    <td class="td-hide">col-06</td>
+                    @if (Model.designation == "Contract customer")
+                    {
+                        <td colspan="3">&nbsp;&nbsp;<span>@Html.Raw(Model.accountNo)</span></td>
+                    }
+                    else
+                    {
+                        <td class="td-hide" colspan="3"></td>
+
+                    }
                     <td class="td-hide">col-07</td>
                     <td class="td-hide">col-08</td>
                     <td class="td-hide">col-09</td>
@@ -999,12 +1012,13 @@
     </script>
     <script>
         $(document).ready(function () {
-
-            // TODO checking for designation
-
-            var text = ('A1^@Html.Raw(Model.consignment.ConNote)^@Html.Raw(Model.consignment.Penerima.Address.Postcode)^@Html.Raw(Model.consignment.Penerima.Address.Country)^@Html.Raw(Model.consignment.Bill.ProductCode)^^^@Html.Raw(Model.consignment.Pemberi.ContactInformation.ContactNumber)^@Html.Raw(Model.consignment.Pemberi.ContactInformation.Email)^^@Html.Raw(Model.consignment.Penerima.ContactInformation.ContactNumber)^@Html.Raw(Model.consignment.Penerima.ContactInformation.Email)^@Html.Raw(Model.consignment.Produk.Weight)^@Html.Raw(Model.consignment.Produk.Height) x @Html.Raw(Model.consignment.Produk.Width) x @Html.Raw(Model.consignment.Produk.Length)^^^@Html.Raw(Model.consignment.Produk.ValueAddedValue)^@Html.Raw(Model.consignment.Produk.ItemCategory)^@Html.Raw(Model.amountPaid)^@Html.Raw(Model.consignment.Bill.ZoneName)');
-            $("#bcTarget1").barcode(text, "datamatrix", { showHRI: false });
-            $("#bcTarget2").barcode(text, "datamatrix", { showHRI: false });
+            if ("@Model.designation" == "Contract customer") {
+                var text = ('A1^@Html.Raw(Model.consignment.ConNote)^@Html.Raw(Model.consignment.Penerima.Address.Postcode)^@Html.Raw(Model.consignment.Penerima.Address.Country)^@Html.Raw(Model.consignment.Bill.ProductCode)^^^@Html.Raw(Model.consignment.Pemberi.ContactInformation.ContactNumber)^@Html.Raw(Model.consignment.Pemberi.ContactInformation.Email)^^@Html.Raw(Model.accountNo)^@Html.Raw(Model.consignment.Penerima.ContactInformation.ContactNumber)^@Html.Raw(Model.consignment.Penerima.ContactInformation.Email)^@Html.Raw(Model.consignment.Produk.Weight)^@Html.Raw(Model.consignment.Produk.Height) x @Html.Raw(Model.consignment.Produk.Width) x @Html.Raw(Model.consignment.Produk.Length)^^^@Html.Raw(Model.consignment.Produk.ValueAddedValue)^@Html.Raw(Model.consignment.Produk.ItemCategory)^@Html.Raw(Model.amountPaid)^@Html.Raw(Model.consignment.Bill.ZoneName)');
+            } else {
+                var text = ('A1^@Html.Raw(Model.consignment.ConNote)^@Html.Raw(Model.consignment.Penerima.Address.Postcode)^@Html.Raw(Model.consignment.Penerima.Address.Country)^@Html.Raw(Model.consignment.Bill.ProductCode)^^^@Html.Raw(Model.consignment.Pemberi.ContactInformation.ContactNumber)^@Html.Raw(Model.consignment.Pemberi.ContactInformation.Email)^^^@Html.Raw(Model.consignment.Penerima.ContactInformation.ContactNumber)^@Html.Raw(Model.consignment.Penerima.ContactInformation.Email)^@Html.Raw(Model.consignment.Produk.Weight)^@Html.Raw(Model.consignment.Produk.Height) x @Html.Raw(Model.consignment.Produk.Width) x @Html.Raw(Model.consignment.Produk.Length)^^^@Html.Raw(Model.consignment.Produk.ValueAddedValue)^@Html.Raw(Model.consignment.Produk.ItemCategory)^@Html.Raw(Model.amountPaid)^@Html.Raw(Model.consignment.Bill.ZoneName)');
+            }
+            $("#bcTarget1").barcode(text, "datamatrix", { showHRI: false, moduleSize: 3 });
+            $("#bcTarget2").barcode(text, "datamatrix", { showHRI: false, moduleSize: 3 });
             window.print();
         });
     </script>

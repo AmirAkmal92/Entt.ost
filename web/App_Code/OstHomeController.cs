@@ -66,10 +66,13 @@ namespace web.sph.App_Code
                     break;
                 }
             }
+            UserProfile userProfile = await GetDesignation();
             var pcm = new printConnoteModel
             {
                 referenceNo = item.ReferenceNo,
                 consignment = connote,
+                accountNo = item.CreatedBy,
+                designation = userProfile.Designation,
             };
             return View(pcm);
         }

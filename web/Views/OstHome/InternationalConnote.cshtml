@@ -160,7 +160,15 @@
                     <td class="td-hide">col-02</td>
                     <td class="td-hide">col-03</td>
                     <td class="td-hide">col-04</td>
-                    <td class="td-hide" colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Account No.</span></td>
+                    @if (Model.designation == "Contract customer")
+                    {
+                        <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.accountNo)</span></td>
+                    }
+                    else
+                    {
+                        <td class="td-hide" colspan="8"></td>
+
+                    }
                     <td class="td-hide">col-13</td>
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
@@ -863,7 +871,15 @@
                     <td class="td-hide">col-02</td>
                     <td class="td-hide">col-03</td>
                     <td class="td-hide">col-04</td>
-                    <td class="td-hide" colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Account No.</span></td>
+                    @if (Model.designation == "Contract customer")
+                    {
+                        <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.accountNo)</span></td>
+                    }
+                    else
+                    {
+                        <td class="td-hide" colspan="8"></td>
+
+                    }
                     <td class="td-hide">col-13</td>
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
@@ -1567,7 +1583,15 @@
                     <td class="td-hide">col-02</td>
                     <td class="td-hide">col-03</td>
                     <td class="td-hide">col-04</td>
-                    <td class="td-hide" colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Account No.</span></td>
+                    @if (Model.designation == "Contract customer")
+                    {
+                        <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.accountNo)</span></td>
+                    }
+                    else
+                    {
+                        <td class="td-hide" colspan="8"></td>
+
+                    }
                     <td class="td-hide">col-13</td>
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
@@ -2269,7 +2293,15 @@
                     <td class="td-hide">col-02</td>
                     <td class="td-hide">col-03</td>
                     <td class="td-hide">col-04</td>
-                    <td class="td-hide" colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Account No.</span></td>
+                    @if (Model.designation == "Contract customer")
+                    {
+                        <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.accountNo)</span></td>
+                    }
+                    else
+                    {
+                        <td class="td-hide" colspan="8"></td>
+
+                    }
                     <td class="td-hide">col-13</td>
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
