@@ -31,6 +31,9 @@
                         <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }" class="btn btn-circle yellow-casablanca">
                             <i class="fa fa-paper-plane"></i> Add Parcel
                         </a>
+                        <a data-bind="command: $root.importConsignments" class="btn btn-circle yellow-casablanca">
+                            <i class="fa fa-cloud-upload"></i> Bulk Upload
+                        </a>
                         <a class="btn btn-circle yellow-casablanca" data-bind="click: $root.generateConNotes">
                             <i class="fa fa-barcode"></i> Get Consignment Note
                         </a>

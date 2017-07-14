@@ -222,7 +222,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 }
                 sumWeight(totalParcelWeight);
                 sumConsignment(totalValidConsignment);
-                
+
                 if (entity().Pickup().TotalParcel() == undefined) {
                     entity().Pickup().TotalParcel(sumConsignment());
                 }
@@ -266,6 +266,34 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                             });
                         }
                     });
+            },
+            importConsignments = function () {
+                var tcs = new $.Deferred();
+                // always check for pickup location
+                if (entity().Pickup().Address().Postcode() === undefined) {
+                    app.showMessage("You must set Pickup Location first before you can import any Parcel.", "OST", ["Close"]).done(function () {
+                        tcs.resolve("OK");
+                        router.navigate("consignment-request-pickup/" + id());
+                    });
+                } else {
+                    require(['viewmodels/import.consignments.dialog', 'durandal/app'], function (dialog, app2) {
+                        app2.showDialog(dialog)
+                            .done(function (result) {
+                                tcs.resolve(result);
+                                if (!result) return;
+                                if (result === "OK") {
+                                    var storeId = ko.unwrap(dialog.item().storeId);
+                                    context.post("{}", "/consignment-request/import-consignments/" + id() + "/store-id/" + storeId).done(function (result) {
+                                        console.log(result);
+                                        app.showMessage("Parcels successfuly imported from file.", "OST", ["Close"]).done(function () {
+                                            activate(id());
+                                        });
+                                    });
+                                }
+                            });
+                    });
+                }
+                return tcs.promise();
             },
             attached = function (view) {
 
@@ -313,6 +341,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             sumWeight: sumWeight,
             sumConsignment: sumConsignment,
             schedulePickup: schedulePickup,
+            importConsignments: importConsignments,
             pickupReadyHH: pickupReadyHH,
             pickupReadyMM: pickupReadyMM,
             pickupCloseHH: pickupCloseHH,
