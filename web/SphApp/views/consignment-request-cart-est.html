@@ -34,7 +34,7 @@
                         <a data-bind="command: $root.importConsignments" class="btn btn-circle yellow-casablanca">
                             <i class="fa fa-cloud-upload"></i> Bulk Upload
                         </a>
-                        <a class="btn btn-circle yellow-casablanca" data-bind="click: $root.generateConNotes">
+                        <a class="btn btn-circle yellow-casablanca" data-bind="click: $root.generateConNotes, visible: Consignments().length > 0">
                             <i class="fa fa-barcode"></i> Get Consignment Note
                         </a>
                         <a class="btn btn-circle yellow-casablanca" data-bind="attr: { href: 'ost/print-all-connote/consignment-requests/' + Id()}, visible: Payment().IsConNoteReady()" target="_blank">

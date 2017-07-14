@@ -142,7 +142,8 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 var notComplete = false;
                 var connotesFilled = false;
                 for (var i = 0; i < entity().Consignments().length; i++) {
-                    if (entity().Consignments()[i].Produk().Weight() == null
+                    if (entity().Consignments()[i].Produk().Weight() == null || entity().Consignments()[i].Produk().Length() == null
+                        || entity().Consignments()[i].Produk().Width() == null || entity().Consignments()[i].Produk().Height() == null
                         || entity().Consignments()[i].Penerima().Address().Postcode() == null) {
                         notComplete = true;
                         break;
@@ -247,13 +248,16 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             schedulePickup = function () {
                 var data = ko.mapping.toJSON(entity);
                 $("#scheduler-detail-dialog").modal("hide");
+                toggleShowBusyLoadingDialog("Generating Pickup Number");
                 return context.put(data, "/consignment-request/schedule-pickup/" + ko.unwrap(entity().Id) + "")
                     .fail(function (response) {
+                        toggleShowBusyLoadingDialog("Done");
                         app.showMessage("Sorry, but we cannot process pickup for the Paid Order with Id : " + ko.unwrap(entity().Id), "OST", ["Close"]).done(function () {
                             router.navigate("consignment-request-cart-est/" + result.id);
                         });
                     })
                     .then(function (result) {
+                        toggleShowBusyLoadingDialog("Done");
                         console.log(result);
                         if (result.success) {
                             app.showMessage("Pickup successfully scheduled.", "OST", ["Close"]).done(function () {
