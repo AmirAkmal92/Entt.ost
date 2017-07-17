@@ -222,21 +222,21 @@ namespace web.sph.App_Code
         [HttpGet]
         [Route("csv")]
         public async Task<HttpResponseMessage> DownloadCsv(
-        [FromUri(Name = "companyName")] bool companyName = true,
         [FromUri(Name = "contactPerson")]bool contactPerson = true,
+        [FromUri(Name = "email")]bool email = true,
+        [FromUri(Name = "contactNumber")]bool contactNumber = true,
+        [FromUri(Name = "altContactNumber")]bool altContactNumber = true,
         [FromUri(Name = "address1")]bool address1 = true,
         [FromUri(Name = "address2")]bool address2 = true,
         [FromUri(Name = "address3")]bool address3 = true,
         [FromUri(Name = "address4")]bool address4 = true,
-        [FromUri(Name = "postcode")]bool postcode = true,
         [FromUri(Name = "city")]bool city = true,
         [FromUri(Name = "state")]bool state = true,
         [FromUri(Name = "country")]bool country = true,
-        [FromUri(Name = "contactNumber")]bool contactNumber = true,
-        [FromUri(Name = "altContactNumber")]bool altContactNumber = true,
-        [FromUri(Name = "email")]bool email = true,
+        [FromUri(Name = "postcode")]bool postcode = true,
         [FromUri(Name = "gpsLocation")]bool gpsLocation = false,
-        [FromUri(Name = "addressGroup")]bool addressGroup = false)
+        [FromUri(Name = "addressGroup")]bool addressGroup = false,
+        [FromUri(Name = "companyName")] bool companyName = true)
         {
 
             var list = new List<AddressBook>();
@@ -272,71 +272,68 @@ namespace web.sph.App_Code
             var csv = new StringBuilder();
 
             // headers
-            if (companyName)
-                csv.Append(@"""Company Name"",");
             if (contactPerson)
-                csv.Append(@"""Contact Person"",");
-            if (address1)
-                csv.Append(@"""Address 1"",");
-            if (address2)
-                csv.Append(@"""Address 2"",");
-            if (address3)
-                csv.Append(@"""Address 3"",");
-            if (address4)
-                csv.Append(@"""Address 4"",");
-            if (postcode)
-                csv.Append(@"""Postcode"",");
-            if (city)
-                csv.Append(@"""City"",");
-            if (state)
-                csv.Append(@"""State"",");
-            if (country)
-                csv.Append(@"""Country"",");
-            if (contactNumber)
-                csv.Append(@"""Contact Number"",");
-            if (altContactNumber)
-                csv.Append(@"""Alt. Contact Number"",");
+                csv.Append(@"Name,");
             if (email)
-                csv.Append(@"""Email"",");
-            if (gpsLocation)
-                csv.Append($@"""GpsLocation"",");
-            if (addressGroup)
-                csv.Append(@"""Group"",");
+                csv.Append(@"Email,");
+            if (contactNumber)
+                csv.Append(@"Mobile Number,");
+               csv.Append(@"Country Code,");
+            if (altContactNumber)
+                csv.Append(@"Alternative Contact Number,");
+            if (address1)
+                csv.Append(@"Address Line 1,");
+            if (address2)
+                csv.Append(@"Address Line 2,");
+            if (address3)
+                csv.Append(@"Address Line 3,");
+            if (address4)
+                csv.Append(@"Address Line 4,");
+            if (city)
+                csv.Append(@"Town,");
+            if (state)
+                csv.Append(@"State,");
+            if (country)
+                csv.Append(@"Country,");
+            if (postcode)
+                csv.Append(@"Postcode,");
+               csv.Append(@"Designation,");
+            if (companyName)
+                csv.Append(@"Company");
 
             csv.AppendLine();
 
             foreach (var adr in list)
             {
-                if (companyName)
-                    csv.Append($@"""{adr.CompanyName}"",");
+               
                 if (contactPerson)
-                    csv.Append($@"""{adr.ContactPerson}"",");
-                if (address1)
-                    csv.Append($@"""{adr.Address.Address1}"",");
-                if (address2)
-                    csv.Append($@"""{adr.Address.Address2}"",");
-                if (address3)
-                    csv.Append($@"""{adr.Address.Address3}"",");
-                if (address4)
-                    csv.Append($@"""{adr.Address.Address4}"",");
-                if (postcode)
-                    csv.Append($@"""{adr.Address.Postcode}"",");
-                if (city)
-                    csv.Append($@"""{adr.Address.City}"",");
-                if (state)
-                    csv.Append($@"""{adr.Address.State}"",");
-                if (country)
-                    csv.Append($@"""{adr.Address.Country}"",");
-                if (contactNumber)
-                    csv.Append($@"""{adr.ContactInformation.ContactNumber}"",");
-                if (altContactNumber)
-                    csv.Append($@"""{adr.ContactInformation.AlternativeContactNumber}"",");
+                    csv.Append($@"{adr.ContactPerson},");
                 if (email)
-                    csv.Append($@"""{adr.ContactInformation.Email}"",");
-                if (gpsLocation)
-                    csv.Append($@"""{adr.Address.GeoLocation.Lat}"" ""{adr.Address.GeoLocation.Long}"",");
-                if (addressGroup)
-                    csv.Append($@"""{adr.Groups}"",");
+                    csv.Append($@"{adr.ContactInformation.Email},");
+                if (contactNumber)
+                    csv.Append($@"{adr.ContactInformation.ContactNumber},");
+                    csv.Append($@"60-Malaysia,");
+                if (altContactNumber)
+                    csv.Append($@"{adr.ContactInformation.AlternativeContactNumber},");
+                if (address1)
+                    csv.Append($@"{adr.Address.Address1},");
+                if (address2)
+                    csv.Append($@"{adr.Address.Address2},");
+                if (address3)
+                    csv.Append($@"{adr.Address.Address3},");
+                if (address4)
+                    csv.Append($@"{adr.Address.Address4},");
+                if (city)
+                    csv.Append($@"{adr.Address.City},");
+                if (state)
+                    csv.Append($@"{adr.Address.State},");
+                if (country)
+                    csv.Append($@"{adr.Address.Country},");
+                if (postcode)
+                    csv.Append($@"{adr.Address.Postcode},");
+                    csv.Append($@"No,");
+                if (companyName)
+                    csv.Append($@"{adr.CompanyName}");
 
                 csv.AppendLine();
             }

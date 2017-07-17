@@ -128,12 +128,37 @@
         "SourceTypeName": "",
         "DestinationTypeName": "",
         "WebId": "85a4ac3a-5d82-4fe0-f4f6-49e3453f9030"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.FunctoidMap, domain.sph",
+        "__uuid": "",
+        "Functoid": "181b1d5b-6684-4ca8-c594-1926d193130a",
+        "Destination": "UserId",
+        "SourceTypeName": "",
+        "DestinationTypeName": "",
+        "WebId": "6198c841-ba31-4d59-eff0-9da10090a673"
       }
     ]
   },
   "FunctoidCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Functoid, domain.sph]], domain.sph",
-    "$values": []
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.ScriptFunctoid, domain.sph",
+        "Expression": "ObjectBuilder.GetObject<IDirectoryService>().CurrentUserName",
+        "ArgumentCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FunctoidArg, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": "UserId",
+        "OutputTypeName": "System.String, mscorlib",
+        "Label": null,
+        "Comment": null,
+        "X": 345.0,
+        "Y": 417.0,
+        "WebId": "181b1d5b-6684-4ca8-c594-1926d193130a"
+      }
+    ]
   },
   "InputCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.MethodArg, domain.sph]], domain.sph",
@@ -152,6 +177,6 @@
   "Id": "address-format-template-to-address-book",
   "CreatedDate": "2017-01-19T11:18:08.8156077+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-01-19T12:17:00.0591304+08:00",
+  "ChangedDate": "2017-07-17T16:21:59.8551842+08:00",
   "WebId": "85d405cc-7ba2-4493-b9df-24aafaf61cd0"
 }
