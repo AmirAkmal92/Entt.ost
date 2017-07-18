@@ -147,6 +147,8 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
                 //Empty Cart
                 consignmentRequestCart.Pickup = new Bespoke.Ost.ConsigmentRequests.Domain.Pickup();
                 consignmentRequestCart.Payment = new Bespoke.Ost.ConsigmentRequests.Domain.Payment();
+                consignmentRequestCart.ReferenceNo = Guid.NewGuid().ToString();
+                consignmentRequestCart.GenerateConnoteCounter = 0;
                 using (var session = context.OpenSession())
                 {
                     session.Attach(consignmentRequestCart);
