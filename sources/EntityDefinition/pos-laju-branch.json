@@ -146,6 +146,37 @@
         "AllowMultiple": false,
         "DefaultValue": null,
         "WebId": "8c6464cb-d7a3-410f-d998-28f1e0cdd5ad"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+        "TypeName": "System.Boolean, mscorlib",
+        "IsNullable": false,
+        "IsNotIndexed": false,
+        "IsAnalyzed": false,
+        "IsFilterable": false,
+        "IsExcludeInAll": false,
+        "Boost": 0,
+        "FullName": null,
+        "PropertyAttribute": null,
+        "MemberCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "FieldPermissionCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": "AllowPickup",
+        "AllowMultiple": false,
+        "DefaultValue": {
+          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+          "TypeName": "System.Boolean, mscorlib",
+          "Value": false,
+          "Name": "false",
+          "Note": "",
+          "WebId": "86c291ff-d889-41d2-af67-4ea28faa9de8"
+        },
+        "WebId": "b60c483f-05c1-48c2-c590-9a5e8f365e5c"
       }
     ]
   },
@@ -158,7 +189,7 @@
     "CodeNamespace": "Bespoke.Ost.IntegrationApis",
     "FullSearchEndpoint": {
       "$type": "Bespoke.Sph.Domain.FullSearchEndpoint, domain.sph",
-      "IsAllowed": false,
+      "IsAllowed": true,
       "WebId": null
     },
     "OdataEndpoint": {
@@ -187,6 +218,6 @@
   "Id": "pos-laju-branch",
   "CreatedDate": "2016-11-03T10:21:30.2343343+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:51:01.3119196+08:00",
+  "ChangedDate": "2017-07-18T12:37:04.6993706+08:00",
   "WebId": "22245fde-4d0b-43f9-8802-fd03801ad935"
 }
