@@ -15,7 +15,7 @@
                                     <label class="control-label pull-right">Total Quantity: </label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control input-sm" data-bind="value: Pickup().TotalParcel" aria-label="SumConsignment" name="SumConsignment" id="SumConsignment" aria-required="true" />
+                                    <input type="number" class="form-control input-sm" data-bind="value: Pickup().TotalParcel" aria-label="SumConsignment" name="SumConsignment" id="SumConsignment" aria-required="true" />
                                 </div>
                                 <div class="col-md-1">parcel(s)</div>
                             </div>
@@ -24,7 +24,7 @@
                                     <label class="control-label pull-right">Total Weight: </label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control input-sm" data-bind="value: Pickup().TotalWeight" aria-label="SumWeight" name="SumWeight" id="SumWeight" aria-required="true" />
+                                    <input type="number" step="0.01" class="form-control input-sm" data-bind="value: Pickup().TotalWeight" aria-label="SumWeight" name="SumWeight" id="SumWeight" aria-required="true" />
                                 </div>
                                 <div class="col-md-1">kg</div>
                             </div>
