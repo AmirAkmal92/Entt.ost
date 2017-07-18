@@ -6,10 +6,11 @@
   "PostcodeTo": "43099",
   "Email": "KPPoslajuBBBangi@pos.com.my",
   "PickupId": "285",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "285",
-  "CreatedDate": "2016-11-03T10:52:02.9734121+08:00",
+  "CreatedDate": "2017-07-18T13:24:41.9247923+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:02.9714124+08:00",
+  "ChangedDate": "2017-07-18T13:24:42.9627829+08:00",
   "WebId": "0ca4909c-1e39-48e5-99fa-1126b7158a09"
 }
