@@ -7,6 +7,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             errors = ko.observableArray(),
             sumWeight = ko.observable(0.0),
             sumConsignment = ko.observable(0),
+            showPickupScheduler = ko.observable(false),
             pickupReadyHH = ko.observable(),
             pickupReadyMM = ko.observable(),
             pickupCloseHH = ko.observable(),
@@ -213,35 +214,42 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 });
             },
             launchSchedulerDetailDialog = function () {
-                var totalParcelWeight = 0.0;
-                var totalValidConsignment = 0;
-                for (var i = 0; i < entity().Consignments().length; i++) {
-                    if (entity().Consignments()[i].Produk().Weight() != null && entity().Consignments()[i].ConNote() != null) {
-                        totalParcelWeight += entity().Consignments()[i].Produk().Weight();
-                        totalValidConsignment += 1;
-                    }
-                }
-                sumWeight(totalParcelWeight);
-                sumConsignment(totalValidConsignment);
-
-                if (entity().Pickup().TotalParcel() == undefined) {
-                    entity().Pickup().TotalParcel(sumConsignment());
-                }
-                if (entity().Pickup().TotalWeight() == undefined) {
-                    entity().Pickup().TotalWeight(sumWeight());
-                }
-
-                if (sumConsignment() == 0) {
-                    app.showMessage("Some parcels are yet to be finalized. At least one Consignment Note must be generated/printed.", "OST", ["Close"]).done(function () {
-                        router.navigate("consignment-request-cart-est/" + ko.unwrap(entity().Id));
+                // always check for pickup location before scheduling
+                if (entity().Pickup().Address().Postcode() === undefined) {
+                    app.showMessage("You must set Pickup Location first before you can send any Parcel.", "OST", ["Close"]).done(function () {
+                        router.navigate("consignment-request-pickup/" + id());
                     });
                 } else {
-                    if (entity().Pickup().Number() != null) {
-                        app.showMessage("Sorry, schedule for pickup already being set.", "OST", ["Close"]).done(function () {
+                    var totalParcelWeight = 0.0;
+                    var totalValidConsignment = 0;
+                    for (var i = 0; i < entity().Consignments().length; i++) {
+                        if (entity().Consignments()[i].Produk().Weight() != null && entity().Consignments()[i].ConNote() != null) {
+                            totalParcelWeight += entity().Consignments()[i].Produk().Weight();
+                            totalValidConsignment += 1;
+                        }
+                    }
+                    sumWeight(totalParcelWeight);
+                    sumConsignment(totalValidConsignment);
+
+                    if (entity().Pickup().TotalParcel() == undefined) {
+                        entity().Pickup().TotalParcel(sumConsignment());
+                    }
+                    if (entity().Pickup().TotalWeight() == undefined) {
+                        entity().Pickup().TotalWeight(sumWeight());
+                    }
+
+                    if (sumConsignment() == 0) {
+                        app.showMessage("Some parcels are yet to be finalized. At least one Consignment Note must be generated/printed.", "OST", ["Close"]).done(function () {
                             router.navigate("consignment-request-cart-est/" + ko.unwrap(entity().Id));
                         });
                     } else {
-                        $("#scheduler-detail-dialog").modal("show");
+                        if (entity().Pickup().Number() != null) {
+                            app.showMessage("Sorry, schedule for pickup already being set.", "OST", ["Close"]).done(function () {
+                                router.navigate("consignment-request-cart-est/" + ko.unwrap(entity().Id));
+                            });
+                        } else {
+                            $("#scheduler-detail-dialog").modal("show");
+                        }
                     }
                 }
             },
@@ -273,31 +281,26 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             },
             importConsignments = function () {
                 var tcs = new $.Deferred();
-                // always check for pickup location
-                if (entity().Pickup().Address().Postcode() === undefined) {
-                    app.showMessage("You must set Pickup Location first before you can import any Parcel.", "OST", ["Close"]).done(function () {
-                        tcs.resolve("OK");
-                        router.navigate("consignment-request-pickup/" + id());
-                    });
-                } else {
-                    require(['viewmodels/import.consignments.dialog', 'durandal/app'], function (dialog, app2) {
-                        app2.showDialog(dialog)
-                            .done(function (result) {
-                                tcs.resolve(result);
-                                if (!result) return;
-                                if (result === "OK") {
-                                    var storeId = ko.unwrap(dialog.item().storeId);
-                                    context.post("{}", "/consignment-request/import-consignments/" + id() + "/store-id/" + storeId).done(function (result) {
-                                        console.log(result);
-                                        app.showMessage("Parcels successfuly imported from file.", "OST", ["Close"]).done(function () {
-                                            activate(id());
-                                        });
+                require(['viewmodels/import.consignments.dialog', 'durandal/app'], function (dialog, app2) {
+                    app2.showDialog(dialog)
+                        .done(function (result) {
+                            tcs.resolve(result);
+                            if (!result) return;
+                            if (result === "OK") {
+                                var storeId = ko.unwrap(dialog.item().storeId);
+                                context.post("{}", "/consignment-request/import-consignments/" + id() + "/store-id/" + storeId).done(function (result) {
+                                    console.log(result);
+                                    app.showMessage("Parcels successfuly imported from file.", "OST", ["Close"]).done(function () {
+                                        activate(id());
                                     });
-                                }
-                            });
-                    });
-                }
+                                });
+                            }
+                        });
+                });
                 return tcs.promise();
+            },
+            toggleShowPickupScheduler = function () {
+                showPickupScheduler(!showPickupScheduler());
             },
             attached = function (view) {
 
@@ -346,6 +349,8 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             sumConsignment: sumConsignment,
             schedulePickup: schedulePickup,
             importConsignments: importConsignments,
+            showPickupScheduler: showPickupScheduler,
+            toggleShowPickupScheduler: toggleShowPickupScheduler,
             pickupReadyHH: pickupReadyHH,
             pickupReadyMM: pickupReadyMM,
             pickupCloseHH: pickupCloseHH,

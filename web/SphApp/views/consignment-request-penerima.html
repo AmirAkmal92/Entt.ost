@@ -19,6 +19,7 @@
             <div class="portlet-title">
                 <div class="mt-element-step">
                     <div class="row step-thin">
+                        <!--ko if: config.profile.Designation != "Contract customer"-->
                         <div class="col-md-3 bg-grey mt-step-col">
                             <div class="mt-step-number bg-white font-grey">1</div>
                             <div class="mt-step-title uppercase font-grey-cascade">Pickup</div>
@@ -39,6 +40,24 @@
                             <div class="mt-step-title uppercase font-grey-cascade">Parcel</div>
                             <div class="mt-step-content font-grey-cascade">Parcel details</div>
                         </div>
+                        <!--/ko-->
+                        <!--ko if: config.profile.Designation == "Contract customer"-->
+                        <div class="col-md-4 bg-grey mt-step-col">
+                            <div class="mt-step-number bg-white font-grey">1</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Sender</div>
+                            <div class="mt-step-content font-grey-cascade">Sender address</div>
+                        </div>
+                        <div class="col-md-4 bg-grey done mt-step-col active">
+                            <div class="mt-step-number bg-white font-grey">2</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Recipient</div>
+                            <div class="mt-step-content font-grey-cascade">Recipient address</div>
+                        </div>
+                        <div class="col-md-4 bg-grey mt-step-col">
+                            <div class="mt-step-number bg-white font-grey">3</div>
+                            <div class="mt-step-title uppercase font-grey-cascade">Parcel</div>
+                            <div class="mt-step-content font-grey-cascade">Parcel details</div>
+                        </div>
+                        <!--/ko-->
                     </div>
                 </div>
             </div>

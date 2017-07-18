@@ -40,123 +40,133 @@
                         <a class="btn btn-circle yellow-casablanca" data-bind="attr: { href: 'ost/print-all-connote/consignment-requests/' + Id()}, visible: Payment().IsConNoteReady()" target="_blank">
                             <i class="fa fa-print"></i> Print All Consignment Notes
                         </a>
+                        <a data-bind="click: $root.toggleShowPickupScheduler" class="btn btn-circle yellow-casablanca">
+                            <i class="fa fa-calendar-minus-o"></i> 
+                            <span data-bind="visible: !$root.showPickupScheduler()">Show</span>
+                            <span data-bind="visible: $root.showPickupScheduler()">Hide</span>
+                             Pickup
+                        </a>
                     </h3>
                 </div>
             </div>
             <div class="portlet-body">
-                <div class="row" data-bind="visible: Pickup().Address().Postcode() != undefined">
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="col-md-12">
-                                    <h4>Pickup Address</h4>
-                                    <address>
-                                        <strong><span class="text-capitalize" data-bind="text: Pickup().ContactPerson"></span></strong><br />
-                                        <span data-bind="text: Pickup().ContactInformation().Email"></span>
-                                    </address>
-                                    <address>
-                                        <strong><span data-bind="text: Pickup().CompanyName"></span></strong><br />
-                                        <span data-bind="text: Pickup().Address().Address1"></span>&nbsp;
-                                        <span data-bind="text: Pickup().Address().Address2"></span>&nbsp;
-                                        <br />
-                                        <!--ko if: Pickup().Address().Address3() != null-->
-                                        <span data-bind="text: Pickup().Address().Address3"></span>&nbsp;
-                                        <!--/ko-->
-                                        <!--ko if: Pickup().Address().Address4() != null-->
-                                        <span data-bind="text: Pickup().Address().Address4"></span>&nbsp;
-                                        <!--/ko-->
-                                        <!--ko if: Pickup().Address().Address3() != null || Pickup().Address().Address4() != null-->
-                                        <br />
-                                        <!--/ko-->
-                                        <span data-bind="text: Pickup().Address().City"></span>&nbsp;
-                                        <span data-bind="text: Pickup().Address().State"></span>&nbsp;
-                                        <br />
-                                        <span data-bind="text: Pickup().Address().Postcode"></span>&nbsp;
-                                        <span data-bind="text: Pickup().Address().Country"></span>&nbsp;
-                                        <br />
-                                        <abbr title="Contact Number">Phone 1:</abbr> <span data-bind="text: Pickup().ContactInformation().ContactNumber"></span>
-                                        <!--ko if: Pickup().ContactInformation().AlternativeContactNumber() != null-->
-                                        <br />
-                                        <abbr title="Alternative Contact Number">Phone 2:</abbr> <span data-bind="text: Pickup().ContactInformation().AlternativeContactNumber"></span>
-                                        <!--/ko-->
-                                    </address>
-                                </div>
-                                <div class="row">
+                <div class="row">
+                    <div data-bind="visible: $root.showPickupScheduler">
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
                                     <div class="col-md-12">
-                                        <span class="pull-right">
-                                            <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="attr: { href: 'ost#consignment-request-pickup/' + Id() }, css: {'disabled': Pickup().Number() != null}" title="Edit Pickup Address">
-                                                <i class="glyphicon glyphicon-pencil"></i>
-                                            </a>
-                                        </span>
+                                        <h4>Pickup Address</h4>
+                                        <address>
+                                            <strong><span class="text-capitalize" data-bind="text: Pickup().ContactPerson"></span></strong><br />
+                                            <span data-bind="text: Pickup().ContactInformation().Email"></span>
+                                        </address>
+                                        <address>
+                                            <strong><span data-bind="text: Pickup().CompanyName"></span></strong><br />
+                                            <span data-bind="text: Pickup().Address().Address1"></span>&nbsp;
+                                            <span data-bind="text: Pickup().Address().Address2"></span>&nbsp;
+                                            <br />
+                                            <!--ko if: Pickup().Address().Address3() != null-->
+                                            <span data-bind="text: Pickup().Address().Address3"></span>&nbsp;
+                                            <!--/ko-->
+                                            <!--ko if: Pickup().Address().Address4() != null-->
+                                            <span data-bind="text: Pickup().Address().Address4"></span>&nbsp;
+                                            <!--/ko-->
+                                            <!--ko if: Pickup().Address().Address3() != null || Pickup().Address().Address4() != null-->
+                                            <br />
+                                            <!--/ko-->
+                                            <span data-bind="text: Pickup().Address().City"></span>&nbsp;
+                                            <span data-bind="text: Pickup().Address().State"></span>&nbsp;
+                                            <br />
+                                            <span data-bind="text: Pickup().Address().Postcode"></span>&nbsp;
+                                            <span data-bind="text: Pickup().Address().Country"></span>&nbsp;
+                                            <!--ko if: Pickup().ContactInformation().ContactNumber() != null-->
+                                            <br />
+                                            <abbr title="Contact Number">Phone 1:</abbr> <span data-bind="text: Pickup().ContactInformation().ContactNumber"></span>
+                                            <!--/ko-->
+                                            <!--ko if: Pickup().ContactInformation().AlternativeContactNumber() != null-->
+                                            <br />
+                                            <abbr title="Alternative Contact Number">Phone 2:</abbr> <span data-bind="text: Pickup().ContactInformation().AlternativeContactNumber"></span>
+                                            <!--/ko-->
+                                        </address>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <span class="pull-right">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="attr: { href: 'ost#consignment-request-pickup/' + Id() }, css: {'disabled': Pickup().Number() != null}" title="Edit Pickup Address">
+                                                    <i class="glyphicon glyphicon-pencil"></i>
+                                                </a>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="col-md-12">
-                                    <h4>Pickup Number</h4>
-                                    <address>
-                                        <!--ko if: Pickup().Number() == undefined-->
-                                        <span>Pending pickup confirmation</span><br />
-                                        <!--/ko-->
-                                        <!--ko if: Pickup().Number() != null-->
-                                        <span class="text-capitalize" data-bind="text: Pickup().Number"></span><br />
-                                        <!--/ko-->
-                                    </address>
-                                </div>
-                                <div class="col-md-12">
-                                    <h4>Schedule Pickup</h4>
-                                    <form class="form-horizontal" id="pickup-scheduler-form">
-                                        <table border="0">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="col-md-4">Total Quantity</td>
-                                                    <td class="col-md-1">:</td>
-                                                    <td class="col-md-5"><span class="control-label" data-bind="text: Pickup().TotalQuantity">0</span></td>
-                                                    <td class="col-md-1">parcel(s)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="col-md-4">Total Weight</td>
-                                                    <td class="col-md-1">:</td>
-                                                    <td class="col-md-5"><span class="control-label" data-bind="text: Pickup().TotalWeight">0</span></td>
-                                                    <td class="col-md-1">kg</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="col-md-4">Pickup Date</td>
-                                                    <td class="col-md-1">:</td>
-                                                    <td class="col-md-5"><span class="control-label" data-bind="text: moment(Pickup().DateReady()).format('DD-MM-YYYY'), visible: Pickup().DateReady() != '0001-01-01T00:00:00'"></span></td>
-                                                    <td class="col-md-1"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="col-md-4">From</td>
-                                                    <td class="col-md-1">:</td>
-                                                    <td class="col-md-5"><span class="control-label" data-bind="text: moment(Pickup().DateReady()).format('hh:mm'), visible: Pickup().DateReady() != '0001-01-01T00:00:00'"></span></td>
-                                                    <td class="col-md-1">PM</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="col-md-4">To</td>
-                                                    <td class="col-md-1">:</td>
-                                                    <td class="col-md-5"><span class="control-label" data-bind="text: moment(Pickup().DateClose()).format('hh:mm'), visible: Pickup().DateClose() != '0001-01-01T00:00:00'"></span></td>
-                                                    <td class="col-md-1">PM</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </form>
-                                    <br />
-                                </div>
-                                <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
                                     <div class="col-md-12">
-                                        <span class="pull-right">
-                                            <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="click: $root.launchSchedulerDetailDialog, css: {'disabled': Pickup().Number() != null}" title="Schedule Pickup">
-                                                <i class="glyphicon glyphicon-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="click: $root.schedulePickup, css: {'disabled': Pickup().DateClose() == '0001-01-01T00:00:00' || Pickup().Number() != null}" title="Request Pickup">
-                                                <i class="fa fa-calendar-minus-o"></i>
-                                            </a>
-                                        </span>
+                                        <h4>Pickup Number</h4>
+                                        <address>
+                                            <!--ko if: Pickup().Number() == undefined-->
+                                            <span>Pending pickup confirmation</span><br />
+                                            <!--/ko-->
+                                            <!--ko if: Pickup().Number() != null-->
+                                            <span class="text-capitalize" data-bind="text: Pickup().Number"></span><br />
+                                            <!--/ko-->
+                                        </address>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h4>Schedule Pickup</h4>
+                                        <form class="form-horizontal" id="pickup-scheduler-form">
+                                            <table border="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="col-md-4">Total Quantity</td>
+                                                        <td class="col-md-1">:</td>
+                                                        <td class="col-md-5"><span class="control-label" data-bind="text: Pickup().TotalQuantity">0</span></td>
+                                                        <td class="col-md-1">parcel(s)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="col-md-4">Total Weight</td>
+                                                        <td class="col-md-1">:</td>
+                                                        <td class="col-md-5"><span class="control-label" data-bind="text: Pickup().TotalWeight">0</span></td>
+                                                        <td class="col-md-1">kg</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="col-md-4">Pickup Date</td>
+                                                        <td class="col-md-1">:</td>
+                                                        <td class="col-md-5"><span class="control-label" data-bind="text: moment(Pickup().DateReady()).format('DD-MM-YYYY'), visible: Pickup().DateReady() != '0001-01-01T00:00:00'"></span></td>
+                                                        <td class="col-md-1"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="col-md-4">From</td>
+                                                        <td class="col-md-1">:</td>
+                                                        <td class="col-md-5"><span class="control-label" data-bind="text: moment(Pickup().DateReady()).format('hh:mm'), visible: Pickup().DateReady() != '0001-01-01T00:00:00'"></span></td>
+                                                        <td class="col-md-1">PM</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="col-md-4">To</td>
+                                                        <td class="col-md-1">:</td>
+                                                        <td class="col-md-5"><span class="control-label" data-bind="text: moment(Pickup().DateClose()).format('hh:mm'), visible: Pickup().DateClose() != '0001-01-01T00:00:00'"></span></td>
+                                                        <td class="col-md-1">PM</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </form>
+                                        <br />
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <span class="pull-right">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="click: $root.launchSchedulerDetailDialog, css: {'disabled': Pickup().Number() != null}" title="Schedule Pickup">
+                                                    <i class="glyphicon glyphicon-pencil"></i>
+                                                </a>
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="click: $root.schedulePickup, css: {'disabled': Pickup().DateClose() == '0001-01-01T00:00:00' || Pickup().Number() != null}" title="Request Pickup">
+                                                    <i class="fa fa-calendar-minus-o"></i>
+                                                </a>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
