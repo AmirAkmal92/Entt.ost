@@ -12,9 +12,9 @@
         "Path": "Name",
         "Header": "Name",
         "Sort": "",
-        "IsLinkColumn": false,
-        "FormRoute": null,
-        "IconCssClass": "",
+        "IsLinkColumn": true,
+        "FormRoute": "pos-laju-branch-details",
+        "IconCssClass": "fa fa-university",
         "IconStoreId": "",
         "Format": "text:{0}",
         "RouteValueField": "",
@@ -36,6 +36,23 @@
         "Format": "text:{0}",
         "RouteValueField": "",
         "WebId": "1eb2f1b1-03d7-4982-f3f5-b1d6366e2f24"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
+        "ConditionalFormattingCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Path": "BranchCode",
+        "Header": "Branch Code",
+        "Sort": "",
+        "IsLinkColumn": false,
+        "FormRoute": null,
+        "IconCssClass": "",
+        "IconStoreId": "",
+        "Format": "text:{0}",
+        "RouteValueField": "",
+        "WebId": "21e1a226-0493-4386-8bd0-68d526dbd22a"
       },
       {
         "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
@@ -87,6 +104,23 @@
         "Format": "text:{0}",
         "RouteValueField": "",
         "WebId": "48d6a93f-0754-427a-c2e4-8fcea9c1019d"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
+        "ConditionalFormattingCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Path": "AllowPickup",
+        "Header": "Allow Pickup",
+        "Sort": "",
+        "IsLinkColumn": false,
+        "FormRoute": null,
+        "IconCssClass": "",
+        "IconStoreId": "",
+        "Format": "text:{0}",
+        "RouteValueField": "",
+        "WebId": "c17e7ae8-83c2-4e78-9490-f90df72a5fac"
       }
     ]
   },
@@ -124,6 +158,6 @@
   "Id": "pos-laju-branch-all",
   "CreatedDate": "2016-11-03T10:21:30.2343343+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T21:41:25.263539+08:00",
+  "ChangedDate": "2017-07-18T12:51:36.8838344+08:00",
   "WebId": "3bcc9815-a0a5-4de4-b24d-eb74fdfc6c73"
 }
