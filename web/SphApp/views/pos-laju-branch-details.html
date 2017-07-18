@@ -1,0 +1,81 @@
+<h1 data-i18n="PosLajuBranch details">PosLajuBranch details</h1>
+<div id="error-list" class="row" data-bind="visible:errors().length">
+    <!-- ko foreach : errors -->
+    <div class="col-sm-8 col-sm-offset-2 alert alert-dismissable alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <i class="fa fa-exclamation"></i>
+        <span data-bind="text:Message"></span>
+    </div>
+    <div class="col-sm-2"></div>
+    <!-- /ko-->
+</div>
+<div class="row">
+    <div class="col-sm-8">
+<form class="form-horizontal" data-bind="with : entity" id="pos-laju-branch-details-form">
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Branch Code *" for="a18d5efe-1b44-4fc6-b152-6e2f67ccdd83" class="col-md-4">Branch Code *</label>
+        <div class="col-md-8">
+            <input required class="form-control input-large"
+                   data-bind="value: BranchCode"
+                    data-rule-number="true"  data-rule-required="true" 
+                   id="a18d5efe-1b44-4fc6-b152-6e2f67ccdd83" type="text" name="BranchCode" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Name" for="f2cbd418-7a0f-4910-ba94-b2fc8b48cee4" class="col-md-4">Name</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Name"
+                   id="f2cbd418-7a0f-4910-ba94-b2fc8b48cee4" type="text" name="Name" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Email" for="d5a943c9-4587-4154-cef8-ce936700d076" class="col-md-4">Email</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Email"
+                   id="d5a943c9-4587-4154-cef8-ce936700d076" type="text" name="Email" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Postcode From" for="4532a08c-d57c-4ead-cae0-6487a187e487" class="col-md-4">Postcode From</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: PostcodeFrom"
+                    data-rule-number="true" 
+                   id="4532a08c-d57c-4ead-cae0-6487a187e487" type="text" name="PostcodeFrom" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Postcode To" for="ed15f476-08fa-48f9-ddc1-31b529c04605" class="col-md-4">Postcode To</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: PostcodeTo"
+                    data-rule-number="true" 
+                   id="ed15f476-08fa-48f9-ddc1-31b529c04605" type="text" name="PostcodeTo" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Pickup Id" for="1514bef7-db51-405d-dade-169da48fbd2e" class="col-md-4">Pickup Id</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: PickupId"
+                   id="1514bef7-db51-405d-dade-169da48fbd2e" type="text" name="PickupId" />
+        </div>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <div class="col-md-offset-4 col-md-8">
+            <div class="checkbox">
+                <label class="checkbox">
+                    <input data-bind="checked : AllowPickup, enable :true" id="AllowPickup" type="checkbox"
+                           name="AllowPickup"/>
+                    <span data-i18n="Allow Pickup">Allow Pickup</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</form>
+    </div>
+    <div class="col-sm-4">
+    </div>
+</div>
