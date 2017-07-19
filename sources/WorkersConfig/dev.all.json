@@ -179,6 +179,14 @@
       "queueName": "trigger_subs_rts-pickup-format-trigger-est-shipment",
       "fullName": "Bespoke.Ost.TriggerSubscribers.RtsPickupFormatTriggerEstShipmentTriggerSubscriber",
       "assembly": "subscriber.trigger.rts-pickup-format-trigger-est-shipment"
+    },
+    {
+      "instancesCount": 1,
+      "prefetchCount": 1,
+      "priority": 0,
+      "queueName": "trigger_subs_est-registration-trigger-est-new-registration",
+      "fullName": "Bespoke.Ost.TriggerSubscribers.EstRegistrationTriggerEstNewRegistrationTriggerSubscriber",
+      "assembly": "subscriber.trigger.est-registration-trigger-est-new-registration"
     }
   ],
   "createdBy": "erymuzuan",
