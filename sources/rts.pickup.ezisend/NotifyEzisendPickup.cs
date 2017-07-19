@@ -41,7 +41,7 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
             }
         }
 
-        public async Task GetRtsPickupEvent(string consignmentNo, DateTime pickupDateTime, string pickupNo)
+        public async Task GetRtsPickupEvent(string consignmentNo, DateTime pickupDateTime, string pickupNo, string accountNo)
         {
             var context = new SphDataContext();
             var consignmentRequestsPickup = new List<ConsigmentRequest>();
@@ -70,7 +70,27 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
                 }
                 else //Cart not exist
                 {
-                    //Fall through
+                    //Fall through, there is no consignmentRequest with the scanner`s PickupNo
+
+                    consignmentRequestsCart = await GetConsignmentRequestByAccountNoAsync(accountNo, consignmentNo, "false");
+                    if (consignmentRequestsCart.Count > 0) //Cart exist (no pickupNo)
+                    {
+                        //Clone
+                        ConsigmentRequest consignmentRequestCart = CloneConsignmentRequestCart(consignmentRequestsCart);
+
+                        //Move
+                        var needSaving = MoveConsignmentFromCartToPickup(consignmentNo, consignmentRequestCart, consignmentRequestPickup);
+
+                        //Save
+                        if (needSaving)
+                        {
+                            await SaveChanges(context, consignmentRequestPickup, consignmentRequestCart);
+                        }
+                    }
+                    else
+                    {
+                        //Fall through
+                    }
                 }
             }
             else //Pickup not exist
@@ -81,18 +101,9 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
                 {
                     //Clone
                     ConsigmentRequest consignmentRequestCart = CloneConsignmentRequestCart(consignmentRequestsCart);
-                    
+
                     //Create
-                    var consignmentRequestPickup = new ConsigmentRequest()
-                    {
-                        ReferenceNo = consignmentRequestCart.ReferenceNo,
-                        UserId = consignmentRequestCart.UserId,
-                        Payment = consignmentRequestCart.Payment.Clone(),
-                        Pickup = consignmentRequestCart.Pickup.Clone(),
-                        GenerateConnoteCounter = consignmentRequestCart.GenerateConnoteCounter,
-                        Id = Guid.NewGuid().ToString(),
-                        WebId = Guid.NewGuid().ToString()
-                    };
+                    ConsigmentRequest consignmentRequestPickup = CreateNewConsignmentRequestPickup(consignmentRequestCart);
 
                     //Set IsPickedUp
                     consignmentRequestPickup.Pickup.IsPickedUp = true;
@@ -112,9 +123,56 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
                 }
                 else //Cart not exist
                 {
-                    //Fall through
+                    //Fall through, there is no consignmentRequest with the scanner`s PickupNo
+
+                    consignmentRequestsCart = await GetConsignmentRequestByAccountNoAsync(accountNo, consignmentNo, "false");
+                    if (consignmentRequestsCart.Count > 0) //Cart exist (no pickupNo)
+                    {
+                        //Clone
+                        ConsigmentRequest consignmentRequestCart = CloneConsignmentRequestCart(consignmentRequestsCart);
+
+                        //Create
+                        ConsigmentRequest consignmentRequestPickup = CreateNewConsignmentRequestPickup(consignmentRequestCart);
+
+                        //Set Pickup.Number
+                        consignmentRequestPickup.Pickup.Number = pickupNo;
+
+                        //Set IsPickedUp
+                        consignmentRequestPickup.Pickup.IsPickedUp = true;
+
+                        //Set IsPaid
+                        consignmentRequestPickup.Payment.IsPaid = true;
+
+                        //Move
+                        var needSaving = MoveConsignmentFromCartToPickup(consignmentNo, consignmentRequestCart, consignmentRequestPickup);
+
+                        //Save
+                        if (needSaving)
+                        {
+                            Console.WriteLine($"Pickup created");
+                            await SaveChanges(context, consignmentRequestPickup, consignmentRequestCart);
+                        }
+                    }
+                    else
+                    {
+                        //Fall through
+                    }
                 }
             }
+        }
+
+        private static ConsigmentRequest CreateNewConsignmentRequestPickup(ConsigmentRequest consignmentRequestCart)
+        {
+            return new ConsigmentRequest()
+            {
+                ReferenceNo = consignmentRequestCart.ReferenceNo,
+                UserId = consignmentRequestCart.UserId,
+                Payment = consignmentRequestCart.Payment.Clone(),
+                Pickup = consignmentRequestCart.Pickup.Clone(),
+                GenerateConnoteCounter = consignmentRequestCart.GenerateConnoteCounter,
+                Id = Guid.NewGuid().ToString(),
+                WebId = Guid.NewGuid().ToString()
+            };
         }
 
         private static async Task SaveChanges(SphDataContext context, ConsigmentRequest consignmentRequestPickup, ConsigmentRequest consignmentRequestCart)
@@ -225,6 +283,35 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
             var result = new List<ConsigmentRequest>();
             var requestUri = new Uri($"{m_ostBaseUrl}/api/consigment-requests/pickup-no/{pickupNo}/pickup-status/{pickupStatus}");
+            var response = await client.GetAsync(requestUri);
+            var output = string.Empty;
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+                Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
+                output = await response.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+                Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
+                return result;
+            }
+            var json = JObject.Parse(output).SelectToken("_results");
+            foreach (var jtok in json)
+            {
+                var consigmentRequest = jtok.ToJson().DeserializeFromJson<ConsigmentRequest>();
+                result.Add(consigmentRequest);
+            }
+            return result;
+        }
+
+        private async Task<List<ConsigmentRequest>> GetConsignmentRequestByAccountNoAsync(string accountNo, string consignmentNo, string pickupstatus)
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
+            var result = new List<ConsigmentRequest>();
+            var requestUri = new Uri($"{m_ostBaseUrl}/api/consigment-requests/account-no/{accountNo}/consignment-no/{consignmentNo}/pickup-status/{pickupstatus}");
             var response = await client.GetAsync(requestUri);
             var output = string.Empty;
             if (response.IsSuccessStatusCode)
