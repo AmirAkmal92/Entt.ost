@@ -1,0 +1,80 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "ConsigmentRequestByAccountNoAndConsignmentNoQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "UserId",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.RouteParameterField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "DefaultValue": "",
+          "IsOptional": false,
+          "Constraints": "",
+          "Name": "accountno",
+          "Note": "",
+          "WebId": "3441e970-fe3c-42d1-fc83-0fdd644d5571"
+        },
+        "WebId": "f8c61706-592d-4296-b494-0c2c156ab0e1"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Consignments.ConNote",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.RouteParameterField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "DefaultValue": "",
+          "IsOptional": false,
+          "Constraints": "",
+          "Name": "consignmentno",
+          "Note": "",
+          "WebId": "7f4b41de-5416-44ea-bac8-31190c1d92a6"
+        },
+        "WebId": "bc1c341d-f94d-4f5b-fabc-e30e74822fa1"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Pickup.IsPickedUp",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.RouteParameterField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "DefaultValue": "",
+          "IsOptional": false,
+          "Constraints": "",
+          "Name": "pickupstatus",
+          "Note": "",
+          "WebId": "24bc3919-c6b8-4c69-f95d-8dc11bc1f971"
+        },
+        "WebId": "2d5be579-9878-46cf-d4d1-4003bc2c8d67"
+      }
+    ]
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "ByAccountNoAndConsignmentNo",
+  "Route": "account-no/{accountno}/consignment-no/{consignmentno}/pickup-status/{pickupstatus}",
+  "IsReturnSource": "",
+  "Entity": "ConsigmentRequest",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "consigment-requests",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "consigment-request-by-account-no-and-consignment-no",
+  "CreatedDate": "2017-07-18T17:19:35.7645661+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-19T10:27:50.6507723+08:00",
+  "WebId": "cf822e66-c914-4e55-abbe-a92238fc0b54"
+}
