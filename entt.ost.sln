@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sap.fi.posting", "sources\s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rts.pickup.ezisend", "sources\rts.pickup.ezisend\rts.pickup.ezisend.csproj", "{8D792818-C5EF-47EC-A185-60ED7E6DE22D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "snb.register.ezisend", "sources\snb.register.ezisend\snb.register.ezisend.csproj", "{954F1533-1CD9-4D48-973E-12A07EA8A590}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{8D792818-C5EF-47EC-A185-60ED7E6DE22D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D792818-C5EF-47EC-A185-60ED7E6DE22D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D792818-C5EF-47EC-A185-60ED7E6DE22D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{954F1533-1CD9-4D48-973E-12A07EA8A590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{954F1533-1CD9-4D48-973E-12A07EA8A590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{954F1533-1CD9-4D48-973E-12A07EA8A590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{954F1533-1CD9-4D48-973E-12A07EA8A590}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

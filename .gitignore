@@ -37,3 +37,5 @@ env.ost.*.ps1
 /sources/sap.fi.posting/obj/Debug
 /sources/rts.pickup.ezisend/bin/Debug
 /sources/rts.pickup.ezisend/obj/Debug
+/sources/snb.register.ezisend/bin/Debug
+/sources/snb.register.ezisend/obj/Debug
