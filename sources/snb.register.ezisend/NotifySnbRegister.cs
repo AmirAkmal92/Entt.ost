@@ -50,10 +50,12 @@ Your details has been successfully submitted with user id {userid}.";
             Console.WriteLine($"Contact Person Name: {item.PersonalDetail.ContactPersonName}");
             Console.WriteLine($"Contact Person Ic: {item.PersonalDetail.ContactPersonIc}");
             Console.WriteLine($"Supporting Document (FormP13AndTnc): {item.FormP13AndTnc.BinaryStoreId}");
+            var count = 0;
             foreach (var dirInfo in item.DirectorInformation)
             {
-                Console.WriteLine($"Contact Person Name: {dirInfo.DirectorName}");
-                Console.WriteLine($"Contact Person Ic: {dirInfo.DirectorIcNumber}");
+                count ++;
+                Console.WriteLine($"Director {count} Name: {dirInfo.DirectorName}");
+                Console.WriteLine($"Director {count} Ic: {dirInfo.DirectorIcNumber}");
             }
             Console.WriteLine($"======================");
 
