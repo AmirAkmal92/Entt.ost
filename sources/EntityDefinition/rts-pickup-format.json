@@ -53,6 +53,30 @@
       },
       {
         "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+        "TypeName": "System.String, mscorlib",
+        "IsNullable": false,
+        "IsNotIndexed": false,
+        "IsAnalyzed": false,
+        "IsFilterable": false,
+        "IsExcludeInAll": false,
+        "Boost": 0,
+        "FullName": null,
+        "PropertyAttribute": null,
+        "MemberCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "FieldPermissionCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": "AccountNo",
+        "AllowMultiple": false,
+        "DefaultValue": null,
+        "WebId": "b9742852-199b-4091-be4a-e3e9152537cf"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
         "TypeName": "System.DateTime, mscorlib",
         "IsNullable": false,
         "IsNotIndexed": false,
@@ -139,6 +163,6 @@
   "Id": "rts-pickup-format",
   "CreatedDate": "2017-07-07T16:40:43.7910705+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-07-10T19:03:17.8383206+08:00",
+  "ChangedDate": "2017-07-18T16:36:06.5092505+08:00",
   "WebId": "5d49183d-f2e9-404f-8446-79a03d590d97"
 }
