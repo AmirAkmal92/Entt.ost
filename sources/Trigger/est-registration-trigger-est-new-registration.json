@@ -1,0 +1,186 @@
+{
+  "$type": "Bespoke.Sph.Domain.Trigger, domain.sph",
+  "RuleCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Rule, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "ActionCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.CustomAction, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.AssemblyAction, domain.sph",
+        "IsAsyncMethod": true,
+        "Assembly": "snb.register.ezisend",
+        "TypeName": "Bespoke.PosEntt.CustomActions.NotifySnbRegister",
+        "Method": "SendNotifyEmail",
+        "ReturnType": "System.Threading.Tasks.Task",
+        "IsVoid": false,
+        "IsStatic": false,
+        "MethodArgCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.MethodArg, domain.sph]], domain.sph",
+          "$values": [
+            {
+              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
+              "Name": "emailTo",
+              "TypeName": "System.String, mscorlib",
+              "ValueProvider": {
+                "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+                "TypeName": "System.String, mscorlib",
+                "Value": "mohammad@bespoke.com.my",
+                "Name": "email",
+                "Note": "",
+                "WebId": "2935173d-5355-46fb-d130-ba814bf6c06c"
+              },
+              "AttributeCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+                "$values": []
+              },
+              "Default": null,
+              "WebId": "d163f3c3-09b8-4036-be84-6f29757334cb"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
+              "Name": "emailSubject",
+              "TypeName": "System.String, mscorlib",
+              "ValueProvider": {
+                "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+                "TypeName": "System.String, mscorlib",
+                "Value": "Register Notification",
+                "Name": "subject",
+                "Note": "",
+                "WebId": "210ee4f1-a535-4ae1-d828-9920ff4a3a07"
+              },
+              "AttributeCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+                "$values": []
+              },
+              "Default": null,
+              "WebId": "ffc3f193-d454-4363-f8a4-40942780d40e"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
+              "Name": "emailMessage",
+              "TypeName": "System.String, mscorlib",
+              "ValueProvider": {
+                "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+                "TypeName": "System.String, mscorlib",
+                "Value": "Thank you for using our service",
+                "Name": "message",
+                "Note": "",
+                "WebId": "755a8b6d-51de-4cf6-8df9-a699ea43764d"
+              },
+              "AttributeCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+                "$values": []
+              },
+              "Default": null,
+              "WebId": "77129c7d-41d0-4556-ab4a-e37b1738595e"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
+              "Name": "userid",
+              "TypeName": "System.String, mscorlib",
+              "ValueProvider": {
+                "$type": "Bespoke.Sph.Domain.DocumentField, domain.sph",
+                "XPath": "",
+                "NamespacePrefix": "",
+                "TypeName": "",
+                "Path": "UserId",
+                "Name": "userid",
+                "Note": "",
+                "WebId": "435f83e3-f93e-49c8-f390-eb36cf9ca9f1"
+              },
+              "AttributeCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+                "$values": []
+              },
+              "Default": null,
+              "WebId": "1cdea199-d485-4c21-a9f5-960853f23feb"
+            }
+          ]
+        },
+        "Title": "Send Notify Email",
+        "IsActive": true,
+        "TriggerId": null,
+        "Note": null,
+        "WebId": "08a8cea7-c19a-4ba7-fc0b-d1895e44c9a1"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.AssemblyAction, domain.sph",
+        "IsAsyncMethod": true,
+        "Assembly": "snb.register.ezisend",
+        "TypeName": "Bespoke.PosEntt.CustomActions.NotifySnbRegister",
+        "Method": "RegisterNewContractCustomer",
+        "ReturnType": "System.Threading.Tasks.Task",
+        "IsVoid": false,
+        "IsStatic": false,
+        "MethodArgCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.MethodArg, domain.sph]], domain.sph",
+          "$values": [
+            {
+              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
+              "Name": "item",
+              "TypeName": "Bespoke.Ost.EstRegistrations.Domain.EstRegistration, Ost.EstRegistration",
+              "ValueProvider": {
+                "$type": "Bespoke.Sph.Domain.FunctionField, domain.sph",
+                "CodeNamespace": "ff1123b4d6",
+                "Script": "var result = item;\nreturn result;",
+                "Name": "entity",
+                "Note": "",
+                "WebId": "1123b4d6-96c4-4043-af25-731b5b4bc2f7"
+              },
+              "AttributeCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+                "$values": []
+              },
+              "Default": null,
+              "WebId": "f10b316e-66d8-4167-d19e-f6020109d05d"
+            }
+          ]
+        },
+        "Title": "Register New Contract Customer",
+        "IsActive": true,
+        "TriggerId": null,
+        "Note": null,
+        "WebId": "b0b943ed-c777-454b-ad9d-9f054fb0509e"
+      }
+    ]
+  },
+  "ReferencedAssemblyCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ReferencedAssembly, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.ReferencedAssembly, domain.sph",
+        "Name": "snb.register.ezisend",
+        "FullName": "snb.register.ezisend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "Version": "1.0.0.0",
+        "Location": "C:\\project\\work\\entt.ost\\tools\\snb.register.ezisend.dll",
+        "IsGac": false,
+        "IsStrongName": false,
+        "RuntimeVersion": "v4.0.30319",
+        "WebId": null
+      }
+    ]
+  },
+  "RequeueFilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ExceptionFilter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "Name": "TriggerEstNewRegistration",
+  "Entity": "EstRegistration",
+  "TypeOf": "Bespoke.Ost.EstRegistrations.Domain.EstRegistration, Ost.EstRegistration",
+  "Note": "",
+  "IsActive": true,
+  "IsFiredOnAdded": true,
+  "IsFiredOnDeleted": false,
+  "IsFiredOnChanged": false,
+  "FiredOnOperations": "",
+  "ClassName": "EstRegistrationTriggerEstNewRegistrationTriggerSubscriber",
+  "CodeNamespace": "Bespoke.Ost.TriggerSubscribers",
+  "CreatedBy": "admin",
+  "Id": "est-registration-trigger-est-new-registration",
+  "CreatedDate": "2017-07-19T16:34:06.1376555+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-07-19T20:19:21.9645364+08:00",
+  "WebId": "48bfd8fe-3529-416b-838c-4720f9aedd0d"
+}
