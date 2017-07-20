@@ -175,87 +175,22 @@
           "$values": [
             {
               "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
-              "Name": "consignmentNo",
-              "TypeName": "System.String, mscorlib",
+              "Name": "item",
+              "TypeName": "Bespoke.Ost.RtsPickupFormats.Domain.RtsPickupFormat, Ost.RtsPickupFormat",
               "ValueProvider": {
-                "$type": "Bespoke.Sph.Domain.DocumentField, domain.sph",
-                "XPath": "",
-                "NamespacePrefix": "",
-                "TypeName": "",
-                "Path": "ConsignmentNo",
-                "Name": "ConsignmentNo",
+                "$type": "Bespoke.Sph.Domain.FunctionField, domain.sph",
+                "CodeNamespace": "ffb1692983",
+                "Script": "var result = item;\nreturn result;",
+                "Name": "entity",
                 "Note": "",
-                "WebId": "c7336cef-c377-4d35-cf7a-0d42ba26f464"
+                "WebId": "b1692983-2330-490e-b73c-8da2fa8405b4"
               },
               "AttributeCollection": {
                 "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
                 "$values": []
               },
               "Default": null,
-              "WebId": "a4b0e7c6-630f-48de-bee9-b61f4bceabfd"
-            },
-            {
-              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
-              "Name": "pickupDateTime",
-              "TypeName": "System.DateTime, mscorlib",
-              "ValueProvider": {
-                "$type": "Bespoke.Sph.Domain.DocumentField, domain.sph",
-                "XPath": "",
-                "NamespacePrefix": "",
-                "TypeName": "",
-                "Path": "PickupDateTime",
-                "Name": "PickupDateTime",
-                "Note": "",
-                "WebId": "e351fb80-fc78-418a-bbc8-0e6e6ba43a9e"
-              },
-              "AttributeCollection": {
-                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
-                "$values": []
-              },
-              "Default": null,
-              "WebId": "16850c27-bf00-4d85-f88d-fa0db2d1700f"
-            },
-            {
-              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
-              "Name": "pickupNo",
-              "TypeName": "System.String, mscorlib",
-              "ValueProvider": {
-                "$type": "Bespoke.Sph.Domain.DocumentField, domain.sph",
-                "XPath": "",
-                "NamespacePrefix": "",
-                "TypeName": "",
-                "Path": "PickupNo",
-                "Name": "PickupNo",
-                "Note": "",
-                "WebId": "322df779-6a8a-4b3f-ec33-131e0bcf7aa6"
-              },
-              "AttributeCollection": {
-                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
-                "$values": []
-              },
-              "Default": null,
-              "WebId": "42e8c289-5cfa-4838-b1ce-9b10a8fe4e4b"
-            },
-            {
-              "$type": "Bespoke.Sph.Domain.MethodArg, domain.sph",
-              "Name": "accountNo",
-              "TypeName": "System.String, mscorlib",
-              "ValueProvider": {
-                "$type": "Bespoke.Sph.Domain.DocumentField, domain.sph",
-                "XPath": "",
-                "NamespacePrefix": "",
-                "TypeName": "",
-                "Path": "AccountNo",
-                "Name": "AccountNo",
-                "Note": "",
-                "WebId": "ca700122-e09c-4007-845d-05f5d33c6e63"
-              },
-              "AttributeCollection": {
-                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
-                "$values": []
-              },
-              "Default": null,
-              "WebId": "cb301e41-6e92-4604-c51f-25def42cb059"
+              "WebId": "f46c2ce7-5a37-4c3a-d2e4-0fc6900ea9a2"
             }
           ]
         },
@@ -302,6 +237,6 @@
   "Id": "rts-pickup-format-trigger-est-shipment",
   "CreatedDate": "2017-07-07T17:43:12.9239222+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-07-18T17:39:49.2325935+08:00",
+  "ChangedDate": "2017-07-20T14:13:15.7307067+08:00",
   "WebId": "b5fb76b3-698b-46ee-a47f-4bcb4e0296e5"
 }

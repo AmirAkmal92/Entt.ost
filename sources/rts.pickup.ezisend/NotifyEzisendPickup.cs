@@ -1,4 +1,5 @@
 ﻿using Bespoke.Ost.ConsigmentRequests.Domain;
+using Bespoke.Ost.RtsPickupFormats.Domain;
 using Bespoke.Sph.Domain;
 using Newtonsoft.Json.Linq;
 using System;
@@ -41,26 +42,26 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
             }
         }
 
-        public async Task GetRtsPickupEvent(string consignmentNo, DateTime pickupDateTime, string pickupNo, string accountNo)
+        public async Task GetRtsPickupEvent(RtsPickupFormat item)
         {
             var context = new SphDataContext();
             var consignmentRequestsPickup = new List<ConsigmentRequest>();
             var consignmentRequestsCart = new List<ConsigmentRequest>();
 
-            consignmentRequestsPickup = await GetConsignmentRequestAsync(pickupNo, "true");
+            consignmentRequestsPickup = await GetConsignmentRequestAsync(item.PickupNo, "true");
             if (consignmentRequestsPickup.Count > 0) //Pickup exist
             {
                 //Clone
                 ConsigmentRequest consignmentRequestPickup = CloneConsignmentRequestPickup(consignmentRequestsPickup);
 
-                consignmentRequestsCart = await GetConsignmentRequestAsync(pickupNo, "false");
+                consignmentRequestsCart = await GetConsignmentRequestAsync(item.PickupNo, "false");
                 if (consignmentRequestsCart.Count > 0) //Cart exist
                 {
                     //Clone
                     ConsigmentRequest consignmentRequestCart = CloneConsignmentRequestCart(consignmentRequestsCart);
 
                     //Move
-                    var needSaving = MoveConsignmentFromCartToPickup(consignmentNo, consignmentRequestCart, consignmentRequestPickup);
+                    var needSaving = MoveConsignmentFromCartToPickup(item.ConsignmentNo, consignmentRequestCart, consignmentRequestPickup);
 
                     //Save
                     if (needSaving)
@@ -72,14 +73,14 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
                 {
                     //Fall through, there is no consignmentRequest with the scanner`s PickupNo
 
-                    consignmentRequestsCart = await GetConsignmentRequestByAccountNoAsync(accountNo, consignmentNo, "false");
+                    consignmentRequestsCart = await GetConsignmentRequestByAccountNoAsync(item.AccountNo, item.ConsignmentNo, "false");
                     if (consignmentRequestsCart.Count > 0) //Cart exist (no pickupNo)
                     {
                         //Clone
                         ConsigmentRequest consignmentRequestCart = CloneConsignmentRequestCart(consignmentRequestsCart);
 
                         //Move
-                        var needSaving = MoveConsignmentFromCartToPickup(consignmentNo, consignmentRequestCart, consignmentRequestPickup);
+                        var needSaving = MoveConsignmentFromCartToPickup(item.ConsignmentNo, consignmentRequestCart, consignmentRequestPickup);
 
                         //Save
                         if (needSaving)
@@ -95,7 +96,7 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
             }
             else //Pickup not exist
             {
-                consignmentRequestsCart = await GetConsignmentRequestAsync(pickupNo, "false");
+                consignmentRequestsCart = await GetConsignmentRequestAsync(item.PickupNo, "false");
 
                 if (consignmentRequestsCart.Count > 0) //Cart exist
                 {
@@ -112,7 +113,7 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
                     consignmentRequestPickup.Payment.IsPaid = true;
 
                     //Move
-                    var needSaving = MoveConsignmentFromCartToPickup(consignmentNo, consignmentRequestCart, consignmentRequestPickup);
+                    var needSaving = MoveConsignmentFromCartToPickup(item.ConsignmentNo, consignmentRequestCart, consignmentRequestPickup);
 
                     //Save
                     if (needSaving)
@@ -125,7 +126,7 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
                 {
                     //Fall through, there is no consignmentRequest with the scanner`s PickupNo
 
-                    consignmentRequestsCart = await GetConsignmentRequestByAccountNoAsync(accountNo, consignmentNo, "false");
+                    consignmentRequestsCart = await GetConsignmentRequestByAccountNoAsync(item.AccountNo, item.ConsignmentNo, "false");
                     if (consignmentRequestsCart.Count > 0) //Cart exist (no pickupNo)
                     {
                         //Clone
@@ -135,7 +136,7 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
                         ConsigmentRequest consignmentRequestPickup = CreateNewConsignmentRequestPickup(consignmentRequestCart);
 
                         //Set Pickup.Number
-                        consignmentRequestPickup.Pickup.Number = pickupNo;
+                        consignmentRequestPickup.Pickup.Number = item.PickupNo;
 
                         //Set IsPickedUp
                         consignmentRequestPickup.Pickup.IsPickedUp = true;
@@ -144,7 +145,7 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
                         consignmentRequestPickup.Payment.IsPaid = true;
 
                         //Move
-                        var needSaving = MoveConsignmentFromCartToPickup(consignmentNo, consignmentRequestCart, consignmentRequestPickup);
+                        var needSaving = MoveConsignmentFromCartToPickup(item.ConsignmentNo, consignmentRequestCart, consignmentRequestPickup);
 
                         //Save
                         if (needSaving)
