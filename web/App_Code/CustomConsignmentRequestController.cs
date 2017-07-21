@@ -360,7 +360,7 @@ namespace web.sph.App_Code
             var resultSuccess = true;
             var resultStatus = "OK";
             var item = lo.Source;
-            
+
             if (!item.Payment.IsPaid)
             {
                 if (string.IsNullOrEmpty(item.Pickup.Number))
@@ -425,7 +425,7 @@ namespace web.sph.App_Code
         {
             LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
             if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
-            
+
             var item = lo.Source;
 
             item.Pickup.DateReady = DateTime.MinValue;
@@ -665,6 +665,96 @@ namespace web.sph.App_Code
             // wait until the worker process it
             await Task.Delay(1500);
             return Accepted(result);
+        }
+
+        [HttpPost]
+        [Route("export-consignments")]
+        public IHttpActionResult ExportConsignments([FromBody]List<Consignment> items)
+        {
+            var csv = new StringBuilder();
+
+            csv.Append(@"Sender Name,");
+            csv.Append(@"Sender Company Name,");
+            csv.Append(@"Sender Email,");
+            csv.Append(@"Sender Contact Number,");
+            csv.Append(@"Sender Alternative Contact Number,");
+            csv.Append(@"Sender Address 1,");
+            csv.Append(@"Sender Address 2,");
+            csv.Append(@"Sender Address 3,");
+            csv.Append(@"Sender Address 4,");
+            csv.Append(@"Sender City,");
+            csv.Append(@"Sender State,");
+            csv.Append(@"Sender Country,");
+            csv.Append(@"Sender Postcode,");
+
+            csv.Append(@"Receiver Name,");
+            csv.Append(@"Receiver Company Name,");
+            csv.Append(@"Receiver Email,");
+            csv.Append(@"Receiver Contact Number,");
+            csv.Append(@"Receiver Alternative Contact Number,");
+            csv.Append(@"Receiver Address 1,");
+            csv.Append(@"Receiver Address 2,");
+            csv.Append(@"Receiver Address 3,");
+            csv.Append(@"Receiver Address 4,");
+            csv.Append(@"Receiver City,");
+            csv.Append(@"Receiver State,");
+            csv.Append(@"Receiver Country,");
+            csv.Append(@"Receiver Postcode,");
+
+            csv.Append(@"Item Weight kg,");
+            csv.Append(@"Item Width cm,");
+            csv.Append(@"Item Length cm,");
+            csv.Append(@"Item Height cm,");
+            csv.Append(@"Item Description");
+
+            csv.AppendLine();
+            
+            foreach (var item in items)
+            {
+                csv.Append($@"{item.Pemberi.ContactPerson},");
+                csv.Append($@"{item.Pemberi.CompanyName},");
+                csv.Append($@"{item.Pemberi.ContactInformation.Email},");
+                csv.Append($@"{item.Pemberi.ContactInformation.ContactNumber},");
+                csv.Append($@"{item.Pemberi.ContactInformation.AlternativeContactNumber},");
+                csv.Append($@"{item.Pemberi.Address.Address1},");
+                csv.Append($@"{item.Pemberi.Address.Address2},");
+                csv.Append($@"{item.Pemberi.Address.Address3},");
+                csv.Append($@"{item.Pemberi.Address.Address4},");
+                csv.Append($@"{item.Pemberi.Address.City},");
+                csv.Append($@"{item.Pemberi.Address.State},");
+                csv.Append($@"{item.Pemberi.Address.Country},");
+                csv.Append($@"{item.Pemberi.Address.Postcode},");
+
+                csv.Append($@"{item.Penerima.ContactPerson},");
+                csv.Append($@"{item.Penerima.CompanyName},");
+                csv.Append($@"{item.Penerima.ContactInformation.Email},");
+                csv.Append($@"{item.Penerima.ContactInformation.ContactNumber},");
+                csv.Append($@"{item.Penerima.ContactInformation.AlternativeContactNumber},");
+                csv.Append($@"{item.Penerima.Address.Address1},");
+                csv.Append($@"{item.Penerima.Address.Address2},");
+                csv.Append($@"{item.Penerima.Address.Address3},");
+                csv.Append($@"{item.Penerima.Address.Address4},");
+                csv.Append($@"{item.Penerima.Address.City},");
+                csv.Append($@"{item.Penerima.Address.State},");
+                csv.Append($@"{item.Penerima.Address.Country},");
+                csv.Append($@"{item.Penerima.Address.Postcode},");
+
+                csv.Append($@"{item.Produk.Weight},");
+                csv.Append($@"{item.Produk.Width},");
+                csv.Append($@"{item.Produk.Length},");
+                csv.Append($@"{item.Produk.Height},");
+                csv.Append($@"{item.Produk.Description}");
+
+                csv.AppendLine();
+            }
+
+            var response = new
+            {
+                success = true,
+                status = "OK",
+                content = csv.ToString()
+            };
+            return Accepted(response);
         }
 
         private static async Task<LoadData<ConsigmentRequest>> GetConsigmentRequest(string id)
