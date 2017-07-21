@@ -1,5 +1,7 @@
 # EziSend Istallation Guide
 
+![EziSend](https://ezisend.poslaju.com.my/images/Pos_Laju_EziSend_RGB.png)
+
 ## Prerequisites
 
 1. Operating System
