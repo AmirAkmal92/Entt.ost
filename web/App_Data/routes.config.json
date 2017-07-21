@@ -250,5 +250,19 @@
     "showWhenLoggedIn": false,
     "isAdminPage": false,
     "startPageRoute": null
+  },
+  {
+    "role": "everybody",
+    "groupName": null,
+    "route": "consignment-requests-export-bulk",
+    "moduleId": "viewmodels/consignment-requests-export-bulk",
+    "title": "Consignment Request Export Bulk",
+    "nav": false,
+    "icon": "fa fa-file-excel-o",
+    "caption": "Consignment Request Export Bulk",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
   }
 ]
