@@ -1,0 +1,140 @@
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="/"> Home </a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Tools </span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Export Consignment </span>
+        </li>
+    </ul>
+</div>
+<br />
+<br />
+<div class="portlet light bordered">
+    <div>
+        <h4>
+            <i class="fa fa-file-excel-o font-yellow-casablanca"></i>
+            <span class="caption-subject font-yellow-casablanca bold uppercase">Export Consignment</span>
+        </h4>
+    </div>
+    <div data-bind="with: consignment">
+        <div class="row">
+            <div class="col-md-12">
+                <form id="export-consignments-form">
+                    <table border="0">
+                        <thead>
+                            <tr>
+                                <td class="col-md-2">Sender</td>
+                                <td class="col-md-2">Receiver</td>
+                                <td class="col-md-4">Product Information</td>
+                                <td class="col-md-3">Product Description</td>
+                                <td class="col-md-1"></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="col-md-12">
+                                        <label id="PemberiName-error" class="error" for="PemberiName" style="color: red; display:none"></label><br />
+                                        <select class="form-control input-sm" style="width: 200px" placeholder="Search Contact" name="PemberiName" id="sender-company-name"></select>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="col-md-12">
+                                        <label id="PenerimaName-error" class="error" for="PenerimaName" style="color: red; display:none"></label><br />
+                                        <select class="form-control input-sm" style="width: 200px" placeholder="Search Contact" name="PenerimaName" id="receiver-company-name"></select>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="col-md-12">
+                                        <label id="productWeight-error" class="error" for="productWeight" style="color: red; display:none"></label>
+                                        <label id="productLength-error" class="error" for="productLength" style="color: red; display:none"></label>
+                                        <label id="productWidth-error" class="error" for="productWidth" style="color: red; display:none"></label>
+                                        <label id="productHeight-error" class="error" for="productHeight" style="color: red; display:none"></label><br />
+                                        <input class="col-md-3 input-sm" name="productWeight" type="number" step="0.01" min="0" placeholder="Weight" data-bind="value: Produk().Weight, tooltip: 'Product Weight'" />
+                                        <input class="col-md-3 input-sm" name="productLength" id="productLength" type="number" min="0" placeholder="Length" data-bind="value: Produk().Length, tooltip: 'Product Length'" />
+                                        <input class="col-md-3 input-sm" name="productWidth" type="number" min="0" placeholder="Width" data-bind="value: Produk().Width, tooltip: 'Product Width'" />
+                                        <input class="col-md-3 input-sm" name="productHeight" type="number" min="0" placeholder="Height" data-bind="value: Produk().Height, tooltip: 'Product Height'" />
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="col-md-12">
+                                        <label id="productDescription-error" class="error" for="productDescription" style="color: red; display:none"></label><br />
+                                        <input class="input-sm" type="text" name="productDescription" placeholder="Product Description" data-bind="value: Produk().Description" />&nbsp;&nbsp;
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="col-md-12">
+                                        <br />
+                                        <button type="submit" class="btn btn-circle yellow-casablanca" data-bind="click: $root.addConsignment">Add</button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br />
+    <hr />
+    <br />
+    <div>
+        <table class="table table-bordered table-striped">
+            <thead class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase tool">
+                <tr>
+                    <th>Sender</th>
+                    <th>Receiver</th>
+                    <th>Product Information</th>
+                    <th>Description</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--ko foreach: consignments-->
+                <tr>
+                    <td>
+                        <span data-bind="text: Pemberi.ContactPerson,
+                              tooltip: 'Name:&nbsp;' + Pemberi.ContactPerson
+                              + '\nContact&nbsp;No:&nbsp;' + Pemberi.ContactInformation.ContactNumber
+                              + '\nPostcode:&nbsp;' + Pemberi.Address.Postcode
+                              + ' State:&nbsp;' + Pemberi.Address.State
+                              + '\nCountry:&nbsp;' + Pemberi.Address.Country">
+
+                        </span>
+                    </td>
+                    <td>
+                        <span data-bind="text: Penerima.ContactPerson,
+                              tooltip: 'Name:&nbsp;' + Penerima.ContactPerson
+                              + '\nContact&nbsp;No:&nbsp;' + Penerima.ContactInformation.ContactNumber
+                              + '\nPostcode:&nbsp;' + Penerima.Address.Postcode
+                              + ' State:&nbsp;' + Penerima.Address.State
+                              + '\nCountry:&nbsp;' + Penerima.Address.Country">
+
+                        </span>
+                    </td>
+                    <td>
+                        <!--ko if: Produk.Weight != null-->
+                        <span data-bind="text: parseFloat(Produk.Weight).toFixed(2) + ' kg '
+                              + Produk.Length + 'cm x '
+                              + Produk.Width + 'cm x '
+                              + Produk.Height + 'cm'">
+                        </span>
+                        <!--/ko-->
+                    </td>
+                    <td><span data-bind="text: Produk.Description"></span></td>
+                    <td class="text-center">
+                        <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="click: $root.deleteConsignment"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+                <!--/ko-->
+            </tbody>
+        </table>
+        <a class="btn btn-circle yellow-casablanca" data-bind="click: exportToCsv, visible: consignments().length"><i class="fa fa-file-excel-o"></i>&nbsp;Download</a>
+    </div>
+</div>
