@@ -258,7 +258,7 @@ namespace web.sph.App_Code
         [HttpPut]
         [Route("propose-pickup/{id}")]
         public async Task<IHttpActionResult> ProposePickup(string id,
-            [FromUri(Name = "timeReady")]string timeReady = "02:00 PM",
+            [FromUri(Name = "timeReady")]string timeReady = "12:00 PM",
             [FromUri(Name = "timeClose")]string timeClose = "06:30 PM")
         {
             LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);

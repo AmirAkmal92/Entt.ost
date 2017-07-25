@@ -61,10 +61,12 @@ function (context, logger, router, system, chart, config, app) {
                 });
         },
         schedulePickup = function () {
-            if (pickupReadyHH() <= pickupCloseHH()) {
-                var data = ko.mapping.toJSON(entity),
-                    tReady = pickupReadyHH() + ":" + pickupReadyMM() + " PM",
-                    tClose = pickupCloseHH() + ":" + pickupCloseMM() + " PM";
+            var tReady = pickupReadyHH() + ":" + pickupReadyMM() + " PM";
+            var tClose = pickupCloseHH() + ":" + pickupCloseMM() + " PM";
+            var timeStart = moment(tReady, "hh:mm A");
+            var timeEnd = moment(tClose, "hh:mm A");
+            if (timeStart < timeEnd) {
+                var data = ko.mapping.toJSON(entity);                    
                 context.put(data, "/consignment-request/propose-pickup/" + ko.unwrap(entity().Id) + "?timeReady=" + tReady + "&timeClose=" + tClose)
                     .fail(function (response) {
                         app.showMessage("Sorry, but we cannot shedule a pickup for the Consignment Request with Id : " + ko.unwrap(entity().Id), "OST", ["Close"]).done(function () {
