@@ -28,6 +28,61 @@
         "WebId": "9cc71a4c-a7f3-4762-cfe8-ecf718cf71e5"
       },
       {
+        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+        "TypeName": "System.String, mscorlib",
+        "IsNullable": false,
+        "IsNotIndexed": false,
+        "IsAnalyzed": false,
+        "IsFilterable": false,
+        "IsExcludeInAll": false,
+        "Boost": 0,
+        "FullName": null,
+        "PropertyAttribute": null,
+        "MemberCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "FieldPermissionCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": "RefNo",
+        "AllowMultiple": false,
+        "DefaultValue": null,
+        "WebId": "ba679061-bca7-4139-9858-8e728f1659fe"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+        "TypeName": "System.String, mscorlib",
+        "IsNullable": false,
+        "IsNotIndexed": false,
+        "IsAnalyzed": false,
+        "IsFilterable": false,
+        "IsExcludeInAll": false,
+        "Boost": 0,
+        "FullName": null,
+        "PropertyAttribute": null,
+        "MemberCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "FieldPermissionCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": "SbuName",
+        "AllowMultiple": false,
+        "DefaultValue": {
+          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "Value": "OST",
+          "Name": "Application Name",
+          "Note": "",
+          "WebId": "520aa48b-a907-4f91-e0a7-c55529e67917"
+        },
+        "WebId": "0dd28668-71ec-4fe3-b786-088f745c8d25"
+      },
+      {
         "$type": "Bespoke.Sph.Domain.ComplexMember, domain.sph",
         "EmptyField": "",
         "TypeName": "CompanyInformation",
@@ -203,6 +258,30 @@
               "AllowMultiple": false,
               "DefaultValue": null,
               "WebId": "87ef8ba7-8db1-45ec-a272-589e45d905b1"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+              "TypeName": "System.String, mscorlib",
+              "IsNullable": false,
+              "IsNotIndexed": false,
+              "IsAnalyzed": false,
+              "IsFilterable": false,
+              "IsExcludeInAll": false,
+              "Boost": 0,
+              "FullName": null,
+              "PropertyAttribute": null,
+              "MemberCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "FieldPermissionCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "Name": "CurrencyCode",
+              "AllowMultiple": false,
+              "DefaultValue": null,
+              "WebId": "e4930fc6-e251-477e-f23f-8280cb2de336"
             }
           ]
         },
@@ -1291,6 +1370,54 @@
               "AllowMultiple": false,
               "DefaultValue": null,
               "WebId": "ec7846e9-a9ae-43a8-a945-4d6939de0fe4"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+              "TypeName": "System.String, mscorlib",
+              "IsNullable": false,
+              "IsNotIndexed": false,
+              "IsAnalyzed": false,
+              "IsFilterable": false,
+              "IsExcludeInAll": false,
+              "Boost": 0,
+              "FullName": null,
+              "PropertyAttribute": null,
+              "MemberCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "FieldPermissionCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "Name": "ContactPersonPickup",
+              "AllowMultiple": false,
+              "DefaultValue": null,
+              "WebId": "7948f9ad-323f-4274-c086-11a2e2ce3da4"
+            },
+            {
+              "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+              "TypeName": "System.String, mscorlib",
+              "IsNullable": false,
+              "IsNotIndexed": false,
+              "IsAnalyzed": false,
+              "IsFilterable": false,
+              "IsExcludeInAll": false,
+              "Boost": 0,
+              "FullName": null,
+              "PropertyAttribute": null,
+              "MemberCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "FieldPermissionCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "Name": "ContactNumberPickup",
+              "AllowMultiple": false,
+              "DefaultValue": null,
+              "WebId": "eee40161-fb96-4b0d-8bcd-827f7702faf3"
             }
           ]
         },
@@ -2927,6 +3054,6 @@
   "Id": "est-registration",
   "CreatedDate": "2017-06-21T13:04:26.8700361+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-07-12T13:03:09.0643688+08:00",
+  "ChangedDate": "2017-07-24T04:43:32.0013386+08:00",
   "WebId": "f948cbc8-1b4b-4712-bc5a-65746f008b2c"
 }
