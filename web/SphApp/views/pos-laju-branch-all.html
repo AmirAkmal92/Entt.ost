@@ -6,18 +6,27 @@
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Branch Code</th>
                     <th>Postcode From</th>
                     <th>Postcode To</th>
                     <th>Pickup Id</th>
+                    <th>Allow Pickup</th>
                 </tr>
             </thead>
             <tbody data-bind="foreach :list">
                 <tr data-bind="">
-                    <td data-bind="text:Name"></td>
+                    <td>
+                        <a data-bind="attr : {href:'#pos-laju-branch-details' + '/' + Id, title:'Name' }">
+                            <i class="fa fa-university"></i>
+                                                        <span data-bind="text:Name"></span>
+                        </a>
+                    </td>
                     <td data-bind="text:Email"></td>
+                    <td data-bind="text:BranchCode"></td>
                     <td data-bind="text:PostcodeFrom"></td>
                     <td data-bind="text:PostcodeTo"></td>
                     <td data-bind="text:PickupId"></td>
+                    <td data-bind="text:AllowPickup"></td>
                 </tr>
             </tbody>
         </table>
