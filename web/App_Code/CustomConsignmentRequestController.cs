@@ -327,6 +327,7 @@ namespace web.sph.App_Code
                     PostcodeTo = (string)jObject["PostcodeTo"],
                     Email = (string)jObject["Email"],
                     PickupId = (string)jObject["PickupId"],
+                    AllowPickup = (bool)jObject["AllowPickup"],
                     CreatedBy = (string)jObject["CreatedBy"],
                     Id = (string)jObject["Id"],
                     CreatedDate = (DateTime)jObject["CreatedDate"],
@@ -338,7 +339,10 @@ namespace web.sph.App_Code
                 branches.Add(tmpBranch);
             }
 
-            var branch = branches.Where(x => postcode >= Int32.Parse(x.PostcodeFrom) && postcode <= Int32.Parse(x.PostcodeTo)).FirstOrDefault();
+            var branch = branches.Where(x => postcode >= int.Parse(x.PostcodeFrom) 
+                && postcode <= int.Parse(x.PostcodeTo)
+                && x.AllowPickup.Equals(true))
+            .FirstOrDefault();
 
             if (branch == null)
             {
@@ -508,7 +512,7 @@ namespace web.sph.App_Code
                         if (sdsPickup.StatusCode == "00")
                         {
                             DateTime currentTime = DateTime.Now;
-                            DateTime cutOffTime = DateTime.ParseExact("11:00 AM", "hh:mm tt",
+                            DateTime cutOffTime = DateTime.ParseExact("12:00 PM", "hh:mm tt",
                                         CultureInfo.InvariantCulture);
                             DateTime tReady = DateTime.ParseExact(timeReady, "hh:mm tt",
                                                        CultureInfo.InvariantCulture);
