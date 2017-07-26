@@ -64,7 +64,11 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                         cid(entity().Consignments()[i].WebId());
                     } else {
                         app.showMessage("Sorry, but we cannot find any Parcel with Id : " + cId, "OST", ["Close"]).done(function () {
-                            router.navigate("consignment-request-cart/" + crId);
+                            if (config.profile.Designation != "Contract customer") {
+                                router.navigate("consignment-request-cart/" + crId);
+                            } else {
+                                router.navigate("consignment-request-cart-est/" + crId);
+                            }
                         });
                     }
                 }
@@ -88,7 +92,11 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             }, function (e) {
                 if (e.status == 404) {
                     app.showMessage("Sorry, but we cannot find any ConsigmentRequest with Id : " + crId, "OST", ["Close"]).done(function () {
-                        router.navigate("consignment-request-cart/" + crId);
+                        if (config.profile.Designation != "Contract customer") {
+                            router.navigate("consignment-request-cart/" + crId);
+                        } else {
+                            router.navigate("consignment-request-cart-est/" + crId);
+                        }
                     });
                 }
             }).then(function () {
