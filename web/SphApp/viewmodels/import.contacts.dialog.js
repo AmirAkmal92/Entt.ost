@@ -3,11 +3,9 @@ define(["plugins/dialog"],
         var item = ko.observable({
             storeId: ko.observable()
         }),
-            okClick = function (data, ev) {
-                if (bespoke.utils.form.checkValidity(ev.target)) {
-                    dialog.close(this, "OK");
-                }
-            },
+        okClick = function (data, ev) {
+            dialog.close(this, "OK");
+        },
         cancelClick = function () {
             dialog.close(this, "Cancel");
         };
