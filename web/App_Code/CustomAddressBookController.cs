@@ -122,58 +122,8 @@ namespace web.sph.App_Code
         }
 
         [HttpPost]
-        [Route("{storeId:guid}")]
-        public async Task<IHttpActionResult> ImportContacts(string storeId)
-        {
-            var store = ObjectBuilder.GetObject<IBinaryStore>();
-            var csv = await store.GetContentAsync(storeId);
-            if (null == csv) return NotFound($"Cannot find csv in {storeId}");
-
-            // write code use mapping , from port to import the data
-            var port = new Bespoke.Ost.ReceivePorts.AddressTemplateFormat(ObjectBuilder.GetObject<ILogger>());
-            var map = new Bespoke.Ost.Integrations.Transforms.AddressFormatTemplateToAddressBook();
-
-            var text = Encoding.Default.GetString(csv.Content);
-            var lines = from t in text.Split(new[] { "\r\n", "\r" }, StringSplitOptions.RemoveEmptyEntries)
-                        where !t.StartsWith("Name,") // ignore the label
-                        let fields = t.Split(new[] { "," }, StringSplitOptions.None).Take(88)
-                        select string.Join(",", fields);
-
-
-            // TODO :the mapping could have been simpler, if we the source is just the port type
-            var outlookContacts = from cl in port.Process(lines)
-                                  where null != cl
-                                  select cl.ToJson().DeserializeFromJson<Bespoke.Ost.AddressFormats.Domain.AddressFormat>();
-
-            var errors = new List<object>();
-            var context = new SphDataContext();
-            foreach (var t in outlookContacts)
-            {
-                try
-                {
-                    var contact = await map.TransformAsync(t);
-                    contact.Id = Guid.NewGuid().ToString();
-                    using (var session = context.OpenSession())
-                    {
-                        session.Attach(contact);
-                        await session.SubmitChanges("ImportContacts", new Dictionary<string, object> { { "username", User.Identity.Name } });
-                    }
-                }
-                catch (Exception e)
-                {
-                    errors.Add(new { message = e.Message, contact = t });
-                }
-
-            }
-
-            await store.DeleteAsync(storeId);
-
-            return Ok(new { errors });
-        }
-
-        [HttpPost]
         [Route("import-contacts/{storeId:guid}")]
-        public async Task<IHttpActionResult> ImportContacts2(string storeId)
+        public async Task<IHttpActionResult> ImportContacts(string storeId)
         {
             var errors = new List<object>();
             var context = new SphDataContext();
