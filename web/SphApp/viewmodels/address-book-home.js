@@ -36,18 +36,17 @@ function (context, logger, router, chart, config, app, koList, partial, contactG
                         if (!result) return;
                         if (result === "OK") {
                             var storeId = ko.unwrap(dialog.item().storeId);
-                            context.post("{}", "address-books/" + storeId).done(function (result) {
+                            context.post("{}", "address-books/import-contacts/" + storeId).done(function (result) {
                                 console.log(result);
-                                app.showMessage("Contacts successfully imported from file.", "OST", ["Close"]).done(function () {
-                                    //contactGroups.activate();
-                                    //$.ajax({
-                                    //    url: "/api/address-books/",
-                                    //    method: "GET",
-                                    //    cache: false
-                                    //}).then(function (lo) {
-                                    //    list(lo._results);
-                                    //});
-                                    window.location.reload(true);
+                                var dialogMessage = "Contacts successfully imported from file.";
+                                if (!result.success) {
+                                    dialogMessage = "Contacts unsuccessfully imported from file.";
+                                    dialogMessage += " " + result.status;
+                                }
+                                app.showMessage(dialogMessage, "OST", ["Close"]).done(function () {
+                                    if (result.success) {
+                                        window.location.reload(true);
+                                    }
                                 });
                             });
                         }
@@ -63,13 +62,13 @@ function (context, logger, router, chart, config, app, koList, partial, contactG
                         tcs.resolve(result);
                         if (!result) return;
                         if (result === "OK") {
-                            //var uri = "";
-                            //for (var opt in dialog.options()) {
-                            //    if (ko.isObservable(dialog.options()[opt])) {
-                            //        uri += opt + "=" + ko.unwrap(dialog.options()[opt]) + "&"
-                            //    }
-                            //}
-                            window.open("/address-books/csv");
+                            context.get("address-books/export-contacts").done(function (result) {
+                                console.log(result);
+                                if (result.success) {
+                                    var fileName = "Addressbook";
+                                    window.open("/print-excel/file-path/" + result.path + "/file-name/" + fileName);
+                                }   
+                            });
                         }
                     });
             });
