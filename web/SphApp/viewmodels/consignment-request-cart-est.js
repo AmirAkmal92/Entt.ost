@@ -310,27 +310,33 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             },
             saveCommand = function () {
                 //set TotalParcel == TotalQuantity (current flow OST)
-                entity().Pickup().TotalQuantity(entity().Pickup().TotalParcel());
-                var hourReady = parseInt(pickupReadyHH()) + 12;
-                var hourClose = parseInt(pickupCloseHH()) + 12;
-                entity().Pickup().DateReady(moment().format("YYYY-MM-DDT" + hourReady + ":" + pickupReadyMM() + ":ss"));
-                entity().Pickup().DateClose(moment().format("YYYY-MM-DDT" + hourClose + ":" + pickupCloseMM() + ":ss"));
-                return defaultCommand()
-                    .then(function (result) {
-                        if (result.success) {
-                            $("#scheduler-detail-dialog").modal("hide");
-                            return app.showMessage("Sender details has been successfully saved.", "OST", ["Close"]).done(function () {
-                                activate(id());
-                            });
-                        } else {
-                            return Task.fromResult(false);
-                        }
-                    })
-                    .then(function (result) {
-                        if (result) {
-                            activate(ko.unwrap(entity().Id));
-                        }
-                    });
+                var tReady = pickupReadyHH() + ":" + pickupReadyMM() + " PM";
+                var tClose = pickupCloseHH() + ":" + pickupCloseMM() + " PM";
+                var timeStart = moment(tReady, "hh:mm A");
+                var timeEnd = moment(tClose, "hh:mm A");
+                if (timeStart < timeEnd) {
+                    entity().Pickup().TotalQuantity(entity().Pickup().TotalParcel());
+                    entity().Pickup().DateReady(tReady);
+                    entity().Pickup().DateClose(tClose);
+                    return defaultCommand()
+                        .then(function (result) {
+                            if (result.success) {
+                                $("#scheduler-detail-dialog").modal("hide");
+                                return app.showMessage("Sender details has been successfully saved.", "OST", ["Close"]).done(function () {
+                                    activate(id());
+                                });
+                            } else {
+                                return Task.fromResult(false);
+                            }
+                        })
+                        .then(function (result) {
+                            if (result) {
+                                activate(ko.unwrap(entity().Id));
+                            }
+                        });
+                } else {
+                    app.showMessage("Pickup time is invalid. Please set a valid pickup time.", "OST", ["Close"]);
+                }
             };
 
         var vm = {
