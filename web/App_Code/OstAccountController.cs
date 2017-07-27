@@ -312,7 +312,7 @@ namespace web.sph.App_Code
                         EmailSubject = "Create your password",
                         EmailBody = $"Thank you for registering on {ConfigurationManager.ApplicationFullName}. To complete your account registration, you must create a new password.",
                     };
-                    await SendForgotPasswordEmail(emailModel);                    
+                    await SendForgotPasswordEmail(emailModel);
 
                     //create user details
                     var context = new SphDataContext();
@@ -359,10 +359,6 @@ namespace web.sph.App_Code
                         session.Attach(userDetail);
                         await session.SubmitChanges("Default");
                     }
-
-                    // wait until the worker process it
-                    await Task.Delay(2500);
-                    await SetVerifyEmailFlag(registerModel.UserName);
 
                     return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "register" });
                 }
@@ -452,7 +448,7 @@ namespace web.sph.App_Code
                 identity.AddClaim(new Claim(ClaimTypes.Name, tempUsername));
                 var roles = Roles.GetRolesForUser(tempUsername).Select(x => new Claim(ClaimTypes.Role, x));
                 identity.AddClaims(roles);
-                
+
                 var profile = await context.LoadOneAsync<UserProfile>(u => u.UserName == tempUsername);
                 await logger.LogAsync(new LogEntry { Log = EventLog.Security });
                 if (null != profile)
@@ -601,7 +597,7 @@ namespace web.sph.App_Code
         [AllowAnonymous]
         [HttpPost]
         [Route("reset-password")]
-        public ActionResult ResetPassword(OstResetPasswordModel model)
+        public async Task<ActionResult> ResetPassword(OstResetPasswordModel model)
         {
             if (string.IsNullOrEmpty(model.Password))
                 return RedirectToAction($"reset-password/{model.Id}", "ost-account", new { success = false, status = "Email cannot be set to null or empty." });
@@ -616,6 +612,8 @@ namespace web.sph.App_Code
             var temp = user.ResetPassword();
             user.ChangePassword(temp, model.Password);
             Membership.UpdateUser(user);
+
+            await SetVerifyEmailFlag(username);
 
             return RedirectToAction("success", "ost-account", new { success = true, status = "OK", operation = "reset-password" });
         }
@@ -961,11 +959,14 @@ Please click the link below to proceed.
         {
             var context = new SphDataContext();
             var userProfile = await context.LoadOneAsync<UserProfile>(p => p.UserName == username);
-            userProfile.HasChangedDefaultPassword = true;
-            using (var session = context.OpenSession())
+            if (!userProfile.HasChangedDefaultPassword)
             {
-                session.Attach(userProfile);
-                await session.SubmitChanges();
+                userProfile.HasChangedDefaultPassword = true;
+                using (var session = context.OpenSession())
+                {
+                    session.Attach(userProfile);
+                    await session.SubmitChanges();
+                }
             }
         }
 
