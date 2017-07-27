@@ -33,7 +33,6 @@
                                 <td class="col-md-2">Receiver</td>
                                 <td class="col-md-4">Product Information</td>
                                 <td class="col-md-3">Product Description</td>
-                                <td class="col-md-1"></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,15 +67,14 @@
                                         <input class="input-sm" type="text" name="productDescription" placeholder="Product Description" data-bind="value: Produk().Description" />&nbsp;&nbsp;
                                     </span>
                                 </td>
-                                <td>
-                                    <span class="col-md-12">
-                                        <br />
-                                        <button type="submit" class="btn btn-circle yellow-casablanca" data-bind="click: $root.addConsignment">Add</button>
-                                    </span>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
+                    <br />
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-circle yellow-casablanca" data-bind="click: $root.addConsignment"><i class="fa fa-paper-plane"></i> Add</button>
+                        <button type="submit" class="btn btn-circle yellow-casablanca" data-bind="click: $root.clearConsignments"><i class="fa fa-trash"></i> Empty List</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -129,7 +127,7 @@
                     </td>
                     <td><span data-bind="text: Produk.Description"></span></td>
                     <td class="text-center">
-                        <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="click: $root.deleteConsignment"><i class="fa fa-trash"></i></a>
+                        <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="click: $root.deleteConsignment"><i class="icon-trash"></i></a>
                     </td>
                 </tr>
                 <!--/ko-->
