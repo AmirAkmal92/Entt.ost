@@ -170,8 +170,15 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                                 var storeId = ko.unwrap(dialog.item().storeId);
                                 context.post("{}", "/consignment-request/import-consignments/" + id() + "/store-id/" + storeId).done(function (result) {
                                     console.log(result);
-                                    app.showMessage("Parcels successfuly imported from file.", "OST", ["Close"]).done(function () {
-                                        activate(id());
+                                    var dialogMessage = "Parcels successfully imported from file.";
+                                    if (!result.success) {
+                                        dialogMessage = "Parcels unsuccessfully imported from file.";
+                                        dialogMessage += " " + result.status;
+                                    }
+                                    app.showMessage(dialogMessage, "OST", ["Close"]).done(function () {
+                                        if (result.success) {
+                                            activate(id());
+                                        }
                                     });
                                 });
                             }

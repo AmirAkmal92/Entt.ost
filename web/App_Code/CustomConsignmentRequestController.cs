@@ -3,9 +3,11 @@ using Bespoke.Ost.PosLajuBranchBranches.Domain;
 using Bespoke.Sph.Domain;
 using Bespoke.Sph.WebApi;
 using Newtonsoft.Json.Linq;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -339,7 +341,7 @@ namespace web.sph.App_Code
                 branches.Add(tmpBranch);
             }
 
-            var branch = branches.Where(x => postcode >= int.Parse(x.PostcodeFrom) 
+            var branch = branches.Where(x => postcode >= int.Parse(x.PostcodeFrom)
                 && postcode <= int.Parse(x.PostcodeTo)
                 && x.AllowPickup.Equals(true))
             .FirstOrDefault();
@@ -578,15 +580,15 @@ namespace web.sph.App_Code
         }
 
         [HttpPost]
-        [Route("import-consignments/{id}/store-id/{storeId}")]
-        public async Task<IHttpActionResult> ImportConsignments(string id, string storeId)
+        [Route("import-consignments/{consignmentId:guid}/store-id/{storeId:guid}")]
+        public async Task<IHttpActionResult> ImportConsignments(string consignmentId, string storeId)
         {
             var store = ObjectBuilder.GetObject<IBinaryStore>();
-            var csv = await store.GetContentAsync(storeId);
-            if (null == csv) return NotFound($"Cannot find csv in {storeId}");
+            var doc = await store.GetContentAsync(storeId);
+            if (null == doc) return NotFound($"Cannot find file in {storeId}");
 
-            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
-            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(consignmentId);
+            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + consignmentId);
 
             var resultSuccess = true;
             var resultStatus = "OK";
@@ -594,62 +596,101 @@ namespace web.sph.App_Code
 
             if (!item.Payment.IsPaid)
             {
-                var port = new Bespoke.Ost.ReceivePorts.ConsignmentListTemplateFormat(ObjectBuilder.GetObject<ILogger>());
-                var text = Encoding.Default.GetString(csv.Content);
-                var lines = from t in text.Split(new[] { "\r\n", "\r" }, StringSplitOptions.RemoveEmptyEntries)
-                            where !t.StartsWith("Sender Name,") // ignore the label
-                            let fields = t.Split(new[] { "," }, StringSplitOptions.None).Take(88)
-                            select string.Join(",", fields);
+                var temp = Path.GetTempFileName() + ".xlsx";
+                System.IO.File.WriteAllBytes(temp, doc.Content);
 
-                var consignments = from cl in port.Process(lines)
-                                   where null != cl
-                                   select cl.ToJson().DeserializeFromJson<Bespoke.Ost.ConsignmentListFormats.Domain.ConsignmentListFormat>();
-
-                foreach (var consignment in consignments)
+                var file = new FileInfo(temp);
+                var excel = new ExcelPackage(file);
+                var ws = excel.Workbook.Worksheets["Consignments"];
+                if (null != ws)
                 {
-                    var tmpConsignment = new Consignment();
-                    // assign sender information
-                    tmpConsignment.Pemberi.ContactPerson = consignment.SenderName;
-                    tmpConsignment.Pemberi.CompanyName = consignment.SenderCompanyName;
-                    tmpConsignment.Pemberi.Address.Address1 = consignment.SenderAddress1;
-                    tmpConsignment.Pemberi.Address.Address2 = consignment.SenderAddress2;
-                    tmpConsignment.Pemberi.Address.Address3 = consignment.SenderAddress3;
-                    tmpConsignment.Pemberi.Address.Address4 = consignment.SenderAddress4;
-                    tmpConsignment.Pemberi.Address.City = consignment.SenderCity;
-                    tmpConsignment.Pemberi.Address.State = consignment.SenderState;
-                    tmpConsignment.Pemberi.Address.Country = consignment.SenderCountry;
-                    tmpConsignment.Pemberi.Address.Postcode = consignment.SenderPostcode;
-                    tmpConsignment.Pemberi.ContactInformation.Email = consignment.SenderEmail;
-                    tmpConsignment.Pemberi.ContactInformation.ContactNumber = consignment.SenderContactNumber;
-                    tmpConsignment.Pemberi.ContactInformation.AlternativeContactNumber = consignment.SenderAlternativeContactNumber;
+                    var row = 2;
+                    var senderPostcode = ws.Cells[$"M{row}"].GetValue<string>();
+                    var receiverPostcode = ws.Cells[$"Z{row}"].GetValue<string>();
+                    var productWeigth = ws.Cells[$"AA{row}"].GetValue<string>();
+                    var productWidth = ws.Cells[$"AB{row}"].GetValue<string>();
+                    var productLength = ws.Cells[$"AC{row}"].GetValue<string>();
+                    var productHeigth = ws.Cells[$"AD{row}"].GetValue<string>();
+                    var productDescription = ws.Cells[$"AE{row}"].GetValue<string>();
+                    var hasRow = !string.IsNullOrEmpty(senderPostcode) && !string.IsNullOrEmpty(receiverPostcode)
+                        && !string.IsNullOrEmpty(productWeigth) && !string.IsNullOrEmpty(productWidth)
+                        && !string.IsNullOrEmpty(productLength) && !string.IsNullOrEmpty(productHeigth)
+                        && !string.IsNullOrEmpty(productDescription);
+                    
+                    while (hasRow)
+                    {
+                        var consignment = new Consignment();
 
-                    // assign receiver information
-                    tmpConsignment.Penerima.ContactPerson = consignment.ReceiverName;
-                    tmpConsignment.Penerima.CompanyName = consignment.ReceiverCompanyName;
-                    tmpConsignment.Penerima.Address.Address1 = consignment.ReceiverAddress1;
-                    tmpConsignment.Penerima.Address.Address2 = consignment.ReceiverAddress2;
-                    tmpConsignment.Penerima.Address.Address3 = consignment.ReceiverAddress3;
-                    tmpConsignment.Penerima.Address.Address4 = consignment.ReceiverAddress4;
-                    tmpConsignment.Penerima.Address.City = consignment.ReceiverCity;
-                    tmpConsignment.Penerima.Address.State = consignment.ReceiverState;
-                    tmpConsignment.Penerima.Address.Country = consignment.ReceiverCountry;
-                    tmpConsignment.Penerima.Address.Postcode = consignment.ReceiverPostcode;
-                    tmpConsignment.Penerima.ContactInformation.Email = consignment.ReceiverEmail;
-                    tmpConsignment.Penerima.ContactInformation.ContactNumber = consignment.ReceiverContactNumber;
-                    tmpConsignment.Penerima.ContactInformation.AlternativeContactNumber = consignment.ReceiverAlternativeContactNumber;
+                        consignment.WebId = Guid.NewGuid().ToString();
 
-                    // assign product information
-                    tmpConsignment.Produk.Weight = Convert.ToDecimal(consignment.ItemWeightKg, CultureInfo.InvariantCulture);
-                    tmpConsignment.Produk.Width = Convert.ToDecimal(consignment.ItemWidthCm, CultureInfo.InvariantCulture);
-                    tmpConsignment.Produk.Length = Convert.ToDecimal(consignment.ItemLengthCm, CultureInfo.InvariantCulture);
-                    tmpConsignment.Produk.Height = Convert.ToDecimal(consignment.ItemHeightCm, CultureInfo.InvariantCulture);
-                    tmpConsignment.Produk.Description = consignment.ItemDescription;
+                        // assign sender information
+                        consignment.Pemberi.ContactPerson = ws.Cells[$"A{row}"].GetValue<string>();
+                        consignment.Pemberi.CompanyName = ws.Cells[$"B{row}"].GetValue<string>();
+                        consignment.Pemberi.ContactInformation.Email = ws.Cells[$"C{row}"].GetValue<string>();
+                        consignment.Pemberi.ContactInformation.ContactNumber = ws.Cells[$"D{row}"].GetValue<string>();
+                        consignment.Pemberi.ContactInformation.AlternativeContactNumber = ws.Cells[$"E{row}"].GetValue<string>();
+                        consignment.Pemberi.Address.Address1 = ws.Cells[$"F{row}"].GetValue<string>();
+                        consignment.Pemberi.Address.Address2 = ws.Cells[$"G{row}"].GetValue<string>();
+                        consignment.Pemberi.Address.Address3 = ws.Cells[$"H{row}"].GetValue<string>();
+                        consignment.Pemberi.Address.Address4 = ws.Cells[$"I{row}"].GetValue<string>();
+                        consignment.Pemberi.Address.City = ws.Cells[$"J{row}"].GetValue<string>();
+                        consignment.Pemberi.Address.State = ws.Cells[$"K{row}"].GetValue<string>();
+                        consignment.Pemberi.Address.Country = ws.Cells[$"L{row}"].GetValue<string>();
+                        consignment.Pemberi.Address.Postcode = senderPostcode;
 
-                    tmpConsignment.WebId = Guid.NewGuid().ToString();
-                    item.Consignments.Add(tmpConsignment);
+                        // assign receiver information
+                        consignment.Penerima.ContactPerson = ws.Cells[$"N{row}"].GetValue<string>();
+                        consignment.Penerima.CompanyName = ws.Cells[$"O{row}"].GetValue<string>();
+                        consignment.Penerima.ContactInformation.Email = ws.Cells[$"P{row}"].GetValue<string>();
+                        consignment.Penerima.ContactInformation.ContactNumber = ws.Cells[$"Q{row}"].GetValue<string>();
+                        consignment.Penerima.ContactInformation.AlternativeContactNumber = ws.Cells[$"R{row}"].GetValue<string>();
+                        consignment.Penerima.Address.Address1 = ws.Cells[$"S{row}"].GetValue<string>();
+                        consignment.Penerima.Address.Address2 = ws.Cells[$"T{row}"].GetValue<string>();
+                        consignment.Penerima.Address.Address3 = ws.Cells[$"U{row}"].GetValue<string>();
+                        consignment.Penerima.Address.Address4 = ws.Cells[$"V{row}"].GetValue<string>();
+                        consignment.Penerima.Address.City = ws.Cells[$"W{row}"].GetValue<string>();
+                        consignment.Penerima.Address.State = ws.Cells[$"X{row}"].GetValue<string>();
+                        consignment.Penerima.Address.Country = ws.Cells[$"Y{row}"].GetValue<string>();
+                        consignment.Penerima.Address.Postcode = ws.Cells[$"Z{row}"].GetValue<string>();
+
+                        // assign product information
+                        consignment.Produk.Weight = Convert.ToDecimal(productWeigth, CultureInfo.InvariantCulture);
+                        consignment.Produk.Width = Convert.ToDecimal(productWidth, CultureInfo.InvariantCulture);
+                        consignment.Produk.Length = Convert.ToDecimal(productLength, CultureInfo.InvariantCulture);
+                        consignment.Produk.Height = Convert.ToDecimal(productHeigth, CultureInfo.InvariantCulture);
+                        consignment.Produk.Description = productDescription;
+
+                        row++;
+                        senderPostcode = ws.Cells[$"M{row}"].GetValue<string>();
+                        receiverPostcode = ws.Cells[$"Z{row}"].GetValue<string>();
+                        productWeigth = ws.Cells[$"AA{row}"].GetValue<string>();
+                        productWidth = ws.Cells[$"AB{row}"].GetValue<string>();
+                        productLength = ws.Cells[$"AC{row}"].GetValue<string>();
+                        productHeigth = ws.Cells[$"AD{row}"].GetValue<string>();
+                        productDescription = ws.Cells[$"AE{row}"].GetValue<string>();
+                        hasRow = !string.IsNullOrEmpty(senderPostcode) && !string.IsNullOrEmpty(receiverPostcode)
+                           && !string.IsNullOrEmpty(productWeigth) && !string.IsNullOrEmpty(productWidth)
+                           && !string.IsNullOrEmpty(productLength) && !string.IsNullOrEmpty(productHeigth)
+                           && !string.IsNullOrEmpty(productDescription);
+
+                        item.Consignments.Add(consignment);
+                    }
+
+                    try
+                    {
+                        await SaveConsigmentRequest(item);
+                    }
+                    catch (Exception e)
+                    {
+                        resultSuccess = false;
+                        resultStatus = $"{e.Message}.";
+                    }
                 }
-
-                await SaveConsigmentRequest(item);
+                else
+                {
+                    resultSuccess = false;
+                    resultStatus = $"Cannot open Worksheet Consignments in {doc.FileName}.";
+                }
             }
             else
             {
@@ -712,7 +753,7 @@ namespace web.sph.App_Code
             csv.Append(@"Item Description");
 
             csv.AppendLine();
-            
+
             foreach (var item in items)
             {
                 csv.Append($@"{item.Pemberi.ContactPerson},");
