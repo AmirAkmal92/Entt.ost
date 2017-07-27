@@ -191,6 +191,8 @@ namespace web.sph.App_Code
             if (errors.Count > 0)
                 return Ok(new { success = false, status = "Some errors happened." });
 
+            // wait until the worker process it
+            await Task.Delay(1500);
             return Ok(new { success = true, status = "OK" });
         }
 
