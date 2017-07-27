@@ -212,6 +212,9 @@ objectbuilders.app],
             deleteConsignment = function (item) {
                 consignments.remove(item);
             },
+            clearConsignments = function () {
+                consignments.removeAll();
+            },
             exportToCsv = function () {
                 require(['viewmodels/export.consignments.dialog', 'durandal/app'], function (dialog, app2) {
                     app2.showDialog(dialog)
@@ -258,6 +261,7 @@ objectbuilders.app],
             consignments: consignments,
             addConsignment: addConsignment,
             deleteConsignment: deleteConsignment,
+            clearConsignments: clearConsignments,
             exportToCsv: exportToCsv
         };
     });
