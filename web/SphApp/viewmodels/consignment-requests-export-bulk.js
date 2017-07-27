@@ -22,19 +22,19 @@ objectbuilders.app],
                             },
                             productWeight: {
                                 required: true,
-                                digits: true
+                                number: true
                             },
                             productLength: {
                                 required: true,
-                                digits: true
+                                number: true
                             },
                             productWidth: {
                                 required: true,
-                                digits: true
+                                number: true
                             },
                             productHeight: {
                                 required: true,
-                                digits: true
+                                number: true
                             },
                             productDescription: {
                                 required: true
@@ -49,19 +49,19 @@ objectbuilders.app],
                             },
                             productWeight: {
                                 required: "Please enter Weight.",
-                                digits: "Weight must be a number."
+                                number: "Weight must be a number."
                             },
                             productLength: {
                                 required: "Please enter Length.",
-                                digits: "Length must be a number."
+                                number: "Length must be a number."
                             },
                             productWidth: {
                                 required: "Please enter Width.",
-                                digits: "Width must be a number."
+                                number: "Width must be a number."
                             },
                             productHeight: {
                                 required: "Please enter Height.",
-                                digits: "Height must be a number."
+                                number: "Height must be a number."
                             },
                             productDescription: {
                                 required: "Please enter Description."
@@ -242,19 +242,11 @@ objectbuilders.app],
                         logger.error("There are errors in your entity, !!!");
                     })
                     .then(function (result) {
-                        if (result.success) {
-                            console.log(result.status);
-                            console.log(result.content);
-
-                            var fileName = "consignment_list_format_template_" + moment().format("DD-MM-YYYY");
-                            var uri = 'data:text/csv;charset=utf-8,' + escape(result.content);
-                            var link = document.createElement("a");
-                            link.href = uri;
-                            link.style = "visibility:hidden";
-                            link.download = fileName + ".csv";
-                            document.body.appendChild(link);
-                            link.click();
-                            document.body.removeChild(link);
+                        if (result.status === "OK") {
+                            if (result.success) {
+                                var fileName = "Consignments_List";
+                                window.open("/print-excel/file-path/" + result.path + "/file-name/" + fileName);
+                            }
                         }
                     });
             };

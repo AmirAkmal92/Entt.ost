@@ -714,92 +714,103 @@ namespace web.sph.App_Code
 
         [HttpPost]
         [Route("export-consignments")]
-        public IHttpActionResult ExportConsignments([FromBody]List<Consignment> items)
+        public IHttpActionResult ExportConsignments([FromBody]List<Consignment> consignments)
         {
-            var csv = new StringBuilder();
+            var temp = Path.GetTempFileName() + ".xlsx";
+            System.IO.File.Copy(System.Web.HttpContext.Current.Server.MapPath("~/Content/Files/consignment_list_format_template.xlsx"), temp, true);
 
-            csv.Append(@"Sender Name,");
-            csv.Append(@"Sender Company Name,");
-            csv.Append(@"Sender Email,");
-            csv.Append(@"Sender Contact Number,");
-            csv.Append(@"Sender Alternative Contact Number,");
-            csv.Append(@"Sender Address 1,");
-            csv.Append(@"Sender Address 2,");
-            csv.Append(@"Sender Address 3,");
-            csv.Append(@"Sender Address 4,");
-            csv.Append(@"Sender City,");
-            csv.Append(@"Sender State,");
-            csv.Append(@"Sender Country,");
-            csv.Append(@"Sender Postcode,");
+            var file = new FileInfo(temp);
+            var excel = new ExcelPackage(file);
+            var ws = excel.Workbook.Worksheets["Consignments"];
+            if (null == ws) return Ok(new { success = false, status = $"Cannot open Worksheet Consignments" });
 
-            csv.Append(@"Receiver Name,");
-            csv.Append(@"Receiver Company Name,");
-            csv.Append(@"Receiver Email,");
-            csv.Append(@"Receiver Contact Number,");
-            csv.Append(@"Receiver Alternative Contact Number,");
-            csv.Append(@"Receiver Address 1,");
-            csv.Append(@"Receiver Address 2,");
-            csv.Append(@"Receiver Address 3,");
-            csv.Append(@"Receiver Address 4,");
-            csv.Append(@"Receiver City,");
-            csv.Append(@"Receiver State,");
-            csv.Append(@"Receiver Country,");
-            csv.Append(@"Receiver Postcode,");
+            var existingLinesInTemplate = 2;
+            var row = 2;
 
-            csv.Append(@"Item Weight kg,");
-            csv.Append(@"Item Width cm,");
-            csv.Append(@"Item Length cm,");
-            csv.Append(@"Item Height cm,");
-            csv.Append(@"Item Description");
-
-            csv.AppendLine();
-
-            foreach (var item in items)
+            //Empty existing lines in template
+            if (consignments.Count < 2)
             {
-                csv.Append($@"{item.Pemberi.ContactPerson},");
-                csv.Append($@"{item.Pemberi.CompanyName},");
-                csv.Append($@"{item.Pemberi.ContactInformation.Email},");
-                csv.Append($@"{item.Pemberi.ContactInformation.ContactNumber},");
-                csv.Append($@"{item.Pemberi.ContactInformation.AlternativeContactNumber},");
-                csv.Append($@"{item.Pemberi.Address.Address1},");
-                csv.Append($@"{item.Pemberi.Address.Address2},");
-                csv.Append($@"{item.Pemberi.Address.Address3},");
-                csv.Append($@"{item.Pemberi.Address.Address4},");
-                csv.Append($@"{item.Pemberi.Address.City},");
-                csv.Append($@"{item.Pemberi.Address.State},");
-                csv.Append($@"{item.Pemberi.Address.Country},");
-                csv.Append($@"{item.Pemberi.Address.Postcode},");
+                for (var i = 0; i < existingLinesInTemplate; i++)
+                {
+                    ws.Cells[row + i, 1].Value = string.Empty;
+                    ws.Cells[row + i, 2].Value = string.Empty;
+                    ws.Cells[row + i, 3].Value = string.Empty;
+                    ws.Cells[row + i, 4].Value = string.Empty;
+                    ws.Cells[row + i, 5].Value = string.Empty;
+                    ws.Cells[row + i, 6].Value = string.Empty;
+                    ws.Cells[row + i, 7].Value = string.Empty;
+                    ws.Cells[row + i, 8].Value = string.Empty;
+                    ws.Cells[row + i, 9].Value = string.Empty;
+                    ws.Cells[row + i, 10].Value = string.Empty;
+                    ws.Cells[row + i, 11].Value = string.Empty;
+                    ws.Cells[row + i, 12].Value = string.Empty;
+                    ws.Cells[row + i, 13].Value = string.Empty;
 
-                csv.Append($@"{item.Penerima.ContactPerson},");
-                csv.Append($@"{item.Penerima.CompanyName},");
-                csv.Append($@"{item.Penerima.ContactInformation.Email},");
-                csv.Append($@"{item.Penerima.ContactInformation.ContactNumber},");
-                csv.Append($@"{item.Penerima.ContactInformation.AlternativeContactNumber},");
-                csv.Append($@"{item.Penerima.Address.Address1},");
-                csv.Append($@"{item.Penerima.Address.Address2},");
-                csv.Append($@"{item.Penerima.Address.Address3},");
-                csv.Append($@"{item.Penerima.Address.Address4},");
-                csv.Append($@"{item.Penerima.Address.City},");
-                csv.Append($@"{item.Penerima.Address.State},");
-                csv.Append($@"{item.Penerima.Address.Country},");
-                csv.Append($@"{item.Penerima.Address.Postcode},");
+                    ws.Cells[row + i, 14].Value = string.Empty;
+                    ws.Cells[row + i, 15].Value = string.Empty;
+                    ws.Cells[row + i, 16].Value = string.Empty;
+                    ws.Cells[row + i, 17].Value = string.Empty;
+                    ws.Cells[row + i, 18].Value = string.Empty;
+                    ws.Cells[row + i, 19].Value = string.Empty;
+                    ws.Cells[row + i, 20].Value = string.Empty;
+                    ws.Cells[row + i, 21].Value = string.Empty;
+                    ws.Cells[row + i, 22].Value = string.Empty;
+                    ws.Cells[row + i, 23].Value = string.Empty;
+                    ws.Cells[row + i, 24].Value = string.Empty;
+                    ws.Cells[row + i, 25].Value = string.Empty;
+                    ws.Cells[row + i, 26].Value = string.Empty;
 
-                csv.Append($@"{item.Produk.Weight},");
-                csv.Append($@"{item.Produk.Width},");
-                csv.Append($@"{item.Produk.Length},");
-                csv.Append($@"{item.Produk.Height},");
-                csv.Append($@"{item.Produk.Description}");
-
-                csv.AppendLine();
+                    ws.Cells[row + i, 27].Value = string.Empty;
+                    ws.Cells[row + i, 28].Value = string.Empty;
+                    ws.Cells[row + i, 29].Value = string.Empty;
+                    ws.Cells[row + i, 30].Value = string.Empty;
+                    ws.Cells[row + i, 31].Value = string.Empty;
+                }
             }
 
-            var response = new
+            foreach (var consignment in consignments)
             {
-                success = true,
-                status = "OK",
-                content = csv.ToString()
-            };
-            return Accepted(response);
+                ws.Cells[row, 1].Value = consignment.Pemberi.ContactPerson;
+                ws.Cells[row, 2].Value = consignment.Pemberi.CompanyName;
+                ws.Cells[row, 3].Value = consignment.Pemberi.ContactInformation.Email;
+                ws.Cells[row, 4].Value = consignment.Pemberi.ContactInformation.ContactNumber;
+                ws.Cells[row, 5].Value = consignment.Pemberi.ContactInformation.AlternativeContactNumber;
+                ws.Cells[row, 6].Value = consignment.Pemberi.Address.Address1;
+                ws.Cells[row, 7].Value = consignment.Pemberi.Address.Address2;
+                ws.Cells[row, 8].Value = consignment.Pemberi.Address.Address3;
+                ws.Cells[row, 9].Value = consignment.Pemberi.Address.Address4;
+                ws.Cells[row, 10].Value = consignment.Pemberi.Address.City;
+                ws.Cells[row, 11].Value = consignment.Pemberi.Address.State;
+                ws.Cells[row, 12].Value = consignment.Pemberi.Address.Country;
+                ws.Cells[row, 13].Value = consignment.Pemberi.Address.Postcode;
+
+                ws.Cells[row, 14].Value = consignment.Penerima.ContactPerson;
+                ws.Cells[row, 15].Value = consignment.Penerima.CompanyName;
+                ws.Cells[row, 16].Value = consignment.Penerima.ContactInformation.Email;
+                ws.Cells[row, 17].Value = consignment.Penerima.ContactInformation.ContactNumber;
+                ws.Cells[row, 18].Value = consignment.Penerima.ContactInformation.AlternativeContactNumber;
+                ws.Cells[row, 19].Value = consignment.Penerima.Address.Address1;
+                ws.Cells[row, 20].Value = consignment.Penerima.Address.Address2;
+                ws.Cells[row, 21].Value = consignment.Penerima.Address.Address3;
+                ws.Cells[row, 22].Value = consignment.Penerima.Address.Address4;
+                ws.Cells[row, 23].Value = consignment.Penerima.Address.City;
+                ws.Cells[row, 24].Value = consignment.Penerima.Address.State;
+                ws.Cells[row, 25].Value = consignment.Penerima.Address.Country;
+                ws.Cells[row, 26].Value = consignment.Penerima.Address.Postcode;
+
+                ws.Cells[row, 27].Value = consignment.Produk.Weight;
+                ws.Cells[row, 28].Value = consignment.Produk.Width;
+                ws.Cells[row, 29].Value = consignment.Produk.Length;
+                ws.Cells[row, 30].Value = consignment.Produk.Height;
+                ws.Cells[row, 31].Value = consignment.Produk.Description;
+
+                row++;
+            }
+
+            excel.Save();
+            excel.Dispose();
+
+            return Json(new { success = true, status = "OK", path = Path.GetFileName(temp) });
         }
 
         private static async Task<LoadData<ConsigmentRequest>> GetConsigmentRequest(string id)
