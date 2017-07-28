@@ -171,8 +171,8 @@ namespace Bespoke.PosEntt.CustomActions
                         Address3 = item.PersonalDetail.MailingAddress.Address3,
                         Address4 = item.PersonalDetail.MailingAddress.Address4,
                         City = item.PersonalDetail.MailingAddress.City,
-                        State = "PAH", //TODO
-                        Country = "MY", //TODO
+                        State = item.PersonalDetail.MailingAddress.State,
+                        Country = "MY",
                         Postcode = item.PersonalDetail.MailingAddress.Postcode,
                         GeoLocation = new GeoLocation
                         {
@@ -187,8 +187,8 @@ namespace Bespoke.PosEntt.CustomActions
                         Address3 = item.PersonalDetail.BillingAddress.Address3,
                         Address4 = item.PersonalDetail.BillingAddress.Address4,
                         City = item.PersonalDetail.BillingAddress.City,
-                        State = "PAH", //TODO
-                        Country = "MY", //TODO
+                        State = item.PersonalDetail.BillingAddress.State,
+                        Country = "MY",
                         Postcode = item.PersonalDetail.BillingAddress.Postcode,
                         GeoLocation = new GeoLocation
                         {
@@ -203,8 +203,8 @@ namespace Bespoke.PosEntt.CustomActions
                         Address3 = item.PersonalDetail.PickupAddress.Address3,
                         Address4 = item.PersonalDetail.PickupAddress.Address4,
                         City = item.PersonalDetail.PickupAddress.City,
-                        State = "PAH", //TODO
-                        Country = "MY", //TODO
+                        State = item.PersonalDetail.PickupAddress.State,
+                        Country = "MY",
                         Postcode = item.PersonalDetail.PickupAddress.Postcode,
                         GeoLocation = new GeoLocation
                         {
