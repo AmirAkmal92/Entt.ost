@@ -1,6 +1,11 @@
-﻿@model Bespoke.Ost.ConsigmentRequests.Domain.ConsigmentRequest
+﻿@using Bespoke.Sph.Domain
+@model Bespoke.Ost.ConsigmentRequests.Domain.ConsigmentRequest
 @{
     Layout = null;
+    var user = HttpContext.Current.User;
+    var username = user.Identity.Name;
+    var directory = new SphDataContext();
+    var up = directory.LoadOneAsync<UserProfile>(u => u.UserName == username).Result as UserProfile;
 }
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -3037,9 +3042,16 @@
                             <td class="td-hide">col-01</td>
                             <td class="td-hide">col-02</td>
                             <td class="td-hide">col-03</td>
-                            <td class="td-hide">col-04</td>
-                            <td class="td-hide">col-05</td>
-                            <td class="td-hide">col-06</td>
+                            @if (up.Designation == "Contract customer")
+                            {
+                                <td colspan="3">&nbsp;&nbsp;<span>@Html.Raw(Model.UserId)</span></td>
+                            }
+                            else
+                            {
+                                <td class="td-hide">col-04</td>
+                                <td class="td-hide">col-05</td>
+                                <td class="td-hide">col-06</td>
+                            }
                             <td class="td-hide">col-07</td>
                             <td class="td-hide">col-08</td>
                             <td class="td-hide">col-09</td>
@@ -3149,7 +3161,7 @@
                         <tr>
                             <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Penerima.Address.Address4)</span></td>
                             <td class="td-hide">col-13</td>
-                            <td rowspan="6" colspan="3"><div id="datamatrix-ndd-s1-@Html.Raw(count)"></div></td>
+                            <td rowspan="6" colspan="3"><div id="bcTarget1-@Html.Raw(count)"></div></td>
                             <td class="td-hide">col-17</td>
                             <td class="td-hide">col-18</td>
                             <td class="td-hide">col-19</td>
@@ -3506,9 +3518,16 @@
                             <td class="td-hide">col-01</td>
                             <td class="td-hide">col-02</td>
                             <td class="td-hide">col-03</td>
-                            <td class="td-hide">col-04</td>
-                            <td class="td-hide">col-05</td>
-                            <td class="td-hide">col-06</td>
+                            @if (up.Designation == "Contract customer")
+                            {
+                                <td colspan="3">&nbsp;&nbsp;<span>@Html.Raw(Model.UserId)</span></td>
+                            }
+                            else
+                            {
+                                <td class="td-hide">col-04</td>
+                                <td class="td-hide">col-05</td>
+                                <td class="td-hide">col-06</td>
+                            }
                             <td class="td-hide">col-07</td>
                             <td class="td-hide">col-08</td>
                             <td class="td-hide">col-09</td>
@@ -3618,7 +3637,7 @@
                         <tr>
                             <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Penerima.Address.Address4)</span></td>
                             <td class="td-hide">col-13</td>
-                            <td rowspan="6" colspan="3"><div id="datamatrix-ndd-s2-@Html.Raw(count)"></div></td>
+                            <td rowspan="6" colspan="3"><div id="bcTarget2-@Html.Raw(count)"></div></td>
                             <td class="td-hide">col-17</td>
                             <td class="td-hide">col-18</td>
                             <td class="td-hide">col-19</td>
@@ -3826,8 +3845,19 @@
             else
             {
                 <text>
-                $('#datamatrix-ndd-s1-' + '@Html.Raw(count)').barcode('@Html.Raw(item.ConNote)', 'datamatrix');
-                $('#datamatrix-ndd-s2-' + '@Html.Raw(count)').barcode('@Html.Raw(item.ConNote)', 'datamatrix');
+                //2D code generator
+                if ("@up.Designation" == "Contract customer")
+                {
+                    var text = ('A1^@Html.Raw(item.ConNote)^@Html.Raw(item.Penerima.Address.Postcode)^@Html.Raw(item.Penerima.Address.Country)^@Html.Raw(item.Bill.ProductCode)^^^@Html.Raw(item.Pemberi.ContactInformation.ContactNumber)^@Html.Raw(item.Pemberi.ContactInformation.Email)^^@Html.Raw(Model.UserId)^@Html.Raw(item.Penerima.ContactInformation.ContactNumber)^@Html.Raw(item.Penerima.ContactInformation.Email)^@Html.Raw(item.Produk.Weight)^@Html.Raw(item.Produk.Height) x @Html.Raw(item.Produk.Width) x @Html.Raw(item.Produk.Length)^^^@Html.Raw(item.Produk.ValueAddedValue)^@Html.Raw(item.Produk.ItemCategory)^@Html.Raw(Model.Payment.TotalPrice)^@Html.Raw(item.Bill.ZoneName)');
+                }
+                else
+                {
+                    var text = ('A1^@Html.Raw(item.ConNote)^@Html.Raw(item.Penerima.Address.Postcode)^@Html.Raw(item.Penerima.Address.Country)^@Html.Raw(item.Bill.ProductCode)^^^@Html.Raw(item.Pemberi.ContactInformation.ContactNumber)^@Html.Raw(item.Pemberi.ContactInformation.Email)^^^@Html.Raw(item.Penerima.ContactInformation.ContactNumber)^@Html.Raw(item.Penerima.ContactInformation.Email)^@Html.Raw(item.Produk.Weight)^@Html.Raw(item.Produk.Height) x @Html.Raw(item.Produk.Width) x @Html.Raw(item.Produk.Length)^^^@Html.Raw(item.Produk.ValueAddedValue)^@Html.Raw(item.Produk.ItemCategory)^@Html.Raw(Model.Payment.TotalPrice)^@Html.Raw(item.Bill.ZoneName)');
+                }
+                $("#bcTarget1-" + "@Html.Raw(count)").barcode(text, "datamatrix", { showHRI: false, moduleSize: 3 });
+                $("#bcTarget2-" + "@Html.Raw(count)").barcode(text, "datamatrix", { showHRI: false, moduleSize: 3 });
+
+                //Consignment number code
                 JsBarcode('#barcode-' + '@Html.Raw(count)', '@Html.Raw(item.ConNote)', {
                     textPosition: "top",
                     textMargin: 5,
