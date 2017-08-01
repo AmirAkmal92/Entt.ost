@@ -264,5 +264,19 @@
     "showWhenLoggedIn": false,
     "isAdminPage": false,
     "startPageRoute": null
+  },
+  {
+    "role": "everybody",
+    "groupName": null,
+    "route": "wallet-list-all",
+    "moduleId": "viewmodels/wallet-list-all",
+    "title": "Wallet List All",
+    "nav": true,
+    "icon": "fa fa-money",
+    "caption": null,
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
   }
 ]

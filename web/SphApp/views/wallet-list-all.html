@@ -1,0 +1,73 @@
+<link href="../assets/admin/pages/css/pricing.min.css" rel="stylesheet" type="text/css" />
+<style>
+    .border-top-after-red:after, .border-top-before-red:before, .border-top-red {
+        border-top-color: #ff6a00 !important;
+    }
+</style>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="/"> Home </a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Tools </span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> EziWallet </span>
+        </li>
+    </ul>
+</div>
+<h1 class="page-title caption-subject font-red-sunglo bold uppercase"></h1>
+<small></small>
+<div class="portlet light portlet-fit bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <h4>
+                <i class="icon-wallet font-yellow-casablanca"></i>
+                <span class="caption-subject font-yellow-casablanca bold uppercase">EziWallet</span>
+            </h4>
+            <div class="caption-desc font-grey-cascade">Add funds to your EziWallet</div>
+
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="pricing-content-1">
+            <div class="row">
+                <!--ko foreach: walletList-->
+                <div class="col-md-3">
+                    <div class="price-column-container border-active">
+                        <div class="price-table-head bg-yellow-casablanca">
+                            <h2 class="no-margin" data-bind="text: WalletCode"></h2>
+                        </div>
+                        <div class="arrow-down border-top-red"></div>
+                        <div class="price-table-pricing">
+                            <h3>
+                                <sup class="price-sign">RM</sup><span data-bind="text: TotalValue"></span>
+                            </h3>
+                            <p>per topup</p>
+                            <div class="price-ribbon" data-bind="visible: TotalValue == 50">Popular</div>
+                        </div>
+                        <div id="form" class="price-table-footer"> 
+                            <a class="btn yellow-casablanca btn-outline price-button sbold uppercase" data-bind="click: $root.paymentGateWay, visible: !$root.paymentGatewayReminder()">Buy Now</a>
+                            <form method="post" data-bind="attr: { action: $root.appUrl }">
+                                <div class="form-group">
+                                    <input type="hidden" name="applicationId" data-bind="attr: { value: $root.appId }" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" name="data" data-bind="attr: { value: $root.appData }" />
+                                </div>
+                                <!--ko if: $root.paymentCode() == WalletCode-->
+                                <button type="submit" class="btn yellow-casablanca btn-outline price-button sbold uppercase" data-bind="visible: $root.paymentGatewayReminder()"><i class="fa fa-credit-card"></i> Pay Now</button>
+                                <!--/ko-->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <p data-bind="visible: (($index() + 1)%4) == 0">&nbsp;</p>
+                <!--/ko-->
+            </div>
+        </div>
+    </div>
+</div>
