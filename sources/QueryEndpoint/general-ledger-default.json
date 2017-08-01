@@ -1,0 +1,31 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "GeneralLedgerDefaultQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "Default",
+  "Route": "",
+  "IsReturnSource": "",
+  "Entity": "GeneralLedger",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "general-ledgers",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "general-ledger-default",
+  "CreatedDate": "2017-08-01T18:08:30.7389555+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-08-01T18:11:53.0343091+08:00",
+  "WebId": "793c2bc0-e053-4a45-ba3e-f058145a8f06"
+}
