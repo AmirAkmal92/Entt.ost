@@ -1,0 +1,13 @@
+{
+  "$type": "Bespoke.Ost.Wallets.Domain.Wallet, Ost.Wallet",
+  "WalletCode": "EW0030",
+  "WalletName": "RM30",
+  "TotalValue": "30",
+  "Description": "Wallet for RM30",
+  "CreatedBy": "admin",
+  "Id": "803c43bd-c53b-4803-e80a-9e020adfa539",
+  "CreatedDate": "2017-08-01T11:44:18.4892861+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-08-01T11:44:18.5183055+08:00",
+  "WebId": "491614e6-3dc5-42ca-f305-30fcdb0e9c8b"
+}
