@@ -1,7 +1,9 @@
 ﻿using Bespoke.Ost.ConsigmentRequests.Domain;
+using Bespoke.Ost.Wallets.Domain;
 using Bespoke.Sph.Domain;
 using System;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -14,6 +16,7 @@ namespace web.sph.App_Code
         private string m_paymentGatewayBaseUrl;
         private string m_paymentGatewayApplicationId;
         private string m_paymentGatewayEncryptionKey;
+        private string m_applicationName;
 
         public OstPaymentController()
         {
@@ -21,6 +24,7 @@ namespace web.sph.App_Code
             m_paymentGatewayBaseUrl = ConfigurationManager.GetEnvironmentVariable("PaymentGatewayBaseUrl") ?? "https://www.posonline.com.my/PosOnline.PaymentGateway";
             m_paymentGatewayApplicationId = ConfigurationManager.GetEnvironmentVariable("PaymentGatewayApplicationId") ?? "OST";
             m_paymentGatewayEncryptionKey = ConfigurationManager.GetEnvironmentVariable("PaymentGatewayEncryptionKey") ?? "WdVxp54wmQlGFBmvOQgfmpAqCJ23gyGI";
+            m_applicationName = ConfigurationManager.GetEnvironmentVariable("ApplicationName") ?? "OST";
         }
 
         [Authorize]
@@ -56,8 +60,48 @@ namespace web.sph.App_Code
             model.TransactionAmount = noGstPrice;
             model.TransactionGST = gstPrice;
             model.PurchaseDate = DateTime.Now;
-            model.Description = $"OST purchase by {item.ChangedBy} for RM{item.Payment.TotalPrice}";
+            model.Description = $"{m_applicationName} purchase by {item.ChangedBy} for RM{item.Payment.TotalPrice}";
             model.CallbackUrl = $"{m_baseUrl}/ost-payment/ps-response"; //temp for testing
+
+            var rijndaelKey = new RijndaelEnhanced(m_paymentGatewayEncryptionKey);
+            var dataToEncrypt = string.Format("{0}|{1}|{2}|{3}|{4}", model.TransactionId, model.TransactionAmount, model.TransactionGST, model.PurchaseDate.ToString("MM/dd/yyyy hh:mm:ss"), model.Description);
+            if (!string.IsNullOrEmpty(model.CallbackUrl))
+                dataToEncrypt += "|" + model.CallbackUrl;
+            var encryptedData = rijndaelKey.Encrypt(dataToEncrypt);
+
+            Response.StatusCode = (int)HttpStatusCode.OK;
+            return Json(new { success = true, status = "OK", id = m_paymentGatewayApplicationId, data = encryptedData, url = $"{m_paymentGatewayBaseUrl}/pay" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("ps-request-prepaid/{id}")]
+        public async Task<ActionResult> PsRequestPrepaid(string id)
+        {
+            LoadData<Wallet> lo = await GetWalletCode(id);
+            if (null == lo.Source)
+            {
+                Response.StatusCode = (int)HttpStatusCode.NotFound;
+                return Json(new { success = false, status = "ERROR", message = $"Cannot find WalletCode with Id: {id}." }, JsonRequestBehavior.AllowGet);
+            }
+
+            var item = lo.Source;
+            var model = new PaymentSwitchRequestModel();
+
+            decimal noGstPrice = 0;
+            decimal gstPrice = 0;
+            decimal totalPrice = 0;
+            noGstPrice = Convert.ToDecimal(item.TotalValue);
+            gstPrice = noGstPrice * Convert.ToDecimal(0.06);
+            totalPrice = noGstPrice + gstPrice;
+
+            // required by payment gateway
+            model.TransactionId = GenerateCustomRefNo(item);
+            model.TransactionAmount = noGstPrice;
+            model.TransactionGST = gstPrice;
+            model.PurchaseDate = DateTime.Now;
+            model.Description = $"{m_applicationName} purchase by {User.Identity.Name} for RM{totalPrice}";
+            model.CallbackUrl = $"{m_baseUrl}/ost-payment/ps-response-prepaid"; //TODO TEMP ONLY
 
             var rijndaelKey = new RijndaelEnhanced(m_paymentGatewayEncryptionKey);
             var dataToEncrypt = string.Format("{0}|{1}|{2}|{3}|{4}", model.TransactionId, model.TransactionAmount, model.TransactionGST, model.PurchaseDate.ToString("MM/dd/yyyy hh:mm:ss"), model.Description);
@@ -80,7 +124,7 @@ namespace web.sph.App_Code
             {
                 return Redirect($"{m_baseUrl}/ost");
             }
-            
+
             var rijndaelKey = new RijndaelEnhanced(m_paymentGatewayEncryptionKey);
             var decryptedData = rijndaelKey.Decrypt(encryptedData);
 
@@ -137,6 +181,16 @@ namespace web.sph.App_Code
             return lo;
         }
 
+        private static async Task<LoadData<Wallet>> GetWalletCode(string id)
+        {
+            var repos = ObjectBuilder.GetObject<IReadonlyRepository<Wallet>>();
+
+            var lo = await repos.LoadOneAsync(id);
+            if (null == lo.Source)
+                lo = await repos.LoadOneAsync("WalletCode", id);
+            return lo;
+        }
+
         private static async Task SaveConsigmentRequest(ConsigmentRequest item)
         {
             var context = new SphDataContext();
@@ -145,6 +199,15 @@ namespace web.sph.App_Code
                 session.Attach(item);
                 await session.SubmitChanges("Default");
             }
+        }
+
+        private string GenerateCustomRefNo(Wallet item)
+        {
+            var referenceNo = new StringBuilder();
+            referenceNo.Append($"{m_applicationName.ToUpper()}-");
+            referenceNo.Append(DateTime.Now.ToString("ddMMyy-ss-"));
+            referenceNo.Append((item.Id.Split('-'))[1]);
+            return referenceNo.ToString();
         }
     }
 
