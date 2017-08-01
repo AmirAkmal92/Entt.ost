@@ -74,46 +74,6 @@ namespace web.sph.App_Code
         }
 
         [Authorize]
-        [HttpGet]
-        [Route("ps-request-prepaid/{id}")]
-        public async Task<ActionResult> PsRequestPrepaid(string id)
-        {
-            LoadData<Wallet> lo = await GetWalletCode(id);
-            if (null == lo.Source)
-            {
-                Response.StatusCode = (int)HttpStatusCode.NotFound;
-                return Json(new { success = false, status = "ERROR", message = $"Cannot find WalletCode with Id: {id}." }, JsonRequestBehavior.AllowGet);
-            }
-
-            var item = lo.Source;
-            var model = new PaymentSwitchRequestModel();
-
-            decimal noGstPrice = 0;
-            decimal gstPrice = 0;
-            decimal totalPrice = 0;
-            noGstPrice = Convert.ToDecimal(item.TotalValue);
-            gstPrice = noGstPrice * Convert.ToDecimal(0.06);
-            totalPrice = noGstPrice + gstPrice;
-
-            // required by payment gateway
-            model.TransactionId = GenerateCustomRefNo(item);
-            model.TransactionAmount = noGstPrice;
-            model.TransactionGST = gstPrice;
-            model.PurchaseDate = DateTime.Now;
-            model.Description = $"{m_applicationName} purchase by {User.Identity.Name} for RM{totalPrice}";
-            model.CallbackUrl = $"{m_baseUrl}/ost-payment/ps-response-prepaid"; //TODO TEMP ONLY
-
-            var rijndaelKey = new RijndaelEnhanced(m_paymentGatewayEncryptionKey);
-            var dataToEncrypt = string.Format("{0}|{1}|{2}|{3}|{4}", model.TransactionId, model.TransactionAmount, model.TransactionGST, model.PurchaseDate.ToString("MM/dd/yyyy hh:mm:ss"), model.Description);
-            if (!string.IsNullOrEmpty(model.CallbackUrl))
-                dataToEncrypt += "|" + model.CallbackUrl;
-            var encryptedData = rijndaelKey.Encrypt(dataToEncrypt);
-
-            Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(new { success = true, status = "OK", id = m_paymentGatewayApplicationId, data = encryptedData, url = $"{m_paymentGatewayBaseUrl}/pay" }, JsonRequestBehavior.AllowGet);
-        }
-
-        [Authorize]
         [HttpPost]
         [Route("ps-response")]
         public async Task<ActionResult> PsResponse()
@@ -169,6 +129,93 @@ namespace web.sph.App_Code
                 await Task.Delay(1500);
                 return Redirect($"{m_baseUrl}/ost#consignment-request-summary/{item.Id}");
             }
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("ps-request-prepaid/{id}")]
+        public async Task<ActionResult> PsRequestPrepaid(string id)
+        {
+            LoadData<Wallet> lo = await GetWalletCode(id);
+            if (null == lo.Source)
+            {
+                Response.StatusCode = (int)HttpStatusCode.NotFound;
+                return Json(new { success = false, status = "ERROR", message = $"Cannot find WalletCode with Id: {id}." }, JsonRequestBehavior.AllowGet);
+            }
+
+            var item = lo.Source;
+            var model = new PaymentSwitchRequestModel();
+
+            decimal noGstPrice = 0;
+            decimal gstPrice = 0;
+            decimal totalPrice = 0;
+            noGstPrice = Convert.ToDecimal(item.TotalValue);
+            gstPrice = noGstPrice * Convert.ToDecimal(0.06);
+            totalPrice = noGstPrice + gstPrice;
+
+            // required by payment gateway
+            model.TransactionId = GenerateCustomRefNo(item);
+            model.TransactionAmount = noGstPrice;
+            model.TransactionGST = gstPrice;
+            model.PurchaseDate = DateTime.Now;
+            model.Description = $"{m_applicationName} purchase by {User.Identity.Name} for RM{totalPrice}";
+            model.CallbackUrl = $"{m_baseUrl}/ost-payment/ps-response-prepaid"; //TODO TEMP ONLY
+
+            var rijndaelKey = new RijndaelEnhanced(m_paymentGatewayEncryptionKey);
+            var dataToEncrypt = string.Format("{0}|{1}|{2}|{3}|{4}", model.TransactionId, model.TransactionAmount, model.TransactionGST, model.PurchaseDate.ToString("MM/dd/yyyy hh:mm:ss"), model.Description);
+            if (!string.IsNullOrEmpty(model.CallbackUrl))
+                dataToEncrypt += "|" + model.CallbackUrl;
+            var encryptedData = rijndaelKey.Encrypt(dataToEncrypt);
+
+            Response.StatusCode = (int)HttpStatusCode.OK;
+            return Json(new { success = true, status = "OK", id = m_paymentGatewayApplicationId, data = encryptedData, url = $"{m_paymentGatewayBaseUrl}/pay" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("ps-response-prepaid")]
+        public async Task<ActionResult> PsResponsePrepaid()
+        {
+            var encryptedData = Request.Form["data"];
+
+            if (string.IsNullOrEmpty(encryptedData))
+            {
+                return Redirect($"{m_baseUrl}/ost");
+            }
+
+            var rijndaelKey = new RijndaelEnhanced(m_paymentGatewayEncryptionKey);
+            var decryptedData = rijndaelKey.Decrypt(encryptedData);
+
+            var decryptedDataArr = decryptedData.Split(new char[] { '|' });
+            var model = new PaymentSwitchResponseModel();
+
+            //TODO: But for now just print at console
+            model.TransactionId = decryptedDataArr[0];
+            Console.WriteLine(model.TransactionId);
+
+            model.TransactionAmount = decryptedDataArr[1];
+            Console.WriteLine(model.TransactionAmount);
+
+            model.TransactionGST = decryptedDataArr[2];
+            Console.WriteLine(model.TransactionGST);
+
+            model.ServiceFee = decryptedDataArr[3];
+            Console.WriteLine(model.ServiceFee);
+
+            model.ServiceGST = decryptedDataArr[4];
+            Console.WriteLine(model.ServiceGST);
+
+            model.TotalAmount = decryptedDataArr[5];
+            Console.WriteLine(model.TotalAmount);
+
+            model.Status = decryptedDataArr[6];
+            Console.WriteLine(model.Status);
+
+            model.ErrorMessage = decryptedDataArr[7];
+            Console.WriteLine(model.ErrorMessage);
+
+            await Task.Delay(1500);
+            return Redirect($"{m_baseUrl}/ost");
         }
 
         private static async Task<LoadData<ConsigmentRequest>> GetConsigmentRequest(string id)
