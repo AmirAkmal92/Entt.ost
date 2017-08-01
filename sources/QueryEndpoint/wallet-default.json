@@ -1,0 +1,38 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "WalletDefaultQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Sort, domain.sph",
+        "Path": "WalletCode",
+        "Direction": "Asc",
+        "WebId": "e5611da4-df95-41fa-da97-37d186d5a0bd"
+      }
+    ]
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "Default",
+  "Route": "",
+  "IsReturnSource": "",
+  "Entity": "Wallet",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "wallet",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "wallet-default",
+  "CreatedDate": "2017-07-31T14:15:53.291312+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-08-01T11:47:55.1614591+08:00",
+  "WebId": "d79d1334-68f5-48f3-ae5b-b6e1b2c008d6"
+}

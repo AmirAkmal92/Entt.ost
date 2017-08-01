@@ -1,0 +1,26 @@
+<h1>All Wallets</h1>
+<div class="row">
+    <div class="col-md-8">
+        <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list}">
+            <thead>
+                <tr>
+                    <th>Wallet Code</th>
+                    <th>Wallet Name</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach :list">
+                <tr data-bind="">
+                    <td>
+                        <a data-bind="attr : {href:'#wallet-details' + '/' + Id, title:'Wallet Code' }">
+                                                        <span data-bind="text:WalletCode"></span>
+                        </a>
+                    </td>
+                    <td data-bind="text:WalletName"></td>
+                    <td data-bind="text:TotalValue"></td>
+                </tr>
+            </tbody>
+        </table>
+        <img src="/Images/spinner-md.gif" alt="loading" class="absolute-center" data-bind="visible: isBusy" />
+    </div>
+</div>

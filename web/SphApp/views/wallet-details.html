@@ -1,0 +1,55 @@
+<h1 data-i18n="Wallet details">Wallet details</h1>
+<div id="error-list" class="row" data-bind="visible:errors().length">
+    <!-- ko foreach : errors -->
+    <div class="col-sm-8 col-sm-offset-2 alert alert-dismissable alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <i class="fa fa-exclamation"></i>
+        <span data-bind="text:Message"></span>
+    </div>
+    <div class="col-sm-2"></div>
+    <!-- /ko-->
+</div>
+<div class="row">
+    <div class="col-sm-8">
+<form class="form-horizontal" data-bind="with : entity" id="wallet-details-form">
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Wallet Code" for="9eb789e4-8ca0-49fb-8070-2b8aa2269aea" class="col-md-4">Wallet Code</label>
+        <div class="col-md-8">
+            <input required class="form-control input-large"
+                   data-bind="value: WalletCode"
+                    data-rule-required="true" 
+                   id="9eb789e4-8ca0-49fb-8070-2b8aa2269aea" type="text" name="WalletCode" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Wallet Name" for="ee9417fb-3b5c-4af7-f8e2-d59ea8d0fb1f" class="col-md-4">Wallet Name</label>
+        <div class="col-md-8">
+            <input required class="form-control input-large"
+                   data-bind="value: WalletName"
+                    data-rule-required="true" 
+                   id="ee9417fb-3b5c-4af7-f8e2-d59ea8d0fb1f" type="text" name="WalletName" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Wallet Value" for="b31b230d-29c3-4af5-f8f6-be4041fae816" class="col-md-4">Wallet Value</label>
+        <div class="col-md-8">
+            <input required class="form-control input-large"
+                   data-bind="value: TotalValue"
+                    data-rule-digits="true"  data-rule-required="true" 
+ data-rule-message="Please enter digits only."
+                   id="b31b230d-29c3-4af5-f8f6-be4041fae816" type="text" name="TotalValue" />
+        </div>
+    </div>
+    <div data-bind="visible:true" class="form-group">
+        <label data-i18n="Description" for="c252e518-6036-47c7-e075-dc64757613ad" class="col-md-4">Description</label>
+        <div class="col-md-8">
+            <input class="form-control input-large"
+                   data-bind="value: Description"
+                   id="c252e518-6036-47c7-e075-dc64757613ad" type="text" name="Description" />
+        </div>
+    </div>
+</form>
+    </div>
+    <div class="col-sm-4">
+    </div>
+</div>
