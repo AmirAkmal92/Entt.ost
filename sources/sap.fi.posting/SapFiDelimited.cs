@@ -37,9 +37,9 @@ namespace sap.fi.posting
 
         public string Assignment;
 
-        public string Text;
-
         public string ReferenceKey;
+
+        public string Text;
 
         public int SequenceNumber;
     }
