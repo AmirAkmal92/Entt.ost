@@ -1,0 +1,69 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "GeneralLedgerByTypeQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Type",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.RouteParameterField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "DefaultValue": "",
+          "IsOptional": false,
+          "Constraints": "",
+          "Name": "type",
+          "Note": "",
+          "WebId": "2a066907-0a76-4df5-fc60-b21b29d60fbc"
+        },
+        "WebId": "f6d4b91f-6126-4024-e3a5-efa1e1f744f2"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "UserId",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.FunctionField, domain.sph",
+          "CodeNamespace": "ff1d6c065c",
+          "Script": "ObjectBuilder.GetObject<IDirectoryService>().CurrentUserName",
+          "Name": "CurrentUser",
+          "Note": "",
+          "WebId": "1d6c065c-5682-40ac-bc79-7e82197ac263"
+        },
+        "WebId": "3d453858-6e3f-419d-d347-06946eec1474"
+      }
+    ]
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Sort, domain.sph",
+        "Path": "CreatedDate",
+        "Direction": "Desc",
+        "WebId": "848611a1-9b5b-4ea1-f689-6839f69cd8dd"
+      }
+    ]
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "ByType",
+  "Route": "by-type/{type}",
+  "IsReturnSource": "",
+  "Entity": "GeneralLedger",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "general-ledgers",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "general-ledger-by-type",
+  "CreatedDate": "2017-08-02T12:40:25.1695886+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-08-02T12:48:14.9516221+08:00",
+  "WebId": "aafbd96e-d8f8-4a24-80b2-69f8d2fcca02"
+}

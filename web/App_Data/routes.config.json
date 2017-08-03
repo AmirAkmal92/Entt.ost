@@ -278,5 +278,19 @@
     "showWhenLoggedIn": false,
     "isAdminPage": false,
     "startPageRoute": null
+  },
+  {
+    "role": "customers",
+    "groupName": null,
+    "route": "wallet-history",
+    "moduleId": "viewmodels/wallet-history",
+    "title": "Wallet History",
+    "nav": false,
+    "icon": "fa fa-history",
+    "caption": "Wallet History",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
   }
 ]

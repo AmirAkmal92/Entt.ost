@@ -1,0 +1,85 @@
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="/"> Home </a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Orders </span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> EziWallet History </span>
+        </li>
+    </ul>
+</div>
+<h1 class="page-title caption-subject font-red-sunglo bold uppercase"></h1>
+<small></small>
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <h4>
+                        <i class="icon-wallet font-yellow-casablanca"></i>
+                        <span class="caption-subject font-yellow-casablanca bold uppercase">EziWallet History</span>
+                    </h4>
+                    <div class="caption-desc font-grey-cascade">All Wallet Transactions</div>
+                </div>
+                <div class="caption pull-right">
+                    <div class="caption-desc font-grey-cascade pull-right" style="padding-bottom:10px">Your current account balance :</div>
+                    <h4>
+                        <span class="pull-right">
+                            <strong>
+                                <span class="caption-subject font-yellow-casablanca bold uppercase">RM</span>
+                            </strong>
+                            <strong>
+                                <!--ko if: $root.userDetail().AccountBalance() != undefined-->
+                                <span class="panel-heading bg-yellow-casablanca bg-font-yellow-casablanca" data-bind="text: $root.userDetail().AccountBalance().toFixed(2)"></span>
+                                <!--/ko-->
+                                <!--ko ifnot: $root.userDetail().AccountBalance() != undefined-->
+                                <span class="panel-heading bg-yellow-casablanca bg-font-yellow-casablanca">0.00</span>
+                                <!--/ko-->
+                            </strong>
+                        </span>
+                    </h4>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="clearfix">
+                    <div class="panel panel-danger">
+                        <table class="table table-striped table-bordered table-advance">
+                            <thead>
+                                <tr>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Reference No</strong></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Transaction Date</strong></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Transaction Amount</strong></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Existing Amount</strong></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>New Amount</strong></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Action</strong></th>
+                                </tr>
+                            </thead>
+                            <!--ko foreach: walletList-->
+                            <tbody>
+                                <tr>
+                                    <td data-bind="text: ReferenceNo"></td>
+                                    <td data-bind="text: moment(CreatedDate).format('D/M/YYYY HH:mm')"></td>
+                                    <td data-bind="text: Amount"></td>
+                                    <td data-bind="text: ExistingAmount"></td>
+                                    <td data-bind="text: NewAmount"></td>
+                                    <td>
+                                        <a class="btn btn-circle btn-outline yellow-casablanca" title="Print Invoice" data-bind="click: $root.printInvoice">
+                                            <i class="icon-printer"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <!--/ko-->
+                        </table>
+                        <img src="/Images/spinner-md.gif" alt="loading" class="absolute-center" data-bind="visible: isBusy" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
