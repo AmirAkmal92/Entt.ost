@@ -292,5 +292,19 @@
     "showWhenLoggedIn": false,
     "isAdminPage": false,
     "startPageRoute": null
+  },
+  {
+    "role": "customers",
+    "groupName": null,
+    "route": "wallet-invoice-summary/:entityId",
+    "moduleId": "viewmodels/wallet-invoice-summary",
+    "title": "Wallet Invoice Summary",
+    "nav": false,
+    "icon": "fa fa-file-text-o",
+    "caption": "Wallet Invoice Summary",
+    "settings": null,
+    "showWhenLoggedIn": false,
+    "isAdminPage": false,
+    "startPageRoute": null
   }
 ]

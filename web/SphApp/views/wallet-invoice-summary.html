@@ -1,0 +1,183 @@
+<link href="../assets/general/css/print.css" rel="stylesheet" type="text/css" />
+
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="/"> Home </a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Orders </span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Invoice </span>
+        </li>
+    </ul>
+</div>
+<h1 class="page-title caption-subject font-red-sunglo bold uppercase"></h1>
+<small></small>
+<div class="row">
+    <div class="col-md-12" data-bind="with: entity">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <h4>
+                        <i class="fa fa-clipboard font-yellow-casablanca"></i>
+                        <span class="caption-subject font-yellow-casablanca bold uppercase"> Invoice</span>
+                    </h4>
+                    <div class="caption-desc font-grey-cascade">Invoice details</div>
+                </div>
+                <div class="actions hidden-print">
+                    <h3>
+                        <a role="button" class="btn btn-circle yellow-casablanca" href="ost#wallet-history/">
+                            <i class="fa fa-arrow-left"></i> Back
+                        </a>
+                        <a role="button" class="btn btn-circle yellow-casablanca" onclick="javascript:window.print();">
+                            <i class="fa fa-print"></i> Print
+                        </a>
+                    </h3>
+                </div>
+            </div>
+            <div class="invoice">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading bg-yellow-casablanca bg-font-yellow-casablanca">
+                                <strong>PAID TO</strong>
+                            </div>
+                            <div class="panel-body">
+                                <address>
+                                    <strong>Pos Malaysia Berhad</strong> (22990-M)<br />
+                                    care@pos.com.my
+                                </address>
+                                <address>
+                                    Level 8 Pos Malaysia Headquarters<br />
+                                    Dayabumi Complex<br />
+                                    50670 Kuala Lumpur<br />
+                                    Malaysia<br />
+                                    <abbr title="Contact Number">Phone:</abbr> 1-300-300-300<br />
+                                </address>
+                                <address>
+                                    <strong><span>GST Registration No</span></strong>: <span>001609433088</span>
+                                </address>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading bg-yellow-casablanca bg-font-yellow-casablanca">
+                                <strong>INVOICED TO</strong>
+                            </div>
+                            <div class="panel-body">
+                                <address>
+                                    <strong><span class="text-capitalize" data-bind="text: $root.userDetail().BillingAddress().ContactPerson"></span></strong><br />
+                                    <span data-bind="text: $root.userDetail().BillingAddress().ContactInformation().Email"></span>
+                                </address>
+                                <address>
+                                    <strong><span data-bind="text: $root.userDetail().BillingAddress().CompanyName"></span></strong><br />
+                                    <span data-bind="text: $root.userDetail().BillingAddress().Address().Address1"></span>&nbsp;
+                                    <span data-bind="text: $root.userDetail().BillingAddress().Address().Address2"></span>&nbsp;
+                                    <br />
+                                    <span data-bind="text: $root.userDetail().BillingAddress().Address().Address3"></span>&nbsp;
+                                    <span data-bind="text: $root.userDetail().BillingAddress().Address().Address4"></span>&nbsp;
+                                    <br />
+                                    <span data-bind="text: $root.userDetail().BillingAddress().Address().Postcode"></span>&nbsp;
+                                    <span data-bind="text: $root.userDetail().BillingAddress().Address().City"></span>&nbsp;
+                                    <br />
+                                    <span data-bind="text: $root.userDetail().BillingAddress().Address().State"></span>&nbsp;
+                                    <!--<span data-bind="text: $root.userDetail().BillingAddress().Address().Country"></span>-->Malaysia&nbsp;
+                                    <br />
+                                    <abbr title="Contact Number">Phone:</abbr> <span data-bind="text: $root.userDetail().BillingAddress().ContactInformation().ContactNumber"></span><br />
+                                </address>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading bg-yellow-casablanca bg-font-yellow-casablanca">
+                                <strong>DETAILS</strong>
+                            </div>
+                            <div class="panel-body">
+                                <dl>
+                                    <dt>Invoice No</dt>
+                                    <dd><span data-bind="text: ReferenceNo"></span></dd>
+                                    <dt>Date</dt>
+                                    <dd><span data-bind="date:{ value: CreatedDate, format:&#39;D/M/YYYY HH:mm&#39;}"></span></dd>
+                                    <dt>Payment Type</dt>
+                                    <dd><span data-bind="text: Type"></span></dd>
+                                    <dt>Ref No</dt>
+                                    <dd><span>#1</span></dd>
+                                    <dt>Res Code</dt>
+                                    <dd><span>Accepted (Transaction Successfull)</span></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div data-bind="visible: Id == null">
+                    <br />
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h4>
+                                Invoice is empty. No Parcel found.
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div data-bind="visible: Id != null">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="table table-hover table-condensed">
+                                <thead style="background-color:#ff6a00; color:#ffffff;">
+                                    <tr>
+                                        <th>&nbsp;</th>
+                                        <th>Reference No</th>
+                                        <th>Type</th>
+                                        <th><span class="pull-right">Total RM</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><span data-bind="text: ReferenceNo"></span></td>
+                                        <td><span data-bind="text: Type"></span></td>
+                                        <td><span class="pull-right" data-bind="text: Amount.toFixed(2)"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">Sub Total (GST exclusive)</td>
+                                        <td><span data-bind="text: Amount.toFixed(2)" class="pull-right"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">* GST 6%</td>
+                                        <td><span data-bind="text: $root.gstValue().toFixed(2)" class="pull-right"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3"><strong><span class="text-uppercase">Grand Total</span></strong> (GST inclusive)</td>
+                                        <td><strong><span data-bind="text: $root.totalIncludeGst().toFixed(2)" class="pull-right"></span></strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>
+                                <center>
+                                    Thank you for using Pos Laju EziSend!<br />
+                                    <small>
+                                        If you have any questions about your invoice please<br />
+                                        call us at 1-300-300-300<br />
+                                        or drop us an email at care@pos.com.my<br />
+                                        <br />
+                                        This is a computer generated receipt and no signature is required
+                                    </small>
+                                </center>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
