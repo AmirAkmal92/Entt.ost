@@ -2,12 +2,12 @@
   "$type": "Bespoke.Ost.Wallets.Domain.Wallet, Ost.Wallet",
   "WalletCode": "EW0010",
   "WalletName": "RM10",
-  "TotalValue": "10",
+  "TotalValue": 10.0,
   "Description": "Wallet for RM10",
   "CreatedBy": "admin",
   "Id": "45969b2c-9179-45ba-ad20-ef8acc945866",
-  "CreatedDate": "2017-08-01T11:44:03.0548869+08:00",
+  "CreatedDate": "2017-08-03T11:18:55.6244293+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-08-01T11:44:03.0749002+08:00",
+  "ChangedDate": "2017-08-03T11:18:55.7506559+08:00",
   "WebId": "b0cbb00e-4c7e-49ba-a2e0-eae040986278"
 }

@@ -2,12 +2,12 @@
   "$type": "Bespoke.Ost.Wallets.Domain.Wallet, Ost.Wallet",
   "WalletCode": "EW0100",
   "WalletName": "RM100",
-  "TotalValue": "100",
+  "TotalValue": 100.0,
   "Description": "Wallet for RM100",
   "CreatedBy": "admin",
   "Id": "68321585-c265-4db5-f88f-b9cfa739b1b7",
-  "CreatedDate": "2017-08-01T11:43:38.3700029+08:00",
+  "CreatedDate": "2017-08-03T11:19:10.3046866+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-08-01T11:43:38.3529916+08:00",
+  "ChangedDate": "2017-08-03T11:19:10.3232392+08:00",
   "WebId": "b9b08c74-c6d2-4abb-8e58-ef47a4d8f518"
 }
