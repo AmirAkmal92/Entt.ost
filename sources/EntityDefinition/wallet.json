@@ -53,11 +53,11 @@
       },
       {
         "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-        "TypeName": "System.String, mscorlib",
+        "TypeName": "System.Decimal, mscorlib",
         "IsNullable": false,
         "IsNotIndexed": false,
         "IsAnalyzed": false,
-        "IsFilterable": false,
+        "IsFilterable": true,
         "IsExcludeInAll": false,
         "Boost": 0,
         "FullName": null,
@@ -72,7 +72,14 @@
         },
         "Name": "TotalValue",
         "AllowMultiple": false,
-        "DefaultValue": null,
+        "DefaultValue": {
+          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+          "TypeName": "System.Decimal",
+          "Value": 0.0,
+          "Name": "0",
+          "Note": "",
+          "WebId": "d3c88fd4-9b0b-4ca9-cdf0-a111e0d59e95"
+        },
         "WebId": "67fe894d-6ed6-44a8-d42c-26c984a4ea8b"
       },
       {
@@ -139,6 +146,6 @@
   "Id": "wallet",
   "CreatedDate": "2017-07-31T12:28:11.6236867+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-07-31T14:52:32.5899822+08:00",
+  "ChangedDate": "2017-08-02T18:26:00.8808314+08:00",
   "WebId": "ace555c6-9fda-4714-9f7f-1482ffec178e"
 }
