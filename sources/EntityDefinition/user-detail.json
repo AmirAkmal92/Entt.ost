@@ -1364,6 +1364,30 @@
         "AllowMultiple": false,
         "DefaultValue": null,
         "WebId": "0c90b041-c14a-44a1-8ca2-3a1c54390b78"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+        "TypeName": "System.Decimal, mscorlib",
+        "IsNullable": false,
+        "IsNotIndexed": false,
+        "IsAnalyzed": false,
+        "IsFilterable": false,
+        "IsExcludeInAll": false,
+        "Boost": 0,
+        "FullName": null,
+        "PropertyAttribute": null,
+        "MemberCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "FieldPermissionCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": "AccountBalance",
+        "AllowMultiple": false,
+        "DefaultValue": null,
+        "WebId": "1978cd4d-ddb7-4791-a147-4914b8fa5474"
       }
     ]
   },
@@ -1405,6 +1429,6 @@
   "Id": "user-detail",
   "CreatedDate": "2017-03-24T12:32:45.5541587+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-03-24T14:34:02.2737709+08:00",
+  "ChangedDate": "2017-08-02T10:05:11.4614005+08:00",
   "WebId": "47f62649-4b5e-4a5a-8aaf-b5d732ffb8c6"
 }
