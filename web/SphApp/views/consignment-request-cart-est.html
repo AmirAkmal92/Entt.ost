@@ -41,10 +41,10 @@
                             <i class="fa fa-print"></i> Print All Consignment Notes
                         </a>
                         <a data-bind="click: $root.toggleShowPickupScheduler" class="btn btn-circle yellow-casablanca">
-                            <i class="fa fa-calendar-minus-o"></i> 
+                            <i class="fa fa-calendar-minus-o"></i>
                             <span data-bind="visible: !$root.showPickupScheduler()">Show</span>
                             <span data-bind="visible: $root.showPickupScheduler()">Hide</span>
-                             Pickup
+                            Pickup
                         </a>
                     </h3>
                 </div>
@@ -184,6 +184,7 @@
                                         <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Recipient</strong></th>
                                         <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Parcel</strong></th>
                                         <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Consignment Note</strong></th>
+                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase" title="Multiple Piece Shipment"><strong>MPS</strong></th>
                                         <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><center><strong>Action</strong></center></th>
                                     </tr>
                                 </thead>
@@ -213,6 +214,19 @@
                                             <span data-bind="text: ConNote()"></span>
                                             <!--/ko-->
                                             <!--ko if: ConNote() == null-->
+                                            <span>Not Available</span>
+                                            <!--/ko-->
+                                        </td>
+                                        <td>
+                                            <!--ko if: BabyConnotes().length > 0-->
+                                            <ol data-bind="foreach: BabyConnotes()">
+                                                <li>
+                                                    <!--<span>test</span>&nbsp;-->
+                                                    <span data-bind="text: $data"></span>&nbsp;
+                                                </li>
+                                            </ol>
+                                            <!--/ko-->
+                                            <!--ko if: BabyConnotesTotal() == undefined || BabyConnotes().length == 0-->
                                             <span>Not Available</span>
                                             <!--/ko-->
                                         </td>

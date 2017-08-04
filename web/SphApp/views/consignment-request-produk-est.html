@@ -72,7 +72,7 @@
                                     </label>
                                     <div class="col-md-1 md-checkbox-inline">
                                         <div class="md-checkbox">
-                                            <input type="checkbox" id="checkbox1_3" class="md-check" data-bind="checked: IsMPS">
+                                            <input type="checkbox" id="checkbox1_3" class="md-check" data-bind="checked: consignment().IsMps">
                                             <label for="checkbox1_3">
                                                 <span></span>
                                                 <span class="check"></span>
@@ -84,7 +84,7 @@
                                         <small>Total Pieces</small>
                                     </label>
                                     <div class="col-md-5">
-                                        <input class="form-control input-sm" required type="text" placeholder="" data-rule-number="true" data-rule-required="true" data-bind="enable: IsMPS">
+                                        <input class="form-control input-sm" name="BabyConnotesTotal" required type="number" min="2" step="1" placeholder="" data-rule-number="true" data-rule-required="true" data-bind="value: consignment().BabyConnotesTotal, enable: consignment().IsMps">
                                         <span class="help-block"><small><i>(Including parent)</i></small></span>
                                     </div>
                                 </div>

@@ -198,7 +198,6 @@ objectbuilders.app],
         var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
             consignment = ko.observable(new bespoke.Ost_consigmentRequest.domain.Consignment(system.guid())),
             produk = ko.observable(new bespoke.Ost_consigmentRequest.domain.Produk(system.guid())),
-            IsMPS = ko.observable(false),
             errors = ko.observableArray(),
             volumetric = ko.observable(0),
             id = ko.observable(),
@@ -253,6 +252,8 @@ objectbuilders.app],
                                 consignment().Produk(entity().Consignments()[editIndex].Produk());
                                 consignment().Pemberi(entity().Consignments()[editIndex].Pemberi());
                                 consignment().Penerima(entity().Consignments()[editIndex].Penerima());
+                                consignment().BabyConnotesTotal = entity().Consignments()[editIndex].BabyConnotesTotal;
+                                consignment().IsMps = entity().Consignments()[editIndex].IsMps;
                             }
 
                             if (consignment().Penerima().Address().Country() != "MY") {
@@ -285,7 +286,7 @@ objectbuilders.app],
                         }
                     });
                 return tcs.promise();
-                
+
             },
             defaultCommand = function () {
                 if (!$("#consignment-request-produk-form").valid()) {
@@ -322,6 +323,27 @@ objectbuilders.app],
                 if (typeof partial.attached === "function") {
                     partial.attached(view);
                 }
+                jQuery(document).ready(function () {
+                    $("#consignment-request-produk-form").validate({
+                        rules: {
+                            BabyConnotesTotal: {
+                                required: true,
+                                digits: true,
+                            }
+                        },
+                        messages: {
+                            BabyConnotesTotal: {
+                                required: "Please enter digits only."
+                            }
+                        }
+                    });
+                });
+
+                consignment().IsMps.subscribe(function (value) {
+                    if (value == false) {
+                        consignment().BabyConnotesTotal(0);
+                    }
+                });
 
             },
             compositionComplete = function () {
@@ -369,7 +391,6 @@ objectbuilders.app],
             cid: cid,//temp
             consignment: consignment,
             saveCommand: saveCommand,
-            IsMPS: IsMPS,
             estProductService: estProductService,
         };
         return vm;
