@@ -169,198 +169,81 @@ namespace web.sph.App_Code
         {
             LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
             if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
+            var consignmentRequest = lo.Source;
 
             var resultSuccess = true;
             var resultStatus = "OK";
-            var item = lo.Source;
-            var totalEmptyConNote = 0;
-            var totalConsignments = item.Consignments.Count;
-            var orderId = item.ReferenceNo;
+            
+            var totalConsignments = consignmentRequest.Consignments.Count;
+            var emptyConnote = 0;
+            var emptyConnoteWithBaby = 0;
+            var orderId = consignmentRequest.ReferenceNo;
             var numBaby = 0;
 
-            Guid guidResult = Guid.Parse(id);
-            bool isValid = Guid.TryParse(item.ReferenceNo, out guidResult);
-
-            item.GenerateConnoteCounter += 1;
-
-            if (isValid || !item.ReferenceNo.Contains(m_applicationName.ToUpper()))
+            foreach (var consignment in consignmentRequest.Consignments)
             {
-                var referenceNo = new StringBuilder();
-                referenceNo.Append(GenerateCustomRefNo(item));
-                orderId = referenceNo.ToString();
-                item.ReferenceNo = referenceNo.ToString();
-            }
-            else
-            {
-                orderId = orderId + item.GenerateConnoteCounter.ToString();
-            }
+                numBaby = CalculateBabyConnotes(consignment.BabyConnotesTotal);
 
-            //count empty connote
-            foreach (var a in item.Consignments)
-            {
-                if (a.BabyConnotesTotal > 0)
+                if (consignment.ConNote == null && numBaby == 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
                 {
-                    numBaby = a.BabyConnotesTotal - 1;
+                    emptyConnote += 1;
                 }
-                else
+                else if (consignment.ConNote == null && numBaby > 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
                 {
-                    numBaby = 0;
-                }
-                
-                if (a.ConNote == null && numBaby == 0 && a.Penerima.Address.Postcode != null && a.Produk.Weight > 0)
-                {
-                    totalEmptyConNote++;
+                    emptyConnoteWithBaby += 1;
                 }
             }
 
-            if (totalEmptyConNote > 0)
+            //parent without baby
+            if (emptyConnote > 0)
             {
-                var client = new HttpClient();
-                client.DefaultRequestHeaders.Add("X-User-Key", m_sdsSecretKey_GenerateConnote);
-                var url = new StringBuilder();
-                url.Append(m_sdsApi_GenerateConnote);
-                url.Append("?Prefix=EU");
-                url.Append("&ApplicationCode=OST");
-                url.Append("&Secretid=ost@1234");
-                url.Append("&username=entt.ost");
-                url.Append($"&numberOfItem={totalEmptyConNote.ToString()}");
-                url.Append($"&Orderid={orderId}");
-
-                var output = await client.GetStringAsync($"{m_sdsBaseUrl}/{url.ToString()}");
-
-                var json = JObject.Parse(output);
-                var sdsConnote = new SdsConnote(json);
-                var countSdsConnote = 0;
-
-                if (sdsConnote.StatusCode == "01")
+                consignmentRequest.GenerateConnoteCounter += 1;
+                orderId = GenerateOrderId(consignmentRequest);
+                SdsBabyConnote sdsBabyConnote =  GetConnoteWithOrWithoutBaby(orderId, 0, emptyConnote);
+                var sdsCounter = 0;
+                foreach (var consignment in consignmentRequest.Consignments)
                 {
-                    if (sdsConnote.ConnoteNumbers.Count >= totalEmptyConNote)
+                    numBaby = CalculateBabyConnotes(consignment.BabyConnotesTotal);
+
+                    if (consignment.ConNote == null && numBaby == 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
                     {
-                        for (int i = 0; i < totalConsignments; i++)
-                        {
-                            if (item.Consignments[i].BabyConnotesTotal > 0)
-                            {
-                                numBaby = item.Consignments[i].BabyConnotesTotal - 1;
-                            }
-                            else
-                            {
-                                numBaby = 0;
-                            }
-                            if (item.Consignments[i].ConNote == null && numBaby == 0 && item.Consignments[i].Produk.Weight > 0 && item.Consignments[i].Penerima.Address.Postcode != null)
-                            {
-                                item.Consignments[i].ConNote = sdsConnote.ConnoteNumbers[countSdsConnote];
-                                countSdsConnote += 1;
-                            }
-                        }
-                        item.Payment.IsConNoteReady = true;
-                        await SaveConsigmentRequest(item);
-                    }
-                    else
-                    {
-                        resultSuccess = false;
-                        resultStatus = "Generated consignment note not enough";
+                        consignment.ConNote = sdsBabyConnote.ConnoteData[sdsCounter].ConnoteParent;
+                        sdsCounter++;
                     }
                 }
-                else
-                {
-                    resultSuccess = false;
-                    resultStatus = "StatusCode: " + sdsConnote.StatusCode + " Message: " + sdsConnote.Message;
-                }
-            }
-            else
-            {
-                resultSuccess = false;
-                resultStatus = "All Consignment note was already generated";
             }
 
-            var result = new
+            //parent with baby
+            if (emptyConnoteWithBaby > 0)
             {
-                success = resultSuccess,
-                status = resultStatus,
-                id = item.Id
-            };
-
-            // wait until the worker process it
-            await Task.Delay(1500);
-            return Accepted(result);
-        }
-
-        [HttpPut]
-        [Route("generate-baby-con-notes-est/{id}")]
-        public async Task<IHttpActionResult> GenerateAndSaveBabyConNotesEst(string id)
-        {
-            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
-            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
-
-            var resultSuccess = true;
-            var resultStatus = "OK";
-            var item = lo.Source;
-            var totalConsignments = item.Consignments.Count;
-            var orderId = item.ReferenceNo;
-            var numBaby = 0;
-
-            Guid guidResult = Guid.Parse(id);
-            bool isValid = Guid.TryParse(item.ReferenceNo, out guidResult);
-
-            foreach (var a in item.Consignments)
-            {
-                numBaby = a.BabyConnotesTotal - 1;
-                item.GenerateConnoteCounter += 1;
-                if (isValid || !item.ReferenceNo.Contains(m_applicationName.ToUpper()))
+                foreach (var consignment in consignmentRequest.Consignments)
                 {
-                    var referenceNo = new StringBuilder();
-                    referenceNo.Append(GenerateCustomRefNo(item));
-                    orderId = referenceNo.ToString();
-                    item.ReferenceNo = referenceNo.ToString();
-                }
-                else
-                {
-                    orderId = orderId + item.GenerateConnoteCounter.ToString();
-                }
+                    numBaby = CalculateBabyConnotes(consignment.BabyConnotesTotal);
 
-                if (a.ConNote == null && a.Penerima.Address.Postcode != null && a.Produk.Weight > 0 && numBaby > 0)
-                {
-                    var client = new HttpClient();
-                    client.DefaultRequestHeaders.Add("X-User-Key", "YTNkZjc2MTMtYzQyMy00ZTI4LThlYjMtYTdjNDAwYzExNTQz"); //TODO env
-                    var url = new StringBuilder();
-                    url.Append("as2corporate/api/GenerateConnoteBaby/v1"); //TODO env
-                    url.Append($"?numberOfItemParent=1");
-                    url.Append("&PrefixParent=EU");
-                    url.Append($"&numberOfItemBaby={numBaby.ToString()}");
-                    url.Append("&PrefixBaby=ED");
-                    url.Append("&ApplicationCode=OST");
-                    url.Append("&Secretid=ost@1234");
-                    url.Append($"&Orderid={orderId}");
-                    url.Append("&username=entt.ost");
-
-                    var output = await client.GetStringAsync($"{m_sdsBaseUrl}/{url.ToString()}");
-                    var json = JObject.Parse(output);
-                    var sdsBabyConnote = json.ToJson().DeserializeFromJson<SdsBabyConnote>();
-
-                    if (sdsBabyConnote.ConnoteData[0].ConnoteBaby.Count == numBaby)
+                    if (consignment.ConNote == null && numBaby > 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
                     {
-                        a.ConNote = sdsBabyConnote.ConnoteData[0].ConnoteParent;
+                        consignmentRequest.GenerateConnoteCounter += 1;
+                        orderId = GenerateOrderId(consignmentRequest);
+
+                        SdsBabyConnote sdsBabyConnote = GetConnoteWithOrWithoutBaby(orderId, numBaby, 1);
+
+                        consignment.ConNote = sdsBabyConnote.ConnoteData[0].ConnoteParent;
                         for (int i = 0; i < numBaby; i++)
                         {
-                            a.BabyConnotes.Add(sdsBabyConnote.ConnoteData[0].ConnoteBaby[i].ConnoteBabyData);
+                            consignment.BabyConnotes.Add(sdsBabyConnote.ConnoteData[0].ConnoteBaby[i].ConnoteBabyData);
                         }
-                        item.Payment.IsConNoteReady = true;
-                        await SaveConsigmentRequest(item);
-                    }
-                    else
-                    {
-                        resultSuccess = false;
-                        resultStatus = "StatusCode: " + sdsBabyConnote.StatusCode + " Message: " + sdsBabyConnote.Message;
-                        break;
                     }
                 }
             }
+            consignmentRequest.ReferenceNo = orderId;
+            consignmentRequest.Payment.IsConNoteReady = true;
+            await SaveConsigmentRequest(consignmentRequest);
 
             var result = new
             {
                 success = resultSuccess,
                 status = resultStatus,
-                id = item.Id
+                id = consignmentRequest.Id
             };
 
             // wait until the worker process it
@@ -960,6 +843,61 @@ namespace web.sph.App_Code
             var directory = new SphDataContext();
             var userProfile = await directory.LoadOneAsync<UserProfile>(p => p.UserName == username) ?? new UserProfile();
             return userProfile;
+        }
+
+        private string GenerateOrderId(ConsigmentRequest item)
+        {
+            var orderId = item.ReferenceNo;
+            Guid guidResult = Guid.Parse(item.Id);
+            bool isValid = Guid.TryParse(orderId, out guidResult);
+
+            if (isValid || !item.ReferenceNo.Contains(m_applicationName.ToUpper()))
+            {
+                var referenceNo = new StringBuilder();
+                referenceNo.Append(GenerateCustomRefNo(item));
+                orderId = referenceNo.ToString();
+            }
+            else
+            {
+                orderId = orderId + item.GenerateConnoteCounter.ToString();
+            }
+
+            return orderId;
+        }
+
+        private static int CalculateBabyConnotes(int babyConnotesTotal)
+        {
+            int numBaby;
+            if (babyConnotesTotal > 0)
+            {
+                numBaby = babyConnotesTotal - 1;
+            }
+            else
+            {
+                numBaby = 0;
+            }
+            return numBaby;
+        }
+
+        private SdsBabyConnote GetConnoteWithOrWithoutBaby(string orderId, int numBaby, int numParent)
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("X-User-Key", "YTNkZjc2MTMtYzQyMy00ZTI4LThlYjMtYTdjNDAwYzExNTQz"); //TODO env
+            var url = new StringBuilder();
+            url.Append("as2corporate/api/GenerateConnoteBaby/v1"); //TODO env
+            url.Append($"?numberOfItemParent={numParent.ToString()}");
+            url.Append("&PrefixParent=EU");
+            url.Append($"&numberOfItemBaby={numBaby.ToString()}");
+            url.Append("&PrefixBaby=ED");
+            url.Append("&ApplicationCode=OST");
+            url.Append("&Secretid=ost@1234");
+            url.Append($"&Orderid={orderId}");
+            url.Append("&username=entt.ost");
+
+            var output = client.GetStringAsync($"{m_sdsBaseUrl}/{url.ToString()}").Result;
+            var json = JObject.Parse(output);
+            var sdsBabyConnote = json.ToJson().DeserializeFromJson<SdsBabyConnote>();
+            return sdsBabyConnote;
         }
     }
 

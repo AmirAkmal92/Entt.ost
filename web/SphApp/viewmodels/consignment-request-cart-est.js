@@ -163,16 +163,26 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     if (connotesFilled) {
                         var data = ko.mapping.toJSON(entity);
                         toggleShowBusyLoadingDialog("Generating Tracking Number(s)");
-                        context.put(data, "/consignment-request/generate-baby-con-notes-est/" + ko.unwrap(entity().Id) + "").then(function (resultBaby) {
-                            context.put(data, "/consignment-request/generate-con-notes-est/" + ko.unwrap(entity().Id) + "").done(function (result) {
+                        return context.put(data, "/consignment-request/generate-con-notes-est/" + ko.unwrap(entity().Id) + "")
+                            .fail(function (response) {
+                                app.showMessage("Sorry, but we cannot process tracking number for the Order with Id : " + ko.unwrap(entity().Id), "OST", ["Close"]).done(function () {
+                                    router.activeItem().activate(result.id);
+                                });
+                            })
+                            .then(function (result) {
                                 toggleShowBusyLoadingDialog("Done");
-                                if (result.success || resultBaby.success) {
-                                    app.showMessage("Tracking Number(s) successfully generated.", "OST", ["Close"]).done(function () {
-                                        activate(id());
+                                console.log(result);
+                                if (result.success) {
+                                    app.showMessage("Tracking number(s) successfully generated.", "OST", ["Close"]).done(function () {
+                                        router.activeItem().activate(result.id);
+                                    });
+                                } else {
+                                    console.log(result.status);
+                                    app.showMessage("Sorry, but we cannot process tracking number for the Order with Id : " + result.id, "OST", ["Close"]).done(function () {
+                                        router.activeItem().activate(result.id);
                                     });
                                 }
                             });
-                        });
                     }
                     else {
                         app.showMessage("All parcels' consignment notes have been generated.", "OST", ["Close"]);
