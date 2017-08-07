@@ -39,7 +39,7 @@
 <#
 # Payment Gateway
 [Environment]::SetEnvironmentVariable("RX_OST_PaymentGatewayApplicationId", "OST", "Machine")
-[Environment]::SetEnvironmentVariable("RX_OST_PaymentGatewayBaseUrl", "https://www.posonline.com.my/PosOnline.PaymentGateway", "Machine")
+[Environment]::SetEnvironmentVariable("RX_OST_PaymentGatewayBaseUrl", "https://ezipay.pos.com.my", "Machine")
 [Environment]::SetEnvironmentVariable("RX_OST_PaymentGatewayEncryptionKey", "WdVxp54wmQlGFBmvOQgfmpAqCJ23gyGI", "Machine")
 
 # SnB
