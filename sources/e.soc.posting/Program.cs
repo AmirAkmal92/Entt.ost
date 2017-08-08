@@ -1,6 +1,11 @@
-﻿using FileHelpers;
+﻿using Bespoke.Ost.ConsigmentRequests.Domain;
+using Bespoke.Sph.Domain;
+using FileHelpers;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace e.soc.posting
@@ -49,136 +54,156 @@ namespace e.soc.posting
         {
             var engine = new FileHelperEngine<ESocDelimited>();
             var eSocFiles = new List<ESocDelimited>();
-            var eSocBatch = "00001";
+            var consigmentRequests = new List<ConsigmentRequest>();
 
-            var eSocFile1 = new ESocDelimited
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
+
+            bool requestPickup = true;
+            int pickupCount = 0;
+            int pickupPage = 1;
+            int pickupSize = 20;
+
+            while (requestPickup)
             {
-                Indicator = "9",
-                OrderType = "01",
-                SalesOrg = "1000",
-                DistributionChannel = "60",
-                Division = "10",
-                SoldToPartyAccountNumber = "8800479097",
-                CourierIdHeader = "00392557",
-                CourierId = "YUSRI",
-                ConsignmentAcceptanceTimeStamp = DateTime.Now,
-                BranchCodeHeader = "5312",
-                CourierIdItem = "-",
-                ShipToPartyPostcode = "-",
-                ProductCodeMaterial = "-",
-                OrderQuantity = "-",
-                BranchCodeItem = "-",
-                Agent = "-",
-                ConNoteNumberParent = "-",
-                ConNoteNumberChild = "-",
-                Weight = "-",
-                CustomerDeclaredWeight = "-",
-                VolumetricDimension = "-",
-                VolumetricWeight = "-",
-                ValueAdded = "-",
-                SurchargeCode = "-",
-                SumInsured = "-",
-                SubAccountRef = "-",
-                RecipientRefNumber = "-",
-                Zone = "-",
-                CountryCode = "-",
-                ItemCategoryType = "-",
-                MpsIndicator = "-",
-                OddItemAmount = "-",
-                OddItemDescription = "-",
-                PickupNumber = "V952061",
-                Mhl = "-",
-                Batch = eSocBatch
-            };
+                var requestUri = new Uri($"{m_ostBaseUrl}/api/consigment-requests/pickedup-all-within-range/{startDate}/{endDate}/?size={pickupSize}&page={pickupPage}");
+                var response = await client.GetAsync(requestUri);
+                var output = string.Empty;
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+                    Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
+                    output = await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+                    Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
+                    return;
+                }
 
-            var eSocFile2 = new ESocDelimited
+                var json = JObject.Parse(output).SelectToken("_results");
+                foreach (var jtok in json)
+                {
+                    var consigmentRequest = jtok.ToJson().DeserializeFromJson<ConsigmentRequest>();
+                    consigmentRequests.Add(consigmentRequest);
+                    Console.WriteLine($"Pickup Number: {consigmentRequest.Pickup.Number} .....");
+                }
+                Console.WriteLine($"Pickup count: {consigmentRequests.Count} .....");
+
+                pickupCount = JObject.Parse(output).SelectToken("_count").Value<int>();
+                pickupPage = JObject.Parse(output).SelectToken("_page").Value<int>();
+                pickupSize = JObject.Parse(output).SelectToken("_size").Value<int>();
+                if ((pickupPage * pickupSize) >= pickupCount)
+                {
+                    requestPickup = false;
+                }
+                pickupPage++;
+            }
+
+            int sequenceNumberCount = 1;
+            foreach (var consigmentRequest in consigmentRequests)
             {
-                Indicator = "1",
-                OrderType = "-",
-                SalesOrg = "-",
-                DistributionChannel = "-",
-                Division = "-",
-                SoldToPartyAccountNumber = "8800479097",
-                CourierIdHeader = "-",
-                CourierId = "-",
-                ConsignmentAcceptanceTimeStamp = DateTime.Now,
-                BranchCodeHeader = "-",
-                CourierIdItem = "00392557",
-                ShipToPartyPostcode = "81100",
-                ProductCodeMaterial = "80000000",
-                OrderQuantity = "1",
-                BranchCodeItem = "5312",
-                Agent = "-",
-                ConNoteNumberParent = "EG629219139MY",
-                ConNoteNumberChild = "-",
-                Weight = "0.200",
-                CustomerDeclaredWeight = "-",
-                VolumetricDimension = "0x0x0",
-                VolumetricWeight = "0.000",
-                ValueAdded = "1101",
-                SurchargeCode = "0101",
-                SumInsured = "-",
-                SubAccountRef = "-",
-                RecipientRefNumber = "-",
-                Zone = "02",
-                CountryCode = "MY",
-                ItemCategoryType = "01",
-                MpsIndicator = "01",
-                OddItemAmount = "-",
-                OddItemDescription = "-",
-                PickupNumber = "-",
-                Mhl = "-",
-                Batch = eSocBatch
-            };
+                var eSocFileHeader = new ESocDelimited
+                {
+                    Indicator = "9",
+                    OrderType = "01",
+                    SalesOrg = "1000",
+                    DistributionChannel = "60",
+                    Division = "10",
+                    SoldToPartyAccountNumber = consigmentRequest.UserId,
+                    CourierIdHeader = "00392557", //TODO
+                    CourierId = "YUSRI", //TODO
+                    ConsignmentAcceptanceTimeStamp = consigmentRequest.CreatedDate,
+                    BranchCodeHeader = "5312", //TODO
+                    CourierIdItem = "-",
+                    ShipToPartyPostcode = "-",
+                    ProductCodeMaterial = "-",
+                    OrderQuantity = "-",
+                    BranchCodeItem = "-",
+                    Agent = "-",
+                    ConNoteNumberParent = "-",
+                    ConNoteNumberChild = "-",
+                    Weight = "-",
+                    CustomerDeclaredWeight = "-",
+                    VolumetricDimension = "-",
+                    VolumetricWeight = "-",
+                    ValueAdded = "-",
+                    SurchargeCode = "-",
+                    SumInsured = "-",
+                    SubAccountRef = "-",
+                    RecipientRefNumber = "-",
+                    Zone = "-",
+                    CountryCode = "-",
+                    ItemCategoryType = "-",
+                    MpsIndicator = "-",
+                    OddItemAmount = "-",
+                    OddItemDescription = "-",
+                    PickupNumber = consigmentRequest.Pickup.Number,
+                    Mhl = "-",
+                    Batch = string.Format("{0:00000}", sequenceNumberCount)
+                };
+                eSocFiles.Add(eSocFileHeader);
 
-            var eSocFile3 = new ESocDelimited
-            {
-                Indicator = "1",
-                OrderType = "-",
-                SalesOrg = "-",
-                DistributionChannel = "-",
-                Division = "-",
-                SoldToPartyAccountNumber = "8800479097",
-                CourierIdHeader = "-",
-                CourierId = "-",
-                ConsignmentAcceptanceTimeStamp = DateTime.Now,
-                BranchCodeHeader = "-",
-                CourierIdItem = "00392557",
-                ShipToPartyPostcode = "40100",
-                ProductCodeMaterial = "80000000",
-                OrderQuantity = "1",
-                BranchCodeItem = "5312",
-                Agent = "-",
-                ConNoteNumberParent = "EG629219140MY",
-                ConNoteNumberChild = "-",
-                Weight = "0.500",
-                CustomerDeclaredWeight = "-",
-                VolumetricDimension = "0x0x0",
-                VolumetricWeight = "0.000",
-                ValueAdded = "1101",
-                SurchargeCode = "0101",
-                SumInsured = "-",
-                SubAccountRef = "-",
-                RecipientRefNumber = "-",
-                Zone = "02",
-                CountryCode = "MY",
-                ItemCategoryType = "01",
-                MpsIndicator = "01",
-                OddItemAmount = "-",
-                OddItemDescription = "-",
-                PickupNumber = "-",
-                Mhl = "-",
-                Batch = eSocBatch
-            };
+                foreach (var consigment in consigmentRequest.Consignments)
+                {
+                    var eSocFileItem = new ESocDelimited
+                    {
+                        Indicator = "1",
+                        OrderType = "-",
+                        SalesOrg = "-",
+                        DistributionChannel = "-",
+                        Division = "-",
+                        SoldToPartyAccountNumber = consigmentRequest.UserId,
+                        CourierIdHeader = "-",
+                        CourierId = "-",
+                        ConsignmentAcceptanceTimeStamp = consigmentRequest.CreatedDate,
+                        BranchCodeHeader = "-",
+                        CourierIdItem = "00392557", //TODO
+                        ShipToPartyPostcode = consigment.Penerima.Address.Postcode,
+                        ProductCodeMaterial = "80000000",
+                        OrderQuantity = "1",
+                        BranchCodeItem = "5312", //TODO
+                        Agent = "-",
+                        ConNoteNumberParent = consigment.ConNote,
+                        ConNoteNumberChild = "-", //TODO
+                        Weight = "-",
+                        CustomerDeclaredWeight = consigment.Produk.Weight.ToString("0.000"),
+                        VolumetricDimension = $"{consigment.Produk.Length.ToString("0.00")}x{consigment.Produk.Width.ToString("0.00")}x{consigment.Produk.Height.ToString("0.00")}",
+                        VolumetricWeight = GetVolumetricWeight(consigment).ToString("0.000"),
+                        ValueAdded = "1101",
+                        SurchargeCode = "0101",
+                        SumInsured = "-", //TODO
+                        SubAccountRef = "-",
+                        RecipientRefNumber = "-",
+                        Zone = "01",
+                        CountryCode = consigment.Penerima.Address.Country,
+                        ItemCategoryType = consigment.Produk.ItemCategory,
+                        MpsIndicator = (consigment.IsMps) ? "02" : "01",
+                        OddItemAmount = "-",
+                        OddItemDescription = "-",
+                        PickupNumber = "-",
+                        Mhl = "-",
+                        Batch = string.Format("{0:00000}", sequenceNumberCount)
+                    };
+                    eSocFiles.Add(eSocFileItem);
+                }
+                sequenceNumberCount++;
+            }
 
-            eSocFiles.Add(eSocFile1);
-            eSocFiles.Add(eSocFile2);
-            eSocFiles.Add(eSocFile3);
-
-            var path = $@"{m_eSocFolder}\est_esoc_hq_{DateTime.Now:yyyyMMdd-HHmmss}_{eSocFiles.Count}_{eSocBatch}.txt";
+            var path = $@"{m_eSocFolder}\est_esoc_hq_{DateTime.Now:yyyyMMdd-HHmmss}_{eSocFiles.Count}_{string.Format("{0:00000}", sequenceNumberCount - 1)}.txt";
             engine.WriteFile(path, eSocFiles);
 
             await Task.Delay(100);
+        }
+
+        private static decimal GetVolumetricWeight(Consignment consigment)
+        {
+            if (consigment.Produk.Length > 0 && consigment.Produk.Width > 0 && consigment.Produk.Height > 0)
+            {
+                return (consigment.Produk.Length * consigment.Produk.Width * consigment.Produk.Height) / 6000;
+            }
+            return 0.00m;
         }
     }
 }
