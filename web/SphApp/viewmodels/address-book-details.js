@@ -111,12 +111,20 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                 });
             return tcs.promise();
         }, remove = function () {
-            return context.sendDelete("/api/address-books/" + ko.unwrap(entity().Id))
-                .then(function (result) {
-                    return app.showMessage("Your contact has been deleted.", "OST", ["Close"]);
-                })
-                .then(function (result) {
-                    router.navigate("address-book-home/-");
+            return app.showMessage("Are you sure you want to this contact? This action cannot be undone.", "OST", ["Yes", "No"])
+                .done(function (dialogResult) {
+                    if (dialogResult === "Yes") {
+                        // delete selected address book
+                        return context.sendDelete("/api/address-books/" + ko.unwrap(entity().Id))
+                            .then(function (result) {
+                                return app.showMessage("Your contact has been deleted.", "OST", ["Close"]);
+                            })
+                            .then(function (result) {
+                                router.navigate("address-book-home/-");
+                            });
+                    } else {
+                        tcs.resolve(false);
+                    }
                 });
         },
 
