@@ -345,6 +345,28 @@ objectbuilders.app],
                     }
                 });
 
+                consignment().Produk().Height.subscribe(function (value) {
+                    if (consignment().Produk().Height != null
+                        && consignment().Produk().Length != null
+                        && consignment().Produk().Width != null) {
+                        calculateVolumetric();
+                    }
+                });
+                consignment().Produk().Length.subscribe(function (value) {
+                    if (consignment().Produk().Height != null
+                        && consignment().Produk().Length != null
+                        && consignment().Produk().Width != null) {
+                        calculateVolumetric();
+                    }
+                });
+                consignment().Produk().Width.subscribe(function (value) {
+                    if (consignment().Produk().Height != null
+                        && consignment().Produk().Length != null
+                        && consignment().Produk().Width != null) {
+                        calculateVolumetric();
+                    }
+                });
+
             },
             compositionComplete = function () {
 
