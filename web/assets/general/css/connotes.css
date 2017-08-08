@@ -1,7 +1,7 @@
 .connote-sheet-1 {
     background: url("/assets/global/img/connotes/Consignment_Note_NDD_Sender.jpg") !important;
     background-repeat: no-repeat !important;
-    background-size: cover !important;
+    background-size: contain !important;
     background-position: initial !important;
     page-break-inside: avoid;
     -webkit-print-color-adjust: exact;
@@ -11,7 +11,7 @@
 .connote-sheet-2 {
     background: url("/assets/global/img/connotes/Consignment_Note_NDD_Office.jpg") !important;
     background-repeat: no-repeat !important;
-    background-size: cover !important;
+    background-size: contain !important;
     background-position: initial !important;
     page-break-inside: avoid;
     -webkit-print-color-adjust: exact;
