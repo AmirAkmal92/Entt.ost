@@ -1,0 +1,85 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "ConsigmentRequestPickedUpAllWithinRangeQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "CreatedDate",
+        "Operator": "Ge",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.RouteParameterField, domain.sph",
+          "TypeName": "System.DateTime",
+          "DefaultValue": "",
+          "IsOptional": false,
+          "Constraints": "",
+          "Name": "start",
+          "Note": "",
+          "WebId": "0ae5c427-d6f2-46b3-a3ff-2032b82c344a"
+        },
+        "WebId": "c3a9ba6b-9175-4eb3-a89b-0b3c0b1f4c8b"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "CreatedDate",
+        "Operator": "Lt",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.RouteParameterField, domain.sph",
+          "TypeName": "System.DateTime",
+          "DefaultValue": "",
+          "IsOptional": false,
+          "Constraints": "",
+          "Name": "end",
+          "Note": "",
+          "WebId": "f1f373ab-fcb4-405a-8c27-c815f11692a0"
+        },
+        "WebId": "b41c9af7-3243-4224-9c6a-ff37f79fcd1c"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Pickup.IsPickedUp",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "Value": "true",
+          "Name": "true",
+          "Note": "",
+          "WebId": "ad4c5979-550a-42e4-a4f1-157d1ed4bd60"
+        },
+        "WebId": "8fbb8529-c3b1-4003-93e5-ed3f9444a82b"
+      }
+    ]
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Sort, domain.sph",
+        "Path": "CreatedDate",
+        "Direction": "Desc",
+        "WebId": "2842239b-6461-4006-8c0b-573df70b1e1e"
+      }
+    ]
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "PickedUpAllWithinRange",
+  "Route": "pickedup-all-within-range/{start}/{end}",
+  "IsReturnSource": "",
+  "Entity": "ConsigmentRequest",
+  "Note": "",
+  "IsPublished": false,
+  "Resource": "consigment-requests",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "consigment-request-picked-up-all-within-range",
+  "CreatedDate": "2017-08-08T13:04:27.0028192+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-08-08T13:13:32.8336256+08:00",
+  "WebId": "3dd1cb33-bf69-4aa0-8a6d-48a5ffabae14"
+}
