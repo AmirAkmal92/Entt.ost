@@ -218,7 +218,12 @@
                                         </small>
                                     </label>
                                     <div class="col-md-8">
+                                        <!--ko ifnot: Penerima().Address().Country() == "MY"-->
                                         <input required type="text" class="form-control input-sm" data-bind="value: Penerima().Address().Postcode" name="Penerima.Address.Postcode">
+                                        <!--/ko-->
+                                        <!--ko if: Penerima().Address().Country() == "MY"-->
+                                        <input required type="text" class="form-control input-sm" minlength="5" maxlength="5" data-rule-number="true" data-bind="value: Penerima().Address().Postcode" name="Penerima.Address.Postcode">
+                                        <!--/ko-->
                                     </div>
                                 </div>
                             </div>
@@ -246,7 +251,12 @@
                                         </small>
                                     </label>
                                     <div class="col-md-8">
-                                        <input required type="text" class="form-control input-sm" data-bind="value: Penerima().Address().State" name="Penerima.Address.State">
+                                        <!--ko ifnot: Penerima().Address().Country() == "MY"-->
+                                        <input class="form-control input-sm" type="text" placeholder="State" data-bind="value: Penerima().Address().State" name="Penerima().Address().State" required>
+                                        <!--/ko-->
+                                        <!--ko if: Penerima().Address().Country() == "MY"-->
+                                        <select class="form-control input-sm" placeholder="State" data-bind=" visible :true, enable :true, comboBoxLookupOptions : { value: Penerima().Address().State, entity : 'State', valuePath : 'Name', displayPath: 'Name', query :'Id ne \'0\''}" name="Address.State" required></select>
+                                        <!--/ko-->
                                     </div>
                                 </div>
                             </div>

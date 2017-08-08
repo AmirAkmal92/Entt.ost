@@ -52,7 +52,12 @@
                                                 <small>Email<span class="text-danger"> * </span></small>
                                             </label>
                                             <div class="col-md-8">
+                                                <!--ko if: $root.config.profile.Designation == "No contract customer"-->
                                                 <input class="form-control input-sm" type="email" placeholder="Email" data-bind="value: ContactInformation().Email" name="ContactInformation.Email" required>
+                                                <!--/ko-->
+                                                <!--ko if: $root.config.profile.Designation != "No contract customer"-->
+                                                <input class="form-control input-sm" type="email" placeholder="Email" data-bind="value: ContactInformation().Email" name="ContactInformation.Email" disabled="disabled" required>
+                                                <!--/ko-->
                                             </div>
                                         </div>
                                     </div>
@@ -71,7 +76,7 @@
                                 </div>
                                 <div class="page-header">
                                     <h4>Address</h4>
-                                </div>                                
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -123,7 +128,12 @@
                                                 <small>Postcode<span class="text-danger"> * </span></small>
                                             </label>
                                             <div class="col-md-8">
+                                                <!--ko ifnot: Address().Country() == "MY"-->
                                                 <input class="form-control input-sm" type="text" placeholder="Postcode" data-bind="value: Address().Postcode" name="Address.Postcode" required>
+                                                <!--/ko-->
+                                                <!--ko if: Address().Country() == "MY"-->
+                                                <input class="form-control input-sm" type="text" minlength="5" maxlength="5" data-rule-number="true" placeholder="Postcode" data-bind="value: Address().Postcode" name="Address.Postcode" required>
+                                                <!--/ko-->
                                             </div>
                                         </div>
                                     </div>
@@ -145,7 +155,12 @@
                                                 <small>State<span class="text-danger"> * </span></small>
                                             </label>
                                             <div class="col-md-8">
+                                                <!--ko ifnot: Address().Country() == "MY"-->
                                                 <input class="form-control input-sm" type="text" placeholder="State" data-bind="value: Address().State" name="Address.State" required>
+                                                <!--/ko-->
+                                                <!--ko if: Address().Country() == "MY"-->
+                                                <select class="form-control input-sm" data-bind=" visible :true,  enable :true, comboBoxLookupOptions : { value: Address().State, entity : 'State', valuePath : 'Name', displayPath: 'Name', query :'Id ne \'0\''}" name="Address.State" required></select>
+                                                <!--/ko-->
                                             </div>
                                         </div>
                                     </div>

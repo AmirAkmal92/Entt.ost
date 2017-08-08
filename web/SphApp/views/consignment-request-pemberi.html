@@ -235,7 +235,12 @@
                                         <small>Postcode<span class="text-danger"> * </span></small>
                                     </label>
                                     <div class="col-md-8">
+                                        <!--ko ifnot: Pemberi().Address().Country() == "MY"-->
                                         <input class="form-control input-sm" type="text" placeholder="Postcode" data-bind="value: Pemberi().Address().Postcode, disable: $root.isUsingPickupAddress()" name="Address.Postcode" required>
+                                        <!--/ko-->
+                                        <!--ko if: Pemberi().Address().Country() == "MY"-->
+                                        <input class="form-control input-sm" minlength="5" maxlength="5" data-rule-number="true" type="text" placeholder="Postcode" data-bind="value: Pemberi().Address().Postcode, disable: $root.isUsingPickupAddress()" name="Address.Postcode" required>
+                                        <!--/ko-->
                                     </div>
                                 </div>
                             </div>
@@ -257,7 +262,12 @@
                                         <small>State<span class="text-danger"> * </span></small>
                                     </label>
                                     <div class="col-md-8">
+                                        <!--ko ifnot: Pemberi().Address().Country() == "MY"-->
                                         <input class="form-control input-sm" type="text" placeholder="State" data-bind="value: Pemberi().Address().State, disable: $root.isUsingPickupAddress()" name="Address.State" required>
+                                        <!--/ko-->
+                                        <!--ko if: Pemberi().Address().Country() == "MY"-->
+                                        <select class="form-control input-sm" placeholder="State" data-bind=" visible :true, disable: $root.isUsingPickupAddress(), enable :true, comboBoxLookupOptions : { value: Pemberi().Address().State, entity : 'State', valuePath : 'Name', displayPath: 'Name', query :'Id ne \'0\''}" name="Address.State" required></select>
+                                        <!--/ko-->
                                     </div>
                                 </div>
                             </div>
