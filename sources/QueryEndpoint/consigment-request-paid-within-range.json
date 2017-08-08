@@ -1,6 +1,6 @@
 {
   "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
-  "ControllerName": "ConsigmentRequestPaidWithinRangeQueryEndpoint",
+  "ControllerName": "ConsigmentRequestPaidAllWithinRangeQueryEndpoint",
   "FilterCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
     "$values": [
@@ -54,15 +54,22 @@
   },
   "SortCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
-    "$values": []
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Sort, domain.sph",
+        "Path": "Payment.Date",
+        "Direction": "Desc",
+        "WebId": "9d74f678-5084-4bac-994d-d7aaf72c4172"
+      }
+    ]
   },
   "MemberCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
     "$values": []
   },
   "CacheProfile": "",
-  "Name": "PaidWithinRange",
-  "Route": "paid-within-range/{start}/{end}",
+  "Name": "PaidAllWithinRange",
+  "Route": "paid-all-within-range/{start}/{end}",
   "IsReturnSource": "",
   "Entity": "ConsigmentRequest",
   "Note": "",
@@ -73,6 +80,6 @@
   "Id": "consigment-request-paid-within-range",
   "CreatedDate": "2017-03-23T14:27:23.4637964+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-03-23T14:51:01.8390586+08:00",
+  "ChangedDate": "2017-08-08T13:13:07.3704003+08:00",
   "WebId": "9c721a98-7ba5-4c23-c8a6-f248b9d93f9c"
 }

@@ -68,7 +68,7 @@ namespace sap.fi.posting
 
             while (requestInvoice)
             {
-                var requestUri = new Uri($"{m_ostBaseUrl}/api/consigment-requests/paid-within-range/{startDate}/{endDate}/?size={invoiceSize}&page={invoicePage}");
+                var requestUri = new Uri($"{m_ostBaseUrl}/api/consigment-requests/paid-all-within-range/{startDate}/{endDate}/?size={invoiceSize}&page={invoicePage}");
                 var response = await client.GetAsync(requestUri);
                 var output = string.Empty;
                 if (response.IsSuccessStatusCode)
