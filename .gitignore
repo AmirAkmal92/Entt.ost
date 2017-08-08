@@ -35,6 +35,8 @@ env.ost.*.ps1
 /sources/snb.read.sql/obj/Debug
 /sources/sap.fi.posting/bin/Debug
 /sources/sap.fi.posting/obj/Debug
+/sources/e.soc.posting/bin/Debug
+/sources/e.soc.posting/obj/Debug
 /sources/rts.pickup.ezisend/bin/Debug
 /sources/rts.pickup.ezisend/obj/Debug
 /sources/snb.register.ezisend/bin/Debug
