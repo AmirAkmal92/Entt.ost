@@ -113,13 +113,13 @@ namespace e.soc.posting
                     Division = "10",
                     SoldToPartyAccountNumber = consigmentRequest.UserId,
                     CourierIdHeader = "00392557", //TODO
-                    CourierId = "YUSRI", //TODO
+                    CourierNameHeader = "YUSRI", //TODO
                     ConsignmentAcceptanceTimeStamp = consigmentRequest.CreatedDate,
                     BranchCodeHeader = "5312", //TODO
                     CourierIdItem = "-",
                     ShipToPartyPostcode = "-",
                     ProductCodeMaterial = "-",
-                    OrderQuantity = "-",
+                    Quantity = "-",
                     BranchCodeItem = "-",
                     Agent = "-",
                     ConNoteNumberParent = "-",
@@ -140,8 +140,7 @@ namespace e.soc.posting
                     OddItemAmount = "-",
                     OddItemDescription = "-",
                     PickupNumber = consigmentRequest.Pickup.Number,
-                    Mhl = "-",
-                    Batch = string.Format("{0:00000}", sequenceNumberCount)
+                    Mhl = "0"
                 };
                 eSocFiles.Add(eSocFileHeader);
 
@@ -156,42 +155,41 @@ namespace e.soc.posting
                         Division = "-",
                         SoldToPartyAccountNumber = consigmentRequest.UserId,
                         CourierIdHeader = "-",
-                        CourierId = "-",
+                        CourierNameHeader = "-",
                         ConsignmentAcceptanceTimeStamp = consigmentRequest.CreatedDate,
                         BranchCodeHeader = "-",
                         CourierIdItem = "00392557", //TODO
                         ShipToPartyPostcode = consigment.Penerima.Address.Postcode,
-                        ProductCodeMaterial = "80000000",
-                        OrderQuantity = "1",
+                        ProductCodeMaterial = (consigment.Produk.IsInternational) ? "80000001" : "80000000",
+                        Quantity = "1",
                         BranchCodeItem = "5312", //TODO
-                        Agent = "-",
+                        Agent = "01",
                         ConNoteNumberParent = consigment.ConNote,
                         ConNoteNumberChild = "-", //TODO
-                        Weight = "-",
+                        Weight = "-", //TODO
                         CustomerDeclaredWeight = consigment.Produk.Weight.ToString("0.000"),
                         VolumetricDimension = $"{consigment.Produk.Length.ToString("0.00")}x{consigment.Produk.Width.ToString("0.00")}x{consigment.Produk.Height.ToString("0.00")}",
                         VolumetricWeight = GetVolumetricWeight(consigment).ToString("0.000"),
                         ValueAdded = "1101",
                         SurchargeCode = "0101",
-                        SumInsured = "-", //TODO
-                        SubAccountRef = "-",
+                        SumInsured = consigment.Produk.ValueAddedDeclaredValue.ToString("0.00"),
+                        SubAccountRef = consigmentRequest.UserId,
                         RecipientRefNumber = "-",
                         Zone = "01",
                         CountryCode = consigment.Penerima.Address.Country,
                         ItemCategoryType = consigment.Produk.ItemCategory,
                         MpsIndicator = (consigment.IsMps) ? "02" : "01",
-                        OddItemAmount = "-",
+                        OddItemAmount = "0.00",
                         OddItemDescription = "-",
                         PickupNumber = "-",
-                        Mhl = "-",
-                        Batch = string.Format("{0:00000}", sequenceNumberCount)
+                        Mhl = "-"
                     };
                     eSocFiles.Add(eSocFileItem);
                 }
                 sequenceNumberCount++;
             }
 
-            var path = $@"{m_eSocFolder}\est_esoc_hq_{DateTime.Now:yyyyMMdd-HHmmss}_{eSocFiles.Count}_{string.Format("{0:00000}", sequenceNumberCount - 1)}.txt";
+            var path = $@"{m_eSocFolder}\est_esoc_hq_{DateTime.Now:yyyyMMdd-HHmmss}_{eSocFiles.Count - (sequenceNumberCount - 1)}.txt";
             engine.WriteFile(path, eSocFiles);
 
             await Task.Delay(100);

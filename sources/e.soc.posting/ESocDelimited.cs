@@ -20,7 +20,7 @@ namespace e.soc.posting
         
         public string CourierIdHeader;
         
-        public string CourierId;
+        public string CourierNameHeader;
 
         [FieldConverter(ConverterKind.Date, "ddMMyyyyHHmmss")]
         public DateTime? ConsignmentAcceptanceTimeStamp;
@@ -33,7 +33,7 @@ namespace e.soc.posting
         
         public string ProductCodeMaterial;
         
-        public string OrderQuantity;
+        public string Quantity;
         
         public string BranchCodeItem;
         
@@ -76,7 +76,5 @@ namespace e.soc.posting
         public string PickupNumber;
         
         public string Mhl;
-        
-        public string Batch;
     }
 }
