@@ -12,7 +12,6 @@ define(['services/datacontext', 'services/logger', 'plugins/router', objectbuild
                     console.log(crList);
                     if (crList._count == 0) {
                         //create new cart
-                        consignmentRequest().ReferenceNo(system.guid());
                         consignmentRequest().UserId(config.userName);                        
                         var data = ko.mapping.toJSON(consignmentRequest);
                         context.post(data, "/api/consigment-requests/").done(function (result) {
