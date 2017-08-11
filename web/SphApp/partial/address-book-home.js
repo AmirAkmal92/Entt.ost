@@ -108,7 +108,9 @@ function (context, app, router, logger, contactGroups, app2, dialog) {
                         $(this).click();
                     }
                 } else {
-                    $(this).click();
+                    if ($(this).is(":checked")) {
+                        $(this).click();
+                    }
                 }
             });
             checkAll(!checkAll());
