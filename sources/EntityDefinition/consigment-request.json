@@ -24,7 +24,14 @@
         },
         "Name": "ReferenceNo",
         "AllowMultiple": false,
-        "DefaultValue": null,
+        "DefaultValue": {
+          "$type": "Bespoke.Sph.Domain.FunctionField, domain.sph",
+          "CodeNamespace": "ffdddb09f2",
+          "Script": "Guid.NewGuid().ToString()",
+          "Name": "guid",
+          "Note": "",
+          "WebId": "dddb09f2-c58e-47b2-c656-1fe62794d894"
+        },
         "WebId": "55ddfa7f-9e3e-40ae-ccc9-e0869349e0e3"
       },
       {
@@ -3965,6 +3972,6 @@
   "Id": "consigment-request",
   "CreatedDate": "2016-10-29T07:26:06.8492482+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-08-04T11:12:01.108366+08:00",
+  "ChangedDate": "2017-08-10T13:56:14.7055303+08:00",
   "WebId": "b8808d89-54c8-4d91-8396-7627974f1138"
 }

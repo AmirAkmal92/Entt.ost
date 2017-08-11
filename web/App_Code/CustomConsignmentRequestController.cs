@@ -173,7 +173,7 @@ namespace web.sph.App_Code
 
             var resultSuccess = true;
             var resultStatus = "OK";
-
+            
             var totalConsignments = consignmentRequest.Consignments.Count;
             var emptyConnote = 0;
             var emptyConnoteWithBaby = 0;
@@ -199,7 +199,8 @@ namespace web.sph.App_Code
             {
                 consignmentRequest.GenerateConnoteCounter += 1;
                 orderId = GenerateOrderId(consignmentRequest);
-                SdsBabyConnote sdsBabyConnote = GetConnoteWithOrWithoutBaby(orderId, 0, emptyConnote);
+                consignmentRequest.ReferenceNo = orderId;
+                SdsBabyConnote sdsBabyConnote =  GetConnoteWithOrWithoutBaby(orderId, 0, emptyConnote);
                 var sdsCounter = 0;
                 foreach (var consignment in consignmentRequest.Consignments)
                 {
@@ -224,6 +225,7 @@ namespace web.sph.App_Code
                     {
                         consignmentRequest.GenerateConnoteCounter += 1;
                         orderId = GenerateOrderId(consignmentRequest);
+                        consignmentRequest.ReferenceNo = orderId;
 
                         SdsBabyConnote sdsBabyConnote = GetConnoteWithOrWithoutBaby(orderId, numBaby, 1);
 
@@ -842,7 +844,7 @@ namespace web.sph.App_Code
             var referenceNo = new StringBuilder();
             referenceNo.Append($"{m_applicationName.ToUpper()}-");
             referenceNo.Append(DateTime.Now.ToString("ddMMyy-ss-"));
-            referenceNo.Append((item.Id.Split('-'))[1]);
+            referenceNo.Append((item.ReferenceNo.Split('-'))[1]);
             return referenceNo.ToString();
         }
 
@@ -868,9 +870,16 @@ namespace web.sph.App_Code
             }
             else
             {
-                orderId = orderId + item.GenerateConnoteCounter.ToString();
+                var arrOrderId = orderId.Split('-');
+                if (arrOrderId.Length == 4)
+                {
+                    orderId = orderId + "-" + item.GenerateConnoteCounter.ToString();
+                }
+                else
+                {
+                    orderId = arrOrderId[0] + "-" + arrOrderId[1] + "-" + arrOrderId[2] + "-" + arrOrderId[3] + "-" + item.GenerateConnoteCounter.ToString();
+                }
             }
-
             return orderId;
         }
 
