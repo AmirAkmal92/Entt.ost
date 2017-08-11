@@ -91,8 +91,8 @@ $env:RX_OST_PaymentGatewayEncryptionKey = "WdVxp54wmQlGFBmvOQgfmpAqCJ23gyGI"
 $env:RX_OST_SdsBaseUrl = "http://stagingsds.pos.com.my/apigateway"
 $env:RX_OST_SdsApi_GenerateConnote = "as2corporate/api/generateconnote/v1";
 $env:RX_OST_SdsSecretKey_GenerateConnote = "ODA2MzViZTAtODk3MS00OGU5LWFiNGEtYTcxYjAxMjU4NjM1";
-$env:RX_OST_SdsApi_PickupWebApi = "devposlaju/api/pickupwebapi/v1";
-$env:RX_OST_SdsSecretKey_PickupWebApi = "ZGQxNGJjMDEtZGMyMy00YjQwLWFiODUtYTcxYjAxMzAyMjdk";
+$env:RX_OST_SdsApi_PickupWebApi = "devposlaju/api/pickuprequestapi/v1";
+$env:RX_OST_SdsSecretKey_PickupWebApi = "TnJqREpHbzU4Z1ZuQ1FSVkMxenFnVkhHODBNVVNzQ3A=";
 ```
 
 #### Note:
