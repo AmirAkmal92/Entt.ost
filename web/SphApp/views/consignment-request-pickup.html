@@ -220,7 +220,13 @@
                                         </small>
                                     </label>
                                     <div class="col-md-8">
+                                        <!--ko ifnot: Address().Country() == "MY"-->
                                         <input required type="text" class="form-control input-sm" data-bind="value: Address().State" name="Address.State">
+                                        <!--/ko-->
+                                        <!--ko if: Address().Country() == "MY"-->
+                                        <select class="form-control input-sm" placeholder="State" data-bind=" visible :true, comboBoxLookupOptions : { value: Address().State, entity : 'State', valuePath : 'Name', displayPath: 'Name', query :'Id ne \'0\''}" name="Address.State" required></select>
+                                        <!--/ko-->
+                                        
                                     </div>
                                 </div>
                             </div>

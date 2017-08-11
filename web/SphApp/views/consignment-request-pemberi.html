@@ -266,7 +266,7 @@
                                         <input class="form-control input-sm" type="text" placeholder="State" data-bind="value: Pemberi().Address().State, disable: $root.isUsingPickupAddress()" name="Address.State" required>
                                         <!--/ko-->
                                         <!--ko if: Pemberi().Address().Country() == "MY"-->
-                                        <select class="form-control input-sm" placeholder="State" data-bind=" visible :true, disable: $root.isUsingPickupAddress(), enable :true, comboBoxLookupOptions : { value: Pemberi().Address().State, entity : 'State', valuePath : 'Name', displayPath: 'Name', query :'Id ne \'0\''}" name="Address.State" required></select>
+                                        <select class="form-control input-sm" placeholder="State" data-bind=" visible :true, disable: $root.isUsingPickupAddress(), comboBoxLookupOptions : { value: Pemberi().Address().State, entity : 'State', valuePath : 'Name', displayPath: 'Name', query :'Id ne \'0\''}" name="Address.State" required></select>
                                         <!--/ko-->
                                     </div>
                                 </div>
