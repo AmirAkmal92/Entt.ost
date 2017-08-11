@@ -33,8 +33,8 @@ namespace web.sph.App_Code
 
             m_sdsApi_GenerateConnote = ConfigurationManager.GetEnvironmentVariable("SdsApi_GenerateConnote") ?? "apigateway/as01/api/genconnote/v1";
             m_sdsSecretKey_GenerateConnote = ConfigurationManager.GetEnvironmentVariable("SdsSecretKey_GenerateConnote") ?? "MjkzYjA5YmItZjMyMS00YzNmLWFmODktYTc2ZTAxMDgzY2Mz";
-            m_sdsApi_PickupWebApi = ConfigurationManager.GetEnvironmentVariable("SdsApi_PickupWebApi") ?? "apigateway/as2poslaju/api/pickupwebapi/v1";
-            m_sdsSecretKey_PickupWebApi = ConfigurationManager.GetEnvironmentVariable("SdsSecretKey_PickupWebApi") ?? "Nzc1OTk0OTktYzYyNC00MzhhLTk5OTAtYTc2ZTAxMGJiYmMz";
+            m_sdsApi_PickupWebApi = ConfigurationManager.GetEnvironmentVariable("SdsApi_PickupWebApi") ?? "apigateway/as2poslaju/api/pickupwebapi/v1"; //TODO get production new address
+            m_sdsSecretKey_PickupWebApi = ConfigurationManager.GetEnvironmentVariable("SdsSecretKey_PickupWebApi") ?? "Nzc1OTk0OTktYzYyNC00MzhhLTk5OTAtYTc2ZTAxMGJiYmMz"; //TODO get production new key
         }
 
         [HttpPut]
@@ -173,7 +173,7 @@ namespace web.sph.App_Code
 
             var resultSuccess = true;
             var resultStatus = "OK";
-            
+
             var totalConsignments = consignmentRequest.Consignments.Count;
             var emptyConnote = 0;
             var emptyConnoteWithBaby = 0;
@@ -199,7 +199,7 @@ namespace web.sph.App_Code
             {
                 consignmentRequest.GenerateConnoteCounter += 1;
                 orderId = GenerateOrderId(consignmentRequest);
-                SdsBabyConnote sdsBabyConnote =  GetConnoteWithOrWithoutBaby(orderId, 0, emptyConnote);
+                SdsBabyConnote sdsBabyConnote = GetConnoteWithOrWithoutBaby(orderId, 0, emptyConnote);
                 var sdsCounter = 0;
                 foreach (var consignment in consignmentRequest.Consignments)
                 {
@@ -461,6 +461,29 @@ namespace web.sph.App_Code
                 {
                     if (!string.IsNullOrEmpty(item.Pickup.Address.Postcode))
                     {
+                        string timeReady = item.Pickup.DateReady.ToShortTimeString();
+                        timeReady = SanitizeShortTimeString(timeReady);
+                        string timeClose = item.Pickup.DateClose.ToShortTimeString();
+                        timeClose = SanitizeShortTimeString(timeClose);
+
+                        DateTime currentTime = DateTime.Now;
+                        DateTime cutOffTime = DateTime.ParseExact("12:00 PM", "hh:mm tt", CultureInfo.InvariantCulture);
+                        DateTime tReady = DateTime.ParseExact(timeReady, "hh:mm tt", CultureInfo.InvariantCulture);
+                        DateTime tClose = DateTime.ParseExact(timeClose, "hh:mm tt", CultureInfo.InvariantCulture);
+                        DateTime pickupDate;
+                        if (currentTime < cutOffTime)
+                        {
+                            item.Pickup.DateReady = tReady;
+                            item.Pickup.DateClose = tClose;
+                            pickupDate = DateTime.Today;
+                        }
+                        else
+                        {
+                            item.Pickup.DateReady = tReady.AddDays(1);
+                            item.Pickup.DateClose = tClose.AddDays(1);
+                            pickupDate = DateTime.Today.AddDays(1);
+                        }
+
                         var client = new HttpClient();
                         client.DefaultRequestHeaders.Add("X-User-Key", m_sdsSecretKey_PickupWebApi);
                         var url = new StringBuilder();
@@ -483,39 +506,25 @@ namespace web.sph.App_Code
                         url.Append($"&totParcelF={item.Pickup.TotalParcel}");
                         url.Append($"&totQuantityF={item.Pickup.TotalQuantity}");
                         url.Append($"&totWeightF={item.Pickup.TotalWeight}");
-                        url.Append($"&accNoF=ENTT-OST-{item.Id}");
-                        string timeReady = item.Pickup.DateReady.ToShortTimeString();
-                        timeReady = SanitizeShortTimeString(timeReady);
-                        string timeClose = item.Pickup.DateClose.ToShortTimeString();
-                        timeClose = SanitizeShortTimeString(timeClose);
+                        if (userProfile.Designation == "No contract customer")
+                        {
+                            url.Append($"&accNoF=ENTT-OST-{item.UserId}");
+                            url.Append($"&typeF=OE");
+                        }
+                        else
+                        {
+                            url.Append($"&accNoF={item.UserId}");
+                            url.Append($"&typeF=CE");
+                        }
+                        url.Append($"&pickup_dateF={pickupDate.ToString("yyyy/MM/dd hh:mm:ss tt")}");
                         url.Append($"&_readyF={timeReady}");
                         url.Append($"&_closeF={timeClose}");
 
                         var output = await client.GetStringAsync($"{m_sdsBaseUrl}/{url.ToString()}");
-
                         var json = JObject.Parse(output);
                         var sdsPickup = new SdsPickup(json);
-
                         if (sdsPickup.StatusCode == "00")
                         {
-                            DateTime currentTime = DateTime.Now;
-                            DateTime cutOffTime = DateTime.ParseExact("12:00 PM", "hh:mm tt",
-                                        CultureInfo.InvariantCulture);
-                            DateTime tReady = DateTime.ParseExact(timeReady, "hh:mm tt",
-                                                       CultureInfo.InvariantCulture);
-                            DateTime tClose = DateTime.ParseExact(timeClose, "hh:mm tt",
-                                                                CultureInfo.InvariantCulture);
-
-                            if (currentTime < cutOffTime)
-                            {
-                                item.Pickup.DateReady = tReady;
-                                item.Pickup.DateClose = tClose;
-                            }
-                            else
-                            {
-                                item.Pickup.DateReady = tReady.AddDays(1);
-                                item.Pickup.DateClose = tClose.AddDays(1);
-                            }
                             item.Pickup.Number = sdsPickup.PickupNumber;
                             item.Pickup.TotalDocument = 0;
                             item.Pickup.TotalMerchandise = 0;
