@@ -103,35 +103,20 @@ function (context, logger, router, config, app, system, koList, crCart) {
             $("#user-detail-pickup-address-dialog").modal('hide');
             saveUserDetail();
         },
-        resetUserDetailProfile = function () {
-            resetUserDetail(entity().Profile);
+        closeUserDetailProfile = function () {
+            $("#user-detail-profile-dialog").modal('hide');
         },
-        resetUserDetailBillingAddress = function () {
-            resetUserDetail(entity().BillingAddress);
+        closeUserDetailBillingAddress = function () {
+            $("#user-detail-billing-address-dialog").modal('hide');
         },
-        resetUserDetailPickupAddress = function () {
-            resetUserDetail(entity().PickupAddress);
+        closeUserDetailPickupAddress = function () {
+            $("#user-detail-pickup-address-dialog").modal('hide');
         },
         copyUserDetailProfileBillingAddress = function () {
             copyUserDetail(entity().Profile, entity().BillingAddress);
         },
         copyUserDetailProfilePickupAddress = function () {
             copyUserDetail(entity().Profile, entity().PickupAddress);
-        },
-        resetUserDetail = function (reset) {
-            reset().CompanyName("");
-            reset().ContactPerson("");
-            reset().ContactInformation().Email("");
-            reset().ContactInformation().ContactNumber("");
-            reset().ContactInformation().AlternativeContactNumber("");
-            reset().Address().Address1("");
-            reset().Address().Address2("");
-            reset().Address().Address3("");
-            reset().Address().Address4("");
-            reset().Address().City("");
-            reset().Address().State("");
-            reset().Address().Country("");
-            reset().Address().Postcode("");
         },
         copyUserDetail = function (from, to) {
             to().CompanyName(from().CompanyName());
@@ -212,9 +197,9 @@ function (context, logger, router, config, app, system, koList, crCart) {
         saveUserDetailProfile: saveUserDetailProfile,
         saveUserDetailBillingAddress: saveUserDetailBillingAddress,
         saveUserDetailPickupAddress: saveUserDetailPickupAddress,
-        resetUserDetailProfile: resetUserDetailProfile,
-        resetUserDetailBillingAddress: resetUserDetailBillingAddress,
-        resetUserDetailPickupAddress: resetUserDetailPickupAddress,
+        closeUserDetailProfile: closeUserDetailProfile,
+        closeUserDetailBillingAddress: closeUserDetailBillingAddress,
+        closeUserDetailPickupAddress: closeUserDetailPickupAddress,
         copyUserDetailProfileBillingAddress: copyUserDetailProfileBillingAddress,
         copyUserDetailProfilePickupAddress: copyUserDetailProfilePickupAddress,
         availableCountries: availableCountries,
