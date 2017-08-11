@@ -12,6 +12,8 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             pickupReadyMM = ko.observable(),
             pickupCloseHH = ko.observable(),
             pickupCloseMM = ko.observable(),
+            selectedConsignments = ko.observableArray([]),
+            checkAll = ko.observable(false),
             id = ko.observable(),
             headers = {},
             activate = function (entityId) {
@@ -19,6 +21,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 //validate Personal Details, Default Billing Address, Default Pickup Address
                 var goToDashboard = false;
                 var userDetail = ko.observable();
+                checkAll(false);
                 $.ajax({
                     url: "/api/user-details/user-profile",
                     method: "GET",
@@ -125,14 +128,47 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                                     app.showMessage("Parcel has been successfully removed.", "OST", ["Close"]).done(function () {
                                         activate(id());
                                     });
-                                } else {
-                                    return Task.fromResult(false);
                                 }
                             });
-                        } else {
-                            tcs.resolve(false);
                         }
                     });
+            },
+            deleteConsignments = function () {                
+                return app.showMessage("Are you sure you want to remove selected parcels? This action cannot be undone.", "OST", ["Yes", "No"])
+                    .done(function (dialogResult) {
+                        if (dialogResult === "Yes") {
+                            // delete selected consignments
+                            for (var i = 0; i < selectedConsignments().length; i++) {
+                                entity().Consignments.remove(selectedConsignments()[i]);
+                            }
+                            selectedConsignments.removeAll();
+                            return defaultCommand().then(function (result) {
+                                if (result.success) {
+                                    app.showMessage("Parcels has been successfully removed.", "OST", ["Close"]).done(function () {
+                                        activate(id());
+                                    });
+                                }
+                            });
+                        }
+                    })
+            },
+            toggleCheckAll = function () {
+                var count = 0;
+                $("input[name^='check-consignment-']").each(function () {
+                    if (!checkAll()) {
+                        if (!$(this).is(":checked")) {
+                            $(this).click();
+                        }
+                    } else {
+                        if ($(this).is(":checked")) {
+                            $(this).click();
+                        }
+                    }
+                    count++;
+                });
+                if (count) {
+                    checkAll(!checkAll());
+                }
             },
             toggleShowBusyLoadingDialog = function (dialogtText) {
                 //toggle busy loading dialog
@@ -353,6 +389,8 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             errors: errors,
             entity: entity,
             deleteConsignment: deleteConsignment,
+            deleteConsignments: deleteConsignments,
+            toggleCheckAll: toggleCheckAll,
             generateConNotes: generateConNotes,
             printNddConnote: printNddConnote,
             printEmsConnote: printEmsConnote,
@@ -368,6 +406,8 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             pickupReadyMM: pickupReadyMM,
             pickupCloseHH: pickupCloseHH,
             pickupCloseMM: pickupCloseMM,
+            selectedConsignments: selectedConsignments,
+            checkAll: checkAll,
             saveCommand: saveCommand
         };
         return vm;
