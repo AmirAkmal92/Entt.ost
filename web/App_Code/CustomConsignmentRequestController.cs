@@ -813,6 +813,71 @@ namespace web.sph.App_Code
             return Json(new { success = true, status = "OK", path = Path.GetFileName(temp) });
         }
 
+        [HttpPut]
+        [Route("export-tallysheet/{id}")]
+        public async Task<IHttpActionResult> ExportTallysheet(string id)
+        {
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
+            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
+
+            var item = lo.Source;
+
+            var temp = Path.GetTempFileName() + ".xlsx";
+            System.IO.File.Copy(System.Web.HttpContext.Current.Server.MapPath("~/Content/Files/tallysheet_format_template.xlsx"), temp, true);
+
+            var file = new FileInfo(temp);
+            var excel = new ExcelPackage(file);
+            var ws = excel.Workbook.Worksheets["Consignments"];
+            if (null == ws) return Ok(new { success = false, status = $"Cannot open Worksheet Consignments" });
+
+            var row = 2;
+            var consignmentIndexNumber = 1;
+
+            foreach (var consignment in item.Consignments)
+            {
+                if (!string.IsNullOrEmpty(consignment.ConNote))
+                {
+                    var connoteNumbers = new StringBuilder();
+                    connoteNumbers.Append($"{consignment.ConNote}");
+                    foreach (var babyConnote in consignment.BabyConnotes)
+                    {
+                        connoteNumbers.Append($", {babyConnote}");
+                    }
+
+                    var receiverAddress = new StringBuilder();
+                    receiverAddress.Append($"{consignment.Penerima.Address.Address1}");
+                    receiverAddress.Append($" {consignment.Penerima.Address.Address2}");
+                    receiverAddress.Append($", {consignment.Penerima.Address.Address3}");
+                    receiverAddress.Append($" {consignment.Penerima.Address.Address4}");
+                    receiverAddress.Append($", {consignment.Penerima.Address.Postcode}");
+                    receiverAddress.Append($" {consignment.Penerima.Address.City}");
+                    receiverAddress.Append($", {consignment.Penerima.Address.State}");
+                    receiverAddress.Append($" {consignment.Penerima.Address.Country}");
+
+                    ws.Cells[row, 1].Value = consignmentIndexNumber;
+                    ws.Cells[row, 2].Value = DateTime.Now.ToString("dd/MM/yyyy");
+                    ws.Cells[row, 3].Value = connoteNumbers;
+                    ws.Cells[row, 4].Value = consignment.Penerima.ContactPerson;
+                    ws.Cells[row, 5].Value = receiverAddress;
+                    ws.Cells[row, 6].Value = consignment.Penerima.ContactInformation.Email;
+                    ws.Cells[row, 7].Value = consignment.Penerima.ContactInformation.ContactNumber;
+                    ws.Cells[row, 8].Value = consignment.Produk.Weight;
+                    ws.Cells[row, 9].Value = consignment.Produk.Width;
+                    ws.Cells[row, 10].Value = consignment.Produk.Length;
+                    ws.Cells[row, 11].Value = consignment.Produk.Height;
+                    ws.Cells[row, 12].Value = consignment.Produk.Description;
+                }
+
+                row++;
+                consignmentIndexNumber++;
+            }
+
+            excel.Save();
+            excel.Dispose();
+
+            return Json(new { success = true, status = "OK", path = Path.GetFileName(temp) });
+        }
+
         private static async Task<LoadData<ConsigmentRequest>> GetConsigmentRequest(string id)
         {
             var repos = ObjectBuilder.GetObject<IReadonlyRepository<ConsigmentRequest>>();
