@@ -38,9 +38,10 @@ function (context, logger, router, chart, config, app, koList, partial, contactG
                             var storeId = ko.unwrap(dialog.item().storeId);
                             context.post("{}", "address-books/import-contacts/" + storeId).done(function (result) {
                                 console.log(result);
-                                var dialogMessage = "Contacts successfully imported from file.";
+                                var dialogMessage = "File successfully imported.";
+                                dialogMessage += " " + result.status;
                                 if (!result.success) {
-                                    dialogMessage = "Contacts unsuccessfully imported from file.";
+                                    dialogMessage = "File unsuccessfully imported.";
                                     dialogMessage += " " + result.status;
                                 }
                                 app.showMessage(dialogMessage, "OST", ["Close"]).done(function () {

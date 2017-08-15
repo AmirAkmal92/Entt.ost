@@ -230,28 +230,10 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 }
             },
             printNddConnote = function (data) {
-                var msg = "";
-                msg += "    <p>Before you start printing, please set your printer setting as below:</p>";
-                msg += "    <ul class='list-unstyled'>";
-                msg += "        <li><i class='fa fa-chrome'></i> <a href='../../Content/Files/Chrome_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Chrome guide</li>";
-                msg += "        <li><i class='fa fa-firefox'></i> <a href='../../Content/Files/FireFox_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Firefox guide</li>";
-                msg += "        <li><i class='fa fa-opera'></i> <a href='../../Content/Files/Opera_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Opera guide</li>";
-                msg += "    </ul>";
-                app.showMessage(msg, "OST", ["Close"]).done(function () {
-                    window.open('/ost/print-domestic-connote/consignment-requests/' + id() + '/consignments/' + data.WebId());
-                });
+                window.open('/ost/print-domestic-connote/consignment-requests/' + id() + '/consignments/' + data.WebId());
             },
             printEmsConnote = function (data) {
-                var msg = "";
-                msg += "    <p>Before you start printing, please set your printer setting as below:</p>";
-                msg += "    <ul class='list-unstyled'>";
-                msg += "        <li><i class='fa fa-chrome'></i> <a href='../../Content/Files/Chrome_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Chrome guide</li>";
-                msg += "        <li><i class='fa fa-firefox'></i> <a href='../../Content/Files/FireFox_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Firefox guide</li>";
-                msg += "        <li><i class='fa fa-opera'></i> <a href='../../Content/Files/Opera_Browser_Printer_Setting.pdf' target='_blank'>Donwload</a> Opera guide</li>";
-                msg += "    </ul>";
-                app.showMessage(msg, "OST", ["Close"]).done(function () {
-                    window.open('/ost/print-international-connote/consignment-requests/' + id() + '/consignments/' + data.WebId());
-                });
+                window.open('/ost/print-international-connote/consignment-requests/' + id() + '/consignments/' + data.WebId());
             },
             launchSchedulerDetailDialog = function () {
                 // always check for pickup location before scheduling
@@ -330,9 +312,10 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                                 var storeId = ko.unwrap(dialog.item().storeId);
                                 context.post("{}", "/consignment-request/import-consignments/" + id() + "/store-id/" + storeId).done(function (result) {
                                     console.log(result);
-                                    var dialogMessage = "Parcels successfully imported from file.";
+                                    var dialogMessage = "File successfully imported.";
+                                    dialogMessage += " " + result.status;
                                     if (!result.success) {
-                                        dialogMessage = "Parcels unsuccessfully imported from file.";
+                                        dialogMessage = "File unsuccessfully imported.";
                                         dialogMessage += " " + result.status;
                                     }
                                     app.showMessage(dialogMessage, "OST", ["Close"]).done(function () {

@@ -210,9 +210,10 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                                 var storeId = ko.unwrap(dialog.item().storeId);
                                 context.post("{}", "/consignment-request/import-consignments/" + id() + "/store-id/" + storeId).done(function (result) {
                                     console.log(result);
-                                    var dialogMessage = "Parcels successfully imported from file.";
+                                    var dialogMessage = "File successfully imported.";
+                                    dialogMessage += " " + result.status;
                                     if (!result.success) {
-                                        dialogMessage = "Parcels unsuccessfully imported from file.";
+                                        dialogMessage = "File unsuccessfully imported.";
                                         dialogMessage += " " + result.status;
                                     }
                                     app.showMessage(dialogMessage, "OST", ["Close"]).done(function () {
