@@ -9,6 +9,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         consignment = ko.observable(),
         penerima = ko.observable(),
         availableCountries = ko.observableArray(),
+        availableCountriesCount = 0,
         errors = ko.observableArray(),
         form = ko.observable(new bespoke.sph.domain.EntityForm()),
         id = ko.observable(),
@@ -100,15 +101,9 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     });
                 }
             }).then(function () {
-                var setToMY = false;
-                if (consignment().Penerima().Address().Country() === undefined) {
-                    setToMY = true;
-                }
                 context.get("/api/countries/available-country?size=300").done(function (cList) {
+                    availableCountriesCount = cList._count;
                     availableCountries(cList._results);
-                    if (setToMY) {
-                        consignment().Penerima().Address().Country("MY");
-                    }
                 });
             }).always(function () {
                 if (typeof partial.activate === "function") {
@@ -230,6 +225,15 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     consignment().Penerima().ContactInformation().ContactNumber(contact.ContactInformation.ContactNumber);
                 });
         },
+        optionsAfterRenderCountryCount = 0,
+        optionsAfterRenderCountry = function () {
+            optionsAfterRenderCountryCount++;
+            if (optionsAfterRenderCountryCount >= availableCountriesCount) {
+                if (consignment().Penerima().Address().Country() === undefined) {
+                    consignment().Penerima().Address().Country("MY");
+                }
+            }
+        },
         compositionComplete = function () {
 
         },
@@ -264,6 +268,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         compositionComplete: compositionComplete,
         entity: entity,
         availableCountries: availableCountries,
+        optionsAfterRenderCountry: optionsAfterRenderCountry,
         errors: errors,
         crid: crid,//temp
         cid: cid,//temp

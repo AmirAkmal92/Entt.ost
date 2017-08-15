@@ -121,7 +121,7 @@
                                         </small>
                                     </label>
                                     <div class="col-md-8">
-                                        <input required class="form-control input-sm" type="text" data-bind="value: ContactInformation().ContactNumber" name="ContactInformation.ContactNumber">
+                                        <input required class="form-control input-sm" type="text" data-rule-number="true" data-rule-required="true" data-rule-minlength="7" data-rule-maxlength="12" data-bind="value: ContactInformation().ContactNumber" name="ContactInformation.ContactNumber">
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +131,7 @@
                                 <div class="form-group" data-bind="visible:true">
                                     <label class="control-label col-md-4"><small>Alternative Contact No.</small></label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control input-sm" data-bind="value: ContactInformation().AlternativeContactNumber" name="ContactInformation.AlternativeContactNumber">
+                                        <input type="text" data-rule-number="true" data-rule-minlength="7" data-rule-maxlength="12" class="form-control input-sm" data-bind="value: ContactInformation().AlternativeContactNumber" name="ContactInformation.AlternativeContactNumber">
                                     </div>
                                 </div>
                             </div>
@@ -239,7 +239,7 @@
                                         </small>
                                     </label>
                                     <div class="col-md-8">
-                                        <select class="form-control input-sm" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Address().Country" name="Address.Country" required></select>
+                                        <select class="form-control input-sm" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Address().Country, optionsAfterRender: $root.optionsAfterRenderCountry" name="Address.Country" required disabled></select>
                                     </div>
                                 </div>
                             </div>

@@ -7,6 +7,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         availableCountries = ko.observableArray(),
+        availableCountriesCount = 0,
         isPoscodeValid = ko.observable(false),
         errors = ko.observableArray(),
         id = ko.observable(),
@@ -129,15 +130,9 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     });
                 }
             }).then(function () {
-                var setToMY = false;
-                if (entity().Pickup().Address().Country() === undefined) {
-                    setToMY = true;
-                }
                 context.get("/api/countries/available-country?size=300").done(function (cList) {
+                    availableCountriesCount = cList._count;
                     availableCountries(cList._results);
-                    if (setToMY) {
-                        entity().Pickup().Address().Country("MY");
-                    }
                 });
             }).always(function () {
                 context.get("/api/countries/available-country?size=300").done(function (cList) {
@@ -268,6 +263,15 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                    entity().Pickup().ContactInformation().ContactNumber(contact.ContactInformation.ContactNumber);
                });
         },
+        optionsAfterRenderCountryCount = 0,
+        optionsAfterRenderCountry = function () {
+            optionsAfterRenderCountryCount++;
+            if (optionsAfterRenderCountryCount >= availableCountriesCount) {
+                if (entity().Pickup().Address().Country() === undefined) {
+                    entity().Pickup().Address().Country("MY");
+                }
+            }
+        },
         compositionComplete = function () {
 
         },
@@ -330,6 +334,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         compositionComplete: compositionComplete,
         entity: entity,
         availableCountries: availableCountries,
+        optionsAfterRenderCountry: optionsAfterRenderCountry,
         isPoscodeValid: isPoscodeValid,
         errors: errors,
         saveCommand: saveCommand

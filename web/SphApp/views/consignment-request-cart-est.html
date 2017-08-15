@@ -200,7 +200,7 @@
                                 </thead>
                                 <tbody>
                                     <!--ko foreach: Consignments-->
-                                    <tr>
+                                    <tr data-bind="css: ($root.errorNum() == $index()) ? 'danger' : 'default'">
                                         <td>
                                             <!--ko if: ConNote() != null-->
                                             <input type="checkbox" disabled />
@@ -266,7 +266,6 @@
                                                     <i class="icon-printer"></i>
                                                 </a>
                                                 <!--/ko-->
-
                                             </center>
                                         </td>
                                     </tr>

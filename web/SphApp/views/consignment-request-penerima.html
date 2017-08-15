@@ -147,7 +147,7 @@
                                         </small>
                                     </label>
                                     <div class="col-md-8">
-                                        <input required class="form-control input-sm" type="text" data-bind="value: Penerima().ContactInformation().ContactNumber" name="Penerima.ContactInformation.ContactNumber">
+                                        <input required class="form-control input-sm" type="text" data-rule-number="true" data-rule-required="true" data-rule-minlength="7" data-rule-maxlength="12" data-bind="value: Penerima().ContactInformation().ContactNumber" name="Penerima.ContactInformation.ContactNumber">
                                     </div>
                                 </div>
                             </div>
@@ -157,7 +157,7 @@
                                 <div class="form-group" data-bind="visible:true">
                                     <label class="control-label col-md-4"><small>Alternative Contact No.</small></label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control input-sm" data-bind="value: Penerima().ContactInformation().AlternativeContactNumber" name="Penerima.ContactInformation.AlternativeContactNumber">
+                                        <input type="text" class="form-control input-sm" data-rule-number="true" data-rule-minlength="7" data-rule-maxlength="12" data-bind="value: Penerima().ContactInformation().AlternativeContactNumber" name="Penerima.ContactInformation.AlternativeContactNumber">
                                     </div>
                                 </div>
                             </div>
@@ -269,8 +269,7 @@
                                         </small>
                                     </label>
                                     <div class="col-md-8">
-                                        <!--<input type="text" class="form-control" data-bind="value: Penerima().Address().Country, visible :true, autocomplete :{ entity:'Country', field :'Name', query:'Id ne \'0\'' }" name="Penerima.Address.Country">-->
-                                        <select class="form-control input-sm" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Penerima().Address().Country" required></select>
+                                        <select class="form-control input-sm" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Penerima().Address().Country, optionsAfterRender: $root.optionsAfterRenderCountry" data-rule-required="true" style="text-transform: capitalize;" required></select>
                                     </div>
                                 </div>
                             </div>

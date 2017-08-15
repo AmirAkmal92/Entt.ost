@@ -83,7 +83,7 @@
                                         <span class="required" aria-required="true"> * </span>
                                     </label>
                                     <div class="col-md-9">
-                                        <input class="form-control" type="text" placeholder="Contact Number" data-bind="value: ContactInformation().ContactNumber" name="ContactInformation.ContactNumber" required>
+                                        <input class="form-control" type="text" data-rule-number="true" data-rule-required="true" data-rule-minlength="7" data-rule-maxlength="12" placeholder="Contact Number" data-bind="value: ContactInformation().ContactNumber" name="ContactInformation.ContactNumber" required>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                                         Alternative Contact No.
                                     </label>
                                     <div class="col-md-9">
-                                        <input class="form-control" type="text" placeholder="Alternative Contact Number" data-bind="value: ContactInformation().AlternativeContactNumber" name="ContactInformation.AlternativeContactNumber">
+                                        <input class="form-control" type="text" data-rule-number="true" data-rule-minlength="7" data-rule-maxlength="12" placeholder="Alternative Contact Number" data-bind="value: ContactInformation().AlternativeContactNumber" name="ContactInformation.AlternativeContactNumber">
                                     </div>
                                 </div>
                             </div>
@@ -221,7 +221,7 @@
                                         <span class="required" aria-required="true"> * </span>
                                     </label>
                                     <div class="col-md-9">
-                                        <select class="form-control" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Address().Country, entity" name="Address.Country" required></select>
+                                        <select class="form-control" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Address().Country, entity, optionsAfterRender: $root.optionsAfterRenderCountry" name="Address.Country" required></select>
                                     </div>
                                 </div>
                             </div>
