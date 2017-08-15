@@ -14,6 +14,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             pickupCloseMM = ko.observable(),
             selectedConsignments = ko.observableArray([]),
             checkAll = ko.observable(false),
+            errorNum = ko.observable(-1),
             id = ko.observable(),
             headers = {},
             activate = function (entityId) {
@@ -22,6 +23,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 var goToDashboard = false;
                 var userDetail = ko.observable();
                 checkAll(false);
+                errorNum(-1);
                 $.ajax({
                     url: "/api/user-details/user-profile",
                     method: "GET",
@@ -183,11 +185,13 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                         || entity().Consignments()[i].Produk().Width() == null || entity().Consignments()[i].Produk().Height() == null
                         || entity().Consignments()[i].Penerima().Address().Postcode() == null) {
                         notComplete = true;
+                        errorNum(i);
                         break;
                     }
                 }
                 if (notComplete) {
-                    app.showMessage("Some parcels are yet to be finalized. Please verify Sender, Receiver, Parcel Information and Price before payment can be made.", "OST", ["Close"]);
+                    app.showMessage("Parcel no " + (errorNum() + 1) + " are yet to be finalized. Please verify Sender, Receiver and Parcel Information before consignment note can be generated.", "OST", ["Close"]);
+                       
                 }
                 else {
                     for (var i = 0; i < entity().Consignments().length; i++) {
@@ -408,6 +412,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             pickupCloseMM: pickupCloseMM,
             selectedConsignments: selectedConsignments,
             checkAll: checkAll,
+            errorNum: errorNum,
             saveCommand: saveCommand
         };
         return vm;
