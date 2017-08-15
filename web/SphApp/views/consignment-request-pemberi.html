@@ -157,7 +157,7 @@
                                         <small>Contact No.<span class="text-danger"> * </span></small>
                                     </label>
                                     <div class="col-md-8">
-                                        <input class="form-control input-sm" type="text" placeholder="Contact Number" data-bind="value: Pemberi().ContactInformation().ContactNumber, disable: $root.isUsingPickupAddress()" name="ContactInformation.ContactNumber" required>
+                                        <input class="form-control input-sm" type="text" data-rule-number="true" data-rule-required="true" data-rule-minlength="7" data-rule-maxlength="12" placeholder="Contact Number" data-bind="value: Pemberi().ContactInformation().ContactNumber, disable: $root.isUsingPickupAddress()" name="ContactInformation.ContactNumber" required>
                                     </div>
                                 </div>
                             </div>
@@ -179,7 +179,7 @@
                                         <small>Alt. Contact No.</small>
                                     </label>
                                     <div class="col-md-8">
-                                        <input class="form-control input-sm" type="text" placeholder="Alternative Contact Number" data-bind="value: Pemberi().ContactInformation().AlternativeContactNumber, disable: $root.isUsingPickupAddress()" name="ContactInformation.AlternativeContactNumber">
+                                        <input class="form-control input-sm" type="text" placeholder="Alternative Contact Number" data-rule-number="true" data-rule-minlength="7" data-rule-maxlength="12" data-bind="value: Pemberi().ContactInformation().AlternativeContactNumber, disable: $root.isUsingPickupAddress()" name="ContactInformation.AlternativeContactNumber">
                                     </div>
                                 </div>
                             </div>
@@ -277,7 +277,7 @@
                                         <small>Country<span class="text-danger"> * </span></small>
                                     </label>
                                     <div class="col-md-8">
-                                        <select required class="form-control input-sm" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Pemberi().Address().Country, disable: $root.isUsingPickupAddress()" data-rule-required="true" style="text-transform: capitalize;"></select>
+                                        <select required class="form-control input-sm" data-bind="options: $root.availableCountries, optionsText: 'Name', optionsValue: 'Abbreviation', value: Pemberi().Address().Country, disable: $root.isUsingPickupAddress(), optionsAfterRender: $root.optionsAfterRenderCountry" data-rule-required="true" style="text-transform: capitalize;"></select>
                                     </div>
                                 </div>
                             </div>
