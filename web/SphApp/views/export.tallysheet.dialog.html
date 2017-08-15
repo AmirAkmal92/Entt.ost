@@ -1,0 +1,40 @@
+<section class="view-model-modal" id="export-tallysheet-dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" data-bind="click : cancelClick">&times;</button>
+                <h3>
+                    <i class="fa fa-cloud-download font-yellow-casablanca"></i> <span class="font-yellow-casablanca"> Download Tallysheet</span>
+                </h3>
+            </div>
+            <div class="modal-body">
+                <h4>
+                    <ol>
+                        <!--ko if: moduleType() == "shipments"-->
+                            <li>This will create a file containing all <strong>consignments that are ready for Shipment</strong>.</li>
+                        <!--/ko-->
+                        <!--ko if: moduleType() == "pickups"-->
+                            <li>This will create a file containing all <strong>consignments that were already Picked-up</strong>.</li>
+                        <!--/ko-->
+                        <li>The file is in *.xlsx format and can be opened by <a href="https://en.wikipedia.org/wiki/Microsoft_Excel" target="_blank">Microsoft Excel</a> or any other similar program.</li>
+                        <li>Please allow pop-ups.</li>
+                    </ol>
+                </h4>
+                <em>
+                    *The file will be open in a new window.
+                    However, if the pop-up blocker is on, the new window will not open.
+                </em>
+            </div>
+            <div class="modal-footer">
+                <style>
+                    a {
+                        text-shadow: none;
+                        color: #ff6a00;
+                    }
+                </style>
+                <input data-dismiss="modal" type="submit" class="btn btn-circle yellow-casablanca" value="Download" data-bind="click: okClick" />
+                <a href="#" class="btn btn-circle btn-default" data-dismiss="modal" data-bind="click : cancelClick">Cancel</a>
+            </div>
+        </div>
+    </div>
+</section>
