@@ -6,11 +6,14 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         grandTotal = ko.observable(),
         isPickupDateTimeValid = ko.observable(false),
+        selectedConsignments = ko.observableArray([]),
+        checkAll = ko.observable(false),
         errors = ko.observableArray(),
         id = ko.observable(),
         headers = {},
         activate = function (entityId) {
             id(entityId);
+            checkAll(false);
             //validate Personal Details, Default Billing Address, Default Pickup Address
             var goToDashboard = false;
             var userDetail = ko.observable();
@@ -130,6 +133,43 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
                     }
                 });
         },
+        deleteConsignments = function () {
+            return app.showMessage("Are you sure you want to remove selected parcels? This action cannot be undone.", "OST", ["Yes", "No"])
+                .done(function (dialogResult) {
+                    if (dialogResult === "Yes") {
+                        // delete selected consignments
+                        for (var i = 0; i < selectedConsignments().length; i++) {
+                            entity().Consignments.remove(selectedConsignments()[i]);
+                        }
+                        selectedConsignments.removeAll();
+                        return defaultCommand().then(function (result) {
+                            if (result.success) {
+                                app.showMessage("Parcels has been successfully removed.", "OST", ["Close"]).done(function () {
+                                    activate(id());
+                                });
+                            }
+                        });
+                    }
+                })
+        },
+        toggleCheckAll = function () {
+            var count = 0;
+            $("input[name^='check-consignment-']").each(function () {
+                if (!checkAll()) {
+                    if (!$(this).is(":checked")) {
+                        $(this).click();
+                    }
+                } else {
+                    if ($(this).is(":checked")) {
+                        $(this).click();
+                    }
+                }
+                count++;
+            });
+            if (count) {
+                checkAll(!checkAll());
+            }
+        },
         emptyConsignmentRequest = function () {
             return app.showMessage("Are you sure you want to empty cart? This action cannot be undone.", "OST", ["Yes", "No"])
                 .done(function (dialogResult) {
@@ -223,6 +263,10 @@ function (context, logger, router, system, chart, config, app, crCart, app2, dia
         entity: entity,
         grandTotal: grandTotal,
         deleteConsignment: deleteConsignment,
+        deleteConsignments: deleteConsignments,
+        toggleCheckAll: toggleCheckAll,
+        selectedConsignments: selectedConsignments,
+        checkAll: checkAll,
         emptyConsignmentRequest: emptyConsignmentRequest,
         importConsignments: importConsignments,
         goToSummary: goToSummary
