@@ -59,7 +59,6 @@
                     <div class="form-body">
                         <div class="row">
                             <div class="col-md-6">
-
                                 <div class="form-group">
                                     <label data-i18n="ItemCategory" class="col-md-3 control-label" for="c28f91ae-ae5d-448e-991f-5b4065d3464f"><small>Item Category<span class="required" aria-required="true">* </span></small></label>
                                     <div class="col-md-9">
@@ -107,7 +106,7 @@
                                         <input class="form-control input-sm" required type="text"
                                                placeholder="width in cm"
                                                data-bind="value: consignment().Produk().Width"
-                                               data-rule-number="true" data-rule-required="true"
+                                               data-rule-number="true" data-rule-required="true" data-rule-min="1"
                                                id="61040711-a759-4cf8-ea32-47b1cdee2f44" name="Produk.Width" />
                                     </div>
                                 </div>
@@ -117,7 +116,7 @@
                                         <input class="form-control input-sm" required type="text"
                                                placeholder="length in cm"
                                                data-bind="value: consignment().Produk().Length"
-                                               data-rule-number="true" data-rule-required="true"
+                                               data-rule-number="true" data-rule-required="true" data-rule-min="1"
                                                id="38c9d5fd-8458-4ce4-9575-da6edf8b0c9d" name="Produk.Length">
                                     </div>
                                 </div>
@@ -127,25 +126,49 @@
                                         <input class="form-control input-sm" required type="text"
                                                placeholder="height in cm"
                                                data-bind="value: consignment().Produk().Height"
-                                               data-rule-number="true" data-rule-required="true"
+                                               data-rule-number="true" data-rule-required="true" data-rule-min="1"
                                                id="a044e320-f819-4adf-fc9d-f130079818fe" name="Produk.Height">
                                     </div>
                                 </div>
                                 <div class="form-group" data-bind="visible:true">
-                                    <label class="col-md-3 control-label">
-                                        <small>Volumetric Weight</small>
+                                    <label class="col-md-3 control-label" data-toggle="collapse" data-target="#accordion1_1">
+                                        <small>
+                                            <a class="btn" title="Disclaimer"><i class="fa fa-question-circle" style="color:#ff6a00"></i></a>
+                                            Volumetric Weight
+
+                                        </small>
                                     </label>
                                     <div class="col-md-9">
                                         <input class="form-control input-sm" type="text" placeholder="volumetric weight in kg" data-rule-number="true" data-bind="value: $root.volumetric().toFixed(2)" name="Volumetric" disabled />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-3">&nbsp;</div>
+                                    <div class="col-md-3">
+                                        &nbsp;
+                                    </div>
                                     <div class="col-md-9">
                                         <button class="btn btn-circle yellow-casablanca" data-bind="click: calculateVolumetric">
                                             <i class="fa fa-calculator"></i>
                                             Calculate Volumetric
                                         </button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-1 control-label">&nbsp;</label>
+                                    <div class="col-md-11">
+                                        <div id="accordion1_1" class="well collapse" aria-expanded="false">
+                                            <div class="note note-warning">
+                                                <h4 class="block">Disclaimer (Volumetric Weight)</h4>
+                                                <p>
+                                                    <ul>
+                                                        <li>
+                                                            Parcel weight will be determined by either actual or volumetric weight (VW) or whichever is higher.
+                                                            VW also applies if either one dimension is above 30cm.
+                                                        </li>
+                                                    </ul>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <br />
@@ -296,6 +319,18 @@
                                             </div>
                                             <!--/ko-->
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-3 control-label">
+                                        <small>Sum Insured (RM) </small>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input class="form-control input-sm" required type="text"
+                                               placeholder="Sum Insured"
+                                               data-bind="value: consignment().Produk().ValueAddedDeclaredValue, disable: $root.isInsuredValueAdded1() == false"
+                                               data-rule-number="true" name="Produk.ValueAddedDeclaredValue" />
+                                        <span class="help-block"><small><i>Only applicable if you've selected an insurance cover.</i></small></span>
                                     </div>
                                 </div>
                             </div>

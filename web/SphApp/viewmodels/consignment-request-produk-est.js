@@ -200,6 +200,7 @@ objectbuilders.app],
             produk = ko.observable(new bespoke.Ost_consigmentRequest.domain.Produk(system.guid())),
             errors = ko.observableArray(),
             volumetric = ko.observable(0),
+            isInsuredValueAdded1 = ko.observable(false),
             id = ko.observable(),
             crid = ko.observable(),
             cid = ko.observable(),
@@ -214,6 +215,7 @@ objectbuilders.app],
                 id(crId);
                 crid(crId);
                 cid(cId);
+                isInsuredValueAdded1(false);
                 volumetric(0.00);
                 var tcs = new $.Deferred();
                 if (!crId || crId === "0") {
@@ -367,6 +369,13 @@ objectbuilders.app],
                     }
                 });
 
+                consignment().Produk().Est().ValueAddedService1.subscribe(function (value) {
+                    if (value === "none") {
+                        isInsuredValueAdded1(false);
+                    } else {
+                        isInsuredValueAdded1(true);
+                    }
+                });
             },
             compositionComplete = function () {
 
@@ -411,6 +420,7 @@ objectbuilders.app],
             errors: errors,
             crid: crid,//temp
             cid: cid,//temp
+            isInsuredValueAdded1: isInsuredValueAdded1,
             consignment: consignment,
             saveCommand: saveCommand,
             estProductService: estProductService,
