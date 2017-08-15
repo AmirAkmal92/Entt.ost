@@ -7,6 +7,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
 
     var entity = ko.observable(new bespoke.Ost_addressBook.domain.AddressBook(system.guid())),
         availableCountries = ko.observableArray(),
+        availableCountriesCount = 0,
         errors = ko.observableArray(),
         form = ko.observable(new bespoke.sph.domain.EntityForm()),
         watching = ko.observable(false),
@@ -58,10 +59,8 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
                     }
                 }).always(function () {
                     context.get("/api/countries/available-country?size=300").done(function (cList) {
+                        availableCountriesCount = cList._count;
                         availableCountries(cList._results);
-                        if (entityId === "0") {
-                            entity().Address().Country("MY");
-                        }
                     });
                     if (typeof partial.activate === "function") {
                         partial.activate(ko.unwrap(entity))
@@ -141,9 +140,16 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
             if (typeof partial.attached === "function") {
                 partial.attached(view);
             }
-
         },
-
+        optionsAfterRenderCountryCount = 0,
+        optionsAfterRenderCountry = function () {
+            optionsAfterRenderCountryCount++;
+            if (optionsAfterRenderCountryCount >= availableCountriesCount) {
+                if (id() === "0") {
+                    entity().Address().Country("MY");
+                }
+            }
+        },
         compositionComplete = function () {
             $("[data-i18n]").each(function (i, v) {
                 var $label = $(v),
@@ -175,6 +181,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         config: config,
         attached: attached,
         compositionComplete: compositionComplete,
+        optionsAfterRenderCountry: optionsAfterRenderCountry,
         entity: entity,
         availableCountries: availableCountries,
         errors: errors,
