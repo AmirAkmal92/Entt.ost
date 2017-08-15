@@ -35,9 +35,6 @@
                             <i class="fa fa-archive"></i> Delete
                             <i class="fa fa-spin fa-circle-o-notch" style="display: none;"></i><i class="fa fa-warning" style="color: red; display: none;"></i>
                         </a>
-                        <a data-bind="command: $root.importConsignments" class="btn btn-circle yellow-casablanca">
-                            <i class="fa fa-cloud-upload"></i> Bulk Upload
-                        </a>
                         <a class="btn btn-circle yellow-casablanca" data-bind="click: $root.generateConNotes, visible: Consignments().length > 0">
                             <i class="fa fa-barcode"></i> Get Consignment Note
                         </a>
@@ -49,6 +46,12 @@
                             <span data-bind="visible: !$root.showPickupScheduler()">Show</span>
                             <span data-bind="visible: $root.showPickupScheduler()">Hide</span>
                             Pickup
+                        </a>
+                        <a data-bind="command: $root.importConsignments" class="btn btn-circle yellow-casablanca">
+                            <i class="fa fa-cloud-upload"></i> Bulk Upload
+                        </a>
+                        <a data-bind="click: $root.exportTallysheetShipment" class="btn btn-circle yellow-casablanca">
+                            <i class="fa fa-file-excel-o"></i> Download Tallysheet
                         </a>
                     </h3>
                 </div>

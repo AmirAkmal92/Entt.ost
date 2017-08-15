@@ -135,7 +135,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                         }
                     });
             },
-            deleteConsignments = function () {                
+            deleteConsignments = function () {
                 return app.showMessage("Are you sure you want to remove selected parcels? This action cannot be undone.", "OST", ["Yes", "No"])
                     .done(function (dialogResult) {
                         if (dialogResult === "Yes") {
@@ -191,7 +191,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 }
                 if (notComplete) {
                     app.showMessage("Parcel no " + (errorNum() + 1) + " are yet to be finalized. Please verify Sender, Receiver and Parcel Information before consignment note can be generated.", "OST", ["Close"]);
-                       
+
                 }
                 else {
                     for (var i = 0; i < entity().Consignments().length; i++) {
@@ -329,6 +329,41 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 });
                 return tcs.promise();
             },
+            exportTallysheetShipment = function () {
+                require(['viewmodels/export.tallysheet.dialog', 'durandal/app'], function (dialog, app2) {
+                    dialog.moduleType("shipments");
+                    app2.showDialog(dialog)
+                        .done(function (result) {
+                            if (!result) return;
+                            if (result === "OK") {
+                                generateTallysheetFromConsignments(ko.unwrap(entity().Id));
+                            }
+                        });
+                });
+            },
+            generateTallysheetFromConsignments = function (id) {
+                context.put({}, "/consignment-request/export-tallysheet/" + id)
+                    .fail(function (response) {
+                        if (response.status === 428) {
+                            // out of date conflict
+                            logger.error(result.message);
+                        }
+                        if (response.status === 422 && _(result.rules).isArray()) {
+                            _(result.rules).each(function (v) {
+                                errors(v.ValidationErrors);
+                            });
+                        }
+                        logger.error("There are errors in your entity, !!!");
+                    })
+                    .then(function (result) {
+                        if (result.status === "OK") {
+                            if (result.success) {
+                                var fileName = "Shipments_Tallysheet";
+                                window.open("/print-excel/file-path/" + result.path + "/file-name/" + fileName);
+                            }
+                        }
+                    });
+            },
             toggleShowPickupScheduler = function () {
                 showPickupScheduler(!showPickupScheduler());
             },
@@ -387,6 +422,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             sumConsignment: sumConsignment,
             schedulePickup: schedulePickup,
             importConsignments: importConsignments,
+            exportTallysheetShipment: exportTallysheetShipment,
             showPickupScheduler: showPickupScheduler,
             toggleShowPickupScheduler: toggleShowPickupScheduler,
             pickupReadyHH: pickupReadyHH,
