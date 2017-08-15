@@ -141,6 +141,7 @@ namespace web.sph.App_Code
             if (null == ws) return Ok(new { success = false, status = $"Cannot open Worksheet Addresses in {doc.FileName}." });
 
             var row = 2;
+            var countAddedAddressBook = 0;
             var name = ws.Cells[$"A{row}"].GetValue<string>();
             var email = ws.Cells[$"B{row}"].GetValue<string>();
             var postcode = ws.Cells[$"L{row}"].GetValue<string>();
@@ -184,6 +185,8 @@ namespace web.sph.App_Code
                 {
                     errors.Add(new { message = e.Message, contact = contact });
                 }
+
+                countAddedAddressBook += 1;
             }
 
             await store.DeleteAsync(storeId);
@@ -193,7 +196,7 @@ namespace web.sph.App_Code
 
             // wait until the worker process it
             await Task.Delay(1500);
-            return Ok(new { success = true, status = "OK" });
+            return Ok(new { success = true, status = $"{countAddedAddressBook} parcel(s) added." });
         }
 
         [HttpGet]

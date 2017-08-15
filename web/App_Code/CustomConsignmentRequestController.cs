@@ -173,7 +173,7 @@ namespace web.sph.App_Code
 
             var resultSuccess = true;
             var resultStatus = "OK";
-            
+
             var totalConsignments = consignmentRequest.Consignments.Count;
             var emptyConnote = 0;
             var emptyConnoteWithBaby = 0;
@@ -200,7 +200,7 @@ namespace web.sph.App_Code
                 consignmentRequest.GenerateConnoteCounter += 1;
                 orderId = GenerateOrderId(consignmentRequest);
                 consignmentRequest.ReferenceNo = orderId;
-                SdsBabyConnote sdsBabyConnote =  GetConnoteWithOrWithoutBaby(orderId, 0, emptyConnote);
+                SdsBabyConnote sdsBabyConnote = GetConnoteWithOrWithoutBaby(orderId, 0, emptyConnote);
                 var sdsCounter = 0;
                 foreach (var consignment in consignmentRequest.Consignments)
                 {
@@ -601,6 +601,7 @@ namespace web.sph.App_Code
                 if (null != ws)
                 {
                     var row = 2;
+                    var countAddedConsignment = 0;
                     var senderPostcode = ws.Cells[$"M{row}"].GetValue<string>();
                     var receiverPostcode = ws.Cells[$"Z{row}"].GetValue<string>();
                     var productWeigth = ws.Cells[$"AA{row}"].GetValue<string>();
@@ -670,7 +671,10 @@ namespace web.sph.App_Code
                            && !string.IsNullOrEmpty(productDescription);
 
                         item.Consignments.Add(consignment);
+                        countAddedConsignment += 1;
                     }
+
+                    resultStatus = $"{countAddedConsignment} parcel(s) added.";
 
                     try
                     {
