@@ -154,15 +154,15 @@
                             <address style="font-size: 11px;line-height: 2.1;margin-top: 6px;margin-bottom: 0px !important;">
                                 @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
                                 {
-                                <span class="text-uppercase" style="padding-left: 53px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 70px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</b></span><br />
-                                <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span><br />
-                                <span class="text-uppercase" style="padding-left: 72px;"><b><span>V30</span>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
+                                    <span class="text-uppercase" style="padding-left: 53px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 70px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</b></span><br />
+                                    <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span><br />
+                                    <span class="text-uppercase" style="padding-left: 72px;"><b><span>V30</span>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
                                 }
                                 else
                                 {
-                                <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
-                                <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
-                                <span class="text-uppercase" style="padding-left: 72px;">&nbsp;</span><br />
+                                    <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
+                                    <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
+                                    <span class="text-uppercase" style="padding-left: 72px;">&nbsp;</span><br />
                                 }
                             </address>
                         </td>
@@ -644,15 +644,15 @@
                             <address style="font-size: 11px;line-height: 2.1;margin-top: 6px;margin-bottom: 0px !important;">
                                 @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
                                 {
-                                <span class="text-uppercase" style="padding-left: 53px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 70px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</b></span><br />
-                                <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span><br />
-                                <span class="text-uppercase" style="padding-left: 72px;"><b><span>V30</span>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
+                                    <span class="text-uppercase" style="padding-left: 53px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 70px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</b></span><br />
+                                    <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span><br />
+                                    <span class="text-uppercase" style="padding-left: 72px;"><b><span>V30</span>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
                                 }
                                 else
                                 {
-                                <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
-                                <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
-                                <span class="text-uppercase" style="padding-left: 72px;">&nbsp;</span><br />
+                                    <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
+                                    <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
+                                    <span class="text-uppercase" style="padding-left: 72px;">&nbsp;</span><br />
                                 }
                             </address>
                         </td>
@@ -1213,13 +1213,13 @@
                         <td class="td-hide">col-03</td>
                         @if (Model.designation == "Contract customer")
                         {
-                        <td colspan="3">&nbsp;&nbsp;<span>@Html.Raw(Model.accountNo)</span></td>
+                            <td colspan="3">&nbsp;&nbsp;<span>@Html.Raw(Model.accountNo)</span></td>
                         }
                         else
                         {
-                        <td class="td-hide">col-04</td>
-                        <td class="td-hide">col-05</td>
-                        <td class="td-hide">col-06</td>
+                            <td class="td-hide">col-04</td>
+                            <td class="td-hide">col-05</td>
+                            <td class="td-hide">col-06</td>
                         }
                         <td class="td-hide">col-07</td>
                         <td class="td-hide">col-08</td>
@@ -1301,11 +1301,22 @@
                         <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Penerima.Address.Address2)</span></td>
                         <td class="td-hide">col-13</td>
                         <td class="td-hide">col-14</td>
-                        <td>&nbsp;&nbsp;<span>✓</span></td>
-                        <td class="td-hide">col-16</td>
-                        <td class="td-hide">col-17</td>
-                        <td class="td-hide">col-18</td>
-                        <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</span></td>
+                        @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
+                        {
+                            <td>&nbsp;&nbsp;<span>✓</span></td>
+                            <td class="td-hide">col-16</td>
+                            <td class="td-hide">col-17</td>
+                            <td class="td-hide">col-18</td>
+                            <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</span></td>
+                        }
+                        else
+                        {
+                            <td>&nbsp;&nbsp;<span>&nbsp;&nbsp;</span></td>
+                            <td class="td-hide">col-16</td>
+                            <td class="td-hide">col-17</td>
+                            <td class="td-hide">col-18</td>
+                            <td colspan="2">&nbsp;<span>&nbsp;</span></td>
+                        }
                         <td class="td-hide">col-21</td>
                         <td class="td-hide">col-22</td>
                         <td class="td-hide">col-23</td>
@@ -1784,11 +1795,22 @@
                         <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Penerima.Address.Address2)</span></td>
                         <td class="td-hide">col-13</td>
                         <td class="td-hide">col-14</td>
-                        <td>&nbsp;&nbsp;<span>✓</span></td>
-                        <td class="td-hide">col-16</td>
-                        <td class="td-hide">col-17</td>
-                        <td class="td-hide">col-18</td>
-                        <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</span></td>
+                        @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
+                        {
+                            <td>&nbsp;&nbsp;<span>✓</span></td>
+                            <td class="td-hide">col-16</td>
+                            <td class="td-hide">col-17</td>
+                            <td class="td-hide">col-18</td>
+                            <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</span></td>
+                        }
+                        else
+                        {
+                            <td>&nbsp;&nbsp;<span>&nbsp;&nbsp;</span></td>
+                            <td class="td-hide">col-16</td>
+                            <td class="td-hide">col-17</td>
+                            <td class="td-hide">col-18</td>
+                            <td colspan="2">&nbsp;<span>&nbsp;</span></td>
+                        }
                         <td class="td-hide">col-21</td>
                         <td class="td-hide">col-22</td>
                         <td class="td-hide">col-23</td>
@@ -2067,9 +2089,9 @@
                                 <td rowspan="5" colspan="9">
                                     <svg id="barcode-@Html.Raw(countBaby)"></svg><br />
                                     <span style="padding-left: 70px;">Master : @Html.Raw(Model.consignment.ConNote) </span><span> @Html.Raw(countBaby) / @Html.Raw(Model.consignment.BabyConnotesTotal)</span>
-                                </td >
-                            </tr >
-                                    @*======== ROW 4 ======*@
+                                </td>
+                            </tr>
+                            @*======== ROW 4 ======*@
                             <tr>
                                 <td class="td-hide">col-01</td>
                                 <td class="td-hide">col-02</td>
@@ -2274,11 +2296,22 @@
                                 <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Penerima.Address.Address2)</span></td>
                                 <td class="td-hide">col-13</td>
                                 <td class="td-hide">col-14</td>
-                                <td>&nbsp;&nbsp;<span>✓</span></td>
-                                <td class="td-hide">col-16</td>
-                                <td class="td-hide">col-17</td>
-                                <td class="td-hide">col-18</td>
-                                <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</span></td>
+                                @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
+                                {
+                                    <td>&nbsp;&nbsp;<span>✓</span></td>
+                                    <td class="td-hide">col-16</td>
+                                    <td class="td-hide">col-17</td>
+                                    <td class="td-hide">col-18</td>
+                                    <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</span></td>
+                                }
+                                else
+                                {
+                                    <td>&nbsp;&nbsp;<span>&nbsp;&nbsp;</span></td>
+                                    <td class="td-hide">col-16</td>
+                                    <td class="td-hide">col-17</td>
+                                    <td class="td-hide">col-18</td>
+                                    <td colspan="2">&nbsp;<span>&nbsp;</span></td>
+                                }
                                 <td class="td-hide">col-21</td>
                                 <td class="td-hide">col-22</td>
                                 <td class="td-hide">col-23</td>
@@ -2548,7 +2581,8 @@
                                 <td class="td-hide">col-10</td>
                                 <td class="td-hide">col-14</td>
                                 <td class="td-hide">col-15</td>
-                                <td rowspan="5" colspan="9"><svg id="barcode-@Html.Raw(countBaby)"></svg><br />
+                                <td rowspan="5" colspan="9">
+                                    <svg id="barcode-@Html.Raw(countBaby)"></svg><br />
                                     <span style="padding-left: 70px;">Master : @Html.Raw(Model.consignment.ConNote) </span><span> @Html.Raw(countBaby) / @Html.Raw(Model.consignment.BabyConnotesTotal)</span>
                                 </td>
                             </tr>
@@ -2753,11 +2787,22 @@
                                 <td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.consignment.Penerima.Address.Address2)</span></td>
                                 <td class="td-hide">col-13</td>
                                 <td class="td-hide">col-14</td>
-                                <td>&nbsp;&nbsp;<span>✓</span></td>
-                                <td class="td-hide">col-16</td>
-                                <td class="td-hide">col-17</td>
-                                <td class="td-hide">col-18</td>
-                                <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</span></td>
+                                @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
+                                {
+                                    <td>&nbsp;&nbsp;<span>✓</span></td>
+                                    <td class="td-hide">col-16</td>
+                                    <td class="td-hide">col-17</td>
+                                    <td class="td-hide">col-18</td>
+                                    <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</span></td>
+                                }
+                                else
+                                {
+                                    <td>&nbsp;&nbsp;<span>&nbsp;&nbsp;</span></td>
+                                    <td class="td-hide">col-16</td>
+                                    <td class="td-hide">col-17</td>
+                                    <td class="td-hide">col-18</td>
+                                    <td colspan="2">&nbsp;<span>&nbsp;</span></td>
+                                }
                                 <td class="td-hide">col-21</td>
                                 <td class="td-hide">col-22</td>
                                 <td class="td-hide">col-23</td>
@@ -2966,7 +3011,6 @@
             }
         }
     </div>
-
     <!-- BEGIN CORE PLUGINS -->
     <script src="~/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
     <script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -2977,6 +3021,36 @@
     <script type="text/javascript" src="~/assets/general/scripts/jquery-barcode.js"></script>
     <script src="~/Scripts/JsBarcode.code128.min.js" type="text/javascript"></script>
     <!-- END CORE PLUGINS -->
+
+    @{
+        var dataMatrixModel = new web.sph.App_Code.DataMatrixModel
+        {
+            versionHeader = "A1",                                                               //01
+            connoteNum = Model.consignment.ConNote,                                             //02
+            recipientPostcode = Model.consignment.Penerima.Address.Postcode,                    //03
+            countryCode = Model.consignment.Penerima.Address.Country,                           //04
+            productCode = (Model.consignment.Produk.IsInternational) ? "80000001" : "80000000", //05
+            parentConnote = (Model.consignment.IsMps) ? Model.consignment.ConNote : "",         //06
+            mpsIndicator = (Model.consignment.IsMps) ? "Yes" : "No",                            //07
+            senderPhoneNum = Model.consignment.Pemberi.ContactInformation.ContactNumber,        //08
+            senderEmail = Model.consignment.Pemberi.ContactInformation.Email,                   //09
+            senderRefNo = Model.referenceNo,                                                    //10
+            customerAccNum = (Model.designation == "Contract customer") ? Model.accountNo : "", //11
+            recipientPhoneNum = Model.consignment.Penerima.ContactInformation.ContactNumber,    //12
+            recipientEmail = Model.consignment.Penerima.ContactInformation.Email,               //13
+            weight = Model.consignment.Produk.Weight.ToString("0.00"),                          //14
+            dimensionVol = $"{Model.consignment.Produk.Length.ToString("0.00")}" +              //15
+                           $"x{Model.consignment.Produk.Width.ToString("0.00")}" +
+                           $"x{Model.consignment.Produk.Height.ToString("0.00")}",
+            codAmount = "", //TODO                                                              //16
+            ccodAmount = "", //TODO                                                             //17
+            valueAdded = Model.consignment.Produk.ValueAddedValue.ToString("0.00"),             //18
+            itemCategory = Model.consignment.Produk.ItemCategory,                               //19
+            amountPaid = Model.amountPaid.ToString("0.00"),                                     //20
+            zone = (Model.consignment.Produk.IsInternational) ? "" : "02",                      //21
+        };
+    }
+
     <script type="text/javascript">
         JsBarcode("#barcode", "@Html.Raw(Model.consignment.ConNote)", {
             textPosition: "top",
@@ -2999,30 +3073,23 @@
         }
     </script>
     <script>
-        $(document).ready(function () {
-                        if ("@Model.designation" == "Contract customer") {
-            var text = ('A1^@Html.Raw(Model.consignment.ConNote)^@Html.Raw(Model.consignment.Penerima.Address.Postcode)^@Html.Raw(Model.consignment.Penerima.Address.Country)^@Html.Raw(Model.consignment.Bill.ProductCode)^^^@Html.Raw(Model.consignment.Pemberi.ContactInformation.ContactNumber)^@Html.Raw(Model.consignment.Pemberi.ContactInformation.Email)^^@Html.Raw(Model.accountNo)^@Html.Raw(Model.consignment.Penerima.ContactInformation.ContactNumber)^@Html.Raw(Model.consignment.Penerima.ContactInformation.Email)^@Html.Raw(Model.consignment.Produk.Weight)^@Html.Raw(Model.consignment.Produk.Height) x @Html.Raw(Model.consignment.Produk.Width) x @Html.Raw(Model.consignment.Produk.Length)^^^@Html.Raw(Model.consignment.Produk.ValueAddedValue)^@Html.Raw(Model.consignment.Produk.ItemCategory)^@Html.Raw(Model.amountPaid)^@Html.Raw(Model.consignment.Bill.ZoneName)');
-        } else {
-            var text = ('A1^@Html.Raw(Model.consignment.ConNote)^@Html.Raw(Model.consignment.Penerima.Address.Postcode)^@Html.Raw(Model.consignment.Penerima.Address.Country)^@Html.Raw(Model.consignment.Bill.ProductCode)^^^@Html.Raw(Model.consignment.Pemberi.ContactInformation.ContactNumber)^@Html.Raw(Model.consignment.Pemberi.ContactInformation.Email)^^^@Html.Raw(Model.consignment.Penerima.ContactInformation.ContactNumber)^@Html.Raw(Model.consignment.Penerima.ContactInformation.Email)^@Html.Raw(Model.consignment.Produk.Weight)^@Html.Raw(Model.consignment.Produk.Height) x @Html.Raw(Model.consignment.Produk.Width) x @Html.Raw(Model.consignment.Produk.Length)^^^@Html.Raw(Model.consignment.Produk.ValueAddedValue)^@Html.Raw(Model.consignment.Produk.ItemCategory)^@Html.Raw(Model.amountPaid)^@Html.Raw(Model.consignment.Bill.ZoneName)');
-        }
-        $("#bcTarget1").barcode(text, "datamatrix", { showHRI: false, moduleSize: 3 });
-        $("#bcTarget2").barcode(text, "datamatrix", { showHRI: false, moduleSize: 3 });
-        @{var countBabyDataMatrix = 1; }
-        @foreach (var babyConnote in Model.consignment.BabyConnotes)
-        {
-            <text>
-            if ("@Model.designation" == "Contract customer") {
-                var text = ('A1^@Html.Raw(babyConnote)^@Html.Raw(Model.consignment.Penerima.Address.Postcode)^@Html.Raw(Model.consignment.Penerima.Address.Country)^@Html.Raw(Model.consignment.Bill.ProductCode)^^^@Html.Raw(Model.consignment.Pemberi.ContactInformation.ContactNumber)^@Html.Raw(Model.consignment.Pemberi.ContactInformation.Email)^^@Html.Raw(Model.accountNo)^@Html.Raw(Model.consignment.Penerima.ContactInformation.ContactNumber)^@Html.Raw(Model.consignment.Penerima.ContactInformation.Email)^@Html.Raw(Model.consignment.Produk.Weight)^@Html.Raw(Model.consignment.Produk.Height) x @Html.Raw(Model.consignment.Produk.Width) x @Html.Raw(Model.consignment.Produk.Length)^^^@Html.Raw(Model.consignment.Produk.ValueAddedValue)^@Html.Raw(Model.consignment.Produk.ItemCategory)^@Html.Raw(Model.amountPaid)^@Html.Raw(Model.consignment.Bill.ZoneName)');
-            } else {
-                var text = ('A1^@Html.Raw(babyConnote)^@Html.Raw(Model.consignment.Penerima.Address.Postcode)^@Html.Raw(Model.consignment.Penerima.Address.Country)^@Html.Raw(Model.consignment.Bill.ProductCode)^^^@Html.Raw(Model.consignment.Pemberi.ContactInformation.ContactNumber)^@Html.Raw(Model.consignment.Pemberi.ContactInformation.Email)^^^@Html.Raw(Model.consignment.Penerima.ContactInformation.ContactNumber)^@Html.Raw(Model.consignment.Penerima.ContactInformation.Email)^@Html.Raw(Model.consignment.Produk.Weight)^@Html.Raw(Model.consignment.Produk.Height) x @Html.Raw(Model.consignment.Produk.Width) x @Html.Raw(Model.consignment.Produk.Length)^^^@Html.Raw(Model.consignment.Produk.ValueAddedValue)^@Html.Raw(Model.consignment.Produk.ItemCategory)^@Html.Raw(Model.amountPaid)^@Html.Raw(Model.consignment.Bill.ZoneName)');
-            }
-            $("#bcTarget1-baby-" + "@Html.Raw(countBabyDataMatrix)").barcode(text, "datamatrix", { showHRI: false, moduleSize: 3 });
-            $("#bcTarget2-baby-" + "@Html.Raw(countBabyDataMatrix)").barcode(text, "datamatrix", { showHRI: false, moduleSize: 3 });
-             </text>
-            countBabyDataMatrix++;
-        }
-        window.print();
-        });
+            $(document).ready(function () {
+                @{var text = $@"{dataMatrixModel.versionHeader}^{dataMatrixModel.connoteNum}^{dataMatrixModel.recipientPostcode}^{dataMatrixModel.countryCode}^{dataMatrixModel.productCode}^{dataMatrixModel.parentConnote}^{dataMatrixModel.mpsIndicator}^{dataMatrixModel.senderPhoneNum}^{dataMatrixModel.senderEmail}^{dataMatrixModel.senderRefNo}^{dataMatrixModel.customerAccNum}^{dataMatrixModel.recipientPhoneNum}^{dataMatrixModel.recipientEmail}^{dataMatrixModel.weight}^{dataMatrixModel.dimensionVol}^{dataMatrixModel.codAmount}^{dataMatrixModel.ccodAmount}^{dataMatrixModel.valueAdded}^{dataMatrixModel.itemCategory}^{dataMatrixModel.amountPaid}^{dataMatrixModel.zone}"; }
+                $("#bcTarget1").barcode("@Html.Raw(text)", "datamatrix", { showHRI: false, moduleSize: 3 });
+                $("#bcTarget2").barcode("@Html.Raw(text)", "datamatrix", { showHRI: false, moduleSize: 3 });
+
+                @{var countBabyDataMatrix = 2; }
+                @foreach (var babyConnote in Model.consignment.BabyConnotes)
+                {
+                    var textBaby = $@"{dataMatrixModel.versionHeader}^{babyConnote}^{dataMatrixModel.recipientPostcode}^{dataMatrixModel.countryCode}^{dataMatrixModel.productCode}^{dataMatrixModel.parentConnote}^{dataMatrixModel.mpsIndicator}^{dataMatrixModel.senderPhoneNum}^{dataMatrixModel.senderEmail}^{dataMatrixModel.senderRefNo}^{dataMatrixModel.customerAccNum}^{dataMatrixModel.recipientPhoneNum}^{dataMatrixModel.recipientEmail}^{dataMatrixModel.weight}^{dataMatrixModel.dimensionVol}^{dataMatrixModel.codAmount}^{dataMatrixModel.ccodAmount}^{dataMatrixModel.valueAdded}^{dataMatrixModel.itemCategory}^{dataMatrixModel.amountPaid}^{dataMatrixModel.zone}";
+                    <text>
+                    $("#bcTarget1-baby-" + "@Html.Raw(countBabyDataMatrix)").barcode("@Html.Raw(textBaby)", "datamatrix", { showHRI: false, moduleSize: 3 });
+                    $("#bcTarget2-baby-" + "@Html.Raw(countBabyDataMatrix)").barcode("@Html.Raw(textBaby)", "datamatrix", { showHRI: false, moduleSize: 3 });
+                    </text>
+                    countBabyDataMatrix++;
+                }
+                window.print();
+            });
     </script>
 </body>
 </html>
