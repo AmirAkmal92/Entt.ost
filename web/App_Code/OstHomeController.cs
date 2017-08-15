@@ -155,4 +155,29 @@ namespace web.sph.App_Code
     {
         public string Designation { get; set; }
     }
+
+    public class DataMatrixModel
+    {
+        public string versionHeader { get; set; }
+        public string connoteNum { get; set; }
+        public string recipientPostcode { get; set; }
+        public string countryCode { get; set; }
+        public string productCode { get; set; }
+        public string parentConnote { get; set; }
+        public string mpsIndicator { get; set; }
+        public string senderPhoneNum { get; set; }
+        public string senderEmail { get; set; }
+        public string senderRefNo { get; set; }
+        public string customerAccNum { get; set; }
+        public string recipientPhoneNum { get; set; }
+        public string recipientEmail { get; set; }
+        public string weight { get; set; }
+        public string dimensionVol { get; set; }
+        public string codAmount { get; set; }
+        public string ccodAmount { get; set; }
+        public string valueAdded { get; set; }
+        public string itemCategory { get; set; }
+        public string amountPaid { get; set; }
+        public string zone { get; set; }
+    }
 }
