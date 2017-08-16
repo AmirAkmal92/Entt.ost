@@ -2,6 +2,7 @@
 using Bespoke.Ost.PosLajuBranchBranches.Domain;
 using Bespoke.Sph.Domain;
 using Bespoke.Sph.WebApi;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OfficeOpenXml;
 using System;
@@ -9,7 +10,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -21,20 +24,25 @@ namespace web.sph.App_Code
     {
         private string m_applicationName;
         private string m_sdsBaseUrl;
+        private string m_ostBaseUrl;
+        private string m_ostAdminToken;
         private string m_sdsApi_GenerateConnote;
         private string m_sdsSecretKey_GenerateConnote;
         private string m_sdsApi_PickupWebApi;
         private string m_sdsSecretKey_PickupWebApi;
+        private string m_snbClientApi;
 
         public CustomConsignmentRequestController()
         {
             m_applicationName = ConfigurationManager.GetEnvironmentVariable("ApplicationName") ?? "OST";
             m_sdsBaseUrl = ConfigurationManager.GetEnvironmentVariable("SdsBaseUrl") ?? "https://apis.pos.com.my";
-
+            m_ostBaseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl") ?? "http://localhost:50230";
+            m_ostAdminToken = ConfigurationManager.GetEnvironmentVariable("AdminToken") ?? "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHlvdXJjb21wYW55LmNvbSIsInN1YiI6IjYzNjIwNDQ2NTgyNzk2MDA0NDYwOGNjMzdjIiwibmJmIjoxNTAwNDU5MzgzLCJpYXQiOjE0ODQ4MjA5ODMsImV4cCI6MTUxNDY3ODQwMCwiYXVkIjoiT3N0In0.qIA-b-0XTI_GpgMCGJC1yAAtw04UoPaNYoxMSXeBrPk";
             m_sdsApi_GenerateConnote = ConfigurationManager.GetEnvironmentVariable("SdsApi_GenerateConnote") ?? "apigateway/as01/api/genconnote/v1";
             m_sdsSecretKey_GenerateConnote = ConfigurationManager.GetEnvironmentVariable("SdsSecretKey_GenerateConnote") ?? "MjkzYjA5YmItZjMyMS00YzNmLWFmODktYTc2ZTAxMDgzY2Mz";
             m_sdsApi_PickupWebApi = ConfigurationManager.GetEnvironmentVariable("SdsApi_PickupWebApi") ?? "apigateway/as2poslaju/api/pickupwebapi/v1"; //TODO get production new address
             m_sdsSecretKey_PickupWebApi = ConfigurationManager.GetEnvironmentVariable("SdsSecretKey_PickupWebApi") ?? "Nzc1OTk0OTktYzYyNC00MzhhLTk5OTAtYTc2ZTAxMGJiYmMz"; //TODO get production new key
+            m_snbClientApi = ConfigurationManager.GetEnvironmentVariable("SnbWebApi") ?? "http://10.1.1.119:9002/api";
         }
 
         [HttpPut]
@@ -240,6 +248,104 @@ namespace web.sph.App_Code
             consignmentRequest.ReferenceNo = orderId;
             consignmentRequest.Payment.IsConNoteReady = true;
             await SaveConsigmentRequest(consignmentRequest);
+
+            var result = new
+            {
+                success = resultSuccess,
+                status = resultStatus,
+                id = consignmentRequest.Id
+            };
+
+            // wait until the worker process it
+            await Task.Delay(1500);
+            return Accepted(result);
+        }
+
+        [HttpPut]
+        [Route("get-and-save-zones/{id}")]
+        public async Task<IHttpActionResult> GetAndSaveZones(string id)
+        {
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
+            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
+            var consignmentRequest = lo.Source;
+
+            var resultSuccess = true;
+            var resultStatus = "OK";
+
+            if (consignmentRequest.Pickup.Address.Postcode != null)
+            {
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
+                var requestUri = new Uri($"{m_ostBaseUrl}/consignment-request/get-pickup-availability/{consignmentRequest.Pickup.Address.Postcode}");
+                var response = await client.GetAsync(requestUri);
+                var output = string.Empty;
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+                    Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
+                    output = await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+                    Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
+                    if (response.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        return NotFound("Cannot find branch with postcode:" + consignmentRequest.Pickup.Address.Postcode);
+                    }
+                    else
+                    {
+                        return BadRequest("GetPickupAvailability() Error");
+                    }
+                }
+                var posLajuBranch = output.DeserializeFromJson<PosLajuBranch>();
+
+                foreach (var consignment in consignmentRequest.Consignments)
+                {
+                    if (consignment.Bill.ZoneName == null)
+                    {
+                        var itemCategory = consignment.Produk.ItemCategory == "02" ? "merchandise" : "document";
+                        var productCode = consignment.Produk.IsInternational == true ? "OST3001" : "OST1001";
+                        var getZoneModal = new GetZoneModel()
+                        {
+                            ProductCode = productCode,
+                            ItemCategory = itemCategory,
+                            ReceiverPostCode = consignment.Penerima.Address.Postcode.ToString(),
+                            BranchCode = posLajuBranch.BranchCode.ToString()
+                        };
+
+                        var clientSnb = new HttpClient();
+                        clientSnb.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
+                        clientSnb.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                        clientSnb.BaseAddress = new Uri($"{m_snbClientApi}/get-zone-byproduct");
+                        var json = JsonConvert.SerializeObject(getZoneModal);
+                        var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+                        var resultSnb = clientSnb.PostAsync(clientSnb.BaseAddress, content).Result;
+                        var outputSnb = string.Empty;
+                        if (resultSnb.IsSuccessStatusCode)
+                        {
+                            Console.WriteLine($"Status: {(int)resultSnb.StatusCode} {resultSnb.ReasonPhrase.ToString()}");
+                            outputSnb = await resultSnb.Content.ReadAsStringAsync();
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Status: {(int)resultSnb.StatusCode} {resultSnb.ReasonPhrase.ToString()}");
+                            continue;
+                        }
+                        var zoneName = JObject.Parse(outputSnb).SelectToken("ZoneName");
+                        consignment.Bill.ZoneName = zoneName.ToString();
+                    }
+                }
+                try
+                {
+                    await SaveConsigmentRequest(consignmentRequest);
+                }
+                catch (Exception e)
+                {
+                    resultSuccess = false;
+                    resultStatus = $"{e.Message}.";
+                }
+            }
 
             var result = new
             {
@@ -1023,6 +1129,15 @@ namespace web.sph.App_Code
         public string StatusCode { get; set; }
         public string Message { get; set; }
     }
+
+    public class GetZoneModel
+    {
+        public string ProductCode { get; set; }
+        public string ItemCategory { get; set; }
+        public string ReceiverPostCode { get; set; }
+        public string BranchCode { get; set; }
+    }
+
     public class ConnoteBaby
     {
         public string ConnoteBabyData { get; set; }

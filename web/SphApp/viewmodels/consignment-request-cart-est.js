@@ -214,7 +214,11 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                                 console.log(result);
                                 if (result.success) {
                                     app.showMessage("Tracking number(s) successfully generated.", "OST", ["Close"]).done(function () {
-                                        router.activeItem().activate(result.id);
+                                        toggleShowBusyLoadingDialog("Finalizing");
+                                        context.put(data, "/consignment-request/get-and-save-zones/" + ko.unwrap(entity().Id) + "").always(function () {
+                                            toggleShowBusyLoadingDialog("Done");
+                                            router.activeItem().activate(id());
+                                        });
                                     });
                                 } else {
                                     console.log(result.status);
