@@ -1,6 +1,5 @@
 ﻿@using Bespoke.Sph.Domain
 @model web.sph.App_Code.printConnoteModel
-
 @{
     Layout = null;
     var user = HttpContext.Current.User;
@@ -1307,7 +1306,7 @@
                             <td class="td-hide">col-16</td>
                             <td class="td-hide">col-17</td>
                             <td class="td-hide">col-18</td>
-                            <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</span></td>
+                            <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</span></td>
                         }
                         else
                         {
@@ -1801,7 +1800,7 @@
                             <td class="td-hide">col-16</td>
                             <td class="td-hide">col-17</td>
                             <td class="td-hide">col-18</td>
-                            <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</span></td>
+                            <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</span></td>
                         }
                         else
                         {
@@ -2302,7 +2301,7 @@
                                     <td class="td-hide">col-16</td>
                                     <td class="td-hide">col-17</td>
                                     <td class="td-hide">col-18</td>
-                                    <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</span></td>
+                                    <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</span></td>
                                 }
                                 else
                                 {
@@ -2793,7 +2792,7 @@
                                     <td class="td-hide">col-16</td>
                                     <td class="td-hide">col-17</td>
                                     <td class="td-hide">col-18</td>
-                                    <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</span></td>
+                                    <td colspan="2">&nbsp;<span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</span></td>
                                 }
                                 else
                                 {
@@ -3031,15 +3030,15 @@
             countryCode = Model.consignment.Penerima.Address.Country,                           //04
             productCode = (Model.consignment.Produk.IsInternational) ? "80000001" : "80000000", //05
             parentConnote = (Model.consignment.IsMps) ? Model.consignment.ConNote : "",         //06
-            mpsIndicator = (Model.consignment.IsMps) ? "02" : "01",                            //07
+            mpsIndicator = (Model.consignment.IsMps) ? "02" : "01",                             //07
             senderPhoneNum = Model.consignment.Pemberi.ContactInformation.ContactNumber,        //08
             senderEmail = Model.consignment.Pemberi.ContactInformation.Email,                   //09
             senderRefNo = Model.referenceNo,                                                    //10
             customerAccNum = (Model.designation == "Contract customer") ? Model.accountNo : "", //11
             recipientPhoneNum = Model.consignment.Penerima.ContactInformation.ContactNumber,    //12
             recipientEmail = Model.consignment.Penerima.ContactInformation.Email,               //13
-            weight = Model.consignment.Produk.Weight.ToString("0.0"),                          //14
-            dimensionVol = $"{Model.consignment.Produk.Length.ToString("0.0")}" +              //15
+            weight = Model.consignment.Produk.Weight.ToString("0.0"),                           //14
+            dimensionVol = $"{Model.consignment.Produk.Length.ToString("0.0")}" +               //15
                            $"x{Model.consignment.Produk.Width.ToString("0.0")}" +
                            $"x{Model.consignment.Produk.Height.ToString("0.0")}",
             codAmount = "", //TODO                                                              //16
