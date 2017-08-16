@@ -950,6 +950,9 @@ namespace web.sph.App_Code
                         connoteNumbers.Append($", {babyConnote}");
                     }
 
+                    //TODO: tallysheet date must refer to connote numbers generated date
+                    DateTime tallysheetDate = (item.Pickup.IsPickedUp) ? item.ChangedDate : DateTime.Now;
+
                     var receiverAddress = new StringBuilder();
                     receiverAddress.Append($"{consignment.Penerima.Address.Address1}");
                     receiverAddress.Append($" {consignment.Penerima.Address.Address2}");
@@ -960,18 +963,28 @@ namespace web.sph.App_Code
                     receiverAddress.Append($", {consignment.Penerima.Address.State}");
                     receiverAddress.Append($" {consignment.Penerima.Address.Country}");
 
+                    decimal volumetricWeight = 0.00m;
+                    if (consignment.Produk.Width > 0 && consignment.Produk.Length > 0 && consignment.Produk.Height > 0)
+                    {
+                        volumetricWeight = (consignment.Produk.Width * consignment.Produk.Length * consignment.Produk.Height) / 6000;
+                    }
+
                     ws.Cells[row, 1].Value = consignmentIndexNumber;
-                    ws.Cells[row, 2].Value = DateTime.Now.ToString("dd/MM/yyyy");
+                    ws.Cells[row, 2].Value = tallysheetDate.ToString("dd/MM/yyyy");
                     ws.Cells[row, 3].Value = connoteNumbers;
                     ws.Cells[row, 4].Value = consignment.Penerima.ContactPerson;
                     ws.Cells[row, 5].Value = receiverAddress;
                     ws.Cells[row, 6].Value = consignment.Penerima.ContactInformation.Email;
                     ws.Cells[row, 7].Value = consignment.Penerima.ContactInformation.ContactNumber;
-                    ws.Cells[row, 8].Value = consignment.Produk.Weight;
-                    ws.Cells[row, 9].Value = consignment.Produk.Width;
-                    ws.Cells[row, 10].Value = consignment.Produk.Length;
-                    ws.Cells[row, 11].Value = consignment.Produk.Height;
-                    ws.Cells[row, 12].Value = consignment.Produk.Description;
+                    ws.Cells[row, 8].Value = consignment.Penerima.ContactInformation.AlternativeContactNumber;
+                    ws.Cells[row, 9].Value = consignment.Produk.Weight;
+                    ws.Cells[row, 10].Value = consignment.Produk.Width;
+                    ws.Cells[row, 11].Value = consignment.Produk.Length;
+                    ws.Cells[row, 12].Value = consignment.Produk.Height;
+                    ws.Cells[row, 13].Value = volumetricWeight;
+                    ws.Cells[row, 14].Value = consignment.Produk.Description;
+                    ws.Cells[row, 15].Value = consignment.Produk.Est.ShipperReferenceNo;
+                    ws.Cells[row, 16].Value = consignment.Produk.Est.ReceiverReferenceNo;
                 }
 
                 row++;
