@@ -33,11 +33,11 @@ objectbuilders.app],
                                 "None": false,
                                 "isTrue": true
                             },
-                            {
-                                "name": "Packaging",
-                                "None": true,
-                                "isTrue": false
-                            },
+                            //{
+                            //    "name": "Packaging",
+                            //    "None": true,
+                            //    "isTrue": false
+                            //},
                             {
                                 "name": "DO Acknowledgement",
                                 "None": true,
@@ -127,11 +127,11 @@ objectbuilders.app],
                                 "None": true,
                                 "isTrue": false
                             },
-                            {
-                                "name": "Packaging",
-                                "None": true,
-                                "isTrue": false
-                            },
+                            //{
+                            //    "name": "Packaging",
+                            //    "None": true,
+                            //    "isTrue": false
+                            //},
                             {
                                 "name": "DO Acknowledgement",
                                 "None": true,
@@ -260,6 +260,12 @@ objectbuilders.app],
 
                             if (consignment().Penerima().Address().Country() != "MY") {
                                 consignment().Produk().IsInternational(true);
+                            } else {
+                                consignment().Produk().IsInternational(false);
+                            }
+
+                            if (consignment().Produk().ValueAddedDeclaredValue() != undefined) {
+                                isInsuredValueAdded1(true);
                             }
 
                             if (consignment().Produk().Est().ValueAddedService1() == undefined) {
@@ -272,6 +278,11 @@ objectbuilders.app],
 
                             if (consignment().Produk().Est().ValueAddedService3() == undefined) {
                                 consignment().Produk().Est().ValueAddedService3("none");
+                            }
+
+                            if (consignment().Produk().Height != null && consignment().Produk().Length != null
+                                && consignment().Produk().Width != null) {
+                                calculateVolumetric();
                             }
                         }
                     }, function (e) {
@@ -339,6 +350,12 @@ objectbuilders.app],
                             }
                         }
                     });
+                });
+
+                consignment().Produk().Est().ValueAddedService1.subscribe(function (value) {
+                    if (value == 'none') {
+                        consignment().Produk().ValueAddedDeclaredValue(null);
+                    }
                 });
 
                 consignment().IsMps.subscribe(function (value) {

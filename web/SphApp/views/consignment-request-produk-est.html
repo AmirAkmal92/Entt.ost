@@ -65,7 +65,7 @@
                                         <select class="form-control input-sm" id="c28f91ae-ae5d-448e-991f-5b4065d3464f" data-bind="options: estProductService, optionsText: 'Category', optionsValue: 'CategoryCode', value: consignment().Produk().ItemCategory"></select>
                                     </div>
                                 </div>
-                                <div class="form-group form-checkboxes">
+                                <div class="form-group form-checkboxes" data-bind="if: consignment().Penerima().Address().Country() == 'MY'">
                                     <label class="col-md-3 control-label" for="form_control_1">
                                         <small>Multiple Piece Shipment</small>
                                     </label>
@@ -91,20 +91,20 @@
                                     <label data-i18n="Weight" class="col-md-3 control-label" for="6465286c-a3af-46de-e7d8-0499b6bf7cf4"><small>Weight<span class="required" aria-required="true"> * </span></small></label>
                                     <div class="col-md-9">
                                         <input class="form-control input-sm" required type="text"
-                                               placeholder="weight in kg"
+                                               placeholder="Weight in kg"
                                                data-bind="value: consignment().Produk().Weight"
                                                data-rule-number="true" data-rule-required="true"
                                                data-rule-min="0"
                                                data-rule-max="30"
                                                id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Produk.Weight" />
-                                        <span class="help-block"><small><i>Total weight of all pieces if this is an MPS</i></small></span>
+                                        <span class="help-block" data-bind="if: consignment().Penerima().Address().Country() == 'MY'"><small><i>Total weight of all pieces if this is an MPS</i></small></span>
                                     </div>
                                 </div>
                                 <div class="form-group" data-bind="visible:true">
                                     <label data-i18n="Width" class="col-md-3 control-label" for="61040711-a759-4cf8-ea32-47b1cdee2f44"><small>Width<span class="required" aria-required="true"> * </span></small></label>
                                     <div class="col-md-9">
                                         <input class="form-control input-sm" required type="text"
-                                               placeholder="width in cm"
+                                               placeholder="Width in cm"
                                                data-bind="value: consignment().Produk().Width"
                                                data-rule-number="true" data-rule-required="true" data-rule-min="1"
                                                id="61040711-a759-4cf8-ea32-47b1cdee2f44" name="Produk.Width" />
@@ -114,7 +114,7 @@
                                     <label data-i18n="Length" class="col-md-3 control-label" for="38c9d5fd-8458-4ce4-9575-da6edf8b0c9d"><small>Length<span class="required" aria-required="true"> * </span></small></label>
                                     <div class="col-md-9">
                                         <input class="form-control input-sm" required type="text"
-                                               placeholder="length in cm"
+                                               placeholder="Length in cm"
                                                data-bind="value: consignment().Produk().Length"
                                                data-rule-number="true" data-rule-required="true" data-rule-min="1"
                                                id="38c9d5fd-8458-4ce4-9575-da6edf8b0c9d" name="Produk.Length">
@@ -124,7 +124,7 @@
                                     <label data-i18n="Height" class="col-md-3 control-label" for="a044e320-f819-4adf-fc9d-f130079818fe"><small>Height<span class="required" aria-required="true"> * </span></small></label>
                                     <div class="col-md-9">
                                         <input class="form-control input-sm" required type="text"
-                                               placeholder="height in cm"
+                                               placeholder="Height in cm"
                                                data-bind="value: consignment().Produk().Height"
                                                data-rule-number="true" data-rule-required="true" data-rule-min="1"
                                                id="a044e320-f819-4adf-fc9d-f130079818fe" name="Produk.Height">
@@ -139,7 +139,7 @@
                                         </small>
                                     </label>
                                     <div class="col-md-9">
-                                        <input class="form-control input-sm" type="text" placeholder="volumetric weight in kg" data-rule-number="true" data-bind="value: $root.volumetric().toFixed(2)" name="Volumetric" disabled />
+                                        <input class="form-control input-sm" type="text" placeholder="Volumetric weight in kg" data-rule-number="true" data-bind="value: $root.volumetric().toFixed(2)" name="Volumetric" disabled />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -174,22 +174,13 @@
                                 <br />
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group" data-bind="visible:true">
-                                    <label data-i18n="Description of Content" class="col-md-3 control-label" for="01d1c388-d629-4283-bd25-56688c166c98"><small>Description of Content<span class="required" aria-required="true"> * </span></small></label>
-                                    <div class="col-md-9">
-                                        <textarea class="form-control input-sm" required rows="3"
-                                                  placeholder="parcel description"
-                                                  data-bind="value: consignment().Produk().Description"
-                                                  id="01d1c388-d629-4283-bd25-56688c166c98" name="Produk.Description"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
+                                <div class="form-group" data-bind="visible: false">
                                     <label data-i18n="ItemProduct" class="col-md-3 control-label"><small>Item Product</small></label>
                                     <div class="col-md-9" data-bind="with: estProductService()[estProductService().findIndex(x => x.CategoryCode == consignment().Produk().ItemCategory())]">
                                         <select class="form-control input-sm" data-bind="options: Products, optionsText: 'Product', optionsValue: 'ProductCode', value: $root.consignment().Produk().Est().ItemProduct"></select>
                                     </div>
                                 </div>
-                                <div data-bind="with: estProductService()[estProductService().findIndex(x => x.CategoryCode == consignment().Produk().ItemCategory())]">
+                                <div data-bind="visible: false, with: estProductService()[estProductService().findIndex(x => x.CategoryCode == consignment().Produk().ItemCategory())]">
                                     <div class="form-group" data-bind="with: $data.Products()[$data.Products().findIndex(x => x.ProductCode == $root.consignment().Produk().Est().ItemProduct())]">
                                         <label class="col-md-3 control-label">
                                             <small>Additional Products</small>
@@ -208,7 +199,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <hr />
                                 <div data-bind="with: estProductService()[estProductService().findIndex(x => x.CategoryCode == consignment().Produk().ItemCategory())]">
                                     <div class="form-group" data-bind="with: $data.Products()[$data.Products().findIndex(x => x.ProductCode == $root.consignment().Produk().Est().ItemProduct())]">
                                         <div class="row" data-bind="foreach: $data.AdditionalService">
@@ -331,6 +321,106 @@
                                                data-bind="value: consignment().Produk().ValueAddedDeclaredValue, disable: $root.isInsuredValueAdded1() == false"
                                                data-rule-number="true" name="Produk.ValueAddedDeclaredValue" />
                                         <span class="help-block"><small><i>Only applicable if you've selected an insurance cover.</i></small></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-3 control-label">
+                                        <small>Shipper Reference No. </small>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input class="form-control input-sm" type="text"
+                                               placeholder="Shipper Reference No."
+                                               data-bind="value: consignment().Produk().Est().ShipperReferenceNo"
+                                               name="Produk.ShipperReferenceNo" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-3 control-label">
+                                        <small>Receiver Reference No. </small>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input class="form-control input-sm" type="text"
+                                               placeholder="Receiver Reference No."
+                                               data-bind="value: consignment().Produk().Est().ReceiverReferenceNo"
+                                               name="Produk.ReceiverReferenceNo" />
+                                    </div>
+                                </div>
+                                <!--ko if: consignment().Penerima().Address().Country() == 'MY'-->
+                                <div class="form-group">
+                                    <label data-i18n="Description of Content" class="col-md-3 control-label" for="01d1c388-d629-4283-bd25-56688c166c98"><small>Description of Content<span class="required" aria-required="true"> * </span></small></label>
+                                    <div class="col-md-9">
+                                        <textarea class="form-control input-sm" required rows="3"
+                                                  placeholder="parcel description"
+                                                  data-bind="value: consignment().Produk().Description"
+                                                  id="01d1c388-d629-4283-bd25-56688c166c98" name="Produk.Description"></textarea>
+                                    </div>
+                                </div>
+                                <!--/ko-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" data-bind="if: consignment().Penerima().Address().Country() != 'MY'">
+                                <h4>Customs Declaration</h4>
+                                <div class="caption-desc font-grey-cascade">Customs Declaration is compulsory for international parcel</div>
+                                <hr />
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label class="control-label" for="f32b2b9f-f6c7-4e82-894b-cc130b303b27"><small>Content Desc<span class="required" aria-required="true"> * </span></small></label>
+                                        <input class="form-control input-sm" required type="text" placeholder="Content Desc" data-bind="value: consignment().Produk().CustomDeclaration().ContentDescription1" data-rule-required="true" id="f32b2b9f-f6c7-4e82-894b-cc130b303b27" name="Produk.CustomDeclaration.ContentDescription1">
+                                        <label id="f32b2b9f-f6c7-4e82-894b-cc130b303b27-error" class="error" for="f32b2b9f-f6c7-4e82-894b-cc130b303b27" style="display: none;">This field is required.</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label" for="47f4e12c-1fd8-45e2-8f35-eaf1391028dd"><small>Quantity<span class="required" aria-required="true"> * </span></small></label>
+                                        <input class="form-control input-sm" required type="text" placeholder="Qty" data-bind="value: consignment().Produk().CustomDeclaration().Quantity1" data-rule-number="true" data-rule-required="true" id="47f4e12c-1fd8-45e2-8f35-eaf1391028dd" name="Produk.CustomDeclaration.Quantity1">
+                                        <label id="47f4e12c-1fd8-45e2-8f35-eaf1391028dd-error" class="error" for="47f4e12c-1fd8-45e2-8f35-eaf1391028dd" style="display: none;">This field is required.</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label" for="d061cb1f-a906-41e3-af6e-dc580f2e13df"><small>Weight (KG)<span class="required" aria-required="true"> * </span></small></label>
+                                        <input type="text" required placeholder="Weight" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().Weight1" data-rule-number="true" data-rule-required="true" id="d061cb1f-a906-41e3-af6e-dc580f2e13df" name="Produk.CustomDeclaration.Weight1">
+                                        <label id="d061cb1f-a906-41e3-af6e-dc580f2e13df-error" class="error" for="d061cb1f-a906-41e3-af6e-dc580f2e13df" style="display: none;">This field is required.</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label" for="bda77e50-1d8c-4576-a551-0e5b06718756"><small>Value (MYR)<span class="required" aria-required="true"> * </span></small></label>
+                                        <input type="text" required placeholder="Value" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().Value1" data-rule-number="true" data-rule-required="true" id="bda77e50-1d8c-4576-a551-0e5b06718756" name="Produk.CustomDeclaration.Value1">
+                                        <label id="bda77e50-1d8c-4576-a551-0e5b06718756-error" class="error" for="bda77e50-1d8c-4576-a551-0e5b06718756" style="display: none;">This field is required.</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label"><small>Origin Country<span class="required" aria-required="true"> * </span></small></label>
+                                        <input type="text" placeholder="Origin Country" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().OriginCountry1" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <input type="text" placeholder="Content Desc" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().ContentDescription2">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Qty" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().Quantity2">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Weight" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().Weight2">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Value" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().Value2">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Origin Country" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().OriginCountry2">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <input type="text" placeholder="Content Desc" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().ContentDescription3">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Qty" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().Quantity3">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Weight" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().Weight3">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Value" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().Value3">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" placeholder="Origin Country" class="form-control input-sm" data-bind="value: consignment().Produk().CustomDeclaration().OriginCountry3">
                                     </div>
                                 </div>
                             </div>
