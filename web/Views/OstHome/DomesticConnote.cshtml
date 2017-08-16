@@ -3031,17 +3031,17 @@
             countryCode = Model.consignment.Penerima.Address.Country,                           //04
             productCode = (Model.consignment.Produk.IsInternational) ? "80000001" : "80000000", //05
             parentConnote = (Model.consignment.IsMps) ? Model.consignment.ConNote : "",         //06
-            mpsIndicator = (Model.consignment.IsMps) ? "Yes" : "No",                            //07
+            mpsIndicator = (Model.consignment.IsMps) ? "02" : "01",                            //07
             senderPhoneNum = Model.consignment.Pemberi.ContactInformation.ContactNumber,        //08
             senderEmail = Model.consignment.Pemberi.ContactInformation.Email,                   //09
             senderRefNo = Model.referenceNo,                                                    //10
             customerAccNum = (Model.designation == "Contract customer") ? Model.accountNo : "", //11
             recipientPhoneNum = Model.consignment.Penerima.ContactInformation.ContactNumber,    //12
             recipientEmail = Model.consignment.Penerima.ContactInformation.Email,               //13
-            weight = Model.consignment.Produk.Weight.ToString("0.00"),                          //14
-            dimensionVol = $"{Model.consignment.Produk.Length.ToString("0.00")}" +              //15
-                           $"x{Model.consignment.Produk.Width.ToString("0.00")}" +
-                           $"x{Model.consignment.Produk.Height.ToString("0.00")}",
+            weight = Model.consignment.Produk.Weight.ToString("0.0"),                          //14
+            dimensionVol = $"{Model.consignment.Produk.Length.ToString("0.0")}" +              //15
+                           $"x{Model.consignment.Produk.Width.ToString("0.0")}" +
+                           $"x{Model.consignment.Produk.Height.ToString("0.0")}",
             codAmount = "", //TODO                                                              //16
             ccodAmount = "", //TODO                                                             //17
             valueAdded = Model.consignment.Produk.ValueAddedValue.ToString("0.00"),             //18
@@ -3071,25 +3071,24 @@
             </text>
             countBabyBarcode++;
         }
-    </script>
-    <script>
-            $(document).ready(function () {
-                @{var text = $@"{dataMatrixModel.versionHeader}^{dataMatrixModel.connoteNum}^{dataMatrixModel.recipientPostcode}^{dataMatrixModel.countryCode}^{dataMatrixModel.productCode}^{dataMatrixModel.parentConnote}^{dataMatrixModel.mpsIndicator}^{dataMatrixModel.senderPhoneNum}^{dataMatrixModel.senderEmail}^{dataMatrixModel.senderRefNo}^{dataMatrixModel.customerAccNum}^{dataMatrixModel.recipientPhoneNum}^{dataMatrixModel.recipientEmail}^{dataMatrixModel.weight}^{dataMatrixModel.dimensionVol}^{dataMatrixModel.codAmount}^{dataMatrixModel.ccodAmount}^{dataMatrixModel.valueAdded}^{dataMatrixModel.itemCategory}^{dataMatrixModel.amountPaid}^{dataMatrixModel.zone}"; }
-                $("#bcTarget1").barcode("@Html.Raw(text)", "datamatrix", { showHRI: false, moduleSize: 3 });
-                $("#bcTarget2").barcode("@Html.Raw(text)", "datamatrix", { showHRI: false, moduleSize: 3 });
 
-                @{var countBabyDataMatrix = 2; }
-                @foreach (var babyConnote in Model.consignment.BabyConnotes)
-                {
-                    var textBaby = $@"{dataMatrixModel.versionHeader}^{babyConnote}^{dataMatrixModel.recipientPostcode}^{dataMatrixModel.countryCode}^{dataMatrixModel.productCode}^{dataMatrixModel.parentConnote}^{dataMatrixModel.mpsIndicator}^{dataMatrixModel.senderPhoneNum}^{dataMatrixModel.senderEmail}^{dataMatrixModel.senderRefNo}^{dataMatrixModel.customerAccNum}^{dataMatrixModel.recipientPhoneNum}^{dataMatrixModel.recipientEmail}^{dataMatrixModel.weight}^{dataMatrixModel.dimensionVol}^{dataMatrixModel.codAmount}^{dataMatrixModel.ccodAmount}^{dataMatrixModel.valueAdded}^{dataMatrixModel.itemCategory}^{dataMatrixModel.amountPaid}^{dataMatrixModel.zone}";
-                    <text>
-                    $("#bcTarget1-baby-" + "@Html.Raw(countBabyDataMatrix)").barcode("@Html.Raw(textBaby)", "datamatrix", { showHRI: false, moduleSize: 3 });
-                    $("#bcTarget2-baby-" + "@Html.Raw(countBabyDataMatrix)").barcode("@Html.Raw(textBaby)", "datamatrix", { showHRI: false, moduleSize: 3 });
-                    </text>
-                    countBabyDataMatrix++;
-                }
-                window.print();
-            });
+        $(document).ready(function () {
+            @{var text = $@"{dataMatrixModel.versionHeader}^{dataMatrixModel.connoteNum}^{dataMatrixModel.recipientPostcode}^{dataMatrixModel.countryCode}^{dataMatrixModel.productCode}^{dataMatrixModel.parentConnote}^{dataMatrixModel.mpsIndicator}^{dataMatrixModel.senderPhoneNum}^{dataMatrixModel.senderEmail}^{dataMatrixModel.senderRefNo}^{dataMatrixModel.customerAccNum}^{dataMatrixModel.recipientPhoneNum}^{dataMatrixModel.recipientEmail}^{dataMatrixModel.weight}^{dataMatrixModel.dimensionVol}^{dataMatrixModel.codAmount}^{dataMatrixModel.ccodAmount}^{dataMatrixModel.valueAdded}^{dataMatrixModel.itemCategory}^{dataMatrixModel.amountPaid}^{dataMatrixModel.zone}"; }
+            $("#bcTarget1").barcode("@Html.Raw(text)", "datamatrix", { showHRI: false, moduleSize: 3 });
+            $("#bcTarget2").barcode("@Html.Raw(text)", "datamatrix", { showHRI: false, moduleSize: 3 });
+
+            @{var countBabyDataMatrix = 2; }
+            @foreach (var babyConnote in Model.consignment.BabyConnotes)
+            {
+                var textBaby = $@"{dataMatrixModel.versionHeader}^{babyConnote}^{dataMatrixModel.recipientPostcode}^{dataMatrixModel.countryCode}^{dataMatrixModel.productCode}^{dataMatrixModel.parentConnote}^{dataMatrixModel.mpsIndicator}^{dataMatrixModel.senderPhoneNum}^{dataMatrixModel.senderEmail}^{dataMatrixModel.senderRefNo}^{dataMatrixModel.customerAccNum}^{dataMatrixModel.recipientPhoneNum}^{dataMatrixModel.recipientEmail}^{dataMatrixModel.weight}^{dataMatrixModel.dimensionVol}^{dataMatrixModel.codAmount}^{dataMatrixModel.ccodAmount}^{dataMatrixModel.valueAdded}^{dataMatrixModel.itemCategory}^{dataMatrixModel.amountPaid}^{dataMatrixModel.zone}";
+                <text>
+                $("#bcTarget1-baby-" + "@Html.Raw(countBabyDataMatrix)").barcode("@Html.Raw(textBaby)", "datamatrix", { showHRI: false, moduleSize: 3 });
+                $("#bcTarget2-baby-" + "@Html.Raw(countBabyDataMatrix)").barcode("@Html.Raw(textBaby)", "datamatrix", { showHRI: false, moduleSize: 3 });
+                </text>
+                countBabyDataMatrix++;
+            }
+            window.print();
+        });
     </script>
 </body>
 </html>
