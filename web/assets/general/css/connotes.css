@@ -1,7 +1,7 @@
 .connote-sheet-1 {
     background: url("/assets/global/img/connotes/Consignment_Note_NDD_Sender.jpg") !important;
     background-repeat: no-repeat !important;
-    background-size: contain !important;
+    background-size: cover !important;
     background-position: initial !important;
     page-break-inside: avoid;
     -webkit-print-color-adjust: exact;
@@ -11,7 +11,7 @@
 .connote-sheet-2 {
     background: url("/assets/global/img/connotes/Consignment_Note_NDD_Office.jpg") !important;
     background-repeat: no-repeat !important;
-    background-size: contain !important;
+    background-size: cover !important;
     background-position: initial !important;
     page-break-inside: avoid;
     -webkit-print-color-adjust: exact;
@@ -87,17 +87,6 @@
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
 }
-
-.bg-no-overlay {
-    background: url("/assets/global/img/connotes/Domestic_Poslaju_Consignment_Note_Receiver_Copy.jpg") no-repeat;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    color: #fff;
-    height: 613px;
-    padding-top: 50px;
-}
-
 @page {
     size: A4 portrait;
     margin: 0px;
