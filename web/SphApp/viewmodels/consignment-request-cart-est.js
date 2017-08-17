@@ -334,19 +334,35 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 return tcs.promise();
             },
             exportTallysheetShipment = function () {
-                require(['viewmodels/export.tallysheet.dialog', 'durandal/app'], function (dialog, app2) {
+                require(['viewmodels/export.consignment.reports.dialog', 'durandal/app'], function (dialog, app2) {
                     dialog.moduleType("shipments");
                     app2.showDialog(dialog)
                         .done(function (result) {
                             if (!result) return;
                             if (result === "OK") {
-                                generateTallysheetFromConsignments(ko.unwrap(entity().Id));
+                                var location = "/consignment-request/export-tallysheet/" + ko.unwrap(entity().Id);
+                                var filename = "Shipments_Tallysheet";
+                                generateReportsFromConsignments(location, filename);
                             }
                         });
                 });
             },
-            generateTallysheetFromConsignments = function (id) {
-                context.put({}, "/consignment-request/export-tallysheet/" + id)
+            exportPickupManifest = function () {
+                require(['viewmodels/export.consignment.reports.dialog', 'durandal/app'], function (dialog, app2) {
+                    dialog.moduleType("pickup-manifest");
+                    app2.showDialog(dialog)
+                        .done(function (result) {
+                            if (!result) return;
+                            if (result === "OK") {
+                                var location = "/consignment-request/export-pickup-manifest/" + ko.unwrap(entity().Id);
+                                var filename = "Pickup_Manifest";
+                                generateReportsFromConsignments(location, filename);
+                            }
+                        });
+                });
+            },
+            generateReportsFromConsignments = function (location, fileName) {
+                context.put({}, location)
                     .fail(function (response) {
                         if (response.status === 428) {
                             // out of date conflict
@@ -362,7 +378,6 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     .then(function (result) {
                         if (result.status === "OK") {
                             if (result.success) {
-                                var fileName = "Shipments_Tallysheet";
                                 window.open("/print-excel/file-path/" + result.path + "/file-name/" + fileName);
                             }
                         }
@@ -427,6 +442,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             schedulePickup: schedulePickup,
             importConsignments: importConsignments,
             exportTallysheetShipment: exportTallysheetShipment,
+            exportPickupManifest: exportPickupManifest,
             showPickupScheduler: showPickupScheduler,
             toggleShowPickupScheduler: toggleShowPickupScheduler,
             pickupReadyHH: pickupReadyHH,

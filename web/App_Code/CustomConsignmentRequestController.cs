@@ -762,6 +762,7 @@ namespace web.sph.App_Code
                         consignment.Produk.Length = Convert.ToDecimal(productLength, CultureInfo.InvariantCulture);
                         consignment.Produk.Height = Convert.ToDecimal(productHeigth, CultureInfo.InvariantCulture);
                         consignment.Produk.Description = productDescription;
+                        consignment.Produk.ItemCategory = "02"; //default to "Merchandise"
 
                         row++;
                         senderPostcode = ws.Cells[$"M{row}"].GetValue<string>();
@@ -969,6 +970,16 @@ namespace web.sph.App_Code
                         volumetricWeight = (consignment.Produk.Width * consignment.Produk.Length * consignment.Produk.Height) / 6000;
                     }
 
+                    var productDescription = consignment.Produk.Description;
+                    if (consignment.Produk.IsInternational)
+                    {
+                        productDescription = consignment.Produk.CustomDeclaration.ContentDescription1;
+                        if (!string.IsNullOrEmpty(consignment.Produk.CustomDeclaration.ContentDescription2))
+                            productDescription += " " + consignment.Produk.CustomDeclaration.ContentDescription2;
+                        if (!string.IsNullOrEmpty(consignment.Produk.CustomDeclaration.ContentDescription3))
+                            productDescription += " " + consignment.Produk.CustomDeclaration.ContentDescription3;
+                    } 
+
                     ws.Cells[row, 1].Value = consignmentIndexNumber;
                     ws.Cells[row, 2].Value = tallysheetDate.ToString("dd/MM/yyyy");
                     ws.Cells[row, 3].Value = connoteNumbers;
@@ -982,9 +993,64 @@ namespace web.sph.App_Code
                     ws.Cells[row, 11].Value = consignment.Produk.Length;
                     ws.Cells[row, 12].Value = consignment.Produk.Height;
                     ws.Cells[row, 13].Value = volumetricWeight;
-                    ws.Cells[row, 14].Value = consignment.Produk.Description;
+                    ws.Cells[row, 14].Value = productDescription;
                     ws.Cells[row, 15].Value = consignment.Produk.Est.ShipperReferenceNo;
                     ws.Cells[row, 16].Value = consignment.Produk.Est.ReceiverReferenceNo;
+                }
+
+                row++;
+                consignmentIndexNumber++;
+            }
+
+            excel.Save();
+            excel.Dispose();
+
+            return Json(new { success = true, status = "OK", path = Path.GetFileName(temp) });
+        }
+
+        [HttpPut]
+        [Route("export-pickup-manifest/{id}")]
+        public async Task<IHttpActionResult> ExportPickupManifest(string id)
+        {
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
+            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
+
+            var item = lo.Source;
+
+            var temp = Path.GetTempFileName() + ".xlsx";
+            System.IO.File.Copy(System.Web.HttpContext.Current.Server.MapPath("~/Content/Files/pickup_manifest_format_template.xlsx"), temp, true);
+
+            var file = new FileInfo(temp);
+            var excel = new ExcelPackage(file);
+            var ws = excel.Workbook.Worksheets["Pickup Manifest"];
+            if (null == ws) return Ok(new { success = false, status = "Cannot open Worksheet Pickup Manifest" });
+            if (string.IsNullOrEmpty(item.Pickup.Number)) return Ok(new { success = false, status = "Cannot generate Pickup Manifest. Please schedule a pickup." });
+
+            var pickupDate = item.Pickup.DateReady.ToString("dd/MM/yyyy");
+            ws.Cells[1, 2].Value = pickupDate;
+            ws.Cells[2, 2].Value = item.Pickup.Number;
+            ws.Cells[3, 2].Value = item.UserId;
+
+            var row = 6;
+            var consignmentIndexNumber = 1;
+
+            foreach (var consignment in item.Consignments)
+            {
+                if (!string.IsNullOrEmpty(consignment.ConNote))
+                {
+                    var connoteNumbers = new StringBuilder();
+                    connoteNumbers.Append($"{consignment.ConNote}");
+                    foreach (var babyConnote in consignment.BabyConnotes)
+                    {
+                        connoteNumbers.Append($", {babyConnote}");
+                    }
+
+                    var itemCategory = (consignment.Produk.ItemCategory == "01") ? "Document" : "Merchandise";
+
+                    ws.Cells[row, 1].Value = pickupDate;
+                    ws.Cells[row, 2].Value = connoteNumbers;
+                    ws.Cells[row, 3].Value = itemCategory;
+                    ws.Cells[row, 4].Value = consignment.Produk.Weight;                    
                 }
 
                 row++;

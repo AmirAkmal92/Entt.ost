@@ -17,7 +17,7 @@
         return v;
     },
     exportTallysheetPickup = function (consignment) {
-        require(['viewmodels/export.tallysheet.dialog', 'durandal/app'], function (dialog, app2) {
+        require(['viewmodels/export.consignment.reports.dialog', 'durandal/app'], function (dialog, app2) {
             dialog.moduleType("pickups");
             app2.showDialog(dialog)
                 .done(function (result) {

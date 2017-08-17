@@ -38,21 +38,49 @@
                         <a class="btn btn-circle yellow-casablanca" data-bind="click: $root.generateConNotes, visible: Consignments().length > 0">
                             <i class="fa fa-barcode"></i> Get Consignment Note
                         </a>
-                        <a class="btn btn-circle yellow-casablanca" data-bind="attr: { href: 'ost/print-all-connote/consignment-requests/' + Id()}, visible: Payment().IsConNoteReady()" target="_blank">
-                            <i class="fa fa-print"></i> Print All Consignment Notes
-                        </a>
                         <a data-bind="click: $root.toggleShowPickupScheduler" class="btn btn-circle yellow-casablanca">
                             <i class="fa fa-calendar-minus-o"></i>
                             <span data-bind="visible: !$root.showPickupScheduler()">Show</span>
                             <span data-bind="visible: $root.showPickupScheduler()">Hide</span>
                             Pickup
                         </a>
-                        <a data-bind="command: $root.importConsignments" class="btn btn-circle yellow-casablanca">
-                            <i class="fa fa-cloud-upload"></i> Bulk Upload
-                        </a>
-                        <a data-bind="click: $root.exportTallysheetShipment" class="btn btn-circle yellow-casablanca">
-                            <i class="fa fa-file-excel-o"></i> Download Tallysheet
-                        </a>
+                        <div class="btn-group">
+                            <a href="" class="btn btn-circle yellow-casablanca dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                More ...
+                                <span class="fa fa-angle-down"> </span>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li>
+                                    <a data-bind="command: $root.importConsignments">
+                                        <i class="fa fa-cloud-upload"></i> Bulk Upload
+                                    </a>
+                                </li>
+                                <li data-bind="css: { 'disabled': !Payment().IsConNoteReady() }">
+                                    <a data-bind="attr: { href: 'ost/print-all-connote/consignment-requests/' + Id()}, visible: Payment().IsConNoteReady()" target="_blank">
+                                        <i class="fa fa-print"></i> Print All Consignment Notes
+                                    </a>
+                                    <a data-bind="visible: !Payment().IsConNoteReady()" target="_blank">
+                                        <i class="fa fa-print"></i> Print All Consignment Notes
+                                    </a>
+                                </li>
+                                <li data-bind="css: { 'disabled': !Payment().IsConNoteReady() }">
+                                    <a data-bind="click: $root.exportTallysheetShipment, visible: Payment().IsConNoteReady()">
+                                        <i class="fa fa-file-excel-o"></i> Download Tallysheet
+                                    </a>
+                                    <a data-bind="visible: !Payment().IsConNoteReady()">
+                                        <i class="fa fa-file-excel-o"></i> Download Tallysheet
+                                    </a>
+                                </li>
+                                <li data-bind="css: { 'disabled': Pickup().Number() == null }">
+                                    <a data-bind="click: $root.exportPickupManifest, visible: Pickup().Number() != null">
+                                        <i class="fa fa-file-excel-o"></i> Download Pickup Manifest
+                                    </a>
+                                    <a data-bind="visible: Pickup().Number() == null">
+                                        <i class="fa fa-file-excel-o"></i> Download Pickup Manifest
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </h3>
                 </div>
             </div>

@@ -36,8 +36,8 @@
     "htmlDiff": null
   },
   {
-    "name": "export.tallysheet.dialog",
-    "originalName": null,
+    "name": "export.consignment.reports.dialog",
+    "originalName": "export.tallysheet.dialog",
     "jsDiff": null,
     "htmlDiff": null
   }
