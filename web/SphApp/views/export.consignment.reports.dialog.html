@@ -1,4 +1,4 @@
-<section class="view-model-modal" id="export-tallysheet-dialog">
+<section class="view-model-modal" id="export-consignment-reports-dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -15,6 +15,9 @@
                         <!--/ko-->
                         <!--ko if: moduleType() == "pickups"-->
                             <li>This will create a file containing all <strong>consignments that were already Picked-up</strong>.</li>
+                        <!--/ko-->
+                        <!--ko if: moduleType() == "pickup-manifest"-->
+                        <li>This will create a <strong>Pickup Manifest</strong> containing all consignments that are ready for Shipment.</li>
                         <!--/ko-->
                         <li>The file is in *.xlsx format and can be opened by <a href="https://en.wikipedia.org/wiki/Microsoft_Excel" target="_blank">Microsoft Excel</a> or any other similar program.</li>
                         <li>Please allow pop-ups.</li>
