@@ -763,6 +763,7 @@ namespace web.sph.App_Code
                         consignment.Produk.Height = Convert.ToDecimal(productHeigth, CultureInfo.InvariantCulture);
                         consignment.Produk.Description = productDescription;
                         consignment.Produk.ItemCategory = "02"; //default to "Merchandise"
+                        consignment.Produk.IsInternational = (consignment.Penerima.Address.Country == "MY") ? false : true;
 
                         row++;
                         senderPostcode = ws.Cells[$"M{row}"].GetValue<string>();
