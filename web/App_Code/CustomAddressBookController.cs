@@ -196,7 +196,7 @@ namespace web.sph.App_Code
 
             // wait until the worker process it
             await Task.Delay(1500);
-            return Ok(new { success = true, status = $"{countAddedAddressBook} parcel(s) added." });
+            return Ok(new { success = true, status = $"{countAddedAddressBook} contact(s) added." });
         }
 
         [HttpGet]

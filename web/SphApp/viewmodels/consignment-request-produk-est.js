@@ -7,7 +7,7 @@ objectbuilders.app],
         //TODO - refactor to external file/module  
         var initialData = [
             {
-                "Category": "DOCUMENT",
+                "Category": "Document (Less than 1.000kg)",
                 "CategoryCode": "01",
                 "Products": [
                     {
@@ -105,7 +105,7 @@ objectbuilders.app],
                 ]
             },
             {
-                "Category": "MERCHANDISE",
+                "Category": "Merchandise (From 0.001 to 30.000kg)",
                 "CategoryCode": "02",
                 "Products": [
                     {
@@ -364,6 +364,30 @@ objectbuilders.app],
                     }
                 });
 
+                consignment().Produk().Weight.subscribe(function (newWeight) {
+                    if (consignment().Produk().ItemCategory() == "02") {
+                        // From 0.001 to 30.000kg
+                        if (newWeight > 30) {
+                            consignment().Produk().Weight(30.000);
+                        }
+                        if (newWeight <= 0) {
+                            consignment().Produk().Weight(0.001);
+                        }
+                    } else if (consignment().Produk().ItemCategory() == "01") {
+                        // Less than 1.000kg
+                        if (newWeight > 1) {
+                            consignment().Produk().Weight(1.000);
+                        }
+                        if (newWeight <= 0) {
+                            consignment().Produk().Weight(0.001);
+                        }
+                    } else {
+                        // Max weight 30.000kg
+                        if (newWeight > 30) {
+                            consignment().Produk().Weight(30.000);
+                        }
+                    }
+                });
                 consignment().Produk().Height.subscribe(function (value) {
                     if (consignment().Produk().Height != null
                         && consignment().Produk().Length != null
