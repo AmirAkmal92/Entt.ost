@@ -76,5 +76,7 @@ namespace e.soc.posting
         public string PickupNumber;
         
         public string Mhl;
+
+        public string Batch;
     }
 }

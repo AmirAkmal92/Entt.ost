@@ -140,10 +140,12 @@ namespace e.soc.posting
                     OddItemAmount = "-",
                     OddItemDescription = "-",
                     PickupNumber = consigmentRequest.Pickup.Number,
-                    Mhl = "0"
+                    Mhl = "0",
+                    Batch = string.Format("{0:00000}", sequenceNumberCount)
                 };
                 eSocFiles.Add(eSocFileHeader);
 
+                int itemCount = 1;
                 foreach (var consigment in consigmentRequest.Consignments)
                 {
                     var eSocFileItem = new ESocDelimited
@@ -182,9 +184,18 @@ namespace e.soc.posting
                         OddItemAmount = "0.00",
                         OddItemDescription = "-",
                         PickupNumber = "-",
-                        Mhl = "-"
+                        Mhl = "-",
+                        Batch = string.Format("{0:00000}", sequenceNumberCount)
                     };
-                    eSocFiles.Add(eSocFileItem);
+                    itemCount++;
+                    eSocFiles.Add(eSocFileItem);                    
+
+                    if (itemCount > 20)
+                    {
+                        itemCount = 1;
+                        eSocFiles.Add(eSocFileHeader);
+                        sequenceNumberCount++;
+                    }
                 }
                 sequenceNumberCount++;
             }
