@@ -1,5 +1,7 @@
 ﻿using Bespoke.Ost.ConsigmentRequests.Domain;
+using Bespoke.Ost.Countries.Domain;
 using Bespoke.Sph.Domain;
+using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -92,6 +94,29 @@ namespace web.sph.App_Code
                     break;
                 }
             }
+
+            var query = $@"{{
+    ""filter"": {{
+      ""query"": {{
+         ""bool"": {{
+            ""must"": [
+                {{
+                    ""term"": {{
+                       ""Abbreviation"": ""{connote.Penerima.Address.Country}""
+                    }}
+                }}
+            ]
+         }}
+      }}
+   }}
+}}";
+            var repos = ObjectBuilder.GetObject<IReadonlyRepository<Country>>();
+            var response = await repos.SearchAsync(query);
+            var json = JObject.Parse(response).SelectToken("$.hits.hits");
+            var searchedCountry = json.First.SelectToken("_source").ToObject<Country>();
+
+            connote.Penerima.Address.Country = searchedCountry.Name;
+
             return View(connote);
         }
 
