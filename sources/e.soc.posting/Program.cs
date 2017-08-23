@@ -161,7 +161,7 @@ namespace e.soc.posting
                         ConsignmentAcceptanceTimeStamp = consigmentRequest.CreatedDate,
                         BranchCodeHeader = "-",
                         CourierIdItem = "00392557", //TODO
-                        ShipToPartyPostcode = consigment.Penerima.Address.Postcode,
+                        ShipToPartyPostcode = (consigment.Produk.IsInternational) ? "-" : consigment.Penerima.Address.Postcode,
                         ProductCodeMaterial = (consigment.Produk.IsInternational) ? "80000001" : "80000000",
                         Quantity = "1",
                         BranchCodeItem = "5312", //TODO
@@ -188,7 +188,7 @@ namespace e.soc.posting
                         Batch = string.Format("{0:00000}", sequenceNumberCount)
                     };
                     itemCount++;
-                    eSocFiles.Add(eSocFileItem);                    
+                    eSocFiles.Add(eSocFileItem);
 
                     if (itemCount > 20)
                     {
