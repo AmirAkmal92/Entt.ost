@@ -13,126 +13,152 @@
         </li>
     </ul>
 </div>
-<br />
-<br />
-<div class="portlet light bordered">
-    <div>
-        <h4>
-            <i class="fa fa-file-excel-o font-yellow-casablanca"></i>
-            <span class="caption-subject font-yellow-casablanca bold uppercase">Export Consignment</span>
-        </h4>
-    </div>
-    <div data-bind="with: consignment">
-        <div class="row">
-            <div class="col-md-12">
-                <form id="export-consignments-form">
-                    <table border="0">
-                        <thead>
-                            <tr>
-                                <td class="col-md-2">Sender</td>
-                                <td class="col-md-2">Receiver</td>
-                                <td class="col-md-4">Product Information</td>
-                                <td class="col-md-3">Product Description</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <span class="col-md-12">
-                                        <label id="PemberiName-error" class="error" for="PemberiName" style="color: red; display:none"></label><br />
-                                        <select class="form-control input-sm" style="width: 200px" placeholder="Search Contact" name="PemberiName" id="sender-company-name"></select>
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="col-md-12">
-                                        <label id="PenerimaName-error" class="error" for="PenerimaName" style="color: red; display:none"></label><br />
-                                        <select class="form-control input-sm" style="width: 200px" placeholder="Search Contact" name="PenerimaName" id="receiver-company-name"></select>
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="col-md-12">
-                                        <label id="productWeight-error" class="error" for="productWeight" style="color: red; display:none"></label>
-                                        <label id="productLength-error" class="error" for="productLength" style="color: red; display:none"></label>
-                                        <label id="productWidth-error" class="error" for="productWidth" style="color: red; display:none"></label>
-                                        <label id="productHeight-error" class="error" for="productHeight" style="color: red; display:none"></label><br />
-                                        <input class="col-md-3 input-sm" name="productWeight" type="number" step="0.01" min="0" placeholder="Weight" data-bind="value: Produk().Weight, tooltip: 'Product Weight'" />
-                                        <input class="col-md-3 input-sm" name="productLength" id="productLength" type="number" min="0" placeholder="Length" data-bind="value: Produk().Length, tooltip: 'Product Length'" />
-                                        <input class="col-md-3 input-sm" name="productWidth" type="number" min="0" placeholder="Width" data-bind="value: Produk().Width, tooltip: 'Product Width'" />
-                                        <input class="col-md-3 input-sm" name="productHeight" type="number" min="0" placeholder="Height" data-bind="value: Produk().Height, tooltip: 'Product Height'" />
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="col-md-12">
-                                        <label id="productDescription-error" class="error" for="productDescription" style="color: red; display:none"></label><br />
-                                        <input class="input-sm" type="text" name="productDescription" placeholder="Product Description" data-bind="value: Produk().Description" />&nbsp;&nbsp;
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <br />
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-circle yellow-casablanca" data-bind="click: $root.addConsignment"><i class="fa fa-paper-plane"></i> Add</button>
-                        <button type="submit" class="btn btn-circle yellow-casablanca" data-bind="click: $root.clearConsignments"><i class="fa fa-trash"></i> Empty List</button>
-                    </div>
-                </form>
+<h1 class="page-title caption-subject font-red-sunglo bold uppercase"></h1>
+<small></small>
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <h4>
+                        <i class="fa fa-file-excel-o font-yellow-casablanca"></i>
+                        <span class="caption-subject font-yellow-casablanca bold uppercase">Export Consignment</span>
+                    </h4>
+                    <div class="caption-desc font-grey-cascade">Manage Consignment List</div>
+                </div>
+                <div class="actions">
+                    <h3></h3>
+                </div>
             </div>
-        </div>
-    </div>
-    <br />
-    <hr />
-    <br />
-    <div>
-        <table class="table table-bordered table-striped">
-            <thead class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase tool">
-                <tr>
-                    <th>Sender</th>
-                    <th>Receiver</th>
-                    <th>Product Information</th>
-                    <th>Description</th>
-                    <th class="text-center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!--ko foreach: consignments-->
-                <tr>
-                    <td>
-                        <span data-bind="text: Pemberi.ContactPerson,
+            <div class="row" data-bind="with: consignment">
+                <div class="col-md-12">
+                    <!--<div class="note note-danger">
+                        <p> NOTE: The below datatable is not connected to a real database so the filter and sorting is just simulated for demo purposes only. </p>
+                    </div>-->
+                    <div class="portlet ">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-paper-plane"></i>Consignment Details
+                            </div>
+                            <div class="actions">
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="table-container">
+                                <form id="export-consignments-form">
+                                    <table class="table table-striped table-bordered table-advance">
+                                        <thead>
+                                            <tr role="row" class="heading">
+                                                <th width="1%" hidden>
+                                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                        <input type="checkbox" class="group-checkable" />
+                                                        <span></span>
+                                                    </label>
+                                                </th>
+                                                <th width="20%"> Sender </th>
+                                                <th width="20%"> Receiver </th>
+                                                <th width="8%"> Weight </th>
+                                                <th width="8%"> Length </th>
+                                                <th width="8%"> Width </th>
+                                                <th width="8%"> Height </th>
+                                                <th width="15%"> Description </th>
+                                                <th width="8%"> Actions </th>
+                                            </tr>
+                                            <tr role="row" class="filter">
+                                                <td hidden> </td>
+                                                <td>
+                                                    <select class="form-control form-filter input-sm" placeholder="Sender Name" name="PemberiName" id="sender-company-name"></select>
+                                                    <label id="sender-company-name-error" class="error" for="sender-company-name" hidden="hidden">Please select Sender.</label>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control form-filter input-sm" placeholder="Receiver Name" name="PenerimaName" id="receiver-company-name"></select>
+                                                    <label id="receiver-company-name-error" class="error" for="receiver-company-name" hidden="hidden">Please select Receiver.</label>
+                                                </td>
+                                                <td>
+                                                    <input class="form-control form-filter input-sm" placeholder="In kg" name="productWeight" type="number" step="0.01" min="0" data-bind="value: Produk().Weight" />
+                                                </td>
+                                                <td>
+                                                    <input class="form-control form-filter input-sm" placeholder="In cm" name="productLength" id="productLength" type="number" min="0" data-bind="value: Produk().Length" />
+                                                </td>
+                                                <td>
+                                                    <input class="form-control form-filter input-sm" placeholder="In cm" name="productWidth" type="number" min="0" data-bind="value: Produk().Width" />
+                                                </td>
+                                                <td>
+                                                    <input class="form-control form-filter input-sm" placeholder="In cm" name="productHeight" type="number" min="0" data-bind="value: Produk().Height" />
+                                                </td>
+                                                <td>
+                                                    <textarea name="productDescription" class="form-control input-sm" rows="2" data-bind="value: Produk().Description" placeholder="Parcel Description"></textarea>
+                                                </td>
+                                                <td>
+                                                    <div class="margin-bottom-5">
+                                                        <button type="submit" class="btn btn-sm yellow-casablanca filter-submit margin-bottom" data-bind="click: $root.addConsignment" style="width: 70% !important;">
+                                                            <i class="fa fa-plus"></i> Add
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <table class="table table-bordered table-striped">
+                    <thead class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase tool">
+                        <tr>
+                            <th>Sender</th>
+                            <th>Receiver</th>
+                            <th>Product Information</th>
+                            <th>Description</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--ko foreach: consignments-->
+                        <tr>
+                            <td>
+                                <span data-bind="text: Pemberi.ContactPerson,
                               tooltip: 'Name:&nbsp;' + Pemberi.ContactPerson
                               + '\nContact&nbsp;No:&nbsp;' + Pemberi.ContactInformation.ContactNumber
                               + '\nPostcode:&nbsp;' + Pemberi.Address.Postcode
                               + ' State:&nbsp;' + Pemberi.Address.State
                               + '\nCountry:&nbsp;' + Pemberi.Address.Country">
 
-                        </span>
-                    </td>
-                    <td>
-                        <span data-bind="text: Penerima.ContactPerson,
+                                </span>
+                            </td>
+                            <td>
+                                <span data-bind="text: Penerima.ContactPerson,
                               tooltip: 'Name:&nbsp;' + Penerima.ContactPerson
                               + '\nContact&nbsp;No:&nbsp;' + Penerima.ContactInformation.ContactNumber
                               + '\nPostcode:&nbsp;' + Penerima.Address.Postcode
                               + ' State:&nbsp;' + Penerima.Address.State
                               + '\nCountry:&nbsp;' + Penerima.Address.Country">
 
-                        </span>
-                    </td>
-                    <td>
-                        <!--ko if: Produk.Weight != null-->
-                        <span data-bind="text: parseFloat(Produk.Weight).toFixed(2) + ' kg '
+                                </span>
+                            </td>
+                            <td>
+                                <!--ko if: Produk.Weight != null-->
+                                <span data-bind="text: parseFloat(Produk.Weight).toFixed(2) + ' kg '
                               + Produk.Length + 'cm x '
                               + Produk.Width + 'cm x '
                               + Produk.Height + 'cm'">
-                        </span>
+                                </span>
+                                <!--/ko-->
+                            </td>
+                            <td><span data-bind="text: Produk.Description"></span></td>
+                            <td class="text-center">
+                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="click: $root.deleteConsignment"><i class="icon-trash"></i></a>
+                            </td>
+                        </tr>
                         <!--/ko-->
-                    </td>
-                    <td><span data-bind="text: Produk.Description"></span></td>
-                    <td class="text-center">
-                        <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" data-bind="click: $root.deleteConsignment"><i class="icon-trash"></i></a>
-                    </td>
-                </tr>
-                <!--/ko-->
-            </tbody>
-        </table>
-        <a class="btn btn-circle yellow-casablanca" data-bind="click: exportToCsv, visible: consignments().length"><i class="fa fa-file-excel-o"></i>&nbsp;Download</a>
+                    </tbody>
+                </table>
+                <a class="btn btn-circle yellow-casablanca" data-bind="click: exportToCsv, visible: consignments().length"><i class="fa fa-file-excel-o"></i>&nbsp;Download</a>
+                <button type="submit" class="btn btn-circle yellow-casablanca" data-bind="click: $root.clearConsignments, visible: consignments().length"><i class="fa fa-trash"></i> Empty List</button>
+            </div>
+        </div>
     </div>
 </div>
