@@ -43,7 +43,7 @@ $env:RX_OST_SdsSecretKey_SdsTrackTrace_WebApi = "YTk3ZDYyNTgtMzAwMS00ZDQ0LWJjZGU
 $env:RX_OST_SdsApi_SdsTrackTrace_WebApiHeader = "apigateway/as2corporate/api/trackntracewebapiheader/v1";
 $env:RX_OST_SdsSecretKey_SdsTrackTrace_WebApiHeader = "ZjE3NTc3ZTgtNDg0NC00ZGFhLTlkNWEtYTcyODAwYzk2MGU1";
 
-$env:RX_OST_PaymentGatewayBaseUrl = "https://www.posonline.com.my/PosOnline.PaymentGateway"
+$env:RX_OST_PaymentGatewayBaseUrl = "https://ezipay.pos.com.my"
 $env:RX_OST_PaymentGatewayApplicationId = "OST"
 $env:RX_OST_PaymentGatewayEncryptionKey = "WdVxp54wmQlGFBmvOQgfmpAqCJ23gyGI"
 
