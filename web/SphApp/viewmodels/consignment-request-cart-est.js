@@ -4,6 +4,11 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
     function (context, logger, router, system, chart, config, app, crCart, app2, dialog) {
 
         var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
+            isBusy = ko.observable(false),
+            page = ko.observable(0),
+            size = ko.observable(20),
+            count = ko.observable(0),
+            availablePageSize = ko.observableArray([10, 20, 50, 100]),
             errors = ko.observableArray(),
             sumWeight = ko.observable(0.0),
             sumConsignment = ko.observable(0),
@@ -23,6 +28,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 var goToDashboard = false;
                 var userDetail = ko.observable();
                 checkAll(false);
+                firstPage();
                 errorNum(-1);
                 $.ajax({
                     url: "/api/user-details/user-profile",
@@ -134,6 +140,26 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                             });
                         }
                     });
+            },
+            firstPage = function () {
+                page(0);
+                count(0);
+            },
+            nextPage = function () {
+                var tmpCount = count();
+                count(page() * size());
+                if (count() + size() > entity().Consignments().length) {
+                    count(tmpCount);
+                } else {
+                    page(page() + 1);
+                    count(page() * size());
+                }
+            },
+            previousPage = function () {
+                if (page() >= 1) {
+                    page(page() - 1);
+                    count(page() * size());
+                }
             },
             deleteConsignments = function () {
                 return app.showMessage("Are you sure you want to remove selected parcels? This action cannot be undone.", "OST", ["Yes", "No"])
@@ -387,7 +413,9 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 showPickupScheduler(!showPickupScheduler());
             },
             attached = function (view) {
-
+                size.subscribe(function () {
+                    activate(id());
+                });
             },
             compositionComplete = function () {
 
@@ -452,6 +480,13 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             selectedConsignments: selectedConsignments,
             checkAll: checkAll,
             errorNum: errorNum,
+            isBusy: isBusy,
+            page: page,
+            size: size,
+            count: count,
+            availablePageSize: availablePageSize,
+            nextPage: nextPage,
+            previousPage: previousPage,
             saveCommand: saveCommand
         };
         return vm;

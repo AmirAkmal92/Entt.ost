@@ -208,102 +208,145 @@
                         </div>
                     </div>
                 </div>
-                <div data-bind="visible: Consignments().length > 0">
-                    <div class="clearfix">
-                        <div class="panel panel-danger">
-                            <table class="table table-striped table-bordered table-advance">
-                                <thead>
-                                    <tr>
-                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase">
-                                            <span data-bind="click: $root.toggleCheckAll">
-                                                <i class="fa fa-square-o" data-bind="visible: !$root.checkAll()"></i>
-                                                <i class="fa fa-check-square-o" data-bind="visible: $root.checkAll()"></i>
-                                            </span>
-                                        </th>
-                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><center><strong>#</strong></center></th>
-                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Sender</strong></th>
-                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Recipient</strong></th>
-                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Parcel</strong></th>
-                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Consignment Note</strong></th>
-                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase" title="Multiple Piece Shipment"><strong>MPS</strong></th>
-                                        <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><center><strong>Action</strong></center></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!--ko foreach: Consignments-->
-                                    <tr data-bind="css: ($root.errorNum() == $index()) ? 'danger' : 'default'">
-                                        <td>
-                                            <!--ko if: ConNote() != null-->
-                                            <input type="checkbox" disabled />
-                                            <!--/ko-->
-                                            <!--ko if: ConNote() == null-->
-                                            <input type="checkbox" data-bind="checked : $root.selectedConsignments, value:$data, attr: { name: 'check-consignment-' + ($index() + 1) }" />
-                                            <!--/ko-->
-                                        </td>
-                                        <td><center><span data-bind="text: $index() + 1"></span></center></td>
-                                        <td>
-                                            <span class="text-capitalize" data-bind="text: Pemberi().ContactPerson"></span>
-                                        </td>
-                                        <td>
-                                            <span class="text-capitalize" data-bind="text: Penerima().ContactPerson"></span>
-                                        </td>
-                                        <td>
-                                            <!--ko if: Produk().Weight() != null-->
-                                            <span data-bind="text: Produk().Weight().toFixed(1) + ' kg'"></span>
-                                            <!--ko if: Produk().IsInternational-->
-                                            <span class="label label-sm label-success label-mini pull-right"><i class="fa fa-plane"></i> International </span>
-                                            <!-- /ko -->
-                                            <!--ko ifnot: Produk().IsInternational-->
-                                            <span class="label label-sm label-info label-mini pull-right"><i class="fa fa-truck"></i> Domestic </span>
-                                            <!-- /ko -->
-                                            <!-- /ko -->
-                                        </td>
-                                        <td>
-                                            <!--ko if: ConNote() != null-->
-                                            <span data-bind="text: ConNote()"></span>
-                                            <!--/ko-->
-                                            <!--ko if: ConNote() == null-->
-                                            <span>Not Available</span>
-                                            <!--/ko-->
-                                        </td>
-                                        <td>
-                                            <!--ko if: BabyConnotes().length > 0-->
-                                            <ol data-bind="foreach: BabyConnotes()">
-                                                <li>
-                                                    <!--<span>test</span>&nbsp;-->
-                                                    <span data-bind="text: $data"></span>&nbsp;
-                                                </li>
-                                            </ol>
-                                            <!--/ko-->
-                                            <!--ko if: BabyConnotesTotal() == undefined || BabyConnotes().length == 0-->
-                                            <span>Not Available</span>
-                                            <!--/ko-->
-                                        </td>
-                                        <td>
-                                            <center>
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Edit" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }, , css: { 'disabled': ConNote() }">
-                                                    <i class="icon-note"></i>
-                                                </a>
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Delete" data-bind="click: $root.deleteConsignment, css: { 'disabled': ConNote() }">
-                                                    <i class="icon-trash"></i>
-                                                </a>
-                                                <!--ko ifnot: Produk().IsInternational-->
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="click: $root.printNddConnote, css: { 'disabled': !ConNote() }">
-                                                    <i class="icon-printer"></i>
-                                                </a>
-                                                <!--/ko-->
-                                                <!--ko if: Produk().IsInternational-->
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="click: $root.printEmsConnote, css: { 'disabled': !ConNote() }">
-                                                    <i class="icon-printer"></i>
-                                                </a>
-                                                <!--/ko-->
-                                            </center>
-                                        </td>
-                                    </tr>
-                                    <!-- /ko -->
-                                </tbody>
-                            </table>
+            </div>
+            <div data-bind="visible: Consignments().length > 0">
+                <div class="clearfix">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="portlet light bordered">
+                                <div class="table-container" style="">
+                                    <div class="dataTables_wrapper dataTables_extended_wrapper no-footer">
+                                        <div class="row">
+                                            <div class="col-md-8 col-sm-12">
+                                                <div class="dataTables_paginate paging_bootstrap_extended">
+                                                    <div class="pagination-panel">
+                                                        Page <a class="btn btn-sm default prev" data-bind="click: $root.previousPage, css: { 'disabled': ($root.page() <= 0) }"><i class="fa fa-angle-left"></i></a>
+                                                        <span class="pagination-panel-input" data-bind="text: $root.page() + 1" style="text-align:center; margin: 0 5px;">1</span>
+                                                        <a class="btn btn-sm default next" data-bind="click: $root.nextPage, css: { 'disabled': ($root.count() + $root.size() >= Consignments().length) }"><i class="fa fa-angle-right"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div class="dataTables_length">
+                                                    <label>
+                                                        View
+                                                        <select class="form-control input-xs input-sm input-inline" data-bind="options: $root.availablePageSize, value: $root.size"></select>
+                                                        items per page
+                                                    </label>
+                                                </div>
+                                                <div class="dataTables_info" id="datatable_ajax_info" role="status" aria-live="polite"></div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-12">
+                                                <div class="table-group-actions pull-right">
+                                                    <span class="dataTables_info right" role="status" aria-live="polite">
+                                                        Showing <!--ko if: Consignments().length > 0-->
+                                                        <span data-bind="text: $root.count() + 1"></span>
+                                                        -
+                                                        <span data-bind="text: ($root.count() + $root.size() >= Consignments().length) ? Consignments().length : ($root.count() + $root.size())"></span>
+                                                        of
+                                                        <!--/ko-->
+                                                        <span data-bind="text: Consignments().length"></span>
+                                                        items
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <div class="panel panel-danger">
+                        <table class="table table-striped table-bordered table-advance">
+                            <thead>
+                                <tr>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase">
+                                        <span data-bind="click: $root.toggleCheckAll">
+                                            <i class="fa fa-square-o" data-bind="visible: !$root.checkAll()"></i>
+                                            <i class="fa fa-check-square-o" data-bind="visible: $root.checkAll()"></i>
+                                        </span>
+                                    </th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><center><strong>#</strong></center></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Sender</strong></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Recipient</strong></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Parcel</strong></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Consignment Note</strong></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase" title="Multiple Piece Shipment"><strong>MPS</strong></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><center><strong>Action</strong></center></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--ko foreach: Consignments-->
+                                <tr data-bind="if: $index() >= $root.count() && $index() < $root.count() + $root.size(), css: ($root.errorNum() == $index()) ? 'danger' : 'default'">
+                                    <td>
+                                        <!--ko if: ConNote() != null-->
+                                        <input type="checkbox" disabled />
+                                        <!--/ko-->
+                                        <!--ko if: ConNote() == null-->
+                                        <input type="checkbox" data-bind="checked : $root.selectedConsignments, value:$data, attr: { name: 'check-consignment-' + ($index() + 1) }" />
+                                        <!--/ko-->
+                                    </td>
+                                    <td><center><span data-bind="text: $index() + 1"></span></center></td>
+                                    <td>
+                                        <span class="text-capitalize" data-bind="text: Pemberi().ContactPerson"></span>
+                                    </td>
+                                    <td>
+                                        <span class="text-capitalize" data-bind="text: Penerima().ContactPerson"></span>
+                                    </td>
+                                    <td>
+                                        <!--ko if: Produk().Weight() != null-->
+                                        <span data-bind="text: Produk().Weight().toFixed(1) + ' kg'"></span>
+                                        <!--ko if: Produk().IsInternational-->
+                                        <span class="label label-sm label-success label-mini pull-right"><i class="fa fa-plane"></i> International </span>
+                                        <!-- /ko -->
+                                        <!--ko ifnot: Produk().IsInternational-->
+                                        <span class="label label-sm label-info label-mini pull-right"><i class="fa fa-truck"></i> Domestic </span>
+                                        <!-- /ko -->
+                                        <!-- /ko -->
+                                    </td>
+                                    <td>
+                                        <!--ko if: ConNote() != null-->
+                                        <span data-bind="text: ConNote()"></span>
+                                        <!--/ko-->
+                                        <!--ko if: ConNote() == null-->
+                                        <span>Not Available</span>
+                                        <!--/ko-->
+                                    </td>
+                                    <td>
+                                        <!--ko if: BabyConnotes().length > 0-->
+                                        <ol data-bind="foreach: BabyConnotes()">
+                                            <li>
+                                                <!--<span>test</span>&nbsp;-->
+                                                <span data-bind="text: $data"></span>&nbsp;
+                                            </li>
+                                        </ol>
+                                        <!--/ko-->
+                                        <!--ko if: BabyConnotesTotal() == undefined || BabyConnotes().length == 0-->
+                                        <span>Not Available</span>
+                                        <!--/ko-->
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Edit" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $parent.Id() + '/consignments/' + WebId() }, , css: { 'disabled': ConNote() }">
+                                                <i class="icon-note"></i>
+                                            </a>
+                                            <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Delete" data-bind="click: $root.deleteConsignment, css: { 'disabled': ConNote() }">
+                                                <i class="icon-trash"></i>
+                                            </a>
+                                            <!--ko ifnot: Produk().IsInternational-->
+                                            <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="click: $root.printNddConnote, css: { 'disabled': !ConNote() }">
+                                                <i class="icon-printer"></i>
+                                            </a>
+                                            <!--/ko-->
+                                            <!--ko if: Produk().IsInternational-->
+                                            <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="click: $root.printEmsConnote, css: { 'disabled': !ConNote() }">
+                                                <i class="icon-printer"></i>
+                                            </a>
+                                            <!--/ko-->
+                                        </center>
+                                    </td>
+                                </tr>
+                                <!-- /ko -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

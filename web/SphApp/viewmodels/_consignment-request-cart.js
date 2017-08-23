@@ -9,7 +9,7 @@ define(['services/datacontext', 'services/logger', 'plugins/router', objectbuild
                     method: "GET",
                     cache: false
                 }).done(function (crList) {
-                    console.log(crList);
+                    //console.log(crList);
                     if (crList._count == 0) {
                         //create new cart
                         consignmentRequest().UserId(config.userName);                        
