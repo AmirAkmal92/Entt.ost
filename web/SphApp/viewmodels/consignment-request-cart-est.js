@@ -265,6 +265,9 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             printEmsConnote = function (data) {
                 window.open('/ost/print-international-connote/consignment-requests/' + id() + '/consignments/' + data.WebId());
             },
+            printCommercialInvoice = function (data) {
+                window.open('/ost/print-commercial-invoice/consignment-requests/' + id() + '/consignments/' + data.WebId());
+            },
             launchSchedulerDetailDialog = function () {
                 // always check for pickup location before scheduling
                 if (entity().Pickup().Address().Postcode() === undefined) {
@@ -463,6 +466,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             generateConNotes: generateConNotes,
             printNddConnote: printNddConnote,
             printEmsConnote: printEmsConnote,
+            printCommercialInvoice: printCommercialInvoice,
             toggleShowBusyLoadingDialog: toggleShowBusyLoadingDialog,
             launchSchedulerDetailDialog: launchSchedulerDetailDialog,
             sumWeight: sumWeight,
