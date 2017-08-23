@@ -110,7 +110,7 @@
                             <ul class="list-unstyled">
                                 <li> <strong><span class="text-capitalize">@Html.Raw(Model.Penerima.ContactPerson)</span></strong> </li>
                                 <li> <span>@Html.Raw(Model.Penerima.Address.Address1)</span>, <span>@Html.Raw(Model.Penerima.Address.Address2)</span> </li>
-                                @if (!String.IsNullOrEmpty(Model.Pemberi.Address.Address3) || !String.IsNullOrEmpty(Model.Pemberi.Address.Address4))
+                                @if (!String.IsNullOrEmpty(Model.Penerima.Address.Address3) || !String.IsNullOrEmpty(Model.Penerima.Address.Address4))
                                 {
                                     <li> <span>@Html.Raw(Model.Penerima.Address.Address3)</span>, <span>@Html.Raw(Model.Penerima.Address.Address4)</span> </li>
                                 }
