@@ -36,8 +36,10 @@ $env:RX_OST_SnbWebApi = "http://localhost:3330"
 $env:RX_OST_SdsBaseUrl = "https://apis.pos.com.my"
 $env:RX_OST_SdsApi_GenerateConnote = "apigateway/as01/api/genconnote/v1";
 $env:RX_OST_SdsSecretKey_GenerateConnote = "MjkzYjA5YmItZjMyMS00YzNmLWFmODktYTc2ZTAxMDgzY2Mz";
-$env:RX_OST_SdsApi_PickupWebApi = "apigateway/as2poslaju/api/pickupwebapi/v1";
-$env:RX_OST_SdsSecretKey_PickupWebApi = "Nzc1OTk0OTktYzYyNC00MzhhLTk5OTAtYTc2ZTAxMGJiYmMz";
+$env:RX_OST_SdsApi_GenerateConnoteEst = "apigateway/as01/api/generateconnotebaby/v1";
+$env:RX_OST_SdsSecretKey_GenerateConnoteEst = "NjloNDVKSUtiRm05MGdHR1dtbkdpQ09NOVpSN3hObWU=";
+$env:RX_OST_SdsApi_PickupWebApi = "apigateway/as2poslaju/api/ezisendpickupwebapi/v1";
+$env:RX_OST_SdsSecretKey_PickupWebApi = "ckk1cjZ4V2NwSHJWVFZCTVVsSmZGSWtESUpBanNra0g=";
 $env:RX_OST_SdsApi_SdsTrackTrace_WebApi = "apigateway/as2corporate/api/v2trackntracewebapijson/v1";
 $env:RX_OST_SdsSecretKey_SdsTrackTrace_WebApi = "YTk3ZDYyNTgtMzAwMS00ZDQ0LWJjZGUtYTZlYzAxMTY5NDE3";
 $env:RX_OST_SdsApi_SdsTrackTrace_WebApiHeader = "apigateway/as2corporate/api/trackntracewebapiheader/v1";

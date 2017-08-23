@@ -78,9 +78,10 @@ $env:RX_OST_SnbWebApp = "http://10.1.1.119:9001"
 $env:RX_OST_SnbWebApi = "http://10.1.1.119:9002/api"
 $env:RX_OST_SnbReadSqlConnectionString = "Data Source=10.1.1.120;Initial Catalog=SnBReadProdOst;User Id=sa;Password=P@ssw0rd;"
 
-### for SAP-FI Posting (development)
+### for SAP-FI / E-SOC Posting (development)
 $env:RX_OST_AdminToken = "your-admin-token-here"
 $env:RX_OST_SapFolder = "C:\temp"
+$env:RX_OST_ESocFolder = "C:\temp"
 
 ### for Payment Gateway (Staging)
 $env:RX_OST_PaymentGatewayBaseUrl = "http://testv2paymentgateway.posonline.com.my"
@@ -91,6 +92,8 @@ $env:RX_OST_PaymentGatewayEncryptionKey = "WdVxp54wmQlGFBmvOQgfmpAqCJ23gyGI"
 $env:RX_OST_SdsBaseUrl = "http://stagingsds.pos.com.my/apigateway"
 $env:RX_OST_SdsApi_GenerateConnote = "as2corporate/api/generateconnote/v1";
 $env:RX_OST_SdsSecretKey_GenerateConnote = "ODA2MzViZTAtODk3MS00OGU5LWFiNGEtYTcxYjAxMjU4NjM1";
+$env:RX_OST_SdsApi_GenerateConnoteEst = "as2corporate/api/GenerateConnoteBaby/v1";
+$env:RX_OST_SdsSecretKey_GenerateConnoteEst = "YTNkZjc2MTMtYzQyMy00ZTI4LThlYjMtYTdjNDAwYzExNTQz";
 $env:RX_OST_SdsApi_PickupWebApi = "devposlaju/api/pickuprequestapi/v1";
 $env:RX_OST_SdsSecretKey_PickupWebApi = "TnJqREpHbzU4Z1ZuQ1FSVkMxenFnVkhHODBNVVNzQ3A=";
 ```
@@ -104,3 +107,12 @@ You may change Track N Trace back to production mode by uncommenting this line:
 
 ```
 in `...\web\App_Code\TrackTraceController.cs`.
+
+2. Staging mode only support "ED" for connote prefix. 
+You may change connote prefix by swapping between "ED" and "EB":
+
+```
+//url.Append("&PrefixBaby=EB");
+url.Append("&PrefixBaby=ED"); // stagging
+```
+in `...\web\App_Code\CustomConsignmentRequestController.cs`

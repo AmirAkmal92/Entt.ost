@@ -28,6 +28,8 @@ namespace web.sph.App_Code
         private string m_ostAdminToken;
         private string m_sdsApi_GenerateConnote;
         private string m_sdsSecretKey_GenerateConnote;
+        private string m_sdsApi_GenerateConnoteEst;
+        private string m_sdsSecretKey_GenerateConnoteEst;
         private string m_sdsApi_PickupWebApi;
         private string m_sdsSecretKey_PickupWebApi;
         private string m_snbClientApi;
@@ -40,8 +42,10 @@ namespace web.sph.App_Code
             m_ostAdminToken = ConfigurationManager.GetEnvironmentVariable("AdminToken") ?? "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHlvdXJjb21wYW55LmNvbSIsInN1YiI6IjYzNjIwNDQ2NTgyNzk2MDA0NDYwOGNjMzdjIiwibmJmIjoxNTAwNDU5MzgzLCJpYXQiOjE0ODQ4MjA5ODMsImV4cCI6MTUxNDY3ODQwMCwiYXVkIjoiT3N0In0.qIA-b-0XTI_GpgMCGJC1yAAtw04UoPaNYoxMSXeBrPk";
             m_sdsApi_GenerateConnote = ConfigurationManager.GetEnvironmentVariable("SdsApi_GenerateConnote") ?? "apigateway/as01/api/genconnote/v1";
             m_sdsSecretKey_GenerateConnote = ConfigurationManager.GetEnvironmentVariable("SdsSecretKey_GenerateConnote") ?? "MjkzYjA5YmItZjMyMS00YzNmLWFmODktYTc2ZTAxMDgzY2Mz";
-            m_sdsApi_PickupWebApi = ConfigurationManager.GetEnvironmentVariable("SdsApi_PickupWebApi") ?? "apigateway/as2poslaju/api/pickupwebapi/v1"; //TODO get production new address
-            m_sdsSecretKey_PickupWebApi = ConfigurationManager.GetEnvironmentVariable("SdsSecretKey_PickupWebApi") ?? "Nzc1OTk0OTktYzYyNC00MzhhLTk5OTAtYTc2ZTAxMGJiYmMz"; //TODO get production new key
+            m_sdsApi_GenerateConnoteEst = ConfigurationManager.GetEnvironmentVariable("SdsApi_GenerateConnoteEst") ?? "apigateway/as01/api/generateconnotebaby/v1";
+            m_sdsSecretKey_GenerateConnoteEst = ConfigurationManager.GetEnvironmentVariable("SdsSecretKey_GenerateConnoteEst") ?? "NjloNDVKSUtiRm05MGdHR1dtbkdpQ09NOVpSN3hObWU=";
+            m_sdsApi_PickupWebApi = ConfigurationManager.GetEnvironmentVariable("SdsApi_PickupWebApi") ?? "apigateway/as2poslaju/api/ezisendpickupwebapi/v1";
+            m_sdsSecretKey_PickupWebApi = ConfigurationManager.GetEnvironmentVariable("SdsSecretKey_PickupWebApi") ?? "ckk1cjZ4V2NwSHJWVFZCTVVsSmZGSWtESUpBanNra0g=";
             m_snbClientApi = ConfigurationManager.GetEnvironmentVariable("SnbWebApi") ?? "http://10.1.1.119:9002/api";
         }
 
@@ -985,7 +989,7 @@ namespace web.sph.App_Code
                             productDescription += " " + consignment.Produk.CustomDeclaration.ContentDescription2;
                         if (!string.IsNullOrEmpty(consignment.Produk.CustomDeclaration.ContentDescription3))
                             productDescription += " " + consignment.Produk.CustomDeclaration.ContentDescription3;
-                    } 
+                    }
 
                     ws.Cells[row, 1].Value = consignmentIndexNumber;
                     ws.Cells[row, 2].Value = tallysheetDate.ToString("dd/MM/yyyy");
@@ -1057,7 +1061,7 @@ namespace web.sph.App_Code
                     ws.Cells[row, 1].Value = pickupDate;
                     ws.Cells[row, 2].Value = connoteNumbers;
                     ws.Cells[row, 3].Value = itemCategory;
-                    ws.Cells[row, 4].Value = consignment.Produk.Weight;                    
+                    ws.Cells[row, 4].Value = consignment.Produk.Weight;
                 }
 
                 row++;
@@ -1161,13 +1165,14 @@ namespace web.sph.App_Code
         private SdsBabyConnote GetConnoteWithOrWithoutBaby(string orderId, int numBaby, int numParent)
         {
             var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("X-User-Key", "YTNkZjc2MTMtYzQyMy00ZTI4LThlYjMtYTdjNDAwYzExNTQz"); //TODO env
+            client.DefaultRequestHeaders.Add("X-User-Key", m_sdsSecretKey_GenerateConnoteEst);
             var url = new StringBuilder();
-            url.Append("as2corporate/api/GenerateConnoteBaby/v1"); //TODO env
+            url.Append(m_sdsApi_GenerateConnoteEst);
             url.Append($"?numberOfItemParent={numParent.ToString()}");
             url.Append("&PrefixParent=EU");
             url.Append($"&numberOfItemBaby={numBaby.ToString()}");
-            url.Append("&PrefixBaby=ED");
+            url.Append("&PrefixBaby=EB");
+            //url.Append("&PrefixBaby=ED"); // stagging
             url.Append("&ApplicationCode=OST");
             url.Append("&Secretid=ost@1234");
             url.Append($"&Orderid={orderId}");
