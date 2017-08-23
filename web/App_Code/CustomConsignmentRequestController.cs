@@ -689,6 +689,12 @@ namespace web.sph.App_Code
             var doc = await store.GetContentAsync(storeId);
             if (null == doc) return NotFound($"Cannot find file in {storeId}");
 
+            var ext = Path.GetExtension(doc.FileName).ToLower();
+            if (ext != ".xlsx")
+            {
+                return Ok(new { success = false, status = "Invalid file format. Only *.xlsx file is supported." });
+            }
+
             LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(consignmentId);
             if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + consignmentId);
 
