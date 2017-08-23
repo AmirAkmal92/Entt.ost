@@ -6,10 +6,11 @@
   "PostcodeTo": "07000",
   "Email": "KPPoslajuLangkawi@pos.com.my",
   "PickupId": "342",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "342",
   "CreatedDate": "2016-11-03T10:52:04.2354287+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:04.2294277+08:00",
+  "ChangedDate": "2017-08-16T13:24:49.7017821+08:00",
   "WebId": "ff3452f8-073d-4038-90f3-9094102fcae8"
 }

@@ -6,10 +6,11 @@
   "PostcodeTo": "22099",
   "Email": "poslajujerteh@poslaju.com.my",
   "PickupId": "389",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "389",
   "CreatedDate": "2016-11-03T10:52:05.4224444+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:05.4214434+08:00",
+  "ChangedDate": "2017-08-16T13:28:32.1967921+08:00",
   "WebId": "11ea3035-b9c6-472c-bacd-328db15a6721"
 }

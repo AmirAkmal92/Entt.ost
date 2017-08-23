@@ -6,10 +6,11 @@
   "PostcodeTo": "21000",
   "Email": "KhidmatPelangganPoslajuKualaTerengganu@pos.com.my",
   "PickupId": "253",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "253",
   "CreatedDate": "2016-11-03T10:52:02.3964033+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:02.3834038+08:00",
+  "ChangedDate": "2017-08-16T13:28:32.1506694+08:00",
   "WebId": "15f057d9-abe2-4eab-ba5c-b0b1c1d63903"
 }

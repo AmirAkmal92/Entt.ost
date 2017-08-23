@@ -6,10 +6,11 @@
   "PostcodeTo": "43899",
   "Email": "poslajubanting@pos.com.my",
   "PickupId": "423",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "423",
   "CreatedDate": "2016-11-03T10:52:06.1004517+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:06.0954526+08:00",
+  "ChangedDate": "2017-08-16T13:28:37.08226+08:00",
   "WebId": "5c11afe3-6393-4f11-b354-abd67308f565"
 }

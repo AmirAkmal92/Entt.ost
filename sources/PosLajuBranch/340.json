@@ -6,10 +6,11 @@
   "PostcodeTo": "01999",
   "Email": "KPPoslajuKangar@pos.com.my",
   "PickupId": "340",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "340",
   "CreatedDate": "2016-11-03T10:52:04.1664267+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:04.1644262+08:00",
+  "ChangedDate": "2017-08-16T13:21:25.9285695+08:00",
   "WebId": "6cd22693-952b-426b-85d4-111ff88234a6"
 }

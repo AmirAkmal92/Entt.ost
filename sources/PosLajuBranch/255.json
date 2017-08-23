@@ -6,10 +6,11 @@
   "PostcodeTo": "28000",
   "Email": "KPPoslajuTemerloh@pos.com.my",
   "PickupId": "255",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "255",
   "CreatedDate": "2016-11-03T10:52:02.4294039+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:02.424403+08:00",
+  "ChangedDate": "2017-08-16T13:28:32.2950537+08:00",
   "WebId": "8179f416-d2b3-48e8-bc17-e95b84225afd"
 }

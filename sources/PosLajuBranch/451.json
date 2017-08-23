@@ -6,10 +6,11 @@
   "PostcodeTo": "16199",
   "Email": "KPPoslajuKotaBharu@pos.com.my",
   "PickupId": "451",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "451",
   "CreatedDate": "2016-11-03T10:52:05.8814493+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:05.8804501+08:00",
+  "ChangedDate": "2017-08-16T13:28:31.2442596+08:00",
   "WebId": "42b21d97-7b96-45f3-a4c1-58b542808c41"
 }

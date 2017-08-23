@@ -6,10 +6,11 @@
   "PostcodeTo": "18000",
   "Email": "plmachang_kp@poslaju.com.my",
   "PickupId": "390",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "390",
   "CreatedDate": "2016-11-03T10:52:05.4144432+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:05.4134422+08:00",
+  "ChangedDate": "2017-08-16T13:28:31.9731967+08:00",
   "WebId": "68c4f75b-6848-4584-8d12-bcaead46bab9"
 }

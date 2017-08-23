@@ -6,10 +6,11 @@
   "PostcodeTo": "52099",
   "Email": "pl_kepong@pos.com.my",
   "PickupId": "299",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "299",
   "CreatedDate": "2016-11-03T10:52:03.2144129+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:03.2044135+08:00",
+  "ChangedDate": "2017-08-16T13:28:41.0137321+08:00",
   "WebId": "f926e5a4-680a-405d-b6be-03f9b5fbea83"
 }

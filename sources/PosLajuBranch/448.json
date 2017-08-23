@@ -6,10 +6,11 @@
   "PostcodeTo": "16249",
   "Email": "plpasirmas_kp@poslaju.com.my",
   "PickupId": "448",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "448",
   "CreatedDate": "2016-11-03T10:52:06.1524516+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:06.1494525+08:00",
+  "ChangedDate": "2017-08-16T13:28:31.2723353+08:00",
   "WebId": "0ae87859-c9bc-4256-8802-6516cb89150b"
 }

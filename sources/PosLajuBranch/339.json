@@ -6,10 +6,11 @@
   "PostcodeTo": "76499",
   "Email": "KPPoslajuMelaka@pos.com.my",
   "PickupId": "339",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "339",
   "CreatedDate": "2016-11-03T10:52:04.1504266+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:04.145426+08:00",
+  "ChangedDate": "2017-08-16T13:28:43.3331328+08:00",
   "WebId": "47bcce71-3f17-4b3d-a147-a3bd0f4ef67d"
 }

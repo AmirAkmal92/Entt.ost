@@ -6,10 +6,11 @@
   "PostcodeTo": "10999",
   "Email": "KPPoslajuPulauPinang@pos.com.my",
   "PickupId": "346",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "346",
   "CreatedDate": "2016-11-03T10:52:04.3344303+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:04.3194282+08:00",
+  "ChangedDate": "2017-08-16T13:28:30.246607+08:00",
   "WebId": "bbd6c7fe-b86e-443c-b2e3-c1245df39ff1"
 }

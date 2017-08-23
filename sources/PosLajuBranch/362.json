@@ -6,10 +6,11 @@
   "PostcodeTo": "93200",
   "Email": "plkuching_pickup@pos.com.my",
   "PickupId": "362",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "362",
   "CreatedDate": "2016-11-03T10:52:04.8114337+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:04.7894359+08:00",
+  "ChangedDate": "2017-08-16T13:28:44.9223588+08:00",
   "WebId": "72aa9b18-5b82-459a-8c5e-01b12cfd5f76"
 }

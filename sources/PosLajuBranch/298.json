@@ -6,10 +6,11 @@
   "PostcodeTo": "51999",
   "Email": "plbtcaves.pickup@pos.com.my",
   "PickupId": "298",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "298",
   "CreatedDate": "2016-11-03T10:52:03.1944132+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:03.1824136+08:00",
+  "ChangedDate": "2017-08-16T13:28:40.6998791+08:00",
   "WebId": "73fa93a7-8c78-4d7b-b1e4-037c9cac6e6c"
 }

@@ -6,10 +6,11 @@
   "PostcodeTo": "30999",
   "Email": "KPPoslajuIpoh@pos.com.my",
   "PickupId": "259",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "259",
   "CreatedDate": "2016-11-03T10:52:02.5184046+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:02.5104046+08:00",
+  "ChangedDate": "2017-08-16T13:28:32.3441835+08:00",
   "WebId": "a59be72e-e3cc-44b9-a8f3-14acace85be1"
 }

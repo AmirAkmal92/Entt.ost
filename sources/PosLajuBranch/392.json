@@ -6,10 +6,11 @@
   "PostcodeTo": "42619",
   "Email": "plpuchong_pickup@pos.com.my",
   "PickupId": "392",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "392",
   "CreatedDate": "2016-11-03T10:52:05.4364434+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:05.4264416+08:00",
+  "ChangedDate": "2017-08-16T13:28:36.7152838+08:00",
   "WebId": "993d0c44-44d8-42a8-ab58-cd822ca58d92"
 }

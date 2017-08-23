@@ -6,10 +6,11 @@
   "PostcodeTo": "71049",
   "Email": "plpdickson.kp@poslaju.com.my",
   "PickupId": "401",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "401",
   "CreatedDate": "2016-11-03T10:52:05.5684441+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:05.5634441+08:00",
+  "ChangedDate": "2017-08-16T13:28:42.2058833+08:00",
   "WebId": "883c10bf-6e08-43f8-865f-c5311f1ce5a7"
 }

@@ -6,10 +6,11 @@
   "PostcodeTo": "43949",
   "Email": "KPPoslajuNilai@pos.com.my",
   "PickupId": "336",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "336",
   "CreatedDate": "2016-11-03T10:52:04.0894263+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:04.0864238+08:00",
+  "ChangedDate": "2017-08-16T13:28:37.1795177+08:00",
   "WebId": "f6e9ee3b-9008-46a7-a728-14ab46ff68ed"
 }

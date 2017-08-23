@@ -6,10 +6,11 @@
   "PostcodeTo": "96000",
   "Email": "KPPoslajuSibu@pos.com.my",
   "PickupId": "366",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "366",
   "CreatedDate": "2016-11-03T10:52:05.0184362+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:04.9944381+08:00",
+  "ChangedDate": "2017-08-16T13:28:45.2622621+08:00",
   "WebId": "fc006b18-9301-4fe4-99ec-0708203fffad"
 }

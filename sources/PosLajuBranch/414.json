@@ -6,10 +6,11 @@
   "PostcodeTo": "24300",
   "Email": "poslajuchukai@poslaju.com.my",
   "PickupId": "414",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "414",
   "CreatedDate": "2016-11-03T10:52:05.7274478+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:05.7264483+08:00",
+  "ChangedDate": "2017-08-16T13:28:32.2469261+08:00",
   "WebId": "36f5a26d-524f-4fe6-b4f3-d656c150e53b"
 }

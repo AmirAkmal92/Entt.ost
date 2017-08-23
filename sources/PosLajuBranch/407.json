@@ -6,10 +6,11 @@
   "PostcodeTo": "45299",
   "Email": "poslaju.kselangor@pos.com.my",
   "PickupId": "407",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "407",
   "CreatedDate": "2016-11-03T10:52:05.6454464+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:05.640447+08:00",
+  "ChangedDate": "2017-08-16T13:28:38.8058429+08:00",
   "WebId": "e5aed7bb-abb3-49ea-a111-7cacfaa670e4"
 }

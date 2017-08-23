@@ -6,10 +6,11 @@
   "PostcodeTo": "36000",
   "Email": "KPPoslajuTelukIntan@pos.com.my",
   "PickupId": "265",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "265",
   "CreatedDate": "2016-11-03T10:52:02.6244059+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:02.6134076+08:00",
+  "ChangedDate": "2017-08-16T13:28:35.3854492+08:00",
   "WebId": "5f983674-af31-40f2-9c0d-fb18f987d024"
 }

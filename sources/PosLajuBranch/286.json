@@ -6,10 +6,11 @@
   "PostcodeTo": "43299",
   "Email": "plbalakong@poslaju.com.my",
   "PickupId": "286",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "286",
   "CreatedDate": "2016-11-03T10:52:02.9884102+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:02.9824095+08:00",
+  "ChangedDate": "2017-08-16T13:28:36.8947613+08:00",
   "WebId": "589e07c9-59ed-41a1-82b1-f2a988b3b7a7"
 }

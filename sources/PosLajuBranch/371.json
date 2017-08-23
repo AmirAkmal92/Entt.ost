@@ -6,10 +6,11 @@
   "PostcodeTo": "98700",
   "Email": "poslaju.limbang@pos.com.my",
   "PickupId": "371",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "371",
   "CreatedDate": "2016-11-03T10:52:05.1104391+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:05.1074402+08:00",
+  "ChangedDate": "2017-08-16T13:28:46.1446083+08:00",
   "WebId": "3629a172-688a-42a2-b0ed-26960ef7a4d7"
 }

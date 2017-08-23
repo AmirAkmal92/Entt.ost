@@ -6,10 +6,11 @@
   "PostcodeTo": "13500",
   "Email": "KPPoslajuButterworth@pos.com.my",
   "PickupId": "348",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "348",
   "CreatedDate": "2016-11-03T10:52:04.3804304+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:04.3664287+08:00",
+  "ChangedDate": "2017-08-16T13:28:30.3649209+08:00",
   "WebId": "fb700716-2c47-4fd3-b010-4dd974bd4a64"
 }

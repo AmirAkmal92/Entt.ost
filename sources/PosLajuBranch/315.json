@@ -6,10 +6,11 @@
   "PostcodeTo": "68099",
   "Email": "plcheras_pickup@pos.com.my",
   "PickupId": "315",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "315",
   "CreatedDate": "2016-11-03T10:52:03.7864207+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:03.7764211+08:00",
+  "ChangedDate": "2017-08-16T13:28:42.151746+08:00",
   "WebId": "54c4e2fb-344e-4d57-a1dc-d590c97168e1"
 }

@@ -6,10 +6,11 @@
   "PostcodeTo": "27600",
   "Email": "poslaju.bentong@pos.com.my",
   "PickupId": "258",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "258",
   "CreatedDate": "2016-11-03T10:52:02.498404+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:02.493404+08:00",
+  "ChangedDate": "2017-08-16T13:28:32.3110964+08:00",
   "WebId": "2b263815-c24d-4e76-8f52-96f850a14aee"
 }

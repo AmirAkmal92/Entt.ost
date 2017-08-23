@@ -6,10 +6,11 @@
   "PostcodeTo": "70450",
   "Email": "KPPoslajuSeremban@pos.com.my",
   "PickupId": "334",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "334",
   "CreatedDate": "2016-11-03T10:52:04.0744251+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:04.0704237+08:00",
+  "ChangedDate": "2017-08-16T13:28:42.1908456+08:00",
   "WebId": "10b423bb-5f43-4789-9a6c-b0ebd51e4b23"
 }

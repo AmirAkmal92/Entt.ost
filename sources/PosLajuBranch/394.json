@@ -6,10 +6,11 @@
   "PostcodeTo": "72119",
   "Email": "plbahau.kp@poslaju.com.my",
   "PickupId": "394",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "394",
   "CreatedDate": "2016-11-03T10:52:05.4844425+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:05.4774435+08:00",
+  "ChangedDate": "2017-08-16T13:28:42.3081556+08:00",
   "WebId": "963d5e0b-4c85-46c2-ab63-59bb8b449f23"
 }

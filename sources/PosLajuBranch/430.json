@@ -6,10 +6,11 @@
   "PostcodeTo": "26689",
   "Email": "plpekan.kp@poslaju.com.my",
   "PickupId": "430",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "430",
   "CreatedDate": "2016-11-03T10:52:03.4694172+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:03.4424157+08:00",
+  "ChangedDate": "2017-08-16T13:28:32.2599599+08:00",
   "WebId": "c020bc2a-44d5-42c0-986a-33dcc2a23a8a"
 }

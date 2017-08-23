@@ -6,10 +6,11 @@
   "PostcodeTo": "32100",
   "Email": "KPPoslajuSitiawan@pos.com.my",
   "PickupId": "269",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "269",
   "CreatedDate": "2016-11-03T10:52:02.694407+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:02.686406+08:00",
+  "ChangedDate": "2017-08-16T13:28:34.1441478+08:00",
   "WebId": "9f128d0c-6197-451d-8f58-689f635da5a0"
 }

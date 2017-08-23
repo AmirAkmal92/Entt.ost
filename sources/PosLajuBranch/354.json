@@ -6,10 +6,11 @@
   "PostcodeTo": "14399",
   "Email": "KPPoslajuBukitMertajam@pos.com.my",
   "PickupId": "354",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "354",
   "CreatedDate": "2016-11-03T10:52:04.6104338+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:04.6004326+08:00",
+  "ChangedDate": "2017-08-16T13:28:30.9775501+08:00",
   "WebId": "0f91d021-f2cc-4087-8146-ee05ae3454f8"
 }

@@ -6,10 +6,11 @@
   "PostcodeTo": "47399",
   "Email": "KPPoslajuPetalingJaya@pos.com.my",
   "PickupId": "306",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "306",
   "CreatedDate": "2016-11-03T10:52:03.4304173+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:03.3874173+08:00",
+  "ChangedDate": "2017-08-16T13:28:39.4224817+08:00",
   "WebId": "ab8c2420-2ef4-4d7c-a33d-7f4d4af23cde"
 }

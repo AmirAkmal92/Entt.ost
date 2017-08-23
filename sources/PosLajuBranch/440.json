@@ -6,10 +6,11 @@
   "PostcodeTo": "44299",
   "Email": "KPPoslajuRawang@pos.com.my",
   "PickupId": "440",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "440",
   "CreatedDate": "2016-11-03T10:52:02.8004076+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:02.7914069+08:00",
+  "ChangedDate": "2017-08-16T13:28:38.0638693+08:00",
   "WebId": "a275a09a-f074-4927-b5d2-b827793b3615"
 }

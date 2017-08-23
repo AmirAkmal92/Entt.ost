@@ -6,10 +6,11 @@
   "PostcodeTo": "81849",
   "Email": "KPPoslajuJB@pos.com.my",
   "PickupId": "322",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "322",
   "CreatedDate": "2016-11-03T10:52:03.8594229+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:03.8544247+08:00",
+  "ChangedDate": "2017-08-16T13:28:43.8625402+08:00",
   "WebId": "53ead2a1-0d22-481e-8762-97ce772865a4"
 }

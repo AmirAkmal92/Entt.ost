@@ -6,10 +6,11 @@
   "PostcodeTo": "81919",
   "Email": "plkt_kp@poslaju.com.my",
   "PickupId": "431",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "431",
   "CreatedDate": "2016-11-03T10:52:05.8034469+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:05.8004487+08:00",
+  "ChangedDate": "2017-08-16T13:28:44.013943+08:00",
   "WebId": "562c95ca-84d5-417c-8e1a-a3319b44b03a"
 }

@@ -6,10 +6,11 @@
   "PostcodeTo": "35910",
   "Email": "poslajutgmalim@poslaju.com.my",
   "PickupId": "398",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "398",
   "CreatedDate": "2016-11-03T10:52:05.5314439+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:05.5284451+08:00",
+  "ChangedDate": "2017-08-16T13:28:35.3964797+08:00",
   "WebId": "f52ec13e-d6eb-4faf-8a06-0d0f1f56c2e0"
 }

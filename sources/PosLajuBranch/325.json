@@ -6,10 +6,11 @@
   "PostcodeTo": "82099",
   "Email": "poslaju.jpn@pos.com.my",
   "PickupId": "325",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "325",
   "CreatedDate": "2016-11-03T10:52:03.8854227+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:03.8824232+08:00",
+  "ChangedDate": "2017-08-16T13:28:43.9788495+08:00",
   "WebId": "d726da5b-a8e7-42fb-87ea-cced5f946a47"
 }

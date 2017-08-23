@@ -6,10 +6,11 @@
   "PostcodeTo": "6149",
   "Email": "poslajujitra@poslaju.com.my",
   "PickupId": "381",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "381",
   "CreatedDate": "2016-11-03T10:52:05.293442+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:05.285441+08:00",
+  "ChangedDate": "2017-08-16T13:28:42.0685178+08:00",
   "WebId": "2807db25-9013-480e-a68c-6bb6221860af"
 }

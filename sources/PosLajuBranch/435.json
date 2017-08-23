@@ -6,10 +6,11 @@
   "PostcodeTo": "47099",
   "Email": "plkdkp@poslaju.com.my",
   "PickupId": "435",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "435",
-  "CreatedDate": "2016-11-03T10:52:05.82145+08:00",
+  "CreatedDate": "2017-08-07T14:59:03.2529355+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:05.8174474+08:00",
+  "ChangedDate": "2017-08-07T14:59:03.3396891+08:00",
   "WebId": "7a193208-4f7d-408c-8595-4fbe6a28fa68"
 }

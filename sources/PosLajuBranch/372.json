@@ -6,10 +6,11 @@
   "PostcodeTo": "91100",
   "Email": "poslajuldu@Poslaju.com.my",
   "PickupId": "372",
+  "AllowPickup": true,
   "CreatedBy": "admin",
   "Id": "372",
   "CreatedDate": "2016-11-03T10:52:05.1234388+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:52:05.1134382+08:00",
+  "ChangedDate": "2017-08-16T13:28:44.7468917+08:00",
   "WebId": "3ece20e6-def5-435c-b19d-4640f5b62db3"
 }
