@@ -3979,6 +3979,30 @@
           "WebId": "7d648491-9cce-43f5-e155-30e942561186"
         },
         "WebId": "bc0eaa5a-1e64-4d16-9d05-5bccbbb64146"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+        "TypeName": "System.String, mscorlib",
+        "IsNullable": true,
+        "IsNotIndexed": false,
+        "IsAnalyzed": false,
+        "IsFilterable": false,
+        "IsExcludeInAll": false,
+        "Boost": 0,
+        "FullName": null,
+        "PropertyAttribute": null,
+        "MemberCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "FieldPermissionCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": "Designation",
+        "AllowMultiple": false,
+        "DefaultValue": null,
+        "WebId": "ce7ab96a-8093-4384-97a9-fdff96eb825e"
       }
     ]
   },
@@ -4020,6 +4044,6 @@
   "Id": "consigment-request",
   "CreatedDate": "2016-10-29T07:26:06.8492482+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-08-16T13:04:34.6791542+08:00",
+  "ChangedDate": "2017-08-25T14:46:24.2538733+08:00",
   "WebId": "b8808d89-54c8-4d91-8396-7627974f1138"
 }

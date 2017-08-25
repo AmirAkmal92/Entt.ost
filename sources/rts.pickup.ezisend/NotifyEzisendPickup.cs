@@ -179,6 +179,7 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
             {
                 ReferenceNo = consignmentRequestCart.ReferenceNo,
                 UserId = consignmentRequestCart.UserId,
+                Designation = consignmentRequestCart.Designation,
                 Payment = consignmentRequestCart.Payment.Clone(),
                 Pickup = consignmentRequestCart.Pickup.Clone(),
                 GenerateConnoteCounter = consignmentRequestCart.GenerateConnoteCounter,
@@ -256,6 +257,7 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
             {
                 ReferenceNo = consignmentRequestsCart[0].ReferenceNo,
                 UserId = consignmentRequestsCart[0].UserId,
+                Designation = consignmentRequestsCart[0].Designation,
                 Payment = consignmentRequestsCart[0].Payment.Clone(),
                 Pickup = consignmentRequestsCart[0].Pickup.Clone(),
                 GenerateConnoteCounter = consignmentRequestsCart[0].GenerateConnoteCounter,
@@ -276,6 +278,7 @@ Your item {consignmentNo} has been successfully picked up at {pickupDateTime} wi
             {
                 ReferenceNo = consignmentRequestsPickup[0].ReferenceNo,
                 UserId = consignmentRequestsPickup[0].UserId,
+                Designation = consignmentRequestsPickup[0].Designation,
                 Payment = consignmentRequestsPickup[0].Payment.Clone(),
                 Pickup = consignmentRequestsPickup[0].Pickup.Clone(),
                 GenerateConnoteCounter = consignmentRequestsPickup[0].GenerateConnoteCounter,
