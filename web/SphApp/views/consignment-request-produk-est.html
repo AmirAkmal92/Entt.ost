@@ -63,6 +63,10 @@
                                     <label data-i18n="ItemCategory" class="col-md-3 control-label" for="c28f91ae-ae5d-448e-991f-5b4065d3464f"><small>Item Category<span class="required" aria-required="true">* </span></small></label>
                                     <div class="col-md-9">
                                         <select class="form-control input-sm" id="c28f91ae-ae5d-448e-991f-5b4065d3464f" data-bind="options: estProductService, optionsText: 'Category', optionsValue: 'CategoryCode', value: consignment().Produk().ItemCategory"></select>
+                                        <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == false && consignment().Produk().ItemCategory() == '01'"><small><i>Document maximum weight is 2.00kg</i></small></span>
+                                        <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == false && consignment().Produk().ItemCategory() == '02'"><small><i>Merchandise weigth from 0.001 to 30.000kg</i></small></span>
+                                        <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == true && consignment().Produk().ItemCategory() == '01'"><small><i>Document maximum weight is 1.00kg</i></small></span>
+                                        <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == true && consignment().Produk().ItemCategory() == '02'"><small><i>Merchandise weigth from 0.001 to 30.000kg</i></small></span>
                                     </div>
                                 </div>
                                 <div class="form-group form-checkboxes" data-bind="if: consignment().Penerima().Address().Country() == 'MY'">

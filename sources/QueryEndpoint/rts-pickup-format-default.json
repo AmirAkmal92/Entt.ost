@@ -1,0 +1,38 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "RtsPickupFormatDefaultQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Sort, domain.sph",
+        "Path": "ChangedDate",
+        "Direction": "Desc",
+        "WebId": "2f4b5684-69a0-4a6b-c99f-a6b4656e75d9"
+      }
+    ]
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "Default",
+  "Route": "",
+  "IsReturnSource": "",
+  "Entity": "RtsPickupFormat",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "rts-pickup-formats",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "rts-pickup-format-default",
+  "CreatedDate": "2017-08-25T16:01:34.0614236+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-08-25T16:02:27.8322041+08:00",
+  "WebId": "ef65bc98-dfa3-419a-b4b3-7402f6f974c9"
+}

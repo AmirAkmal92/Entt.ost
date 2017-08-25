@@ -1,0 +1,85 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "ConsigmentRequestPaidAllWithStatusesQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Payment.IsPaid",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "Value": "true",
+          "Name": "true",
+          "Note": "",
+          "WebId": "04e6b308-ef4b-4c15-d936-a96754d087d6"
+        },
+        "WebId": "31f34502-0d5e-45bc-a667-f277982e5798"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Payment.IsConNoteReady",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.RouteParameterField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "DefaultValue": "",
+          "IsOptional": false,
+          "Constraints": "",
+          "Name": "connotestatus",
+          "Note": "",
+          "WebId": "16fdfc1c-ff62-4421-b9e6-b8946366de24"
+        },
+        "WebId": "ae241229-4998-4c9c-98dc-5df55344892f"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Pickup.IsPickedUp",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.RouteParameterField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "DefaultValue": "",
+          "IsOptional": false,
+          "Constraints": "",
+          "Name": "pickedupstatus",
+          "Note": "",
+          "WebId": "7aa111a6-5aa1-4a6d-8793-72e3854e8867"
+        },
+        "WebId": "71960d73-26ec-4dae-b132-970bffeb0aab"
+      }
+    ]
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Sort, domain.sph",
+        "Path": "ChangedDate",
+        "Direction": "Desc",
+        "WebId": "b4c65528-a385-4326-b15a-9998ff737dec"
+      }
+    ]
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "PaidAllWithStatuses",
+  "Route": "paid-all/con-note-ready/{connotestatus}/picked-up/{pickedupstatus}",
+  "IsReturnSource": "",
+  "Entity": "ConsigmentRequest",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "consigment-requests",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "consigment-request-paid-all-with-statuses",
+  "CreatedDate": "2017-08-25T13:09:10.9934729+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-08-25T14:40:17.3259411+08:00",
+  "WebId": "a69a180a-dabf-4a46-a018-cc01df806d29"
+}

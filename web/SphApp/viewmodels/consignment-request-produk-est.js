@@ -7,7 +7,7 @@ objectbuilders.app],
         //TODO - refactor to external file/module  
         var initialData = [
             {
-                "Category": "Document (Less than 1.000kg)",
+                "Category": "Document",
                 "CategoryCode": "01",
                 "Products": [
                     {
@@ -105,7 +105,7 @@ objectbuilders.app],
                 ]
             },
             {
-                "Category": "Merchandise (From 0.001 to 30.000kg)",
+                "Category": "Merchandise",
                 "CategoryCode": "02",
                 "Products": [
                     {
@@ -364,29 +364,59 @@ objectbuilders.app],
                     }
                 });
 
+                consignment().Produk().ItemCategory.subscribe(function (itemCode) {
+                    consignment().Produk().Weight(0.001);
+                });
+
                 consignment().Produk().Weight.subscribe(function (newWeight) {
-                    if (consignment().Produk().ItemCategory() == "02") {
-                        // From 0.001 to 30.000kg
-                        if (newWeight > 30) {
-                            consignment().Produk().Weight(30.000);
-                        }
-                        if (newWeight <= 0) {
-                            consignment().Produk().Weight(0.001);
-                        }
-                    } else if (consignment().Produk().ItemCategory() == "01") {
-                        // Less than 1.000kg
-                        if (newWeight > 1) {
-                            consignment().Produk().Weight(1.000);
-                        }
-                        if (newWeight <= 0) {
-                            consignment().Produk().Weight(0.001);
-                        }
-                    } else {
-                        // Max weight 30.000kg
-                        if (newWeight > 30) {
-                            consignment().Produk().Weight(30.000);
+                    if (consignment().Penerima().Address().Country() == "MY") {
+                        if (consignment().Produk().ItemCategory() == "02") {
+                            // From 0.001 to 30.000kg
+                            if (newWeight > 30) {
+                                consignment().Produk().Weight(30.000);
+                            }
+                            if (newWeight <= 0) {
+                                consignment().Produk().Weight(0.001);
+                            }
+                        } else if (consignment().Produk().ItemCategory() == "01") {
+                            // Less than 1.000kg
+                            if (newWeight > 2) {
+                                consignment().Produk().Weight(2.000);
+                            }
+                            if (newWeight <= 0) {
+                                consignment().Produk().Weight(0.001);
+                            }
+                        } else {
+                            // Max weight 30.000kg
+                            if (newWeight > 30) {
+                                consignment().Produk().Weight(30.000);
+                            }
                         }
                     }
+                    else { //IsInternational
+                        if (consignment().Produk().ItemCategory() == "02") {
+                            // From 0.001 to 30.000kg
+                            if (newWeight > 30) {
+                                consignment().Produk().Weight(30.000);
+                            }
+                            if (newWeight <= 0) {
+                                consignment().Produk().Weight(0.001);
+                            }
+                        } else if (consignment().Produk().ItemCategory() == "01") {
+                            // Less than 1.000kg
+                            if (newWeight > 1) {
+                                consignment().Produk().Weight(1.000);
+                            }
+                            if (newWeight <= 0) {
+                                consignment().Produk().Weight(0.001);
+                            }
+                        } else {
+                            // Max weight 30.000kg
+                            if (newWeight > 30) {
+                                consignment().Produk().Weight(30.000);
+                            }
+                        }
+                    }                    
                 });
                 consignment().Produk().Height.subscribe(function (value) {
                     if (consignment().Produk().Height != null
