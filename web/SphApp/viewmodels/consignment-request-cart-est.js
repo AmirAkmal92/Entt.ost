@@ -10,7 +10,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             count = ko.observable(0),
             availablePageSize = ko.observableArray([10, 20, 50, 100]),
             errors = ko.observableArray(),
-            sumWeight = ko.observable(0.0),
+            sumWeight = ko.observable(0.00),
             sumConsignment = ko.observable(0),
             showPickupScheduler = ko.observable(false),
             pickupReadyHH = ko.observable(),
@@ -275,7 +275,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                         router.navigate("consignment-request-pickup/" + id());
                     });
                 } else {
-                    var totalParcelWeight = 0.0;
+                    var totalParcelWeight = 0.00;
                     var totalValidConsignment = 0;
                     for (var i = 0; i < entity().Consignments().length; i++) {
                         if (entity().Consignments()[i].Produk().Weight() != null && entity().Consignments()[i].ConNote() != null) {
@@ -283,7 +283,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                             totalValidConsignment += 1;
                         }
                     }
-                    sumWeight(totalParcelWeight);
+                    sumWeight(totalParcelWeight.toFixed(2));
                     sumConsignment(totalValidConsignment);
 
                     if (entity().Pickup().TotalParcel() == undefined) {
