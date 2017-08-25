@@ -103,6 +103,18 @@ _Do not copy_ `Web.config`
 > c:\project\work\entt.ost\output  
 > to  
 > c:\apps\rx\subscribers  
+   
+   
+> Copy custom library from   
+> c:\project\work\entt.ost\subsribers\Ost.RtsPickupFormat.dll   
+> c:\project\work\entt.ost\subsribers\Ost.RtsPickupFormat.pdb   
+> c:\project\work\entt.ost\subsribers\Ost.EstRegistration.dll   
+> c:\project\work\entt.ost\subsribers\Ost.EstRegistration.pdb   
+> to   
+> c:\apps\rx\subscribers\Ost.RtsPickupFormat.dll   
+> c:\apps\rx\subscribers\Ost.RtsPickupFormat.pdb   
+> c:\apps\rx\subscribers\Ost.EstRegistration.dll   
+> c:\apps\rx\subscribers\Ost.EstRegistration.pdb   
 
 ## Start All
 
