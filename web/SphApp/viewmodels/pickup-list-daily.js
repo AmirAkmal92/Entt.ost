@@ -8,7 +8,7 @@ define(["services/datacontext"], function (context) {
         dateTo = ko.observable(moment().format('YYYY-MM-DD')),
         hasNextPage = ko.observable(false),
         hasPreviousPage = ko.observable(false),
-        query = "/api/consigment-requests/paid-all",
+        query = "/api/consigment-requests/paid-all/con-note-ready/true/picked-up/false",
         executedQuery = ko.observable(),
         list = ko.observableArray([]),
         firstPage = function () {
