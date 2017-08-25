@@ -70,8 +70,8 @@ namespace web.sph.App_Code
                 total += 5.30m;
             }
             item.Payment.TotalPrice = total;
-
-            item.ReferenceNo = GenerateCustomRefNo(item);
+            
+            item.ReferenceNo = GenerateOrderId(item);
             await SaveConsigmentRequest(item);
 
             var result = new
@@ -182,7 +182,7 @@ namespace web.sph.App_Code
             LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
             if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
             var consignmentRequest = lo.Source;
-
+            
             var resultSuccess = true;
             var resultStatus = "OK";
 
@@ -1104,15 +1104,6 @@ namespace web.sph.App_Code
             return timeReady;
         }
 
-        private string GenerateCustomRefNo(ConsigmentRequest item)
-        {
-            var referenceNo = new StringBuilder();
-            referenceNo.Append($"{m_applicationName.ToUpper()}-");
-            referenceNo.Append(DateTime.Now.ToString("ddMMyy-ss-"));
-            referenceNo.Append((item.ReferenceNo.Split('-'))[1]);
-            return referenceNo.ToString();
-        }
-
         private async Task<UserProfile> GetDesignation()
         {
             var username = User.Identity.Name;
@@ -1126,23 +1117,35 @@ namespace web.sph.App_Code
             var orderId = item.ReferenceNo;
             Guid guidResult = Guid.Parse(item.Id);
             bool isValid = Guid.TryParse(orderId, out guidResult);
+            Random rnd = new Random();
+            int rndTail = rnd.Next(1000, 10000);
 
             if (isValid || !item.ReferenceNo.Contains(m_applicationName.ToUpper()))
             {
                 var referenceNo = new StringBuilder();
-                referenceNo.Append(GenerateCustomRefNo(item));
+                referenceNo.Append($"{m_applicationName.ToUpper()}-");
+                referenceNo.Append(DateTime.Now.ToString("ddMMyy-"));
+                referenceNo.Append(rndTail.ToString() + "-");
+                referenceNo.Append((item.ReferenceNo.Split('-'))[1]);
                 orderId = referenceNo.ToString();
             }
             else
             {
                 var arrOrderId = orderId.Split('-');
-                if (arrOrderId.Length == 4)
+                if (item.Designation == "Contract customer")
                 {
-                    orderId = orderId + "-" + item.GenerateConnoteCounter.ToString();
+                    if (arrOrderId.Length == 4)
+                    {
+                        orderId = orderId + "-" + item.GenerateConnoteCounter.ToString();
+                    }
+                    else
+                    {
+                        orderId = arrOrderId[0] + "-" + arrOrderId[1] + "-" + arrOrderId[2] + "-" + arrOrderId[3] + "-" + item.GenerateConnoteCounter.ToString();
+                    }
                 }
                 else
                 {
-                    orderId = arrOrderId[0] + "-" + arrOrderId[1] + "-" + arrOrderId[2] + "-" + arrOrderId[3] + "-" + item.GenerateConnoteCounter.ToString();
+                    orderId = arrOrderId[0] + "-" + arrOrderId[1] + "-" + rndTail.ToString() + "-" + arrOrderId[3];
                 }
             }
             return orderId;
@@ -1171,8 +1174,8 @@ namespace web.sph.App_Code
             url.Append($"?numberOfItemParent={numParent.ToString()}");
             url.Append("&PrefixParent=EU");
             url.Append($"&numberOfItemBaby={numBaby.ToString()}");
-            url.Append("&PrefixBaby=EB");
-            //url.Append("&PrefixBaby=ED"); // stagging
+            //url.Append("&PrefixBaby=EB");
+            url.Append("&PrefixBaby=ED"); // stagging
             url.Append("&ApplicationCode=OST");
             url.Append("&Secretid=ost@1234");
             url.Append($"&Orderid={orderId}");
