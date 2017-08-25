@@ -1,0 +1,36 @@
+<h1>All RtsPickupFormats</h1>
+<div class="row">
+    <div class="col-md-8">
+        <table class="table table-striped" data-bind="queryPaging :{ query: query, map : map, list:list}">
+            <thead>
+                <tr>
+                    <th>Account No</th>
+                    <th>Pickup No</th>
+                    <th>Consignment No</th>
+                    <th>Pickup Date Time</th>
+                    <th>Actual Weight</th>
+                    <th>Branch Code</th>
+                    <th>Courier Id</th>
+                    <th>Courier Name</th>
+                    <th>Parent Consignment No</th>
+                    <th>Total Baby</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach :list">
+                <tr data-bind="">
+                    <td data-bind="text:AccountNo"></td>
+                    <td data-bind="text:PickupNo"></td>
+                    <td data-bind="text:ConsignmentNo"></td>
+                    <td data-bind="date:{ value:PickupDateTime, format:&#39;D/M/YYYY HH:mm&#39;}"></td>
+                    <td data-bind="text:ActualWeight"></td>
+                    <td data-bind="text:BranchCode"></td>
+                    <td data-bind="text:CourierId"></td>
+                    <td data-bind="text:CourierName"></td>
+                    <td data-bind="text:ParentConsignmentNo"></td>
+                    <td data-bind="text:TotalBaby"></td>
+                </tr>
+            </tbody>
+        </table>
+        <img src="/Images/spinner-md.gif" alt="loading" class="absolute-center" data-bind="visible: isBusy" />
+    </div>
+</div>
