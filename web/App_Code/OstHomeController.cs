@@ -2,6 +2,7 @@
 using Bespoke.Ost.Countries.Domain;
 using Bespoke.Sph.Domain;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -48,6 +49,7 @@ namespace web.sph.App_Code
                 consignment = connote,
                 accountNo = item.CreatedBy,
                 amountPaid = item.Payment.TotalPrice,
+                pickupDate = (item.Payment.IsPickupScheduled ? item.Pickup.DateReady : item.ChangedDate),
                 designation = userProfile.Designation,
             };
             return View(pcm);
@@ -172,6 +174,7 @@ namespace web.sph.App_Code
         public string referenceNo { get; set; }
         public string accountNo { get; set; }
         public decimal amountPaid { get; set; }
+        public DateTime pickupDate { get; set; }
         public string designation { get; set; }
         public Consignment consignment { get; set; }
     }
