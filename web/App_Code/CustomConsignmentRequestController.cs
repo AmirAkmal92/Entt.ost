@@ -1174,8 +1174,8 @@ namespace web.sph.App_Code
             url.Append($"?numberOfItemParent={numParent.ToString()}");
             url.Append("&PrefixParent=EU");
             url.Append($"&numberOfItemBaby={numBaby.ToString()}");
-            //url.Append("&PrefixBaby=EB");
-            url.Append("&PrefixBaby=ED"); // stagging
+            url.Append("&PrefixBaby=EB");
+            //url.Append("&PrefixBaby=ED"); // stagging
             url.Append("&ApplicationCode=OST");
             url.Append("&Secretid=ost@1234");
             url.Append($"&Orderid={orderId}");
