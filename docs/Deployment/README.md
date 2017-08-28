@@ -197,3 +197,30 @@ Good luck and have fun.
 5. OST RabbitMQ
     * http://10.1.16.106:15672/#/
     
+
+## Appendix 3 - Back Office Intergration
+
+1. Sales and Billing (Snb)
+    * Web Api: http://10.1.1.119:9002/api
+        * Register Customer : http://10.1.1.119:9002/api/create-cust
+        * Get Zone: http://10.1.1.119:9002/api/get-zone-byproduct
+
+    * Web App: http://10.1.1.119:9001
+        * Get Customer Profile : http://10.1.1.119:9001/profile/GetProfileDetail?...
+        * Calculate Product Price: http://10.1.1.119:9001/calculator/CalculateRate2?...
+
+2. Ezipay (Payment Switch)
+    * SDS Production: https://apis.pos.com.my
+        * Request to make Payment: https://apis.pos.com.my/pay
+
+3. Service Delivery System (SDS)
+    * Payment Gateway Production: https://ezipay.pos.com.my
+        * CMS
+            * Generate Connnotes: https://ezipay.pos.com.my/apigateway/as01/api/genconnote/v1?...
+            * Generate Connnotes MPS: https://ezipay.pos.com.myapigateway/as01/api/generateconnotebaby/v1?...
+        * PSS
+            * Request to make Pickup: https://ezipay.pos.com.my/apigateway/as2poslaju/api/ezisendpickupwebapi/v1?...
+        * Track N Trace
+            1. https://ezipay.pos.com.my/apigateway/as2corporate/api/v2trackntracewebapijson/v1?...
+            2. https://ezipay.pos.com.my/apigateway/as2corporate/api/trackntracewebapiheader/v1?...
+    
