@@ -3,10 +3,11 @@
   "Name": "COOK ISLANDS ",
   "Abbreviation": "CK",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "CK",
-  "CreatedDate": "2017-02-21T13:37:26.7979473+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.2031443+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.7959409+08:00",
-  "WebId": "6b9448b8-5a28-4dd9-9dd0-fe69c0a3b48d"
+  "ChangedDate": "2017-08-28T18:04:14.4319548+08:00",
+  "WebId": "0c6fdcf1-0fc1-438a-b1fc-41da84677d3e"
 }

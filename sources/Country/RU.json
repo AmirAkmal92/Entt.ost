@@ -3,10 +3,11 @@
   "Name": "RUSSIAN FEDERATION ",
   "Abbreviation": "RU",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "RU",
-  "CreatedDate": "2017-02-21T13:37:32.6729478+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.3371015+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.6624191+08:00",
-  "WebId": "865071e6-8cca-46e7-95ad-f0e3b2c7dce9"
+  "ChangedDate": "2017-08-28T18:04:22.3509145+08:00",
+  "WebId": "1b88e3e8-2dac-4711-8ddf-ce483b43dc65"
 }

@@ -3,10 +3,11 @@
   "Name": "LITHUANIA ",
   "Abbreviation": "LT",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "LT",
-  "CreatedDate": "2017-02-21T13:37:26.7593442+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.8195646+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.7538296+08:00",
-  "WebId": "21aaf41b-3007-4ebe-9e97-b08121cd8858"
+  "ChangedDate": "2017-08-28T18:04:18.788041+08:00",
+  "WebId": "4d47b564-af3c-4cb3-9e0c-5228bce16f8b"
 }

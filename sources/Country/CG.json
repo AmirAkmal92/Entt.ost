@@ -3,10 +3,11 @@
   "Name": "CONGO ",
   "Abbreviation": "CG",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "CG",
-  "CreatedDate": "2017-02-21T13:37:29.4167919+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.1640398+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:29.3731754+08:00",
-  "WebId": "eea0e505-21bf-4109-886c-cb0b1d68a52b"
+  "ChangedDate": "2017-08-28T18:04:14.3517062+08:00",
+  "WebId": "09ca1f60-3ba2-4077-9fae-0de37476b116"
 }

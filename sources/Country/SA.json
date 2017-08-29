@@ -3,10 +3,11 @@
   "Name": "SAUDI ARABIA ",
   "Abbreviation": "SA",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "SA",
-  "CreatedDate": "2017-02-21T13:37:31.5599882+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.6253677+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.5589853+08:00",
-  "WebId": "b155a27b-add1-4473-9572-5efa58a4493c"
+  "ChangedDate": "2017-08-28T18:04:22.8181111+08:00",
+  "WebId": "7d3fa511-ef1c-4d3d-ac52-8fed5393f756"
 }

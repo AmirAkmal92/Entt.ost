@@ -3,10 +3,11 @@
   "Name": "TRISTAN DA CUNHA ",
   "Abbreviation": "TA",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "TA",
-  "CreatedDate": "2017-02-21T13:37:25.5030035+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.618509+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.5014996+08:00",
-  "WebId": "12457e65-8587-4e2e-9552-f9b70fe52821"
+  "ChangedDate": "2017-08-28T18:04:24.5047734+08:00",
+  "WebId": "c71e71ab-61d7-40dd-b497-120a6f19119d"
 }

@@ -3,10 +3,11 @@
   "Name": "GABON ",
   "Abbreviation": "GA",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "GA",
-  "CreatedDate": "2017-02-21T13:37:25.4393347+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.8699183+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.4373294+08:00",
-  "WebId": "6fe0a398-20ee-4d9f-b99a-01d63c4d6731"
+  "ChangedDate": "2017-08-28T18:04:16.3531649+08:00",
+  "WebId": "f98731ee-4de7-478b-9a26-234b11bb6578"
 }

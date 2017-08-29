@@ -3,10 +3,11 @@
   "Name": "CYPRUS ",
   "Abbreviation": "CY",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "CY",
-  "CreatedDate": "2017-02-21T13:37:22.3127274+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.4467922+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:22.3117245+08:00",
-  "WebId": "43b92dcd-9861-4ac3-ae5a-cb15cce3c703"
+  "ChangedDate": "2017-08-28T18:04:14.746058+08:00",
+  "WebId": "b3cd7656-6420-46af-b294-7d762a70e835"
 }

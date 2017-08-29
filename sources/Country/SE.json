@@ -3,10 +3,11 @@
   "Name": "SWEDEN ",
   "Abbreviation": "SE",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "SE",
-  "CreatedDate": "2017-02-21T13:37:29.0753832+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.2344874+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:29.055832+08:00",
-  "WebId": "7984e44a-079c-48d5-86f8-69807b0a5233"
+  "ChangedDate": "2017-08-28T18:04:24.027542+08:00",
+  "WebId": "0c4ff39f-bb53-4a50-a2de-b5c0f4387a28"
 }

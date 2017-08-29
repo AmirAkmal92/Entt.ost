@@ -3,10 +3,11 @@
   "Name": "FAROE ISLANDS ",
   "Abbreviation": "FO",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "FO",
-  "CreatedDate": "2017-02-21T13:37:28.8327385+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.7395713+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:28.8031604+08:00",
-  "WebId": "4b15f386-55ad-47a9-b36a-e3b10e3768d7"
+  "ChangedDate": "2017-08-28T18:04:15.5546832+08:00",
+  "WebId": "c6b575b0-57d9-45d2-9132-fb41adb90c4c"
 }

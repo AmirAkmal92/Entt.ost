@@ -3,10 +3,11 @@
   "Name": "PALAU ",
   "Abbreviation": "PW",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "PW",
-  "CreatedDate": "2017-02-21T13:37:25.9080804+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.1716665+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.9035694+08:00",
-  "WebId": "c44a8018-20a0-4d56-aaa6-cc5cd3f6aaa0"
+  "ChangedDate": "2017-08-28T18:04:21.4124+08:00",
+  "WebId": "03492173-92a3-4ca9-8474-28928abc44e3"
 }

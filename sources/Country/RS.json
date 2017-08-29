@@ -3,10 +3,11 @@
   "Name": "SERBIA ",
   "Abbreviation": "RS",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "RS",
-  "CreatedDate": "2017-02-21T13:37:25.2357938+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.6644726+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.2317828+08:00",
-  "WebId": "81aa8893-5b23-4e9b-bca4-ad168db0bc28"
+  "ChangedDate": "2017-08-28T18:04:22.8979503+08:00",
+  "WebId": "29f2f411-e0d2-4a15-b43d-aae175a8bb95"
 }

@@ -3,10 +3,11 @@
   "Name": "MAURITANIA ",
   "Abbreviation": "MR",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "MR",
-  "CreatedDate": "2017-02-21T13:37:24.5519672+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.5254424+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:24.550964+08:00",
-  "WebId": "e39f92cd-b29d-42e5-a846-20b1ab01255f"
+  "ChangedDate": "2017-08-28T18:04:19.2542283+08:00",
+  "WebId": "e124c936-c682-4ab2-84ea-520e8f47f5f5"
 }

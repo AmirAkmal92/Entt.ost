@@ -3,10 +3,11 @@
   "Name": "KAZAKHSTAN ",
   "Abbreviation": "KZ",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "KZ",
-  "CreatedDate": "2017-02-21T13:37:26.3973829+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.2664423+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.3908644+08:00",
-  "WebId": "8051d7d3-4e83-42e6-b16c-5e94e7e0e8a8"
+  "ChangedDate": "2017-08-28T18:04:18.0295442+08:00",
+  "WebId": "152d2d45-19a9-4f9c-aa1b-28b0a668d1f5"
 }

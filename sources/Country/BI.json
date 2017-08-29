@@ -3,10 +3,11 @@
   "Name": "BURUNDI ",
   "Abbreviation": "BI",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BI",
-  "CreatedDate": "2017-02-21T13:37:31.58305+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.7188564+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.5780365+08:00",
-  "WebId": "961da937-770c-4c6c-9421-638e40b72aca"
+  "ChangedDate": "2017-08-28T18:04:12.1873622+08:00",
+  "WebId": "9094a8cd-6358-49e8-b445-c59f1d992025"
 }

@@ -3,10 +3,11 @@
   "Name": "UKRAINE ",
   "Abbreviation": "UA",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "UA",
-  "CreatedDate": "2017-02-21T13:37:25.1751321+08:00",
+  "CreatedDate": "2017-08-28T18:04:13.0481518+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.1731268+08:00",
-  "WebId": "825f62f4-bc97-4867-a866-0c8aa515727d"
+  "ChangedDate": "2017-08-28T18:04:24.6559827+08:00",
+  "WebId": "ea14651c-466c-426b-8ba0-45f44318e6a0"
 }

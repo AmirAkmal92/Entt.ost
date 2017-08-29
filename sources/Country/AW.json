@@ -3,10 +3,11 @@
   "Name": "ARUBA ",
   "Abbreviation": "AW",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "AW",
-  "CreatedDate": "2017-02-21T13:37:26.1893285+08:00",
+  "CreatedDate": "2017-08-28T18:04:05.7006483+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.1833121+08:00",
-  "WebId": "3881f829-6cd9-4c91-8e84-dee61c4d31ab"
+  "ChangedDate": "2017-08-28T18:04:07.6062157+08:00",
+  "WebId": "4158905a-7c3c-498e-9a4e-098e5be0e155"
 }

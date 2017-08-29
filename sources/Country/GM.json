@@ -3,10 +3,11 @@
   "Name": "GAMBIA ",
   "Abbreviation": "GM",
   "Region": null,
+  "WeightLimit": 10.0,
   "CreatedBy": "admin",
   "Id": "GM",
-  "CreatedDate": "2017-02-21T13:37:26.4344806+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.8874645+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.4329763+08:00",
-  "WebId": "0d5d21e1-7bd6-4308-a90d-37e7cfddea57"
+  "ChangedDate": "2017-08-28T18:04:16.3879298+08:00",
+  "WebId": "3bef71c1-6a6c-452f-94ec-17390c6396e1"
 }

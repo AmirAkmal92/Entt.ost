@@ -3,10 +3,11 @@
   "Name": "SWITZERLAND ",
   "Abbreviation": "CH",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "CH",
-  "CreatedDate": "2017-02-21T13:37:31.7735561+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.2575493+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.7725536+08:00",
-  "WebId": "a29cba55-7407-4769-8c25-ce395656a3ee"
+  "ChangedDate": "2017-08-28T18:04:24.0746665+08:00",
+  "WebId": "097fd4ff-26ba-41bf-8b12-38ca9eefc880"
 }

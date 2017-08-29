@@ -3,10 +3,11 @@
   "Name": "MACAO ",
   "Abbreviation": "MO",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "MO",
-  "CreatedDate": "2017-02-21T13:37:26.3557713+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.0812604+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.3537656+08:00",
-  "WebId": "a145228e-28e4-4b5b-9cfa-bd199dd10679"
+  "ChangedDate": "2017-08-28T18:04:18.8679443+08:00",
+  "WebId": "f727c4b5-aee7-4979-8d0a-2c499410976f"
 }

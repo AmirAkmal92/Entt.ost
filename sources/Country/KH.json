@@ -3,10 +3,11 @@
   "Name": "CAMBODIA ",
   "Abbreviation": "KH",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "KH",
-  "CreatedDate": "2017-02-21T13:37:32.3876887+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.7308891+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.385182+08:00",
-  "WebId": "f647e9a6-5c3a-409b-9e89-df9fe8af4c48"
+  "ChangedDate": "2017-08-28T18:04:12.4034369+08:00",
+  "WebId": "ec628e89-6a2c-4d8d-b402-9897cff59685"
 }

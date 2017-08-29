@@ -3,10 +3,11 @@
   "Name": "UNITED KINGDOM ",
   "Abbreviation": "GB",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "GB",
-  "CreatedDate": "2017-02-21T13:37:25.3992292+08:00",
+  "CreatedDate": "2017-08-28T18:04:13.137389+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.3982256+08:00",
-  "WebId": "59281571-c955-4731-9864-73f730db681a"
+  "ChangedDate": "2017-08-28T18:04:24.7028631+08:00",
+  "WebId": "daf40ef6-7d93-437e-a61f-5f2edc3a2161"
 }

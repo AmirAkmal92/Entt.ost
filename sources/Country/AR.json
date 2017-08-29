@@ -3,10 +3,11 @@
   "Name": "ARGENTINA ",
   "Abbreviation": "AR",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "AR",
-  "CreatedDate": "2017-02-21T13:37:24.9906424+08:00",
+  "CreatedDate": "2017-08-28T18:04:05.4996132+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:24.984125+08:00",
-  "WebId": "71cc20fa-6cec-48e4-b97d-7612c7524e8b"
+  "ChangedDate": "2017-08-28T18:04:07.4172132+08:00",
+  "WebId": "920585b9-770b-4033-971d-417c27e5fbe9"
 }

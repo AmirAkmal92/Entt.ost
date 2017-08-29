@@ -3,10 +3,11 @@
   "Name": "COMOROS ",
   "Abbreviation": "KM",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "KM",
-  "CreatedDate": "2017-02-21T13:37:25.1380337+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.1479975+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.1350262+08:00",
-  "WebId": "5cfa6a41-16a4-4dab-a22a-ef5dbcbf8658"
+  "ChangedDate": "2017-08-28T18:04:14.3279838+08:00",
+  "WebId": "4b22365c-09c4-4767-a3f4-20714684f6dc"
 }

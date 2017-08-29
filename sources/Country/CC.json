@@ -3,10 +3,11 @@
   "Name": "COCOS (KEELING) ISLANDS ",
   "Abbreviation": "CC",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "CC",
-  "CreatedDate": "2017-02-21T13:37:25.857446+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.083325+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.8549389+08:00",
-  "WebId": "9e5b0b0e-0368-4d1f-970c-f477985a0766"
+  "ChangedDate": "2017-08-28T18:04:14.257953+08:00",
+  "WebId": "e2dddb2f-2ab0-4964-a3c1-7b3a1cd309ad"
 }

@@ -3,10 +3,11 @@
   "Name": "ARMENIA ",
   "Abbreviation": "AM",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "AM",
-  "CreatedDate": "2017-02-21T13:37:26.6405286+08:00",
+  "CreatedDate": "2017-08-28T18:04:05.5607757+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.6325069+08:00",
-  "WebId": "0056a771-cc87-47ec-8b3a-dd088adf2275"
+  "ChangedDate": "2017-08-28T18:04:07.5189838+08:00",
+  "WebId": "8acc6a5c-f784-4939-9c86-ff997944e3ed"
 }

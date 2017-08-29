@@ -3,10 +3,11 @@
   "Name": "JAMAICA ",
   "Abbreviation": "JM",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "JM",
-  "CreatedDate": "2017-02-21T13:37:26.4525282+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.1903214+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.4505233+08:00",
-  "WebId": "b7f84d44-9577-4a63-a52d-7749497d6681"
+  "ChangedDate": "2017-08-28T18:04:17.878142+08:00",
+  "WebId": "a3db7f8a-15f4-49d8-ad72-521e9bf4a460"
 }

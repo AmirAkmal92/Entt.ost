@@ -3,10 +3,11 @@
   "Name": "NICARAGUA ",
   "Abbreviation": "NI",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "NI",
-  "CreatedDate": "2017-02-21T13:37:26.7382881+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.0177513+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.7282607+08:00",
-  "WebId": "f7eb2465-cec0-4a59-b9ee-f52dcb03b623"
+  "ChangedDate": "2017-08-28T18:04:21.0648267+08:00",
+  "WebId": "a85b16e4-1710-43b8-a10d-75fc4ed1bc1e"
 }

@@ -3,10 +3,11 @@
   "Name": "ANDORRA ",
   "Abbreviation": "AD",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "AD",
-  "CreatedDate": "2017-02-21T13:37:36.4972972+08:00",
+  "CreatedDate": "2017-08-28T18:04:05.3236463+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:36.4882723+08:00",
-  "WebId": "8b8b3627-0e59-45d7-9c94-ae4c171f9cbb"
+  "ChangedDate": "2017-08-28T18:04:06.5258433+08:00",
+  "WebId": "83082b53-e901-4124-b30b-d4c45214c509"
 }

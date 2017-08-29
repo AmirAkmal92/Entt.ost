@@ -3,10 +3,11 @@
   "Name": "BANGLADESH ",
   "Abbreviation": "BD",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BD",
-  "CreatedDate": "2017-02-21T13:37:26.6665976+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.1443281+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.6630876+08:00",
-  "WebId": "df19d128-9692-44f6-af1b-3b934ed50ec3"
+  "ChangedDate": "2017-08-28T18:04:08.2484242+08:00",
+  "WebId": "3de9685a-bfd7-45e8-8922-2c58cdc250dc"
 }

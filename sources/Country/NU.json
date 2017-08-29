@@ -3,10 +3,11 @@
   "Name": "NIUE ",
   "Abbreviation": "NU",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "NU",
-  "CreatedDate": "2017-02-21T13:37:33.6791232+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.0698903+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:33.6706008+08:00",
-  "WebId": "ba6660f1-23ba-4a99-b874-53bf5613ecd1"
+  "ChangedDate": "2017-08-28T18:04:21.1810867+08:00",
+  "WebId": "bd3d0ca4-2bc5-49be-b84f-7c27f6815383"
 }

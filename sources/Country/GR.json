@@ -3,10 +3,11 @@
   "Name": "GREECE ",
   "Abbreviation": "GR",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "GR",
-  "CreatedDate": "2017-02-21T13:37:22.340802+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.9962533+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:22.3397988+08:00",
-  "WebId": "69cbcaac-2d7e-4df5-aecb-cfe0abbcb363"
+  "ChangedDate": "2017-08-28T18:04:16.5884515+08:00",
+  "WebId": "52677acf-9573-4061-87fd-a2732e079c50"
 }

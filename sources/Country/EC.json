@@ -3,10 +3,11 @@
   "Name": "ECUADOR ",
   "Abbreviation": "EC",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "EC",
-  "CreatedDate": "2017-02-21T13:37:24.8442525+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.5696186+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:24.8352287+08:00",
-  "WebId": "09884da0-ed2c-4016-8c6d-54c2f6f7a52a"
+  "ChangedDate": "2017-08-28T18:04:15.2667716+08:00",
+  "WebId": "3eefa9e2-488b-4c4c-a84f-9297d0119114"
 }

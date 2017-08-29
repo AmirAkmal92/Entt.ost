@@ -3,10 +3,11 @@
   "Name": "SAINT MARTIN (FRENCH PART) ",
   "Abbreviation": "MF",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "MF",
-  "CreatedDate": "2017-02-21T13:37:32.1575771+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.4107963+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.1550704+08:00",
-  "WebId": "af6e9566-8ede-4524-b92e-9817985393a1"
+  "ChangedDate": "2017-08-28T18:04:22.5753867+08:00",
+  "WebId": "16a07338-9e1a-4df4-ac0e-a333ffd534ca"
 }

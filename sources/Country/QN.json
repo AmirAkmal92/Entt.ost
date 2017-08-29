@@ -3,10 +3,11 @@
   "Name": "BOSNIA ",
   "Abbreviation": "QN",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "QN",
-  "CreatedDate": "2017-02-21T13:37:32.2658646+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.4792185+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.2528298+08:00",
-  "WebId": "7617fffe-e9a6-46e6-92fd-4f4d8c717405"
+  "ChangedDate": "2017-08-28T18:04:09.6064974+08:00",
+  "WebId": "f8264e04-f175-4e85-acd1-faa184d5e09c"
 }

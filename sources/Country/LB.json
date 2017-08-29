@@ -3,10 +3,11 @@
   "Name": "LEBANON ",
   "Abbreviation": "LB",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "LB",
-  "CreatedDate": "2017-02-21T13:37:22.3628603+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.4851756+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:22.3618578+08:00",
-  "WebId": "1cfc559e-55d5-4391-babc-26bb97ba39a1"
+  "ChangedDate": "2017-08-28T18:04:18.5263673+08:00",
+  "WebId": "66d99088-a76b-4a76-96a6-6c3bf4a34158"
 }

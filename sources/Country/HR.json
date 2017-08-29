@@ -3,10 +3,11 @@
   "Name": "CROATIA ",
   "Abbreviation": "HR",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "HR",
-  "CreatedDate": "2017-02-21T13:37:26.8581065+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.3846265+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.8555994+08:00",
-  "WebId": "70a51d7f-e1b1-4996-ba64-fcea78f3abfa"
+  "ChangedDate": "2017-08-28T18:04:14.5866289+08:00",
+  "WebId": "9660ea2a-09fb-48f2-b125-d11b6834b78e"
 }

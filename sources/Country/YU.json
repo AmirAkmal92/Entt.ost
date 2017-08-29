@@ -3,10 +3,11 @@
   "Name": "SERBIA & MONTENEGRO ",
   "Abbreviation": "YU",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "YU",
-  "CreatedDate": "2017-02-21T13:37:22.348823+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.6890377+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:22.348823+08:00",
-  "WebId": "0925b085-06c1-4ce6-8c4a-d67c89a247ce"
+  "ChangedDate": "2017-08-28T18:04:22.9337208+08:00",
+  "WebId": "b3f6e95b-6f4a-407d-81db-a004ff086581"
 }

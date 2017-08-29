@@ -3,10 +3,11 @@
   "Name": "NORWAY ",
   "Abbreviation": "NO",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "NO",
-  "CreatedDate": "2017-02-21T13:37:27.5643578+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.1360663+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:27.5583414+08:00",
-  "WebId": "9d910a29-8776-4a63-a649-665cbbf9f2bb"
+  "ChangedDate": "2017-08-28T18:04:21.2969087+08:00",
+  "WebId": "b02e8173-37af-4c4d-9c1e-d3878c9cfb1e"
 }

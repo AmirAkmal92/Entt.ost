@@ -3,10 +3,11 @@
   "Name": "LIECHTENSTEIN ",
   "Abbreviation": "LI",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "LI",
-  "CreatedDate": "2017-02-21T13:37:24.6973627+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.6761834+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:24.6958581+08:00",
-  "WebId": "0e9491a1-4124-4ff9-a5a2-b45165224428"
+  "ChangedDate": "2017-08-28T18:04:18.742626+08:00",
+  "WebId": "e8911806-4bb6-49d8-9fe0-a2e06f2cf04c"
 }

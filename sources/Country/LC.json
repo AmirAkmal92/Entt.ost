@@ -3,10 +3,11 @@
   "Name": "SAINT LUCIA ",
   "Abbreviation": "LC",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "LC",
-  "CreatedDate": "2017-02-21T13:37:25.4844545+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.3977625+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.4829513+08:00",
-  "WebId": "d721896e-5479-4a25-8f86-60f5dc243a30"
+  "ChangedDate": "2017-08-28T18:04:22.5395407+08:00",
+  "WebId": "de793bfb-ba1e-4ea6-a5b5-a0f8170c0863"
 }

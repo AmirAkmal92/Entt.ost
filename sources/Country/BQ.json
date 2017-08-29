@@ -3,10 +3,11 @@
   "Name": "BONAIRE,  SINT EUSTATIUS AND SABA ",
   "Abbreviation": "BQ",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BQ",
-  "CreatedDate": "2017-02-21T13:37:29.3235432+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.4476349+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:29.312013+08:00",
-  "WebId": "0ca64f1d-281b-47dd-a40a-5b9af9a105c0"
+  "ChangedDate": "2017-08-28T18:04:09.4936977+08:00",
+  "WebId": "d03874f2-a8e8-4644-a67a-1715289fdd02"
 }

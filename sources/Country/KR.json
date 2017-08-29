@@ -3,10 +3,11 @@
   "Name": "KOREA,  REPUBLIC OF ",
   "Abbreviation": "KR",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "KR",
-  "CreatedDate": "2017-02-21T13:37:36.4200921+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.3788929+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:36.4160804+08:00",
-  "WebId": "a1f2ef80-0b28-4ca2-8a91-7df8b9a5b790"
+  "ChangedDate": "2017-08-28T18:04:18.218547+08:00",
+  "WebId": "c19c3b6a-3b8c-48de-89a9-ff6e7630f339"
 }

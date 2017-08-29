@@ -3,10 +3,11 @@
   "Name": "GERMANY ",
   "Abbreviation": "DE",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "DE",
-  "CreatedDate": "2017-02-21T13:37:26.5778612+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.9210534+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.5748534+08:00",
-  "WebId": "d5860932-8898-439e-baa8-a78a80b0faac"
+  "ChangedDate": "2017-08-28T18:04:16.4504404+08:00",
+  "WebId": "b384a038-88d7-4db2-a357-212b68e984c5"
 }

@@ -3,10 +3,11 @@
   "Name": "BERMUDA ",
   "Abbreviation": "BM",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "BM",
-  "CreatedDate": "2017-02-21T13:37:26.5217123+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.3829632+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.5202088+08:00",
-  "WebId": "4dcfe5b2-74a2-405f-a19d-af11f8f30358"
+  "ChangedDate": "2017-08-28T18:04:08.8145726+08:00",
+  "WebId": "f14e5575-5998-4064-b779-75565b1f0167"
 }

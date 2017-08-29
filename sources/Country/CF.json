@@ -3,10 +3,11 @@
   "Name": "CENTRAL AFRICAN REPUBLIC ",
   "Abbreviation": "CF",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "CF",
-  "CreatedDate": "2017-02-21T13:37:26.2063736+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.8837945+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.2018626+08:00",
-  "WebId": "43574422-1f94-428f-88ca-06a27aa2c25d"
+  "ChangedDate": "2017-08-28T18:04:13.9590744+08:00",
+  "WebId": "dd40bd18-1999-44b7-86be-f872c54a2878"
 }

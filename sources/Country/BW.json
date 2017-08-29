@@ -3,10 +3,11 @@
   "Name": "BOTSWANA ",
   "Abbreviation": "BW",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BW",
-  "CreatedDate": "2017-02-21T13:37:25.8965498+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.537875+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.8955473+08:00",
-  "WebId": "a00ed04c-4e77-460f-9137-b61a58ed6809"
+  "ChangedDate": "2017-08-28T18:04:10.8402791+08:00",
+  "WebId": "b1c37731-9bf5-4df1-86eb-b6970b1a4218"
 }

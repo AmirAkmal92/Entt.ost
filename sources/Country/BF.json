@@ -3,10 +3,11 @@
   "Name": "BURKINA FASO ",
   "Abbreviation": "BF",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BF",
-  "CreatedDate": "2017-02-21T13:37:24.6733005+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.709334+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:24.6692877+08:00",
-  "WebId": "132636a6-1204-4e50-b3ea-82e28d0144bf"
+  "ChangedDate": "2017-08-28T18:04:12.0389672+08:00",
+  "WebId": "458929e5-f947-4fbc-b974-0bece245e982"
 }

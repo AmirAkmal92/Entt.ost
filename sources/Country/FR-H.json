@@ -3,10 +3,11 @@
   "Name": "CORSICA",
   "Abbreviation": "FR-H",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "FR-H",
-  "CreatedDate": "2017-02-21T13:37:33.5858734+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.2267065+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:33.5818645+08:00",
-  "WebId": "5742cc61-aa22-49da-ba8d-7671380fc839"
+  "ChangedDate": "2017-08-28T18:04:14.4923715+08:00",
+  "WebId": "2efa2969-947b-41c5-854e-f80c7d5456db"
 }

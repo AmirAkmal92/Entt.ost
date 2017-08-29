@@ -3,10 +3,11 @@
   "Name": "SLOVENIA ",
   "Abbreviation": "SI",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "SI",
-  "CreatedDate": "2017-02-21T13:37:25.9376596+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.9041088+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.933649+08:00",
-  "WebId": "fc3791df-af03-41c4-b90c-6001680d1b43"
+  "ChangedDate": "2017-08-28T18:04:23.279834+08:00",
+  "WebId": "7193379d-4240-40d4-8bd2-78615edfe612"
 }

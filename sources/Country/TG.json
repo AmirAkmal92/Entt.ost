@@ -3,10 +3,11 @@
   "Name": "TOGO ",
   "Abbreviation": "TG",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "TG",
-  "CreatedDate": "2017-02-21T13:37:36.5213604+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.492174+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:36.5118352+08:00",
-  "WebId": "4fa7a45b-0f66-4558-b66f-d84c1c786e7b"
+  "ChangedDate": "2017-08-28T18:04:24.3817999+08:00",
+  "WebId": "1ebeccec-ae46-4a8b-8d69-116f40406209"
 }

@@ -3,10 +3,11 @@
   "Name": "MADEIRA",
   "Abbreviation": "PT-30",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "PT-30",
-  "CreatedDate": "2017-02-21T13:37:26.0449454+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.2837991+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.0364226+08:00",
-  "WebId": "22425b5b-bf0e-4696-a570-f75bc8531ca7"
+  "ChangedDate": "2017-08-28T18:04:19.010768+08:00",
+  "WebId": "81a6da56-a19f-4c23-9502-f5baa4a6f9e4"
 }

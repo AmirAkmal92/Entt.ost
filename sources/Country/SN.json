@@ -3,10 +3,11 @@
   "Name": "SENEGAL ",
   "Abbreviation": "SN",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "SN",
-  "CreatedDate": "2017-02-21T13:37:27.9985209+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.6504363+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:27.9935081+08:00",
-  "WebId": "0f4c59f4-1303-46ab-a22b-54158659fec4"
+  "ChangedDate": "2017-08-28T18:04:22.8510695+08:00",
+  "WebId": "f07f44ef-d8fd-4d0a-8b62-b8c1126fc5e9"
 }

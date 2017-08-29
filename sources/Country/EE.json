@@ -3,10 +3,11 @@
   "Name": "ESTONIA ",
   "Abbreviation": "EE",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "EE",
-  "CreatedDate": "2017-02-21T13:37:26.5116853+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.6824187+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.5091782+08:00",
-  "WebId": "c72f8928-9035-4c7c-8d78-7376917e633e"
+  "ChangedDate": "2017-08-28T18:04:15.4502595+08:00",
+  "WebId": "6b31fba3-ca25-4174-93a9-d849fbdf6473"
 }

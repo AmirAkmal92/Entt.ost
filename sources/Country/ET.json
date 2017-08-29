@@ -3,10 +3,11 @@
   "Name": "ETHIOPIA ",
   "Abbreviation": "ET",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "ET",
-  "CreatedDate": "2017-02-21T13:37:26.3668011+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.6979603+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.3652965+08:00",
-  "WebId": "cb402f67-4a43-40f7-8c80-aef1285ad48b"
+  "ChangedDate": "2017-08-28T18:04:15.5060199+08:00",
+  "WebId": "6d499a55-e919-4b77-9432-018f8f383075"
 }

@@ -3,10 +3,11 @@
   "Name": "SOLOMON ISLANDS ",
   "Abbreviation": "SB",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "SB",
-  "CreatedDate": "2017-02-21T13:37:22.4741634+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.9281731+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:22.4691474+08:00",
-  "WebId": "590a9e9d-8af7-47a6-82b8-714ffc4d2d42"
+  "ChangedDate": "2017-08-28T18:04:23.3416724+08:00",
+  "WebId": "26b18c9d-9a26-47f3-aab2-2a751aab993e"
 }

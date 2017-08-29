@@ -3,10 +3,11 @@
   "Name": "FINLAND ",
   "Abbreviation": "FI",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "FI",
-  "CreatedDate": "2017-02-21T13:37:33.662077+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.7696509+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:33.6455319+08:00",
-  "WebId": "7191c8b1-b9db-4b7e-8c30-95b4f798eb88"
+  "ChangedDate": "2017-08-28T18:04:15.6087341+08:00",
+  "WebId": "cd01c7a8-6a91-428a-87ca-a76bf596a540"
 }

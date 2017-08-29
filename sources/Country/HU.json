@@ -3,10 +3,11 @@
   "Name": "HUNGARY ",
   "Abbreviation": "HU",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "HU",
-  "CreatedDate": "2017-02-21T13:37:31.5253965+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.1278154+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.5198822+08:00",
-  "WebId": "eca2d666-abc3-4cc8-857b-71f7bfab0b4d"
+  "ChangedDate": "2017-08-28T18:04:16.9862714+08:00",
+  "WebId": "119e80cf-c6ab-4034-af3a-a34564204649"
 }

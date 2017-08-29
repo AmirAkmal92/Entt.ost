@@ -3,10 +3,11 @@
   "Name": "SAINT KITTS AND NEVIS ",
   "Abbreviation": "KN",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "KN",
-  "CreatedDate": "2017-02-21T13:37:33.4595375+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.386733+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:33.4409889+08:00",
-  "WebId": "6e9f6dfd-c525-46b0-b783-174b5e4ee1cd"
+  "ChangedDate": "2017-08-28T18:04:22.5049123+08:00",
+  "WebId": "6f01abd6-4503-4371-835c-7b0194c56989"
 }

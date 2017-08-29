@@ -3,10 +3,11 @@
   "Name": "ZIMBABWE ",
   "Abbreviation": "ZW",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "ZW",
-  "CreatedDate": "2017-02-21T13:37:25.5491283+08:00",
+  "CreatedDate": "2017-08-28T18:04:13.8708407+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.547623+08:00",
-  "WebId": "99dcf9fc-ccc3-4d42-b0e6-34f9adb4b656"
+  "ChangedDate": "2017-08-28T18:04:26.0945301+08:00",
+  "WebId": "9b3dcddd-b8cd-429b-9734-bcdebe39daff"
 }

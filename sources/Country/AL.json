@@ -3,10 +3,11 @@
   "Name": "ALBANIA ",
   "Abbreviation": "AL",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "AL",
-  "CreatedDate": "2017-02-21T13:37:26.7778929+08:00",
+  "CreatedDate": "2017-08-28T18:04:05.2344084+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.776389+08:00",
-  "WebId": "b1839a12-102f-4b30-a96a-b8c373c5be85"
+  "ChangedDate": "2017-08-28T18:04:05.7603062+08:00",
+  "WebId": "71f81ef1-af97-42b3-bfb6-253a1a94efab"
 }

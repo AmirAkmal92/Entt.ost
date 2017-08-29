@@ -3,10 +3,11 @@
   "Name": "WALLIS AND FUTUNA ",
   "Abbreviation": "WF",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "WF",
-  "CreatedDate": "2017-02-21T13:37:32.5726806+08:00",
+  "CreatedDate": "2017-08-28T18:04:13.7430001+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.569171+08:00",
-  "WebId": "4ea7d3ef-4e15-4dad-ad17-840342f59a24"
+  "ChangedDate": "2017-08-28T18:04:25.8604015+08:00",
+  "WebId": "e63587af-a38d-4060-8528-d6b6bb206a86"
 }

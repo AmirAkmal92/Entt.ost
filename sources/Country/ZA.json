@@ -3,10 +3,11 @@
   "Name": "SOUTH AFRICA ",
   "Abbreviation": "ZA",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "ZA",
-  "CreatedDate": "2017-02-21T13:37:32.5516241+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.0028722+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.5355821+08:00",
-  "WebId": "18dbe141-e2f0-41aa-974e-26286046f394"
+  "ChangedDate": "2017-08-28T18:04:23.4363946+08:00",
+  "WebId": "4e403ce9-f886-4476-a2a6-015c114f6e86"
 }

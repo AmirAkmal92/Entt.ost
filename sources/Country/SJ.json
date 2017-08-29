@@ -3,10 +3,11 @@
   "Name": "SVALBARD AND JAN MAYEN ",
   "Abbreviation": "SJ",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "SJ",
-  "CreatedDate": "2017-02-21T13:37:25.2879324+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.1828498+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.2849243+08:00",
-  "WebId": "271df4ba-dc51-46e7-8c4b-339a44fd6e6e"
+  "ChangedDate": "2017-08-28T18:04:23.9453227+08:00",
+  "WebId": "439026f4-631e-4499-937f-53ba5dd06019"
 }

@@ -3,10 +3,11 @@
   "Name": "PITCAIRN ",
   "Abbreviation": "PN",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "PN",
-  "CreatedDate": "2017-02-21T13:37:22.3839193+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.2473618+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:22.3834175+08:00",
-  "WebId": "7b1c6f91-2d6f-44c4-ba7f-cff726a0c84e"
+  "ChangedDate": "2017-08-28T18:04:21.8894632+08:00",
+  "WebId": "d3467e59-4e83-42f0-9d04-9dd402794628"
 }

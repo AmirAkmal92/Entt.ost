@@ -3,10 +3,11 @@
   "Name": "TAJIKISTAN ",
   "Abbreviation": "TJ",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "TJ",
-  "CreatedDate": "2017-02-21T13:37:26.5934035+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.3407715+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.5913975+08:00",
-  "WebId": "4be8a50f-b0fd-45a9-ae3a-a818ec45f609"
+  "ChangedDate": "2017-08-28T18:04:24.2361112+08:00",
+  "WebId": "ca85afdb-1773-4d12-84ab-6900225068c7"
 }

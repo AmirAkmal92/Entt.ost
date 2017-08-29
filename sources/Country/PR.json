@@ -3,10 +3,11 @@
   "Name": "PUERTO RICO ",
   "Abbreviation": "PR",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "PR",
-  "CreatedDate": "2017-02-21T13:37:33.0434323+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.2709247+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:33.0168612+08:00",
-  "WebId": "1aea75f3-919d-4e17-955e-bb0e22b9a49e"
+  "ChangedDate": "2017-08-28T18:04:22.048887+08:00",
+  "WebId": "62f15fc1-baba-4c15-aa99-6c5a226aac85"
 }

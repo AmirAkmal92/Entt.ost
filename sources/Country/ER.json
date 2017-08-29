@@ -3,10 +3,11 @@
   "Name": "ERITREA ",
   "Abbreviation": "ER",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "ER",
-  "CreatedDate": "2017-02-21T13:37:24.7209245+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.6633693+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:24.7108979+08:00",
-  "WebId": "d9b83117-671c-42f5-9cce-9707ae03b22c"
+  "ChangedDate": "2017-08-28T18:04:15.4287019+08:00",
+  "WebId": "287e91ad-9e2d-44ff-b8cd-daec52605ca7"
 }

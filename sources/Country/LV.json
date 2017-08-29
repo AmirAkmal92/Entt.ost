@@ -3,10 +3,11 @@
   "Name": "LATVIA ",
   "Abbreviation": "LV",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "LV",
-  "CreatedDate": "2017-02-21T13:37:26.6956775+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.4505828+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.6876541+08:00",
-  "WebId": "53db23c5-0fe1-4f2b-860a-d4a2f36c0114"
+  "ChangedDate": "2017-08-28T18:04:18.4737258+08:00",
+  "WebId": "2ae90ef8-03ce-45aa-bcf7-519efae9a4ed"
 }

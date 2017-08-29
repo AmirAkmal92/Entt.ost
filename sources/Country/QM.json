@@ -3,10 +3,11 @@
   "Name": "BOSNIA REP SRPSKA ",
   "Abbreviation": "QM",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "QM",
-  "CreatedDate": "2017-02-21T13:37:26.3828427+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.5158166+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.3818402+08:00",
-  "WebId": "009ca593-cc43-4ebd-9fee-275bdce2a5ab"
+  "ChangedDate": "2017-08-28T18:04:10.6367379+08:00",
+  "WebId": "a5dbe490-2e12-4435-9da7-ce9fc634857b"
 }

@@ -3,10 +3,11 @@
   "Name": "NAURU ",
   "Abbreviation": "NR",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "NR",
-  "CreatedDate": "2017-02-21T13:37:28.9340079+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.9144764+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:28.9214742+08:00",
-  "WebId": "5bcb7038-f7c0-4996-acf7-60a1e5ea48f3"
+  "ChangedDate": "2017-08-28T18:04:20.8171562+08:00",
+  "WebId": "a8cdfd5d-796b-4224-81ec-f3ae3e184a8d"
 }

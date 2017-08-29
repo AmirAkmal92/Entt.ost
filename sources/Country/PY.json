@@ -3,10 +3,11 @@
   "Name": "PARAGUAY ",
   "Abbreviation": "PY",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "PY",
-  "CreatedDate": "2017-02-21T13:37:26.9057351+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.2258046+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.9042291+08:00",
-  "WebId": "deba32c9-d7b0-4ed3-b92e-4183252e1cd5"
+  "ChangedDate": "2017-08-28T18:04:21.6442095+08:00",
+  "WebId": "9ba50a66-06e4-460e-8310-4a31a661393e"
 }

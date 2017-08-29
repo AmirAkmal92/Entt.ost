@@ -3,10 +3,11 @@
   "Name": "MACEDONIA,  THE FORMER YUGOSLAV REPUBLIC OF ",
   "Abbreviation": "MK",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "MK",
-  "CreatedDate": "2017-02-21T13:37:22.3277672+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.176514+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:22.3267654+08:00",
-  "WebId": "b925ba07-c3f3-426f-8a1a-6b90c060663a"
+  "ChangedDate": "2017-08-28T18:04:18.942989+08:00",
+  "WebId": "6125577a-7c15-4694-93d8-372d0d161bbc"
 }

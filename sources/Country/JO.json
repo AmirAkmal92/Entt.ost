@@ -3,10 +3,11 @@
   "Name": "JORDAN ",
   "Abbreviation": "JO",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "JO",
-  "CreatedDate": "2017-02-21T13:37:22.414001+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.2554131+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:22.4129981+08:00",
-  "WebId": "b3a326df-2d63-4cb4-9876-03a9f78c7ed1"
+  "ChangedDate": "2017-08-28T18:04:17.9779069+08:00",
+  "WebId": "11fa4723-2279-4f8e-8aa7-b80d252a15f9"
 }

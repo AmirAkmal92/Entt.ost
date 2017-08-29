@@ -3,10 +3,11 @@
   "Name": "THAILAND ",
   "Abbreviation": "TH",
   "Region": null,
-  "CreatedBy": "excel",
+  "WeightLimit": 20.0,
+  "CreatedBy": "admin",
   "Id": "TH",
-  "CreatedDate": "2017-02-21T00:00:00+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.4440446+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.3200082+08:00",
-  "WebId": "04c24f82-c878-4e91-8462-3dffe60f9d6b"
+  "ChangedDate": "2017-08-28T18:04:24.3273727+08:00",
+  "WebId": "c1e5658f-da1b-4414-be08-c9bf2fcd6299"
 }

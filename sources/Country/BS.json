@@ -3,10 +3,11 @@
   "Name": "BAHAMAS ",
   "Abbreviation": "BS",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BS",
-  "CreatedDate": "2017-02-21T13:37:28.0667025+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.0691283+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:28.0426399+08:00",
-  "WebId": "63c20563-d5d6-45a9-9da7-cc58d80ce7ad"
+  "ChangedDate": "2017-08-28T18:04:08.1376295+08:00",
+  "WebId": "3f8ce0c7-6959-4707-badd-b434ea56e65f"
 }

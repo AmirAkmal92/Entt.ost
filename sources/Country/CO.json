@@ -3,10 +3,11 @@
   "Name": "COLOMBIA ",
   "Abbreviation": "CO",
   "Region": null,
+  "WeightLimit": 50.0,
   "CreatedBy": "admin",
   "Id": "CO",
-  "CreatedDate": "2017-02-21T13:37:29.2297941+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.1319559+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:29.2097414+08:00",
-  "WebId": "90aebf55-b442-4ce3-96d1-28f57ba2f1b5"
+  "ChangedDate": "2017-08-28T18:04:14.2851123+08:00",
+  "WebId": "0468d9a8-e5f5-47fd-a534-cede6879006c"
 }

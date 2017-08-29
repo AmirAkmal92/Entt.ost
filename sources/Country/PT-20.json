@@ -3,10 +3,11 @@
   "Name": "AZORES",
   "Abbreviation": "PT-20",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "PT-20",
-  "CreatedDate": "2017-02-21T13:37:32.831869+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.0235077+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.8293629+08:00",
-  "WebId": "07bc6994-290b-43a7-9272-388041f0bdfd"
+  "ChangedDate": "2017-08-28T18:04:08.0168101+08:00",
+  "WebId": "0d25c8e3-18af-48cb-850f-a7093692112e"
 }

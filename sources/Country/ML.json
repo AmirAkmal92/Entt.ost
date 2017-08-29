@@ -3,10 +3,11 @@
   "Name": "MALI ",
   "Abbreviation": "ML",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "ML",
-  "CreatedDate": "2017-02-21T13:37:32.5155285+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.4352017+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.4934698+08:00",
-  "WebId": "9fc8bba8-de67-484b-a7b0-6368cb7f0966"
+  "ChangedDate": "2017-08-28T18:04:19.1431564+08:00",
+  "WebId": "ed79a5a8-59ef-43f7-ad56-fdfb61467699"
 }

@@ -3,10 +3,11 @@
   "Name": "EGYPT ",
   "Abbreviation": "EG",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "EG",
-  "CreatedDate": "2017-02-21T13:37:26.4119202+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.5856613+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.4114188+08:00",
-  "WebId": "fde757bd-f9ba-4f0a-a211-0bc7b6a6bcf9"
+  "ChangedDate": "2017-08-28T18:04:15.316905+08:00",
+  "WebId": "841484fa-ed54-457b-8d51-abf944afb85e"
 }

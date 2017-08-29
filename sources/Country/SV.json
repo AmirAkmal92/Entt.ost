@@ -3,10 +3,11 @@
   "Name": "EL SALVADOR ",
   "Abbreviation": "SV",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "SV",
-  "CreatedDate": "2017-02-21T13:37:22.4069818+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.6027068+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:22.40598+08:00",
-  "WebId": "c84c9930-d2e3-40fa-8642-e327d83be3fd"
+  "ChangedDate": "2017-08-28T18:04:15.3499928+08:00",
+  "WebId": "1c724b98-ae85-43c8-989f-580b6ed9058f"
 }

@@ -3,10 +3,11 @@
   "Name": "BULGARIA ",
   "Abbreviation": "BG",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BG",
-  "CreatedDate": "2017-02-21T13:37:24.8763385+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.6957949+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:24.8607962+08:00",
-  "WebId": "c84fac30-0179-4b94-9433-04a51aab7e9e"
+  "ChangedDate": "2017-08-28T18:04:11.711096+08:00",
+  "WebId": "b5c49a7b-91c3-444c-9c34-84927f4fb2c7"
 }

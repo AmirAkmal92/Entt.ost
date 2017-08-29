@@ -3,10 +3,11 @@
   "Name": "BRITISH INDIAN OCEAN TERRITORY ",
   "Abbreviation": "IO",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "IO",
-  "CreatedDate": "2017-02-21T13:37:32.4568725+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.666216+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.451859+08:00",
-  "WebId": "43e1b6fd-3599-4f30-b2b9-9858848f1311"
+  "ChangedDate": "2017-08-28T18:04:11.3345943+08:00",
+  "WebId": "4dec1976-7c38-4ef9-9f32-dcceeff129ac"
 }

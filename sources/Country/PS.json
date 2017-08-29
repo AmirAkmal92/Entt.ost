@@ -3,10 +3,11 @@
   "Name": "PALESTINE,  STATE OF ",
   "Abbreviation": "PS",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "PS",
-  "CreatedDate": "2017-02-21T13:37:25.3746641+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.1836929+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.3736606+08:00",
-  "WebId": "695cde77-6918-4838-b988-0c850176f1d8"
+  "ChangedDate": "2017-08-28T18:04:21.4738252+08:00",
+  "WebId": "a96dcdd6-8581-4996-8271-8af65b48c1a2"
 }

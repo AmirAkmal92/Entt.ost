@@ -3,10 +3,11 @@
   "Name": "GIBRALTAR ",
   "Abbreviation": "GI",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "GI",
-  "CreatedDate": "2017-02-21T13:37:28.133383+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.9812138+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:28.1133258+08:00",
-  "WebId": "443b7e00-62de-4b43-9287-7b240c671d8f"
+  "ChangedDate": "2017-08-28T18:04:16.532988+08:00",
+  "WebId": "0c37ec6c-c7d0-4999-886a-50d8d53ec485"
 }

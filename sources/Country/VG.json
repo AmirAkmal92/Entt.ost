@@ -3,10 +3,11 @@
   "Name": "VIRGIN ISLANDS,  BRITISH ",
   "Abbreviation": "VG",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "VG",
-  "CreatedDate": "2017-02-21T13:37:31.7068798+08:00",
+  "CreatedDate": "2017-08-28T18:04:13.643737+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.7033698+08:00",
-  "WebId": "1c53f36e-3745-419d-a7bf-4a9bfac19c86"
+  "ChangedDate": "2017-08-28T18:04:25.7110054+08:00",
+  "WebId": "7dac6227-3d90-43da-91f7-8bef3a5a8cda"
 }

@@ -3,10 +3,11 @@
   "Name": "GUINEA ",
   "Abbreviation": "GN",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "GN",
-  "CreatedDate": "2017-02-21T13:37:25.4724229+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.0300569+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.4719211+08:00",
-  "WebId": "a9784130-fc58-48b3-951d-669442962905"
+  "ChangedDate": "2017-08-28T18:04:16.7502753+08:00",
+  "WebId": "ca8e24a7-8a01-4055-9fa5-693f8a571930"
 }

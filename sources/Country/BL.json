@@ -3,10 +3,11 @@
   "Name": "SAINT BARTHELEMY ",
   "Abbreviation": "BL",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BL",
-  "CreatedDate": "2017-02-21T13:37:24.9515393+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.3531448+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:24.9425148+08:00",
-  "WebId": "53147603-fb4b-4bbb-8b38-aac2f35be742"
+  "ChangedDate": "2017-08-28T18:04:22.4289755+08:00",
+  "WebId": "277e6b1c-18ed-417b-90ed-c4da95225417"
 }

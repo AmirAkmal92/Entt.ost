@@ -3,10 +3,11 @@
   "Name": "SINT MAARTEN (DUTCH PART) ",
   "Abbreviation": "SX",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "SX",
-  "CreatedDate": "2017-02-21T13:37:33.6329988+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.8218901+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:33.62598+08:00",
-  "WebId": "c6f9a2ab-6ccc-4ade-abb9-156b7a1828ef"
+  "ChangedDate": "2017-08-28T18:04:23.1494175+08:00",
+  "WebId": "96a55534-3e14-40fb-8dc3-f2d3f1984252"
 }

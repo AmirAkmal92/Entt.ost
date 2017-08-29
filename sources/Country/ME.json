@@ -3,10 +3,11 @@
   "Name": "MONTENEGRO ",
   "Abbreviation": "ME",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "ME",
-  "CreatedDate": "2017-02-21T13:37:25.8393981+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.7124409+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.8383956+08:00",
-  "WebId": "18fbc659-e165-41c5-9aae-a6f33f86947d"
+  "ChangedDate": "2017-08-28T18:04:20.5080206+08:00",
+  "WebId": "afbd493e-9a6e-4b4b-9279-127330249d6e"
 }

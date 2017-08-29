@@ -3,10 +3,11 @@
   "Name": "MOZAMBIQUE ",
   "Abbreviation": "MZ",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "MZ",
-  "CreatedDate": "2017-02-21T13:37:31.6632629+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.8583285+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.6512316+08:00",
-  "WebId": "c9c92550-b7ac-4847-9b10-4bcabe362c8e"
+  "ChangedDate": "2017-08-28T18:04:20.6115691+08:00",
+  "WebId": "809cae0f-c5ba-4894-9d9a-db23926b8aeb"
 }

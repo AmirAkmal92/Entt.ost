@@ -3,10 +3,11 @@
   "Name": "VANUATU ",
   "Abbreviation": "VU",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "VU",
-  "CreatedDate": "2017-02-21T13:37:25.5300753+08:00",
+  "CreatedDate": "2017-08-28T18:04:13.3634903+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.5295746+08:00",
-  "WebId": "83bdc82e-eeff-4186-ba1a-8a28c42e4c93"
+  "ChangedDate": "2017-08-28T18:04:24.8820346+08:00",
+  "WebId": "8c2a4b4f-e274-4845-b5ae-3ccd01f5adbd"
 }

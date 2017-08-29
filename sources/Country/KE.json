@@ -3,10 +3,11 @@
   "Name": "KENYA ",
   "Abbreviation": "KE",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "KE",
-  "CreatedDate": "2017-02-21T13:37:25.5100224+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.290569+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.5090195+08:00",
-  "WebId": "8746576d-e9eb-4642-8d09-74e848a17e92"
+  "ChangedDate": "2017-08-28T18:04:18.0957202+08:00",
+  "WebId": "20537125-91dc-4acf-8835-e99d650f4ba2"
 }

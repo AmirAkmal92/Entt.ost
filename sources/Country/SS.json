@@ -3,10 +3,11 @@
   "Name": "SOUTH SUDAN ",
   "Abbreviation": "SS",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "SS",
-  "CreatedDate": "2017-02-21T13:37:31.5720219+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.051501+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.5680102+08:00",
-  "WebId": "f41f0fb0-00db-4a2c-b8be-519d35c2eaf1"
+  "ChangedDate": "2017-08-28T18:04:23.6586654+08:00",
+  "WebId": "01519c2b-c44a-459c-9ce3-62f782068bef"
 }

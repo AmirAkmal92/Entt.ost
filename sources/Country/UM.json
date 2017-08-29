@@ -3,10 +3,11 @@
   "Name": "UNITED STATES MINOR OUTLYING ISLANDS ",
   "Abbreviation": "UM",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "UM",
-  "CreatedDate": "2017-02-21T13:37:26.4976487+08:00",
+  "CreatedDate": "2017-08-28T18:04:13.1875223+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.4951434+08:00",
-  "WebId": "ba901a49-e18d-4340-9667-59c1341ca6df"
+  "ChangedDate": "2017-08-28T18:04:24.7878188+08:00",
+  "WebId": "a6173b38-e0c0-4392-a706-7c1f17c8e4c9"
 }

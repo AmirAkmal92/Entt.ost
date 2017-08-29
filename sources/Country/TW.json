@@ -3,10 +3,11 @@
   "Name": "TAIWAN,  PROVINCE OF CHINA ",
   "Abbreviation": "TW",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "TW",
-  "CreatedDate": "2017-02-21T13:37:30.9613967+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.3192132+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:30.9408423+08:00",
-  "WebId": "3a8f9323-d67c-49be-b866-4955d0582ddf"
+  "ChangedDate": "2017-08-28T18:04:24.1929812+08:00",
+  "WebId": "04387949-4cb9-40bc-8efe-951fe03dc60b"
 }

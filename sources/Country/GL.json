@@ -3,10 +3,11 @@
   "Name": "GREENLAND ",
   "Abbreviation": "GL",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "GL",
-  "CreatedDate": "2017-02-21T13:37:31.4316477+08:00",
+  "CreatedDate": "2017-08-28T18:04:08.0082856+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.423626+08:00",
-  "WebId": "7af99159-0110-43f4-9f3d-22ba19c36e25"
+  "ChangedDate": "2017-08-28T18:04:16.6197068+08:00",
+  "WebId": "fa24c8c5-7b78-48a4-b5a8-a282f9d631bb"
 }

@@ -3,10 +3,11 @@
   "Name": "RWANDA ",
   "Abbreviation": "RW",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "RW",
-  "CreatedDate": "2017-02-21T13:37:26.9438343+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.3436185+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.9403247+08:00",
-  "WebId": "aa59f118-b58b-492c-8ee6-2022c94f6449"
+  "ChangedDate": "2017-08-28T18:04:22.3962117+08:00",
+  "WebId": "ff380fc2-dc48-4978-a438-8d4c6916838a"
 }

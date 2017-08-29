@@ -3,10 +3,11 @@
   "Name": "AFGHANISTAN ",
   "Abbreviation": "AF",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "AF",
-  "CreatedDate": "2017-02-21T13:37:26.3347155+08:00",
+  "CreatedDate": "2017-08-28T18:04:05.131757+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.3342137+08:00",
-  "WebId": "a29e54a9-fd00-46e7-b065-b31e444e6dd3"
+  "ChangedDate": "2017-08-28T18:04:05.4379489+08:00",
+  "WebId": "2d09a291-6660-45aa-80f7-ffb9f6e03c5b"
 }

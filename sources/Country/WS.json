@@ -3,10 +3,11 @@
   "Name": "SAMOA ",
   "Abbreviation": "WS",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "WS",
-  "CreatedDate": "2017-02-21T13:37:26.244476+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.4664453+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.2354511+08:00",
-  "WebId": "6e7696ac-de9a-4fc6-9ef0-8ba77e5d091a"
+  "ChangedDate": "2017-08-28T18:04:22.6802272+08:00",
+  "WebId": "59661c61-e094-45d0-891e-0da29b2586a0"
 }

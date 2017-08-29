@@ -3,10 +3,11 @@
   "Name": "PHILIPPINES ",
   "Abbreviation": "PH",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "PH",
-  "CreatedDate": "2017-02-21T13:37:32.7306+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.2388401+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.7280936+08:00",
-  "WebId": "c1297aac-0149-45b0-a482-c778fc992bd1"
+  "ChangedDate": "2017-08-28T18:04:21.8468455+08:00",
+  "WebId": "e79305df-fddc-4bc5-8d5d-cd3df993939f"
 }

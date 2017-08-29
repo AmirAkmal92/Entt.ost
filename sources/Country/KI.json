@@ -3,10 +3,11 @@
   "Name": "KIRIBATI ",
   "Abbreviation": "KI",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "KI",
-  "CreatedDate": "2017-02-21T13:37:32.6263245+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.3307656+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.609279+08:00",
-  "WebId": "b20fbc9d-1055-4760-b5d8-a30bbf47f3ab"
+  "ChangedDate": "2017-08-28T18:04:18.1328191+08:00",
+  "WebId": "3274c791-26b1-4562-852c-b4db4aa8fc76"
 }

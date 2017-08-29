@@ -3,10 +3,11 @@
   "Name": "MONGOLIA ",
   "Abbreviation": "MN",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "MN",
-  "CreatedDate": "2017-02-21T13:37:32.7551657+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.6868726+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.740627+08:00",
-  "WebId": "65da6f2d-ac81-45b3-a758-52a4fcfdd0d0"
+  "ChangedDate": "2017-08-28T18:04:20.3352403+08:00",
+  "WebId": "18aed863-9ef6-46ff-a7ee-0da8ea0d817e"
 }

@@ -3,10 +3,11 @@
   "Name": "KOREA,  DEMOCRATIC PEOPLE'S REPUBLIC OF ",
   "Abbreviation": "KP",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "KP",
-  "CreatedDate": "2017-02-21T13:37:31.7149004+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.3553304+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.7128944+08:00",
-  "WebId": "2be72848-873e-4dad-baa1-7402a0063909"
+  "ChangedDate": "2017-08-28T18:04:18.1839552+08:00",
+  "WebId": "64275ceb-f9f9-4136-90e8-2b647e504794"
 }

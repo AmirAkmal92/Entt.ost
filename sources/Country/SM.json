@@ -3,10 +3,11 @@
   "Name": "SAN MARINO ",
   "Abbreviation": "SM",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "SM",
-  "CreatedDate": "2017-02-21T13:37:26.463056+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.5170801+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.461051+08:00",
-  "WebId": "561cf09f-ce2f-4b56-8caa-3309b780386f"
+  "ChangedDate": "2017-08-28T18:04:22.7325161+08:00",
+  "WebId": "3aacc50e-27b5-4833-8eb0-9968c264b950"
 }

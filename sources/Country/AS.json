@@ -3,10 +3,11 @@
   "Name": "AMERICAN SAMOA ",
   "Abbreviation": "AS",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "AS",
-  "CreatedDate": "2017-02-21T13:37:22.4230248+08:00",
+  "CreatedDate": "2017-08-28T18:04:05.2955706+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:22.420017+08:00",
-  "WebId": "cb4ecd87-1c5a-4bb4-a892-99411c0a95d7"
+  "ChangedDate": "2017-08-28T18:04:06.3824614+08:00",
+  "WebId": "58984c43-589e-4baf-b615-c526ce034724"
 }

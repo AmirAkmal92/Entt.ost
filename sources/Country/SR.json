@@ -3,10 +3,11 @@
   "Name": "SURINAME ",
   "Abbreviation": "SR",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "SR",
-  "CreatedDate": "2017-02-21T13:37:32.0698436+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.1522691+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.0578116+08:00",
-  "WebId": "8206744d-eef3-4431-8665-fb2fab554a5f"
+  "ChangedDate": "2017-08-28T18:04:23.9177498+08:00",
+  "WebId": "918d67d9-b5ef-4d29-85d9-f69acd74eab1"
 }

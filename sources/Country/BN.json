@@ -3,10 +3,11 @@
   "Name": "BRUNEI DARUSSALAM ",
   "Abbreviation": "BN",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BN",
-  "CreatedDate": "2017-02-21T13:37:31.7820792+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.6877739+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.7810763+08:00",
-  "WebId": "30b4f1bf-891e-41a7-8822-d181a5a4434f"
+  "ChangedDate": "2017-08-28T18:04:11.4493998+08:00",
+  "WebId": "44ca4924-75ca-408e-aa86-26ad9f00170e"
 }

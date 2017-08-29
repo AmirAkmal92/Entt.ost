@@ -3,10 +3,11 @@
   "Name": "GUINEA-BISSAU ",
   "Abbreviation": "GW",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "GW",
-  "CreatedDate": "2017-02-21T13:37:25.6719524+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.0481046+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.6704488+08:00",
-  "WebId": "e50dd16e-1291-47b3-851a-1a0935b4c320"
+  "ChangedDate": "2017-08-28T18:04:16.7588178+08:00",
+  "WebId": "06550861-2a3d-4fb5-bc73-361bb010bd16"
 }

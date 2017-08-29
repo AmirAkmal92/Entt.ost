@@ -3,10 +3,11 @@
   "Name": "MOROCCO ",
   "Abbreviation": "MA",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "MA",
-  "CreatedDate": "2017-02-21T13:37:31.8041375+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.831757+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.7996247+08:00",
-  "WebId": "d0851e1e-edbb-43c2-bc2c-7f226a6501f6"
+  "ChangedDate": "2017-08-28T18:04:20.5621671+08:00",
+  "WebId": "b3f471fe-2653-4994-a356-0c91386d6aec"
 }

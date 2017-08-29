@@ -3,10 +3,11 @@
   "Name": "BENIN ",
   "Abbreviation": "BJ",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BJ",
-  "CreatedDate": "2017-02-21T13:37:25.9732552+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.3684266+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.9652328+08:00",
-  "WebId": "15dff022-4fec-4df6-9113-5b56de1a35cc"
+  "ChangedDate": "2017-08-28T18:04:08.7099514+08:00",
+  "WebId": "fa3bebdb-1878-436a-94e3-25feabc17b93"
 }

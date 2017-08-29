@@ -3,10 +3,11 @@
   "Name": "CONGO,  THE DEMOCRATIC REPUBLIC OF THE ",
   "Abbreviation": "CD",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "CD",
-  "CreatedDate": "2017-02-21T13:37:22.3999633+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.1815867+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:22.3989605+08:00",
-  "WebId": "bb909e01-9beb-4260-b9d9-dffeacb0858f"
+  "ChangedDate": "2017-08-28T18:04:14.4006967+08:00",
+  "WebId": "1b2c286d-184e-4f88-9916-16956ab3a362"
 }

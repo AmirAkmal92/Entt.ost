@@ -3,10 +3,11 @@
   "Name": "MYANMAR ",
   "Abbreviation": "MM",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "MM",
-  "CreatedDate": "2017-02-21T13:37:31.6211509+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.8783815+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.6041061+08:00",
-  "WebId": "9f72e478-5560-4e93-b581-f2e01136150b"
+  "ChangedDate": "2017-08-28T18:04:20.6428226+08:00",
+  "WebId": "3c1a2970-8c53-4549-b07e-7e4acaa56ad0"
 }

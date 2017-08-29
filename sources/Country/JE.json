@@ -3,10 +3,11 @@
   "Name": "JERSEY ",
   "Abbreviation": "JE",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "JE",
-  "CreatedDate": "2017-02-21T13:37:25.2678784+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.2313495+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.2668759+08:00",
-  "WebId": "c661bc42-aa04-4d3c-bce4-74aff4c99be5"
+  "ChangedDate": "2017-08-28T18:04:17.948328+08:00",
+  "WebId": "386141e9-9578-409e-8cfc-cf2b9cf882ed"
 }

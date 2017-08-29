@@ -3,10 +3,11 @@
   "Name": "MARTINIQUE ",
   "Abbreviation": "MQ",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "MQ",
-  "CreatedDate": "2017-02-21T13:37:36.1433526+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.5083965+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:36.1313195+08:00",
-  "WebId": "f2c92923-6cff-4a82-ab00-0f8366551b79"
+  "ChangedDate": "2017-08-28T18:04:19.2311576+08:00",
+  "WebId": "f48aac12-64c4-4836-be6a-24b6da4c85f6"
 }

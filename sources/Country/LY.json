@@ -3,10 +3,11 @@
   "Name": "LIBYA ",
   "Abbreviation": "LY",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "LY",
-  "CreatedDate": "2017-02-21T13:37:32.6919976+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.5744124+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.6909962+08:00",
-  "WebId": "d3c75c76-b2d1-456e-a088-8efa35037b24"
+  "ChangedDate": "2017-08-28T18:04:18.6347068+08:00",
+  "WebId": "d8946543-8650-4dbd-b5d1-04c65ded32c0"
 }

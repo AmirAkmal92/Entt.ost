@@ -3,10 +3,11 @@
   "Name": "GEORGIA ",
   "Abbreviation": "GE",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "GE",
-  "CreatedDate": "2017-02-21T13:37:22.3909402+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.9020029+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:22.389937+08:00",
-  "WebId": "3bd510ed-3512-4f1f-9900-5626822f8181"
+  "ChangedDate": "2017-08-28T18:04:16.4348134+08:00",
+  "WebId": "365e9d01-d34a-4e2b-a4df-05783e7bdceb"
 }

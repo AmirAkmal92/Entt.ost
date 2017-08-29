@@ -3,10 +3,11 @@
   "Name": "SYRIAN ARAB REPUBLIC ",
   "Abbreviation": "SY",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "SY",
-  "CreatedDate": "2017-02-21T13:37:26.5482827+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.2891332+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.5472799+08:00",
-  "WebId": "31ca9c47-2811-4014-b736-039ce9ef13b7"
+  "ChangedDate": "2017-08-28T18:04:24.1263041+08:00",
+  "WebId": "e9a5fc5b-bd77-4c74-8a44-2560b3bb4d16"
 }

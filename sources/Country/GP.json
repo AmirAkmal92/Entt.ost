@@ -3,10 +3,11 @@
   "Name": "GUADELOUPE ",
   "Abbreviation": "GP",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "GP",
-  "CreatedDate": "2017-02-21T13:37:28.3148618+08:00",
+  "CreatedDate": "2017-08-28T18:04:08.0468884+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:28.2687395+08:00",
-  "WebId": "342611c2-35c1-46dd-9d83-4e7dd2ef6a02"
+  "ChangedDate": "2017-08-28T18:04:16.6509593+08:00",
+  "WebId": "7be1099b-d230-4049-a2e9-648a39dc0690"
 }

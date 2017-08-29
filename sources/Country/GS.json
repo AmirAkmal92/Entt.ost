@@ -3,10 +3,11 @@
   "Name": "SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS ",
   "Abbreviation": "GS",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "GS",
-  "CreatedDate": "2017-02-21T13:37:24.6863335+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.0294419+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:24.68533+08:00",
-  "WebId": "ff78e423-7774-4c74-93ca-ef6819c9b4bf"
+  "ChangedDate": "2017-08-28T18:04:23.6062672+08:00",
+  "WebId": "aaf9ca51-61b7-4bae-b2b9-1caae4d472c0"
 }

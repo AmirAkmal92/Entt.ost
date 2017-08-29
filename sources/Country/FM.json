@@ -3,10 +3,11 @@
   "Name": "MICRONESIA FEDERATED STATES OF ",
   "Abbreviation": "FM",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "FM",
-  "CreatedDate": "2017-02-21T13:37:27.9077803+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.6181909+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:27.8867245+08:00",
-  "WebId": "da9652e4-5a2e-44b9-af07-43a307372ed0"
+  "ChangedDate": "2017-08-28T18:04:19.4278013+08:00",
+  "WebId": "40060a27-cf04-4718-adbe-673d0adaab40"
 }

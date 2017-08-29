@@ -3,10 +3,11 @@
   "Name": "VIRGIN ISLANDS,  U.S. ",
   "Abbreviation": "VI",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "VI",
-  "CreatedDate": "2017-02-21T13:37:36.288241+08:00",
+  "CreatedDate": "2017-08-28T18:04:13.6908614+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:36.246129+08:00",
-  "WebId": "5c4aaa5f-ffe1-4762-8100-e393fe96a994"
+  "ChangedDate": "2017-08-28T18:04:25.7977344+08:00",
+  "WebId": "04907626-df19-4c58-bf41-4e8216e3d8b5"
 }

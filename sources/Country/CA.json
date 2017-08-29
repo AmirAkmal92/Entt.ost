@@ -3,10 +3,11 @@
   "Name": "CANADA ",
   "Abbreviation": "CA",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "CA",
-  "CreatedDate": "2017-02-21T13:37:32.4328085+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.7709951+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.4313042+08:00",
-  "WebId": "f06a1d97-0c96-4b0e-b503-be1e3c5ddfa7"
+  "ChangedDate": "2017-08-28T18:04:12.8400989+08:00",
+  "WebId": "5500c060-eda3-49fd-9272-1e232c6d0901"
 }

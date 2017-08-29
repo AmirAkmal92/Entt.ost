@@ -3,10 +3,11 @@
   "Name": "DENMARK ",
   "Abbreviation": "DK",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "DK",
-  "CreatedDate": "2017-02-21T13:37:36.0982278+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.4974266+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:36.0731624+08:00",
-  "WebId": "0804ba58-562c-492f-bc1d-18ca2d309f89"
+  "ChangedDate": "2017-08-28T18:04:14.8317151+08:00",
+  "WebId": "7a0273fd-f144-45fb-93b8-483838db7b79"
 }

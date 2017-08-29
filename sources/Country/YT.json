@@ -3,10 +3,11 @@
   "Name": "MAYOTTE ",
   "Abbreviation": "YT",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "YT",
-  "CreatedDate": "2017-02-21T13:37:31.5970901+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.5640448+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.5960845+08:00",
-  "WebId": "e36c5d44-3ee2-429e-84b4-3f8baa2dbe0b"
+  "ChangedDate": "2017-08-28T18:04:19.3435769+08:00",
+  "WebId": "bfbca48d-adcd-4548-993f-28438771647e"
 }

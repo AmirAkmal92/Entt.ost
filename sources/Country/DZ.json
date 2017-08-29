@@ -3,10 +3,11 @@
   "Name": "ALGERIA ",
   "Abbreviation": "DZ",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "DZ",
-  "CreatedDate": "2017-02-21T13:37:32.9431654+08:00",
+  "CreatedDate": "2017-08-28T18:04:05.2664927+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.9231121+08:00",
-  "WebId": "36cebc7a-a611-449f-9984-8110ad82ab61"
+  "ChangedDate": "2017-08-28T18:04:06.135304+08:00",
+  "WebId": "f3f92697-0b75-49df-ac40-291588e1048b"
 }

@@ -3,10 +3,11 @@
   "Name": "UGANDA ",
   "Abbreviation": "UG",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "UG",
-  "CreatedDate": "2017-02-21T13:37:22.3558418+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.9799712+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:22.3558418+08:00",
-  "WebId": "26a485c5-92ac-4802-8513-f133e5817163"
+  "ChangedDate": "2017-08-28T18:04:24.6518948+08:00",
+  "WebId": "e25f13a2-b770-406a-aa23-654b6b22a1c7"
 }

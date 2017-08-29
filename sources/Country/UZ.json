@@ -3,10 +3,11 @@
   "Name": "UZBEKISTAN ",
   "Abbreviation": "UZ",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "UZ",
-  "CreatedDate": "2017-02-21T13:37:25.0457888+08:00",
+  "CreatedDate": "2017-08-28T18:04:13.281773+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.0342579+08:00",
-  "WebId": "da66d842-19af-4e0c-8822-518c5d6d10ba"
+  "ChangedDate": "2017-08-28T18:04:24.8507737+08:00",
+  "WebId": "75b0ed6c-195d-4dfa-9e37-f99a496c7424"
 }

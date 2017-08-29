@@ -3,10 +3,11 @@
   "Name": "BRAZIL ",
   "Abbreviation": "BR",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BR",
-  "CreatedDate": "2017-02-21T13:37:32.7977787+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.6406484+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.7787283+08:00",
-  "WebId": "f8dd8eeb-1352-4e2b-b015-563ba9385eda"
+  "ChangedDate": "2017-08-28T18:04:11.2243006+08:00",
+  "WebId": "800e1b63-372f-4125-a380-eef58d286779"
 }

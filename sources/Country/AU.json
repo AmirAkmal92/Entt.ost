@@ -3,10 +3,11 @@
   "Name": "AUSTRALIA ",
   "Abbreviation": "AU",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "AU",
-  "CreatedDate": "2017-02-21T13:37:31.8186755+08:00",
+  "CreatedDate": "2017-08-28T18:04:05.8721035+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.8111559+08:00",
-  "WebId": "3255efd7-2fa7-4b7a-8e96-7f7d1b194230"
+  "ChangedDate": "2017-08-28T18:04:07.7521043+08:00",
+  "WebId": "ffce7902-52a5-4167-9386-6dd8f9606429"
 }

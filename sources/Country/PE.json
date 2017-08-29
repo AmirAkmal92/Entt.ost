@@ -3,10 +3,11 @@
   "Name": "PERU ",
   "Abbreviation": "PE",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "PE",
-  "CreatedDate": "2017-02-21T13:37:25.1636016+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.2323223+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.1610948+08:00",
-  "WebId": "40eeb74a-18fb-43f1-b611-8252ecaaca40"
+  "ChangedDate": "2017-08-28T18:04:21.69762+08:00",
+  "WebId": "4fc7d86b-4b89-4846-b5c1-6dd6de720305"
 }

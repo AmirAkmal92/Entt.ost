@@ -3,10 +3,11 @@
   "Name": "SAINT VINCENT AND THE GRENADINES ",
   "Abbreviation": "VC",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "VC",
-  "CreatedDate": "2017-02-21T13:37:25.5877292+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.4383706+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.58422+08:00",
-  "WebId": "646ae691-dde8-4d54-9989-92e97b5f014c"
+  "ChangedDate": "2017-08-28T18:04:22.648973+08:00",
+  "WebId": "b549414d-9b18-4795-bd71-2650ba05641f"
 }

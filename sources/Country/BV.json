@@ -3,10 +3,11 @@
   "Name": "BOUVET ISLAND ",
   "Abbreviation": "BV",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BV",
-  "CreatedDate": "2017-02-21T13:37:25.4518773+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.5659489+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.4508656+08:00",
-  "WebId": "7155909a-96cf-43e9-ad5b-54269f2b6605"
+  "ChangedDate": "2017-08-28T18:04:11.1310524+08:00",
+  "WebId": "ec5c2df0-0561-4a21-82e0-ec804c10f2c2"
 }

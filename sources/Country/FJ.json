@@ -3,10 +3,11 @@
   "Name": "FIJI ",
   "Abbreviation": "FJ",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "FJ",
-  "CreatedDate": "2017-02-21T13:37:28.5294329+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.7571171+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:28.4667655+08:00",
-  "WebId": "3260c884-f9fc-4cc2-b538-4c809bc39684"
+  "ChangedDate": "2017-08-28T18:04:15.5774763+08:00",
+  "WebId": "a63e7fff-e2c8-4904-80d3-6ca560d7e6fe"
 }

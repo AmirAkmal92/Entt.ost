@@ -3,10 +3,11 @@
   "Name": "ISRAEL ",
   "Abbreviation": "IL",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "IL",
-  "CreatedDate": "2017-02-21T13:37:25.2553461+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.1746952+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.2473244+08:00",
-  "WebId": "d519bd85-047b-4e0f-9e59-12f6ab1f796e"
+  "ChangedDate": "2017-08-28T18:04:17.7568192+08:00",
+  "WebId": "d7637696-a540-4e59-a737-42759ed8761f"
 }

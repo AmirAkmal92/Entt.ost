@@ -3,10 +3,11 @@
   "Name": "NEW ZEALAND ",
   "Abbreviation": "NZ",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "NZ",
-  "CreatedDate": "2017-02-21T13:37:36.0521056+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.9966954+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:36.0511038+08:00",
-  "WebId": "20f96dc5-bb88-44bc-899d-4c6ee2a4a753"
+  "ChangedDate": "2017-08-28T18:04:21.0337284+08:00",
+  "WebId": "66e505eb-c98c-4376-8f3f-c355280e872a"
 }

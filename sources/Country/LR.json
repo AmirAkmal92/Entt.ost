@@ -3,10 +3,11 @@
   "Name": "LIBERIA ",
   "Abbreviation": "LR",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "LR",
-  "CreatedDate": "2017-02-21T13:37:29.6268506+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.5668957+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:29.574711+08:00",
-  "WebId": "d4d6db50-f1d5-4a5d-97c9-142341ee4e38"
+  "ChangedDate": "2017-08-28T18:04:18.5820194+08:00",
+  "WebId": "9e9babfa-8ba6-4f60-bcae-9faa389c46e7"
 }

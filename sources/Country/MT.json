@@ -3,10 +3,11 @@
   "Name": "MALTA ",
   "Abbreviation": "MT",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "MT",
-  "CreatedDate": "2017-02-21T13:37:26.8726459+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.4552553+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.8706395+08:00",
-  "WebId": "8aa477f6-29da-4eab-b7f7-ff1a9e024b79"
+  "ChangedDate": "2017-08-28T18:04:19.1744173+08:00",
+  "WebId": "95bef919-c936-4e7f-82f9-fc1d82e802e9"
 }

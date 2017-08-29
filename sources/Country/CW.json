@@ -3,10 +3,11 @@
   "Name": "CURACAO ",
   "Abbreviation": "CW",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "CW",
-  "CreatedDate": "2017-02-21T13:37:31.6913372+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.4267388+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.6888308+08:00",
-  "WebId": "086e7a0d-f0a6-4c19-8ccd-2d525d36a864"
+  "ChangedDate": "2017-08-28T18:04:14.6949215+08:00",
+  "WebId": "ca92e7a2-2fd0-4d31-955f-265100ea90f7"
 }

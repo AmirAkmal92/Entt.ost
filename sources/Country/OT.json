@@ -3,10 +3,11 @@
   "Name": "TORTOLA",
   "Abbreviation": "OT",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "OT",
-  "CreatedDate": "2017-02-21T13:37:24.9094263+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.5748934+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:24.9019057+08:00",
-  "WebId": "defa3e93-85eb-4920-ad6c-f83bbfb46805"
+  "ChangedDate": "2017-08-28T18:04:24.4619533+08:00",
+  "WebId": "44a20b99-f924-4382-914d-a45583e2df5e"
 }

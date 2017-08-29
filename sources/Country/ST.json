@@ -3,10 +3,11 @@
   "Name": "SAO TOME AND PRINCIPE ",
   "Abbreviation": "ST",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "ST",
-  "CreatedDate": "2017-02-21T13:37:33.7447963+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.5486643+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:33.7392817+08:00",
-  "WebId": "828dcb54-dab6-497f-a131-6c145f7de02c"
+  "ChangedDate": "2017-08-28T18:04:22.772317+08:00",
+  "WebId": "67558572-bc0d-405e-a76f-00e0c93767b3"
 }

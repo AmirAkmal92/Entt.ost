@@ -3,10 +3,11 @@
   "Name": "ANGOLA ",
   "Abbreviation": "AO",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "AO",
-  "CreatedDate": "2017-02-21T13:37:25.1164761+08:00",
+  "CreatedDate": "2017-08-28T18:04:05.3567341+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.1139701+08:00",
-  "WebId": "4ebf4fc6-c159-4110-a4e4-6834866a4284"
+  "ChangedDate": "2017-08-28T18:04:06.5895126+08:00",
+  "WebId": "90898613-fb45-414d-8811-1378f859187b"
 }

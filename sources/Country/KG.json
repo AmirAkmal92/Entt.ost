@@ -3,10 +3,11 @@
   "Name": "KYRGYZSTAN ",
   "Abbreviation": "KG",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "KG",
-  "CreatedDate": "2017-02-21T13:37:25.3651375+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.423511+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.3636332+08:00",
-  "WebId": "fb1e38ff-4acc-442d-a3db-d2bde3352cd8"
+  "ChangedDate": "2017-08-28T18:04:18.3759655+08:00",
+  "WebId": "85924249-1b50-4838-825a-564514a0bf2f"
 }

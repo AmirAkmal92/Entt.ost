@@ -3,10 +3,11 @@
   "Name": "GUAM ",
   "Abbreviation": "GU",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "GU",
-  "CreatedDate": "2017-02-21T13:37:25.8283689+08:00",
+  "CreatedDate": "2017-08-28T18:04:08.0955178+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.82486+08:00",
-  "WebId": "0fa34eff-aca6-4dab-acd5-1f878b681b0b"
+  "ChangedDate": "2017-08-28T18:04:16.6887348+08:00",
+  "WebId": "0e85209a-e26a-4918-a1ff-5c7834b41c6d"
 }

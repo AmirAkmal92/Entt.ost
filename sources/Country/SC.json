@@ -3,10 +3,11 @@
   "Name": "SEYCHELLES ",
   "Abbreviation": "SC",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "SC",
-  "CreatedDate": "2017-02-21T13:37:32.3761578+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.7176134+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.3706432+08:00",
-  "WebId": "ac3e8196-ac67-4c9e-9df6-3065516bcca5"
+  "ChangedDate": "2017-08-28T18:04:22.9649761+08:00",
+  "WebId": "bd98adad-e3ad-4cc9-8fd8-1adfef1728b8"
 }

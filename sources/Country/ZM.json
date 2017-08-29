@@ -3,10 +3,11 @@
   "Name": "ZAMBIA ",
   "Abbreviation": "ZM",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "ZM",
-  "CreatedDate": "2017-02-21T13:37:24.5865652+08:00",
+  "CreatedDate": "2017-08-28T18:04:13.8552988+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:24.5745332+08:00",
-  "WebId": "23c539a5-a5af-4d2f-861b-2b4a4d5e9e4b"
+  "ChangedDate": "2017-08-28T18:04:26.0509086+08:00",
+  "WebId": "f3d9c24b-3771-4758-8d4e-625a158dddee"
 }

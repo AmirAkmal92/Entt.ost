@@ -3,10 +3,11 @@
   "Name": "FRENCH POLYNESIA ",
   "Abbreviation": "PF",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "PF",
-  "CreatedDate": "2017-02-21T13:37:31.4887991+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.8343279+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.4867934+08:00",
-  "WebId": "56b6a752-7470-4ac2-986a-db0a187e4e42"
+  "ChangedDate": "2017-08-28T18:04:15.7390822+08:00",
+  "WebId": "e4ced45d-6b69-43aa-a0d8-150e06c9bc58"
 }

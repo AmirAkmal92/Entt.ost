@@ -3,10 +3,11 @@
   "Name": "MAURITIUS ",
   "Abbreviation": "MU",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "MU",
-  "CreatedDate": "2017-02-21T13:37:31.9139296+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.5359701+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.8968841+08:00",
-  "WebId": "9eed40a1-6c38-4ada-bae9-67ac79dee2db"
+  "ChangedDate": "2017-08-28T18:04:19.2749252+08:00",
+  "WebId": "6e3eae28-8d43-4037-81b0-1af65b445505"
 }

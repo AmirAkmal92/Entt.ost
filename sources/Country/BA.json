@@ -3,10 +3,11 @@
   "Name": "BOSNIA AND HERZEGOVINA ",
   "Abbreviation": "BA",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BA",
-  "CreatedDate": "2017-02-21T13:37:25.5365931+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.4987711+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.536092+08:00",
-  "WebId": "93e38f0e-9688-4d41-aa1b-5df0be581cd6"
+  "ChangedDate": "2017-08-28T18:04:10.4186579+08:00",
+  "WebId": "05eb300d-e3b3-47c4-bf9b-a530c77d3253"
 }

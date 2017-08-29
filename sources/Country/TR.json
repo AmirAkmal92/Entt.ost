@@ -3,10 +3,11 @@
   "Name": "TURKEY ",
   "Abbreviation": "TR",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "TR",
-  "CreatedDate": "2017-02-21T13:37:25.4628969+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.7488557+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.4598891+08:00",
-  "WebId": "5ee6f586-a4a5-4e9e-9a82-7fcb454a8170"
+  "ChangedDate": "2017-08-28T18:04:24.550902+08:00",
+  "WebId": "027ded10-475d-485d-9f8f-c12661e423e2"
 }

@@ -3,10 +3,11 @@
   "Name": "FRANCE ",
   "Abbreviation": "FR",
   "Region": null,
-  "CreatedBy": "excel",
+  "WeightLimit": 30.0,
+  "CreatedBy": "admin",
   "Id": "FR",
-  "CreatedDate": "2017-02-21T00:00:00+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.78419+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:29.7486871+08:00",
-  "WebId": "7c093fc2-fd81-40f7-b766-d7597ba7520c"
+  "ChangedDate": "2017-08-28T18:04:15.6483767+08:00",
+  "WebId": "4a862b8c-b720-4042-b142-073d7e36550a"
 }

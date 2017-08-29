@@ -3,10 +3,11 @@
   "Name": "NAMIBIA ",
   "Abbreviation": "NA",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "NA",
-  "CreatedDate": "2017-02-21T13:37:26.5643253+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.8944231+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.56232+08:00",
-  "WebId": "d5b990fe-3515-4f6c-9f14-88fed3674e12"
+  "ChangedDate": "2017-08-28T18:04:20.7382338+08:00",
+  "WebId": "d617961e-b981-4b4e-8933-d2aca64373fd"
 }

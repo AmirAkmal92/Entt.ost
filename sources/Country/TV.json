@@ -3,10 +3,11 @@
   "Name": "TUVALU ",
   "Abbreviation": "TV",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "TV",
-  "CreatedDate": "2017-02-21T13:37:32.5917314+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.924824+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.5892247+08:00",
-  "WebId": "779e4685-7569-4ce2-9482-26a42e1f3822"
+  "ChangedDate": "2017-08-28T18:04:24.6318397+08:00",
+  "WebId": "076c39e6-aef3-4a18-8016-da524e769e23"
 }

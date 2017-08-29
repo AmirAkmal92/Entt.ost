@@ -3,10 +3,11 @@
   "Name": "BARBADOS ",
   "Abbreviation": "BB",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BB",
-  "CreatedDate": "2017-02-21T13:37:36.3885079+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.1794213+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:36.3704592+08:00",
-  "WebId": "ed542a3e-cabb-4377-9a19-056f19785127"
+  "ChangedDate": "2017-08-28T18:04:08.2990594+08:00",
+  "WebId": "01e3b3bb-c0bd-4d9b-98c7-e0c6cfabe6ff"
 }

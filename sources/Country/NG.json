@@ -3,10 +3,11 @@
   "Name": "NIGERIA ",
   "Abbreviation": "NG",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "NG",
-  "CreatedDate": "2017-02-21T13:37:32.4207762+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.0483327+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.4142595+08:00",
-  "WebId": "af5a7836-fe71-4160-8284-1f4925c0fe05"
+  "ChangedDate": "2017-08-28T18:04:21.1433119+08:00",
+  "WebId": "2e74c27d-8eef-48ca-9f90-ca4011922bd4"
 }

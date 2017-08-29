@@ -3,10 +3,11 @@
   "Name": "POLAND ",
   "Abbreviation": "PL",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "PL",
-  "CreatedDate": "2017-02-21T13:37:33.712711+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.2538792+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:33.7061943+08:00",
-  "WebId": "1fab95dc-3acd-470d-b4bc-685347c00fd4"
+  "ChangedDate": "2017-08-28T18:04:21.9506253+08:00",
+  "WebId": "d9daa027-1c5d-4f9a-a6a0-7d0abf9988d4"
 }

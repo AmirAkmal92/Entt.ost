@@ -3,10 +3,11 @@
   "Name": "URUGUAY ",
   "Abbreviation": "UY",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "UY",
-  "CreatedDate": "2017-02-21T13:37:25.0162099+08:00",
+  "CreatedDate": "2017-08-28T18:04:13.2356507+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.0142049+08:00",
-  "WebId": "cfda08a8-c14e-4f90-bfcf-0c136ee761fa"
+  "ChangedDate": "2017-08-28T18:04:24.8315532+08:00",
+  "WebId": "bc591f9e-3e6d-4199-a568-3292f333677f"
 }

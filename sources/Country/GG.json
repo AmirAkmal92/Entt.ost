@@ -3,10 +3,11 @@
   "Name": "GUERNSEY ",
   "Abbreviation": "GG",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "GG",
-  "CreatedDate": "2017-02-21T13:37:31.4792739+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.0110025+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.4667408+08:00",
-  "WebId": "05b5bb7f-389f-494c-a563-f3af94453b81"
+  "ChangedDate": "2017-08-28T18:04:16.7374834+08:00",
+  "WebId": "6e5744d8-3f79-4f57-9ec6-836cf8e4e760"
 }

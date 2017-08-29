@@ -3,10 +3,11 @@
   "Name": "NORTHERN MARIANA ISLANDS ",
   "Abbreviation": "MP",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "MP",
-  "CreatedDate": "2017-02-21T13:37:32.2327765+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.1079923+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.2317743+08:00",
-  "WebId": "d263cbd7-0444-4474-bb79-5e418712d188"
+  "ChangedDate": "2017-08-28T18:04:21.2656513+08:00",
+  "WebId": "59af0060-0a28-48c1-a67e-cbe2885d6814"
 }

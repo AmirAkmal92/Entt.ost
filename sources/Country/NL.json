@@ -3,10 +3,11 @@
   "Name": "NETHERLANDS ",
   "Abbreviation": "NL",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "NL",
-  "CreatedDate": "2017-02-21T13:37:25.1064502+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.9565884+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.1019377+08:00",
-  "WebId": "5926160a-887c-4aca-bf95-c8ad5b038a9d"
+  "ChangedDate": "2017-08-28T18:04:20.8652842+08:00",
+  "WebId": "102a6934-569c-4752-9584-a2fc611cee07"
 }

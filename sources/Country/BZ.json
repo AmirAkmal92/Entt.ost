@@ -3,10 +3,11 @@
   "Name": "BELIZE ",
   "Abbreviation": "BZ",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BZ",
-  "CreatedDate": "2017-02-21T13:37:36.4421504+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.2836986+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:36.435133+08:00",
-  "WebId": "42620df8-050a-4626-ae7d-e93aaa601129"
+  "ChangedDate": "2017-08-28T18:04:08.5608783+08:00",
+  "WebId": "f34a3a8a-0016-4fb5-a318-741a3a92ed47"
 }

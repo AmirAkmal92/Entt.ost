@@ -3,10 +3,11 @@
   "Name": "AUSTRIA ",
   "Abbreviation": "AT",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "AT",
-  "CreatedDate": "2017-02-21T13:37:32.2969471+08:00",
+  "CreatedDate": "2017-08-28T18:04:05.9056927+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.2839126+08:00",
-  "WebId": "6ba5acf6-e828-47fc-a9be-f79f187a914a"
+  "ChangedDate": "2017-08-28T18:04:07.8072508+08:00",
+  "WebId": "7256cec1-9258-4498-8fe8-48d0478db62b"
 }

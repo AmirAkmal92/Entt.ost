@@ -3,10 +3,11 @@
   "Name": "GUYANA ",
   "Abbreviation": "GY",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "GY",
-  "CreatedDate": "2017-02-21T13:37:28.9921622+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.0531188+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:28.9696042+08:00",
-  "WebId": "b277c50e-ca57-457a-8065-8614e3d6a5d3"
+  "ChangedDate": "2017-08-28T18:04:16.7799628+08:00",
+  "WebId": "93bb609c-185f-443a-a050-6d512f45f00d"
 }

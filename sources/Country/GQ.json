@@ -3,10 +3,11 @@
   "Name": "EQUATORIAL GUINEA ",
   "Abbreviation": "GQ",
   "Region": null,
+  "WeightLimit": 20.0,
   "CreatedBy": "admin",
   "Id": "GQ",
-  "CreatedDate": "2017-02-21T13:37:26.4735851+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.6388024+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.4720805+08:00",
-  "WebId": "b10c8017-4b43-498c-80f6-b369c9c3ae7a"
+  "ChangedDate": "2017-08-28T18:04:15.3921048+08:00",
+  "WebId": "16fa5626-cba9-412f-9b2d-e023661ac9be"
 }

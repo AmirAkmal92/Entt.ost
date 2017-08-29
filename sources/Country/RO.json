@@ -3,10 +3,11 @@
   "Name": "ROMANIA ",
   "Abbreviation": "RO",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "RO",
-  "CreatedDate": "2017-02-21T13:37:27.6771641+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.3295812+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:27.6520969+08:00",
-  "WebId": "d9eb62ab-3169-477e-9c0d-707ad14015b2"
+  "ChangedDate": "2017-08-28T18:04:22.2027991+08:00",
+  "WebId": "70cd786d-3ab8-4393-9805-aa16640173a8"
 }

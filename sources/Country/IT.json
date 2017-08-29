@@ -3,10 +3,11 @@
   "Name": "ITALY ",
   "Abbreviation": "IT",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "IT",
-  "CreatedDate": "2017-02-21T13:37:32.1806389+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.1903214+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.1696098+08:00",
-  "WebId": "aab6d705-31d4-4fa6-958f-b1580a0f471b"
+  "ChangedDate": "2017-08-28T18:04:17.8209898+08:00",
+  "WebId": "5689cbf9-0f41-438b-86b7-4466db93ae4e"
 }

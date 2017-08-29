@@ -3,10 +3,11 @@
   "Name": "BOLIVIA,  PLURINATIONAL STATE OF ",
   "Abbreviation": "BO",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BO",
-  "CreatedDate": "2017-02-21T13:37:29.1856877+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.4085308+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:29.1300289+08:00",
-  "WebId": "692dbc19-95b9-403c-9b89-0676ec91ce32"
+  "ChangedDate": "2017-08-28T18:04:09.0461006+08:00",
+  "WebId": "aa58b09b-09be-46d6-b6e2-549040dff5b8"
 }

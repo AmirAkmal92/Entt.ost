@@ -3,10 +3,11 @@
   "Name": "HOLY SEE (VATICAN CITY STATE) ",
   "Abbreviation": "VA",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "VA",
-  "CreatedDate": "2017-02-21T13:37:29.938678+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.0915396+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:29.9030842+08:00",
-  "WebId": "d9cd54e9-3bb4-4865-9fc2-71fe1382a7a2"
+  "ChangedDate": "2017-08-28T18:04:16.8858933+08:00",
+  "WebId": "9e10b840-818a-40ad-b1c9-0cd3e675a0aa"
 }

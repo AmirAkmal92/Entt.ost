@@ -3,10 +3,11 @@
   "Name": "VIET NAM ",
   "Abbreviation": "VN",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "VN",
-  "CreatedDate": "2017-02-21T13:37:32.8143224+08:00",
+  "CreatedDate": "2017-08-28T18:04:13.5961093+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.811816+08:00",
-  "WebId": "6aefbbbe-a8a8-46ec-be26-40760d5bf36e"
+  "ChangedDate": "2017-08-28T18:04:25.2843693+08:00",
+  "WebId": "eabf5f28-1d5d-4889-8cb8-934adbea1dcf"
 }

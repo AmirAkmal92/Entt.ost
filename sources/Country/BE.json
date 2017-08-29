@@ -3,10 +3,11 @@
   "Name": "BELGIUM ",
   "Abbreviation": "BE",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BE",
-  "CreatedDate": "2017-02-21T13:37:32.0954115+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.2420884+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.0929047+08:00",
-  "WebId": "d770f48a-d4b2-44d2-b2fc-b9f8753a3798"
+  "ChangedDate": "2017-08-28T18:04:08.4577759+08:00",
+  "WebId": "a7b8edef-f3ac-4a6f-90ca-e1fbc06a23d5"
 }

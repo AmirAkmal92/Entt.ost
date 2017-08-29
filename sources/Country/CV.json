@@ -3,10 +3,11 @@
   "Name": "CAPE VERDE ",
   "Abbreviation": "CV",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "CV",
-  "CreatedDate": "2017-02-21T13:37:32.0227189+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.8131071+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.0041695+08:00",
-  "WebId": "b6c51506-c1ef-433f-b360-74cd6479f3ea"
+  "ChangedDate": "2017-08-28T18:04:13.4963444+08:00",
+  "WebId": "d6d57346-08e5-4df8-ae81-7405adac2e68"
 }

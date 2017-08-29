@@ -3,10 +3,11 @@
   "Name": "KUWAIT ",
   "Abbreviation": "KW",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "KW",
-  "CreatedDate": "2017-02-21T13:37:26.3743203+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.3934313+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.3733171+08:00",
-  "WebId": "53be4566-5caa-4143-902c-7bc121629e02"
+  "ChangedDate": "2017-08-28T18:04:18.3057788+08:00",
+  "WebId": "2f27ecc4-d1c2-42a4-92c4-c0c2e877fa3e"
 }

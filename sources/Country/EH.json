@@ -3,10 +3,11 @@
   "Name": "WESTERN SAHARA ",
   "Abbreviation": "EH",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "EH",
-  "CreatedDate": "2017-02-21T13:37:26.4234522+08:00",
+  "CreatedDate": "2017-08-28T18:04:13.7826078+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.4224483+08:00",
-  "WebId": "49793fd7-0b50-422f-9972-f7814459431d"
+  "ChangedDate": "2017-08-28T18:04:25.917054+08:00",
+  "WebId": "71810174-626c-4a54-bb15-2d10703f15e6"
 }

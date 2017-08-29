@@ -20,7 +20,8 @@
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
     "$values": [
       "Name",
-      "Abbreviation"
+      "Abbreviation",
+      "WeightLimit"
     ]
   },
   "CacheProfile": "",
@@ -36,6 +37,6 @@
   "Id": "country-available-country",
   "CreatedDate": "2017-02-21T18:25:45.5661845+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T18:26:16.4951791+08:00",
+  "ChangedDate": "2017-08-28T15:09:24.2555873+08:00",
   "WebId": "62095eaf-8d43-44d4-ad47-89b3129850d0"
 }

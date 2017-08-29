@@ -3,10 +3,11 @@
   "Name": "BELARUS ",
   "Abbreviation": "BY",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "BY",
-  "CreatedDate": "2017-02-21T13:37:32.1330114+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.2130102+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:32.1239879+08:00",
-  "WebId": "61e9aaa1-4bb9-41ea-9d25-c181f7864b78"
+  "ChangedDate": "2017-08-28T18:04:08.3722528+08:00",
+  "WebId": "4a975b9a-8086-4b83-87f7-ffdc41b3b001"
 }

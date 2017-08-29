@@ -3,10 +3,11 @@
   "Name": "MEXICO ",
   "Abbreviation": "MX",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "MX",
-  "CreatedDate": "2017-02-21T13:37:31.6798069+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.6036507+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.6757963+08:00",
-  "WebId": "db086d30-f29c-487f-8d1b-d9c345816d0b"
+  "ChangedDate": "2017-08-28T18:04:19.3806758+08:00",
+  "WebId": "96921593-a652-4fc2-a6a7-49090f372b59"
 }

@@ -3,10 +3,11 @@
   "Name": "MONACO ",
   "Abbreviation": "MC",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "MC",
-  "CreatedDate": "2017-02-21T13:37:27.9624253+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.6728349+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:27.9478859+08:00",
-  "WebId": "8bb26b95-ab41-4352-97fe-ae0c9ae4dab0"
+  "ChangedDate": "2017-08-28T18:04:19.8143321+08:00",
+  "WebId": "bb32ba16-b0c5-4dfa-9239-bebb6929554d"
 }

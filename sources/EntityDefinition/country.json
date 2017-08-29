@@ -74,6 +74,37 @@
         "AllowMultiple": false,
         "DefaultValue": null,
         "WebId": "276ba656-f1b3-4e82-bca1-0d10dff08d5b"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+        "TypeName": "System.Decimal, mscorlib",
+        "IsNullable": false,
+        "IsNotIndexed": false,
+        "IsAnalyzed": false,
+        "IsFilterable": false,
+        "IsExcludeInAll": false,
+        "Boost": 1,
+        "FullName": null,
+        "PropertyAttribute": null,
+        "MemberCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "FieldPermissionCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": "WeightLimit",
+        "AllowMultiple": false,
+        "DefaultValue": {
+          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+          "TypeName": "System.Decimal",
+          "Value": 30.0,
+          "Name": "30",
+          "Note": "",
+          "WebId": "b7601afb-a703-4c80-86eb-cb29971974d1"
+        },
+        "WebId": "112fe9ec-9b2a-4391-b1e5-98eb2a51ceca"
       }
     ]
   },
@@ -115,6 +146,6 @@
   "Id": "country",
   "CreatedDate": "2014-04-19T10:07:12.2060219+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T14:09:54.9067286+08:00",
+  "ChangedDate": "2017-08-28T11:27:36.0886175+08:00",
   "WebId": "5d31c43-852d-4a9d-b3be-1fc94d5cea05"
 }

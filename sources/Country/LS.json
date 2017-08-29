@@ -3,10 +3,11 @@
   "Name": "LESOTHO ",
   "Abbreviation": "LS",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "LS",
-  "CreatedDate": "2017-02-21T13:37:33.2068662+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.5483438+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:33.1752823+08:00",
-  "WebId": "38c95c85-fa83-4a19-96a9-97918a5cfd65"
+  "ChangedDate": "2017-08-28T18:04:18.5559505+08:00",
+  "WebId": "409b2877-d31c-4239-bee3-f76b943ad1f0"
 }

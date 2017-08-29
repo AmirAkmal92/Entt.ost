@@ -3,10 +3,11 @@
   "Name": "HAITI ",
   "Abbreviation": "HT",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "HT",
-  "CreatedDate": "2017-02-21T13:37:26.8240155+08:00",
+  "CreatedDate": "2017-08-28T18:04:09.0591355+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.8215088+08:00",
-  "WebId": "9f009b08-2c2d-4c72-80e0-b87c7fdf9f2c"
+  "ChangedDate": "2017-08-28T18:04:16.8329721+08:00",
+  "WebId": "ec4ab763-add6-4bd5-a83e-f20d81ed5eb8"
 }

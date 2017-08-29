@@ -204,6 +204,8 @@ objectbuilders.app],
             id = ko.observable(),
             crid = ko.observable(),
             cid = ko.observable(),
+            availableCountries = ko.observableArray(),
+            selectedCountryMaxWeight = ko.observable(),
             partial = partial || {},
             headers = {},
 
@@ -290,6 +292,16 @@ objectbuilders.app],
                             app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + crId, "Ost", ["OK"]);
                         }
                     }).always(function () {
+                        context.get("/api/countries/available-country?size=300").done(function (cList) {
+                            availableCountries(cList._results);
+                        }).always(function () {
+                            availableCountries().forEach(function (element) {
+                                if (element.Abbreviation === consignment().Penerima().Address().Country()) {
+                                    selectedCountryMaxWeight(element.WeightLimit);
+                                }
+                            });
+                        });
+
                         if (typeof partial.activate === "function") {
                             partial.activate(ko.unwrap(entity))
                                 .done(tcs.resolve)
@@ -365,18 +377,18 @@ objectbuilders.app],
                 });
 
                 consignment().Produk().ItemCategory.subscribe(function (itemCode) {
-                    consignment().Produk().Weight(0.001);
+                    consignment().Produk().Weight(null);
                 });
 
                 consignment().Produk().Weight.subscribe(function (newWeight) {
                     if (consignment().Penerima().Address().Country() == "MY") {
                         if (consignment().Produk().ItemCategory() == "02") {
-                            // From 0.001 to 30.000kg
-                            if (newWeight > 30) {
-                                consignment().Produk().Weight(30.000);
+                            // From 0.001 to selectedCountryMaxWeight kg
+                            if (newWeight > selectedCountryMaxWeight()) {
+                                consignment().Produk().Weight(selectedCountryMaxWeight());
                             }
                             if (newWeight <= 0) {
-                                consignment().Produk().Weight(0.001);
+                                consignment().Produk().Weight(null);
                             }
                         } else if (consignment().Produk().ItemCategory() == "01") {
                             // Less than 1.000kg
@@ -384,23 +396,23 @@ objectbuilders.app],
                                 consignment().Produk().Weight(2.000);
                             }
                             if (newWeight <= 0) {
-                                consignment().Produk().Weight(0.001);
+                                consignment().Produk().Weight(null);
                             }
                         } else {
-                            // Max weight 30.000kg
-                            if (newWeight > 30) {
-                                consignment().Produk().Weight(30.000);
+                            // Max weight selectedCountryMaxWeight() kg
+                            if (newWeight > selectedCountryMaxWeight()) {
+                                consignment().Produk().Weight(selectedCountryMaxWeight());
                             }
                         }
                     }
                     else { //IsInternational
                         if (consignment().Produk().ItemCategory() == "02") {
-                            // From 0.001 to 30.000kg
-                            if (newWeight > 30) {
-                                consignment().Produk().Weight(30.000);
+                            // From 0.001 to selectedCountryMaxWeight() kg
+                            if (newWeight > selectedCountryMaxWeight()) {
+                                consignment().Produk().Weight(selectedCountryMaxWeight());
                             }
                             if (newWeight <= 0) {
-                                consignment().Produk().Weight(0.001);
+                                consignment().Produk().Weight(null);
                             }
                         } else if (consignment().Produk().ItemCategory() == "01") {
                             // Less than 1.000kg
@@ -408,15 +420,15 @@ objectbuilders.app],
                                 consignment().Produk().Weight(1.000);
                             }
                             if (newWeight <= 0) {
-                                consignment().Produk().Weight(0.001);
+                                consignment().Produk().Weight(null);
                             }
                         } else {
-                            // Max weight 30.000kg
+                            // Max weight selectedCountryMaxWeight() kg
                             if (newWeight > 30) {
-                                consignment().Produk().Weight(30.000);
+                                consignment().Produk().Weight(selectedCountryMaxWeight());
                             }
                         }
-                    }                    
+                    }
                 });
                 consignment().Produk().Height.subscribe(function (value) {
                     if (consignment().Produk().Height != null
@@ -495,6 +507,7 @@ objectbuilders.app],
             consignment: consignment,
             saveCommand: saveCommand,
             estProductService: estProductService,
+            selectedCountryMaxWeight: selectedCountryMaxWeight
         };
         return vm;
     });

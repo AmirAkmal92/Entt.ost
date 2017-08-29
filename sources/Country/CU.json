@@ -3,10 +3,11 @@
   "Name": "CUBA ",
   "Abbreviation": "CU",
   "Region": null,
+  "WeightLimit": 10.0,
   "CreatedBy": "admin",
   "Id": "CU",
-  "CreatedDate": "2017-02-21T13:37:29.8544544+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.4061841+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:29.8424228+08:00",
-  "WebId": "b9686836-f3b3-4acb-beb6-aaf1649966bd"
+  "ChangedDate": "2017-08-28T18:04:14.6209568+08:00",
+  "WebId": "a6b05f4c-3193-4526-a9e6-ddd7aaf10914"
 }

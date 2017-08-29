@@ -3,10 +3,11 @@
   "Name": "TANZANIA,  UNITED REPUBLIC OF ",
   "Abbreviation": "TZ",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "TZ",
-  "CreatedDate": "2017-02-21T13:37:31.7926069+08:00",
+  "CreatedDate": "2017-08-28T18:04:12.37436+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:31.7895987+08:00",
-  "WebId": "7d106ec1-f85f-4d45-a130-ba8cd8ff12df"
+  "ChangedDate": "2017-08-28T18:04:24.2729692+08:00",
+  "WebId": "21283012-265b-4181-a15a-0264f98bd266"
 }

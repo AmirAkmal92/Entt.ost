@@ -3,10 +3,11 @@
   "Name": "CHILE ",
   "Abbreviation": "CL",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "CL",
-  "CreatedDate": "2017-02-21T13:37:26.8445709+08:00",
+  "CreatedDate": "2017-08-28T18:04:06.9504719+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:26.8415621+08:00",
-  "WebId": "8ebbf50c-2b5d-44c6-828f-3f953fca6cd7"
+  "ChangedDate": "2017-08-28T18:04:14.0518211+08:00",
+  "WebId": "637405f2-0204-43ff-a177-484b6a71bc75"
 }

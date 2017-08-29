@@ -3,10 +3,11 @@
   "Name": "CHINA ",
   "Abbreviation": "CN",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "CN",
-  "CreatedDate": "2017-02-21T13:37:25.1981943+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.0046156+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.1886687+08:00",
-  "WebId": "cbd85640-811b-4fcc-9056-b8500fb6aca9"
+  "ChangedDate": "2017-08-28T18:04:14.1852906+08:00",
+  "WebId": "64676cdf-6c4f-45d0-a893-efa9fb477628"
 }

@@ -3,10 +3,11 @@
   "Name": "DJIBOUTI ",
   "Abbreviation": "DJ",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "DJ",
-  "CreatedDate": "2017-02-21T13:37:25.2182473+08:00",
+  "CreatedDate": "2017-08-28T18:04:07.5099604+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.2152391+08:00",
-  "WebId": "dcfc2452-5b6d-4296-8529-21c3e96606b9"
+  "ChangedDate": "2017-08-28T18:04:14.9254756+08:00",
+  "WebId": "8320f3b9-6a36-4ad1-9df6-971b45a06e6b"
 }

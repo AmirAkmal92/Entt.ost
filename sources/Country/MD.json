@@ -3,10 +3,11 @@
   "Name": "MOLDOVA,  REPUBLIC OF ",
   "Abbreviation": "MD",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "MD",
-  "CreatedDate": "2017-02-21T13:37:25.0838897+08:00",
+  "CreatedDate": "2017-08-28T18:04:10.6547859+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.0753667+08:00",
-  "WebId": "908ab9e3-5f7e-411c-8b68-f4b4538cdc8d"
+  "ChangedDate": "2017-08-28T18:04:19.6173048+08:00",
+  "WebId": "fb5ea164-1daa-4409-9a3e-31cbfa86b7b3"
 }

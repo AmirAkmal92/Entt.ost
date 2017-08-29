@@ -3,10 +3,11 @@
   "Name": "SAINT HELENA,  ASCENSION AND TRISTAN DA CUNHA ",
   "Abbreviation": "SH",
   "Region": null,
+  "WeightLimit": 30.0,
   "CreatedBy": "admin",
   "Id": "SH",
-  "CreatedDate": "2017-02-21T13:37:25.5195476+08:00",
+  "CreatedDate": "2017-08-28T18:04:11.3706907+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-02-21T13:37:25.5175426+08:00",
-  "WebId": "b2fc0631-de64-4867-9f79-aac9e0cfc4cf"
+  "ChangedDate": "2017-08-28T18:04:22.4602276+08:00",
+  "WebId": "496cbc50-ba5f-4e01-b1d4-82d6c285e702"
 }
