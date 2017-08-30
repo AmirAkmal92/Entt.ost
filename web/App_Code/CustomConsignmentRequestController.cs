@@ -70,7 +70,7 @@ namespace web.sph.App_Code
                 total += 5.30m;
             }
             item.Payment.TotalPrice = total;
-            
+
             item.ReferenceNo = GenerateOrderId(item);
             await SaveConsigmentRequest(item);
 
@@ -182,7 +182,7 @@ namespace web.sph.App_Code
             LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
             if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
             var consignmentRequest = lo.Source;
-            
+
             var resultSuccess = true;
             var resultStatus = "OK";
 
@@ -1067,6 +1067,108 @@ namespace web.sph.App_Code
                 row++;
                 consignmentIndexNumber++;
             }
+
+            excel.Save();
+            excel.Dispose();
+
+            return Json(new { success = true, status = "OK", path = Path.GetFileName(temp) });
+        }
+
+        [HttpPut]
+        [Route("export-pickup-daily/{start:datetime}/{end:datetime}")]
+        public async Task<IHttpActionResult> ExportPickupDaily(DateTime start, DateTime end)
+        {
+            var temp = Path.GetTempFileName() + ".xlsx";
+            System.IO.File.Copy(System.Web.HttpContext.Current.Server.MapPath("~/Content/Files/pickup_daily_format_template.xlsx"), temp, true);
+
+            var file = new FileInfo(temp);
+            var excel = new ExcelPackage(file);
+            var ws = excel.Workbook.Worksheets["branchcode"];
+            if (null == ws) return Ok(new { success = false, status = "Cannot open Worksheet Pickup Manifest" });
+
+            var queryString = $"size=100&q=Pickup.DateReady:[\"{start.ToString("yyyy-MM-dd")}\" TO \"{end.ToString("yyyy-MM-dd")}\"]";
+
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
+            var requestUri = new Uri($"{m_ostBaseUrl}/api/consigment-requests/paid-all/con-note-ready/true/picked-up/false?{queryString}");
+
+            var response = await client.GetAsync(requestUri);
+
+            var output = string.Empty;
+            if (response.IsSuccessStatusCode) output = await response.Content.ReadAsStringAsync();            
+            else return Ok(new { success = false, status = $"RequestUri:{requestUri.ToString()} Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}" });            
+
+            var json = JObject.Parse(output).SelectToken("$._results");
+            var consignmentRequests = new List<ConsigmentRequest>();
+            foreach (var jtok in json)
+            {
+                var consignmentRequest = jtok.ToJson().DeserializeFromJson<ConsigmentRequest>();
+                consignmentRequests.Add(consignmentRequest);
+            }
+
+            var row = 7;
+            var consignmentIndexNumber = 1;
+
+            foreach (var consignmentRequest in consignmentRequests)
+            {
+                foreach (var consignment in consignmentRequest.Consignments)
+                {
+                    var pickupDateAndTime = new StringBuilder();
+                    pickupDateAndTime.Append($"{consignmentRequest.Pickup.DateReady.ToString("yyyy-MM-dd")} ");
+                    pickupDateAndTime.Append($"{consignmentRequest.Pickup.DateReady.ToString("hh:mm:ss tt")}");
+                    pickupDateAndTime.Append($" - ");
+                    pickupDateAndTime.Append($"{consignmentRequest.Pickup.DateClose.ToString("hh:mm:ss tt")}");
+
+                    var pickupAddress = new StringBuilder();
+                    pickupAddress.AppendLine($"{consignmentRequest.Pickup.ContactPerson}");
+                    pickupAddress.AppendLine($"{consignmentRequest.Pickup.ContactInformation.ContactNumber}");
+                    pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.Address1},");
+                    pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.Address2},");
+                    if (!string.IsNullOrEmpty(consignmentRequest.Pickup.Address.Address3))
+                        pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.Address3},");
+                    if (!string.IsNullOrEmpty(consignmentRequest.Pickup.Address.Address4))
+                        pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.Address4},");
+                    pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.Postcode} ");
+                    pickupAddress.Append($"{consignmentRequest.Pickup.Address.City},");
+                    pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.State} ");
+                    pickupAddress.Append($"{consignmentRequest.Pickup.Address.Country}.");
+
+                    var receiverAddress = new StringBuilder();
+                    receiverAddress.AppendLine($"{consignment.Penerima.ContactPerson}");
+                    receiverAddress.AppendLine($"{consignment.Penerima.ContactInformation.ContactNumber}");
+                    receiverAddress.AppendLine($"{consignment.Penerima.Address.Address1},");
+                    receiverAddress.AppendLine($"{consignment.Penerima.Address.Address2},");
+                    if (!string.IsNullOrEmpty(consignment.Penerima.Address.Address3))
+                        receiverAddress.AppendLine($"{consignment.Penerima.Address.Address3},");
+                    if (!string.IsNullOrEmpty(consignment.Penerima.Address.Address4))
+                        receiverAddress.AppendLine($"{consignment.Penerima.Address.Address4},");
+                    receiverAddress.AppendLine($"{consignment.Penerima.Address.Postcode} ");
+                    receiverAddress.Append($"{consignment.Penerima.Address.City},");
+                    receiverAddress.AppendLine($"{consignment.Penerima.Address.State} ");
+                    receiverAddress.Append($"{consignment.Penerima.Address.Country}.");
+
+                    ws.Cells[row, 1].Value = consignmentIndexNumber;
+                    ws.Cells[row, 2].Value = pickupDateAndTime.ToString();
+                    ws.Cells[row, 3].Value = consignmentRequest.Pickup.Number;
+                    ws.Cells[row, 4].Value = consignment.ConNote;
+                    ws.Cells[row, 5].Value = string.Format("{0:F3}", pickupAddress.ToString()); 
+                    ws.Cells[row, 6].Value = string.Format("{0:F3}", receiverAddress.ToString()); 
+                    ws.Cells[row, 7].Value = "1";
+                    ws.Cells[row, 8].Value = consignment.Produk.Weight;
+                    ws.Cells[row, 9].Value = consignment.Bill.VolumetricWeight;
+                    ws.Cells[row, 10].Value = (consignment.Produk.IsInternational) ? "EMS" : "NDD";
+                    ws.Cells[row, 11].Value = (consignment.Produk.IsInternational) ? "Yes" : "No";
+                    ws.Cells[row, 12].Value = (consignment.Produk.ValueAddedDeclaredValue > 0) ? "Yes" : "No";
+                    ws.Cells[row, 13].Value = consignmentRequest.ReferenceNo;
+                    ws.Cells[row, 14].Value = string.Format("{0:F2}", consignment.Produk.Price);
+                    row++;
+                    consignmentIndexNumber++;
+                }
+            }
+
+            var excelTitle = ws.Cells[1, 1].GetValue<string>();
+            ws.Cells[1, 1].Value = $"{excelTitle} {start.ToString("yyyy-MM-dd")} - {end.ToString("yyyy-MM-dd")}";//TODO: branchname
+            ws.Name = "BBB"; //TODO: branchcode
 
             excel.Save();
             excel.Dispose();

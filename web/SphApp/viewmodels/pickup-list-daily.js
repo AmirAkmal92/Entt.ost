@@ -1,4 +1,4 @@
-define(["services/datacontext"], function (context) {
+define([objectbuilders.datacontext, objectbuilders.app], function (context, app) {
     var isBusy = ko.observable(false),
         page = ko.observable(1),
         size = ko.observable(20),
@@ -45,6 +45,34 @@ define(["services/datacontext"], function (context) {
             dateTo(moment().format('YYYY-MM-DD'));
             executedQuery(null);
             activate();
+        },
+        generateReport = function () {
+            app.showMessage("Generate Pikcup Report between " + dateFrom() + " and " + dateTo() + ".", "OST", ["OK", "Cancel"]).done(function (result) {
+                if (result == "Cancel") {
+                    return;
+                }
+                context.put({}, "consignment-request/export-pickup-daily/" + dateFrom() + "/" + dateTo())
+                    .fail(function (response) {
+                        if (response.status === 428) {
+                            // out of date conflict
+                            logger.error(result.message);
+                        }
+                        if (response.status === 422 && _(result.rules).isArray()) {
+                            _(result.rules).each(function (v) {
+                                errors(v.ValidationErrors);
+                            });
+                        }
+                        logger.error("There are errors in your entity, !!!");
+                    })
+                    .then(function (result) {
+                        if (result.status === "OK") {
+                            if (result.success) {
+                                var fileName = "Pickup_Daily_List";
+                                window.open("/print-excel/file-path/" + result.path + "/file-name/" + fileName);
+                            }
+                        }
+                    });
+            });
         },
         activate = function () {
             url = ko.unwrap(query) + "?page=" + page() + "&size=" + size();
@@ -96,6 +124,7 @@ define(["services/datacontext"], function (context) {
         reloadPage: reloadPage,
         search: search,
         clearSearch: clearSearch,
+        generateReport: generateReport,
         hasNextPage: hasNextPage,
         hasPreviousPage: hasPreviousPage,
     };
