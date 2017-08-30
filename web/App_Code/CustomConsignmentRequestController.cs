@@ -1176,6 +1176,28 @@ namespace web.sph.App_Code
             return Json(new { success = true, status = "OK", path = Path.GetFileName(temp) });
         }
 
+        [HttpPut]
+        [Route("save-setting-est/{id}")]
+        public async Task<IHttpActionResult> SaveSettingEst(string id)
+        {
+            var setting = await GetSetting(id);
+
+            var context = new SphDataContext();
+            using (var session = context.OpenSession())
+            {
+                session.Delete(setting);
+                await session.SubmitChanges("Default");
+            }
+            return Ok(new { success = true, status = "OK" });
+        }
+
+        private static async Task<Setting> GetSetting(string id)
+        {
+            var context = new SphDataContext();
+            var setting = await context.LoadOneAsync<Setting>(x => x.Id == id);
+            return setting;
+        }
+
         private static async Task<LoadData<ConsigmentRequest>> GetConsigmentRequest(string id)
         {
             var repos = ObjectBuilder.GetObject<IReadonlyRepository<ConsigmentRequest>>();

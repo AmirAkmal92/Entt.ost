@@ -15,15 +15,16 @@ namespace Bespoke.PosEntt.CustomActions
 
     public class NotifySnbRegister
     {
-        private string m_snbClientApi;
+        private HttpClient m_snbClientApi;
+        private HttpClient m_ostBaseUrl;
         private string m_ostAdminToken;
-        private object m_ostBaseUrl;
+
 
         public NotifySnbRegister()
         {
-            m_snbClientApi = ConfigurationManager.GetEnvironmentVariable("SnbWebApi") ?? "http://10.1.1.119:9002/api";
+            m_snbClientApi = new HttpClient { BaseAddress = new Uri(ConfigurationManager.GetEnvironmentVariable("SnbWebApi") ?? "http://10.1.1.119:9002/api") };
+            m_ostBaseUrl = new HttpClient { BaseAddress = new Uri(ConfigurationManager.GetEnvironmentVariable("BaseUrl") ?? "http://localhost:50230") };
             m_ostAdminToken = ConfigurationManager.GetEnvironmentVariable("AdminToken") ?? "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHlvdXJjb21wYW55LmNvbSIsInN1YiI6IjYzNjM2NDU0NjQwMDUxNTM1NDgzMzQ5NDk0IiwibmJmIjoxNTE2NzI2NjQwLCJpYXQiOjE1MDA4MjkwNDAsImV4cCI6MTU1MTMxMjAwMCwiYXVkIjoiT3N0In0.nrTj7TkvBVpEs_4XBeh_63Ke_VC2Gwvm8TglOGIWOVY";
-            m_ostBaseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl") ?? "http://localhost:50230";
         }
 
         public async Task SendNotifyEmail(string emailTo, string emailSubject, string emailMessage, string userid)
@@ -54,14 +55,13 @@ namespace Bespoke.PosEntt.CustomActions
 
             Profile Profile = CreateProfile(item);
 
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.BaseAddress = new Uri($"{m_snbClientApi}/create-cust");
+            m_snbClientApi.DefaultRequestHeaders.Accept.Clear();
+            m_snbClientApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            string publishPointingUrl = $"{m_snbClientApi.BaseAddress}/create-cust";
             var json = JsonConvert.SerializeObject(Profile);
             var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
 
-            var result = client.PostAsync(client.BaseAddress, content).Result;
+            var result = m_snbClientApi.PostAsync(publishPointingUrl, content).Result;
             Console.WriteLine($"First level sending to Snb API (Data)...");
 
             var outputString = await result.Content.ReadAsStringAsync();
@@ -79,10 +79,19 @@ namespace Bespoke.PosEntt.CustomActions
             }
             else
             {
-                var jsonOutput = JObject.Parse(outputString).SelectToken("Message");
-                Console.WriteLine($"Error Message: {jsonOutput}");
-                Console.WriteLine($"===============================================");
+                if (result.ReasonPhrase == "Forbidden")
+                {
+                    Console.WriteLine($"Error Message: {result.ReasonPhrase}. Possibility due to server proxy.");
+                    Console.WriteLine($"===============================================");
+                }
+                else
+                {
+                    var jsonOutput = JObject.Parse(outputString).SelectToken("Message");
+                    Console.WriteLine($"Error Message: {jsonOutput}");
+                    Console.WriteLine($"===============================================");
+                }
             }
+
         }
 
         private async Task RegisterNewContractCustomerFile(string id)
@@ -98,14 +107,13 @@ namespace Bespoke.PosEntt.CustomActions
             Profile Profile = CreateProfile(item);
             Profile.RefNo = item.RefNo;
 
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.BaseAddress = new Uri($"{m_snbClientApi}/create-cust");
+            m_snbClientApi.DefaultRequestHeaders.Accept.Clear();
+            m_snbClientApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            string publishPointingUrl = $"{m_snbClientApi.BaseAddress}/create-cust";
             var json = JsonConvert.SerializeObject(Profile);
             var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
 
-            var result = client.PostAsync(client.BaseAddress, content).Result;
+            var result = m_snbClientApi.PostAsync(publishPointingUrl, content).Result;
             Console.WriteLine($"Second level sending to Snb API (Document)...");
 
             var outputString = await result.Content.ReadAsStringAsync();
@@ -140,11 +148,10 @@ namespace Bespoke.PosEntt.CustomActions
 
         private async Task<EstRegistration> GetEstRegistrationAsync(string id)
         {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
+            m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
             var result = new EstRegistration();
-            var requestUri = new Uri($"{m_ostBaseUrl}/api/est-registrations/{id}");
-            var response = await client.GetAsync(requestUri);
+            var requestUri = $"{m_ostBaseUrl}/api/est-registrations/{id}";
+            var response = await m_ostBaseUrl.GetAsync(requestUri);
             var output = string.Empty;
             output = await response.Content.ReadAsStringAsync();
             var json = JObject.Parse(output);
@@ -227,11 +234,11 @@ namespace Bespoke.PosEntt.CustomActions
                     CompanyName = item.CompanyInformation.CompanyName,
                     CompanyType = item.CompanyInformation.CompanyType,
                     GstId = item.CompanyInformation.GstId,
-                    Industry = "C07", //TODO Import Lookups
+                    Industry = item.CompanyInformation.Industry,
                     TypePosting = item.CompanyInformation.TypePosting,
                     IsPosLajuAgent = item.CompanyInformation.IsPosLajuAgent,
                     RocNumber = item.CompanyInformation.RocNumber,
-                    CurrencyCode = "MYR", //TODO Import Lookups
+                    CurrencyCode = "MYR", //TODO
                 },
                 DirectorInformations = new List<DirectorInformation> { }
             };

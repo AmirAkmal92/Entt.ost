@@ -462,7 +462,7 @@ namespace web.sph.App_Code
                     {
                         if (profile.Designation.Equals("Contract customer registrar"))
                         {
-                            return Redirect("/ost#est-registration-form/0");
+                            return Redirect($"/ost#est-registration-form/0/sid/{setting.Id}");
                         }
                     }
                     return Redirect("/");

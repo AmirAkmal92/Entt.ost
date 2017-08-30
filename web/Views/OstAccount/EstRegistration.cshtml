@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Register New Customer";
+    Layout = "_Layout.cshtml";
+}
+<div class="container">
+    <br />
+    <br />
+    <h1>Register New Customer</h1>
+    <div class="page-header">
+        <h2 style="color:#555"><strong></strong></h2>
+    </div>
+    <div class="row">
+        <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-8">
+            <div class="well">
+                @if (!ViewBag.success)
+                {
+                    <div>
+                        <h4 class="text-danger">Register new customer problem</h4>
+                        <p>
+                            <span class="text-danger">@ViewBag.status</span>
+                        </p>
+                        <p>
+                            Having problem? Register for new customer again now.<br /><br />
+                            <a class="btn btn-info" href="/est-registration-type">EST Sign Up</a>
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-2">&nbsp;</div>
+    </div>
+</div>
