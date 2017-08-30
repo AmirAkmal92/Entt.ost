@@ -3,6 +3,7 @@
   <Reference Relative="..\subscribers\Newtonsoft.Json.dll">C:\project\work\entt.ost\subscribers\Newtonsoft.Json.dll</Reference>
   <Reference Relative="..\subscribers\Ost.ConsigmentRequest.dll">C:\project\work\entt.ost\subscribers\Ost.ConsigmentRequest.dll</Reference>
   <Reference Relative="..\subscribers\Ost.RtsPickupFormat.dll">C:\project\work\entt.ost\subscribers\Ost.RtsPickupFormat.dll</Reference>
+  <Reference Relative="..\subscribers\Ost.UserDetail.dll">C:\project\work\entt.ost\subscribers\Ost.UserDetail.dll</Reference>
   <Reference Relative="..\..\entt.rts\subscribers\PosEntt.Pickup.dll">C:\project\work\entt.rts\subscribers\PosEntt.Pickup.dll</Reference>
   <Reference Relative="..\..\entt.rts\subscribers\PosEntt.Stat.dll">C:\project\work\entt.rts\subscribers\PosEntt.Stat.dll</Reference>
   <Reference>&lt;RuntimeDirectory&gt;\System.Net.Http.dll</Reference>
@@ -16,12 +17,13 @@
   <Namespace>System.Net.Http</Namespace>
   <Namespace>System.Net.Http.Headers</Namespace>
   <Namespace>System.Threading.Tasks</Namespace>
+  <Namespace>Bespoke.Ost.UserDetails.Domain</Namespace>
 </Query>
 
 async Task Main()
 {
-	var statusOnlyNoPost = true;
-	
+	var statusOnlyNoPost = false;
+
 	var rtsBaseUrl = "http://rx.pos.com.my";
 	var rtsAdminToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHBvcy5jb20ubXkiLCJzdWIiOiI2MzYzODk1NjI1NzE1OTY2NTFjNDkwNzRjZSIsIm5iZiI6MTUxOTIyODI1NywiaWF0IjoxNTAzMzMwNjU3LCJleHAiOjE2MDkzNzI4MDAsImF1ZCI6IlBvc0VudHQifQ.-LxvJ8J4bS1xogV3gIoBtMkqlr1h1zP71FUhFA9MuxE";
 	var rtsClient = new HttpClient();
@@ -37,24 +39,56 @@ async Task Main()
 	Console.WriteLine("-------------------- GET CONSIGNMENT REQUESTS --------------------");
 	var consignmentRequests = await GetConsignmentRequests(ostBaseUrl, ostClient);
 	Console.WriteLine($"Consignment Requests count: {consignmentRequests.Count} .....");
-	consignmentRequests.Dump();
+	//consignmentRequests.Dump();
+	Console.WriteLine("");
+	Console.WriteLine("");
 	Console.WriteLine("");
 
-
+	var consignmentRequestsIndexCount = 1;
 	foreach (var consignmentRequest in consignmentRequests)
 	{
 		var connotes = new List<string>();
-			foreach (var consignment in consignmentRequest.Consignments)
+		
+		Console.WriteLine("");
+		Console.WriteLine($"({consignmentRequestsIndexCount}) {consignmentRequest.Id}");
+		Console.WriteLine("");
+
+		foreach (var consignment in consignmentRequest.Consignments)
+		{
+			if (!string.IsNullOrEmpty(consignment.ConNote))
 			{
-				if (!string.IsNullOrEmpty(consignment.ConNote))
-				{
-					connotes.Add(consignment.ConNote);
-				}
+				connotes.Add(consignment.ConNote);
 			}
+		}
 		var strOfConnotes = JsonConvert.SerializeObject(connotes);
 		Console.WriteLine($"Reference Number: {consignmentRequest.ReferenceNo}");
-		Console.WriteLine($"Pickup Number: {consignmentRequest.Pickup.Number}");
+		Console.WriteLine($"Acount Number: {consignmentRequest.UserId}");
+
+		var userDetail = new UserDetail();
+		var pickupNoFromConsole = string.Empty;
+		if (!string.IsNullOrEmpty(consignmentRequest.Pickup.Number))
+		{
+
+			Console.WriteLine($"Pickup Number: {consignmentRequest.Pickup.Number}");
+			Console.WriteLine($"Contact Person: {consignmentRequest.Pickup.ContactPerson}");
+			Console.WriteLine($"Contact Number: {consignmentRequest.Pickup.ContactInformation.ContactNumber}");
+			Console.WriteLine($"Company Name: {consignmentRequest.Pickup.CompanyName}");
+		}
+		else
+		{
+			Console.WriteLine("Pickup Not Set. Get details from default pickup address...");
+			Console.WriteLine("-------------------- GET USER DETAIL --------------------");
+			userDetail = await GetUserDetail(consignmentRequest.UserId, ostBaseUrl, ostClient);
+			if (userDetail.UserId.Equals(consignmentRequest.UserId))
+			{
+				Console.WriteLine($"Contact Person: {userDetail.PickupAddress.ContactPerson}");
+				Console.WriteLine($"Contact Number: {userDetail.PickupAddress.ContactInformation.ContactNumber}");
+				Console.WriteLine($"Company Name: {userDetail.PickupAddress.CompanyName}");
+			}
+		}
+		
 		Console.WriteLine($"Check Pickup status for: {strOfConnotes}");
+		Console.WriteLine($"Connotes Count: {consignmentRequest.Consignments.Count}");
 		Console.WriteLine("");
 		Console.WriteLine("-------------------- GET PICKUP EVENTS --------------------");
 		var pickupEvents = await GetPickupEvents(strOfConnotes, rtsBaseUrl, rtsClient);
@@ -62,26 +96,107 @@ async Task Main()
 		pickupEvents.Dump();
 		Console.WriteLine("");
 
-		foreach (var pickupEvent in pickupEvents)
+		if (pickupEvents.Count > 0)
 		{
-			Console.WriteLine("");
-			Console.WriteLine("-------------------- POST RTS PICKUP FORMAT --------------------");
-			var rtsPickupFormat = new RtsPickupFormat
+			foreach (var pickupEvent in pickupEvents)
 			{
-				PickupNo = pickupEvent.PickupNo,
-				AccountNo = pickupEvent.AccountNo,
-				ConsignmentNo = pickupEvent.ConsignmentNo,
-				ParentConsignmentNo = string.Empty, //?
-				TotalBaby = pickupEvent.TotalBaby.HasValue ? pickupEvent.TotalBaby.Value : 0,
-				PickupDateTime = pickupEvent.Date.AddHours(pickupEvent.Time.Hour).AddMinutes(pickupEvent.Time.Minute).AddSeconds(pickupEvent.Time.Second),
-				ActualWeight = pickupEvent.ParentWeight.HasValue ? pickupEvent.ParentWeight.Value : 0.00m,
-				CourierId = pickupEvent.CourierId,
-				CourierName = string.Empty, //?
-				BranchCode = pickupEvent.LocationId
-			};
-			await PostRtsPickupFormat(rtsPickupFormat, ostBaseUrl, ostClient, statusOnlyNoPost);
+				Console.WriteLine("");
+				Console.WriteLine("-------------------- POST RTS PICKUP FORMAT (by PICKUP EVENTS) --------------------");
+				var rtsPickupFormat = new RtsPickupFormat
+				{
+					PickupNo = pickupEvent.PickupNo,
+					AccountNo = pickupEvent.AccountNo,
+					ConsignmentNo = pickupEvent.ConsignmentNo,
+					ParentConsignmentNo = string.Empty, //?
+					TotalBaby = pickupEvent.TotalBaby.HasValue ? pickupEvent.TotalBaby.Value : 0,
+					PickupDateTime = pickupEvent.Date.AddHours(pickupEvent.Time.Hour).AddMinutes(pickupEvent.Time.Minute).AddSeconds(pickupEvent.Time.Second),
+					ActualWeight = pickupEvent.ParentWeight.HasValue ? pickupEvent.ParentWeight.Value : 0.00m,
+					CourierId = pickupEvent.CourierId,
+					CourierName = string.Empty, //?
+					BranchCode = pickupEvent.LocationId
+				};
+				await PostRtsPickupFormat(rtsPickupFormat, ostBaseUrl, ostClient, statusOnlyNoPost);
+				await Task.Delay(10000);
+			}
 		}
+		else
+		{
+			Console.WriteLine("Pickup Events not found. Get details from stat events...");
+			Console.WriteLine($"Check Pickup status for: {strOfConnotes}");
+			Console.WriteLine($"Connotes Count: {consignmentRequest.Consignments.Count}");
+			Console.WriteLine("");
+			Console.WriteLine("-------------------- GET STAT EVENTS --------------------");
+			var statEvents = await GetStatEvents(strOfConnotes, rtsBaseUrl, rtsClient);
+			Console.WriteLine($"Pickup Events count: {statEvents.Count} .....");
+			statEvents.Dump();
+			Console.WriteLine("");
+
+			if (statEvents.Count > 0)
+			{
+				if (string.IsNullOrEmpty(consignmentRequest.Pickup.Number))
+				{
+					Console.WriteLine($"Please insert Pickup Number for Reference Number: {consignmentRequest.ReferenceNo}");
+					pickupNoFromConsole = Console.ReadLine();
+				}
+			}
+			
+			foreach (var statEvent in statEvents)
+			{
+				Console.WriteLine("");
+				Console.WriteLine("-------------------- POST RTS PICKUP FORMAT (by STAT EVENTS) --------------------");
+
+				var text = statEvent.Comment;
+				string[] words = text.Split('|');
+				var text2 = words[1].Replace(" ", string.Empty);
+				string[] words2 = text2.Split('=');
+				var berat = words2[1].Replace(" ", string.Empty);
+				var beratDecimal = Convert.ToDecimal(berat);
+
+				var rtsPickupFormat = new RtsPickupFormat
+				{
+					PickupNo = (!string.IsNullOrEmpty(consignmentRequest.Pickup.Number)) ? consignmentRequest.Pickup.Number : pickupNoFromConsole,
+					AccountNo = consignmentRequest.UserId,
+					ConsignmentNo = statEvent.ConsignmentNo,
+					ParentConsignmentNo = string.Empty, //?
+					TotalBaby = 0,
+					PickupDateTime = statEvent.Date.AddHours(statEvent.Time.Hour).AddMinutes(statEvent.Time.Minute).AddSeconds(statEvent.Time.Second),
+					ActualWeight = beratDecimal,
+					CourierId = statEvent.CourierId,
+					CourierName = string.Empty, //?
+					BranchCode = statEvent.LocationId
+				};
+				await PostRtsPickupFormat(rtsPickupFormat, ostBaseUrl, ostClient, statusOnlyNoPost);
+				await Task.Delay(10000);
+			}
+		}
+		consignmentRequestsIndexCount++;
 	}
+}
+
+private static async Task<UserDetail> GetUserDetail(string userId, string ostBaseUrl, HttpClient ostClient)
+{
+	var requestUri = new Uri($"{ostBaseUrl}/api/user-details/{userId}");
+	var response = await ostClient.GetAsync(requestUri);
+	var output = string.Empty;
+
+	var userDetail = new UserDetail();
+
+	if (response.IsSuccessStatusCode)
+	{
+		//Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+		//Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
+		output = await response.Content.ReadAsStringAsync();
+	}
+	else
+	{
+		Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+		Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
+		Console.WriteLine("Aborting .....");
+		return userDetail;
+	}
+
+	userDetail = JObject.Parse(output).ToJson().DeserializeFromJson<UserDetail>();
+	return userDetail;
 }
 
 private static async Task<List<ConsigmentRequest>> GetConsignmentRequests(string ostBaseUrl, HttpClient ostClient)
@@ -191,6 +306,59 @@ private static async Task<List<Bespoke.PosEntt.Pickups.Domain.Pickup>> GetPickup
 	}
 
 	return pickups;
+}
+
+private static async Task<List<Bespoke.PosEntt.Stats.Domain.Stat>> GetStatEvents(string stringOfConnotes, string rtsBaseUrl, HttpClient rtsClient)
+{
+	var query = $@"{{
+   ""query"": {{
+       ""bool"": {{
+           ""must"": [              
+              {{
+                  ""terms"": {{
+                        ""ConsignmentNo"": {stringOfConnotes}                     
+                  }}
+              }}
+           ]
+        }}
+   }},
+   ""from"": 0,
+   ""size"": 1000,
+   ""sort"": [
+      {{
+         ""CreatedDate"": {{
+            ""order"": ""desc""
+         }}
+      }}
+   ]
+}}";
+
+	var content = new StringContent(query.ToString(), Encoding.UTF8, "application/json");
+	var requestUri = new Uri($"{rtsBaseUrl}/api/rts-dashboard/stat");
+	var response = await rtsClient.PostAsync(requestUri, content);
+	var output = string.Empty;
+
+	var stats = new List<Bespoke.PosEntt.Stats.Domain.Stat>();
+
+	Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+	Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
+	if (response.IsSuccessStatusCode)
+	{
+		output = await response.Content.ReadAsStringAsync();
+	}
+	else
+	{
+		Console.WriteLine("Aborting .....");
+		return stats;
+	}
+	var json = JObject.Parse(output).SelectToken("hits.hits");
+	foreach (var jtok in json)
+	{
+		var stat = jtok.SelectToken("_source").ToJson().DeserializeFromJson<Bespoke.PosEntt.Stats.Domain.Stat>();
+		stats.Add(stat);
+	}
+
+	return stats;
 }
 
 private static async Task PostRtsPickupFormat(RtsPickupFormat rtsPickupFormat, string ostBaseUrl, HttpClient ostClient, bool statusOnlyNoPost)
