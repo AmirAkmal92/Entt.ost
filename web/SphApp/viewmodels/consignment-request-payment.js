@@ -1,7 +1,7 @@
 define(["services/datacontext", "services/logger", "plugins/router", "services/system",
-    "services/chart", objectbuilders.config, objectbuilders.app],
+    "services/chart", objectbuilders.config, objectbuilders.app, "viewmodels/_consignment-request-cart"],
 
-function (context, logger, router, system, chart, config, app) {
+    function (context, logger, router, system, chart, config, app, crCart) {
 
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         id = ko.observable(),
@@ -23,24 +23,31 @@ function (context, logger, router, system, chart, config, app) {
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
                     calculateGrandTotal();
                     calculateDomesticAndInternational();
-                    if (grandTotal() != entity().Payment().TotalPrice()) {
-                        app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + entityId, "OST", ["Close"]).done(function () {
-                            return router.navigate("consignment-request-summary/" + entityId);
+                    crCart.activate();
+                    if (entity().Payment().IsPaid()) {
+                        app.showMessage("Shipment has been paid. You may proceed to new Shipment now.", "OST", ["Close"]).done(function () {
+                            return router.navigate("consignment-request-cart/" + crCart.consignmentRequest().Id());
                         });
                     } else {
-                        return context.get("/ost-payment/ps-request/" + entityId).then(function (result) {
-                            if (result.success) {
-                                appId(result.id);
-                                appData(result.data);
-                                appUrl(result.url);
-                            }
-                        }, function (e) {
-                            if (e.status == 404) {
-                                app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + entityId, "OST", ["Close"]).done(function () {
-                                    return router.navigate("consignment-request-summary/" + entityId);
-                                });
-                            }
-                        });
+                        if (grandTotal() != entity().Payment().TotalPrice()) {
+                            app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + entityId, "OST", ["Close"]).done(function () {
+                                return router.navigate("consignment-request-summary/" + entityId);
+                            });
+                        } else {
+                            return context.get("/ost-payment/ps-request/" + entityId).then(function (result) {
+                                if (result.success) {
+                                    appId(result.id);
+                                    appData(result.data);
+                                    appUrl(result.url);
+                                }
+                            }, function (e) {
+                                if (e.status == 404) {
+                                    app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + entityId, "OST", ["Close"]).done(function () {
+                                        return router.navigate("consignment-request-summary/" + entityId);
+                                    });
+                                }
+                            });
+                        }
                     }
                 }, function (e) {
                     if (e.status == 404) {

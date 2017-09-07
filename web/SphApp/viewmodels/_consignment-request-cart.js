@@ -20,7 +20,7 @@ define(['services/datacontext', 'services/logger', 'plugins/router', objectbuild
                         });
                     } else {
                         //get the first one
-                        consignmentRequest(crList._results[0]);
+                        consignmentRequest(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(crList._results[0]));
                     }
                 });
             },
