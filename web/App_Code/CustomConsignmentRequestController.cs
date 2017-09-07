@@ -587,7 +587,7 @@ namespace web.sph.App_Code
                         {
                             item.Pickup.DateReady = tReady;
                             item.Pickup.DateClose = tClose;
-                            pickupDate = DateTime.Today;
+                            pickupDate = DateTime.Now;
                         }
                         else
                         {
