@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web", "web\", "{06BAB0C7-0303-4119-8ECA-7B8A10BFB699}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -38,6 +38,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "snb.register.ezisend", "sources\snb.register.ezisend\snb.register.ezisend.csproj", "{954F1533-1CD9-4D48-973E-12A07EA8A590}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "e.soc.posting", "sources\e.soc.posting\e.soc.posting.csproj", "{700C1B60-A438-4188-BE67-E9BDBF746B7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rts.pickup.knockoff", "sources\rts.pickup.knockoff\rts.pickup.knockoff.csproj", "{AB636062-080A-4F2E-902D-762FC1C4CF54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,8 +81,15 @@ Global
 		{700C1B60-A438-4188-BE67-E9BDBF746B7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{700C1B60-A438-4188-BE67-E9BDBF746B7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{700C1B60-A438-4188-BE67-E9BDBF746B7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB636062-080A-4F2E-902D-762FC1C4CF54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB636062-080A-4F2E-902D-762FC1C4CF54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB636062-080A-4F2E-902D-762FC1C4CF54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB636062-080A-4F2E-902D-762FC1C4CF54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57DD104A-7DEC-4125-BC28-C2294A3EA45B}
 	EndGlobalSection
 EndGlobal
