@@ -16,7 +16,8 @@
              "ActualWeight":{"type":"float","index":"analyzed","boost":1,"include_in_all":true,"ignore_malformed":false},
              "CourierId":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
              "CourierName":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
-             "BranchCode":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true}
+             "BranchCode":{"type":"string","index":"not_analyzed","boost":1,"include_in_all":true},
+             "IsKnockOff":{"type":"boolean","index":"not_analyzed","boost":1,"include_in_all":true}
         }
     }
 }

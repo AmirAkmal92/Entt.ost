@@ -1,0 +1,53 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "RtsPickupFormatIsNotKnockOffQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "IsKnockOff",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "Value": "false",
+          "Name": "false",
+          "Note": "",
+          "WebId": "ca47d2e0-f181-4c13-b321-456a919635b6"
+        },
+        "WebId": "a188b2bb-9a66-441e-e072-d31be1984efe"
+      }
+    ]
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Sort, domain.sph",
+        "Path": "CreatedDate",
+        "Direction": "Asc",
+        "WebId": "9ad60318-9a2c-4c26-8432-0bf5e2542f3a"
+      }
+    ]
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "IsNotKnockOff",
+  "Route": "is-not-knockoff",
+  "IsReturnSource": "",
+  "Entity": "RtsPickupFormat",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "rts-pickup-formats",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "rts-pickup-format-is-not-knock-off",
+  "CreatedDate": "2017-09-08T12:25:06.7962793+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-09-08T15:57:37.0653281+08:00",
+  "WebId": "489dbb72-3a3f-411c-d466-ca7eb7cb291d"
+}

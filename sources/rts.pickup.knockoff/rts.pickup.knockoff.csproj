@@ -33,6 +33,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="domain.sph, Version=1.0.2.1007, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\subscribers\domain.sph.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\subscribers\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ost.ConsigmentRequest">
+      <HintPath>..\..\subscribers\Ost.ConsigmentRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="Ost.RtsPickupFormat">
+      <HintPath>..\..\subscribers\Ost.RtsPickupFormat.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

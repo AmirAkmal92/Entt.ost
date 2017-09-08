@@ -195,7 +195,7 @@
           ]
         },
         "Title": "Rts Pickup Ezisend",
-        "IsActive": true,
+        "IsActive": false,
         "TriggerId": null,
         "Note": null,
         "WebId": "41d38e11-fae8-4a0a-df6c-95918bbcd37c"
@@ -237,6 +237,6 @@
   "Id": "rts-pickup-format-trigger-est-shipment",
   "CreatedDate": "2017-07-07T17:43:12.9239222+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-07-20T14:13:15.7307067+08:00",
+  "ChangedDate": "2017-09-07T13:04:11.3188336+08:00",
   "WebId": "b5fb76b3-698b-46ee-a47f-4bcb4e0296e5"
 }
