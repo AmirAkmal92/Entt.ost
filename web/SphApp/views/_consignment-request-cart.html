@@ -4,14 +4,14 @@
         <a class="nav-link" data-bind="attr: { href: 'ost#consignment-request-cart/' + ko.unwrap(consignmentRequest().Id) }">
             <i class="fa fa-shopping-cart"></i>
             <span class="title"> SHIPMENTS </span>
-            <span class="badge bg-yellow-casablanca bg-font-yellow-casablanca" data-bind="text: consignmentRequest().Consignments.length"></span>
+            <span class="badge bg-yellow-casablanca bg-font-yellow-casablanca" data-bind="text: consignmentRequest().Consignments().length"></span>
         </a>
         <!--/ko-->
         <!--ko if: config.profile.Designation == "Contract customer"-->
         <a class="nav-link" data-bind="attr: { href: 'ost#consignment-request-cart-est/' + ko.unwrap(consignmentRequest().Id) }">
             <i class="fa fa-shopping-cart"></i>
             <span class="title"> SHIPMENTS </span>
-            <span class="badge bg-yellow-casablanca bg-font-yellow-casablanca" data-bind="text: consignmentRequest().Consignments.length"></span>
+            <span class="badge bg-yellow-casablanca bg-font-yellow-casablanca" data-bind="text: consignmentRequest().Consignments().length"></span>
         </a>
         <!--/ko-->
     </li>
