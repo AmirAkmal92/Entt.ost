@@ -150,7 +150,7 @@ namespace Bespoke.PosEntt.CustomActions
         {
             m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
             var result = new EstRegistration();
-            var requestUri = $"{m_ostBaseUrl}/api/est-registrations/{id}";
+            var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/est-registrations/{id}";
             var response = await m_ostBaseUrl.GetAsync(requestUri);
             var output = string.Empty;
             output = await response.Content.ReadAsStringAsync();

@@ -9,14 +9,47 @@ objectbuilders.app, 'partial/est-registration-form'],
             errors = ko.observableArray(),
             form = ko.observable(new bespoke.sph.domain.EntityForm()),
             companyOptions = [
-                { text: 'Berhad', value: 'BHD' },
-                { text: 'Sendirian Berhad', value: 'SDNBHD' },
-                { text: 'Enterprise (Perseorangan)', value: 'ENTIND' },
-                { text: 'Enterprise (Perkongsian)', value: 'ENTSHR' },
-                { text: 'Kerajaan / Badan Berkanun', value: 'GOV' }
+                { text: 'Berhad', value: 'Berhad' },
+                { text: 'Sendirian Berhad', value: 'SendirianBerhad' },
+                { text: 'Enterprise (Perseorangan)', value: 'EnterprisePerseorangan' },
+                { text: 'Enterprise (Perkongsian)', value: 'EnterprisePerkongsian' },
+                { text: 'Kerajaan / Badan Berkanun', value: 'KerajaanBadanBerkanun' }
+            ],
+            industryOptions = [
+                { "Name": " Insuran", "Code": "C06" },
+                { "Name": "Communication and Media", "Code": "B14" },
+                { "Name": "Construction", "Code": "B08" },
+                { "Name": "Consulting", "Code": "B10" },
+                { "Name": "DRB Group", "Code": "B16" },
+                { "Name": "Financial", "Code": "B04" },
+                { "Name": "Government", "Code": "B05" },
+                { "Name": "Hartanah", "Code": "C11" },
+                { "Name": "Health", "Code": "B09" },
+                { "Name": "Insurance", "Code": "B06" },
+                { "Name": "Kesihatan/Perubatan", "Code": "C09" },
+                { "Name": "Kewangan", "Code": "C04" },
+                { "Name": "Komunikasi Media", "Code": "C14" },
+                { "Name": "Lain-lain Industri", "Code": "C15" },
+                { "Name": "Manufacturing", "Code": "B13" },
+                { "Name": "Others", "Code": "B15" },
+                { "Name": "Pembinaan", "Code": "C08" },
+                { "Name": "Pemborong/pengedar", "Code": "C03" },
+                { "Name": "Pembuatan", "Code": "C01" },
+                { "Name": "Pengangkutan", "Code": "C12" },
+                { "Name": "Perkhidmatan", "Code": "C07" },
+                { "Name": "Perkilangan", "Code": "C13" },
+                { "Name": "Perundingan", "Code": "C10" },
+                { "Name": "Poslaju Agent", "Code": "C16" },
+                { "Name": "Production", "Code": "B01" },
+                { "Name": "Real Estate", "Code": "B11" },
+                { "Name": "Retail", "Code": "B02" },
+                { "Name": "Runcit", "Code": "C02" },
+                { "Name": "Sektor Kerajaan", "Code": "C05" },
+                { "Name": "Services", "Code": "B07" },
+                { "Name": "Transportation", "Code": "B12" },
+                { "Name": "Wholesale", "Code": "B03" }
             ],
             isUsingMailAddress = ko.observable(false),
-            chosenCompany = ko.observable("Berhad"),
             watching = ko.observable(false),
             id = ko.observable(),
             sid = ko.observable(),
@@ -81,7 +114,6 @@ objectbuilders.app, 'partial/est-registration-form'],
                     return Task.fromResult(false);
                 }
                 entity().PersonalDetail().PickupAddress().Postcode(entity().PersonalDetail().MailingAddress().Postcode()); //TODO: snbapi error pickup postcode is compulsory
-                entity().CompanyInformation().Industry("C07"); //TODO: modify option binding
                 var data = ko.mapping.toJSON(entity),
                     tcs = new $.Deferred();
 
@@ -187,7 +219,7 @@ objectbuilders.app, 'partial/est-registration-form'],
             entity: entity,
             errors: errors,
             companyOptions: companyOptions,
-            chosenCompany: chosenCompany,
+            industryOptions: industryOptions,
             saveCommand: saveCommand
         };
 

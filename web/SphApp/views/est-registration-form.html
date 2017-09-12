@@ -26,47 +26,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Company Type<span class="required" aria-required="true"> * </span></label>
-                                    <select name="CompanyType" class="form-control" data-bind="options:$root.companyOptions, optionsText: 'text', optionsValue: 'value', value: $root.chosenCompany, optionsCaption: 'Select...'" required></select>
+                                    <select name="CompanyType" class="form-control" data-bind="options:$root.companyOptions, optionsText: 'text', optionsValue: 'value', value: CompanyInformation().CompanyType, optionsCaption: 'Select...'" required></select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Industry<span class="required" aria-required="true"> * </span></label>
-                                    <select name="Industry" class="form-control" data-placeholder="Choose Industry" tabindex="1" required>
-                                        <option value="" disabled selected>Select...</option>
-                                        <option value="C12">Pengangkutan</option>
-                                        <option value="B06">Insurance</option>
-                                        <option value="B08">Construction</option>
-                                        <option value="B12">Transportation</option>
-                                        <option value="B02">Retail</option>
-                                        <option value="B10">Consulting</option>
-                                        <option value="C05">Sektor Kerajaan</option>
-                                        <option value="B14">Communication and Media</option>
-                                        <option value="B05">Government</option>
-                                        <option value="B04">Financial</option>
-                                        <option value="C01">Pembuatan</option>
-                                        <option value="B07">Services</option>
-                                        <option value="C09">Kesihatan/Perubatan</option>
-                                        <option value="B01">Production</option>
-                                        <option value="B09">Health</option>
-                                        <option value="C02">Runcit</option>
-                                        <option value="B13">Manufacturing</option>
-                                        <option value="B03">Wholesale</option>
-                                        <option value="C16">Poslaju Agent</option>
-                                        <option value="C08">Pembinaan</option>
-                                        <option value="B11">Real Estate</option>
-                                        <option value="B16">DRB Group</option>
-                                        <option value="C03">Pemborong/pengedar</option>
-                                        <option value="C13">Perkilangan</option>
-                                        <option value="C04">Kewangan</option>
-                                        <option value="C14">Komunikasi Media</option>
-                                        <option value="C07">Perkhidmatan</option>
-                                        <option value="C10">Perundingan</option>
-                                        <option value="C06">Insuran</option>
-                                        <option value="C11">Hartanah</option>
-                                        <option value="C15">Lain-lain Industri</option>
-                                        <option value="B15">Others</option>
-                                    </select>
+                                    <select name="Industry" class="form-control" data-bind="options:$root.industryOptions, optionsText: 'Name', optionsValue: 'Code', value: CompanyInformation().Industry, optionsCaption: 'Select...'" required></select>
                                 </div>
                             </div>
                         </div>
@@ -200,7 +166,6 @@
                         <span style="font-size:19px"><strong>Billing Address Information</strong></span>
                         <hr />
                         <!--ko if: PersonalDetail().MailingAddress().Address1() != null && PersonalDetail().MailingAddress().Address2() != null &&
-                                   PersonalDetail().MailingAddress().Address3() != null && PersonalDetail().MailingAddress().Address4() != null &&
                                    PersonalDetail().MailingAddress().Postcode() != null && PersonalDetail().MailingAddress().City() != null &&
                                    PersonalDetail().MailingAddress().State() != null-->
                         <div class="row">
@@ -266,10 +231,10 @@
                         <hr />
                         <div class="row">
                             <div class="col-md-12">
-                                <div data-bind="if: $root.chosenCompany() == null">
+                                <div data-bind="if: CompanyInformation().CompanyType() == null">
                                     <span><i>Supporting Documents will appear once "Company Type" is selected.</i></span>
                                 </div>
-                                <div class="portlet-body" data-bind="if: $root.chosenCompany() != null">
+                                <div class="portlet-body" data-bind="if: CompanyInformation().CompanyType() != null">
                                     <div class="table-scrollable">
                                         <table class="table table-striped table-bordered table-advance">
                                             <thead>
@@ -280,8 +245,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
-                                                $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                                <!--ko if:  CompanyInformation().CompanyType() == 'Berhad' || CompanyInformation().CompanyType() == 'SendirianBerhad' ||
+                                                CompanyInformation().CompanyType() == 'EnterprisePerseorangan' || CompanyInformation().CompanyType() == 'EnterprisePerkongsian'-->
                                                 <tr>
                                                     <td>
                                                         <span>Form P13 And TnC</span>
@@ -300,8 +265,8 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /ko -->
-                                                <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
-                                                $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                                <!--ko if:  CompanyInformation().CompanyType() == 'Berhad' || CompanyInformation().CompanyType() == 'SendirianBerhad' ||
+                                                CompanyInformation().CompanyType() == 'EnterprisePerseorangan' || CompanyInformation().CompanyType() == 'EnterprisePerkongsian'-->
                                                 <tr>
                                                     <td>
                                                         <span>CTOS - Company</span>
@@ -320,8 +285,8 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /ko -->
-                                                <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
-                                                $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                                <!--ko if:  CompanyInformation().CompanyType() == 'Berhad' || CompanyInformation().CompanyType() == 'SendirianBerhad' ||
+                                                CompanyInformation().CompanyType() == 'EnterprisePerseorangan' || CompanyInformation().CompanyType() == 'EnterprisePerkongsian'-->
                                                 <tr>
                                                     <td>
                                                         <span>CTOS - Owner / Directors</span>
@@ -340,8 +305,8 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /ko -->
-                                                <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
-                                                $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                                <!--ko if:  CompanyInformation().CompanyType() == 'Berhad' || CompanyInformation().CompanyType() == 'SendirianBerhad' ||
+                                                CompanyInformation().CompanyType() == 'EnterprisePerseorangan' || CompanyInformation().CompanyType() == 'EnterprisePerkongsian'-->
                                                 <tr>
                                                     <td>
                                                         <span>IC Copy</span>
@@ -360,8 +325,8 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /ko -->
-                                                <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
-                                                $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                                <!--ko if:  CompanyInformation().CompanyType() == 'Berhad' || CompanyInformation().CompanyType() == 'SendirianBerhad' ||
+                                                CompanyInformation().CompanyType() == 'EnterprisePerseorangan' || CompanyInformation().CompanyType() == 'EnterprisePerkongsian'-->
                                                 <tr>
                                                     <td>
                                                         <span>Business Card</span>
@@ -380,7 +345,7 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /ko -->
-                                                <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD'-->
+                                                <!--ko if:  CompanyInformation().CompanyType() == 'Berhad' || CompanyInformation().CompanyType() == 'SendirianBerhad'-->
                                                 <tr>
                                                     <td>
                                                         <span>Form 9 / 13</span>
@@ -395,7 +360,7 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /ko -->
-                                                <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD'-->
+                                                <!--ko if:  CompanyInformation().CompanyType() == 'Berhad' || CompanyInformation().CompanyType() == 'SendirianBerhad'-->
                                                 <tr>
                                                     <td>
                                                         <span>Form 24</span>
@@ -410,7 +375,7 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /ko -->
-                                                <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD'-->
+                                                <!--ko if:  CompanyInformation().CompanyType() == 'Berhad' || CompanyInformation().CompanyType() == 'SendirianBerhad'-->
                                                 <tr>
                                                     <td>
                                                         <span>Form 49</span>
@@ -425,7 +390,7 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /ko -->
-                                                <!--ko if:  $root.chosenCompany() == 'BHD'-->
+                                                <!--ko if:  CompanyInformation().CompanyType() == 'Berhad'-->
                                                 <tr>
                                                     <td>
                                                         <span>Borang 48</span>
@@ -440,8 +405,8 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /ko -->
-                                                <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
-                                                $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                                <!--ko if:  CompanyInformation().CompanyType() == 'Berhad' || CompanyInformation().CompanyType() == 'SendirianBerhad' ||
+                                                CompanyInformation().CompanyType() == 'EnterprisePerseorangan' || CompanyInformation().CompanyType() == 'EnterprisePerkongsian'-->
                                                 <tr>
                                                     <td>
                                                         <span>Deposit Slip</span>
@@ -456,8 +421,8 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /ko -->
-                                                <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
-                                                $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR' || $root.chosenCompany() == 'GOV'-->
+                                                <!--ko if:  CompanyInformation().CompanyType() == 'Berhad' || CompanyInformation().CompanyType() == 'SendirianBerhad' ||
+                                                CompanyInformation().CompanyType() == 'EnterprisePerseorangan' || CompanyInformation().CompanyType() == 'EnterprisePerkongsian' || CompanyInformation().CompanyType() == 'KerajaanBadanBerkanun'-->
                                                 <tr>
                                                     <td>
                                                         <span>Authorize Letter (with letterhead)</span>
@@ -472,7 +437,7 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /ko -->
-                                                <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD'-->
+                                                <!--ko if:  CompanyInformation().CompanyType() == 'Berhad' || CompanyInformation().CompanyType() == 'SendirianBerhad'-->
                                                 <tr>
                                                     <td>
                                                         <span>GST Certification Letter</span>
@@ -487,8 +452,8 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /ko -->
-                                                <!--ko if:  $root.chosenCompany() == 'BHD' || $root.chosenCompany() == 'SDNBHD' ||
-                                                $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                                <!--ko if:  CompanyInformation().CompanyType() == 'Berhad' || CompanyInformation().CompanyType() == 'SendirianBerhad' ||
+                                                CompanyInformation().CompanyType() == 'EnterprisePerseorangan' || CompanyInformation().CompanyType() == 'EnterprisePerkongsian'-->
                                                 <tr>
                                                     <td>
                                                         <span>Other Documents</span>
@@ -503,7 +468,7 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /ko -->
-                                                <!--ko if: $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                                <!--ko if: CompanyInformation().CompanyType() == 'EnterprisePerseorangan' || CompanyInformation().CompanyType() == 'EnterprisePerkongsian'-->
                                                 <tr>
                                                     <td>
                                                         <span>Form D / E</span>
@@ -518,7 +483,7 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /ko -->
-                                                <!--ko if: $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                                <!--ko if: CompanyInformation().CompanyType() == 'EnterprisePerseorangan' || CompanyInformation().CompanyType() == 'EnterprisePerkongsian'-->
                                                 <tr>
                                                     <td>
                                                         <span>Borang SSM - Maklumat Perniagaan</span>
@@ -533,7 +498,7 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /ko -->
-                                                <!--ko if: $root.chosenCompany() == 'ENTIND' || $root.chosenCompany() == 'ENTSHR'-->
+                                                <!--ko if: CompanyInformation().CompanyType() == 'EnterprisePerseorangan' || CompanyInformation().CompanyType() == 'EnterprisePerkongsian'-->
                                                 <tr>
                                                     <td>
                                                         <span>Borang SSM - Maklumat pemilik masa kini</span>
