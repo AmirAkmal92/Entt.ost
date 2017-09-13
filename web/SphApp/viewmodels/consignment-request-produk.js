@@ -167,18 +167,14 @@ objectbuilders.app],
                     partial.attached(view);
                 }
 
-                consignment().Produk().ItemCategory.subscribe(function (itemCode) {
-                    consignment().Produk().Weight(null);
-                });
-
                 consignment().Produk().Weight.subscribe(function (newWeight) {
                     if (consignment().Penerima().Address().Country() == "MY") { // domestic
                         // Max weight selectedCountryMaxWeight() kg
                         if (newWeight > 30) {
-                            consignment().Produk().Weight(selectedCountryMaxWeight());
+                    consignment().Produk().Weight(selectedCountryMaxWeight());
                         }
                         if (newWeight <= 0) {
-                            consignment().Produk().Weight(0.001);
+                            consignment().Produk().Weight(null);
                         }
                     } else { // international
                         if (consignment().Produk().ItemCategory() == "Merchandise") {
@@ -329,6 +325,11 @@ objectbuilders.app],
                             consignment().Bill().ProductCode(result.ProductCode);
                             consignment().Bill().ProductName(result.ProductName);
                             consignment().Bill().ItemCategory(result.ItemCategory);
+                            if (result.ItemCategory == "Document") {
+                                consignment().Produk().ItemCategory("01");
+                            } else if (result.ItemCategory == "Merchandise") {
+                                consignment().Produk().ItemCategory("02");
+                            }
                             consignment().Bill().RateStepInfo(result.RateStepInfo);
                             consignment().Bill().BaseRate(result.BaseRate);
                             consignment().Bill().AddOnsA(result.AddOnsA);
