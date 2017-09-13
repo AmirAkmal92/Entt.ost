@@ -208,6 +208,7 @@ objectbuilders.app],
             selectedCountryMaxWeight = ko.observable(),
             partial = partial || {},
             headers = {},
+            isBorneo = ko.observable(false),
 
             estProductService = ko.observableArray(ko.utils.arrayMap(initialData, function (data) {
                 return { Category: data.Category, CategoryCode: data.CategoryCode, Products: ko.observableArray(data.Products) };
@@ -264,6 +265,13 @@ objectbuilders.app],
                                 consignment().Produk().IsInternational(true);
                             } else {
                                 consignment().Produk().IsInternational(false);
+                                if (consignment().Penerima().Address().State() === "Sabah"
+                                    || consignment().Penerima().Address().State() === "Sarawak"
+                                    || consignment().Penerima().Address().State() === "Wilayah Persekutuan Labuan") {
+                                    isBorneo(true);
+                                } else {
+                                    isBorneo(false);
+                                }
                             }
 
                             if (consignment().Produk().ValueAddedDeclaredValue() != undefined) {
@@ -298,6 +306,9 @@ objectbuilders.app],
                             availableCountries().forEach(function (element) {
                                 if (element.Abbreviation === consignment().Penerima().Address().Country()) {
                                     selectedCountryMaxWeight(element.WeightLimit);
+                                    if (consignment().Penerima().Address().Country() === "MY") {
+                                        selectedCountryMaxWeight(999.999);
+                                    }
                                 }
                             });
                         });
@@ -383,6 +394,11 @@ objectbuilders.app],
                 consignment().Produk().Weight.subscribe(function (newWeight) {
                     if (consignment().Penerima().Address().Country() == "MY") {
                         if (consignment().Produk().ItemCategory() == "02") {
+                            if (isBorneo() == true && newWeight > 50) {
+                                consignment().Produk().Est().IsBorneo(true);
+                            } else {
+                                consignment().Produk().Est().IsBorneo(false);
+                            }
                             // From 0.001 to selectedCountryMaxWeight kg
                             if (newWeight > selectedCountryMaxWeight()) {
                                 consignment().Produk().Weight(selectedCountryMaxWeight());
