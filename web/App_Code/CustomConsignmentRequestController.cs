@@ -22,9 +22,10 @@ namespace web.sph.App_Code
     [RoutePrefix("consignment-request")]
     public class CustomConsignmentRequestController : BaseApiController
     {
+        private HttpClient m_ostBaseUrl;
+        private HttpClient m_sdsBaseUrl;
+        private HttpClient m_snbClientApi;
         private string m_applicationName;
-        private string m_sdsBaseUrl;
-        private string m_ostBaseUrl;
         private string m_ostAdminToken;
         private string m_sdsApi_GenerateConnote;
         private string m_sdsSecretKey_GenerateConnote;
@@ -32,13 +33,13 @@ namespace web.sph.App_Code
         private string m_sdsSecretKey_GenerateConnoteEst;
         private string m_sdsApi_PickupWebApi;
         private string m_sdsSecretKey_PickupWebApi;
-        private string m_snbClientApi;
 
         public CustomConsignmentRequestController()
         {
+            m_ostBaseUrl = new HttpClient { BaseAddress = new Uri(ConfigurationManager.GetEnvironmentVariable("BaseUrl") ?? "http://localhost:50230") };
+            m_sdsBaseUrl = new HttpClient { BaseAddress = new Uri(ConfigurationManager.GetEnvironmentVariable("SdsBaseUrl") ?? "https://apis.pos.com.my") };
+            m_snbClientApi = new HttpClient { BaseAddress = new Uri(ConfigurationManager.GetEnvironmentVariable("SnbWebApi") ?? "http://10.1.1.119:9002/api") };
             m_applicationName = ConfigurationManager.GetEnvironmentVariable("ApplicationName") ?? "OST";
-            m_sdsBaseUrl = ConfigurationManager.GetEnvironmentVariable("SdsBaseUrl") ?? "https://apis.pos.com.my";
-            m_ostBaseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl") ?? "http://localhost:50230";
             m_ostAdminToken = ConfigurationManager.GetEnvironmentVariable("AdminToken") ?? "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHlvdXJjb21wYW55LmNvbSIsInN1YiI6IjYzNjIwNDQ2NTgyNzk2MDA0NDYwOGNjMzdjIiwibmJmIjoxNTAwNDU5MzgzLCJpYXQiOjE0ODQ4MjA5ODMsImV4cCI6MTUxNDY3ODQwMCwiYXVkIjoiT3N0In0.qIA-b-0XTI_GpgMCGJC1yAAtw04UoPaNYoxMSXeBrPk";
             m_sdsApi_GenerateConnote = ConfigurationManager.GetEnvironmentVariable("SdsApi_GenerateConnote") ?? "apigateway/as01/api/genconnote/v1";
             m_sdsSecretKey_GenerateConnote = ConfigurationManager.GetEnvironmentVariable("SdsSecretKey_GenerateConnote") ?? "MjkzYjA5YmItZjMyMS00YzNmLWFmODktYTc2ZTAxMDgzY2Mz";
@@ -46,7 +47,6 @@ namespace web.sph.App_Code
             m_sdsSecretKey_GenerateConnoteEst = ConfigurationManager.GetEnvironmentVariable("SdsSecretKey_GenerateConnoteEst") ?? "NjloNDVKSUtiRm05MGdHR1dtbkdpQ09NOVpSN3hObWU=";
             m_sdsApi_PickupWebApi = ConfigurationManager.GetEnvironmentVariable("SdsApi_PickupWebApi") ?? "apigateway/as2poslaju/api/ezisendpickupwebapi/v1";
             m_sdsSecretKey_PickupWebApi = ConfigurationManager.GetEnvironmentVariable("SdsSecretKey_PickupWebApi") ?? "ckk1cjZ4V2NwSHJWVFZCTVVsSmZGSWtESUpBanNra0g=";
-            m_snbClientApi = ConfigurationManager.GetEnvironmentVariable("SnbWebApi") ?? "http://10.1.1.119:9002/api";
         }
 
         [HttpPut]
@@ -98,6 +98,8 @@ namespace web.sph.App_Code
             var item = lo.Source;
 
             var totalConsignments = item.Consignments.Count;
+            var totalConsignmentsInternational = 0;
+            var totalConsignmentsDomestic = 0;
 
             if (item.Payment.IsPaid)
             {
@@ -105,44 +107,86 @@ namespace web.sph.App_Code
                 {
                     if (totalConsignments > 0)
                     {
-                        var client = new HttpClient();
-                        client.DefaultRequestHeaders.Add("X-User-Key", m_sdsSecretKey_GenerateConnote);
-                        var url = new StringBuilder();
-                        url.Append(m_sdsApi_GenerateConnote);
-                        url.Append("?Prefix=EU");
-                        url.Append("&ApplicationCode=OST");
-                        url.Append("&Secretid=ost@1234");
-                        url.Append("&username=entt.ost");
-                        url.Append($"&numberOfItem={totalConsignments.ToString()}");
-                        url.Append($"&Orderid={item.Id}");
-
-                        var output = await client.GetStringAsync($"{m_sdsBaseUrl}/{url.ToString()}");
-
-                        var json = JObject.Parse(output);
-                        var sdsConnote = new SdsConnote(json);
-
-                        if (sdsConnote.StatusCode == "01")
+                        foreach (var consignment in item.Consignments)
                         {
-                            if (sdsConnote.ConnoteNumbers.Count >= totalConsignments)
+                            if (!consignment.Produk.IsInternational)
                             {
-                                for (int i = 0; i < totalConsignments; i++)
+                                totalConsignmentsDomestic += 1;
+                            }
+                            else
+                            {
+                                totalConsignmentsInternational += 1;
+                            }
+                        }
+
+                        var sdsConnotesCollection = new List<SdsConnote>();
+
+                        //Get Connote for Domestic parcel(s)
+                        if (totalConsignmentsDomestic > 0)
+                        {
+                            var tempId = GenerateOrderId(item);
+                            SdsConnote sdsConnotes = await GetConnoteOst(tempId, totalConsignmentsDomestic, false);
+                            if (sdsConnotes.StatusCode == "01")
+                            {
+                                if (sdsConnotes.ConnoteNumbers.Count >= totalConsignmentsDomestic)
                                 {
-                                    item.Consignments[i].ConNote = sdsConnote.ConnoteNumbers[i];
+                                    sdsConnotesCollection.Add(sdsConnotes);
                                 }
-                                item.Payment.IsConNoteReady = true;
-                                await SaveConsigmentRequest(item);
+                                else
+                                {
+                                    resultSuccess = false;
+                                    resultStatus = "Generated consignment note for domestic not enough";
+                                }
                             }
                             else
                             {
                                 resultSuccess = false;
-                                resultStatus = "Generated consignment note not enough";
+                                resultStatus = "StatusCode: " + sdsConnotes.StatusCode + " Message: " + sdsConnotes.Message;
                             }
                         }
-                        else
+
+                        //Get Connote for International parcel(s)
+                        if (totalConsignmentsInternational > 0)
                         {
-                            resultSuccess = false;
-                            resultStatus = "StatusCode: " + sdsConnote.StatusCode + " Message: " + sdsConnote.Message;
+                            var tempId = GenerateOrderId(item);
+                            SdsConnote sdsConnotes = await GetConnoteOst(tempId, totalConsignmentsInternational, true);
+                            if (sdsConnotes.StatusCode == "01")
+                            {
+                                if (sdsConnotes.ConnoteNumbers.Count >= totalConsignmentsInternational)
+                                {
+                                    sdsConnotesCollection.Add(sdsConnotes);
+                                }
+                                else
+                                {
+                                    resultSuccess = false;
+                                    resultStatus = "Generated consignment note for international not enough";
+                                }
+                            }
+                            else
+                            {
+                                resultSuccess = false;
+                                resultStatus = "StatusCode: " + sdsConnotes.StatusCode + " Message: " + sdsConnotes.Message;
+                            }
                         }
+
+                        var sdsCounterDomestic = 0;
+                        var sdsCounterInternational = 0;
+                        foreach (var consignment in item.Consignments)
+                        {
+                            if (!consignment.Produk.IsInternational)
+                            {
+                                consignment.ConNote = sdsConnotesCollection[0].ConnoteNumbers[sdsCounterDomestic];
+                                sdsCounterDomestic++;
+                            }
+                            else if (consignment.Produk.IsInternational)
+                            {
+                                consignment.ConNote = sdsConnotesCollection[1].ConnoteNumbers[sdsCounterInternational];
+                                sdsCounterInternational++;
+                            }
+                        }
+
+                        item.Payment.IsConNoteReady = true;
+                        await SaveConsigmentRequest(item);
                     }
                     else
                     {
@@ -188,6 +232,7 @@ namespace web.sph.App_Code
 
             var totalConsignments = consignmentRequest.Consignments.Count;
             var emptyConnote = 0;
+            var emptyConnoteInternational = 0;
             var emptyConnoteWithBaby = 0;
             var orderId = consignmentRequest.ReferenceNo;
             var numBaby = 0;
@@ -196,13 +241,23 @@ namespace web.sph.App_Code
             {
                 numBaby = CalculateBabyConnotes(consignment.BabyConnotesTotal);
 
-                if (consignment.ConNote == null && numBaby == 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
+                if (!consignment.Produk.IsInternational)
                 {
-                    emptyConnote += 1;
+                    if (consignment.ConNote == null && numBaby == 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
+                    {
+                        emptyConnote += 1;
+                    }
+                    else if (consignment.ConNote == null && numBaby > 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
+                    {
+                        emptyConnoteWithBaby += 1;
+                    }
                 }
-                else if (consignment.ConNote == null && numBaby > 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
+                else
                 {
-                    emptyConnoteWithBaby += 1;
+                    if (consignment.ConNote == null && consignment.Produk.IsInternational && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
+                    {
+                        emptyConnoteInternational += 1;
+                    }
                 }
             }
 
@@ -212,13 +267,13 @@ namespace web.sph.App_Code
                 consignmentRequest.GenerateConnoteCounter += 1;
                 orderId = GenerateOrderId(consignmentRequest);
                 consignmentRequest.ReferenceNo = orderId;
-                SdsBabyConnote sdsBabyConnote = GetConnoteWithOrWithoutBaby(orderId, 0, emptyConnote);
+                SdsBabyConnote sdsBabyConnote = GetConnoteWithOrWithoutBaby(orderId, 0, emptyConnote, false);
                 var sdsCounter = 0;
                 foreach (var consignment in consignmentRequest.Consignments)
                 {
                     numBaby = CalculateBabyConnotes(consignment.BabyConnotesTotal);
 
-                    if (consignment.ConNote == null && numBaby == 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
+                    if (consignment.ConNote == null && !consignment.Produk.IsInternational && numBaby == 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
                     {
                         consignment.ConNote = sdsBabyConnote.ConnoteData[sdsCounter].ConnoteParent;
                         sdsCounter++;
@@ -239,7 +294,7 @@ namespace web.sph.App_Code
                         orderId = GenerateOrderId(consignmentRequest);
                         consignmentRequest.ReferenceNo = orderId;
 
-                        SdsBabyConnote sdsBabyConnote = GetConnoteWithOrWithoutBaby(orderId, numBaby, 1);
+                        SdsBabyConnote sdsBabyConnote = GetConnoteWithOrWithoutBaby(orderId, numBaby, 1, consignment.Produk.IsInternational);
 
                         consignment.ConNote = sdsBabyConnote.ConnoteData[0].ConnoteParent;
                         for (int i = 0; i < numBaby; i++)
@@ -249,6 +304,25 @@ namespace web.sph.App_Code
                     }
                 }
             }
+
+            //IsInternational == EQ
+            if (emptyConnoteInternational > 0)
+            {
+                consignmentRequest.GenerateConnoteCounter += 1;
+                orderId = GenerateOrderId(consignmentRequest);
+                consignmentRequest.ReferenceNo = orderId;
+                SdsBabyConnote sdsBabyConnote = GetConnoteWithOrWithoutBaby(orderId, 0, emptyConnoteInternational, true);
+                var sdsCounter = 0;
+                foreach (var consignment in consignmentRequest.Consignments)
+                {
+                    if (consignment.ConNote == null && consignment.Produk.IsInternational && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
+                    {
+                        consignment.ConNote = sdsBabyConnote.ConnoteData[sdsCounter].ConnoteParent;
+                        sdsCounter++;
+                    }
+                }
+            }
+
             consignmentRequest.ReferenceNo = orderId;
             consignmentRequest.Payment.IsConNoteReady = true;
             await SaveConsigmentRequest(consignmentRequest);
@@ -278,10 +352,10 @@ namespace web.sph.App_Code
 
             if (consignmentRequest.Pickup.Address.Postcode != null)
             {
-                var client = new HttpClient();
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
-                var requestUri = new Uri($"{m_ostBaseUrl}/consignment-request/get-pickup-availability/{consignmentRequest.Pickup.Address.Postcode}");
-                var response = await client.GetAsync(requestUri);
+                m_ostBaseUrl.DefaultRequestHeaders.Clear();
+                m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
+                var requestUri = $"{m_ostBaseUrl.BaseAddress}/consignment-request/get-pickup-availability/{consignmentRequest.Pickup.Address.Postcode}";
+                var response = await m_ostBaseUrl.GetAsync(requestUri);
                 var output = string.Empty;
                 if (response.IsSuccessStatusCode)
                 {
@@ -318,13 +392,13 @@ namespace web.sph.App_Code
                             BranchCode = posLajuBranch.BranchCode.ToString()
                         };
 
-                        var clientSnb = new HttpClient();
-                        clientSnb.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
-                        clientSnb.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                        clientSnb.BaseAddress = new Uri($"{m_snbClientApi}/get-zone-byproduct");
+                        m_snbClientApi.DefaultRequestHeaders.Clear();
+                        m_snbClientApi.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
+                        m_snbClientApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                        requestUri = $"{m_snbClientApi.BaseAddress}/get-zone-byproduct";
                         var json = JsonConvert.SerializeObject(getZoneModal);
                         var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-                        var resultSnb = clientSnb.PostAsync(clientSnb.BaseAddress, content).Result;
+                        var resultSnb = m_snbClientApi.PostAsync(requestUri, content).Result;
                         var outputSnb = string.Empty;
                         if (resultSnb.IsSuccessStatusCode)
                         {
@@ -596,8 +670,8 @@ namespace web.sph.App_Code
                             pickupDate = DateTime.Today.AddDays(1);
                         }
 
-                        var client = new HttpClient();
-                        client.DefaultRequestHeaders.Add("X-User-Key", m_sdsSecretKey_PickupWebApi);
+                        m_sdsBaseUrl.DefaultRequestHeaders.Clear();
+                        m_sdsBaseUrl.DefaultRequestHeaders.Add("X-User-Key", m_sdsSecretKey_PickupWebApi);
                         var url = new StringBuilder();
                         url.Append(m_sdsApi_PickupWebApi);
                         url.Append($"?callerNameF={item.Pickup.ContactPerson}");
@@ -632,7 +706,7 @@ namespace web.sph.App_Code
                         url.Append($"&_readyF={timeReady}");
                         url.Append($"&_closeF={timeClose}");
 
-                        var output = await client.GetStringAsync($"{m_sdsBaseUrl}/{url.ToString()}");
+                        var output = await m_sdsBaseUrl.GetStringAsync($"{m_sdsBaseUrl.BaseAddress}/{url.ToString()}");
                         var json = JObject.Parse(output);
                         var sdsPickup = new SdsPickup(json);
                         if (sdsPickup.StatusCode == "00")
@@ -1088,15 +1162,14 @@ namespace web.sph.App_Code
 
             var queryString = $"size=100&q=Pickup.DateReady:[\"{start.ToString("yyyy-MM-dd")}\" TO \"{end.ToString("yyyy-MM-dd")}\"]";
 
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
-            var requestUri = new Uri($"{m_ostBaseUrl}/api/consigment-requests/paid-all/con-note-ready/true/picked-up/false?{queryString}");
-
-            var response = await client.GetAsync(requestUri);
+            m_ostBaseUrl.DefaultRequestHeaders.Clear();
+            m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
+            var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/consigment-requests/paid-all/con-note-ready/true/picked-up/false?{queryString}";
+            var response = await m_ostBaseUrl.GetAsync(requestUri);
 
             var output = string.Empty;
-            if (response.IsSuccessStatusCode) output = await response.Content.ReadAsStringAsync();            
-            else return Ok(new { success = false, status = $"RequestUri:{requestUri.ToString()} Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}" });            
+            if (response.IsSuccessStatusCode) output = await response.Content.ReadAsStringAsync();
+            else return Ok(new { success = false, status = $"RequestUri:{requestUri.ToString()} Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}" });
 
             var json = JObject.Parse(output).SelectToken("$._results");
             var consignmentRequests = new List<ConsigmentRequest>();
@@ -1151,8 +1224,8 @@ namespace web.sph.App_Code
                     ws.Cells[row, 2].Value = pickupDateAndTime.ToString();
                     ws.Cells[row, 3].Value = consignmentRequest.Pickup.Number;
                     ws.Cells[row, 4].Value = consignment.ConNote;
-                    ws.Cells[row, 5].Value = string.Format("{0:F3}", pickupAddress.ToString()); 
-                    ws.Cells[row, 6].Value = string.Format("{0:F3}", receiverAddress.ToString()); 
+                    ws.Cells[row, 5].Value = string.Format("{0:F3}", pickupAddress.ToString());
+                    ws.Cells[row, 6].Value = string.Format("{0:F3}", receiverAddress.ToString());
                     ws.Cells[row, 7].Value = "1";
                     ws.Cells[row, 8].Value = consignment.Produk.Weight;
                     ws.Cells[row, 9].Value = consignment.Bill.VolumetricWeight;
@@ -1289,14 +1362,21 @@ namespace web.sph.App_Code
             return numBaby;
         }
 
-        private SdsBabyConnote GetConnoteWithOrWithoutBaby(string orderId, int numBaby, int numParent)
+        private SdsBabyConnote GetConnoteWithOrWithoutBaby(string orderId, int numBaby, int numParent, bool IsInternational)
         {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("X-User-Key", m_sdsSecretKey_GenerateConnoteEst);
+            m_snbClientApi.DefaultRequestHeaders.Clear();
+            m_snbClientApi.DefaultRequestHeaders.Add("X-User-Key", m_sdsSecretKey_GenerateConnoteEst);
             var url = new StringBuilder();
             url.Append(m_sdsApi_GenerateConnoteEst);
             url.Append($"?numberOfItemParent={numParent.ToString()}");
-            url.Append("&PrefixParent=EU");
+            if (!IsInternational)
+            {
+                url.Append("&PrefixParent=EU");
+            }
+            else
+            {
+                url.Append("&PrefixParent=EQ");
+            }
             url.Append($"&numberOfItemBaby={numBaby.ToString()}");
             url.Append("&PrefixBaby=EB");
             //url.Append("&PrefixBaby=ED"); // stagging
@@ -1305,10 +1385,37 @@ namespace web.sph.App_Code
             url.Append($"&Orderid={orderId}");
             url.Append("&username=entt.ost");
 
-            var output = client.GetStringAsync($"{m_sdsBaseUrl}/{url.ToString()}").Result;
+            var output = m_snbClientApi.GetStringAsync($"{m_sdsBaseUrl.BaseAddress}/{url.ToString()}").Result;
             var json = JObject.Parse(output);
             var sdsBabyConnote = json.ToJson().DeserializeFromJson<SdsBabyConnote>();
             return sdsBabyConnote;
+        }
+
+        private async Task<SdsConnote> GetConnoteOst(string tempId, int totalConsignments, bool IsInternational)
+        {
+            m_sdsBaseUrl.DefaultRequestHeaders.Clear();
+            m_sdsBaseUrl.DefaultRequestHeaders.Add("X-User-Key", m_sdsSecretKey_GenerateConnote);
+            var url = new StringBuilder();
+            url.Append(m_sdsApi_GenerateConnote);
+            if (!IsInternational)
+            {
+                url.Append("?Prefix=EU");
+            }
+            else
+            {
+                url.Append("?Prefix=EQ");
+            }
+            url.Append("&ApplicationCode=OST");
+            url.Append("&Secretid=ost@1234");
+            url.Append("&username=entt.ost");
+            url.Append($"&numberOfItem={totalConsignments.ToString()}");
+            url.Append($"&Orderid={tempId}");
+
+            var output = await m_sdsBaseUrl.GetStringAsync($"{m_sdsBaseUrl.BaseAddress}/{url.ToString()}");
+
+            var json = JObject.Parse(output);
+            var sdsConnote = new SdsConnote(json);
+            return sdsConnote;
         }
     }
 
