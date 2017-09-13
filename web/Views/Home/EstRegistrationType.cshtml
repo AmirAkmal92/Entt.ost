@@ -6,9 +6,9 @@
 <div class="container">
     <br />
     <br />
-    <h1>EST Sign Up</h1>
+    <h1>New Business Customer Sign Up</h1>
     <div class="page-header">
-        <h2 style="color:#555"><strong>Sign up EST now for free and start shipping with us</strong></h2>
+        <h2 style="color:#555"><strong>Sign up for your own Pos Laju Business Customer account. It`s simple and free!</strong></h2>
     </div>
     <div class="row">
         <div class="col-md-2"></div>
@@ -24,11 +24,11 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <br />
-                    <a role="button" class="btn btn-sample" href="/ost-account/register-est">
+                    <a role="button" class="btn btn-sample" href="/ost-account/register-est" data-toggle="tooltip" data-placement="bottom" title="For customer who wants to open an account as a Pos Laju Business Customer.">
                         <i class="fa fa-user-plus"></i> New Registration
                     </a>
                     &nbsp;&nbsp;&nbsp;
-                    <a role="button" class="btn btn-sample" href="/ost-account/first-time-login/step/1">
+                    <a role="button" class="btn btn-sample" href="/ost-account/first-time-login/step/1" data-toggle="tooltip" data-placement="bottom" title="For existing Pos Laju Business Customer who already has an account with us but is using Pos Laju EziSend for the first time.">
                         <i class="fa fa-user-circle"></i> First Time Log In
                     </a>
                 </div>
@@ -39,3 +39,13 @@
         <div class="col-md-2"></div>
     </div>
 </div>
+
+@section Scripts
+  {
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+}
+
