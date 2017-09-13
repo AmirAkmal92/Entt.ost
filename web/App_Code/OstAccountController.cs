@@ -310,7 +310,7 @@ namespace web.sph.App_Code
                         UserEmail = registerModel.Email,
                         UserName = registerModel.UserName,
                         EmailSubject = "Create your password",
-                        EmailBody = $"Thank you for registering on {ConfigurationManager.ApplicationFullName}. To complete your account registration, you must create a new password.",
+                        EmailBody = $"Thank you for registering as a Pos Laju Business Customer user at {ConfigurationManager.ApplicationFullName}. To complete your account registration, you must create a new password.",
                     };
                     await SendForgotPasswordEmail(emailModel);
 
@@ -398,8 +398,8 @@ namespace web.sph.App_Code
             {
                 UserEmail = email,
                 UserName = email,
-                EmailSubject = "New EST Registration",
-                EmailBody = $"You're receiving this e-mail because you have requested to register a new account as EST user in {ConfigurationManager.ApplicationFullName}.",
+                EmailSubject = "New Pos Laju Business Customer Registration",
+                EmailBody = $"You're only one step away from becoming a Pos Laju Business Customer user at {ConfigurationManager.ApplicationFullName}. Just click on the following link to complete our online registration form and you`re almost there!"
             };
             await SendEstRegistrationEmail(emailModel);
 
