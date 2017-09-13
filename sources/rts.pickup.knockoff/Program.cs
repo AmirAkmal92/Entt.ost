@@ -46,8 +46,8 @@ namespace rts.pickup.knockoff
                 if (!item.IsKnockOff)
                 {
                     await NotifyEzisendPickup(item);
-                    
-                    await UpdateRtsPickupFormatStatusAsync(item);
+
+                    UpdateRtsPickupFormatStatusAsync(item);
 
                     await Task.Delay(2000);
                 }
@@ -86,7 +86,7 @@ namespace rts.pickup.knockoff
                         //Save
                         if (needSaving)
                         {
-                            await SaveChanges(consignmentRequestPickup, consignmentRequestCart);
+                             SaveChanges(consignmentRequestPickup, consignmentRequestCart);
                         }
                     }
                     else //Cart not exist
@@ -105,7 +105,7 @@ namespace rts.pickup.knockoff
                             //Save
                             if (needSaving)
                             {
-                                await SaveChanges(consignmentRequestPickup, consignmentRequestCart);
+                                 SaveChanges(consignmentRequestPickup, consignmentRequestCart);
                             }
                         }
                         else
@@ -139,7 +139,7 @@ namespace rts.pickup.knockoff
                         if (needSaving)
                         {
                             Console.WriteLine($"Pickup created");
-                            await SaveChanges(consignmentRequestPickup, consignmentRequestCart);
+                             SaveChanges(consignmentRequestPickup, consignmentRequestCart);
                         }
                     }
                     else //Cart not exist
@@ -171,7 +171,7 @@ namespace rts.pickup.knockoff
                             if (needSaving)
                             {
                                 Console.WriteLine($"Pickup created");
-                                await SaveChanges(consignmentRequestPickup, consignmentRequestCart);
+                                 SaveChanges(consignmentRequestPickup, consignmentRequestCart);
                             }
                         }
                         else
@@ -181,64 +181,6 @@ namespace rts.pickup.knockoff
                     }
                 }
             }
-        }
-
-        private List<RtsPickupFormat> GetRtsPickupFormats()
-        {
-            var rtsPickupFormats = new List<RtsPickupFormat>();
-
-            m_ostBaseUrl.DefaultRequestHeaders.Clear();
-            m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
-
-            bool rtsPickupFormatsApi = true;
-            int rtsPickupCount = 0;
-            int rtsPickupPage = 1;
-            int rtsPickupSize = 20;
-
-            while (rtsPickupFormatsApi)
-            {
-                var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/rts-pickup-formats/is-not-knockoff?size={rtsPickupSize}&page={rtsPickupPage}";
-                try
-                {
-                    var output = m_ostBaseUrl.GetStringAsync(requestUri).Result;
-                    try
-                    {
-                        var json = JObject.Parse(output).SelectToken("_results");
-                        foreach (var jtok in json)
-                        {
-                            var rtsPickupFormat = jtok.ToJson().DeserializeFromJson<RtsPickupFormat>();
-                            if (!rtsPickupFormat.IsKnockOff)
-                            {
-                                rtsPickupFormats.Add(rtsPickupFormat);
-                            }
-                        }
-                        rtsPickupCount = JObject.Parse(output).SelectToken("_count").Value<int>();
-                        rtsPickupPage = JObject.Parse(output).SelectToken("_page").Value<int>();
-                        rtsPickupSize = JObject.Parse(output).SelectToken("_size").Value<int>();
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Parsing Output");
-                        Console.WriteLine($"Status: {ex.Message}");
-                        Console.WriteLine("Aborting .....");
-                        rtsPickupFormatsApi = false;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"RequestUri: {requestUri.ToString()}");
-                    Console.WriteLine($"Status: {ex.Message}");
-                    Console.WriteLine("Aborting .....");
-                    rtsPickupFormatsApi = false;
-                }
-
-                if ((rtsPickupPage * rtsPickupSize) >= rtsPickupCount)
-                {
-                    rtsPickupFormatsApi = false;
-                }
-                rtsPickupPage++;
-            }
-            return rtsPickupFormats;
         }
 
         private static ConsigmentRequest CreateNewConsignmentRequestPickup(ConsigmentRequest consignmentRequestCart)
@@ -256,7 +198,7 @@ namespace rts.pickup.knockoff
             };
         }
 
-        private async Task SaveChanges(ConsigmentRequest consignmentRequestPickup, ConsigmentRequest consignmentRequestCart)
+        private void SaveChanges(ConsigmentRequest consignmentRequestPickup, ConsigmentRequest consignmentRequestCart)
         {
             Console.WriteLine($"Consignment Request Pickup Number: {consignmentRequestPickup.Pickup.Number}");
             Console.WriteLine($"======================");
@@ -274,8 +216,8 @@ namespace rts.pickup.knockoff
                 Console.WriteLine($"{countCart += 1}. {itemConsignments.ConNote}");
             }
 
-            await UpdateConsignmentRequestAsync(consignmentRequestPickup);
-            await UpdateConsignmentRequestAsync(consignmentRequestCart);
+            UpdateConsignmentRequestAsync(consignmentRequestPickup);
+            UpdateConsignmentRequestAsync(consignmentRequestCart);
 
             if (consignmentRequestCart.Consignments.Count == 0)
             {
@@ -285,7 +227,7 @@ namespace rts.pickup.knockoff
                 consignmentRequestCart.ReferenceNo = Guid.NewGuid().ToString();
                 consignmentRequestCart.GenerateConnoteCounter = 0;
 
-                await UpdateConsignmentRequestAsync(consignmentRequestCart);
+                UpdateConsignmentRequestAsync(consignmentRequestCart);
 
                 Console.WriteLine($"Cart Emptied");
             }
@@ -361,14 +303,32 @@ namespace rts.pickup.knockoff
             var result = new List<ConsigmentRequest>();
             var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/consigment-requests/pickup-no/{pickupNo}/pickup-status/{pickupStatus}";
 
-            var output = m_ostBaseUrl.GetStringAsync(requestUri).Result;
-
-            var json = JObject.Parse(output).SelectToken("_results");
-            foreach (var jtok in json)
+            try
             {
-                var consigmentRequest = jtok.ToJson().DeserializeFromJson<ConsigmentRequest>();
-                result.Add(consigmentRequest);
+                var output = m_ostBaseUrl.GetStringAsync(requestUri).Result;
+                try
+                {
+                    var json = JObject.Parse(output).SelectToken("_results");
+                    foreach (var jtok in json)
+                    {
+                        var consigmentRequest = jtok.ToJson().DeserializeFromJson<ConsigmentRequest>();
+                        result.Add(consigmentRequest);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Parsing Output");
+                    Console.WriteLine($"Status: {ex.Message}");
+                    Console.WriteLine("Aborting .....");
+                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+                Console.WriteLine($"Status: {ex.Message}");
+                Console.WriteLine("Aborting .....");
+            }
+
 
             return result;
         }
@@ -381,19 +341,93 @@ namespace rts.pickup.knockoff
             var result = new List<ConsigmentRequest>();
             var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/consigment-requests/account-no/{accountNo}/consignment-no/{consignmentNo}/pickup-status/{pickupstatus}";
 
-            var output = m_ostBaseUrl.GetStringAsync(requestUri).Result;
-
-            var json = JObject.Parse(output).SelectToken("_results");
-            foreach (var jtok in json)
+            try
             {
-                var consigmentRequest = jtok.ToJson().DeserializeFromJson<ConsigmentRequest>();
-                result.Add(consigmentRequest);
+                var output = m_ostBaseUrl.GetStringAsync(requestUri).Result;
+                try
+                {
+                    var json = JObject.Parse(output).SelectToken("_results");
+                    foreach (var jtok in json)
+                    {
+                        var consigmentRequest = jtok.ToJson().DeserializeFromJson<ConsigmentRequest>();
+                        result.Add(consigmentRequest);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Parsing Output");
+                    Console.WriteLine($"Status: {ex.Message}");
+                    Console.WriteLine("Aborting .....");
+                }
             }
-
+            catch (Exception ex)
+            {
+                Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+                Console.WriteLine($"Status: {ex.Message}");
+                Console.WriteLine("Aborting .....");
+            }
             return result;
         }
 
-        private async Task UpdateConsignmentRequestAsync(ConsigmentRequest consignmentRequest)
+        private List<RtsPickupFormat> GetRtsPickupFormats()
+        {
+            var rtsPickupFormats = new List<RtsPickupFormat>();
+
+            m_ostBaseUrl.DefaultRequestHeaders.Clear();
+            m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
+
+            bool rtsPickupFormatsApi = true;
+            int rtsPickupCount = 0;
+            int rtsPickupPage = 1;
+            int rtsPickupSize = 20;
+
+            while (rtsPickupFormatsApi)
+            {
+                var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/rts-pickup-formats/is-not-knockoff?size={rtsPickupSize}&page={rtsPickupPage}";
+                try
+                {
+                    var output = m_ostBaseUrl.GetStringAsync(requestUri).Result;
+                    try
+                    {
+                        var json = JObject.Parse(output).SelectToken("_results");
+                        foreach (var jtok in json)
+                        {
+                            var rtsPickupFormat = jtok.ToJson().DeserializeFromJson<RtsPickupFormat>();
+                            if (!rtsPickupFormat.IsKnockOff)
+                            {
+                                rtsPickupFormats.Add(rtsPickupFormat);
+                            }
+                        }
+                        rtsPickupCount = JObject.Parse(output).SelectToken("_count").Value<int>();
+                        rtsPickupPage = JObject.Parse(output).SelectToken("_page").Value<int>();
+                        rtsPickupSize = JObject.Parse(output).SelectToken("_size").Value<int>();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Parsing Output");
+                        Console.WriteLine($"Status: {ex.Message}");
+                        Console.WriteLine("Aborting .....");
+                        rtsPickupFormatsApi = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+                    Console.WriteLine($"Status: {ex.Message}");
+                    Console.WriteLine("Aborting .....");
+                    rtsPickupFormatsApi = false;
+                }
+
+                if ((rtsPickupPage * rtsPickupSize) >= rtsPickupCount)
+                {
+                    rtsPickupFormatsApi = false;
+                }
+                rtsPickupPage++;
+            }
+            return rtsPickupFormats;
+        }
+
+        private void UpdateConsignmentRequestAsync(ConsigmentRequest consignmentRequest)
         {
             m_ostBaseUrl.DefaultRequestHeaders.Clear();
             m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
@@ -402,7 +436,7 @@ namespace rts.pickup.knockoff
             var jsonContent = JsonConvert.SerializeObject(consignmentRequest);
             var content = new StringContent(jsonContent.ToString(), Encoding.UTF8, "application/json");
 
-            var response = await m_ostBaseUrl.PutAsync(requestUri, content);
+            var response = m_ostBaseUrl.PutAsync(requestUri, content).Result;
 
             Console.WriteLine($"RequestUri: {requestUri.ToString()}");
             Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
@@ -412,18 +446,18 @@ namespace rts.pickup.knockoff
             }
         }
 
-        private async Task UpdateRtsPickupFormatStatusAsync(RtsPickupFormat updateRtsPickupFormatStatus)
+        private void UpdateRtsPickupFormatStatusAsync(RtsPickupFormat updateRtsPickupFormatStatus)
         {
             updateRtsPickupFormatStatus.IsKnockOff = true;
 
             m_ostBaseUrl.DefaultRequestHeaders.Clear();
             m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
-            
+
             var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/rts-pickup-formats/{updateRtsPickupFormatStatus.Id.ToString()}";
             var jsonContent = JsonConvert.SerializeObject(updateRtsPickupFormatStatus);
             var content = new StringContent(jsonContent.ToString(), Encoding.UTF8, "application/json");
 
-            var response = await m_ostBaseUrl.PutAsync(requestUri, content);
+            var response = m_ostBaseUrl.PutAsync(requestUri, content).Result;
 
             Console.WriteLine($"RequestUri: {requestUri.ToString()}");
             Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
