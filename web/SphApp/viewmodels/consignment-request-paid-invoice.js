@@ -43,7 +43,6 @@ function (context, logger, router, system, koList, config, app) {
         },
         calculateDomesticAndInternational = function () {
             var domesticTotalPrice = 0;
-            var domesticSubTotalPrice = 0;
             var domesticGstTotal = 0;
             var internationalTotalPrice = 0;
             var internationalSubTotalPrice = 0;
@@ -53,17 +52,7 @@ function (context, logger, router, system, koList, config, app) {
                     if (!v.Produk().Price()) {
                         domesticTotalPrice += 0;
                     } else {
-                        domesticTotalPrice += v.Produk().Price();
-                    }
-                    if (!v.Bill().SubTotal3()) {
-                        domesticSubTotalPrice += 0;
-                    } else {
-                        domesticSubTotalPrice += v.Bill().SubTotal3();
-                    }
-                    if (!v.Bill().AddOnsD()[0].Charge()) {
-                        domesticGstTotal += 0;
-                    } else {
-                        domesticGstTotal += v.Bill().AddOnsD()[0].Charge();
+                        domesticTotalPrice += v.Bill().SubTotal3();
                     }
                 }
                 if (v.Produk().IsInternational()) {
@@ -84,9 +73,9 @@ function (context, logger, router, system, koList, config, app) {
                     }
                 }
             });
-            totalDomestic(domesticTotalPrice);
-            totalDomesticNoGst(domesticSubTotalPrice);
-            totalDomesticGst(domesticGstTotal);
+            totalDomesticNoGst(domesticTotalPrice);
+            totalDomesticGst(totalDomesticNoGst() * 0.06);
+            totalDomestic(totalDomesticNoGst() + totalDomesticGst());
             totalInternational(internationalTotalPrice);
             totalInternationalNoGst(internationalSubTotalPrice);
             totalInternationalGst(internationalGstTotal);

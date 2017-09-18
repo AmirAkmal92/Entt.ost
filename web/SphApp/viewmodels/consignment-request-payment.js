@@ -57,20 +57,25 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
         },
         calculateGrandTotal = function () {
             var total = 0;
+            var totalInternational = 0;
             _.each(entity().Consignments(), function (v) {
-                if (!v.Produk().Price()) {
+                if (!v.Bill().SubTotal3()) {
                     total += 0;
                 } else {
-                    total += v.Produk().Price();
-
+                    if (!v.Produk().IsInternational()) {
+                        total += v.Bill().SubTotal3();
+                    } else {
+                        totalInternational += v.Bill().SubTotal3();
+                    }
                 }
             });
+            total = total * 1.06;
             total += 5.3;
+            total += totalInternational;
             grandTotal(total.toFixed(2));
         },
         calculateDomesticAndInternational = function () {
             var domesticTotalPrice = 0;
-            var domesticSubTotalPrice = 0;
             var domesticGstTotal = 0;
             var internationalTotalPrice = 0;
             var internationalSubTotalPrice = 0;
@@ -80,12 +85,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     if (!v.Produk().Price()) {
                         domesticTotalPrice += 0;
                     } else {
-                        domesticTotalPrice += v.Produk().Price();
-                    }
-                    if (!v.Bill().SubTotal3()) {
-                        domesticSubTotalPrice += 0;
-                    } else {
-                        domesticSubTotalPrice += v.Bill().SubTotal3();
+                        domesticTotalPrice += v.Bill().SubTotal3();
                     }
                     if (!v.Bill().AddOnsD()[0].Charge()) {
                         domesticGstTotal += 0;
@@ -111,9 +111,9 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     }
                 }
             });
-            totalDomestic(domesticTotalPrice);
-            totalDomesticNoGst(domesticSubTotalPrice);
-            totalDomesticGst(domesticGstTotal);
+            totalDomesticNoGst(domesticTotalPrice);
+            totalDomesticGst(totalDomesticNoGst() * 0.06);
+            totalDomestic(totalDomesticNoGst() + totalDomesticGst());
             totalInternational(internationalTotalPrice);
             totalInternationalNoGst(internationalSubTotalPrice);
             totalInternationalGst(internationalGstTotal);

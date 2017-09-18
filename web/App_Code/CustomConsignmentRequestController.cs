@@ -60,10 +60,21 @@ namespace web.sph.App_Code
 
             // calculate total price
             decimal total = 0;
+            decimal totalInternational = 0;
             foreach (var consignment in lo.Source.Consignments)
             {
-                total += consignment.Produk.Price;
+                if (!consignment.Produk.IsInternational)
+                {
+                    total += consignment.Bill.SubTotal3;
+                }
+                else
+                {
+                    totalInternational += consignment.Bill.SubTotal3;
+                }
+
             }
+            total = total * 1.06m;
+            total += totalInternational;
             if (!item.Pickup.DateReady.Equals(DateTime.MinValue)
                 && !item.Pickup.DateClose.Equals(DateTime.MinValue))
             {

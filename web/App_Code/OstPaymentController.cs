@@ -45,16 +45,25 @@ namespace web.sph.App_Code
             var model = new PaymentSwitchRequestModel();
 
             decimal noGstPrice = 0;
+            decimal internationalPrice = 0;
             decimal gstPrice = 0;
             foreach (var consignment in item.Consignments)
             {
-                noGstPrice += consignment.Bill.SubTotal3;
-                gstPrice += consignment.Bill.AddOnsD[0].Charge;
+                if (!consignment.Produk.IsInternational)
+                {
+                    noGstPrice += consignment.Bill.SubTotal3;
+                    gstPrice += (consignment.Bill.SubTotal3 * 0.06m);
+                }
+                else
+                {
+                    internationalPrice += consignment.Bill.SubTotal3;
+                }
             }
 
             // pickup charge = RM5.00
             // pickup charge gst = RM0.30
             noGstPrice += 5.00m;
+            noGstPrice += internationalPrice;
             gstPrice += 0.30m;
 
             // required by payment gateway

@@ -6,6 +6,7 @@ function (context, logger, router, system, chart, config, app, app2) {
     var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
         errors = ko.observableArray(),
         id = ko.observable(),
+        totalGst = ko.observable(),
         headers = {},
         activate = function (entityId) {
             id(entityId);
@@ -27,9 +28,16 @@ function (context, logger, router, system, chart, config, app, app2) {
                         }
                     }
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
+                    var total = 0;
                     for (var i = 0; i < entity().Consignments().length; i++) {
                         var showDetails = ko.observable(false);
                         entity().Consignments()[i].showDetails = showDetails;
+                        if (entity().Consignments()[i].Bill().SubTotal3() != null) {
+                            if (!entity().Consignments()[i].Produk().IsInternational()) {
+                                total += entity().Consignments()[i].Bill().SubTotal3();
+                            }
+                        }
+                        totalGst(total * 0.06);
                     }
                 }, function (e) {
                     if (e.status == 404) {
@@ -164,7 +172,8 @@ function (context, logger, router, system, chart, config, app, app2) {
         toggleShowBusyLoadingDialog: toggleShowBusyLoadingDialog,
         entity: entity,
         printNddConnote: printNddConnote,
-        printEmsConnote: printEmsConnote
+        printEmsConnote: printEmsConnote,
+        totalGst: totalGst
     };
 
     return vm;

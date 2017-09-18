@@ -11,6 +11,7 @@ function (context, logger, router, system, chart, config, app) {
         pickupCloseHH = ko.observable(),
         pickupCloseMM = ko.observable(),
         grandTotal = ko.observable(),
+        totalGst = ko.observable(),
         errors = ko.observableArray(),
         id = ko.observable(),
         headers = {},
@@ -96,14 +97,21 @@ function (context, logger, router, system, chart, config, app) {
         },
         calculateGrandTotal = function () {
             var total = 0;
+            var totalInternational = 0;
             _.each(entity().Consignments(), function (v) {
-                if (!v.Produk().Price()) {
+                if (!v.Bill().SubTotal3()) {
                     total += 0;
                 } else {
-                    total += v.Produk().Price();
-
+                    if (!v.Produk().IsInternational()) {
+                        total += v.Bill().SubTotal3();
+                    } else {
+                        totalInternational += v.Bill().SubTotal3();
+                    }                    
                 }
             });
+            totalGst(total * 0.06);
+            total += totalGst();
+            total += totalInternational;
             if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
                 grandTotal(total.toFixed(2));
             } else {
@@ -127,6 +135,7 @@ function (context, logger, router, system, chart, config, app) {
         pickupCloseHH: pickupCloseHH,
         pickupCloseMM: pickupCloseMM,
         grandTotal: grandTotal,
+        totalGst: totalGst,
         entity: entity,
         isPickupDateTimeValid: isPickupDateTimeValid,
         showPickupScheduleForm: showPickupScheduleForm,
