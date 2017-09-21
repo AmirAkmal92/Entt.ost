@@ -208,7 +208,7 @@ namespace sap.fi.posting
                 }
 
                 //Locally calculate GST to avoid rounding #6275
-                domesticGstTotal = Decimal.Multiply(domesticSubTotal, 0.06m);
+                domesticGstTotal = GstCalculation(domesticSubTotal, 2);
                 internationalGstTotal = 0;
 
                 decimal pickupCharge = 5.00m;
@@ -466,6 +466,13 @@ namespace sap.fi.posting
             {
                 sw.WriteLine("EOF");
             }
+        }
+
+        private static decimal GstCalculation(decimal value, int rounded = 2)
+        {
+            var gstValue = value * 0.06m;
+            gstValue = decimal.Round(gstValue, rounded);
+            return gstValue;
         }
     }
 }

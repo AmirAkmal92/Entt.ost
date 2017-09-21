@@ -52,7 +52,6 @@ namespace web.sph.App_Code
                 if (!consignment.Produk.IsInternational)
                 {
                     noGstPrice += consignment.Bill.SubTotal3;
-                    gstPrice += (consignment.Bill.SubTotal3 * 0.06m);
                 }
                 else
                 {
@@ -60,6 +59,7 @@ namespace web.sph.App_Code
                 }
             }
 
+            gstPrice = CustomConsignmentRequestController.GstCalculation(noGstPrice, 2);
             // pickup charge = RM5.00
             // pickup charge gst = RM0.30
             noGstPrice += 5.00m;

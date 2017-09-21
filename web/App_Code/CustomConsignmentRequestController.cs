@@ -61,6 +61,7 @@ namespace web.sph.App_Code
             // calculate total price
             decimal total = 0;
             decimal totalInternational = 0;
+            decimal totalGst = 0;
             foreach (var consignment in lo.Source.Consignments)
             {
                 if (!consignment.Produk.IsInternational)
@@ -71,10 +72,10 @@ namespace web.sph.App_Code
                 {
                     totalInternational += consignment.Bill.SubTotal3;
                 }
-
             }
-            total = total * 1.06m;
+            totalGst = GstCalculation(total, 2);
             total += totalInternational;
+            total += totalGst;
             if (!item.Pickup.DateReady.Equals(DateTime.MinValue)
                 && !item.Pickup.DateClose.Equals(DateTime.MinValue))
             {
@@ -1273,6 +1274,21 @@ namespace web.sph.App_Code
                 await session.SubmitChanges("Default");
             }
             return Ok(new { success = true, status = "OK" });
+        }
+
+        [HttpGet]
+        [Route("calculate-gst/{value}/{rounded}")]
+        public IHttpActionResult CalculateGst(decimal value = 0.00m, int rounded = 2)
+        {
+            decimal gstValue = GstCalculation(value, rounded);
+            return Ok(gstValue);
+        }
+
+        public static decimal GstCalculation(decimal value, int rounded = 2)
+        {
+            var gstValue = value * 0.06m;
+            gstValue = decimal.Round(gstValue, rounded);
+            return gstValue;
         }
 
         private static async Task<Setting> GetSetting(string id)

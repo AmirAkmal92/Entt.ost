@@ -21,58 +21,19 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             return context.get("/api/consigment-requests/" + entityId)
                 .then(function (b, textStatus, xhr) {
                     entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
-                    calculateGrandTotal();
-                    calculateDomesticAndInternational();
                     crCart.activate();
                     if (entity().Payment().IsPaid()) {
                         app.showMessage("Shipment has been paid. You may proceed to new Shipment now.", "OST", ["Close"]).done(function () {
                             return router.navigate("consignment-request-cart/" + crCart.consignmentRequest().Id());
                         });
                     } else {
-                        if (grandTotal() != entity().Payment().TotalPrice()) {
-                            app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + entityId, "OST", ["Close"]).done(function () {
-                                return router.navigate("consignment-request-summary/" + entityId);
-                            });
-                        } else {
-                            return context.get("/ost-payment/ps-request/" + entityId).then(function (result) {
-                                if (result.success) {
-                                    appId(result.id);
-                                    appData(result.data);
-                                    appUrl(result.url);
-                                }
-                            }, function (e) {
-                                if (e.status == 404) {
-                                    app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + entityId, "OST", ["Close"]).done(function () {
-                                        return router.navigate("consignment-request-summary/" + entityId);
-                                    });
-                                }
-                            });
-                        }
+                        calculateDomesticAndInternational();
                     }
                 }, function (e) {
                     if (e.status == 404) {
                         app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "OST", ["Close"]);
                     }
                 });
-        },
-        calculateGrandTotal = function () {
-            var total = 0;
-            var totalInternational = 0;
-            _.each(entity().Consignments(), function (v) {
-                if (!v.Bill().SubTotal3()) {
-                    total += 0;
-                } else {
-                    if (!v.Produk().IsInternational()) {
-                        total += v.Bill().SubTotal3();
-                    } else {
-                        totalInternational += v.Bill().SubTotal3();
-                    }
-                }
-            });
-            total = total * 1.06;
-            total += 5.3;
-            total += totalInternational;
-            grandTotal(total.toFixed(2));
         },
         calculateDomesticAndInternational = function () {
             var domesticTotalPrice = 0;
@@ -111,12 +72,40 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     }
                 }
             });
-            totalDomesticNoGst(domesticTotalPrice);
-            totalDomesticGst(totalDomesticNoGst() * 0.06);
-            totalDomestic(totalDomesticNoGst() + totalDomesticGst());
-            totalInternational(internationalTotalPrice);
-            totalInternationalNoGst(internationalSubTotalPrice);
-            totalInternationalGst(internationalGstTotal);
+            context.get("/consignment-request/calculate-gst/" + domesticTotalPrice + "/2")
+                .done(function (result) {
+                    gstPrice = result;
+                    totalDomesticNoGst(domesticTotalPrice);
+                    totalDomesticGst(gstPrice);
+                    totalDomestic(totalDomesticNoGst() + totalDomesticGst());
+                    totalInternational(internationalTotalPrice);
+                    totalInternationalNoGst(internationalSubTotalPrice);
+                    totalInternationalGst(internationalGstTotal);
+                    grandTotal(totalDomestic() + totalInternationalNoGst() + totalInternationalGst() + 5.30);
+                    if (grandTotal() != entity().Payment().TotalPrice()) {
+                        app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + entityId, "OST", ["Close"]).done(function () {
+                            return router.navigate("consignment-request-summary/" + entityId);
+                        });
+                    } else {
+                        return context.get("/ost-payment/ps-request/" + id()).then(function (result) {
+                            if (result.success) {
+                                appId(result.id);
+                                appData(result.data);
+                                appUrl(result.url);
+                            }
+                        }, function (e) {
+                            if (e.status == 404) {
+                                app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + id(), "OST", ["Close"]).done(function () {
+                                    return router.navigate("consignment-request-summary/" + id());
+                                });
+                            }
+                        });
+                    }
+                }, function (e) {
+                    if (e.status == 404) {
+                        console.log("Cannot calculate gst at the moment.");
+                    }
+                });
         },
         paymentGatewayReminderDialog = function () {
             app.showMessage("You will be redirected to Pos Malaysia Payment Switch.<br /> Do not leave or refresh your browser until payment is successful.<br /> Please click 'Pay Now' again.", "OST", ["Close"]).done(function () {
