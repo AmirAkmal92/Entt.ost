@@ -1471,7 +1471,7 @@
             customerAccNum = (Model.designation == "Contract customer") ? Model.accountNo : "", //11
             recipientPhoneNum = Model.consignment.Penerima.ContactInformation.ContactNumber,    //12
             recipientEmail = Model.consignment.Penerima.ContactInformation.Email,               //13
-            weight = Model.consignment.Produk.Weight.ToString("0"),                             //14
+            weight = Model.consignment.Produk.Weight.ToString("0.000"),                         //14
             dimensionVol = $"{Model.consignment.Produk.Length.ToString("0")}" +                 //15
                            $"x{Model.consignment.Produk.Width.ToString("0")}" +
                            $"x{Model.consignment.Produk.Height.ToString("0")}",
