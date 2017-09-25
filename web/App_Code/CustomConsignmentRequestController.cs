@@ -132,10 +132,11 @@ namespace web.sph.App_Code
                         }
 
                         var sdsConnotesCollection = new List<SdsConnote>();
-
+                        var domesticAvailable = false;
                         //Get Connote for Domestic parcel(s)
                         if (totalConsignmentsDomestic > 0)
                         {
+                            domesticAvailable = true;
                             var tempId = GenerateOrderId(item);
                             SdsConnote sdsConnotes = await GetConnoteOst(tempId, totalConsignmentsDomestic, false);
                             if (sdsConnotes.StatusCode == "01")
@@ -183,20 +184,30 @@ namespace web.sph.App_Code
 
                         var sdsCounterDomestic = 0;
                         var sdsCounterInternational = 0;
-                        foreach (var consignment in item.Consignments)
+                        if (domesticAvailable)
                         {
-                            if (!consignment.Produk.IsInternational)
+                            foreach (var consignment in item.Consignments)
                             {
-                                consignment.ConNote = sdsConnotesCollection[0].ConnoteNumbers[sdsCounterDomestic];
-                                sdsCounterDomestic++;
+                                if (!consignment.Produk.IsInternational)
+                                {
+                                    consignment.ConNote = sdsConnotesCollection[0].ConnoteNumbers[sdsCounterDomestic];
+                                    sdsCounterDomestic++;
+                                }
+                                else if (consignment.Produk.IsInternational)
+                                {
+                                    consignment.ConNote = sdsConnotesCollection[1].ConnoteNumbers[sdsCounterInternational];
+                                    sdsCounterInternational++;
+                                }
                             }
-                            else if (consignment.Produk.IsInternational)
+                        }
+                        else
+                        {
+                            foreach (var consignment in item.Consignments)
                             {
-                                consignment.ConNote = sdsConnotesCollection[1].ConnoteNumbers[sdsCounterInternational];
+                                consignment.ConNote = sdsConnotesCollection[0].ConnoteNumbers[sdsCounterInternational];
                                 sdsCounterInternational++;
                             }
                         }
-
                         item.Payment.IsConNoteReady = true;
                         await SaveConsigmentRequest(item);
                     }
