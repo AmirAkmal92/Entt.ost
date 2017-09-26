@@ -283,7 +283,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 });
             },
             downloadLableConnotePDF = function (data) {
-                toggleShowBusyLoadingDialog("Generating Lable to *.PDF file");
+                toggleShowBusyLoadingDialog("Generating Lable to *.pdf file");
                 context.put("", "/ost/print-lable-download/consignment-requests/" + id() + "/consignments/" + data.WebId())
                     .fail(function (response) {
                         logger.error("There are errors in your entity, !!!");
@@ -298,7 +298,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     });
             },
             downloadLableConnotePDFAll = function (data) {
-                toggleShowBusyLoadingDialog("Generating All Lable to *.PDF file");
+                toggleShowBusyLoadingDialog("Generating All Lable to *.pdf file");
                 context.put("", "/ost/print-all-lable-download/consignment-requests/" + id())
                     .fail(function (response) {
                         logger.error("There are errors in your entity, !!!");
