@@ -1097,13 +1097,15 @@ namespace web.sph.App_Code
                     ws.Cells[row, 7].Value = consignment.Penerima.ContactInformation.ContactNumber;
                     ws.Cells[row, 8].Value = consignment.Penerima.ContactInformation.AlternativeContactNumber;
                     ws.Cells[row, 9].Value = consignment.Produk.Weight;
-                    ws.Cells[row, 10].Value = consignment.Produk.Width;
-                    ws.Cells[row, 11].Value = consignment.Produk.Length;
-                    ws.Cells[row, 12].Value = consignment.Produk.Height;
-                    ws.Cells[row, 13].Value = volumetricWeight;
-                    ws.Cells[row, 14].Value = productDescription;
-                    ws.Cells[row, 15].Value = consignment.Produk.Est.ShipperReferenceNo;
-                    ws.Cells[row, 16].Value = consignment.Produk.Est.ReceiverReferenceNo;
+                    ws.Cells[row, 10].Value = consignment.Bill.ActualWeight;
+                    ws.Cells[row, 11].Value = consignment.Produk.Width;
+                    ws.Cells[row, 12].Value = consignment.Produk.Length;
+                    ws.Cells[row, 13].Value = consignment.Produk.Height;
+                    ws.Cells[row, 14].Value = volumetricWeight;
+                    ws.Cells[row, 15].Value = consignment.Bill.VolumetricWeight;
+                    ws.Cells[row, 16].Value = productDescription;
+                    ws.Cells[row, 17].Value = consignment.Produk.Est.ShipperReferenceNo;
+                    ws.Cells[row, 18].Value = consignment.Produk.Est.ReceiverReferenceNo;
                 }
 
                 row++;
