@@ -25,10 +25,52 @@ namespace rts.pickup.knockoff
 
         static void Main(string[] args)
         {
+            //Console.WriteLine("Debug mode: Attached to process then click [ENTER]");
+            //Console.ReadLine();
+            var startDateTime = string.Empty;
+            var endDateTime = string.Empty;
+
+            if (args.Length == 2)
+            {
+                startDateTime = args[0];
+                endDateTime = args[1];
+
+                startDateTime = startDateTime + ":00+08:00";
+                endDateTime = endDateTime + ":00+08:00";
+            }
+
+            if (args.Length == 1)
+            {
+                //"unit:interval" //"days:1" //"hours:3" //"minutes:10"
+
+                var start = DateTime.Now;
+                var stop = DateTime.Now;
+
+                string[] splitArg = args[0].Split(':');
+                var range = int.Parse((splitArg[1]));
+
+                if (splitArg[0] == "days")
+                {
+                    start = stop.AddDays(-(range));
+                }
+                if (splitArg[0] == "hours")
+                {
+                    start = stop.AddHours(-(range));
+                }
+                if (splitArg[0] == "minutes")
+                {
+                    start = stop.AddMinutes(-(range));
+                }
+
+                startDateTime = start.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ssK");
+                endDateTime = stop.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ssK");
+            }
+
             try
             {
                 var program = new Program();
-                program.RunAsync().Wait();
+                program.RunAsync(startDateTime, endDateTime).Wait();
+                Console.WriteLine($"Finished...");
             }
             catch (Exception ex)
             {
@@ -36,212 +78,270 @@ namespace rts.pickup.knockoff
             }
         }
 
-        public async Task RunAsync()
+        public async Task RunAsync(string start, string end)
         {
-            List<RtsPickupFormat> rtsPickupFormats = GetRtsPickupFormats();
-            Console.WriteLine($"Total parcel(s) to be knockoff: {rtsPickupFormats.Count}pcs");
-
-            foreach (var item in rtsPickupFormats)
+            var allRtsPickupFormats = new List<RtsPickupFormat>();
+            if (!string.IsNullOrEmpty(start) || !string.IsNullOrEmpty(end))
             {
-                if (!item.IsKnockOff)
-                {
-                    await NotifyEzisendPickup(item);
-
-                    UpdateRtsPickupFormatStatusAsync(item);
-
-                    await Task.Delay(2000);
-                }
-            }
-        }
-
-        private async Task NotifyEzisendPickup(RtsPickupFormat item)
-        {
-            var consignmentRequestsPickup = new List<ConsigmentRequest>();
-            var consignmentRequestsCart = new List<ConsigmentRequest>();
-
-            //Check data receive from scanner
-            if (item.PickupNo == null || item.PickupNo == ""
-                || item.AccountNo == null || item.AccountNo == ""
-                || item.ConsignmentNo == null || item.ConsignmentNo == "")
-            {
-                Console.WriteLine($"Incomplete mandotary data.");
+                allRtsPickupFormats = await GetRtsPickupFormatsWithinRange(start, end);
             }
             else
             {
-                consignmentRequestsPickup = GetConsignmentRequest(item.PickupNo, "true");
-                if (consignmentRequestsPickup.Count > 0) //Pickup exist
+                allRtsPickupFormats = await GetRtsPickupFormats();
+            }
+            Console.WriteLine($"Total parcel(s) to be knockoff: {allRtsPickupFormats.Count}pcs");
+
+            var startAllRtsPickupFormats = true;
+            var countAllRtsPickupFormatsRemaining = 0;
+            var allRtsPickupFormatsRemaining = new List<RtsPickupFormat>();
+
+            if (allRtsPickupFormats.Count > 0)
+            {
+                while (startAllRtsPickupFormats)
                 {
-                    //Clone
-                    ConsigmentRequest consignmentRequestPickup = CloneConsignmentRequestPickup(consignmentRequestsPickup);
-
-                    consignmentRequestsCart = GetConsignmentRequest(item.PickupNo, "false");
-                    if (consignmentRequestsCart.Count > 0) //Cart exist
+                    if (countAllRtsPickupFormatsRemaining > 0)
                     {
-                        //Clone
-                        ConsigmentRequest consignmentRequestCart = CloneConsignmentRequestCart(consignmentRequestsCart);
-
-                        //Move
-                        var needSaving = MoveConsignmentFromCartToPickup(item.ConsignmentNo, item.ActualWeight, consignmentRequestCart, consignmentRequestPickup);
-
-                        //Save
-                        if (needSaving)
-                        {
-                             SaveChanges(consignmentRequestPickup, consignmentRequestCart);
-                        }
+                        allRtsPickupFormats = allRtsPickupFormatsRemaining.Clone();
+                        allRtsPickupFormatsRemaining = new List<RtsPickupFormat>();
+                        countAllRtsPickupFormatsRemaining = 0;
                     }
-                    else //Cart not exist
+
+                    var knockOffProcess = true;
+                    var knockOffProcessIndex = 0;
+                    var needSave = true;
+                    var consignmentRequestPickups = new List<ConsigmentRequest>();
+                    var consignmentRequestPickup = new ConsigmentRequest();
+                    var consignmentRequestShipments = new List<ConsigmentRequest>();
+                    var consignmentRequestShipment = new ConsigmentRequest();
+
+                    var allRtsPickupFormatsTmp = allRtsPickupFormats.Clone();
+
+                    while (knockOffProcess)
                     {
-                        //Fall through, there is no consignmentRequest with the scanner`s PickupNo
+                        var rtsPickupFormat = allRtsPickupFormatsTmp[knockOffProcessIndex];
 
-                        consignmentRequestsCart = GetConsignmentRequestByAccountNo(item.AccountNo, item.ConsignmentNo, "false");
-                        if (consignmentRequestsCart.Count > 0) //Cart exist (no pickupNo)
+                        if (knockOffProcessIndex == 0)
                         {
-                            //Clone
-                            ConsigmentRequest consignmentRequestCart = CloneConsignmentRequestCart(consignmentRequestsCart);
-
-                            //Move
-                            var needSaving = MoveConsignmentFromCartToPickup(item.ConsignmentNo, item.ActualWeight, consignmentRequestCart, consignmentRequestPickup);
-
-                            //Save
-                            if (needSaving)
+                            consignmentRequestShipments = await GetConsignmentRequestByAccountNoAsync(rtsPickupFormat.AccountNo, rtsPickupFormat.ConsignmentNo, "false");
+                            if (consignmentRequestShipments.Count > 0)
                             {
-                                 SaveChanges(consignmentRequestPickup, consignmentRequestCart);
+                                //Found Shipment
+                                consignmentRequestShipment = FoundConsignmentRequestShipment(consignmentRequestShipments);
+
+                                consignmentRequestPickups = await GetConsignmentRequestByPickupNoAndStatusAsync(rtsPickupFormat.PickupNo, "true");
+                                if (consignmentRequestPickups.Count > 0)
+                                {
+                                    //Found Pickup
+                                    consignmentRequestPickup = FoundConsignmentRequestPickup(consignmentRequestPickups);
+
+                                    //Move
+                                    var matchedConnote = MoveConsignmentsFromShipmentToPickup(rtsPickupFormat, consignmentRequestShipment, consignmentRequestPickup);
+
+                                    //update IsKnockOff
+                                    UpdateRtsPickupFormatStatusAsync(rtsPickupFormat);
+                                }
+                                else
+                                {
+                                    //F4
+                                    //Create Pickup
+                                    consignmentRequestPickup = CreateNewConsignmentRequestPickup(consignmentRequestShipment, rtsPickupFormat);
+
+                                    //Move
+                                    var matchedConnote = MoveConsignmentsFromShipmentToPickup(rtsPickupFormat, consignmentRequestShipment, consignmentRequestPickup);
+
+                                    //Set IsPickedUp
+                                    consignmentRequestPickup.Pickup.IsPickedUp = true;
+
+                                    //Set IsPaid
+                                    consignmentRequestPickup.Payment.IsPaid = true;
+
+                                    //update IsKnockOff
+                                    UpdateRtsPickupFormatStatusAsync(rtsPickupFormat);
+                                }
+                            }
+                            else
+                            {
+                                //F3
+                                needSave = false;
+
+                                //update IsKnockOff
+                                UpdateRtsPickupFormatStatusAsync(rtsPickupFormat);
                             }
                         }
                         else
                         {
-                            //Fall through
-                        }
-                    }
-                }
-                else //Pickup not exist
-                {
-                    consignmentRequestsCart = GetConsignmentRequest(item.PickupNo, "false");
-
-                    if (consignmentRequestsCart.Count > 0) //Cart exist
-                    {
-                        //Clone
-                        ConsigmentRequest consignmentRequestCart = CloneConsignmentRequestCart(consignmentRequestsCart);
-
-                        //Create
-                        ConsigmentRequest consignmentRequestPickup = CreateNewConsignmentRequestPickup(consignmentRequestCart);
-
-                        //Set IsPickedUp
-                        consignmentRequestPickup.Pickup.IsPickedUp = true;
-
-                        //Set IsPaid
-                        consignmentRequestPickup.Payment.IsPaid = true;
-
-                        //Move
-                        var needSaving = MoveConsignmentFromCartToPickup(item.ConsignmentNo, item.ActualWeight, consignmentRequestCart, consignmentRequestPickup);
-
-                        //Save
-                        if (needSaving)
-                        {
-                            Console.WriteLine($"Pickup created");
-                             SaveChanges(consignmentRequestPickup, consignmentRequestCart);
-                        }
-                    }
-                    else //Cart not exist
-                    {
-                        //Fall through, there is no consignmentRequest with the scanner`s PickupNo
-
-                        consignmentRequestsCart = GetConsignmentRequestByAccountNo(item.AccountNo, item.ConsignmentNo, "false");
-                        if (consignmentRequestsCart.Count > 0) //Cart exist (no pickupNo)
-                        {
-                            //Clone
-                            ConsigmentRequest consignmentRequestCart = CloneConsignmentRequestCart(consignmentRequestsCart);
-
-                            //Create
-                            ConsigmentRequest consignmentRequestPickup = CreateNewConsignmentRequestPickup(consignmentRequestCart);
-
-                            //Set Pickup.Number
-                            consignmentRequestPickup.Pickup.Number = item.PickupNo;
-
-                            //Set IsPickedUp
-                            consignmentRequestPickup.Pickup.IsPickedUp = true;
-
-                            //Set IsPaid
-                            consignmentRequestPickup.Payment.IsPaid = true;
-
-                            //Move
-                            var needSaving = MoveConsignmentFromCartToPickup(item.ConsignmentNo, item.ActualWeight, consignmentRequestCart, consignmentRequestPickup);
-
-                            //Save
-                            if (needSaving)
+                            //F2
+                            if (consignmentRequestPickup.Pickup.Number == rtsPickupFormat.PickupNo && consignmentRequestPickup.UserId == rtsPickupFormat.AccountNo)
                             {
-                                Console.WriteLine($"Pickup created");
-                                 SaveChanges(consignmentRequestPickup, consignmentRequestCart);
+                                //Move
+                                var matchedConnote = MoveConsignmentsFromShipmentToPickup(rtsPickupFormat, consignmentRequestShipment, consignmentRequestPickup);
+
+                                //update IsKnockOff
+                                UpdateRtsPickupFormatStatusAsync(rtsPickupFormat);
+                            }
+                            else
+                            {
+                                //F6
+                                //add to remaining list
+                                allRtsPickupFormatsRemaining.Add(rtsPickupFormat);
                             }
                         }
-                        else
+
+                        //RemoveCurrent
+                        allRtsPickupFormats.RemoveAt(0);
+
+                        if (knockOffProcessIndex > allRtsPickupFormatsTmp.Count || allRtsPickupFormats.Count == 0 || consignmentRequestShipment.Consignments.Count == 0)
                         {
-                            //Fall through
+                            //F8
+                            knockOffProcess = false;
+                            if (needSave)
+                            {
+                                await SaveChanges(consignmentRequestPickup, consignmentRequestShipment);
+                            }
+                            if (allRtsPickupFormats.Count > 0)
+                            {
+                                allRtsPickupFormatsRemaining = allRtsPickupFormats.Clone();
+                            }
+                            if (allRtsPickupFormatsRemaining.Count > 0) { countAllRtsPickupFormatsRemaining++; } else { /*F7*/ startAllRtsPickupFormats = false; }
                         }
+
+                        knockOffProcessIndex++;
                     }
                 }
             }
+            else
+            {
+                //F1
+            }
         }
 
-        private static ConsigmentRequest CreateNewConsignmentRequestPickup(ConsigmentRequest consignmentRequestCart)
+        private static ConsigmentRequest CreateNewConsignmentRequestPickup(ConsigmentRequest shipment, RtsPickupFormat rtsPickup)
         {
-            return new ConsigmentRequest()
+            var createNewPickup = new ConsigmentRequest()
             {
-                ReferenceNo = consignmentRequestCart.ReferenceNo,
-                UserId = consignmentRequestCart.UserId,
-                Designation = consignmentRequestCart.Designation,
-                Payment = consignmentRequestCart.Payment.Clone(),
-                Pickup = consignmentRequestCart.Pickup.Clone(),
-                GenerateConnoteCounter = consignmentRequestCart.GenerateConnoteCounter,
+                ReferenceNo = shipment.ReferenceNo,
+                UserId = shipment.UserId,
+                Designation = shipment.Designation,
+                Payment = shipment.Payment.Clone(),
+                Pickup = shipment.Pickup.Clone(),
+                GenerateConnoteCounter = shipment.GenerateConnoteCounter,
                 Id = Guid.NewGuid().ToString(),
                 WebId = Guid.NewGuid().ToString()
             };
+            createNewPickup.Pickup.Number = rtsPickup.PickupNo;
+
+            return createNewPickup;
         }
 
-        private void SaveChanges(ConsigmentRequest consignmentRequestPickup, ConsigmentRequest consignmentRequestCart)
+        private async Task<List<ConsigmentRequest>> GetConsignmentRequestByAccountNoAsync(string accountNo, string consignmentNo, string isPickedUp)
         {
-            Console.WriteLine($"Consignment Request Pickup Number: {consignmentRequestPickup.Pickup.Number}");
-            Console.WriteLine($"======================");
-            var countPickup = 0;
-            foreach (var itemConsignments in consignmentRequestPickup.Consignments)
+            m_ostBaseUrl.DefaultRequestHeaders.Clear();
+            m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
+            var result = new List<ConsigmentRequest>();
+            var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/consigment-requests/account-no/{accountNo}/consignment-no/{consignmentNo}/pickup-status/{isPickedUp}";
+            var response = await m_ostBaseUrl.GetAsync(requestUri);
+            var output = string.Empty;
+            if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine($"{countPickup += 1}. {itemConsignments.ConNote}");
+                Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+                Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
+                output = await response.Content.ReadAsStringAsync();
             }
-
-            Console.WriteLine($"Consignment Request Cart Reference No: {consignmentRequestCart.ReferenceNo}");
-            Console.WriteLine($"======================");
-            var countCart = 0;
-            foreach (var itemConsignments in consignmentRequestCart.Consignments)
+            else
             {
-                Console.WriteLine($"{countCart += 1}. {itemConsignments.ConNote}");
+                Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+                Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
+                return result;
             }
-
-            UpdateConsignmentRequestAsync(consignmentRequestPickup);
-            UpdateConsignmentRequestAsync(consignmentRequestCart);
-
-            if (consignmentRequestCart.Consignments.Count == 0)
+            var json = JObject.Parse(output).SelectToken("_results");
+            foreach (var jtok in json)
             {
-                //Empty Cart
-                consignmentRequestCart.Pickup = new Bespoke.Ost.ConsigmentRequests.Domain.Pickup();
-                consignmentRequestCart.Payment = new Bespoke.Ost.ConsigmentRequests.Domain.Payment();
-                consignmentRequestCart.ReferenceNo = Guid.NewGuid().ToString();
-                consignmentRequestCart.GenerateConnoteCounter = 0;
-
-                UpdateConsignmentRequestAsync(consignmentRequestCart);
-
-                Console.WriteLine($"Cart Emptied");
+                var consigmentRequest = jtok.ToJson().DeserializeFromJson<ConsigmentRequest>();
+                result.Add(consigmentRequest);
             }
+            return result;
         }
 
-        private static bool MoveConsignmentFromCartToPickup(string consignmentNo, decimal actualWeigth, ConsigmentRequest consignmentRequestCart, ConsigmentRequest consignmentRequestPickup)
+        private static ConsigmentRequest FoundConsignmentRequestShipment(List<ConsigmentRequest> shipments)
+        {
+            var shipment = new ConsigmentRequest()
+            {
+                ReferenceNo = shipments[0].ReferenceNo,
+                UserId = shipments[0].UserId,
+                Designation = shipments[0].Designation,
+                Payment = shipments[0].Payment.Clone(),
+                Pickup = shipments[0].Pickup.Clone(),
+                GenerateConnoteCounter = shipments[0].GenerateConnoteCounter,
+                Id = shipments[0].Id,
+                WebId = shipments[0].WebId,
+            };
+            foreach (var item in shipments[0].Consignments)
+            {
+                shipment.Consignments.Add(item);
+            }
+            return shipment;
+        }
+
+        private async Task<List<ConsigmentRequest>> GetConsignmentRequestByPickupNoAndStatusAsync(string pickupNo, string isPickedUp)
+        {
+            m_ostBaseUrl.DefaultRequestHeaders.Clear();
+            m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
+            var result = new List<ConsigmentRequest>();
+            var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/consigment-requests/pickup-no/{pickupNo}/pickup-status/{isPickedUp}";
+            var response = await m_ostBaseUrl.GetAsync(requestUri);
+            var output = string.Empty;
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+                Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
+                output = await response.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+                Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
+                return result;
+            }
+            var json = JObject.Parse(output).SelectToken("_results");
+            foreach (var jtok in json)
+            {
+                var consigmentRequest = jtok.ToJson().DeserializeFromJson<ConsigmentRequest>();
+                result.Add(consigmentRequest);
+            }
+            return result;
+        }
+
+        private static ConsigmentRequest FoundConsignmentRequestPickup(List<ConsigmentRequest> pickups)
+        {
+            var pickup = new ConsigmentRequest()
+            {
+                ReferenceNo = pickups[0].ReferenceNo,
+                UserId = pickups[0].UserId,
+                Designation = pickups[0].Designation,
+                Payment = pickups[0].Payment.Clone(),
+                Pickup = pickups[0].Pickup.Clone(),
+                GenerateConnoteCounter = pickups[0].GenerateConnoteCounter,
+                Id = pickups[0].Id,
+                WebId = pickups[0].WebId,
+            };
+            foreach (var item in pickups[0].Consignments)
+            {
+                pickup.Consignments.Add(item);
+            }
+
+            return pickup;
+        }
+
+        private static bool MoveConsignmentsFromShipmentToPickup(RtsPickupFormat rts, ConsigmentRequest shipment, ConsigmentRequest pickup)
         {
             var isMatch = false;
             var consignment = new Consignment();
-            foreach (var item in consignmentRequestCart.Consignments)
+            foreach (var item in shipment.Consignments)
             {
-                if (item.ConNote == consignmentNo)
+                if (item.ConNote == rts.ConsignmentNo)
                 {
-                    item.Bill.ActualWeight = actualWeigth;
+                    item.Bill.ActualWeight = rts.ActualWeight;
+                    item.Bill.VolumetricWeight = rts.ActualDimensionalWeight;
                     consignment = item;
                     isMatch = true;
                     break;
@@ -249,127 +349,53 @@ namespace rts.pickup.knockoff
             }
             if (isMatch)
             {
-                consignmentRequestCart.Consignments.Remove(consignment);
-                consignmentRequestPickup.Consignments.Add(consignment);
+                shipment.Consignments.Remove(consignment);
+                pickup.Consignments.Add(consignment);
             }
             return isMatch;
         }
 
-        private static ConsigmentRequest CloneConsignmentRequestCart(List<ConsigmentRequest> consignmentRequestsCart)
+        private async Task SaveChanges(ConsigmentRequest pickup, ConsigmentRequest shipment)
         {
-            var consignmentRequestCart = new ConsigmentRequest()
+            Console.WriteLine($"Consignment Request Pickup Number: {pickup.Pickup.Number}");
+            Console.WriteLine($"======================");
+            var listNumPickups = 0;
+            foreach (var consignment in pickup.Consignments)
             {
-                ReferenceNo = consignmentRequestsCart[0].ReferenceNo,
-                UserId = consignmentRequestsCart[0].UserId,
-                Designation = consignmentRequestsCart[0].Designation,
-                Payment = consignmentRequestsCart[0].Payment.Clone(),
-                Pickup = consignmentRequestsCart[0].Pickup.Clone(),
-                GenerateConnoteCounter = consignmentRequestsCart[0].GenerateConnoteCounter,
-                Id = consignmentRequestsCart[0].Id,
-                WebId = consignmentRequestsCart[0].WebId,
-            };
-            foreach (var item in consignmentRequestsCart[0].Consignments)
-            {
-                consignmentRequestCart.Consignments.Add(item);
+                Console.WriteLine($"{listNumPickups += 1}. {consignment.ConNote}");
             }
-            return consignmentRequestCart;
+
+            Console.WriteLine($"Consignment Request Shipment Reference No: {shipment.ReferenceNo}");
+            Console.WriteLine($"======================");
+            var listNumShipments = 0;
+            foreach (var consignment in shipment.Consignments)
+            {
+                Console.WriteLine($"{listNumShipments += 1}. {consignment.ConNote}");
+            }
+
+            if (shipment.Consignments.Count == 0)
+            {
+                //F5
+                shipment.Pickup = new Bespoke.Ost.ConsigmentRequests.Domain.Pickup();
+                shipment.Payment = new Bespoke.Ost.ConsigmentRequests.Domain.Payment();
+                shipment.ReferenceNo = Guid.NewGuid().ToString();
+                shipment.GenerateConnoteCounter = 0;
+
+                Console.WriteLine($"Shipment Emptied");
+            }
+
+            UpdateConsignmentRequestAsync(shipment);
+            UpdateConsignmentRequestAsync(pickup);
+
+            Console.WriteLine($"");
+            Console.WriteLine($". . .Saving Changes Consignment Request (Shipment). . .");
+            Console.WriteLine($". . .Saving Changes Consignment Request (Pickup). . .");
+            Console.WriteLine($"");
+
+            await Task.Delay(3000);
         }
 
-        private static ConsigmentRequest CloneConsignmentRequestPickup(List<ConsigmentRequest> consignmentRequestsPickup)
-        {
-            var consignmentRequestPickup = new ConsigmentRequest()
-            {
-                ReferenceNo = consignmentRequestsPickup[0].ReferenceNo,
-                UserId = consignmentRequestsPickup[0].UserId,
-                Designation = consignmentRequestsPickup[0].Designation,
-                Payment = consignmentRequestsPickup[0].Payment.Clone(),
-                Pickup = consignmentRequestsPickup[0].Pickup.Clone(),
-                GenerateConnoteCounter = consignmentRequestsPickup[0].GenerateConnoteCounter,
-                Id = consignmentRequestsPickup[0].Id,
-                WebId = consignmentRequestsPickup[0].WebId,
-            };
-            foreach (var item in consignmentRequestsPickup[0].Consignments)
-            {
-                consignmentRequestPickup.Consignments.Add(item);
-            }
-            return consignmentRequestPickup;
-        }
-
-        private List<ConsigmentRequest> GetConsignmentRequest(string pickupNo, string pickupStatus)
-        {
-            m_ostBaseUrl.DefaultRequestHeaders.Clear();
-            m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
-
-            var result = new List<ConsigmentRequest>();
-            var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/consigment-requests/pickup-no/{pickupNo}/pickup-status/{pickupStatus}";
-
-            try
-            {
-                var output = m_ostBaseUrl.GetStringAsync(requestUri).Result;
-                try
-                {
-                    var json = JObject.Parse(output).SelectToken("_results");
-                    foreach (var jtok in json)
-                    {
-                        var consigmentRequest = jtok.ToJson().DeserializeFromJson<ConsigmentRequest>();
-                        result.Add(consigmentRequest);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Parsing Output");
-                    Console.WriteLine($"Status: {ex.Message}");
-                    Console.WriteLine("Aborting .....");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"RequestUri: {requestUri.ToString()}");
-                Console.WriteLine($"Status: {ex.Message}");
-                Console.WriteLine("Aborting .....");
-            }
-
-
-            return result;
-        }
-
-        private List<ConsigmentRequest> GetConsignmentRequestByAccountNo(string accountNo, string consignmentNo, string pickupstatus)
-        {
-            m_ostBaseUrl.DefaultRequestHeaders.Clear();
-            m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
-
-            var result = new List<ConsigmentRequest>();
-            var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/consigment-requests/account-no/{accountNo}/consignment-no/{consignmentNo}/pickup-status/{pickupstatus}";
-
-            try
-            {
-                var output = m_ostBaseUrl.GetStringAsync(requestUri).Result;
-                try
-                {
-                    var json = JObject.Parse(output).SelectToken("_results");
-                    foreach (var jtok in json)
-                    {
-                        var consigmentRequest = jtok.ToJson().DeserializeFromJson<ConsigmentRequest>();
-                        result.Add(consigmentRequest);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Parsing Output");
-                    Console.WriteLine($"Status: {ex.Message}");
-                    Console.WriteLine("Aborting .....");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"RequestUri: {requestUri.ToString()}");
-                Console.WriteLine($"Status: {ex.Message}");
-                Console.WriteLine("Aborting .....");
-            }
-            return result;
-        }
-
-        private List<RtsPickupFormat> GetRtsPickupFormats()
+        private async Task<List<RtsPickupFormat>> GetRtsPickupFormats()
         {
             var rtsPickupFormats = new List<RtsPickupFormat>();
 
@@ -386,7 +412,7 @@ namespace rts.pickup.knockoff
                 var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/rts-pickup-formats/is-not-knockoff?size={rtsPickupSize}&page={rtsPickupPage}";
                 try
                 {
-                    var output = m_ostBaseUrl.GetStringAsync(requestUri).Result;
+                    var output = await m_ostBaseUrl.GetStringAsync(requestUri);
                     try
                     {
                         var json = JObject.Parse(output).SelectToken("_results");
@@ -427,6 +453,67 @@ namespace rts.pickup.knockoff
             return rtsPickupFormats;
         }
 
+        private async Task<List<RtsPickupFormat>> GetRtsPickupFormatsWithinRange(string start, string end)
+        {
+            var rtsPickupFormats = new List<RtsPickupFormat>();
+            m_ostBaseUrl.DefaultRequestHeaders.Clear();
+            m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
+
+            try
+            {
+                
+                var query = $@"{{
+    ""filter"":{{
+        ""bool"": {{
+            ""must"": [{{
+                ""range"":{{
+                    ""CreatedDate"":{{
+                        ""gte"" : ""{start}"",
+                        ""lte"" :  ""{end}""
+                        }}
+                    }}
+                }},
+                 {{
+                     ""term"":{{
+                         ""IsKnockOff"":""false""
+                     }}
+                 }}],
+                  ""must_not"": []
+        }}
+    }}
+}}";
+
+                var content = new StringContent(query.ToString(), Encoding.UTF8, "application/json");
+                var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/rts-pickup-formats/search";
+                var response = await m_ostBaseUrl.PostAsync(requestUri, content);
+                var output = string.Empty;
+
+                Console.WriteLine($"RequestUri: {requestUri.ToString()}");
+                Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
+                if (response.IsSuccessStatusCode)
+                {
+                    output = await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    Console.WriteLine("Aborting .....");
+                    return rtsPickupFormats;
+                }
+                var json = JObject.Parse(output).SelectToken("hits.hits");
+                foreach (var jtok in json)
+                {
+                    var tmpRtsPickupFormat = jtok.SelectToken("_source").ToJson().DeserializeFromJson<RtsPickupFormat>();
+                    rtsPickupFormats.Add(tmpRtsPickupFormat);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return rtsPickupFormats;
+        }
+
         private void UpdateConsignmentRequestAsync(ConsigmentRequest consignmentRequest)
         {
             m_ostBaseUrl.DefaultRequestHeaders.Clear();
@@ -446,15 +533,15 @@ namespace rts.pickup.knockoff
             }
         }
 
-        private void UpdateRtsPickupFormatStatusAsync(RtsPickupFormat updateRtsPickupFormatStatus)
+        private void UpdateRtsPickupFormatStatusAsync(RtsPickupFormat rtsPickupFormat)
         {
-            updateRtsPickupFormatStatus.IsKnockOff = true;
+            rtsPickupFormat.IsKnockOff = true;
 
             m_ostBaseUrl.DefaultRequestHeaders.Clear();
             m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
 
-            var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/rts-pickup-formats/{updateRtsPickupFormatStatus.Id.ToString()}";
-            var jsonContent = JsonConvert.SerializeObject(updateRtsPickupFormatStatus);
+            var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/rts-pickup-formats/{rtsPickupFormat.Id.ToString()}";
+            var jsonContent = JsonConvert.SerializeObject(rtsPickupFormat);
             var content = new StringContent(jsonContent.ToString(), Encoding.UTF8, "application/json");
 
             var response = m_ostBaseUrl.PutAsync(requestUri, content).Result;
@@ -463,7 +550,7 @@ namespace rts.pickup.knockoff
             Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
             if (!response.IsSuccessStatusCode)
             {
-                Console.WriteLine($"RtsPickupFormat cannot be updated Id: {updateRtsPickupFormatStatus.Id} Consignment No: {updateRtsPickupFormatStatus.ConsignmentNo}");
+                Console.WriteLine($"RtsPickupFormat cannot be updated Id: {rtsPickupFormat.Id} Consignment No: {rtsPickupFormat.ConsignmentNo}");
             }
         }
     }
