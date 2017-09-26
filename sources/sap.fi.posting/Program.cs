@@ -106,6 +106,7 @@ namespace sap.fi.posting
             foreach (var consigmentRequest in consigmentRequests)
             {
                 decimal domesticGrandTotal = 0;
+                decimal domesticSubTotal = 0;
                 decimal domesticBaseRateTotal = 0;
                 decimal domesticHandlingSurchargeTotal = 0;
                 decimal domesticFuelSurchargeTotal = 0;
@@ -115,6 +116,7 @@ namespace sap.fi.posting
                 int domesticInsuranceProductCount = 0;
 
                 decimal internationalGrandTotal = 0;
+                decimal internationalSubTotal = 0;
                 decimal internationalBaseRateTotal = 0;
                 decimal internationalHandlingSurchargeTotal = 0;
                 decimal internationalFuelSurchargeTotal = 0;
@@ -128,12 +130,14 @@ namespace sap.fi.posting
                     if (consigment.Produk.IsInternational)
                     {
                         internationalGrandTotal += consigment.Bill.Total;
+                        internationalSubTotal += consigment.Bill.SubTotal3; ;
                         internationalBaseRateTotal += consigment.Bill.BaseRate;
                         internationalProductCount += 1;
                     }
                     else
                     {
                         domesticGrandTotal += consigment.Bill.Total;
+                        domesticSubTotal += consigment.Bill.SubTotal3;
                         domesticBaseRateTotal += consigment.Bill.BaseRate;
                         domesticProductCount += 1;
                     }
@@ -203,6 +207,10 @@ namespace sap.fi.posting
                     }
                 }
 
+                //Locally calculate GST to avoid rounding #6275
+                domesticGstTotal = GstCalculation(domesticSubTotal, 2);
+                internationalGstTotal = 0;
+
                 decimal pickupCharge = 5.00m;
                 decimal pickupChargeGst = Decimal.Multiply(pickupCharge, 0.06m);
 
@@ -217,7 +225,8 @@ namespace sap.fi.posting
                     DocumentHeaderText = string.Empty,
                     PostingKey = "40",
                     AccountNumber = "273608",
-                    Amount = domesticGrandTotal + internationalGrandTotal + pickupCharge + pickupChargeGst,
+                    //Amount = domesticGrandTotal + internationalGrandTotal + pickupCharge + pickupChargeGst, //Locally calculate GST to avoid rounding #6275
+                    Amount = domesticSubTotal + domesticGstTotal + internationalSubTotal + internationalGstTotal + pickupCharge + pickupChargeGst,
                     CostCenter = "11523003",
                     Quantity = domesticProductCount + internationalProductCount,
                     TaxCode = "OS",
@@ -239,7 +248,7 @@ namespace sap.fi.posting
                     AccountNumber = "620301",
                     Amount = pickupCharge,
                     CostCenter = "11523003",
-                    Quantity = domesticProductCount,
+                    Quantity = 1,
                     TaxCode = "SR",
                     Assignment = consigmentRequest.ReferenceNo,
                     ReferenceKey = "C305101",
@@ -339,7 +348,7 @@ namespace sap.fi.posting
                     AccountNumber = "542402",
                     Amount = domesticGstTotal + pickupChargeGst,
                     CostCenter = "11523003",
-                    Quantity = domesticProductCount,
+                    Quantity = domesticProductCount + 1,
                     TaxCode = "SR",
                     Assignment = consigmentRequest.ReferenceNo,
                     ReferenceKey = "GSTS102",
@@ -457,6 +466,13 @@ namespace sap.fi.posting
             {
                 sw.WriteLine("EOF");
             }
+        }
+
+        private static decimal GstCalculation(decimal value, int rounded = 2)
+        {
+            var gstValue = value * 0.06m;
+            gstValue = decimal.Round(gstValue, rounded);
+            return gstValue;
         }
     }
 }

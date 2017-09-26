@@ -2,7 +2,24 @@
     ViewBag.Title = "Sign up";
     Layout = "_Layout.cshtml";
 }
+<style>
+    .or-box {
+        position: relative;
+        border-top: 1px solid #dfdfdf;
+        padding-top: 20px;
+        margin-top: 20px;
+    }
 
+    .or {
+        color: #666666;
+        background-color: #f5f5f5;
+        position: absolute;
+        text-align: center;
+        top: -10px;
+        width: 40px;
+        left: 45%;
+    }
+</style>
 <div class="container">
     <br />
     <br />
@@ -60,13 +77,24 @@
                             <label id="Agree-error" class="error" for="Agree" style="color: red; display:none; font-weight: 700;"></label> Yes, I agree.
                         </label>
                     </div>
-                    <button type="button" class="btn btn-primary" id="facebook-sign-in">
+                    <button type="button" class="btn btn-primary hidden-xs" id="facebook-sign-in">
                         <i class="fa fa-facebook"></i> Sign Up with Facebook
                     </button>
-                    <button type="button" class="btn btn-danger" id="google-sign-in">
+                    <button type="button" class="btn btn-danger hidden-xs" id="google-sign-in">
                         <i class="fa fa-google"></i> Sign Up with Google
                     </button>
-                    <button type="submit" class="btn btn-sample pull-right">Sign Up</button>
+                    <button type="submit" class="btn btn-sample pull-right hidden-xs">Sign Up</button>
+
+                    <button type="submit" class="btn btn-sample btn-block visible-xs">Sign Up</button>
+                    <div class="or-box visible-xs">
+                        <span class="or">Or</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block visible-xs" id="facebook-sign-in-mobile">
+                        <i class="fa fa-facebook"></i> Sign Up with Facebook
+                    </button>
+                    <button type="button" class="btn btn-danger btn-block visible-xs" id="google-sign-in-mobile">
+                        <i class="fa fa-google"></i> Sign Up with Google
+                    </button>
                     <br /><br /><br />
                     @if (!ViewBag.success)
                     {
@@ -137,4 +165,170 @@
             });
         });
     </script>
+
+    <!--google-->
+    <script>
+        var auth2;
+        var initGoogleClient = function () {
+            gapi.load('auth2', function () {
+                auth2 = gapi.auth2.init({
+                    client_id: '512305602332-8fjveri89cp2bk1q9drc2mlurfq1t958.apps.googleusercontent.com'
+                });
+                auth2.attachClickHandler(document.getElementById('google-sign-in'), {}, onSuccessGoogle, onFailureGoogle);
+                auth2.attachClickHandler(document.getElementById('google-sign-in-mobile'), {}, onSuccessGoogle, onFailureGoogle);
+            });
+        };
+        function onSuccessGoogle(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId());
+            console.log('Full Name: ' + profile.getName());
+            console.log('Email: ' + profile.getEmail());
+            console.log('Image URL: ' + profile.getImageUrl());
+            var id_token = googleUser.getAuthResponse().id_token;
+            handleSocialMedia({
+                Email: profile.getEmail(),
+                Name: profile.getName(),
+                Id: profile.getId(),
+                PictureUrl: profile.getImageUrl(),
+                Brand: "google",
+                IdToken: id_token
+            });
+        }
+        function onFailureGoogle(error) {
+            console.log(error);
+        }
+    </script>
+
+    <!--facebook-->
+    <script>
+        function loginFacebook() {
+            FB.login(function (response) {
+                if (response.status === 'connected') {
+                    onSuccessFacebook(response);
+                } else if (response.status === 'not_authorized') {
+                    onFailureFacebook();
+                } else {
+                    onFailureFacebook();
+                }
+            }, { scope: 'public_profile,email,user_photos' });
+        }
+        function onSuccessFacebook(r) {
+            console.log(r);
+            FB.api('me?fields=id,name,email,picture{url,height,width}', function (response) {
+                if (response && !response.error) {
+                    console.log('id: ' + response.id);
+                    console.log('name: ' + response.name);
+                    console.log('email: ' + response.email);
+                    console.log('picture url: ' + response.picture.data.url);
+                    handleSocialMedia({
+                        Email: response.email,
+                        Name: response.name,
+                        Id: response.id,
+                        PictureUrl: response.picture.data.url,
+                        Brand: "facebook",
+                        IdToken: r.authResponse.accessToken
+                    });
+                }
+            });
+        }
+        function onFailureFacebook() {
+
+        }
+    </script>
+    <script>
+        jQuery(document).ready(function () {
+            $("#login-form").validate({
+                rules: {
+                    UserName: {
+                        required: true
+                        //minlength: 6
+                    },
+                    Password: {
+                        required: true
+                        //minlength: 8
+                    }
+                },
+                messages: {
+                    UserName: {
+                        required: "Please provide username."
+                        //minlength: "Username must consist of at least 6 characters."
+                    },
+                    Password: {
+                        required: "Please provide a password."
+                        //minlength: "Your password must be at least 8 characters long."
+                    }
+                }
+            });
+            $("#facebook-sign-in").click(function () {
+                loginFacebook();
+            });
+            $("#facebook-sign-in-mobile").click(function () {
+                loginFacebook();
+            });
+            //function getParameterByName(name) {
+            //    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            //    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            //        results = regex.exec(location.search);
+            //    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            //}
+            //var retUrl = getParameterByName("ReturnUrl") + window.location.hash;
+            //$('input[name=ReturnUrl]').val(retUrl);
+        });
+        function handleSocialMedia(data) {
+            $.ajax({
+                type: "POST",
+                data: JSON.stringify(data),
+                url: "/ost-account/social-media-handle",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (a, b, c) {
+                    console.log(a);
+                    launchCustomModal(JSON.parse(a.responseText).message);
+                },
+                success: function (response) {
+                    console.log(response);
+                    if (response.success) {
+                        if (response.message.includes("authenticated")) {
+                            window.location = "/ost#";
+                        }
+                        if (response.message.includes("registered")) {
+                            window.location = "/ost-account/success?success=true&status=OK&operation=register";
+                        }
+                    } else {
+                        launchCustomModal(response.message);
+                    }
+                }
+            });
+        }
+        function launchCustomModal(modalText) {
+            $('#ost-custom-modal-text').text(modalText);
+            $('#ost-custom-modal').modal({
+                keyboard: true
+            });
+        }
+    </script>
+    <!--init google-->
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <script>initGoogleClient();</script>
+
+    <!--init facebook-->
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                //appId: '273791976367235', //localhost
+                appId: '239143563211423', //ost.pos.com.my
+                cookie: true,
+                xfbml: true,
+                version: 'v2.8'
+            });
+        };
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
 }

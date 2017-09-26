@@ -2,7 +2,23 @@
     ViewBag.Title = "Log in";
     Layout = "_Layout.cshtml";
 }
-
+<style>
+    .or-box {
+        position: relative;
+        border-top: 1px solid #dfdfdf;
+        padding-top: 20px;
+        margin-top: 20px;
+    }
+    .or {
+        color: #666666;
+        background-color: #f5f5f5;
+        position: absolute;
+        text-align: center;
+        top: -10px;
+        width: 40px;
+        left: 45%;
+    }
+</style>
 <div class="container">
     <br />
     <br />
@@ -15,7 +31,6 @@
         <div class="col-md-8">
             <div class="well" style="padding-top: 30px;">
                 <form class="form-signin" id="login-form" action="/ost-account/login" method="post">
-                    @*<h3>Log In</h3>*@
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
@@ -38,15 +53,26 @@
                             <input type="checkbox" name="RememberMe" id="RememberMe" /> Remember me
                         </label>
                     </div>
-                    <button type="button" class="btn btn-primary" id="facebook-sign-in">
+                    <button type="button" class="btn btn-primary hidden-xs" id="facebook-sign-in">
                         <i class="fa fa-facebook"></i> Facebook Sign In
                     </button>
-                    <button type="button" class="btn btn-danger" id="google-sign-in">
+                    <button type="button" class="btn btn-danger hidden-xs" id="google-sign-in">
                         <i class="fa fa-google"></i> Google Sign In
                     </button>
-                    <span class="pull-right">
+                    <span class="pull-right hidden-xs">
                         <button class="btn btn-sample" type="submit">Log In</button>
                     </span>
+
+                    <button class="btn btn-sample btn-block visible-xs" type="submit">Log In</button>
+                    <div class="or-box visible-xs">
+                        <span class="or">Or</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block visible-xs" id="facebook-sign-in-mobile">
+                        <i class="fa fa-facebook"></i> Facebook Sign In
+                    </button>
+                    <button type="button" class="btn btn-danger btn-block visible-xs" id="google-sign-in-mobile">
+                        <i class="fa fa-google"></i> Google Sign In
+                    </button>
                     <br /><br /><br />
                     <div class="form-group">
                         <strong>Forgot password?</strong>
@@ -106,6 +132,7 @@
                     client_id: '512305602332-8fjveri89cp2bk1q9drc2mlurfq1t958.apps.googleusercontent.com'
                 });
                 auth2.attachClickHandler(document.getElementById('google-sign-in'), {}, onSuccessGoogle, onFailureGoogle);
+                auth2.attachClickHandler(document.getElementById('google-sign-in-mobile'), {}, onSuccessGoogle, onFailureGoogle);
             });
         };
         function onSuccessGoogle(googleUser) {
@@ -194,6 +221,9 @@
                 }
             });
             $("#facebook-sign-in").click(function () {
+                loginFacebook();
+            });
+            $("#facebook-sign-in-mobile").click(function () {
                 loginFacebook();
             });
             //function getParameterByName(name) {

@@ -73,12 +73,21 @@ function (context, logger, router, system, koList, config, app) {
                     }
                 }
             });
-            totalDomesticNoGst(domesticTotalPrice);
-            totalDomesticGst(totalDomesticNoGst() * 0.06);
-            totalDomestic(totalDomesticNoGst() + totalDomesticGst());
-            totalInternational(internationalTotalPrice);
-            totalInternationalNoGst(internationalSubTotalPrice);
-            totalInternationalGst(internationalGstTotal);
+            var gstPrice = 0.00;
+            context.get("/consignment-request/calculate-gst/" + domesticTotalPrice + "/2")
+                .done(function (result) {
+                    gstPrice = result;
+                    totalDomesticNoGst(domesticTotalPrice);
+                    totalDomesticGst(gstPrice);
+                    totalDomestic(totalDomesticNoGst() + totalDomesticGst());
+                    totalInternational(internationalTotalPrice);
+                    totalInternationalNoGst(internationalSubTotalPrice);
+                    totalInternationalGst(internationalGstTotal);
+                }, function (e) {
+                    if (e.status == 404) {
+                        console.log("Cannot calculate gst at the moment.");
+                    }
+                });
         },
         attached = function (view) {
 

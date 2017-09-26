@@ -4412,7 +4412,7 @@
                 customerAccNum = (up.Designation == "Contract customer") ? Model.UserId : "",   //11
                 recipientPhoneNum = item.Penerima.ContactInformation.ContactNumber,             //12
                 recipientEmail = item.Penerima.ContactInformation.Email,                        //13
-                weight = item.Produk.Weight.ToString("0"),                                      //14
+                weight = item.Produk.Weight.ToString("0.000"),                                  //14
                 dimensionVol = $"{item.Produk.Length.ToString("0")}" +                          //15
                 $"x{item.Produk.Width.ToString("0")}" +
                                 $"x{item.Produk.Height.ToString("0")}",

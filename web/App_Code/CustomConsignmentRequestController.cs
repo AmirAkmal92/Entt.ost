@@ -61,6 +61,7 @@ namespace web.sph.App_Code
             // calculate total price
             decimal total = 0;
             decimal totalInternational = 0;
+            decimal totalGst = 0;
             foreach (var consignment in lo.Source.Consignments)
             {
                 if (!consignment.Produk.IsInternational)
@@ -71,10 +72,10 @@ namespace web.sph.App_Code
                 {
                     totalInternational += consignment.Bill.SubTotal3;
                 }
-
             }
-            total = total * 1.06m;
+            totalGst = GstCalculation(total, 2);
             total += totalInternational;
+            total += totalGst;
             if (!item.Pickup.DateReady.Equals(DateTime.MinValue)
                 && !item.Pickup.DateClose.Equals(DateTime.MinValue))
             {
@@ -131,10 +132,11 @@ namespace web.sph.App_Code
                         }
 
                         var sdsConnotesCollection = new List<SdsConnote>();
-
+                        var domesticAvailable = false;
                         //Get Connote for Domestic parcel(s)
                         if (totalConsignmentsDomestic > 0)
                         {
+                            domesticAvailable = true;
                             var tempId = GenerateOrderId(item);
                             SdsConnote sdsConnotes = await GetConnoteOst(tempId, totalConsignmentsDomestic, false);
                             if (sdsConnotes.StatusCode == "01")
@@ -182,20 +184,30 @@ namespace web.sph.App_Code
 
                         var sdsCounterDomestic = 0;
                         var sdsCounterInternational = 0;
-                        foreach (var consignment in item.Consignments)
+                        if (domesticAvailable)
                         {
-                            if (!consignment.Produk.IsInternational)
+                            foreach (var consignment in item.Consignments)
                             {
-                                consignment.ConNote = sdsConnotesCollection[0].ConnoteNumbers[sdsCounterDomestic];
-                                sdsCounterDomestic++;
+                                if (!consignment.Produk.IsInternational)
+                                {
+                                    consignment.ConNote = sdsConnotesCollection[0].ConnoteNumbers[sdsCounterDomestic];
+                                    sdsCounterDomestic++;
+                                }
+                                else if (consignment.Produk.IsInternational)
+                                {
+                                    consignment.ConNote = sdsConnotesCollection[1].ConnoteNumbers[sdsCounterInternational];
+                                    sdsCounterInternational++;
+                                }
                             }
-                            else if (consignment.Produk.IsInternational)
+                        }
+                        else
+                        {
+                            foreach (var consignment in item.Consignments)
                             {
-                                consignment.ConNote = sdsConnotesCollection[1].ConnoteNumbers[sdsCounterInternational];
+                                consignment.ConNote = sdsConnotesCollection[0].ConnoteNumbers[sdsCounterInternational];
                                 sdsCounterInternational++;
                             }
                         }
-
                         item.Payment.IsConNoteReady = true;
                         await SaveConsigmentRequest(item);
                     }
@@ -1085,13 +1097,15 @@ namespace web.sph.App_Code
                     ws.Cells[row, 7].Value = consignment.Penerima.ContactInformation.ContactNumber;
                     ws.Cells[row, 8].Value = consignment.Penerima.ContactInformation.AlternativeContactNumber;
                     ws.Cells[row, 9].Value = consignment.Produk.Weight;
-                    ws.Cells[row, 10].Value = consignment.Produk.Width;
-                    ws.Cells[row, 11].Value = consignment.Produk.Length;
-                    ws.Cells[row, 12].Value = consignment.Produk.Height;
-                    ws.Cells[row, 13].Value = volumetricWeight;
-                    ws.Cells[row, 14].Value = productDescription;
-                    ws.Cells[row, 15].Value = consignment.Produk.Est.ShipperReferenceNo;
-                    ws.Cells[row, 16].Value = consignment.Produk.Est.ReceiverReferenceNo;
+                    ws.Cells[row, 10].Value = consignment.Bill.ActualWeight;
+                    ws.Cells[row, 11].Value = consignment.Produk.Width;
+                    ws.Cells[row, 12].Value = consignment.Produk.Length;
+                    ws.Cells[row, 13].Value = consignment.Produk.Height;
+                    ws.Cells[row, 14].Value = volumetricWeight;
+                    ws.Cells[row, 15].Value = consignment.Bill.VolumetricWeight;
+                    ws.Cells[row, 16].Value = productDescription;
+                    ws.Cells[row, 17].Value = consignment.Produk.Est.ShipperReferenceNo;
+                    ws.Cells[row, 18].Value = consignment.Produk.Est.ReceiverReferenceNo;
                 }
 
                 row++;
@@ -1273,6 +1287,21 @@ namespace web.sph.App_Code
                 await session.SubmitChanges("Default");
             }
             return Ok(new { success = true, status = "OK" });
+        }
+
+        [HttpGet]
+        [Route("calculate-gst/{value}/{rounded}")]
+        public IHttpActionResult CalculateGst(decimal value = 0.00m, int rounded = 2)
+        {
+            decimal gstValue = GstCalculation(value, rounded);
+            return Ok(gstValue);
+        }
+
+        public static decimal GstCalculation(decimal value, int rounded = 2)
+        {
+            var gstValue = value * 0.06m;
+            gstValue = decimal.Round(gstValue, rounded);
+            return gstValue;
         }
 
         private static async Task<Setting> GetSetting(string id)
