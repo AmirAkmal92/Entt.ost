@@ -268,6 +268,50 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             printCommercialInvoice = function (data) {
                 window.open('/ost/print-commercial-invoice/consignment-requests/' + id() + '/consignments/' + data.WebId());
             },
+            printLableConnote = function (data) {
+                toggleShowBusyLoadingDialog("Submitting Lable to Thermal Printer");
+                context.put("", "/ost/print-lable/consignment-requests/" + id() + "/consignments/" + data.WebId() + "").always(function () {
+                    toggleShowBusyLoadingDialog("Done");
+                    app.showMessage("Lable successfully submitted to Thermal Printer.", "OST", ["Close"]);
+                });
+            },
+            printAllLableConnote = function (data) {
+                toggleShowBusyLoadingDialog("Submitting Lable to Thermal Printer");
+                context.put("", "/ost/print-all-lable/consignment-requests/" + id() + "").always(function () {
+                    toggleShowBusyLoadingDialog("Done");
+                    app.showMessage("Lable successfully submitted to Thermal Printer.", "OST", ["Close"]);
+                });
+            },
+            downloadLableConnotePDF = function (data) {
+                toggleShowBusyLoadingDialog("Generating Lable to *.PDF file");
+                context.put("", "/ost/print-lable-download/consignment-requests/" + id() + "/consignments/" + data.WebId())
+                    .fail(function (response) {
+                        logger.error("There are errors in your entity, !!!");
+                    })
+                    .then(function (result) {
+                        if (result.status === "OK") {
+                            if (result.success) {
+                                window.open("/print-excel/file-path-pdf/" + result.path + "/file-name/" + data.ConNote());
+                                toggleShowBusyLoadingDialog("Done");
+                            }
+                        }
+                    });
+            },
+            downloadLableConnotePDFAll = function (data) {
+                toggleShowBusyLoadingDialog("Generating All Lable to *.PDF file");
+                context.put("", "/ost/print-all-lable-download/consignment-requests/" + id())
+                    .fail(function (response) {
+                        logger.error("There are errors in your entity, !!!");
+                    })
+                    .then(function (result) {
+                        if (result.status === "OK") {
+                            if (result.success) {
+                                window.open("/print-excel/file-path-pdf/" + result.path + "/file-name/" + data.UserId());
+                                toggleShowBusyLoadingDialog("Done");
+                            }
+                        }
+                    });
+            },
             launchSchedulerDetailDialog = function () {
                 // always check for pickup location before scheduling
                 if (entity().Pickup().Address().Postcode() === undefined) {
@@ -467,6 +511,10 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             printNddConnote: printNddConnote,
             printEmsConnote: printEmsConnote,
             printCommercialInvoice: printCommercialInvoice,
+            printLableConnote: printLableConnote,
+            printAllLableConnote: printAllLableConnote,
+            downloadLableConnotePDF: downloadLableConnotePDF,
+            downloadLableConnotePDFAll: downloadLableConnotePDFAll,
             toggleShowBusyLoadingDialog: toggleShowBusyLoadingDialog,
             launchSchedulerDetailDialog: launchSchedulerDetailDialog,
             sumWeight: sumWeight,

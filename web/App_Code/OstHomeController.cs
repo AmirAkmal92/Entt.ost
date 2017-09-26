@@ -166,6 +166,128 @@ namespace web.sph.App_Code
         }
 
         [HttpPut]
+        [Route("print-lable-download/consignment-requests/{crId}/consignments/{cId}")]
+        public async Task<ActionResult> LableDownload(string crId, string cId)
+        {
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(crId);
+            var item = lo.Source;
+            var connote = new Consignment();
+            foreach (var consignment in item.Consignments)
+            {
+                if (consignment.WebId == cId)
+                {
+                    connote = consignment;
+                    break;
+                }
+            }
+            string zplCode = LableConnoteDetails(item, connote);
+            byte[] zpl = Encoding.UTF8.GetBytes(zplCode);
+            var request = (HttpWebRequest)WebRequest.Create("http://api.labelary.com/v1/printers/8dpmm/labels/4x6/0/"); //TODO make it variable
+            request.Method = "POST";
+            request.Accept = "application/pdf";
+            //request.Accept = "image/png"; //Get image output
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = zpl.Length;
+
+            var requestStream = request.GetRequestStream();
+            requestStream.Write(zpl, 0, zpl.Length);
+            requestStream.Close();
+
+            var path = Path.GetTempFileName() + ".pdf";
+            var response = (HttpWebResponse)request.GetResponse();
+            var responseStream = response.GetResponseStream();
+            var fileStream = System.IO.File.Create($@"web/Content/Files/Thermal_Label_{connote.ConNote}.pdf"); //Generate template file
+            var fileTempStream = System.IO.File.Create(path); //Generate temporary file
+            responseStream.CopyTo(fileStream);
+            responseStream.Close();
+            fileStream.Close();
+            fileTempStream.Close();
+
+            try
+            {
+                System.IO.File.Copy(fileStream.Name, fileTempStream.Name, true);
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, status = e.Message });
+            }
+            return Json(new { success = true, status = "OK", path = Path.GetFileName(path) });
+        }
+
+        [HttpPut]
+        [Route("print-all-lable-download/consignment-requests/{crId}")]
+        public async Task<ActionResult> AllLableDownload(string crId)
+        {
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(crId);
+            var item = lo.Source;
+            var countConnote = 1;
+
+            if (item.Designation == "Contract customer")
+            {
+                var itemsToRemove = new ConsigmentRequest();
+                foreach (var temp in item.Consignments)
+                {
+                    if (temp.ConNote == null)
+                    {
+                        itemsToRemove.Consignments.Add(temp);
+                    }
+                }
+
+                foreach (var itemRemove in itemsToRemove.Consignments)
+                {
+                    item.Consignments.Remove(itemRemove);
+                }
+
+                var zplCode = "";
+                foreach (var itemHasConnote in item.Consignments)
+                {
+                    if (countConnote <= 50)
+                    {
+                        zplCode += LableConnoteDetails(item, itemHasConnote);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    countConnote++;
+                }
+
+                byte[] zpl = Encoding.UTF8.GetBytes(zplCode);
+                var request = (HttpWebRequest)WebRequest.Create("http://api.labelary.com/v1/printers/8dpmm/labels/4x6/"); //TODO make it variable
+                request.Method = "POST";
+                request.Accept = "application/pdf";
+                //request.Accept = "image/png"; //Get image output
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = zpl.Length;
+
+                var requestStream = request.GetRequestStream();
+                requestStream.Write(zpl, 0, zpl.Length);
+                requestStream.Close();
+
+                var path = Path.GetTempFileName() + ".pdf";
+                var response = (HttpWebResponse)request.GetResponse();
+                var responseStream = response.GetResponseStream();
+                var fileStream = System.IO.File.Create($@"web/Content/Files/Thermal_Label_{item.UserId}.pdf"); //Generate template file
+                var fileTempStream = System.IO.File.Create(path); //Generate temporary file
+                responseStream.CopyTo(fileStream);
+                responseStream.Close();
+                fileStream.Close();
+                fileTempStream.Close();
+
+                try
+                {
+                    System.IO.File.Copy(fileStream.Name, fileTempStream.Name, true);
+                }
+                catch (Exception e)
+                {
+                    return Json(new { success = false, status = e.Message });
+                }
+                return Json(new { success = true, status = "OK", path = Path.GetFileName(path) });
+            }
+            return Json(new { success = false, status = "Error" });
+        }
+
+        [HttpPut]
         [Route("print-lable/consignment-requests/{crId}/consignments/{cId}")]
         public async Task<ActionResult> Lable(string crId, string cId)
         {
@@ -183,11 +305,12 @@ namespace web.sph.App_Code
 
             string zplCode = LableConnoteDetails(item, connote);
 
-            //Send direct to printer
-            var PrinterName = "TSC TTP-247"; //Set printer name here
+            //Send direct to printer. Suitable for stand-alone EziSend offline. Not for online EziSend.
+            //Set printer name here
+            var PrinterName = "TSC TTP-247"; //TODO: prompt direct from web client to choose printer. kalau boleh lah.
             bool result = RawPrinterHelper.SendStringToPrinter(PrinterName, zplCode.ToString(), connote.ConNote);
 
-            //Save as pdf for other purpose
+            //Save as pdf for other purposes
             HttpWebRequest request = GetLableConnotePDF(zplCode);
             try
             {
@@ -235,11 +358,12 @@ namespace web.sph.App_Code
                 {
                     string zplCode = LableConnoteDetails(item, itemHasConnote);
 
-                    //Send direct to printer
-                    var PrinterName = "TSC TTP-247"; //Set Printer Here
+                    //Send direct to printer. Suitable for stand-alone EziSend offline. Not for online EziSend.
+                    //Set printer name here
+                    var PrinterName = "TSC TTP-247"; //TODO: prompt direct from web client to choose printer kalau boleh lah
                     bool result = RawPrinterHelper.SendStringToPrinter(PrinterName, zplCode.ToString(), $"{countConnote} - {itemHasConnote.ConNote}");
 
-                    //Save as pdf for other purpose
+                    //Save as pdf for other purposes
                     HttpWebRequest request = GetLableConnotePDF(zplCode);
                     try
                     {
@@ -325,7 +449,7 @@ namespace web.sph.App_Code
             zplCode += "^LL1242";
             zplCode += "^LS0";
             zplCode += "^FT27,644^A0N,23,24^FH^FDKEPADA:^FS";
-            zplCode += "^FT27,672^A0N,23,24^FH^FD" + itemHasConnote.Penerima.CompanyName.ToUpper() + "^FS";
+            zplCode += "^FT27,672^A0N,23,24^FH^FD" + (!String.IsNullOrEmpty(itemHasConnote.Penerima.CompanyName) ? itemHasConnote.Penerima.CompanyName.ToUpper() : "") + "^FS";
             zplCode += "^FT27,700^A0N,23,24^FH^FD" + (itemHasConnote.Penerima.Address.Address1 + ", " + itemHasConnote.Penerima.Address.Address2).ToUpper() + "^FS";
             zplCode += "^FT27,728^A0N,23,24^FH^FD" + (!String.IsNullOrEmpty(penerimaAddressLine2) ? penerimaAddressLine2.ToUpper() : "") + "^FS";
             zplCode += "^FT27,756^A0N,23,24^FH^FD" + itemHasConnote.Penerima.Address.City.ToUpper() + "^FS";
