@@ -351,7 +351,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12" data-bind="if: consignment().Penerima().Address().Country() != 'MY' || consignment().Produk().Est().IsBorneo() == true">
+                            <div class="col-md-12" data-bind="if: consignment().Penerima().Address().Country() != 'MY' || consignment().Produk().Est().IsBorneo() == true || (consignment().Produk().Weight() > 50 && (consignment().Penerima().Address().State()=='Sarawak' || consignment().Penerima().Address().State()=='Sabah' || consignment().Penerima().Address().State()=='Wilayah Persekutuan Labuan') )">
                                 <h4>Customs Declaration</h4>
                                 <div class="caption-desc font-grey-cascade">Customs Declaration is compulsory for international parcel</div>
                                 <hr />
