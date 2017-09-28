@@ -207,12 +207,53 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 var notComplete = false;
                 var connotesFilled = false;
                 for (var i = 0; i < entity().Consignments().length; i++) {
-                    if (entity().Consignments()[i].Produk().Weight() == null || entity().Consignments()[i].Produk().Length() == null
-                        || entity().Consignments()[i].Produk().Width() == null || entity().Consignments()[i].Produk().Height() == null
-                        || entity().Consignments()[i].Penerima().Address().Postcode() == null) {
-                        notComplete = true;
-                        errorNum(i);
-                        break;
+                    if (entity().Consignments()[i].ConNote() == null) {
+                        if (entity().Consignments()[i].Produk().Weight() == null || entity().Consignments()[i].Produk().Length() == null
+                            || entity().Consignments()[i].Produk().Width() == null || entity().Consignments()[i].Produk().Height() == null
+                            || entity().Consignments()[i].Produk().ItemCategory() == null || entity().Consignments()[i].Produk().Width() == null
+                            || entity().Consignments()[i].Produk().Height() == null || entity().Consignments()[i].Produk().Length() == null
+
+                            || entity().Consignments()[i].Pemberi().ContactPerson() == null || entity().Consignments()[i].Pemberi().ContactInformation().ContactNumber() == null
+                            || entity().Consignments()[i].Pemberi().ContactInformation().Email() == null || entity().Consignments()[i].Pemberi().Address().City() == null
+                            || entity().Consignments()[i].Pemberi().Address().State() == null || entity().Consignments()[i].Pemberi().Address().Country() == null
+                            || entity().Consignments()[i].Pemberi().Address().Address1() == null || entity().Consignments()[i].Pemberi().Address().Address2() == null
+                            || entity().Consignments()[i].Pemberi().Address().State() == null || entity().Consignments()[i].Pemberi().Address().Country() == null
+
+                            || entity().Consignments()[i].Penerima().Address().Postcode() == null
+                            || entity().Consignments()[i].Penerima().ContactPerson() == null || entity().Consignments()[i].Penerima().ContactInformation().ContactNumber() == null
+                            || entity().Consignments()[i].Penerima().ContactInformation().Email() == null || entity().Consignments()[i].Penerima().Address().City() == null
+                            || entity().Consignments()[i].Penerima().Address().State() == null || entity().Consignments()[i].Penerima().Address().Country() == null
+                            || entity().Consignments()[i].Penerima().Address().Address1() == null || entity().Consignments()[i].Penerima().Address().Address2() == null
+                            || entity().Consignments()[i].Penerima().Address().State() == null || entity().Consignments()[i].Penerima().Address().Country() == null) {
+                            notComplete = true;
+                            errorNum(i);
+                            break;
+                        }
+                        if (entity().Consignments()[i].Penerima().Address().Country() != "MY") {
+                            if (entity().Consignments()[i].Produk().CustomDeclaration().ContentDescription1() == null
+                                || entity().Consignments()[i].Produk().CustomDeclaration().Quantity1() == null
+                                || entity().Consignments()[i].Produk().CustomDeclaration().Weight1() == null
+                                || entity().Consignments()[i].Produk().CustomDeclaration().Value1() == null
+                                || entity().Consignments()[i].Produk().CustomDeclaration().OriginCountry1() == null) {
+                                notComplete = true;
+                                errorNum(i);
+                                break;
+                            }
+                        } else {
+                            if ((entity().Consignments()[i].Penerima().Address().State() == "Sabah" || entity().Consignments()[i].Penerima().Address().State() == "Wilayah Persekutuan Labuan"
+                                || entity().Consignments()[i].Penerima().Address().State() == "Sarawak")
+                                && (entity().Consignments()[i].Produk().Weight() > 50)) {
+                                if (entity().Consignments()[i].Produk().CustomDeclaration().ContentDescription1() == null
+                                    || entity().Consignments()[i].Produk().CustomDeclaration().Quantity1() == null
+                                    || entity().Consignments()[i].Produk().CustomDeclaration().Weight1() == null
+                                    || entity().Consignments()[i].Produk().CustomDeclaration().Value1() == null
+                                    || entity().Consignments()[i].Produk().CustomDeclaration().OriginCountry1() == null) {
+                                    notComplete = true;
+                                    errorNum(i);
+                                    break;
+                                }
+                            }
+                        }
                     }
                 }
                 if (notComplete) {
