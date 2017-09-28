@@ -1,11 +1,6 @@
-﻿@using Bespoke.Sph.Domain
-@model web.sph.App_Code.printConnoteModel
+﻿@model web.sph.App_Code.printConnoteModel
 @{
     Layout = null;
-    var user = HttpContext.Current.User;
-    var username = user.Identity.Name;
-    var directory = new SphDataContext();
-    var up = directory.LoadOneAsync<UserProfile>(u => u.UserName == username).Result as UserProfile;
 }
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -29,7 +24,6 @@
     <link href="~/assets/admin/pages/css/invoice.min.css" rel="stylesheet" type="text/css" />
     <link href="~/assets/general/css/connotes.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL STYLES -->
-    <link rel="shortcut icon" href="favicon.ico" />
 </head>
 <!-- END HEAD -->
 <body>
@@ -58,11 +52,11 @@
                         <svg id="barcode"></svg><br />
                         @if (Model.consignment.IsMps)
                         {
-                        <span style="padding-left: 150px;font-size: 13px !important;"><b>1 / @Html.Raw(Model.consignment.BabyConnotesTotal)</b></span>
+                            <span style="padding-left: 150px;font-size: 13px !important;"><b>1 / @Html.Raw(Model.consignment.BabyConnotesTotal)</b></span>
                         }
                         else
                         {
-                        <span>&nbsp;</span>
+                            <span>&nbsp;</span>
                         }
                     </td>
                     <td class="td-hide">col-24</td>
@@ -88,13 +82,13 @@
                     <td class="td-hide">col-01</td>
                     <td class="td-hide">col-02</td>
                     <td class="td-hide">col-03</td>
-                    @if (up.Designation == "Contract customer")
-                    {
-                    <td colspan="10" style="padding-left: 16px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ShipperReferenceNo)</b></span><span style="padding-right:34px !important;" class="pull-right"><b>Account No. @Html.Raw(Model.accountNo)</b></span></td>
+                    @if (Model.designation == "Contract customer")
+            {
+                        <td colspan="10" style="padding-left: 16px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ShipperReferenceNo)</b></span><span style="padding-right:34px !important;" class="pull-right"><b>Account No. @Html.Raw(Model.accountNo)</b></span></td>
                     }
                     else
                     {
-                    <td colspan="10"><span>&nbsp;</span></td>
+                        <td colspan="10"><span>&nbsp;</span></td>
                     }
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-24</td>
@@ -110,20 +104,20 @@
                             <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address2.Substring(0, Model.consignment.Pemberi.Address.Address2.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address2.Length))</b></span><br />
                             @if (!String.IsNullOrEmpty(Model.consignment.Pemberi.Address.Address3))
                             {
-                            <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address3.Substring(0, Model.consignment.Pemberi.Address.Address3.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address3.Length))</b></span><br />
+                                <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address3.Substring(0, Model.consignment.Pemberi.Address.Address3.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address3.Length))</b></span><br />
 
                             }
                             else
                             {
-                            <span class="text-uppercase">&nbsp;</span><br />
+                                <span class="text-uppercase">&nbsp;</span><br />
                             }
                             @if (!String.IsNullOrEmpty(Model.consignment.Pemberi.Address.Address4))
                             {
-                            <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address4.Substring(0, Model.consignment.Pemberi.Address.Address4.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address4.Length))</b></span><br />
+                                <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address4.Substring(0, Model.consignment.Pemberi.Address.Address4.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address4.Length))</b></span><br />
                             }
                             else
                             {
-                            <span class="text-uppercase">&nbsp;</span><br />
+                                <span class="text-uppercase">&nbsp;</span><br />
                             }
                             <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.City)</b></span>
                             <br />
@@ -174,15 +168,15 @@
                         <address style="font-size: 11px;line-height: 2;margin-top: 6px;margin-bottom: 0px !important;">
                             @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
                             {
-                            <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</b></span><br />
-                            <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span><br />
-                            <span class="text-uppercase" style="padding-left: 69px;"><b>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
+                                <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</b></span><br />
+                                <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span><br />
+                                <span class="text-uppercase" style="padding-left: 69px;"><b>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
                             }
                             else
                             {
-                            <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
-                            <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
-                            <span class="text-uppercase" style="padding-left: 69px;">&nbsp;</span><br />
+                                <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
+                                <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
+                                <span class="text-uppercase" style="padding-left: 69px;">&nbsp;</span><br />
                             }
                         </address>
                     </td>
@@ -214,13 +208,13 @@
                     <td class="td-hide">col-01</td>
                     <td class="td-hide">col-02</td>
                     <td class="td-hide">col-03</td>
-                    @if (up.Designation == "Contract customer")
-                    {
-                    <td colspan="10" style="padding-left: 30px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ReceiverReferenceNo)</b></span></td>
+                    @if (Model.designation == "Contract customer")
+            {
+                        <td colspan="10" style="padding-left: 30px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ReceiverReferenceNo)</b></span></td>
                     }
                     else
                     {
-                    <td colspan="10"><span>&nbsp;</span></td>
+                        <td colspan="10"><span>&nbsp;</span></td>
                     }
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
@@ -239,20 +233,20 @@
                             <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address2.Substring(0, Model.consignment.Penerima.Address.Address2.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address2.Length))</b></span><br />
                             @if (!String.IsNullOrEmpty(Model.consignment.Penerima.Address.Address3))
                             {
-                            <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address3.Substring(0, Model.consignment.Penerima.Address.Address3.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address3.Length))</b></span><br />
+                                <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address3.Substring(0, Model.consignment.Penerima.Address.Address3.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address3.Length))</b></span><br />
 
                             }
                             else
                             {
-                            <span class="text-uppercase">&nbsp;</span><br />
+                                <span class="text-uppercase">&nbsp;</span><br />
                             }
                             @if (!String.IsNullOrEmpty(Model.consignment.Penerima.Address.Address4))
                             {
-                            <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address4.Substring(0, Model.consignment.Penerima.Address.Address4.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address4.Length))</b></span><br />
+                                <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address4.Substring(0, Model.consignment.Penerima.Address.Address4.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address4.Length))</b></span><br />
                             }
                             else
                             {
-                            <span class="text-uppercase">&nbsp;</span><br />
+                                <span class="text-uppercase">&nbsp;</span><br />
                             }
                             <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.City)</b></span><br />
                             <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.State)</b></span><br />
@@ -408,11 +402,11 @@
                         <svg id="barcode"></svg><br />
                         @if (Model.consignment.IsMps)
                         {
-                        <span style="padding-left: 150px;font-size: 13px !important;"><b>1 / @Html.Raw(Model.consignment.BabyConnotesTotal)</b></span>
+                            <span style="padding-left: 150px;font-size: 13px !important;"><b>1 / @Html.Raw(Model.consignment.BabyConnotesTotal)</b></span>
                         }
                         else
                         {
-                        <span>&nbsp;</span>
+                            <span>&nbsp;</span>
                         }
                     </td>
                     <td class="td-hide">col-24</td>
@@ -438,13 +432,13 @@
                     <td class="td-hide">col-01</td>
                     <td class="td-hide">col-02</td>
                     <td class="td-hide">col-03</td>
-                    @if (up.Designation == "Contract customer")
-                    {
-                    <td colspan="10" style="padding-left: 16px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ShipperReferenceNo)</b></span><span style="padding-right:34px !important;" class="pull-right"><b>Account No. @Html.Raw(Model.accountNo)</b></span></td>
+                    @if (Model.designation == "Contract customer")
+            {
+                        <td colspan="10" style="padding-left: 16px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ShipperReferenceNo)</b></span><span style="padding-right:34px !important;" class="pull-right"><b>Account No. @Html.Raw(Model.accountNo)</b></span></td>
                     }
                     else
                     {
-                    <td colspan="10"><span>&nbsp;</span></td>
+                        <td colspan="10"><span>&nbsp;</span></td>
                     }
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-24</td>
@@ -460,20 +454,20 @@
                             <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address2.Substring(0, Model.consignment.Pemberi.Address.Address2.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address2.Length))</b></span><br />
                             @if (!String.IsNullOrEmpty(Model.consignment.Pemberi.Address.Address3))
                             {
-                            <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address3.Substring(0, Model.consignment.Pemberi.Address.Address3.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address3.Length))</b></span><br />
+                                <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address3.Substring(0, Model.consignment.Pemberi.Address.Address3.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address3.Length))</b></span><br />
 
                             }
                             else
                             {
-                            <span class="text-uppercase">&nbsp;</span><br />
+                                <span class="text-uppercase">&nbsp;</span><br />
                             }
                             @if (!String.IsNullOrEmpty(Model.consignment.Pemberi.Address.Address4))
                             {
-                            <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address4.Substring(0, Model.consignment.Pemberi.Address.Address4.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address4.Length))</b></span><br />
+                                <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address4.Substring(0, Model.consignment.Pemberi.Address.Address4.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address4.Length))</b></span><br />
                             }
                             else
                             {
-                            <span class="text-uppercase">&nbsp;</span><br />
+                                <span class="text-uppercase">&nbsp;</span><br />
                             }
                             <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.City)</b></span>
                             <br />
@@ -524,15 +518,15 @@
                         <address style="font-size: 11px;line-height: 2;margin-top: 6px;margin-bottom: 0px !important;">
                             @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
                             {
-                            <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</b></span><br />
-                            <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span><br />
-                            <span class="text-uppercase" style="padding-left: 69px;"><b>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
+                                <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</b></span><br />
+                                <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span><br />
+                                <span class="text-uppercase" style="padding-left: 69px;"><b>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
                             }
                             else
                             {
-                            <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
-                            <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
-                            <span class="text-uppercase" style="padding-left: 69px;">&nbsp;</span><br />
+                                <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
+                                <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
+                                <span class="text-uppercase" style="padding-left: 69px;">&nbsp;</span><br />
                             }
                         </address>
                     </td>
@@ -564,13 +558,13 @@
                     <td class="td-hide">col-01</td>
                     <td class="td-hide">col-02</td>
                     <td class="td-hide">col-03</td>
-                    @if (up.Designation == "Contract customer")
-                    {
-                    <td colspan="10" style="padding-left: 30px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ReceiverReferenceNo)</b></span></td>
+                    @if (Model.designation == "Contract customer")
+            {
+                        <td colspan="10" style="padding-left: 30px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ReceiverReferenceNo)</b></span></td>
                     }
                     else
                     {
-                    <td colspan="10"><span>&nbsp;</span></td>
+                        <td colspan="10"><span>&nbsp;</span></td>
                     }
                     <td class="td-hide">col-14</td>
                     <td class="td-hide">col-15</td>
@@ -589,20 +583,20 @@
                             <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address2.Substring(0, Model.consignment.Penerima.Address.Address2.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address2.Length))</b></span><br />
                             @if (!String.IsNullOrEmpty(Model.consignment.Penerima.Address.Address3))
                             {
-                            <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address3.Substring(0, Model.consignment.Penerima.Address.Address3.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address3.Length))</b></span><br />
+                                <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address3.Substring(0, Model.consignment.Penerima.Address.Address3.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address3.Length))</b></span><br />
 
                             }
                             else
                             {
-                            <span class="text-uppercase">&nbsp;</span><br />
+                                <span class="text-uppercase">&nbsp;</span><br />
                             }
                             @if (!String.IsNullOrEmpty(Model.consignment.Penerima.Address.Address4))
                             {
-                            <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address4.Substring(0, Model.consignment.Penerima.Address.Address4.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address4.Length))</b></span><br />
+                                <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address4.Substring(0, Model.consignment.Penerima.Address.Address4.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address4.Length))</b></span><br />
                             }
                             else
                             {
-                            <span class="text-uppercase">&nbsp;</span><br />
+                                <span class="text-uppercase">&nbsp;</span><br />
                             }
                             <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.City)</b></span><br />
                             <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.State)</b></span><br />
@@ -763,11 +757,11 @@
                                 <svg id="barcode-@Html.Raw(countBaby)"></svg><br />
                                 @if (Model.consignment.IsMps)
                                 {
-                                <span style="padding-left: 70px;font-size: 13px !important;"><b>Master : @Html.Raw(Model.consignment.ConNote)  @Html.Raw(countBaby) / @Html.Raw(Model.consignment.BabyConnotesTotal)</b></span>
+                                    <span style="padding-left: 70px;font-size: 13px !important;"><b>Master : @Html.Raw(Model.consignment.ConNote)  @Html.Raw(countBaby) / @Html.Raw(Model.consignment.BabyConnotesTotal)</b></span>
                                 }
                                 else
                                 {
-                                <span>&nbsp;</span>
+                                    <span>&nbsp;</span>
                                 }
                             </td>
                             <td class="td-hide">col-24</td>
@@ -793,13 +787,13 @@
                             <td class="td-hide">col-01</td>
                             <td class="td-hide">col-02</td>
                             <td class="td-hide">col-03</td>
-                            @if (up.Designation == "Contract customer")
-                    {
-                            <td colspan="10" style="padding-left: 16px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ShipperReferenceNo)</b></span><span style="padding-right:34px !important;" class="pull-right"><b>Account No. @Html.Raw(Model.accountNo)</b></span></td>
+                            @if (Model.designation == "Contract customer")
+                            {
+                                <td colspan="10" style="padding-left: 16px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ShipperReferenceNo)</b></span><span style="padding-right:34px !important;" class="pull-right"><b>Account No. @Html.Raw(Model.accountNo)</b></span></td>
                             }
                             else
                             {
-                            <td colspan="10"><span>&nbsp;</span></td>
+                                <td colspan="10"><span>&nbsp;</span></td>
                             }
                             <td class="td-hide">col-14</td>
                             <td class="td-hide">col-24</td>
@@ -815,20 +809,20 @@
                                     <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address2.Substring(0, Model.consignment.Pemberi.Address.Address2.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address2.Length))</b></span><br />
                                     @if (!String.IsNullOrEmpty(Model.consignment.Pemberi.Address.Address3))
                                     {
-                                    <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address3.Substring(0, Model.consignment.Pemberi.Address.Address3.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address3.Length))</b></span><br />
+                                        <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address3.Substring(0, Model.consignment.Pemberi.Address.Address3.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address3.Length))</b></span><br />
 
                                     }
                                     else
                                     {
-                                    <span class="text-uppercase">&nbsp;</span><br />
+                                        <span class="text-uppercase">&nbsp;</span><br />
                                     }
                                     @if (!String.IsNullOrEmpty(Model.consignment.Pemberi.Address.Address4))
                                     {
-                                    <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address4.Substring(0, Model.consignment.Pemberi.Address.Address4.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address4.Length))</b></span><br />
+                                        <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address4.Substring(0, Model.consignment.Pemberi.Address.Address4.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address4.Length))</b></span><br />
                                     }
                                     else
                                     {
-                                    <span class="text-uppercase">&nbsp;</span><br />
+                                        <span class="text-uppercase">&nbsp;</span><br />
                                     }
                                     <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.City)</b></span>
                                     <br />
@@ -879,15 +873,15 @@
                                 <address style="font-size: 11px;line-height: 2;margin-top: 6px;margin-bottom: 0px !important;">
                                     @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
                                     {
-                                    <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</b></span><br />
-                                    <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span><br />
-                                    <span class="text-uppercase" style="padding-left: 69px;"><b>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
+                                        <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</b></span><br />
+                                        <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span><br />
+                                        <span class="text-uppercase" style="padding-left: 69px;"><b>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
                                     }
                                     else
                                     {
-                                    <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
-                                    <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
-                                    <span class="text-uppercase" style="padding-left: 69px;">&nbsp;</span><br />
+                                        <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
+                                        <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
+                                        <span class="text-uppercase" style="padding-left: 69px;">&nbsp;</span><br />
                                     }
                                 </address>
                             </td>
@@ -919,13 +913,13 @@
                             <td class="td-hide">col-01</td>
                             <td class="td-hide">col-02</td>
                             <td class="td-hide">col-03</td>
-                            @if (up.Designation == "Contract customer")
+                            @if (Model.designation == "Contract customer")
                     {
-                            <td colspan="10" style="padding-left: 30px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ReceiverReferenceNo)</b></span></td>
+                                <td colspan="10" style="padding-left: 30px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ReceiverReferenceNo)</b></span></td>
                             }
                             else
                             {
-                            <td colspan="10"><span>&nbsp;</span></td>
+                                <td colspan="10"><span>&nbsp;</span></td>
                             }
                             <td class="td-hide">col-14</td>
                             <td class="td-hide">col-15</td>
@@ -944,20 +938,20 @@
                                     <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address2.Substring(0, Model.consignment.Penerima.Address.Address2.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address2.Length))</b></span><br />
                                     @if (!String.IsNullOrEmpty(Model.consignment.Penerima.Address.Address3))
                                     {
-                                    <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address3.Substring(0, Model.consignment.Penerima.Address.Address3.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address3.Length))</b></span><br />
+                                        <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address3.Substring(0, Model.consignment.Penerima.Address.Address3.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address3.Length))</b></span><br />
 
                                     }
                                     else
                                     {
-                                    <span class="text-uppercase">&nbsp;</span><br />
+                                        <span class="text-uppercase">&nbsp;</span><br />
                                     }
                                     @if (!String.IsNullOrEmpty(Model.consignment.Penerima.Address.Address4))
                                     {
-                                    <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address4.Substring(0, Model.consignment.Penerima.Address.Address4.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address4.Length))</b></span><br />
+                                        <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address4.Substring(0, Model.consignment.Penerima.Address.Address4.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address4.Length))</b></span><br />
                                     }
                                     else
                                     {
-                                    <span class="text-uppercase">&nbsp;</span><br />
+                                        <span class="text-uppercase">&nbsp;</span><br />
                                     }
                                     <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.City)</b></span><br />
                                     <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.State)</b></span><br />
@@ -1143,13 +1137,13 @@
                             <td class="td-hide">col-01</td>
                             <td class="td-hide">col-02</td>
                             <td class="td-hide">col-03</td>
-                            @if (up.Designation == "Contract customer")
+                            @if (Model.designation == "Contract customer")
                     {
-                            <td colspan="10" style="padding-left: 16px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ShipperReferenceNo)</b></span><span style="padding-right:34px !important;" class="pull-right"><b>Account No. @Html.Raw(Model.accountNo)</b></span></td>
+                                <td colspan="10" style="padding-left: 16px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ShipperReferenceNo)</b></span><span style="padding-right:34px !important;" class="pull-right"><b>Account No. @Html.Raw(Model.accountNo)</b></span></td>
                             }
                             else
                             {
-                            <td colspan="10"><span>&nbsp;</span></td>
+                                <td colspan="10"><span>&nbsp;</span></td>
                             }
                             <td class="td-hide">col-14</td>
                             <td class="td-hide">col-24</td>
@@ -1165,20 +1159,20 @@
                                     <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address2.Substring(0, Model.consignment.Pemberi.Address.Address2.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address2.Length))</b></span><br />
                                     @if (!String.IsNullOrEmpty(Model.consignment.Pemberi.Address.Address3))
                                     {
-                                    <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address3.Substring(0, Model.consignment.Pemberi.Address.Address3.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address3.Length))</b></span><br />
+                                        <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address3.Substring(0, Model.consignment.Pemberi.Address.Address3.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address3.Length))</b></span><br />
 
                                     }
                                     else
                                     {
-                                    <span class="text-uppercase">&nbsp;</span><br />
+                                        <span class="text-uppercase">&nbsp;</span><br />
                                     }
                                     @if (!String.IsNullOrEmpty(Model.consignment.Pemberi.Address.Address4))
                                     {
-                                    <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address4.Substring(0, Model.consignment.Pemberi.Address.Address4.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address4.Length))</b></span><br />
+                                        <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.Address4.Substring(0, Model.consignment.Pemberi.Address.Address4.Length > 36 ? 36 : Model.consignment.Pemberi.Address.Address4.Length))</b></span><br />
                                     }
                                     else
                                     {
-                                    <span class="text-uppercase">&nbsp;</span><br />
+                                        <span class="text-uppercase">&nbsp;</span><br />
                                     }
                                     <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Pemberi.Address.City)</b></span>
                                     <br />
@@ -1229,15 +1223,15 @@
                                 <address style="font-size: 11px;line-height: 2;margin-top: 6px;margin-bottom: 0px !important;">
                                     @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
                                     {
-                                    <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</b></span><br />
-                                    <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span><br />
-                                    <span class="text-uppercase" style="padding-left: 69px;"><b>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
+                                        <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</b></span><br />
+                                        <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span><br />
+                                        <span class="text-uppercase" style="padding-left: 69px;"><b>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
                                     }
                                     else
                                     {
-                                    <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
-                                    <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
-                                    <span class="text-uppercase" style="padding-left: 69px;">&nbsp;</span><br />
+                                        <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
+                                        <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
+                                        <span class="text-uppercase" style="padding-left: 69px;">&nbsp;</span><br />
                                     }
                                 </address>
                             </td>
@@ -1269,13 +1263,13 @@
                             <td class="td-hide">col-01</td>
                             <td class="td-hide">col-02</td>
                             <td class="td-hide">col-03</td>
-                            @if (up.Designation == "Contract customer")
+                            @if (Model.designation == "Contract customer")
                     {
-                            <td colspan="10" style="padding-left: 30px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ReceiverReferenceNo)</b></span></td>
+                                <td colspan="10" style="padding-left: 30px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ReceiverReferenceNo)</b></span></td>
                             }
                             else
                             {
-                            <td colspan="10"><span>&nbsp;</span></td>
+                                <td colspan="10"><span>&nbsp;</span></td>
                             }
                             <td class="td-hide">col-14</td>
                             <td class="td-hide">col-15</td>
@@ -1294,20 +1288,20 @@
                                     <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address2.Substring(0, Model.consignment.Penerima.Address.Address2.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address2.Length))</b></span><br />
                                     @if (!String.IsNullOrEmpty(Model.consignment.Penerima.Address.Address3))
                                     {
-                                    <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address3.Substring(0, Model.consignment.Penerima.Address.Address3.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address3.Length))</b></span><br />
+                                        <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address3.Substring(0, Model.consignment.Penerima.Address.Address3.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address3.Length))</b></span><br />
 
                                     }
                                     else
                                     {
-                                    <span class="text-uppercase">&nbsp;</span><br />
+                                        <span class="text-uppercase">&nbsp;</span><br />
                                     }
                                     @if (!String.IsNullOrEmpty(Model.consignment.Penerima.Address.Address4))
                                     {
-                                    <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address4.Substring(0, Model.consignment.Penerima.Address.Address4.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address4.Length))</b></span><br />
+                                        <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.Address4.Substring(0, Model.consignment.Penerima.Address.Address4.Length > 36 ? 36 : Model.consignment.Penerima.Address.Address4.Length))</b></span><br />
                                     }
                                     else
                                     {
-                                    <span class="text-uppercase">&nbsp;</span><br />
+                                        <span class="text-uppercase">&nbsp;</span><br />
                                     }
                                     <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.City)</b></span><br />
                                     <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Penerima.Address.State)</b></span><br />
