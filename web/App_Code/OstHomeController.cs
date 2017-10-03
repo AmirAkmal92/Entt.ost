@@ -486,14 +486,14 @@ namespace web.sph.App_Code
             zplCode += "^FT402,431^A0N,31,31^FH^FDAKAUN NO :^FS";
             zplCode += "^FT351,605^A0N,17,16^FH^FDTEL2: " + itemHasConnote.Pemberi.ContactInformation.AlternativeContactNumber + "^FS";
             zplCode += "^FT25,605^A0N,17,16^FH^FDTEL: " + itemHasConnote.Pemberi.ContactInformation.ContactNumber + "^FS";
-            zplCode += "^FT29,458^A0N,17,16^FH^FD" + itemHasConnote.Pemberi.CompanyName.ToUpper() + "^FS";
+            zplCode += "^FT29,458^A0N,17,16^FH^FD" + (!String.IsNullOrEmpty(itemHasConnote.Pemberi.CompanyName) ? itemHasConnote.Pemberi.CompanyName.ToUpper() : "") + "^FS";
             zplCode += "^FT29,479^A0N,17,16^FH^FD" + (itemHasConnote.Pemberi.Address.Address1 + ", " + itemHasConnote.Pemberi.Address.Address2).ToUpper() + "^FS";
             zplCode += "^FT29,500^A0N,17,16^FH^FD" + (!String.IsNullOrEmpty(pemberiAddressLine2) ? pemberiAddressLine2.ToUpper() : "") + "^FS";
             zplCode += "^FT29,521^A0N,17,16^FH^FD" + itemHasConnote.Pemberi.Address.City.ToUpper() + "^FS";
             zplCode += "^FT29,542^A0N,17,16^FH^FD" + itemHasConnote.Pemberi.Address.State.ToUpper() + "^FS";
             zplCode += "^FT29,563^A0N,17,16^FH^FD" + itemHasConnote.Pemberi.Address.Postcode + "^FS";
             zplCode += "^FT31,1043^A0N,17,16^FH^FDKepada:^FS";
-            zplCode += "^FT31,1064^A0N,17,16^FH^FD" + itemHasConnote.Penerima.CompanyName.ToUpper() + "^FS";
+            zplCode += "^FT31,1064^A0N,17,16^FH^FD" + (!String.IsNullOrEmpty(itemHasConnote.Penerima.CompanyName) ? itemHasConnote.Penerima.CompanyName.ToUpper() : "") + "^FS";
             zplCode += "^FT31,1085^A0N,17,16^FH^FD" + (itemHasConnote.Penerima.Address.Address1 + ", " + itemHasConnote.Penerima.Address.Address2).ToUpper() + "^FS";
             zplCode += "^FT31,1106^A0N,17,16^FH^FD" + (!String.IsNullOrEmpty(penerimaAddressLine2) ? penerimaAddressLine2.ToUpper() : "") + "^FS";
             zplCode += "^FT31,1127^A0N,17,16^FH^FD" + itemHasConnote.Penerima.Address.City.ToUpper() + "^FS";
