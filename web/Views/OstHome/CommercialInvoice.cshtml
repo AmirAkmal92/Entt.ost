@@ -1,8 +1,9 @@
-﻿@model web.sph.App_Code.printConnoteModel
+﻿@model Bespoke.Ost.ConsigmentRequests.Domain.Consignment
 @{
     Layout = null;
-    var totalInvoiceValue = Model.consignment.Produk.CustomDeclaration.Value1 + Model.consignment.Produk.CustomDeclaration.Value2 + Model.consignment.Produk.CustomDeclaration.Value3;
-    var totalWeight = Model.consignment.Produk.CustomDeclaration.Weight1 + Model.consignment.Produk.CustomDeclaration.Weight2 + Model.consignment.Produk.CustomDeclaration.Weight3;
+    var totalInvoiceValue = Model.Produk.CustomDeclaration.Value1 + Model.Produk.CustomDeclaration.Value2 + Model.Produk.CustomDeclaration.Value3;
+    var totalWeight = Model.Produk.CustomDeclaration.Weight1 + Model.Produk.CustomDeclaration.Weight2 + Model.Produk.CustomDeclaration.Weight3;
+    var dimensionalWeight = (Model.Produk.Length * Model.Produk.Width * Model.Produk.Height) / 6000;
 }
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -69,14 +70,14 @@
                         <div class="col-xs-4">
                             <h3>Sender:</h3>
                             <ul class="list-unstyled">
-                                <li> <strong><span class="text-capitalize">@Html.Raw(Model.consignment.Pemberi.ContactPerson)</span></strong> </li>
-                                <li> <span>@Html.Raw(Model.consignment.Pemberi.Address.Address1)</span>, <span>@Html.Raw(Model.consignment.Pemberi.Address.Address2)</span> </li>
-                                @if (!String.IsNullOrEmpty(Model.consignment.Pemberi.Address.Address3) || !String.IsNullOrEmpty(Model.consignment.Pemberi.Address.Address4))
+                                <li> <strong><span class="text-capitalize">@Html.Raw(Model.Pemberi.ContactPerson)</span></strong> </li>
+                                <li> <span>@Html.Raw(Model.Pemberi.Address.Address1)</span>, <span>@Html.Raw(Model.Pemberi.Address.Address2)</span> </li>
+                                @if (!String.IsNullOrEmpty(Model.Pemberi.Address.Address3) || !String.IsNullOrEmpty(Model.Pemberi.Address.Address4))
                                 {
-                                    <li> <span>@Html.Raw(Model.consignment.Pemberi.Address.Address3)</span>, <span>@Html.Raw(Model.consignment.Pemberi.Address.Address4)</span> </li>
+                                    <li> <span>@Html.Raw(Model.Pemberi.Address.Address3)</span>, <span>@Html.Raw(Model.Pemberi.Address.Address4)</span> </li>
                                 }
-                                <li> <span>@Html.Raw(Model.consignment.Pemberi.Address.Postcode)</span> <span>@Html.Raw(Model.consignment.Pemberi.Address.City)</span> </li>
-                                <li> <span>@Html.Raw(Model.consignment.Pemberi.Address.State)</span> </li>
+                                <li> <span>@Html.Raw(Model.Pemberi.Address.Postcode)</span> <span>@Html.Raw(Model.Pemberi.Address.City)</span> </li>
+                                <li> <span>@Html.Raw(Model.Pemberi.Address.State)</span> </li>
                                 <li> <span>Malaysia</span> </li>
                             </ul>
                         </div>
@@ -89,15 +90,15 @@
                                     <strong>Date:</strong> <span>@DateTime.Today.Date.ToShortDateString()</span>
                                 </li>
                                 <li>
-                                    <strong>Airwaybill No:</strong> <span>@Html.Raw(Model.consignment.ConNote)</span>
+                                    <strong>Airwaybill No:</strong> <span>@Html.Raw(Model.ConNote)</span>
                                 </li>
                                 <li>
-                                    <strong>Phone No:</strong>&nbsp;<span>@Html.Raw(Model.consignment.Pemberi.ContactInformation.ContactNumber)</span>
+                                    <strong>Phone No:</strong>&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.ContactNumber)</span>
                                 </li>
-                                @if (!String.IsNullOrEmpty(Model.consignment.Pemberi.ContactInformation.AlternativeContactNumber))
+                                @if (!String.IsNullOrEmpty(Model.Pemberi.ContactInformation.AlternativeContactNumber))
                                 {
                                     <li>
-                                        <strong>Alt Phone No:</strong>&nbsp;<span>@Html.Raw(Model.consignment.Pemberi.ContactInformation.AlternativeContactNumber)</span>
+                                        <strong>Alt Phone No:</strong>&nbsp;<span>@Html.Raw(Model.Pemberi.ContactInformation.AlternativeContactNumber)</span>
                                     </li>
                                 }
                             </ul>
@@ -108,15 +109,15 @@
                         <div class="col-xs-4">
                             <h3>Recepient:</h3>
                             <ul class="list-unstyled">
-                                <li> <strong><span class="text-capitalize">@Html.Raw(Model.consignment.Penerima.ContactPerson)</span></strong> </li>
-                                <li> <span>@Html.Raw(Model.consignment.Penerima.Address.Address1)</span>, <span>@Html.Raw(Model.consignment.Penerima.Address.Address2)</span> </li>
-                                @if (!String.IsNullOrEmpty(Model.consignment.Penerima.Address.Address3) || !String.IsNullOrEmpty(Model.consignment.Penerima.Address.Address4))
+                                <li> <strong><span class="text-capitalize">@Html.Raw(Model.Penerima.ContactPerson)</span></strong> </li>
+                                <li> <span>@Html.Raw(Model.Penerima.Address.Address1)</span>, <span>@Html.Raw(Model.Penerima.Address.Address2)</span> </li>
+                                @if (!String.IsNullOrEmpty(Model.Penerima.Address.Address3) || !String.IsNullOrEmpty(Model.Penerima.Address.Address4))
                                 {
-                                    <li> <span>@Html.Raw(Model.consignment.Penerima.Address.Address3)</span>, <span>@Html.Raw(Model.consignment.Penerima.Address.Address4)</span> </li>
+                                    <li> <span>@Html.Raw(Model.Penerima.Address.Address3)</span>, <span>@Html.Raw(Model.Penerima.Address.Address4)</span> </li>
                                 }
-                                <li> <span>@Html.Raw(Model.consignment.Penerima.Address.Postcode)</span> <span>@Html.Raw(Model.consignment.Penerima.Address.City)</span> </li>
-                                <li> <span>@Html.Raw(Model.consignment.Penerima.Address.State)</span> </li>
-                                <li> <span class="text-capitalize">@Html.Raw(Model.consignment.Penerima.Address.Country.ToLower())</span> </li>
+                                <li> <span>@Html.Raw(Model.Penerima.Address.Postcode)</span> <span>@Html.Raw(Model.Penerima.Address.City)</span> </li>
+                                <li> <span>@Html.Raw(Model.Penerima.Address.State)</span> </li>
+                                <li> <span class="text-capitalize">@Html.Raw(Model.Penerima.Address.Country.ToLower())</span> </li>
                             </ul>
                         </div>
                         <div class="col-xs-4">
@@ -125,12 +126,12 @@
                             <h3>&nbsp;</h3>
                             <ul class="list-unstyled">
                                 <li>
-                                    <strong>Phone No:</strong>&nbsp;<span>@Html.Raw(Model.consignment.Penerima.ContactInformation.ContactNumber)</span>
+                                    <strong>Phone No:</strong>&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.ContactNumber)</span>
                                 </li>
-                                @if (!String.IsNullOrEmpty(Model.consignment.Penerima.ContactInformation.AlternativeContactNumber))
+                                @if (!String.IsNullOrEmpty(Model.Penerima.ContactInformation.AlternativeContactNumber))
                                 {
                                     <li>
-                                        <strong>Alt Phone No:</strong>&nbsp;<span>@Html.Raw(Model.consignment.Penerima.ContactInformation.AlternativeContactNumber)</span>
+                                        <strong>Alt Phone No:</strong>&nbsp;<span>@Html.Raw(Model.Penerima.ContactInformation.AlternativeContactNumber)</span>
                                     </li>
                                 }
                             </ul>
@@ -152,29 +153,29 @@
                                 <tbody>
                                     <tr>
                                         <td> 1 </td>
-                                        <td> <span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription1)</span> </td>
-                                        <td> <span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry1)</span> </td>
-                                        <td> <span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity1)</span> </td>
-                                        <td> MYR <span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value1))</span> </td>
+                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription1)</span> </td>
+                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.OriginCountry1)</span> </td>
+                                        <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.Quantity1)</span> </td>
+                                        <td> MYR <span>@Html.Raw(String.Format("{0:F2}", Model.Produk.CustomDeclaration.Value1))</span> </td>
                                     </tr>
-                                    @if (!String.IsNullOrEmpty(Model.consignment.Produk.CustomDeclaration.ContentDescription2))
+                                    @if (!String.IsNullOrEmpty(Model.Produk.CustomDeclaration.ContentDescription2))
                                     {
                                         <tr>
                                             <td> 2 </td>
-                                            <td> <span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription2)</span> </td>
-                                            <td> <span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry2)</span> </td>
-                                            <td> <span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity2)</span> </td>
-                                            <td> MYR <span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value2))</span> </td>
+                                            <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription2)</span> </td>
+                                            <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.OriginCountry2)</span> </td>
+                                            <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.Quantity2)</span> </td>
+                                            <td> MYR <span>@Html.Raw(String.Format("{0:F2}", Model.Produk.CustomDeclaration.Value2))</span> </td>
                                         </tr>
                                     }
-                                    @if (!String.IsNullOrEmpty(Model.consignment.Produk.CustomDeclaration.ContentDescription3))
+                                    @if (!String.IsNullOrEmpty(Model.Produk.CustomDeclaration.ContentDescription3))
                                     {
                                         <tr>
                                             <td> 3 </td>
-                                            <td> <span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.ContentDescription3)</span> </td>
-                                            <td> <span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.OriginCountry3)</span> </td>
-                                            <td> <span>@Html.Raw(Model.consignment.Produk.CustomDeclaration.Quantity3)</span> </td>
-                                            <td> MYR <span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.CustomDeclaration.Value3))</span> </td>
+                                            <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.ContentDescription3)</span> </td>
+                                            <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.OriginCountry3)</span> </td>
+                                            <td> <span>@Html.Raw(Model.Produk.CustomDeclaration.Quantity3)</span> </td>
+                                            <td> MYR <span>@Html.Raw(String.Format("{0:F2}", Model.Produk.CustomDeclaration.Value3))</span> </td>
                                         </tr>
                                     }
                                 </tbody>
@@ -189,7 +190,7 @@
                                     <strong>Total Weight:</strong> <span>@Html.Raw(String.Format("{0:F1}", totalWeight))</span> kg
                                 </address>
                                 <address>
-                                    <strong>Dim Weight:</strong> <span>@Html.Raw(String.Format("{0:F1}", Model.consignment.Bill.VolumetricWeight))</span> kg
+                                    <strong>Dim Weight:</strong> <span>@Html.Raw(String.Format("{0:F1}", dimensionalWeight))</span> kg
                                 </address>
                             </div>
                         </div>

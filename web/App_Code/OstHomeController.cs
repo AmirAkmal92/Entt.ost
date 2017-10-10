@@ -80,6 +80,7 @@ namespace web.sph.App_Code
                 referenceNo = item.ReferenceNo,
                 consignment = connote,
                 accountNo = item.CreatedBy,
+                pickupDate = (item.Payment.IsPickupScheduled ? item.Pickup.DateReady : item.ChangedDate),
                 designation = userProfile.Designation,
             };
             return View(pcm);

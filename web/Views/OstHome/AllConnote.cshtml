@@ -595,7 +595,7 @@
                             <td class="td-hide">col-07</td>
                             <td class="td-hide">col-08</td>
                             <td class="td-hide">col-09</td>
-                            <td colspan="4">&nbsp;&nbsp;<span>@DateTime.Today.Date</span></td>
+                            <td colspan="4">&nbsp;&nbsp;<span>@Html.Raw((Model.Payment.IsPickupScheduled ? Model.Pickup.DateReady : Model.ChangedDate))</span></td>
                             <td class="td-hide">col-14</td>
                             <td class="td-hide">col-15</td>
                             <td class="td-hide">col-16</td>
@@ -1326,7 +1326,7 @@
                             <td class="td-hide">col-07</td>
                             <td class="td-hide">col-08</td>
                             <td class="td-hide">col-09</td>
-                            <td colspan="4">&nbsp;&nbsp;<span>@DateTime.Today.Date</span></td>
+                            <td colspan="4">&nbsp;&nbsp;<span>@Html.Raw((Model.Payment.IsPickupScheduled ? Model.Pickup.DateReady : Model.ChangedDate))</span></td>
                             <td class="td-hide">col-14</td>
                             <td class="td-hide">col-15</td>
                             <td class="td-hide">col-16</td>
@@ -2059,7 +2059,7 @@
                             <td class="td-hide">col-07</td>
                             <td class="td-hide">col-08</td>
                             <td class="td-hide">col-09</td>
-                            <td colspan="4">&nbsp;&nbsp;<span>@DateTime.Today.Date</span></td>
+                            <td colspan="4">&nbsp;&nbsp;<span>@Html.Raw((Model.Payment.IsPickupScheduled ? Model.Pickup.DateReady : Model.ChangedDate))</span></td>
                             <td class="td-hide">col-14</td>
                             <td class="td-hide">col-15</td>
                             <td class="td-hide">col-16</td>
@@ -2791,7 +2791,7 @@
                             <td class="td-hide">col-07</td>
                             <td class="td-hide">col-08</td>
                             <td class="td-hide">col-09</td>
-                            <td colspan="4">&nbsp;&nbsp;<span>@DateTime.Today.Date</span></td>
+                            <td colspan="4">&nbsp;&nbsp;<span>@Html.Raw((Model.Payment.IsPickupScheduled ? Model.Pickup.DateReady : Model.ChangedDate))</span></td>
                             <td class="td-hide">col-14</td>
                             <td class="td-hide">col-15</td>
                             <td class="td-hide">col-16</td>
