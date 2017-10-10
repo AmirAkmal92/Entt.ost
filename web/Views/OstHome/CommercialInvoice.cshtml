@@ -3,6 +3,7 @@
     Layout = null;
     var totalInvoiceValue = Model.Produk.CustomDeclaration.Value1 + Model.Produk.CustomDeclaration.Value2 + Model.Produk.CustomDeclaration.Value3;
     var totalWeight = Model.Produk.CustomDeclaration.Weight1 + Model.Produk.CustomDeclaration.Weight2 + Model.Produk.CustomDeclaration.Weight3;
+    var dimensionalWeight = (Model.Produk.Length * Model.Produk.Width * Model.Produk.Height) / 6000;
 }
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -189,7 +190,7 @@
                                     <strong>Total Weight:</strong> <span>@Html.Raw(String.Format("{0:F1}", totalWeight))</span> kg
                                 </address>
                                 <address>
-                                    <strong>Dim Weight:</strong> <span>@Html.Raw(String.Format("{0:F1}", Model.Bill.VolumetricWeight))</span> kg
+                                    <strong>Dim Weight:</strong> <span>@Html.Raw(String.Format("{0:F1}", dimensionalWeight))</span> kg
                                 </address>
                             </div>
                         </div>
