@@ -45,7 +45,7 @@
                             </div>
                             <div class="panel-body">
                                 <address>
-                                    <strong>Pos Malaysia Berhad</strong> (22990-M)<br />
+                                    <strong>Pos Malaysia Berhad</strong> (229990-M)<br />
                                     care@pos.com.my
                                 </address>
                                 <address>
@@ -129,7 +129,6 @@
                             <table class="table table-hover table-condensed">
                                 <thead style="background-color:#ff6a00; color:#ffffff;">
                                     <tr>
-                                        <th>&nbsp;</th>
                                         <th>Tracking Number</th>
                                         <th>Product</th>
                                         <th>Weight</th>
@@ -139,9 +138,6 @@
                                 <tbody>
                                     <!--ko foreach: Consignments-->
                                     <tr>
-                                        <td>
-                                            <span data-bind="text: $index() + 1"></span>
-                                        </td>
                                         <td>
                                             <!--ko if: Produk().IsInternational-->
                                             #
@@ -168,29 +164,52 @@
                                         </td>
                                         <td>
                                             <!--ko if: Bill().SubTotal3() != null-->
-                                            <span data-bind="text: Bill().SubTotal3().toFixed(2)" class="pull-right"></span>
+                                            <span data-bind="text: Bill().BaseRate().toFixed(2)" class="pull-right"></span>
                                             <!--/ko-->
                                         </td>
                                     </tr>
                                     <!-- /ko -->
                                     <tr>
-                                        <td><span data-bind="text: Consignments().length + 1"></span></td>
                                         <td colspan="3">* Pickup Charge</td>
-                                        <td><span class="pull-right">5.00</span></td>
+                                            <td><span class="pull-right">5.00</span></td>
+                                    </tr>
+                                    <tr data-bind="visible: $root.intHandlingSurchargeTotal() > 0">
+                                        <td colspan="3"># International Handling Surcharge</td>
+                                        <td><span class="pull-right" data-bind="text: $root.intHandlingSurchargeTotal().toFixed(2)"></span></td>
+                                    </tr>
+                                    <tr data-bind="visible: $root.intFuelSurchargeTotal() > 0">
+                                        <td colspan="3"># International Fuel Surcharge</td>
+                                        <td><span class="pull-right" data-bind="text: $root.intFuelSurchargeTotal().toFixed(2)"></span></td>
+                                    </tr>
+                                    <tr data-bind="visible: $root.intInsuranceTotal() > 0">
+                                        <td colspan="3"># Ezisend Insurance - General</td>
+                                        <td><span class="pull-right" data-bind="text: $root.intInsuranceTotal().toFixed(2)"></span></td>
+                                    </tr>
+                                    <tr data-bind="visible: $root.domHandlingSurchargeTotal() > 0">
+                                        <td colspan="3">* Domestic Handling Surcharge</td>
+                                        <td><span class="pull-right" data-bind="text: $root.domHandlingSurchargeTotal().toFixed(2)"></span></td>
+                                    </tr>
+                                    <tr data-bind="visible: $root.domFuelSurchargeTotal() > 0">
+                                        <td colspan="3">* Domestic Fuel Surcharge</td>
+                                        <td><span class="pull-right" data-bind="text: $root.domFuelSurchargeTotal().toFixed(2)"></span></td>
+                                    </tr>
+                                    <tr data-bind="visible: $root.domInsuranceTotal() > 0">
+                                        <td colspan="3">* Ezisend Insurance - General</td>
+                                        <td><span class="pull-right" data-bind="text: $root.domInsuranceTotal().toFixed(2)"></span></td>
+                                    </tr>                                  
+                                    <tr>
+                                        <td colspan="4">&nbsp;</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="5">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4">Sub Total (GST exclusive)</td>
+                                        <td colspan="3">Sub Total (GST exclusive)</td>
                                         <td><span data-bind="text: ($root.totalDomesticNoGst() + $root.totalInternationalNoGst() + 5.00).toFixed(2)" class="pull-right"></span></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4">* GST 6%</td>
+                                        <td colspan="3">* GST 6%</td>
                                         <td><span data-bind="text: ($root.totalDomesticGst() + $root.totalInternationalGst() + 0.30).toFixed(2)" class="pull-right"></span></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4"><strong><span class="text-uppercase">Grand Total</span></strong> (GST inclusive)</td>
+                                        <td colspan="3"><strong><span class="text-uppercase">Grand Total</span></strong> (GST inclusive)</td>
                                         <td><strong><span data-bind="text: Payment().TotalPrice().toFixed(2)" class="pull-right"></span></strong></td>
                                     </tr>
                                 </tbody>
