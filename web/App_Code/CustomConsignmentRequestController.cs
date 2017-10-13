@@ -257,6 +257,7 @@ namespace web.sph.App_Code
             var emptyConnote = 0;
             var emptyConnoteInternational = 0;
             var emptyConnoteWithBaby = 0;
+            var paymentOnDeliveryConnote = 0;
             var orderId = consignmentRequest.ReferenceNo;
             var numBaby = 0;
 
@@ -266,18 +267,22 @@ namespace web.sph.App_Code
 
                 if (!consignment.Produk.IsInternational)
                 {
-                    if (consignment.ConNote == null && numBaby == 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
+                    if (consignment.ConNote == null && numBaby == 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0 && consignment.Produk.Est.CodAmount == 0 && consignment.Produk.Est.CcodAmount == 0)
                     {
                         emptyConnote += 1;
                     }
-                    else if (consignment.ConNote == null && numBaby > 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
+                    else if (consignment.ConNote == null && numBaby > 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0 && consignment.Produk.Est.CodAmount == 0 && consignment.Produk.Est.CcodAmount == 0)
                     {
                         emptyConnoteWithBaby += 1;
+                    }
+                    else if (consignment.Produk.Est.CodAmount > 0 || consignment.Produk.Est.CcodAmount > 0)
+                    {
+                        paymentOnDeliveryConnote += 1;
                     }
                 }
                 else
                 {
-                    if (consignment.ConNote == null && consignment.Produk.IsInternational && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
+                    if (consignment.ConNote == null && consignment.Produk.IsInternational && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0 && consignment.Produk.Est.CodAmount == 0 && consignment.Produk.Est.CcodAmount == 0)
                     {
                         emptyConnoteInternational += 1;
                     }
@@ -296,7 +301,7 @@ namespace web.sph.App_Code
                 {
                     numBaby = CalculateBabyConnotes(consignment.BabyConnotesTotal);
 
-                    if (consignment.ConNote == null && !consignment.Produk.IsInternational && numBaby == 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
+                    if (consignment.ConNote == null && !consignment.Produk.IsInternational && numBaby == 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0 && consignment.Produk.Est.CodAmount == 0 && consignment.Produk.Est.CcodAmount == 0)
                     {
                         consignment.ConNote = sdsBabyConnote.ConnoteData[sdsCounter].ConnoteParent;
                         sdsCounter++;
@@ -311,7 +316,7 @@ namespace web.sph.App_Code
                 {
                     numBaby = CalculateBabyConnotes(consignment.BabyConnotesTotal);
 
-                    if (consignment.ConNote == null && numBaby > 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
+                    if (consignment.ConNote == null && numBaby > 0 && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0 && consignment.Produk.Est.CodAmount == 0 && consignment.Produk.Est.CcodAmount == 0)
                     {
                         consignmentRequest.GenerateConnoteCounter += 1;
                         orderId = GenerateOrderId(consignmentRequest);
@@ -328,6 +333,26 @@ namespace web.sph.App_Code
                 }
             }
 
+            //parent without baby and ccod
+            if (paymentOnDeliveryConnote > 0)
+            {
+                consignmentRequest.GenerateConnoteCounter += 1;
+                orderId = GenerateOrderId(consignmentRequest);
+                consignmentRequest.ReferenceNo = orderId;
+                SdsBabyConnote sdsBabyConnote = GetConnoteWithOrWithoutBaby(orderId, 0, paymentOnDeliveryConnote, false, true);
+                var sdsCounter = 0;
+                foreach (var consignment in consignmentRequest.Consignments)
+                {
+                    numBaby = CalculateBabyConnotes(consignment.BabyConnotesTotal);
+
+                    if (consignment.Produk.Est.CodAmount > 0 || consignment.Produk.Est.CcodAmount > 0)
+                    {
+                        consignment.ConNote = sdsBabyConnote.ConnoteData[sdsCounter].ConnoteParent;
+                        sdsCounter++;
+                    }
+                }
+            }
+
             //IsInternational == EQ
             if (emptyConnoteInternational > 0)
             {
@@ -338,7 +363,7 @@ namespace web.sph.App_Code
                 var sdsCounter = 0;
                 foreach (var consignment in consignmentRequest.Consignments)
                 {
-                    if (consignment.ConNote == null && consignment.Produk.IsInternational && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0)
+                    if (consignment.ConNote == null && consignment.Produk.IsInternational && consignment.Penerima.Address.Postcode != null && consignment.Produk.Weight > 0 && consignment.Produk.Est.CodAmount == 0 && consignment.Produk.Est.CcodAmount == 0)
                     {
                         consignment.ConNote = sdsBabyConnote.ConnoteData[sdsCounter].ConnoteParent;
                         sdsCounter++;
@@ -361,7 +386,7 @@ namespace web.sph.App_Code
             await Task.Delay(1500);
             return Accepted(result);
         }
-
+        
         [HttpPut]
         [Route("get-and-save-zones/{id}")]
         public async Task<IHttpActionResult> GetAndSaveZones(string id)
@@ -1402,7 +1427,7 @@ namespace web.sph.App_Code
             return numBaby;
         }
 
-        private SdsBabyConnote GetConnoteWithOrWithoutBaby(string orderId, int numBaby, int numParent, bool IsInternational)
+        private SdsBabyConnote GetConnoteWithOrWithoutBaby(string orderId, int numBaby, int numParent, bool IsInternational, bool IsCcod = false)
         {
             m_snbClientApi.DefaultRequestHeaders.Clear();
             m_snbClientApi.DefaultRequestHeaders.Add("X-User-Key", m_sdsSecretKey_GenerateConnoteEst);
@@ -1411,7 +1436,14 @@ namespace web.sph.App_Code
             url.Append($"?numberOfItemParent={numParent.ToString()}");
             if (!IsInternational)
             {
-                url.Append("&PrefixParent=EU");
+                if (IsCcod)
+                {
+                    url.Append("&PrefixParent=EC");
+                }
+                else
+                {
+                    url.Append("&PrefixParent=EU");
+                }
             }
             else
             {

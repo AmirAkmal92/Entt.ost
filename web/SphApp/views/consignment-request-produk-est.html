@@ -69,28 +69,6 @@
                                         <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == true && consignment().Produk().ItemCategory() == '02'"><small><i>Merchandise weigth from 0.001 to <span data-bind="text: $root.selectedCountryMaxWeight().toFixed(2)"></span>kg</i></small></span>
                                     </div>
                                 </div>
-                                <div class="form-group form-checkboxes" data-bind="if: consignment().Penerima().Address().Country() == 'MY'">
-                                    <label class="col-md-3 control-label" for="form_control_1">
-                                        <small>Multiple Piece Shipment</small>
-                                    </label>
-                                    <div class="col-md-1 md-checkbox-inline">
-                                        <div class="md-checkbox">
-                                            <input type="checkbox" id="checkbox1_3" class="md-check" data-bind="checked: consignment().IsMps">
-                                            <label for="checkbox1_3">
-                                                <span></span>
-                                                <span class="check"></span>
-                                                <span class="box"></span><small>Yes</small>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <label class="col-md-3 control-label" for="form_control_2">
-                                        <small>Total Pieces</small>
-                                    </label>
-                                    <div class="col-md-5">
-                                        <input class="form-control input-sm" name="BabyConnotesTotal" required type="number" min="2" step="1" placeholder="" data-rule-number="true" data-rule-required="true" data-bind="value: consignment().BabyConnotesTotal, enable: consignment().IsMps">
-                                        <span class="help-block"><small><i>(Including parent)</i></small></span>
-                                    </div>
-                                </div>
                                 <div class="form-group " data-bind="visible:true">
                                     <label data-i18n="Weight" class="col-md-3 control-label" for="6465286c-a3af-46de-e7d8-0499b6bf7cf4"><small>Weight<span class="required" aria-required="true"> * </span></small></label>
                                     <div class="col-md-9">
@@ -145,6 +123,17 @@
                                         <input class="form-control input-sm" type="text" placeholder="Volumetric weight in kg" data-rule-number="true" data-bind="value: $root.volumetric().toFixed(2)" name="Volumetric" disabled />
                                     </div>
                                 </div>
+                                <!--ko if: consignment().Penerima().Address().Country() == 'MY'-->
+                                <div class="form-group">
+                                    <label data-i18n="Description of Content" class="col-md-3 control-label" for="01d1c388-d629-4283-bd25-56688c166c98"><small>Description of Content<span class="required" aria-required="true"> * </span></small></label>
+                                    <div class="col-md-9">
+                                        <textarea class="form-control input-sm" required rows="3"
+                                                  placeholder="parcel description"
+                                                  data-bind="value: consignment().Produk().Description"
+                                                  id="01d1c388-d629-4283-bd25-56688c166c98" name="Produk.Description"></textarea>
+                                    </div>
+                                </div>
+                                <!--/ko-->
                                 <div class="form-group">
                                     <label class="col-md-1 control-label">&nbsp;</label>
                                     <div class="col-md-11">
@@ -337,17 +326,92 @@
                                                name="Produk.ReceiverReferenceNo" />
                                     </div>
                                 </div>
-                                <!--ko if: consignment().Penerima().Address().Country() == 'MY'-->
-                                <div class="form-group">
-                                    <label data-i18n="Description of Content" class="col-md-3 control-label" for="01d1c388-d629-4283-bd25-56688c166c98"><small>Description of Content<span class="required" aria-required="true"> * </span></small></label>
+                                <div class="form-group" data-bind="if: consignment().Penerima().Address().Country() == 'MY'">
+                                    <label data-i18n="Addon Method" class="col-md-3 control-label" for="Others-Method"><small>Addon Method</small></label>
                                     <div class="col-md-9">
-                                        <textarea class="form-control input-sm" required rows="3"
-                                                  placeholder="parcel description"
-                                                  data-bind="value: consignment().Produk().Description"
-                                                  id="01d1c388-d629-4283-bd25-56688c166c98" name="Produk.Description"></textarea>
+                                        <select class="form-control input-sm" id="Others-Method" data-bind="value: $root.method">
+                                            <option value="none">Select...</option>
+                                            <option value="mps">Multiple Piece Shipment</option>
+                                            <option value="pod">Payment on Delivery</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <!--/ko-->
+                                <div data-bind="visible: $root.method() == 'mps'">
+                                    <div class="form-group form-checkboxes" data-bind="if: consignment().Penerima().Address().Country() == 'MY'">
+                                        <label class="col-md-3 control-label" for="form_control_1">
+                                            <small>Multiple Piece Shipment</small>
+                                        </label>
+                                        <div class="col-md-1 md-checkbox-inline">
+                                            <div class="md-checkbox">
+                                                <input type="checkbox" id="checkbox1_3" class="md-check" data-bind="checked: consignment().IsMps">
+                                                <label for="checkbox1_3">
+                                                    <span></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span><small>Yes</small>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <label class="col-md-3 control-label" for="form_control_2">
+                                            <small>Total Pieces</small>
+                                        </label>
+                                        <div class="col-md-5">
+                                            <input class="form-control input-sm" name="BabyConnotesTotal" required type="number" min="2" step="1" placeholder="" data-rule-number="true" data-rule-required="true" data-bind="value: consignment().BabyConnotesTotal, enable: consignment().IsMps">
+                                            <span class="help-block"><small><i>(Including parent)</i></small></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div data-bind="visible: $root.method() == 'pod'">
+                                    <div class="row">
+                                        <div class="form-group form-checkboxes" data-bind="if: consignment().Penerima().Address().Country() == 'MY'">
+                                            <label class="col-md-3 control-label" for="form_control_1">
+                                                <small>Payment on Delivery</small>
+                                            </label>
+                                            <div class="col-md-4 md-radio-inline">
+                                                <div class="md-radio">
+                                                    <input type="radio" id="radio1" name="radioPod" value="cod" class="md-check" data-bind="checked: $root.selectPod">
+                                                    <label for="radio1">
+                                                        <span></span>
+                                                        <span class="check"></span>
+                                                        <span class="box"></span><small></small>
+                                                    </label>
+                                                </div>
+                                                <label class="control-label" for="form_control_2">
+                                                    <small>Cash on Delivery</small>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-4 md-radio-inline">
+                                                <div class="md-radio">
+                                                    <input type="radio" id="radio2" name="radioPod" value="ccod" class="md-check" data-bind="checked: $root.selectPod">
+                                                    <label for="radio2">
+                                                        <span></span>
+                                                        <span class="check"></span>
+                                                        <span class="box"></span><small></small>
+                                                    </label>
+                                                </div>
+                                                <label class="control-label" for="form_control_2">
+                                                    <small>Creditcard on Delivery</small>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-3">&nbsp;</div>
+                                            <div class="col-md-8">
+                                                <input class="form-control input-sm" type="text"
+                                                       placeholder="Creditcard on Delivery Amount"
+                                                       data-bind="value: consignment().Produk().Est().CcodAmount, visible: $root.selectPod() == 'ccod'"
+                                                       name="Produk.CcodAmount" data-rule-number="true" data-rule-min="0" />
+                                                <input class="form-control input-sm" type="text"
+                                                       placeholder="Cash on Delivery Amount"
+                                                       data-bind="value: consignment().Produk().Est().CodAmount, visible: $root.selectPod() == 'cod'"
+                                                       name="Produk.CodAmount" data-rule-number="true" data-rule-min="0" />
+                                                <span class="help-block"><small><i>Receiver have to pay as the amount stated above</i></small></span>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
