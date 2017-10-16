@@ -1174,8 +1174,8 @@ namespace web.sph.App_Code
         }
 
         [HttpPut]
-        [Route("export-pickup-daily/{start:datetime}/{end:datetime}")]
-        public async Task<IHttpActionResult> ExportPickupDaily(DateTime start, DateTime end)
+        [Route("export-pickup-daily/{start:datetime}/{end:datetime}/{est:bool}")]
+        public async Task<IHttpActionResult> ExportPickupDaily(DateTime start, DateTime end, bool est)
         {
             var temp = Path.GetTempFileName() + ".xlsx";
             System.IO.File.Copy(System.Web.HttpContext.Current.Server.MapPath("~/Content/Files/pickup_daily_format_template.xlsx"), temp, true);
@@ -1190,6 +1190,10 @@ namespace web.sph.App_Code
             m_ostBaseUrl.DefaultRequestHeaders.Clear();
             m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
             var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/consigment-requests/paid-all/con-note-ready/true/picked-up/false?{queryString}";
+            if (est)
+            {
+                requestUri = $"{m_ostBaseUrl.BaseAddress}/api/consigment-requests/pickup-daily-list-for-est?{queryString}";
+            }
             var response = await m_ostBaseUrl.GetAsync(requestUri);
 
             var output = string.Empty;
@@ -1201,7 +1205,17 @@ namespace web.sph.App_Code
             foreach (var jtok in json)
             {
                 var consignmentRequest = jtok.ToJson().DeserializeFromJson<ConsigmentRequest>();
-                consignmentRequests.Add(consignmentRequest);
+                if (est)
+                {
+                    if (consignmentRequest.Pickup.Number != null)
+                    {
+                        consignmentRequests.Add(consignmentRequest);
+                    }
+                }
+                else
+                {
+                    consignmentRequests.Add(consignmentRequest);
+                }
             }
 
             var row = 7;
@@ -1211,56 +1225,59 @@ namespace web.sph.App_Code
             {
                 foreach (var consignment in consignmentRequest.Consignments)
                 {
-                    var pickupDateAndTime = new StringBuilder();
-                    pickupDateAndTime.Append($"{consignmentRequest.Pickup.DateReady.ToString("yyyy-MM-dd")} ");
-                    pickupDateAndTime.Append($"{consignmentRequest.Pickup.DateReady.ToString("hh:mm:ss tt")}");
-                    pickupDateAndTime.Append($" - ");
-                    pickupDateAndTime.Append($"{consignmentRequest.Pickup.DateClose.ToString("hh:mm:ss tt")}");
+                    if (consignment.ConNote != null)
+                    {
+                        var pickupDateAndTime = new StringBuilder();
+                        pickupDateAndTime.Append($"{consignmentRequest.Pickup.DateReady.ToString("yyyy-MM-dd")} ");
+                        pickupDateAndTime.Append($"{consignmentRequest.Pickup.DateReady.ToString("hh:mm:ss tt")}");
+                        pickupDateAndTime.Append($" - ");
+                        pickupDateAndTime.Append($"{consignmentRequest.Pickup.DateClose.ToString("hh:mm:ss tt")}");
 
-                    var pickupAddress = new StringBuilder();
-                    pickupAddress.AppendLine($"{consignmentRequest.Pickup.ContactPerson}");
-                    pickupAddress.AppendLine($"{consignmentRequest.Pickup.ContactInformation.ContactNumber}");
-                    pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.Address1},");
-                    pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.Address2},");
-                    if (!string.IsNullOrEmpty(consignmentRequest.Pickup.Address.Address3))
-                        pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.Address3},");
-                    if (!string.IsNullOrEmpty(consignmentRequest.Pickup.Address.Address4))
-                        pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.Address4},");
-                    pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.Postcode} ");
-                    pickupAddress.Append($"{consignmentRequest.Pickup.Address.City},");
-                    pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.State} ");
-                    pickupAddress.Append($"{consignmentRequest.Pickup.Address.Country}.");
+                        var pickupAddress = new StringBuilder();
+                        pickupAddress.AppendLine($"{consignmentRequest.Pickup.ContactPerson}");
+                        pickupAddress.AppendLine($"{consignmentRequest.Pickup.ContactInformation.ContactNumber}");
+                        pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.Address1},");
+                        pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.Address2},");
+                        if (!string.IsNullOrEmpty(consignmentRequest.Pickup.Address.Address3))
+                            pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.Address3},");
+                        if (!string.IsNullOrEmpty(consignmentRequest.Pickup.Address.Address4))
+                            pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.Address4},");
+                        pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.Postcode} ");
+                        pickupAddress.Append($"{consignmentRequest.Pickup.Address.City},");
+                        pickupAddress.AppendLine($"{consignmentRequest.Pickup.Address.State} ");
+                        pickupAddress.Append($"{consignmentRequest.Pickup.Address.Country}.");
 
-                    var receiverAddress = new StringBuilder();
-                    receiverAddress.AppendLine($"{consignment.Penerima.ContactPerson}");
-                    receiverAddress.AppendLine($"{consignment.Penerima.ContactInformation.ContactNumber}");
-                    receiverAddress.AppendLine($"{consignment.Penerima.Address.Address1},");
-                    receiverAddress.AppendLine($"{consignment.Penerima.Address.Address2},");
-                    if (!string.IsNullOrEmpty(consignment.Penerima.Address.Address3))
-                        receiverAddress.AppendLine($"{consignment.Penerima.Address.Address3},");
-                    if (!string.IsNullOrEmpty(consignment.Penerima.Address.Address4))
-                        receiverAddress.AppendLine($"{consignment.Penerima.Address.Address4},");
-                    receiverAddress.AppendLine($"{consignment.Penerima.Address.Postcode} ");
-                    receiverAddress.Append($"{consignment.Penerima.Address.City},");
-                    receiverAddress.AppendLine($"{consignment.Penerima.Address.State} ");
-                    receiverAddress.Append($"{consignment.Penerima.Address.Country}.");
+                        var receiverAddress = new StringBuilder();
+                        receiverAddress.AppendLine($"{consignment.Penerima.ContactPerson}");
+                        receiverAddress.AppendLine($"{consignment.Penerima.ContactInformation.ContactNumber}");
+                        receiverAddress.AppendLine($"{consignment.Penerima.Address.Address1},");
+                        receiverAddress.AppendLine($"{consignment.Penerima.Address.Address2},");
+                        if (!string.IsNullOrEmpty(consignment.Penerima.Address.Address3))
+                            receiverAddress.AppendLine($"{consignment.Penerima.Address.Address3},");
+                        if (!string.IsNullOrEmpty(consignment.Penerima.Address.Address4))
+                            receiverAddress.AppendLine($"{consignment.Penerima.Address.Address4},");
+                        receiverAddress.AppendLine($"{consignment.Penerima.Address.Postcode} ");
+                        receiverAddress.Append($"{consignment.Penerima.Address.City},");
+                        receiverAddress.AppendLine($"{consignment.Penerima.Address.State} ");
+                        receiverAddress.Append($"{consignment.Penerima.Address.Country}.");
 
-                    ws.Cells[row, 1].Value = consignmentIndexNumber;
-                    ws.Cells[row, 2].Value = pickupDateAndTime.ToString();
-                    ws.Cells[row, 3].Value = consignmentRequest.Pickup.Number;
-                    ws.Cells[row, 4].Value = consignment.ConNote;
-                    ws.Cells[row, 5].Value = string.Format("{0:F3}", pickupAddress.ToString());
-                    ws.Cells[row, 6].Value = string.Format("{0:F3}", receiverAddress.ToString());
-                    ws.Cells[row, 7].Value = "1";
-                    ws.Cells[row, 8].Value = consignment.Produk.Weight;
-                    ws.Cells[row, 9].Value = consignment.Bill.VolumetricWeight;
-                    ws.Cells[row, 10].Value = (consignment.Produk.IsInternational) ? "EMS" : "NDD";
-                    ws.Cells[row, 11].Value = (consignment.Produk.IsInternational) ? "Yes" : "No";
-                    ws.Cells[row, 12].Value = (consignment.Produk.ValueAddedDeclaredValue > 0) ? "Yes" : "No";
-                    ws.Cells[row, 13].Value = consignmentRequest.ReferenceNo;
-                    ws.Cells[row, 14].Value = string.Format("{0:F2}", consignment.Produk.Price);
-                    row++;
-                    consignmentIndexNumber++;
+                        ws.Cells[row, 1].Value = consignmentIndexNumber;
+                        ws.Cells[row, 2].Value = pickupDateAndTime.ToString();
+                        ws.Cells[row, 3].Value = consignmentRequest.Pickup.Number;
+                        ws.Cells[row, 4].Value = consignment.ConNote;
+                        ws.Cells[row, 5].Value = string.Format("{0:F3}", pickupAddress.ToString());
+                        ws.Cells[row, 6].Value = string.Format("{0:F3}", receiverAddress.ToString());
+                        ws.Cells[row, 7].Value = "1";
+                        ws.Cells[row, 8].Value = consignment.Produk.Weight;
+                        ws.Cells[row, 9].Value = consignment.Bill.VolumetricWeight;
+                        ws.Cells[row, 10].Value = (consignment.Produk.IsInternational) ? "EMS" : "NDD";
+                        ws.Cells[row, 11].Value = (consignment.Produk.IsInternational) ? "Yes" : "No";
+                        ws.Cells[row, 12].Value = (consignment.Produk.ValueAddedDeclaredValue > 0) ? "Yes" : "No";
+                        ws.Cells[row, 13].Value = consignmentRequest.ReferenceNo;
+                        ws.Cells[row, 14].Value = string.Format("{0:F2}", consignment.Produk.Price);
+                        row++;
+                        consignmentIndexNumber++;
+                    }                    
                 }
             }
 

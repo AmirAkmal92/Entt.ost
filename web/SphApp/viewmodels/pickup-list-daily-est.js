@@ -8,7 +8,7 @@ define([objectbuilders.datacontext, objectbuilders.app], function (context, app)
         dateTo = ko.observable(moment().format('YYYY-MM-DD')),
         hasNextPage = ko.observable(false),
         hasPreviousPage = ko.observable(false),
-        query = "/api/consigment-requests/paid-all/con-note-ready/true/picked-up/false",
+        query = "/api/consigment-requests/pickup-daily-list-for-est",
         executedQuery = ko.observable(),
         list = ko.observableArray([]),
         firstPage = function () {
@@ -51,7 +51,7 @@ define([objectbuilders.datacontext, objectbuilders.app], function (context, app)
                 if (result == "Cancel") {
                     return;
                 }
-                context.put({}, "consignment-request/export-pickup-daily/" + dateFrom() + "/" + dateTo() + "/false")
+                context.put({}, "consignment-request/export-pickup-daily/" + dateFrom() + "/" + dateTo() + "/true")
                     .fail(function (response) {
                         if (response.status === 428) {
                             // out of date conflict
