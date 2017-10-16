@@ -51,7 +51,7 @@ namespace web.sph.App_Code
             {
                 referenceNo = item.ReferenceNo,
                 consignment = connote,
-                accountNo = item.CreatedBy,
+                accountNo = item.UserId,
                 amountPaid = item.Payment.TotalPrice,
                 pickupDate = (item.Payment.IsPickupScheduled ? item.Pickup.DateReady : item.ChangedDate),
                 designation = userProfile.Designation,
@@ -79,7 +79,7 @@ namespace web.sph.App_Code
             {
                 referenceNo = item.ReferenceNo,
                 consignment = connote,
-                accountNo = item.CreatedBy,
+                accountNo = item.UserId,
                 pickupDate = (item.Payment.IsPickupScheduled ? item.Pickup.DateReady : item.ChangedDate),
                 designation = userProfile.Designation,
             };
@@ -128,7 +128,7 @@ namespace web.sph.App_Code
             {
                 referenceNo = item.ReferenceNo,
                 consignment = connote,
-                accountNo = item.CreatedBy,
+                accountNo = item.UserId,
                 amountPaid = item.Payment.TotalPrice,
                 pickupDate = (item.Payment.IsPickupScheduled ? item.Pickup.DateReady : item.ChangedDate),
                 designation = item.Designation,
@@ -181,7 +181,7 @@ namespace web.sph.App_Code
                     break;
                 }
             }
-            string zplCode = LableConnoteDetails(item, connote);
+            string zplCode = LabelConnoteDetails(item, connote);
             byte[] zpl = Encoding.UTF8.GetBytes(zplCode);
             var request = (HttpWebRequest)WebRequest.Create("http://api.labelary.com/v1/printers/8dpmm/labels/4x6/0/"); //TODO make it variable
             request.Method = "POST";
@@ -221,7 +221,7 @@ namespace web.sph.App_Code
         {
             LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(crId);
             var item = lo.Source;
-            var countConnote = 1;
+            var countConnote = 0;
 
             if (item.Designation == "Contract customer")
             {
@@ -244,7 +244,7 @@ namespace web.sph.App_Code
                 {
                     if (countConnote <= 50)
                     {
-                        zplCode += LableConnoteDetails(item, itemHasConnote);
+                        zplCode += LabelConnoteDetails(item, itemHasConnote);
                     }
                     else
                     {
@@ -304,7 +304,7 @@ namespace web.sph.App_Code
                 }
             }
 
-            string zplCode = LableConnoteDetails(item, connote);
+            string zplCode = LabelConnoteDetails(item, connote);
 
             //Send direct to printer. Suitable for stand-alone EziSend offline. Not for online EziSend.
             //Set printer name here
@@ -357,7 +357,7 @@ namespace web.sph.App_Code
 
                 foreach (var itemHasConnote in item.Consignments)
                 {
-                    string zplCode = LableConnoteDetails(item, itemHasConnote);
+                    string zplCode = LabelConnoteDetails(item, itemHasConnote);
 
                     //Send direct to printer. Suitable for stand-alone EziSend offline. Not for online EziSend.
                     //Set printer name here
@@ -402,33 +402,33 @@ namespace web.sph.App_Code
             return request;
         }
 
-        private static string LableConnoteDetails(ConsigmentRequest item, Consignment itemHasConnote)
+        private static string LabelConnoteDetails(ConsigmentRequest item, Consignment itemHasConnote)
         {
-            var dataMatrixModel = new DataMatrixModel
+            var dataMatrixModel = new DataMatrixModel //TODO: Refractor
             {
-                versionHeader = "A1",                                                                          //01
-                connoteNum = itemHasConnote.ConNote,                                                           //02
-                recipientPostcode = itemHasConnote.Penerima.Address.Postcode,                                  //03
-                countryCode = itemHasConnote.Penerima.Address.Country,                                         //04
-                productCode = (itemHasConnote.Produk.IsInternational) ? "80000001" : "80000000",               //05
-                parentConnote = (itemHasConnote.IsMps) ? itemHasConnote.ConNote : "",                          //06
-                mpsIndicator = (itemHasConnote.IsMps) ? "02" : "01",                                           //07
-                senderPhoneNum = itemHasConnote.Pemberi.ContactInformation.ContactNumber,                      //08
-                senderEmail = itemHasConnote.Pemberi.ContactInformation.Email,                                 //09
-                senderRefNo = item.ReferenceNo,                                                                //10
-                customerAccNum = (item.Designation == "Contract customer") ? item.UserId : "",                 //11
-                recipientPhoneNum = itemHasConnote.Penerima.ContactInformation.ContactNumber,                  //12
-                recipientEmail = itemHasConnote.Penerima.ContactInformation.Email,                             //13
-                weight = itemHasConnote.Produk.Weight.ToString("0.000"),                                       //14
-                dimensionVol = $"{itemHasConnote.Produk.Length.ToString("0")}" +                               //15
+                versionHeader = "A1",                                                                                               //01
+                connoteNum = itemHasConnote.ConNote,                                                                                //02
+                recipientPostcode = itemHasConnote.Penerima.Address.Postcode,                                                       //03
+                countryCode = itemHasConnote.Penerima.Address.Country,                                                              //04
+                productCode = (itemHasConnote.Produk.IsInternational) ? "80000001" : "80000000",                                    //05
+                parentConnote = (itemHasConnote.IsMps) ? itemHasConnote.ConNote : "",                                               //06
+                mpsIndicator = (itemHasConnote.IsMps) ? "02" : "01",                                                                //07
+                senderPhoneNum = itemHasConnote.Pemberi.ContactInformation.ContactNumber,                                           //08
+                senderEmail = itemHasConnote.Pemberi.ContactInformation.Email,                                                      //09
+                senderRefNo = item.ReferenceNo,                                                                                     //10
+                customerAccNum = (item.Designation == "Contract customer") ? item.UserId : "",                                      //11
+                recipientPhoneNum = itemHasConnote.Penerima.ContactInformation.ContactNumber,                                       //12
+                recipientEmail = itemHasConnote.Penerima.ContactInformation.Email,                                                  //13
+                weight = itemHasConnote.Produk.Weight.ToString("0.00"),                                                             //14
+                dimensionVol = $"{itemHasConnote.Produk.Length.ToString("0")}" +                                                    //15
                                                $"x{itemHasConnote.Produk.Width.ToString("0")}" +
                                                $"x{itemHasConnote.Produk.Height.ToString("0")}",
-                codAmount = "", //TODO                                                                         //16
-                ccodAmount = "", //TODO                                                                        //17
-                valueAdded = itemHasConnote.Produk.ValueAddedValue.ToString("0"),                              //18
-                itemCategory = itemHasConnote.Produk.ItemCategory,                                             //19
-                amountPaid = item.Payment.TotalPrice.ToString("0"),                                            //20
-                zone = (itemHasConnote.Produk.IsInternational) ? "" : "02",                                    //21
+                codAmount = itemHasConnote.Produk.Est.CodAmount > 0 ? itemHasConnote.Produk.Est.CodAmount.ToString("0.00") : "",    //16
+                ccodAmount = itemHasConnote.Produk.Est.CcodAmount > 0 ? itemHasConnote.Produk.Est.CcodAmount.ToString("0.00") : "", //17
+                valueAdded = itemHasConnote.Produk.ValueAddedValue.ToString("0"),                                                   //18
+                itemCategory = itemHasConnote.Produk.ItemCategory,                                                                  //19
+                amountPaid = item.Payment.TotalPrice.ToString("0"),                                                                 //20
+                zone = (itemHasConnote.Produk.IsInternational) ? "" : "02",                                                         //21
             };
 
             var dataMatrixCode = $"{dataMatrixModel.versionHeader}_5e{dataMatrixModel.connoteNum}_5e{dataMatrixModel.recipientPostcode}_5e{dataMatrixModel.countryCode}_5e{dataMatrixModel.productCode}_5e{dataMatrixModel.parentConnote}_5e{dataMatrixModel.mpsIndicator}_5e" +
@@ -442,6 +442,9 @@ namespace web.sph.App_Code
             var volumetricWeight = (itemHasConnote.Produk.Width * itemHasConnote.Produk.Length * itemHasConnote.Produk.Height) / 6000;
             var itemCategory = (itemHasConnote.Produk.ItemCategory == "01" ? "DOCUMENT" : "MERCHANDISE");
             var productType = (itemHasConnote.Produk.IsInternational ? "INTERNATIONAL" : "DOMESTIC");
+            var chargeOnDelivery = itemHasConnote.Produk.Est.CodAmount > 0 ? ("COD : RM " + itemHasConnote.Produk.Est.CodAmount.ToString("0.00")) : ("CCOD : RM " + itemHasConnote.Produk.Est.CcodAmount.ToString("0.00"));
+            var textChargeOnDeliveryCustCopy = (itemHasConnote.Produk.Est.CodAmount > 0 || itemHasConnote.Produk.Est.CcodAmount > 0 ? "JUMLAH " + chargeOnDelivery : "");
+            var textChargeOnDeliveryPPLCopy = (itemHasConnote.Produk.Est.CodAmount > 0 || itemHasConnote.Produk.Est.CcodAmount > 0 ? chargeOnDelivery : "");
 
             var zplCode = "^XA~TA000~JSN^LT0^MNW^MTT^PON^PMN^LH0,0^JMA^PR5,5~SD15^JUS^LRN^CI0^XZ";
             zplCode += "^XA";
@@ -449,7 +452,7 @@ namespace web.sph.App_Code
             zplCode += "^PW812";
             zplCode += "^LL1242";
             zplCode += "^LS0";
-            zplCode += "^FT27,644^A0N,23,24^FH^FDKEPADA:^FS";
+            zplCode += "^FT27,644^A0N,23,24^FH^FDKEPADA :^FS";
             zplCode += "^FT27,672^A0N,23,24^FH^FD" + (!String.IsNullOrEmpty(itemHasConnote.Penerima.CompanyName) ? itemHasConnote.Penerima.CompanyName.ToUpper() : "") + "^FS";
             zplCode += "^FT27,700^A0N,23,24^FH^FD" + (itemHasConnote.Penerima.Address.Address1 + ", " + itemHasConnote.Penerima.Address.Address2).ToUpper() + "^FS";
             zplCode += "^FT27,728^A0N,23,24^FH^FD" + (!String.IsNullOrEmpty(penerimaAddressLine2) ? penerimaAddressLine2.ToUpper() : "") + "^FS";
@@ -462,22 +465,22 @@ namespace web.sph.App_Code
             zplCode += "^FT382,648^A0N,23,24^FH^FDRUJ. PENERIMA : " + (!String.IsNullOrEmpty(itemHasConnote.Produk.Est.ReceiverReferenceNo) ? itemHasConnote.Produk.Est.ReceiverReferenceNo.ToUpper() : "") + "^FS";
             zplCode += "^FT558,432^A0N,31,31^FH^FD" + item.UserId + "^FS";
             zplCode += "^FT487,916^A0N,48,124^FH^FD" + itemHasConnote.Penerima.Address.Postcode + "^FS";
-            zplCode += "^FT28,845^A0N,23,24^FH^FDTEL: " + itemHasConnote.Penerima.ContactInformation.ContactNumber + "^FS";
+            zplCode += "^FT28,845^A0N,23,24^FH^FDTEL : " + itemHasConnote.Penerima.ContactInformation.ContactNumber + "^FS";
             zplCode += "^FT26,878^A0N,19,24^FH^FDPOSKOD : ^FS";
-            zplCode += "^FT254,844^A0N,23,24^FH^FDTEL2: " + itemHasConnote.Penerima.ContactInformation.AlternativeContactNumber + " ^FS";
+            zplCode += "^FT254,844^A0N,23,24^FH^FDTEL2 : " + itemHasConnote.Penerima.ContactInformation.AlternativeContactNumber + " ^FS";
             zplCode += "^BY2,3,94^FT435,1131^BCN,,Y,N";
             zplCode += "^FD" + itemHasConnote.ConNote.ToUpper() + "^FS";
             zplCode += "^BY2,3,110^FT423,148^BCN,,Y,N";
             zplCode += "^FD" + itemHasConnote.ConNote.ToUpper() + "^FS";
             zplCode += "^FT28,429^A0N,23,24^FH^FDDARIPADA :^FS";
             zplCode += "^FT27,208^A0N,23,24^FH^FDMAKLUMAT ITEM^FS";
-            zplCode += "^FT355,284^A0N,17,16^FH^FDKeterangan :^FS";
-            zplCode += "^FT355,261^A0N,17,16^FH^FDJenis :^FS";
-            zplCode += "^FT450,282^A0N,17,16^FH^FD" + (itemHasConnote.Produk.IsInternational ? internationalDescription : itemHasConnote.Produk.Description).ToUpper() + "^FS";
-            zplCode += "^FT355,238^A0N,17,16^FH^FDProduk :^FS";
-            zplCode += "^FT451,261^A0N,17,16^FH^FD" + itemCategory + "^FS";
-            zplCode += "^FT355,211^A0N,23,24^FH^FDRUJ. TRANSAKSI : " + item.ReferenceNo.ToUpper() + "^FS";
-            zplCode += "^FT451,236^A0N,17,16^FH^FD" + "COURIER CHARGES - " + productType + "^FS";
+            zplCode += "^FT325,284^A0N,17,16^FH^FDKeterangan :^FS";
+            zplCode += "^FT325,261^A0N,17,16^FH^FDJenis :^FS";
+            zplCode += "^FT421,282^A0N,17,16^FH^FD" + (itemHasConnote.Produk.IsInternational ? internationalDescription : itemHasConnote.Produk.Description).ToUpper() + "^FS";
+            zplCode += "^FT325,238^A0N,17,16^FH^FDProduk :^FS";
+            zplCode += "^FT421,261^A0N,17,16^FH^FD" + itemCategory + "^FS";
+            zplCode += "^FT325,211^A0N,23,24^FH^FDRUJ. TRANSAKSI : " + item.ReferenceNo.ToUpper() + "^FS";
+            zplCode += "^FT421,236^A0N,17,16^FH^FD" + "COURIER CHARGES - " + productType + "^FS";
             zplCode += "^FT27,297^A0N,17,16^FH^FDVolumetrik :^FS";
             zplCode += "^FT123,297^A0N,17,16^FH^FD" + volumetricWeight.ToString("0.00") + " KG" + "^FS";
             zplCode += "^FT27,277^A0N,17,16^FH^FDSebenar :^FS";
@@ -485,8 +488,8 @@ namespace web.sph.App_Code
             zplCode += "^FT28,259^A0N,17,16^FH^FDBerat :^FS";
             zplCode += "^FT123,261^A0N,17,16^FH^FD" + itemHasConnote.Produk.Weight.ToString("0.00") + " KG" + "^FS";
             zplCode += "^FT402,431^A0N,31,31^FH^FDAKAUN NO :^FS";
-            zplCode += "^FT351,605^A0N,17,16^FH^FDTEL2: " + itemHasConnote.Pemberi.ContactInformation.AlternativeContactNumber + "^FS";
-            zplCode += "^FT25,605^A0N,17,16^FH^FDTEL: " + itemHasConnote.Pemberi.ContactInformation.ContactNumber + "^FS";
+            zplCode += "^FT351,605^A0N,17,16^FH^FDTEL2 : " + itemHasConnote.Pemberi.ContactInformation.AlternativeContactNumber + "^FS";
+            zplCode += "^FT25,605^A0N,17,16^FH^FDTEL : " + itemHasConnote.Pemberi.ContactInformation.ContactNumber + "^FS";
             zplCode += "^FT29,458^A0N,17,16^FH^FD" + (!String.IsNullOrEmpty(itemHasConnote.Pemberi.CompanyName) ? itemHasConnote.Pemberi.CompanyName.ToUpper() : "") + "^FS";
             zplCode += "^FT29,479^A0N,17,16^FH^FD" + (itemHasConnote.Pemberi.Address.Address1 + ", " + itemHasConnote.Pemberi.Address.Address2).ToUpper() + "^FS";
             zplCode += "^FT29,500^A0N,17,16^FH^FD" + (!String.IsNullOrEmpty(pemberiAddressLine2) ? pemberiAddressLine2.ToUpper() : "") + "^FS";
@@ -500,14 +503,16 @@ namespace web.sph.App_Code
             zplCode += "^FT31,1127^A0N,17,16^FH^FD" + itemHasConnote.Penerima.Address.City.ToUpper() + "^FS";
             zplCode += "^FT31,1148^A0N,17,16^FH^FD" + itemHasConnote.Penerima.Address.State.ToUpper() + "^FS";
             zplCode += "^FT31,1169^A0N,17,16^FH^FD" + itemHasConnote.Penerima.Address.Postcode + "^FS";
-            zplCode += "^FT183,1191^A0N,17,16^FH^FDTel2: " + itemHasConnote.Penerima.ContactInformation.AlternativeContactNumber + "^FS";
-            zplCode += "^^FT33,1191^A0N,17,16^FH^FDTel: " + itemHasConnote.Penerima.ContactInformation.ContactNumber + "^FS";
+            zplCode += "^FT309,1191^A0N,17,16^FH^FD" + textChargeOnDeliveryPPLCopy + "^FS";
+            zplCode += "^FT168,1191^A0N,17,16^FH^FDTel2 : " + itemHasConnote.Penerima.ContactInformation.AlternativeContactNumber + "^FS";
+            zplCode += "^^FT33,1191^A0N,17,16^FH^FDTel : " + itemHasConnote.Penerima.ContactInformation.ContactNumber + "^FS";
             zplCode += "^FT27,240^A0N,17,16^FH^FDTarikh :^FS";
             zplCode += "^FT121,240^A0N,17,16^FH^FD" + connoteDate.ToString("d MMMM yyyy") + "^FS";
-            zplCode += "^FT114,378^A0N,72,88^FH^FD" + " " + "^FS"; // _routingcode
+            zplCode += "^FT114,378^A0N,72,88^FH^FD" + " " + "^FS"; //TODO: _routingcode
             zplCode += "^FT434,1194^A0N,45,45^FH^FD*" + itemHasConnote.ConNote.ToUpper() + "*^FS";
             zplCode += "^FT392,571^A0N,45,45^FH^FD*" + itemHasConnote.ConNote.ToUpper() + "*^FS";
             zplCode += "^FT262,1040^A0N,25,24^FH^FDSalinan Pejabat^FS";
+            zplCode += "^FT31,1000^A0N,25,24^FH^FD" + textChargeOnDeliveryCustCopy + "^FS";
             zplCode += "^BY128,128^FT620,848^BXN,4,200,0,0,1,~";
             zplCode += "^FH^FD" + dataMatrixCode + "^FS";
             zplCode += "^PQ1,0,1,Y^XZ";

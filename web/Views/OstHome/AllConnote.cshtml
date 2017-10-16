@@ -4402,29 +4402,29 @@
         {
             var dataMatrixModel = new web.sph.App_Code.DataMatrixModel
             {
-                versionHeader = "A1",                                                           //01
-                connoteNum = item.ConNote,                                                      //02
-                recipientPostcode = item.Penerima.Address.Postcode,                             //03
-                countryCode = item.Penerima.Address.Country,                                    //04
-                productCode = (item.Produk.IsInternational) ? "80000001" : "80000000",          //05
-                parentConnote = (item.IsMps) ? item.ConNote : "",                               //06
-                mpsIndicator = (item.IsMps) ? "02" : "01",                                      //07
-                senderPhoneNum = item.Pemberi.ContactInformation.ContactNumber,                 //08
-                senderEmail = item.Pemberi.ContactInformation.Email,                            //09
-                senderRefNo = Model.ReferenceNo,                                                //10
-                customerAccNum = (Model.Designation == "Contract customer") ? Model.UserId : "",//11
-                recipientPhoneNum = item.Penerima.ContactInformation.ContactNumber,             //12
-                recipientEmail = item.Penerima.ContactInformation.Email,                        //13
-                weight = item.Produk.Weight.ToString("0"),                                      //14
-                dimensionVol = $"{item.Produk.Length.ToString("0.000")}" +                      //15
+                versionHeader = "A1",                                                                           //01
+                connoteNum = item.ConNote,                                                                      //02
+                recipientPostcode = item.Penerima.Address.Postcode,                                             //03
+                countryCode = item.Penerima.Address.Country,                                                    //04
+                productCode = (item.Produk.IsInternational) ? "80000001" : "80000000",                          //05
+                parentConnote = (item.IsMps) ? item.ConNote : "",                                               //06
+                mpsIndicator = (item.IsMps) ? "02" : "01",                                                      //07
+                senderPhoneNum = item.Pemberi.ContactInformation.ContactNumber,                                 //08
+                senderEmail = item.Pemberi.ContactInformation.Email,                                            //09
+                senderRefNo = Model.ReferenceNo,                                                                //10
+                customerAccNum = (Model.Designation == "Contract customer") ? Model.UserId : "",                //11
+                recipientPhoneNum = item.Penerima.ContactInformation.ContactNumber,                             //12
+                recipientEmail = item.Penerima.ContactInformation.Email,                                        //13
+                weight = item.Produk.Weight.ToString("0"),                                                      //14
+                dimensionVol = $"{item.Produk.Length.ToString("0.00")}" +                                      //15
                                 $"x{item.Produk.Width.ToString("0")}" +
                                 $"x{item.Produk.Height.ToString("0")}",
-                codAmount = "", //TODO                                                          //16
-                ccodAmount = "", //TODO                                                         //17
-                valueAdded = item.Produk.ValueAddedValue.ToString("0"),                         //18
-                itemCategory = item.Produk.ItemCategory,                                        //19
-                amountPaid = Model.Payment.TotalPrice.ToString("0"),                            //20
-                zone = (item.Produk.IsInternational) ? "" : "02",                               //21
+                codAmount = item.Produk.Est.CodAmount > 0 ? item.Produk.Est.CodAmount.ToString("0.00") : "",    //16
+                ccodAmount = item.Produk.Est.CcodAmount > 0 ? item.Produk.Est.CcodAmount.ToString("0.00") : "", //17
+                valueAdded = item.Produk.ValueAddedValue.ToString("0"),                                         //18
+                itemCategory = item.Produk.ItemCategory,                                                        //19
+                amountPaid = Model.Payment.TotalPrice.ToString("0"),                                            //20
+                zone = (item.Produk.IsInternational) ? "" : "02",                                               //21
             };
 
             var textParent = $@"{dataMatrixModel.versionHeader}^{dataMatrixModel.connoteNum}^{dataMatrixModel.recipientPostcode}^{dataMatrixModel.countryCode}^{dataMatrixModel.productCode}^{dataMatrixModel.parentConnote}^{dataMatrixModel.mpsIndicator}^{dataMatrixModel.senderPhoneNum}^{dataMatrixModel.senderEmail}^{dataMatrixModel.senderRefNo}^{dataMatrixModel.customerAccNum}^{dataMatrixModel.recipientPhoneNum}^{dataMatrixModel.recipientEmail}^{dataMatrixModel.weight}^{dataMatrixModel.dimensionVol}^{dataMatrixModel.codAmount}^{dataMatrixModel.ccodAmount}^{dataMatrixModel.valueAdded}^{dataMatrixModel.itemCategory}^{dataMatrixModel.amountPaid}^{dataMatrixModel.zone}";
