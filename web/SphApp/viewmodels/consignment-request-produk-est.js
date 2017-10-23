@@ -29,20 +29,20 @@ objectbuilders.app],
                         ],
                         "AdditionalService": [
                             {
-                                "name": "Insurance Zurich",
+                                "name": "Zurich Insurance",
                                 "None": false,
                                 "isTrue": true
                             },
-                            //{
-                            //    "name": "Packaging",
-                            //    "None": true,
-                            //    "isTrue": false
-                            //},
                             {
-                                "name": "DO Acknowledgement",
+                                "name": "Etiqa Insurance",
                                 "None": true,
                                 "isTrue": false
                             }
+                            //{
+                            //    "name": "DO Acknowledgement",
+                            //    "None": true,
+                            //    "isTrue": false
+                            //}
                         ]
                     },
                     {
@@ -123,20 +123,20 @@ objectbuilders.app],
                         ],
                         "AdditionalService": [
                             {
-                                "name": "Insurance Zurich",
+                                "name": "Zurich Insurance",
                                 "None": true,
                                 "isTrue": false
                             },
-                            //{
-                            //    "name": "Packaging",
-                            //    "None": true,
-                            //    "isTrue": false
-                            //},
                             {
-                                "name": "DO Acknowledgement",
+                                "name": "Etiqa Insurance",
                                 "None": true,
                                 "isTrue": false
                             }
+                            //{
+                            //    "name": "DO Acknowledgement",
+                            //    "None": true,
+                            //    "isTrue": false
+                            //}
                         ]
                     },
                     {
@@ -200,13 +200,14 @@ objectbuilders.app],
             produk = ko.observable(new bespoke.Ost_consigmentRequest.domain.Produk(system.guid())),
             errors = ko.observableArray(),
             volumetric = ko.observable(0),
-            isInsuredValueAdded1 = ko.observable(false),
+            isInsuredValueAdded = ko.observable(false),
             id = ko.observable(),
             crid = ko.observable(),
             cid = ko.observable(),
             availableCountries = ko.observableArray(),
             selectedCountryMaxWeight = ko.observable(),
             method = ko.observable('none'),
+            isHasInsurance = ko.observable(false),
             selectPod = ko.observable('cod'),
             partial = partial || {},
             headers = {},
@@ -220,7 +221,8 @@ objectbuilders.app],
                 id(crId);
                 crid(crId);
                 cid(cId);
-                isInsuredValueAdded1(false);
+                isInsuredValueAdded(false);
+                isHasInsurance(false);
                 volumetric(0.00);
                 method('none');
                 var tcs = new $.Deferred();
@@ -278,19 +280,12 @@ objectbuilders.app],
                             }
 
                             if (consignment().Produk().ValueAddedDeclaredValue() != undefined) {
-                                isInsuredValueAdded1(true);
+                                isInsuredValueAdded(true);
+                                isHasInsurance(true);
                             }
 
-                            if (consignment().Produk().Est().ValueAddedService1() == undefined) {
-                                consignment().Produk().Est().ValueAddedService1("none");
-                            }
-
-                            if (consignment().Produk().Est().ValueAddedService2() == undefined) {
-                                consignment().Produk().Est().ValueAddedService2("none");
-                            }
-
-                            if (consignment().Produk().Est().ValueAddedService3() == undefined) {
-                                consignment().Produk().Est().ValueAddedService3("none");
+                            if (consignment().Produk().Est().ValueAddedService() == undefined) {
+                                consignment().Produk().Est().ValueAddedService("none");
                             }
 
                             if (consignment().Produk().Height != null && consignment().Produk().Length != null
@@ -390,7 +385,7 @@ objectbuilders.app],
                     });
                 });
 
-                consignment().Produk().Est().ValueAddedService1.subscribe(function (value) {
+                consignment().Produk().Est().ValueAddedService.subscribe(function (value) {
                     if (value == 'none') {
                         consignment().Produk().ValueAddedDeclaredValue(null);
                     }
@@ -483,11 +478,11 @@ objectbuilders.app],
                     }
                 });
 
-                consignment().Produk().Est().ValueAddedService1.subscribe(function (value) {
+                consignment().Produk().Est().ValueAddedService.subscribe(function (value) {
                     if (value === "none") {
-                        isInsuredValueAdded1(false);
+                        isInsuredValueAdded(false);
                     } else {
-                        isInsuredValueAdded1(true);
+                        isInsuredValueAdded(true);
                     }
                 });
 
@@ -511,6 +506,74 @@ objectbuilders.app],
                         consignment().IsMps(false);
                         consignment().BabyConnotesTotal(0);
                         consignment().Produk().Est().CodAmount(0);
+                    }
+                });
+
+                isHasInsurance.subscribe(function (value) {
+                    if (value == false) {
+                        consignment().Produk().Est().ValueAddedService('none');
+                        consignment().Produk().Est().ValueAddedServicePackage('none');
+                        consignment().Produk().ValueAddedDeclaredValue(0);
+                        consignment().Produk().ValueAddedValue(0);
+                    }
+                });
+
+                consignment().Produk().Est().ValueAddedService.subscribe(function (value) {
+                    if (value == 'zurich' || value == 'etiqa') {
+                        consignment().Produk().Est().ValueAddedServicePackage('none');
+                        consignment().Produk().ValueAddedDeclaredValue(0);
+                        consignment().Produk().ValueAddedValue(0);
+                    }
+                });
+
+                consignment().Produk().Est().ValueAddedServicePackage.subscribe(function (value) {
+                    if (value == 'normal' || value == 'valuable') {
+                        consignment().Produk().ValueAddedDeclaredValue(0);
+                        consignment().Produk().ValueAddedValue(0);
+                    }
+                });
+
+                consignment().Produk().ValueAddedDeclaredValue.subscribe(function (value) {
+                    if (value > 0) {
+                        if (consignment().Produk().Est().ValueAddedService() == 'zurich') {
+                            if (consignment().Produk().ValueAddedDeclaredValue() > 0 && consignment().Produk().ValueAddedDeclaredValue() <= 1000) {
+                                consignment().Produk().ValueAddedValue(0.50);
+                            }
+                            if (consignment().Produk().ValueAddedDeclaredValue() > 1000 && consignment().Produk().ValueAddedDeclaredValue() <= 2000) {
+                                consignment().Produk().ValueAddedValue(0.60);
+                            }
+                            if (consignment().Produk().ValueAddedDeclaredValue() > 2000 && consignment().Produk().ValueAddedDeclaredValue() <= 3000) {
+                                consignment().Produk().ValueAddedValue(0.70);
+                            }
+                            if (consignment().Produk().ValueAddedDeclaredValue() > 3000 && consignment().Produk().ValueAddedDeclaredValue() <= 4000) {
+                                consignment().Produk().ValueAddedValue(0.80);
+                            }
+                            if (consignment().Produk().ValueAddedDeclaredValue() > 4000) {
+                                consignment().Produk().ValueAddedValue(0);
+                            }
+                        }
+                        if (consignment().Produk().Est().ValueAddedService() == 'etiqa' && consignment().Produk().Est().ValueAddedServicePackage() == 'normal') {
+                            if (value > 0) {
+                                var valueDeclared = 0;
+                                valueDeclared = (consignment().Produk().ValueAddedDeclaredValue() * 0.15) / 100;
+                                if (valueDeclared < 1.50) {
+                                    consignment().Produk().ValueAddedValue(1.50);
+                                }
+                                else {
+                                    consignment().Produk().ValueAddedValue(valueDeclared);
+                                }
+                            }
+                        }
+                        if (consignment().Produk().Est().ValueAddedService() == 'etiqa' && consignment().Produk().Est().ValueAddedServicePackage() == 'valuable') {
+                            if (value > 0) {
+                                var valueDeclared = 0;
+                                valueDeclared = (consignment().Produk().ValueAddedDeclaredValue() * 2.15) / 100;
+                                consignment().Produk().ValueAddedValue(valueDeclared);
+                            }
+                        }
+                    }
+                    else {
+                        consignment().Produk().ValueAddedValue(0);
                     }
                 });
             },
@@ -557,12 +620,13 @@ objectbuilders.app],
             errors: errors,
             crid: crid,//temp
             cid: cid,//temp
-            isInsuredValueAdded1: isInsuredValueAdded1,
+            isInsuredValueAdded: isInsuredValueAdded,
             consignment: consignment,
             saveCommand: saveCommand,
             estProductService: estProductService,
             selectedCountryMaxWeight: selectedCountryMaxWeight,
             method: method,
+            isHasInsurance: isHasInsurance,
             selectPod: selectPod
         };
         return vm;

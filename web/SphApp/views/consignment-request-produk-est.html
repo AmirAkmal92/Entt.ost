@@ -78,7 +78,7 @@
                                                data-rule-number="true" data-rule-required="true"
                                                data-rule-min="0"
                                                id="6465286c-a3af-46de-e7d8-0499b6bf7cf4" name="Produk.Weight" />
-                                        <span class="help-block" data-bind="if: consignment().Penerima().Address().Country() == 'MY'"><small><i>Total weight of all pieces if this is an MPS</i></small></span>
+                                        <!--<span class="help-block" data-bind="if: consignment().Penerima().Address().Country() == 'MY'"><small><i>Total weight of all pieces if this is an MPS</i></small></span>-->
                                     </div>
                                 </div>
                                 <div class="form-group" data-bind="visible:true">
@@ -182,108 +182,52 @@
                                 </div>
                                 <div data-bind="with: estProductService()[estProductService().findIndex(x => x.CategoryCode == consignment().Produk().ItemCategory())]">
                                     <div class="form-group" data-bind="with: $data.Products()[$data.Products().findIndex(x => x.ProductCode == $root.consignment().Produk().Est().ItemProduct())]">
-                                        <div class="row" data-bind="foreach: $data.AdditionalService">
+
+                                        <div class="form-group form-checkboxes">
+                                            <label class="col-md-3 control-label" for="form_control_1">
+                                                <small>Insurance</small>
+                                            </label>
+                                            <div class="col-md-9 md-checkbox-inline">
+                                                <div class="md-checkbox">
+                                                    <input type="checkbox" id="a" class="md-check" data-bind="checked: $root.isHasInsurance">
+                                                    <label for="a">
+                                                        <span></span>
+                                                        <span class="check"></span>
+                                                        <span class="box"></span><small>Check this box to purchase insurance</small>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" data-bind="visible: $root.isHasInsurance(), foreach: $data.AdditionalService">
                                             <!--ko if: $index() == 0-->
                                             <label class="col-md-3 control-label">
-                                                <small>Value Added Service</small>
+                                                <small>Type of Insurance</small>
                                             </label>
                                             <!--/ko-->
-                                            <!--ko if: $index() > 0-->
-                                            <label class="col-md-3 control-label">
-                                                <small>&nbsp;</small>
-                                            </label>
-                                            <!--/ko-->
-                                            <!--ko if: name == "Insurance Zurich"-->
-                                            <div class="col-md-9">
+                                            <!--ko if: name == "Zurich Insurance"-->
+                                            <div class="col-md-4">
                                                 <div class="md-checkbox-inline">
                                                     <div class="md-radio">
-                                                        <input type="radio" id="ValueAddedService1_1" name="ValueAddedService1" value="0406" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService1" />
+                                                        <input type="radio" id="ValueAddedService1_1" name="ValueAddedService1" value="zurich" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService" />
                                                         <label for="ValueAddedService1_1">
                                                             <span></span>
                                                             <span class="check"></span>
-                                                            <span class="box"></span><i>Insurance Zurich</i>
-                                                        </label>
-                                                    </div>
-                                                    <div class="md-radio">
-                                                        <input type="radio" id="ValueAddedService1_2" name="ValueAddedService1" value="none" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService1" />
-                                                        <label for="ValueAddedService1_2">
-                                                            <span></span>
-                                                            <span class="check"></span>
-                                                            <span class="box"></span> <i>None</i>
+                                                            <span class="box"></span><i>Zurich Insurance</i>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!--/ko-->
-                                            <!--ko if: name == "Insurance"-->
-                                            <div class="col-md-9">
+                                            <!--ko if: name == "Etiqa Insurance"-->
+                                            <div class="col-md-4">
                                                 <div class="md-checkbox-inline">
                                                     <div class="md-radio">
-                                                        <input type="radio" id="ValueAddedService1_1" name="ValueAddedService1" value="0401" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService1" />
-                                                        <label for="ValueAddedService1_1">
-                                                            <span></span>
-                                                            <span class="check"></span>
-                                                            <span class="box"></span><i>Insurance High Value</i>
-                                                        </label>
-                                                    </div>
-                                                    <div class="md-radio">
-                                                        <input type="radio" id="ValueAddedService1_2" name="ValueAddedService1" value="0402" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService1" />
-                                                        <label for="ValueAddedService1_2">
-                                                            <span></span>
-                                                            <span class="check"></span>
-                                                            <span class="box"></span><i>Insurance Normal</i>
-                                                        </label>
-                                                    </div>
-                                                    <div class="md-radio">
-                                                        <input type="radio" id="ValueAddedService1_3" name="ValueAddedService1" value="none" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService1" />
-                                                        <label for="ValueAddedService1_3">
-                                                            <span></span>
-                                                            <span class="check"></span>
-                                                            <span class="box"></span> <i>None</i>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--/ko-->
-                                            <!--ko if: name == "Packaging"-->
-                                            <div class="col-md-9">
-                                                <div class="md-checkbox-inline">
-                                                    <div class="md-radio">
-                                                        <input type="radio" id="ValueAddedService2_1" name="ValueAddedService2" value="0502" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService2" />
+                                                        <input type="radio" id="ValueAddedService2_1" name="ValueAddedService1" value="etiqa" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService" />
                                                         <label for="ValueAddedService2_1">
                                                             <span></span>
                                                             <span class="check"></span>
-                                                            <span class="box"></span><i>Packaging Standard</i>
-                                                        </label>
-                                                    </div>
-                                                    <div class="md-radio">
-                                                        <input type="radio" id="ValueAddedService2_2" name="ValueAddedService2" value="none" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService2" />
-                                                        <label for="ValueAddedService2_2">
-                                                            <span></span>
-                                                            <span class="check"></span>
-                                                            <span class="box"></span> <i>None</i>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--/ko-->
-                                            <!--ko if: name == "DO Acknowledgement"-->
-                                            <div class="col-md-9">
-                                                <div class="md-checkbox-inline">
-                                                    <div class="md-radio">
-                                                        <input type="radio" id="ValueAddedService3_1" name="ValueAddedService3" value="0601" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService3" />
-                                                        <label for="ValueAddedService3_1">
-                                                            <span></span>
-                                                            <span class="check"></span>
-                                                            <span class="box"></span><i>Do Acknowledgement Normal</i>
-                                                        </label>
-                                                    </div>
-                                                    <div class="md-radio">
-                                                        <input type="radio" id="ValueAddedService3_2" name="ValueAddedService3" value="none" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService3" />
-                                                        <label for="ValueAddedService3_2">
-                                                            <span></span>
-                                                            <span class="check"></span>
-                                                            <span class="box"></span> <i>None</i>
+                                                            <span class="box"></span><i>Etiqa Insurance</i>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -292,16 +236,33 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-md-3 control-label">
-                                        <small>Sum Insured (RM) </small>
-                                    </div>
+                                <div class="form-group" data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'etiqa'">
+                                    <label data-i18n="Addon Method" class="col-md-3 control-label"><small>Insurance Package</small></label>
                                     <div class="col-md-9">
-                                        <input class="form-control input-sm" required type="text"
-                                               placeholder="Sum Insured"
-                                               data-bind="value: consignment().Produk().ValueAddedDeclaredValue, disable: $root.isInsuredValueAdded1() == false"
-                                               data-rule-number="true" name="Produk.ValueAddedDeclaredValue" />
-                                        <span class="help-block"><small><i>Only applicable if you've selected an insurance cover.</i></small></span>
+                                        <select class="form-control input-sm" data-bind="value: consignment().Produk().Est().ValueAddedServicePackage">
+                                            <option value="none">Select...</option>
+                                            <option value="normal">Normal Item</option>
+                                            <option value="valuable">Valuable Item</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'zurich' || (consignment().Produk().Est().ValueAddedService() == 'etiqa' && consignment().Produk().Est().ValueAddedServicePackage() == 'normal') || (consignment().Produk().Est().ValueAddedService() == 'etiqa' && consignment().Produk().Est().ValueAddedServicePackage() == 'valuable')">
+                                    <label data-i18n="sum_insured" class="col-md-3 control-label" for="sum_insured"><small></small></label>
+                                    <div class="col-md-4">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-addon">RM</div>
+                                            <input class="form-control" type="text" placeholder="" data-bind="money: consignment().Produk().ValueAddedDeclaredValue" data-rule-number="true" name="Produk.ValueAddedDeclaredValue" required />
+                                        </div>
+                                        <div class="form-control-focus"> </div>
+                                        <span class="help-block"><small>Sum Insured (RM)</small></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-addon">RM</div>
+                                            <input class="form-control" type="text" placeholder="" data-bind="money: consignment().Produk().ValueAddedValue" data-rule-number="true" name="Produk.ValueAddedValue" disabled />
+                                        </div>
+                                        <div class="form-control-focus"> </div>
+                                        <span class="help-block"><small>Insured Value (RM)</small></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -408,7 +369,7 @@
                                                        data-bind="value: consignment().Produk().Est().CodAmount, visible: $root.selectPod() == 'cod'"
                                                        name="Produk.CodAmount" data-rule-number="true" data-rule-min="0" />
                                                 <span class="help-block"><small><i>Receiver have to pay as the amount stated above</i></small></span>
-                                            </div>                                            
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
