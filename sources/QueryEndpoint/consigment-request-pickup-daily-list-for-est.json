@@ -1,0 +1,102 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "ConsigmentRequestPickupDailyListForEstQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Pickup.IsPickedUp",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "Value": "false",
+          "Name": "false",
+          "Note": "",
+          "WebId": "0bf86eaf-ea6c-4e9c-a614-8eb1ac9ce403"
+        },
+        "WebId": "4d9aedfb-ea14-4fd9-b82e-2f8af79c993f"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Payment.IsConNoteReady",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "Value": "true",
+          "Name": "true",
+          "Note": "",
+          "WebId": "147f8762-a816-4b72-bb16-17382fad3f16"
+        },
+        "WebId": "5582528e-147f-4a53-fc90-3a3f2dac14f9"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Payment.IsPaid",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "Value": "false",
+          "Name": "false",
+          "Note": "",
+          "WebId": "5b506858-c6ef-4bad-b53c-54c4ed487291"
+        },
+        "WebId": "bff2673e-e8c1-493a-c43c-716a89be909e"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Designation",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "Value": "Contract customer",
+          "Name": "Contract customer",
+          "Note": "",
+          "WebId": "e916f55f-a8a8-46f6-e2f5-f2fbcfe9e65d"
+        },
+        "WebId": "0b0a2bd8-19e2-4a0a-a72c-99ee7b0e6e07"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Pickup.Number",
+        "Operator": "Neq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "Value": "null",
+          "Name": "null",
+          "Note": "",
+          "WebId": "9d844f68-d057-456b-e83b-eb5078397e1b"
+        },
+        "WebId": "ca786f0e-a734-4489-a620-c3e1872cd5a0"
+      }
+    ]
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": []
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "PickupDailyListForEst",
+  "Route": "pickup-daily-list-for-est",
+  "IsReturnSource": "",
+  "Entity": "ConsigmentRequest",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "consigment-requests",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "consigment-request-pickup-daily-list-for-est",
+  "CreatedDate": "2017-10-13T11:46:09.7048858+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-10-13T16:33:34.5723102+08:00",
+  "WebId": "27559267-feda-4cfc-c7b0-0e49fc03190a"
+}
