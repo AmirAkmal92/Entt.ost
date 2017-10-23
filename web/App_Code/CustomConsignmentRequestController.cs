@@ -402,31 +402,7 @@ namespace web.sph.App_Code
 
             if (consignmentRequest.Pickup.Address.Postcode != null)
             {
-                m_ostBaseUrl.DefaultRequestHeaders.Clear();
-                m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
-                var requestUri = $"{m_ostBaseUrl.BaseAddress}/consignment-request/get-pickup-availability/{consignmentRequest.Pickup.Address.Postcode}";
-                var response = await m_ostBaseUrl.GetAsync(requestUri);
-                var output = string.Empty;
-                if (response.IsSuccessStatusCode)
-                {
-                    Console.WriteLine($"RequestUri: {requestUri.ToString()}");
-                    Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
-                    output = await response.Content.ReadAsStringAsync();
-                }
-                else
-                {
-                    Console.WriteLine($"RequestUri: {requestUri.ToString()}");
-                    Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
-                    if (response.StatusCode == HttpStatusCode.NotFound)
-                    {
-                        return NotFound("Cannot find branch with postcode:" + consignmentRequest.Pickup.Address.Postcode);
-                    }
-                    else
-                    {
-                        return BadRequest("GetPickupAvailability() Error");
-                    }
-                }
-                var posLajuBranch = output.DeserializeFromJson<PosLajuBranch>();
+                PosLajuBranch posLajuBranch = await GetBranch(int.Parse(consignmentRequest.Pickup.Address.Postcode));
 
                 foreach (var consignment in consignmentRequest.Consignments)
                 {
@@ -443,9 +419,8 @@ namespace web.sph.App_Code
                         };
 
                         m_snbClientApi.DefaultRequestHeaders.Clear();
-                        m_snbClientApi.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
                         m_snbClientApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                        requestUri = $"{m_snbClientApi.BaseAddress}/get-zone-byproduct";
+                        var requestUri = $"{m_snbClientApi.BaseAddress}/get-zone-byproduct";
                         var json = JsonConvert.SerializeObject(getZoneModal);
                         var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
                         var resultSnb = m_snbClientApi.PostAsync(requestUri, content).Result;
@@ -490,6 +465,18 @@ namespace web.sph.App_Code
         [HttpGet]
         [Route("get-pickup-availability/{postcode}")]
         public async Task<IHttpActionResult> GetPickupAvailability(int postcode)
+        {
+            PosLajuBranch branch = await GetBranch(postcode);
+
+            if (branch == null)
+            {
+                return NotFound("No pickup for postcode: " + postcode);
+            }
+
+            return Ok(branch);
+        }
+
+        private static async Task<PosLajuBranch> GetBranch(int postcode)
         {
             var repos = ObjectBuilder.GetObject<IReadonlyRepository<PosLajuBranch>>();
             var query = $@"{{
@@ -566,13 +553,7 @@ namespace web.sph.App_Code
                 && postcode <= int.Parse(x.PostcodeTo)
                 && x.AllowPickup.Equals(true))
             .FirstOrDefault();
-
-            if (branch == null)
-            {
-                return NotFound("No pickup for postcode: " + postcode);
-            }
-
-            return Ok(branch);
+            return branch;
         }
 
         [HttpPut]
