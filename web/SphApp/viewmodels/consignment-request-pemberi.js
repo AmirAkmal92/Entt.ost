@@ -82,13 +82,13 @@ objectbuilders.app, "viewmodels/_consignment-request-cart"],
                         }
                     }
 
+                    // always check for pickup location
+                    if (entity().Pickup().Address().Postcode() === undefined) {
+                        app.showMessage("You must set Pickup Location first before you can send any Parcel.", "OST", ["Close"]).done(function () {
+                            router.navigate("consignment-request-pickup/" + crId);
+                        });
+                    }
                     if (config.profile.Designation != "Contract customer") {
-                        // always check for pickup location
-                        if (entity().Pickup().Address().Postcode() === undefined) {
-                            app.showMessage("You must set Pickup Location first before you can send any Parcel.", "OST", ["Close"]).done(function () {
-                                router.navigate("consignment-request-pickup/" + crId);
-                            });
-                        }
                         // always check for pickup schedule
                         if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {
                         } else {

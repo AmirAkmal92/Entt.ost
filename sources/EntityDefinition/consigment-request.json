@@ -2824,6 +2824,68 @@
                             "WebId": "5a7cafd9-bcb9-44b0-dce9-2a899e051d37"
                           },
                           "WebId": "fe96de61-06e3-49e4-9951-815f0987f0ae"
+                        },
+                        {
+                          "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+                          "TypeName": "System.Decimal, mscorlib",
+                          "IsNullable": false,
+                          "IsNotIndexed": false,
+                          "IsAnalyzed": false,
+                          "IsFilterable": false,
+                          "IsExcludeInAll": false,
+                          "Boost": 0,
+                          "FullName": null,
+                          "PropertyAttribute": null,
+                          "MemberCollection": {
+                            "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+                            "$values": []
+                          },
+                          "FieldPermissionCollection": {
+                            "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+                            "$values": []
+                          },
+                          "Name": "CodAmount",
+                          "AllowMultiple": false,
+                          "DefaultValue": {
+                            "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+                            "TypeName": "System.Decimal",
+                            "Value": 0.0,
+                            "Name": "0",
+                            "Note": "",
+                            "WebId": "5e0c283a-4f64-462d-9a62-389f6e9053a0"
+                          },
+                          "WebId": "7c21ec34-31b2-47e5-a4ad-d1d68068c5db"
+                        },
+                        {
+                          "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+                          "TypeName": "System.Decimal, mscorlib",
+                          "IsNullable": false,
+                          "IsNotIndexed": false,
+                          "IsAnalyzed": false,
+                          "IsFilterable": false,
+                          "IsExcludeInAll": false,
+                          "Boost": 0,
+                          "FullName": null,
+                          "PropertyAttribute": null,
+                          "MemberCollection": {
+                            "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+                            "$values": []
+                          },
+                          "FieldPermissionCollection": {
+                            "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+                            "$values": []
+                          },
+                          "Name": "CcodAmount",
+                          "AllowMultiple": false,
+                          "DefaultValue": {
+                            "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+                            "TypeName": "System.Decimal",
+                            "Value": 0.0,
+                            "Name": "0",
+                            "Note": "",
+                            "WebId": "c02076cf-f211-49cd-b33a-20741c836bea"
+                          },
+                          "WebId": "a46f0beb-45f4-4c7c-c9d7-422eb47970fc"
                         }
                       ]
                     },
@@ -3847,6 +3909,30 @@
                     "AllowMultiple": false,
                     "DefaultValue": null,
                     "WebId": "4dadbecc-4e0f-4dc6-9532-2b37d194c00c"
+                  },
+                  {
+                    "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+                    "TypeName": "System.String, mscorlib",
+                    "IsNullable": false,
+                    "IsNotIndexed": false,
+                    "IsAnalyzed": false,
+                    "IsFilterable": false,
+                    "IsExcludeInAll": false,
+                    "Boost": 0,
+                    "FullName": null,
+                    "PropertyAttribute": null,
+                    "MemberCollection": {
+                      "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+                      "$values": []
+                    },
+                    "FieldPermissionCollection": {
+                      "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+                      "$values": []
+                    },
+                    "Name": "RoutingCode",
+                    "AllowMultiple": false,
+                    "DefaultValue": null,
+                    "WebId": "ecf6ddb9-d901-48df-e418-d777206e87fb"
                   }
                 ]
               },
@@ -4075,6 +4161,6 @@
   "Id": "consigment-request",
   "CreatedDate": "2016-10-29T07:26:06.8492482+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-09-13T11:48:55.4987609+08:00",
+  "ChangedDate": "2017-10-16T18:35:22.7206736+08:00",
   "WebId": "b8808d89-54c8-4d91-8396-7627974f1138"
 }

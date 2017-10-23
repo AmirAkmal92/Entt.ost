@@ -206,6 +206,8 @@ objectbuilders.app],
             cid = ko.observable(),
             availableCountries = ko.observableArray(),
             selectedCountryMaxWeight = ko.observable(),
+            method = ko.observable('none'),
+            selectPod = ko.observable('cod'),
             partial = partial || {},
             headers = {},
             isBorneo = ko.observable(false),
@@ -220,6 +222,7 @@ objectbuilders.app],
                 cid(cId);
                 isInsuredValueAdded1(false);
                 volumetric(0.00);
+                method('none');
                 var tcs = new $.Deferred();
                 if (!crId || crId === "0") {
                     return Task.fromResult({
@@ -293,6 +296,18 @@ objectbuilders.app],
                             if (consignment().Produk().Height != null && consignment().Produk().Length != null
                                 && consignment().Produk().Width != null) {
                                 calculateVolumetric();
+                            }
+
+                            if (consignment().IsMps() === true) {
+                                method('mps');
+                            } else if (consignment().Produk().Est().CodAmount() > 0 || consignment().Produk().Est().CcodAmount() > 0) {
+                                method('pod');
+                            }
+
+                            if (consignment().Produk().Est().CodAmount() > 0 && consignment().Produk().Est().CcodAmount() === undefined) {
+                                selectPod('cod');
+                            } else if (consignment().Produk().Est().CcodAmount() > 0 && consignment().Produk().Est().CodAmount() === undefined) {
+                                selectPod('ccod');
                             }
                         }
                     }, function (e) {
@@ -475,6 +490,29 @@ objectbuilders.app],
                         isInsuredValueAdded1(true);
                     }
                 });
+
+                consignment().IsMps.subscribe(function (value) {
+                    if (value == true) {
+                        consignment().Produk().Est().CodAmount(0);
+                        consignment().Produk().Est().CcodAmount(0);
+                    }
+                });
+
+                consignment().Produk().Est().CodAmount.subscribe(function (value) {
+                    if (value > 0) {
+                        consignment().IsMps(false);
+                        consignment().BabyConnotesTotal(0);
+                        consignment().Produk().Est().CcodAmount(0);
+                    }
+                });
+
+                consignment().Produk().Est().CcodAmount.subscribe(function (value) {
+                    if (value > 0) {
+                        consignment().IsMps(false);
+                        consignment().BabyConnotesTotal(0);
+                        consignment().Produk().Est().CodAmount(0);
+                    }
+                });
             },
             compositionComplete = function () {
 
@@ -523,7 +561,9 @@ objectbuilders.app],
             consignment: consignment,
             saveCommand: saveCommand,
             estProductService: estProductService,
-            selectedCountryMaxWeight: selectedCountryMaxWeight
+            selectedCountryMaxWeight: selectedCountryMaxWeight,
+            method: method,
+            selectPod: selectPod
         };
         return vm;
     });

@@ -16,5 +16,20 @@ namespace web.sph.App_Code
             return File(path, MimeMapping.GetMimeMapping(filePath), $"{fileName}_{DateTime.Now:yyyyMMdd-HHmmss}.xlsx");
         }
 
+        //TODO Refactor
+        [Route("file-path-pdf/{filePath}/file-name/{fileName}")]
+        public FilePathResult GetPDFFile(string filePath, string fileName)
+        {
+            var path = Path.Combine(Path.GetTempPath(), filePath);
+            try
+            {
+                return File(path, MimeMapping.GetMimeMapping(filePath), $"Thermal_Lable_{fileName}.pdf");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: {0}", e.Message);
+                throw;
+            }
+        }
     }
 }

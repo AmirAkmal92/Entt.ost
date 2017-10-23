@@ -168,11 +168,11 @@
                             <td class="td-hide">col-04</td>
                             @if (Model.Designation == "Contract customer")
                             {
-                                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.UserId)</span></td>
+                            <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.UserId)</span></td>
                             }
                             else
                             {
-                                <td class="td-hide" colspan="8"></td>
+                            <td class="td-hide" colspan="8"></td>
 
                             }
                             <td class="td-hide">col-13</td>
@@ -368,56 +368,56 @@
                         @*======== ROW 20 ====== Custom Declaration 2 *@
                         @if (String.IsNullOrEmpty(item.Produk.CustomDeclaration.ContentDescription2))
                         {
-                            <tr>
-                                <td class="td-hide">col-01</td>
-                                <td class="td-hide" colspan="8">&nbsp;</td>
-                                <td class="td-hide" colspan="3">&nbsp;</td>
-                                <td class="td-hide" colspan="2">&nbsp;</td>
-                                <td class="td-hide">col-15</td>
-                                <td class="td-hide" colspan="2">&nbsp;</td>
-                                <td class="td-hide" colspan="3">&nbsp;</td>
-                                <td class="td-hide" colspan="4">&nbsp;</td>
-                            </tr>
+                        <tr>
+                            <td class="td-hide">col-01</td>
+                            <td class="td-hide" colspan="8">&nbsp;</td>
+                            <td class="td-hide" colspan="3">&nbsp;</td>
+                            <td class="td-hide" colspan="2">&nbsp;</td>
+                            <td class="td-hide">col-15</td>
+                            <td class="td-hide" colspan="2">&nbsp;</td>
+                            <td class="td-hide" colspan="3">&nbsp;</td>
+                            <td class="td-hide" colspan="4">&nbsp;</td>
+                        </tr>
                         }
                         else
                         {
-                            <tr>
-                                <td class="td-hide">col-01</td>
-                                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.ContentDescription2)</span></td>
-                                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.Quantity2)</span></td>
-                                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", item.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
-                                <td class="td-hide">col-15</td>
-                                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", item.Produk.CustomDeclaration.Value2))</span></td>
-                                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.HSTariffNo2)</span></td>
-                                <td colspan="4"><span>@Html.Raw(item.Produk.CustomDeclaration.OriginCountry2)</span></td>
-                            </tr>
+                        <tr>
+                            <td class="td-hide">col-01</td>
+                            <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.ContentDescription2)</span></td>
+                            <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.Quantity2)</span></td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", item.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
+                            <td class="td-hide">col-15</td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", item.Produk.CustomDeclaration.Value2))</span></td>
+                            <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.HSTariffNo2)</span></td>
+                            <td colspan="4"><span>@Html.Raw(item.Produk.CustomDeclaration.OriginCountry2)</span></td>
+                        </tr>
                         }
                         @*======== ROW 21 ====== Custom Declaration 3  *@
                         @if (String.IsNullOrEmpty(item.Produk.CustomDeclaration.ContentDescription3))
                         {
-                            <tr>
-                                <td class="td-hide">col-01</td>
-                                <td class="td-hide" colspan="8">&nbsp;</td>
-                                <td class="td-hide" colspan="3">&nbsp;</td>
-                                <td class="td-hide" colspan="2">&nbsp;</td>
-                                <td class="td-hide">col-15</td>
-                                <td class="td-hide" colspan="2">&nbsp;</td>
-                                <td class="td-hide" colspan="3">&nbsp;</td>
-                                <td class="td-hide" colspan="4">&nbsp;</td>
-                            </tr>
+                        <tr>
+                            <td class="td-hide">col-01</td>
+                            <td class="td-hide" colspan="8">&nbsp;</td>
+                            <td class="td-hide" colspan="3">&nbsp;</td>
+                            <td class="td-hide" colspan="2">&nbsp;</td>
+                            <td class="td-hide">col-15</td>
+                            <td class="td-hide" colspan="2">&nbsp;</td>
+                            <td class="td-hide" colspan="3">&nbsp;</td>
+                            <td class="td-hide" colspan="4">&nbsp;</td>
+                        </tr>
                         }
                         else
                         {
-                            <tr>
-                                <td class="td-hide">col-01</td>
-                                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.ContentDescription3)</span></td>
-                                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.Quantity3)</span></td>
-                                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", item.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
-                                <td class="td-hide">col-15</td>
-                                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", item.Produk.CustomDeclaration.Value3))</span></td>
-                                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.HSTariffNo3)</span></td>
-                                <td colspan="4"><span>@Html.Raw(item.Produk.CustomDeclaration.OriginCountry3)</span></td>
-                            </tr>
+                        <tr>
+                            <td class="td-hide">col-01</td>
+                            <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.ContentDescription3)</span></td>
+                            <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.Quantity3)</span></td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", item.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
+                            <td class="td-hide">col-15</td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", item.Produk.CustomDeclaration.Value3))</span></td>
+                            <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.HSTariffNo3)</span></td>
+                            <td colspan="4"><span>@Html.Raw(item.Produk.CustomDeclaration.OriginCountry3)</span></td>
+                        </tr>
                         }
                         @*======== ROW 22 ====== Total *@
                         <tr>
@@ -483,23 +483,23 @@
                             <td class="td-hide">col-10</td>
                             @if (item.Produk.ItemCategory == "01")
                             {
-                                <td class="td-hide"><span>✓</span></td>
-                                <td class="td-hide">col-12</td>
-                                <td class="td-hide">col-13</td>
-                                <td><span>✓</span></td>
-                                <td class="td-hide">col-15</td>
-                                <td class="td-hide">col-16</td>
-                                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                            <td class="td-hide"><span>✓</span></td>
+                            <td class="td-hide">col-12</td>
+                            <td class="td-hide">col-13</td>
+                            <td><span>✓</span></td>
+                            <td class="td-hide">col-15</td>
+                            <td class="td-hide">col-16</td>
+                            <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                             }
                             else
                             {
-                                <td class="td-hide"><span>✓</span></td>
-                                <td class="td-hide">col-12</td>
-                                <td class="td-hide">col-13</td>
-                                <td class="td-hide"><span>✓</span></td>
-                                <td class="td-hide">col-15</td>
-                                <td class="td-hide">col-16</td>
-                                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                            <td class="td-hide"><span>✓</span></td>
+                            <td class="td-hide">col-12</td>
+                            <td class="td-hide">col-13</td>
+                            <td class="td-hide"><span>✓</span></td>
+                            <td class="td-hide">col-15</td>
+                            <td class="td-hide">col-16</td>
+                            <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                             }
                             <td class="td-hide">col-18</td>
                             <td class="td-hide">col-19</td>
@@ -631,11 +631,11 @@
                             <td class="td-hide">col-20</td>
                             @if (Model.Designation == "Contract customer")
                             {
-                                <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>@Html.Raw("")</span><br /></td>
+                            <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>@Html.Raw("")</span><br /></td>
                             }
                             else
                             {
-                                <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(String.Format("{0:F2}", item.Bill.Total))</span><br /></td>
+                            <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(String.Format("{0:F2}", item.Bill.Total))</span><br /></td>
                             }
                             <td class="td-hide">col-24</td>
                         </tr>
@@ -899,11 +899,11 @@
                             <td class="td-hide">col-04</td>
                             @if (Model.Designation == "Contract customer")
                     {
-                                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.UserId)</span></td>
+                            <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.UserId)</span></td>
                             }
                             else
                             {
-                                <td class="td-hide" colspan="8"></td>
+                            <td class="td-hide" colspan="8"></td>
 
                             }
                             <td class="td-hide">col-13</td>
@@ -1099,56 +1099,56 @@
                         @*======== ROW 20 ====== Custom Declaration 2 *@
                         @if (String.IsNullOrEmpty(item.Produk.CustomDeclaration.ContentDescription2))
                         {
-                            <tr>
-                                <td class="td-hide">col-01</td>
-                                <td class="td-hide" colspan="8">&nbsp;</td>
-                                <td class="td-hide" colspan="3">&nbsp;</td>
-                                <td class="td-hide" colspan="2">&nbsp;</td>
-                                <td class="td-hide">col-15</td>
-                                <td class="td-hide" colspan="2">&nbsp;</td>
-                                <td class="td-hide" colspan="3">&nbsp;</td>
-                                <td class="td-hide" colspan="4">&nbsp;</td>
-                            </tr>
+                        <tr>
+                            <td class="td-hide">col-01</td>
+                            <td class="td-hide" colspan="8">&nbsp;</td>
+                            <td class="td-hide" colspan="3">&nbsp;</td>
+                            <td class="td-hide" colspan="2">&nbsp;</td>
+                            <td class="td-hide">col-15</td>
+                            <td class="td-hide" colspan="2">&nbsp;</td>
+                            <td class="td-hide" colspan="3">&nbsp;</td>
+                            <td class="td-hide" colspan="4">&nbsp;</td>
+                        </tr>
                         }
                         else
                         {
-                            <tr>
-                                <td class="td-hide">col-01</td>
-                                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.ContentDescription2)</span></td>
-                                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.Quantity2)</span></td>
-                                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", item.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
-                                <td class="td-hide">col-15</td>
-                                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", item.Produk.CustomDeclaration.Value2))</span></td>
-                                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.HSTariffNo2)</span></td>
-                                <td colspan="4"><span>@Html.Raw(item.Produk.CustomDeclaration.OriginCountry2)</span></td>
-                            </tr>
+                        <tr>
+                            <td class="td-hide">col-01</td>
+                            <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.ContentDescription2)</span></td>
+                            <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.Quantity2)</span></td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", item.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
+                            <td class="td-hide">col-15</td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", item.Produk.CustomDeclaration.Value2))</span></td>
+                            <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.HSTariffNo2)</span></td>
+                            <td colspan="4"><span>@Html.Raw(item.Produk.CustomDeclaration.OriginCountry2)</span></td>
+                        </tr>
                         }
                         @*======== ROW 21 ====== Custom Declaration 3  *@
                         @if (String.IsNullOrEmpty(item.Produk.CustomDeclaration.ContentDescription3))
                         {
-                            <tr>
-                                <td class="td-hide">col-01</td>
-                                <td class="td-hide" colspan="8">&nbsp;</td>
-                                <td class="td-hide" colspan="3">&nbsp;</td>
-                                <td class="td-hide" colspan="2">&nbsp;</td>
-                                <td class="td-hide">col-15</td>
-                                <td class="td-hide" colspan="2">&nbsp;</td>
-                                <td class="td-hide" colspan="3">&nbsp;</td>
-                                <td class="td-hide" colspan="4">&nbsp;</td>
-                            </tr>
+                        <tr>
+                            <td class="td-hide">col-01</td>
+                            <td class="td-hide" colspan="8">&nbsp;</td>
+                            <td class="td-hide" colspan="3">&nbsp;</td>
+                            <td class="td-hide" colspan="2">&nbsp;</td>
+                            <td class="td-hide">col-15</td>
+                            <td class="td-hide" colspan="2">&nbsp;</td>
+                            <td class="td-hide" colspan="3">&nbsp;</td>
+                            <td class="td-hide" colspan="4">&nbsp;</td>
+                        </tr>
                         }
                         else
                         {
-                            <tr>
-                                <td class="td-hide">col-01</td>
-                                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.ContentDescription3)</span></td>
-                                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.Quantity3)</span></td>
-                                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", item.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
-                                <td class="td-hide">col-15</td>
-                                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", item.Produk.CustomDeclaration.Value3))</span></td>
-                                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.HSTariffNo3)</span></td>
-                                <td colspan="4"><span>@Html.Raw(item.Produk.CustomDeclaration.OriginCountry3)</span></td>
-                            </tr>
+                        <tr>
+                            <td class="td-hide">col-01</td>
+                            <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.ContentDescription3)</span></td>
+                            <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.Quantity3)</span></td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", item.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
+                            <td class="td-hide">col-15</td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", item.Produk.CustomDeclaration.Value3))</span></td>
+                            <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.HSTariffNo3)</span></td>
+                            <td colspan="4"><span>@Html.Raw(item.Produk.CustomDeclaration.OriginCountry3)</span></td>
+                        </tr>
                         }
                         @*======== ROW 22 ====== Total *@
                         <tr>
@@ -1214,23 +1214,23 @@
                             <td class="td-hide">col-10</td>
                             @if (item.Produk.ItemCategory == "01")
                             {
-                                <td class="td-hide"><span>✓</span></td>
-                                <td class="td-hide">col-12</td>
-                                <td class="td-hide">col-13</td>
-                                <td><span>✓</span></td>
-                                <td class="td-hide">col-15</td>
-                                <td class="td-hide">col-16</td>
-                                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                            <td class="td-hide"><span>✓</span></td>
+                            <td class="td-hide">col-12</td>
+                            <td class="td-hide">col-13</td>
+                            <td><span>✓</span></td>
+                            <td class="td-hide">col-15</td>
+                            <td class="td-hide">col-16</td>
+                            <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                             }
                             else
                             {
-                                <td class="td-hide"><span>✓</span></td>
-                                <td class="td-hide">col-12</td>
-                                <td class="td-hide">col-13</td>
-                                <td class="td-hide"><span>✓</span></td>
-                                <td class="td-hide">col-15</td>
-                                <td class="td-hide">col-16</td>
-                                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                            <td class="td-hide"><span>✓</span></td>
+                            <td class="td-hide">col-12</td>
+                            <td class="td-hide">col-13</td>
+                            <td class="td-hide"><span>✓</span></td>
+                            <td class="td-hide">col-15</td>
+                            <td class="td-hide">col-16</td>
+                            <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                             }
                             <td class="td-hide">col-18</td>
                             <td class="td-hide">col-19</td>
@@ -1362,11 +1362,11 @@
                             <td class="td-hide">col-20</td>
                             @if (Model.Designation == "Contract customer")
                             {
-                                <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>@Html.Raw("")</span><br /></td>
+                            <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>@Html.Raw("")</span><br /></td>
                             }
                             else
                             {
-                                <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(String.Format("{0:F2}", item.Bill.Total))</span><br /></td>
+                            <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(String.Format("{0:F2}", item.Bill.Total))</span><br /></td>
                             }
                             <td class="td-hide">col-24</td>
                         </tr>
@@ -1632,11 +1632,11 @@
                             <td class="td-hide">col-04</td>
                             @if (Model.Designation == "Contract customer")
                     {
-                                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.UserId)</span></td>
+                            <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.UserId)</span></td>
                             }
                             else
                             {
-                                <td class="td-hide" colspan="8"></td>
+                            <td class="td-hide" colspan="8"></td>
 
                             }
                             <td class="td-hide">col-13</td>
@@ -1832,56 +1832,56 @@
                         @*======== ROW 20 ====== Custom Declaration 2 *@
                         @if (String.IsNullOrEmpty(item.Produk.CustomDeclaration.ContentDescription2))
                         {
-                            <tr>
-                                <td class="td-hide">col-01</td>
-                                <td class="td-hide" colspan="8">&nbsp;</td>
-                                <td class="td-hide" colspan="3">&nbsp;</td>
-                                <td class="td-hide" colspan="2">&nbsp;</td>
-                                <td class="td-hide">col-15</td>
-                                <td class="td-hide" colspan="2">&nbsp;</td>
-                                <td class="td-hide" colspan="3">&nbsp;</td>
-                                <td class="td-hide" colspan="4">&nbsp;</td>
-                            </tr>
+                        <tr>
+                            <td class="td-hide">col-01</td>
+                            <td class="td-hide" colspan="8">&nbsp;</td>
+                            <td class="td-hide" colspan="3">&nbsp;</td>
+                            <td class="td-hide" colspan="2">&nbsp;</td>
+                            <td class="td-hide">col-15</td>
+                            <td class="td-hide" colspan="2">&nbsp;</td>
+                            <td class="td-hide" colspan="3">&nbsp;</td>
+                            <td class="td-hide" colspan="4">&nbsp;</td>
+                        </tr>
                         }
                         else
                         {
-                            <tr>
-                                <td class="td-hide">col-01</td>
-                                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.ContentDescription2)</span></td>
-                                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.Quantity2)</span></td>
-                                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", item.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
-                                <td class="td-hide">col-15</td>
-                                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", item.Produk.CustomDeclaration.Value2))</span></td>
-                                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.HSTariffNo2)</span></td>
-                                <td colspan="4"><span>@Html.Raw(item.Produk.CustomDeclaration.OriginCountry2)</span></td>
-                            </tr>
+                        <tr>
+                            <td class="td-hide">col-01</td>
+                            <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.ContentDescription2)</span></td>
+                            <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.Quantity2)</span></td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", item.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
+                            <td class="td-hide">col-15</td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", item.Produk.CustomDeclaration.Value2))</span></td>
+                            <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.HSTariffNo2)</span></td>
+                            <td colspan="4"><span>@Html.Raw(item.Produk.CustomDeclaration.OriginCountry2)</span></td>
+                        </tr>
                         }
                         @*======== ROW 21 ====== Custom Declaration 3  *@
                         @if (String.IsNullOrEmpty(item.Produk.CustomDeclaration.ContentDescription3))
                         {
-                            <tr>
-                                <td class="td-hide">col-01</td>
-                                <td class="td-hide" colspan="8">&nbsp;</td>
-                                <td class="td-hide" colspan="3">&nbsp;</td>
-                                <td class="td-hide" colspan="2">&nbsp;</td>
-                                <td class="td-hide">col-15</td>
-                                <td class="td-hide" colspan="2">&nbsp;</td>
-                                <td class="td-hide" colspan="3">&nbsp;</td>
-                                <td class="td-hide" colspan="4">&nbsp;</td>
-                            </tr>
+                        <tr>
+                            <td class="td-hide">col-01</td>
+                            <td class="td-hide" colspan="8">&nbsp;</td>
+                            <td class="td-hide" colspan="3">&nbsp;</td>
+                            <td class="td-hide" colspan="2">&nbsp;</td>
+                            <td class="td-hide">col-15</td>
+                            <td class="td-hide" colspan="2">&nbsp;</td>
+                            <td class="td-hide" colspan="3">&nbsp;</td>
+                            <td class="td-hide" colspan="4">&nbsp;</td>
+                        </tr>
                         }
                         else
                         {
-                            <tr>
-                                <td class="td-hide">col-01</td>
-                                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.ContentDescription3)</span></td>
-                                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.Quantity3)</span></td>
-                                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", item.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
-                                <td class="td-hide">col-15</td>
-                                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", item.Produk.CustomDeclaration.Value3))</span></td>
-                                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.HSTariffNo3)</span></td>
-                                <td colspan="4"><span>@Html.Raw(item.Produk.CustomDeclaration.OriginCountry3)</span></td>
-                            </tr>
+                        <tr>
+                            <td class="td-hide">col-01</td>
+                            <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.ContentDescription3)</span></td>
+                            <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.Quantity3)</span></td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", item.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
+                            <td class="td-hide">col-15</td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", item.Produk.CustomDeclaration.Value3))</span></td>
+                            <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.HSTariffNo3)</span></td>
+                            <td colspan="4"><span>@Html.Raw(item.Produk.CustomDeclaration.OriginCountry3)</span></td>
+                        </tr>
                         }
                         @*======== ROW 22 ====== Total *@
                         <tr>
@@ -1947,23 +1947,23 @@
                             <td class="td-hide">col-10</td>
                             @if (item.Produk.ItemCategory == "01")
                             {
-                                <td class="td-hide"><span>✓</span></td>
-                                <td class="td-hide">col-12</td>
-                                <td class="td-hide">col-13</td>
-                                <td><span>✓</span></td>
-                                <td class="td-hide">col-15</td>
-                                <td class="td-hide">col-16</td>
-                                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                            <td class="td-hide"><span>✓</span></td>
+                            <td class="td-hide">col-12</td>
+                            <td class="td-hide">col-13</td>
+                            <td><span>✓</span></td>
+                            <td class="td-hide">col-15</td>
+                            <td class="td-hide">col-16</td>
+                            <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                             }
                             else
                             {
-                                <td class="td-hide"><span>✓</span></td>
-                                <td class="td-hide">col-12</td>
-                                <td class="td-hide">col-13</td>
-                                <td class="td-hide"><span>✓</span></td>
-                                <td class="td-hide">col-15</td>
-                                <td class="td-hide">col-16</td>
-                                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                            <td class="td-hide"><span>✓</span></td>
+                            <td class="td-hide">col-12</td>
+                            <td class="td-hide">col-13</td>
+                            <td class="td-hide"><span>✓</span></td>
+                            <td class="td-hide">col-15</td>
+                            <td class="td-hide">col-16</td>
+                            <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                             }
                             <td class="td-hide">col-18</td>
                             <td class="td-hide">col-19</td>
@@ -2095,11 +2095,11 @@
                             <td class="td-hide">col-20</td>
                             @if (Model.Designation == "Contract customer")
                             {
-                                <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>@Html.Raw("")</span><br /></td>
+                            <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>@Html.Raw("")</span><br /></td>
                             }
                             else
                             {
-                                <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(String.Format("{0:F2}", item.Bill.Total))</span><br /></td>
+                            <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(String.Format("{0:F2}", item.Bill.Total))</span><br /></td>
                             }
                             <td class="td-hide">col-24</td>
                         </tr>
@@ -2364,11 +2364,11 @@
                             <td class="td-hide">col-04</td>
                             @if (Model.Designation == "Contract customer")
                     {
-                                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.UserId)</span></td>
+                            <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.UserId)</span></td>
                             }
                             else
                             {
-                                <td class="td-hide" colspan="8"></td>
+                            <td class="td-hide" colspan="8"></td>
 
                             }
                             <td class="td-hide">col-13</td>
@@ -2564,56 +2564,56 @@
                         @*======== ROW 20 ====== Custom Declaration 2 *@
                         @if (String.IsNullOrEmpty(item.Produk.CustomDeclaration.ContentDescription2))
                         {
-                            <tr>
-                                <td class="td-hide">col-01</td>
-                                <td class="td-hide" colspan="8">&nbsp;</td>
-                                <td class="td-hide" colspan="3">&nbsp;</td>
-                                <td class="td-hide" colspan="2">&nbsp;</td>
-                                <td class="td-hide">col-15</td>
-                                <td class="td-hide" colspan="2">&nbsp;</td>
-                                <td class="td-hide" colspan="3">&nbsp;</td>
-                                <td class="td-hide" colspan="4">&nbsp;</td>
-                            </tr>
+                        <tr>
+                            <td class="td-hide">col-01</td>
+                            <td class="td-hide" colspan="8">&nbsp;</td>
+                            <td class="td-hide" colspan="3">&nbsp;</td>
+                            <td class="td-hide" colspan="2">&nbsp;</td>
+                            <td class="td-hide">col-15</td>
+                            <td class="td-hide" colspan="2">&nbsp;</td>
+                            <td class="td-hide" colspan="3">&nbsp;</td>
+                            <td class="td-hide" colspan="4">&nbsp;</td>
+                        </tr>
                         }
                         else
                         {
-                            <tr>
-                                <td class="td-hide">col-01</td>
-                                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.ContentDescription2)</span></td>
-                                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.Quantity2)</span></td>
-                                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", item.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
-                                <td class="td-hide">col-15</td>
-                                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", item.Produk.CustomDeclaration.Value2))</span></td>
-                                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.HSTariffNo2)</span></td>
-                                <td colspan="4"><span>@Html.Raw(item.Produk.CustomDeclaration.OriginCountry2)</span></td>
-                            </tr>
+                        <tr>
+                            <td class="td-hide">col-01</td>
+                            <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.ContentDescription2)</span></td>
+                            <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.Quantity2)</span></td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", item.Produk.CustomDeclaration.Weight2))</span>&nbsp;(kg)</td>
+                            <td class="td-hide">col-15</td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", item.Produk.CustomDeclaration.Value2))</span></td>
+                            <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.HSTariffNo2)</span></td>
+                            <td colspan="4"><span>@Html.Raw(item.Produk.CustomDeclaration.OriginCountry2)</span></td>
+                        </tr>
                         }
                         @*======== ROW 21 ====== Custom Declaration 3  *@
                         @if (String.IsNullOrEmpty(item.Produk.CustomDeclaration.ContentDescription3))
                         {
-                            <tr>
-                                <td class="td-hide">col-01</td>
-                                <td class="td-hide" colspan="8">&nbsp;</td>
-                                <td class="td-hide" colspan="3">&nbsp;</td>
-                                <td class="td-hide" colspan="2">&nbsp;</td>
-                                <td class="td-hide">col-15</td>
-                                <td class="td-hide" colspan="2">&nbsp;</td>
-                                <td class="td-hide" colspan="3">&nbsp;</td>
-                                <td class="td-hide" colspan="4">&nbsp;</td>
-                            </tr>
+                        <tr>
+                            <td class="td-hide">col-01</td>
+                            <td class="td-hide" colspan="8">&nbsp;</td>
+                            <td class="td-hide" colspan="3">&nbsp;</td>
+                            <td class="td-hide" colspan="2">&nbsp;</td>
+                            <td class="td-hide">col-15</td>
+                            <td class="td-hide" colspan="2">&nbsp;</td>
+                            <td class="td-hide" colspan="3">&nbsp;</td>
+                            <td class="td-hide" colspan="4">&nbsp;</td>
+                        </tr>
                         }
                         else
                         {
-                            <tr>
-                                <td class="td-hide">col-01</td>
-                                <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.ContentDescription3)</span></td>
-                                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.Quantity3)</span></td>
-                                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", item.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
-                                <td class="td-hide">col-15</td>
-                                <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", item.Produk.CustomDeclaration.Value3))</span></td>
-                                <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.HSTariffNo3)</span></td>
-                                <td colspan="4"><span>@Html.Raw(item.Produk.CustomDeclaration.OriginCountry3)</span></td>
-                            </tr>
+                        <tr>
+                            <td class="td-hide">col-01</td>
+                            <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.ContentDescription3)</span></td>
+                            <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.Quantity3)</span></td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F1}", item.Produk.CustomDeclaration.Weight3))</span>&nbsp;(kg)</td>
+                            <td class="td-hide">col-15</td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;<span>@Html.Raw(String.Format("{0:F2}", item.Produk.CustomDeclaration.Value3))</span></td>
+                            <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(item.Produk.CustomDeclaration.HSTariffNo3)</span></td>
+                            <td colspan="4"><span>@Html.Raw(item.Produk.CustomDeclaration.OriginCountry3)</span></td>
+                        </tr>
                         }
                         @*======== ROW 22 ====== Total *@
                         <tr>
@@ -2679,23 +2679,23 @@
                             <td class="td-hide">col-10</td>
                             @if (item.Produk.ItemCategory == "01")
                             {
-                                <td class="td-hide"><span>✓</span></td>
-                                <td class="td-hide">col-12</td>
-                                <td class="td-hide">col-13</td>
-                                <td><span>✓</span></td>
-                                <td class="td-hide">col-15</td>
-                                <td class="td-hide">col-16</td>
-                                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                            <td class="td-hide"><span>✓</span></td>
+                            <td class="td-hide">col-12</td>
+                            <td class="td-hide">col-13</td>
+                            <td><span>✓</span></td>
+                            <td class="td-hide">col-15</td>
+                            <td class="td-hide">col-16</td>
+                            <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                             }
                             else
                             {
-                                <td class="td-hide"><span>✓</span></td>
-                                <td class="td-hide">col-12</td>
-                                <td class="td-hide">col-13</td>
-                                <td class="td-hide"><span>✓</span></td>
-                                <td class="td-hide">col-15</td>
-                                <td class="td-hide">col-16</td>
-                                <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
+                            <td class="td-hide"><span>✓</span></td>
+                            <td class="td-hide">col-12</td>
+                            <td class="td-hide">col-13</td>
+                            <td class="td-hide"><span>✓</span></td>
+                            <td class="td-hide">col-15</td>
+                            <td class="td-hide">col-16</td>
+                            <td class="td-hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>✓</span></td>
                             }
                             <td class="td-hide">col-18</td>
                             <td class="td-hide">col-19</td>
@@ -2827,11 +2827,11 @@
                             <td class="td-hide">col-20</td>
                             @if (Model.Designation == "Contract customer")
                             {
-                                <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>@Html.Raw("")</span><br /></td>
+                            <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>@Html.Raw("")</span><br /></td>
                             }
                             else
                             {
-                                <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(String.Format("{0:F2}", item.Bill.Total))</span><br /></td>
+                            <td colspan="3" rowspan="2"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYR <span>@Html.Raw(String.Format("{0:F2}", item.Bill.Total))</span><br /></td>
                             }
                             <td class="td-hide">col-24</td>
                         </tr>
@@ -3025,7 +3025,7 @@
                             <td class="td-hide">col-02</td>
                             <td class="td-hide">col-03</td>
                             @if (Model.Designation == "Contract customer")
-                    {
+                            {
                                 <td colspan="10" style="padding-left: 16px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(item.Produk.Est.ShipperReferenceNo)</b></span><span style="padding-right:34px !important;" class="pull-right"><b>Account No. @Html.Raw(Model.UserId)</b></span></td>
                             }
                             else
@@ -3151,7 +3151,7 @@
                             <td class="td-hide">col-02</td>
                             <td class="td-hide">col-03</td>
                             @if (Model.Designation == "Contract customer")
-                    {
+                            {
                                 <td colspan="10" style="padding-left: 30px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(item.Produk.Est.ReceiverReferenceNo)</b></span></td>
                             }
                             else
@@ -3254,21 +3254,12 @@
                         @*======== ROW 16 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td class="td-hide">col-19</td>
-                            <td class="td-hide">col-20</td>
-                            <td class="td-hide">col-21</td>
-                            <td class="td-hide">col-22</td>
-                            <td class="td-hide">col-23</td>
+                            <td rowspan="2" colspan="5"><b style="font-size: 28px;">@Html.Raw(item.Bill.RoutingCode)</b></td>
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 17 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td class="td-hide">col-19</td>
-                            <td class="td-hide">col-20</td>
-                            <td class="td-hide">col-21</td>
-                            <td class="td-hide">col-22</td>
-                            <td class="td-hide">col-23</td>
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 18 ======*@
@@ -3604,21 +3595,12 @@
                         @*======== ROW 16 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td class="td-hide">col-19</td>
-                            <td class="td-hide">col-20</td>
-                            <td class="td-hide">col-21</td>
-                            <td class="td-hide">col-22</td>
-                            <td class="td-hide">col-23</td>
+                            <td rowspan="2" colspan="5"><b style="font-size: 28px;">@Html.Raw(item.Bill.RoutingCode)</b></td>
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 17 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td class="td-hide">col-19</td>
-                            <td class="td-hide">col-20</td>
-                            <td class="td-hide">col-21</td>
-                            <td class="td-hide">col-22</td>
-                            <td class="td-hide">col-23</td>
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 18 ======*@
@@ -3961,21 +3943,12 @@
                             @*======== ROW 16 ======*@
                             <tr>
                                 <td class="td-hide">col-01</td>
-                                <td class="td-hide">col-19</td>
-                                <td class="td-hide">col-20</td>
-                                <td class="td-hide">col-21</td>
-                                <td class="td-hide">col-22</td>
-                                <td class="td-hide">col-23</td>
+                                <td rowspan="2" colspan="5"><b style="font-size: 28px;">@Html.Raw(item.Bill.RoutingCode)</b></td>
                                 <td class="td-hide">col-24</td>
                             </tr>
                             @*======== ROW 17 ======*@
                             <tr>
                                 <td class="td-hide">col-01</td>
-                                <td class="td-hide">col-19</td>
-                                <td class="td-hide">col-20</td>
-                                <td class="td-hide">col-21</td>
-                                <td class="td-hide">col-22</td>
-                                <td class="td-hide">col-23</td>
                                 <td class="td-hide">col-24</td>
                             </tr>
                             @*======== ROW 18 ======*@
@@ -4311,21 +4284,12 @@
                             @*======== ROW 16 ======*@
                             <tr>
                                 <td class="td-hide">col-01</td>
-                                <td class="td-hide">col-19</td>
-                                <td class="td-hide">col-20</td>
-                                <td class="td-hide">col-21</td>
-                                <td class="td-hide">col-22</td>
-                                <td class="td-hide">col-23</td>
+                                <td rowspan="2" colspan="5"><b style="font-size: 28px;">@Html.Raw(item.Bill.RoutingCode)</b></td>
                                 <td class="td-hide">col-24</td>
                             </tr>
                             @*======== ROW 17 ======*@
                             <tr>
                                 <td class="td-hide">col-01</td>
-                                <td class="td-hide">col-19</td>
-                                <td class="td-hide">col-20</td>
-                                <td class="td-hide">col-21</td>
-                                <td class="td-hide">col-22</td>
-                                <td class="td-hide">col-23</td>
                                 <td class="td-hide">col-24</td>
                             </tr>
                             @*======== ROW 18 ======*@
@@ -4402,29 +4366,29 @@
         {
             var dataMatrixModel = new web.sph.App_Code.DataMatrixModel
             {
-                versionHeader = "A1",                                                           //01
-                connoteNum = item.ConNote,                                                      //02
-                recipientPostcode = item.Penerima.Address.Postcode,                             //03
-                countryCode = item.Penerima.Address.Country,                                    //04
-                productCode = (item.Produk.IsInternational) ? "80000001" : "80000000",          //05
-                parentConnote = (item.IsMps) ? item.ConNote : "",                               //06
-                mpsIndicator = (item.IsMps) ? "02" : "01",                                      //07
-                senderPhoneNum = item.Pemberi.ContactInformation.ContactNumber,                 //08
-                senderEmail = item.Pemberi.ContactInformation.Email,                            //09
-                senderRefNo = Model.ReferenceNo,                                                //10
-                customerAccNum = (Model.Designation == "Contract customer") ? Model.UserId : "",//11
-                recipientPhoneNum = item.Penerima.ContactInformation.ContactNumber,             //12
-                recipientEmail = item.Penerima.ContactInformation.Email,                        //13
-                weight = item.Produk.Weight.ToString("0"),                                      //14
-                dimensionVol = $"{item.Produk.Length.ToString("0.000")}" +                      //15
+                versionHeader = "A1",                                                                           //01
+                connoteNum = item.ConNote,                                                                      //02
+                recipientPostcode = item.Penerima.Address.Postcode,                                             //03
+                countryCode = item.Penerima.Address.Country,                                                    //04
+                productCode = (item.Produk.IsInternational) ? "80000001" : "80000000",                          //05
+                parentConnote = (item.IsMps) ? item.ConNote : "",                                               //06
+                mpsIndicator = (item.IsMps) ? "02" : "01",                                                      //07
+                senderPhoneNum = item.Pemberi.ContactInformation.ContactNumber,                                 //08
+                senderEmail = item.Pemberi.ContactInformation.Email,                                            //09
+                senderRefNo = Model.ReferenceNo,                                                                //10
+                customerAccNum = (Model.Designation == "Contract customer") ? Model.UserId : "",                //11
+                recipientPhoneNum = item.Penerima.ContactInformation.ContactNumber,                             //12
+                recipientEmail = item.Penerima.ContactInformation.Email,                                        //13
+                weight = item.Produk.Weight.ToString("0"),                                                      //14
+                dimensionVol = $"{item.Produk.Length.ToString("0.00")}" +                                      //15
                                 $"x{item.Produk.Width.ToString("0")}" +
                                 $"x{item.Produk.Height.ToString("0")}",
-                codAmount = "", //TODO                                                          //16
-                ccodAmount = "", //TODO                                                         //17
-                valueAdded = item.Produk.ValueAddedValue.ToString("0"),                         //18
-                itemCategory = item.Produk.ItemCategory,                                        //19
-                amountPaid = Model.Payment.TotalPrice.ToString("0"),                            //20
-                zone = (item.Produk.IsInternational) ? "" : "02",                               //21
+                codAmount = item.Produk.Est.CodAmount > 0 ? item.Produk.Est.CodAmount.ToString("0.00") : "",    //16
+                ccodAmount = item.Produk.Est.CcodAmount > 0 ? item.Produk.Est.CcodAmount.ToString("0.00") : "", //17
+                valueAdded = item.Produk.ValueAddedValue.ToString("0"),                                         //18
+                itemCategory = item.Produk.ItemCategory,                                                        //19
+                amountPaid = Model.Payment.TotalPrice.ToString("0"),                                            //20
+                zone = (item.Produk.IsInternational) ? "" : "02",                                               //21
             };
 
             var textParent = $@"{dataMatrixModel.versionHeader}^{dataMatrixModel.connoteNum}^{dataMatrixModel.recipientPostcode}^{dataMatrixModel.countryCode}^{dataMatrixModel.productCode}^{dataMatrixModel.parentConnote}^{dataMatrixModel.mpsIndicator}^{dataMatrixModel.senderPhoneNum}^{dataMatrixModel.senderEmail}^{dataMatrixModel.senderRefNo}^{dataMatrixModel.customerAccNum}^{dataMatrixModel.recipientPhoneNum}^{dataMatrixModel.recipientEmail}^{dataMatrixModel.weight}^{dataMatrixModel.dimensionVol}^{dataMatrixModel.codAmount}^{dataMatrixModel.ccodAmount}^{dataMatrixModel.valueAdded}^{dataMatrixModel.itemCategory}^{dataMatrixModel.amountPaid}^{dataMatrixModel.zone}";

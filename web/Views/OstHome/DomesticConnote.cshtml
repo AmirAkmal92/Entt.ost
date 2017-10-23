@@ -312,21 +312,12 @@
                 @*======== ROW 16 ======*@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td class="td-hide">col-19</td>
-                    <td class="td-hide">col-20</td>
-                    <td class="td-hide">col-21</td>
-                    <td class="td-hide">col-22</td>
-                    <td class="td-hide">col-23</td>
+                    <td rowspan="2" colspan="5"><b style="font-size: 28px;">@Html.Raw(Model.consignment.Bill.RoutingCode)</b></td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 17 ======*@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td class="td-hide">col-19</td>
-                    <td class="td-hide">col-20</td>
-                    <td class="td-hide">col-21</td>
-                    <td class="td-hide">col-22</td>
-                    <td class="td-hide">col-23</td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 18 ======*@
@@ -662,21 +653,12 @@
                 @*======== ROW 16 ======*@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td class="td-hide">col-19</td>
-                    <td class="td-hide">col-20</td>
-                    <td class="td-hide">col-21</td>
-                    <td class="td-hide">col-22</td>
-                    <td class="td-hide">col-23</td>
+                    <td rowspan="2" colspan="5"><b style="font-size: 28px;">@Html.Raw(Model.consignment.Bill.RoutingCode)</b></td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 17 ======*@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td class="td-hide">col-19</td>
-                    <td class="td-hide">col-20</td>
-                    <td class="td-hide">col-21</td>
-                    <td class="td-hide">col-22</td>
-                    <td class="td-hide">col-23</td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 18 ======*@
@@ -1017,21 +999,12 @@
                         @*======== ROW 16 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td class="td-hide">col-19</td>
-                            <td class="td-hide">col-20</td>
-                            <td class="td-hide">col-21</td>
-                            <td class="td-hide">col-22</td>
-                            <td class="td-hide">col-23</td>
+                            <td rowspan="2" colspan="5"><b style="font-size: 28px;">@Html.Raw(Model.consignment.Bill.RoutingCode)</b></td>
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 17 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td class="td-hide">col-19</td>
-                            <td class="td-hide">col-20</td>
-                            <td class="td-hide">col-21</td>
-                            <td class="td-hide">col-22</td>
-                            <td class="td-hide">col-23</td>
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 18 ======*@
@@ -1367,21 +1340,12 @@
                         @*======== ROW 16 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td class="td-hide">col-19</td>
-                            <td class="td-hide">col-20</td>
-                            <td class="td-hide">col-21</td>
-                            <td class="td-hide">col-22</td>
-                            <td class="td-hide">col-23</td>
+                            <td rowspan="2" colspan="5"><b style="font-size: 28px;">@Html.Raw(Model.consignment.Bill.RoutingCode)</b></td>
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 17 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td class="td-hide">col-19</td>
-                            <td class="td-hide">col-20</td>
-                            <td class="td-hide">col-21</td>
-                            <td class="td-hide">col-22</td>
-                            <td class="td-hide">col-23</td>
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 18 ======*@
@@ -1452,29 +1416,29 @@
     @{
         var dataMatrixModel = new web.sph.App_Code.DataMatrixModel
         {
-            versionHeader = "A1",                                                               //01
-            connoteNum = Model.consignment.ConNote,                                             //02
-            recipientPostcode = Model.consignment.Penerima.Address.Postcode,                    //03
-            countryCode = Model.consignment.Penerima.Address.Country,                           //04
-            productCode = (Model.consignment.Produk.IsInternational) ? "80000001" : "80000000", //05
-            parentConnote = (Model.consignment.IsMps) ? Model.consignment.ConNote : "",         //06
-            mpsIndicator = (Model.consignment.IsMps) ? "02" : "01",                             //07
-            senderPhoneNum = Model.consignment.Pemberi.ContactInformation.ContactNumber,        //08
-            senderEmail = Model.consignment.Pemberi.ContactInformation.Email,                   //09
-            senderRefNo = Model.referenceNo,                                                    //10
-            customerAccNum = (Model.designation == "Contract customer") ? Model.accountNo : "", //11
-            recipientPhoneNum = Model.consignment.Penerima.ContactInformation.ContactNumber,    //12
-            recipientEmail = Model.consignment.Penerima.ContactInformation.Email,               //13
-            weight = Model.consignment.Produk.Weight.ToString("0.000"),                         //14
-            dimensionVol = $"{Model.consignment.Produk.Length.ToString("0")}" +                 //15
+            versionHeader = "A1",                                                                                                       //01
+            connoteNum = Model.consignment.ConNote,                                                                                     //02
+            recipientPostcode = Model.consignment.Penerima.Address.Postcode,                                                            //03
+            countryCode = Model.consignment.Penerima.Address.Country,                                                                   //04
+            productCode = (Model.consignment.Produk.IsInternational) ? "80000001" : "80000000",                                         //05
+            parentConnote = (Model.consignment.IsMps) ? Model.consignment.ConNote : "",                                                 //06
+            mpsIndicator = (Model.consignment.IsMps) ? "02" : "01",                                                                     //07
+            senderPhoneNum = Model.consignment.Pemberi.ContactInformation.ContactNumber,                                                //08
+            senderEmail = Model.consignment.Pemberi.ContactInformation.Email,                                                           //09
+            senderRefNo = Model.referenceNo,                                                                                            //10
+            customerAccNum = (Model.designation == "Contract customer") ? Model.accountNo : "",                                         //11    
+            recipientPhoneNum = Model.consignment.Penerima.ContactInformation.ContactNumber,                                            //12
+            recipientEmail = Model.consignment.Penerima.ContactInformation.Email,                                                       //13
+            weight = Model.consignment.Produk.Weight.ToString("0.00"),                                                                  //14
+            dimensionVol = $"{Model.consignment.Produk.Length.ToString("0")}" +                                                         //15
                            $"x{Model.consignment.Produk.Width.ToString("0")}" +
                            $"x{Model.consignment.Produk.Height.ToString("0")}",
-            codAmount = "", //TODO                                                              //16
-            ccodAmount = "", //TODO                                                             //17
-            valueAdded = Model.consignment.Produk.ValueAddedValue.ToString("0"),                //18
-            itemCategory = Model.consignment.Produk.ItemCategory,                               //19
-            amountPaid = Model.amountPaid.ToString("0"),                                        //20
-            zone = (Model.consignment.Produk.IsInternational) ? "" : "02",                      //21
+            codAmount = Model.consignment.Produk.Est.CodAmount > 0 ? Model.consignment.Produk.Est.CodAmount.ToString("0.00") : "",      //16
+            ccodAmount = Model.consignment.Produk.Est.CcodAmount > 0 ? Model.consignment.Produk.Est.CcodAmount.ToString("0.00") : "",   //17
+            valueAdded = Model.consignment.Produk.ValueAddedValue.ToString("0"),                                                        //18
+            itemCategory = Model.consignment.Produk.ItemCategory,                                                                       //19
+            amountPaid = Model.amountPaid.ToString("0"),                                                                                //20
+            zone = (Model.consignment.Produk.IsInternational) ? "" : "02",                                                              //21
         };
     }
 
