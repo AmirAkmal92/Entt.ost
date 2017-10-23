@@ -2693,7 +2693,7 @@
                             "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
                             "$values": []
                           },
-                          "Name": "ValueAddedService1",
+                          "Name": "ValueAddedService",
                           "AllowMultiple": false,
                           "DefaultValue": null,
                           "WebId": "24d00d24-3386-4f38-ceca-bce5c5dc8c61"
@@ -2717,34 +2717,10 @@
                             "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
                             "$values": []
                           },
-                          "Name": "ValueAddedService2",
+                          "Name": "ValueAddedServicePackage",
                           "AllowMultiple": false,
                           "DefaultValue": null,
                           "WebId": "00a69c2c-e993-44e5-a93c-f4b5e4741806"
-                        },
-                        {
-                          "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-                          "TypeName": "System.String, mscorlib",
-                          "IsNullable": false,
-                          "IsNotIndexed": false,
-                          "IsAnalyzed": false,
-                          "IsFilterable": false,
-                          "IsExcludeInAll": false,
-                          "Boost": 0,
-                          "FullName": null,
-                          "PropertyAttribute": null,
-                          "MemberCollection": {
-                            "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
-                            "$values": []
-                          },
-                          "FieldPermissionCollection": {
-                            "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
-                            "$values": []
-                          },
-                          "Name": "ValueAddedService3",
-                          "AllowMultiple": false,
-                          "DefaultValue": null,
-                          "WebId": "3c7b3b8c-1f23-45b9-e329-aa136ca1a70b"
                         },
                         {
                           "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
@@ -4161,6 +4137,6 @@
   "Id": "consigment-request",
   "CreatedDate": "2016-10-29T07:26:06.8492482+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-10-16T18:35:22.7206736+08:00",
+  "ChangedDate": "2017-10-23T15:04:41.2425811+08:00",
   "WebId": "b8808d89-54c8-4d91-8396-7627974f1138"
 }
