@@ -70,6 +70,13 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                             }
                         }
                         entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
+                        for (var i = 0; i < entity().Consignments().length; i++) {
+                            if (!entity().Consignments()[i].Produk().IsInternational() && entity().Consignments()[i].Bill().RoutingCode() == undefined) {
+                                context.put(data, "/consignment-request/get-routing-code/" + ko.unwrap(entity().Id) + "").done(function () {
+                                    activate(id());
+                                });
+                            }
+                        }
                         crCart.activate();
                         var data = ko.mapping.toJSON(entity);
                         if (entity().Pickup().DateClose() < moment().format()) {
@@ -397,7 +404,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 var data = ko.mapping.toJSON(entity);
                 $("#scheduler-detail-dialog").modal("hide");
                 toggleShowBusyLoadingDialog("Generating Pickup Number");
-                return context.put(data, "/consignment-request/schedule-pickup/" + ko.unwrap(entity().Id) + "")
+                return context.put(data, "/consignment-request/schedule-pickup")
                     .fail(function (response) {
                         toggleShowBusyLoadingDialog("Done");
                         app.showMessage("Sorry, but we cannot process pickup for the Paid Order with Id : " + ko.unwrap(entity().Id), "OST", ["Close"]).done(function () {
@@ -509,7 +516,18 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
 
             },
             saveCommand = function () {
-                //set TotalParcel == TotalQuantity (current flow OST)
+                return defaultCommand()
+                    .then(function (result) {
+                        if (result.success) {
+                            return app.showMessage("Parcel details has been successfully saved.", "OST", ["Close"]).done(function () {
+                                activate(id());
+                            });
+                        } else {
+                            return Task.fromResult(false);
+                        }
+                    });
+            },
+            submitPickup = function () {
                 var tReady = pickupReadyHH() + ":" + pickupReadyMM() + " PM";
                 var tClose = pickupCloseHH() + ":" + pickupCloseMM() + " PM";
                 var timeStart = moment(tReady, "hh:mm A");
@@ -518,22 +536,8 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     entity().Pickup().TotalQuantity(entity().Pickup().TotalParcel());
                     entity().Pickup().DateReady(tReady);
                     entity().Pickup().DateClose(tClose);
-                    return defaultCommand()
-                        .then(function (result) {
-                            if (result.success) {
-                                $("#scheduler-detail-dialog").modal("hide");
-                                return app.showMessage("Sender details has been successfully saved.", "OST", ["Close"]).done(function () {
-                                    activate(id());
-                                });
-                            } else {
-                                return Task.fromResult(false);
-                            }
-                        })
-                        .then(function (result) {
-                            if (result) {
-                                activate(ko.unwrap(entity().Id));
-                            }
-                        });
+                    $("#scheduler-detail-dialog").modal("hide");
+                    return schedulePickup();
                 } else {
                     app.showMessage("Pickup time is invalid. Please set a valid pickup time.", "OST", ["Close"]);
                 }
@@ -560,7 +564,6 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             launchSchedulerDetailDialog: launchSchedulerDetailDialog,
             sumWeight: sumWeight,
             sumConsignment: sumConsignment,
-            schedulePickup: schedulePickup,
             importConsignments: importConsignments,
             exportTallysheetShipment: exportTallysheetShipment,
             exportPickupManifest: exportPickupManifest,
@@ -580,7 +583,8 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             availablePageSize: availablePageSize,
             nextPage: nextPage,
             previousPage: previousPage,
-            saveCommand: saveCommand
+            saveCommand: saveCommand,
+            submitPickup: submitPickup
         };
         return vm;
     });

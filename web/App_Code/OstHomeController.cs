@@ -445,6 +445,7 @@ namespace web.sph.App_Code
             var chargeOnDelivery = itemHasConnote.Produk.Est.CodAmount > 0 ? ("COD : RM " + itemHasConnote.Produk.Est.CodAmount.ToString("0.00")) : ("CCOD : RM " + itemHasConnote.Produk.Est.CcodAmount.ToString("0.00"));
             var textChargeOnDeliveryCustCopy = (itemHasConnote.Produk.Est.CodAmount > 0 || itemHasConnote.Produk.Est.CcodAmount > 0 ? "JUMLAH " + chargeOnDelivery : "");
             var textChargeOnDeliveryPPLCopy = (itemHasConnote.Produk.Est.CodAmount > 0 || itemHasConnote.Produk.Est.CcodAmount > 0 ? chargeOnDelivery : "");
+            var routingCode = itemHasConnote.Produk.IsInternational ? "" : itemHasConnote.Bill.RoutingCode;
 
             var zplCode = "^XA~TA000~JSN^LT0^MNW^MTT^PON^PMN^LH0,0^JMA^PR5,5~SD15^JUS^LRN^CI0^XZ";
             zplCode += "^XA";
@@ -508,7 +509,7 @@ namespace web.sph.App_Code
             zplCode += "^^FT33,1191^A0N,17,16^FH^FDTel : " + itemHasConnote.Penerima.ContactInformation.ContactNumber + "^FS";
             zplCode += "^FT27,240^A0N,17,16^FH^FDTarikh :^FS";
             zplCode += "^FT121,240^A0N,17,16^FH^FD" + connoteDate.ToString("d MMMM yyyy") + "^FS";
-            zplCode += "^FT114,378^A0N,72,88^FH^FD" + " " + "^FS"; //TODO: _routingcode
+            zplCode += "^FT114,378^A0N,72,88^FH^FD" + routingCode + "^FS";
             zplCode += "^FT434,1194^A0N,45,45^FH^FD*" + itemHasConnote.ConNote.ToUpper() + "*^FS";
             zplCode += "^FT392,571^A0N,45,45^FH^FD*" + itemHasConnote.ConNote.ToUpper() + "*^FS";
             zplCode += "^FT262,1040^A0N,25,24^FH^FDSalinan Pejabat^FS";

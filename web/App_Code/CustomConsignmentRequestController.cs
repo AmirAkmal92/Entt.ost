@@ -25,6 +25,7 @@ namespace web.sph.App_Code
         private HttpClient m_ostBaseUrl;
         private HttpClient m_sdsBaseUrl;
         private HttpClient m_snbClientApi;
+        private HttpClient m_clientBromApi;
         private string m_applicationName;
         private string m_ostAdminToken;
         private string m_sdsApi_GenerateConnote;
@@ -39,6 +40,7 @@ namespace web.sph.App_Code
             m_ostBaseUrl = new HttpClient { BaseAddress = new Uri(ConfigurationManager.GetEnvironmentVariable("BaseUrl") ?? "http://localhost:50230") };
             m_sdsBaseUrl = new HttpClient { BaseAddress = new Uri(ConfigurationManager.GetEnvironmentVariable("SdsBaseUrl") ?? "https://apis.pos.com.my") };
             m_snbClientApi = new HttpClient { BaseAddress = new Uri(ConfigurationManager.GetEnvironmentVariable("SnbWebApi") ?? "http://10.1.1.119:9002/api") };
+            m_clientBromApi = new HttpClient { BaseAddress = new Uri(ConfigurationManager.GetEnvironmentVariable("BromApi") ?? "http://10.1.3.70:81/api") };
             m_applicationName = ConfigurationManager.GetEnvironmentVariable("ApplicationName") ?? "OST";
             m_ostAdminToken = ConfigurationManager.GetEnvironmentVariable("AdminToken") ?? "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHlvdXJjb21wYW55LmNvbSIsInN1YiI6IjYzNjI1ODg3Nzc4NjYwMDg3NTVmMTgxMDQ0IiwibmJmIjoxNTA2MTU5Nzc5LCJpYXQiOjE0OTAyNjIxNzksImV4cCI6MTc2NzEzOTIwMCwiYXVkIjoiT3N0In0.DBMfLcyIdXsOl65p34hA7MOhUFimpGJYXGRn4-alfBI";
             m_sdsApi_GenerateConnote = ConfigurationManager.GetEnvironmentVariable("SdsApi_GenerateConnote") ?? "apigateway/as01/api/genconnote/v1";
@@ -386,7 +388,7 @@ namespace web.sph.App_Code
             await Task.Delay(1500);
             return Accepted(result);
         }
-        
+
         [HttpPut]
         [Route("get-and-save-zones/{id}")]
         public async Task<IHttpActionResult> GetAndSaveZones(string id)
@@ -676,15 +678,11 @@ namespace web.sph.App_Code
         }
 
         [HttpPut]
-        [Route("schedule-pickup/{id}")]
-        public async Task<IHttpActionResult> ScheduleAndSavePickup(string id)
+        [Route("schedule-pickup")]
+        public async Task<IHttpActionResult> ScheduleAndSavePickup(ConsigmentRequest item)
         {
-            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
-            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
-
             var resultSuccess = true;
             var resultStatus = "OK";
-            var item = lo.Source;
 
             UserProfile userProfile = await GetDesignation();
 
@@ -1320,6 +1318,47 @@ namespace web.sph.App_Code
         {
             decimal gstValue = GstCalculation(value, rounded);
             return Ok(gstValue);
+        }
+
+        [HttpPut]
+        [Route("get-routing-code/{crId}")]
+        public async Task<IHttpActionResult> GetAndSaveRoutingCode(string crId)
+        {
+            var status = "OK";
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(crId);
+            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + crId);
+            var item = lo.Source;
+            var connote = new Consignment();
+            foreach (var consignment in item.Consignments)
+            {
+                if (consignment.Bill.RoutingCode == null && !consignment.Produk.IsInternational)
+                {
+                    connote = consignment;
+                    var originRoutingCode = RoutingCode(item.Pickup.Address.Postcode);
+                    var newOriginRoutingCode = originRoutingCode.Substring(5, 3);
+                    var destinationRoutingCode = RoutingCode(connote.Penerima.Address.Postcode);
+                    connote.Bill.RoutingCode = $"{newOriginRoutingCode} - {destinationRoutingCode}";
+                }
+            }
+            try
+            {
+                await SaveConsigmentRequest(item);
+            }
+            catch (Exception)
+            {
+                status = "FAIL";
+                throw;
+            }
+            await Task.Delay(1500);
+            return Accepted(status);
+        }
+
+        public string RoutingCode(string postCode)
+        {
+            var requestUri = $"{m_clientBromApi.BaseAddress}/branches/postcode/{postCode}/routing-code/";
+            var response = m_clientBromApi.GetStringAsync(requestUri).Result;
+            var routeCode = JObject.Parse(response).SelectToken("$.RouteCode");
+            return routeCode.ToString();
         }
 
         public static decimal GstCalculation(decimal value, int rounded = 2)
