@@ -58,7 +58,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             },
             schedulePickup = function () {
                 var data = ko.mapping.toJSON(entity);
-                return context.put(data, "/consignment-request/schedule-pickup/" + ko.unwrap(entity().Id) + "")
+                return context.put(data, "/consignment-request/schedule-pickup")
                     .fail(function (response) {
                         app.showMessage("Sorry, but we cannot process pickup for the Paid Order with Id : " + ko.unwrap(entity().Id), "OST", ["Close"]).done(function () {
                             router.navigate("consignment-requests-paid");
@@ -140,7 +140,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                         if (entity().Pickup().Number() === undefined) {
                             console.log("Schedule Pickup");
                             toggleShowBusyLoadingDialog("Scheduling Pickup");
-                            context.put(data, "/consignment-request/schedule-pickup/" + ko.unwrap(entity().Id) + "").done(function (result) {
+                            context.put(data, "/consignment-request/schedule-pickup").done(function (result) {
                                 toggleShowBusyLoadingDialog("Done");
                                 if (result.success) {
                                     app.showMessage("Pickup Number successfully generated.", "OST", ["Close"]).done(function () {
