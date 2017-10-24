@@ -1319,22 +1319,19 @@ namespace web.sph.App_Code
         }
 
         [HttpPut]
-        [Route("get-routing-code/{crId}")]
-        public async Task<IHttpActionResult> GetAndSaveRoutingCode(string crId)
+        [Route("get-routing-code")]
+        public async Task<IHttpActionResult> GetAndSaveRoutingCode(ConsigmentRequest item)
         {
             var status = "OK";
-            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(crId);
-            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + crId);
-            var item = lo.Source;
             var connote = new Consignment();
             foreach (var consignment in item.Consignments)
             {
                 if (consignment.Bill.RoutingCode == null && !consignment.Produk.IsInternational)
                 {
                     connote = consignment;
-                    var originRoutingCode = RoutingCode(item.Pickup.Address.Postcode);
+                    var originRoutingCode = GetRoutingCode(item.Pickup.Address.Postcode);
                     var newOriginRoutingCode = originRoutingCode.Substring(5, 3);
-                    var destinationRoutingCode = RoutingCode(connote.Penerima.Address.Postcode);
+                    var destinationRoutingCode = GetRoutingCode(connote.Penerima.Address.Postcode);
                     connote.Bill.RoutingCode = $"{newOriginRoutingCode} - {destinationRoutingCode}";
                 }
             }
@@ -1351,7 +1348,7 @@ namespace web.sph.App_Code
             return Accepted(status);
         }
 
-        public string RoutingCode(string postCode)
+        public string GetRoutingCode(string postCode)
         {
             var requestUri = $"{m_clientBromApi.BaseAddress}/branches/postcode/{postCode}/routing-code/";
             var response = m_clientBromApi.GetStringAsync(requestUri).Result;

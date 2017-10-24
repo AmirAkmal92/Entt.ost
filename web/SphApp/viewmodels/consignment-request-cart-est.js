@@ -72,7 +72,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                         entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
                         for (var i = 0; i < entity().Consignments().length; i++) {
                             if (!entity().Consignments()[i].Produk().IsInternational() && entity().Consignments()[i].Bill().RoutingCode() == undefined) {
-                                context.put(data, "/consignment-request/get-routing-code/" + ko.unwrap(entity().Id) + "").done(function () {
+                                context.put(ko.mapping.toJSON(entity), "/consignment-request/get-routing-code").done(function () {
                                     activate(id());
                                 });
                             }
