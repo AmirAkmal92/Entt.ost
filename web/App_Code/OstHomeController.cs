@@ -514,7 +514,7 @@ namespace web.sph.App_Code
             zplCode += "^FT434,1194^AT^FH^FD*" + itemHasConnote.ConNote.ToUpper() + "*^FS";
             zplCode += "^FT392,571^AT^FH^FD*" + itemHasConnote.ConNote.ToUpper() + "*^FS";
             zplCode += "^FT262,1040^AQ^FH^FDSalinan Pejabat^FS";
-            zplCode += "^FT31,1000^AQ^FH^FD" + textChargeOnDeliveryCustCopy + "^FS";
+            zplCode += "^FT31,970^AQ^FH^FD" + textChargeOnDeliveryCustCopy + "^FS";
             zplCode += "^BY128,128^FT620,848^BXN,4,200,0,0,1,~";
             zplCode += "^FH^FD" + dataMatrixCode + "^FS";
             zplCode += "^PQ1,0,1,Y^XZ";
