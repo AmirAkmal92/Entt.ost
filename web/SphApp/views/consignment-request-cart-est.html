@@ -1,3 +1,8 @@
+<style>
+    .timeline:before {
+        background: rgba(255,255,255,0) !important;
+    }
+</style>
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -31,6 +36,9 @@
                         <a data-bind="attr: { href: 'ost#consignment-request-pemberi/' + Id() + '/consignments/0' }, css: { 'disabled': Pickup().Address().Postcode() == undefined }" class="btn btn-circle yellow-casablanca">
                             <i class="fa fa-paper-plane"></i> Add Parcel
                         </a>
+                        <a data-bind="command: $root.importConsignments, css: { 'disabled': Pickup().Address().Postcode() == undefined }" class="btn btn-circle yellow-casablanca">
+                            <i class="fa fa-paper-plane"></i> Bulk Upload
+                        </a>
                         <a class="btn btn-circle yellow-casablanca disabled" data-bind="click : $root.deleteConsignments, css: { 'disabled': $root.selectedConsignments().length == 0 }">
                             <i class="fa fa-archive"></i> Delete
                             <i class="fa fa-spin fa-circle-o-notch" style="display: none;"></i><i class="fa fa-warning" style="color: red; display: none;"></i>
@@ -44,14 +52,6 @@
                                 <span class="fa fa-angle-down"> </span>
                             </a>
                             <ul class="dropdown-menu pull-right">
-                                <li data-bind="css: { 'disabled': Pickup().Address().Postcode() == undefined }">
-                                    <a data-bind="visible: Pickup().Address().Postcode() != undefined, command: $root.importConsignments">
-                                        <i class="fa fa-cloud-upload"></i> Bulk Upload
-                                    </a>
-                                    <a data-bind="visible: Pickup().Address().Postcode() == undefined " style="color: darkgrey;">
-                                        <i class="fa fa-cloud-upload" style="color: darkgrey;"></i> Bulk Upload
-                                    </a>
-                                </li>
                                 <li data-bind="css: { 'disabled': !Payment().IsPickupScheduled() }">
                                     <a data-bind="attr: { href: 'ost/print-all-connote/consignment-requests/' + Id()}, visible: Payment().IsPickupScheduled()" target="_blank">
                                         <i class="fa fa-print"></i> Print All Consignment Notes
@@ -178,7 +178,7 @@
                                         <div class="portlet-body">
                                             <div class="row static-info">
                                                 <div class="col-md-2 name"> PICKUP NUMBER : </div>
-                                                <div class="col-md-4 value">
+                                                <div class="col-md-2 value">
                                                     <!--ko if: Pickup().Number() == undefined-->
                                                     <span class="label label-warning">Pending pickup confirmation</span><br />
                                                     <!--/ko-->
@@ -187,27 +187,44 @@
                                                     <!--/ko-->
                                                 </div>
                                                 <div class="col-md-2 name"> TOTAL WEIGHT : </div>
-                                                <div class="col-md-4 value">
+                                                <div class="col-md-2 value">
                                                     <!--ko if: Pickup().TotalWeight() != undefined-->
                                                     <span data-bind="text: Pickup().TotalWeight"></span> KG
                                                     <!--/ko-->
                                                 </div>
+                                                <span class="timeline pull-right" style="position:absolute;margin-top: -36px;margin-left: -79px;margin-right: 23px;content:unset;">
+                                                    <div class="timeline-item">
+                                                        <div class="timeline-body">
+                                                            <div class="timeline-body-arrow"> </div>
+                                                            <div class="timeline-body-head">
+                                                                <div class="timeline-body-head-caption">
+                                                                    <span class="timeline-body-alerttitle font-green-haze">Notice</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="timeline-body-content">
+                                                                <span class="font-grey-cascade">
+                                                                    The pickup time set and pickup time arrival may be different
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </span>
                                             </div>
                                             <div class="row static-info">
                                                 <div class="col-md-2 name"> PICKUP DATE : </div>
-                                                <div class="col-md-4 value">
+                                                <div class="col-md-2 value">
                                                     <span data-bind="text: moment(Pickup().DateReady()).format('DD-MM-YYYY'), visible: Pickup().DateReady() != '0001-01-01T00:00:00'"></span>
                                                 </div>
                                                 <div class="col-md-2 name"> TOTAL QUANTITY : </div>
-                                                <div class="col-md-4 value"><span data-bind="text: Pickup().TotalQuantity"></span> PARCEL(S)</div>
+                                                <div class="col-md-2 value"><span data-bind="text: Pickup().TotalQuantity"></span> PARCEL(S)</div>
                                             </div>
                                             <div class="row static-info">
                                                 <div class="col-md-2 name"> FROM : </div>
-                                                <div class="col-md-4 value">
+                                                <div class="col-md-2 value">
                                                     <span data-bind="text: moment(Pickup().DateReady()).format('hh:mm'), visible: Pickup().DateReady() != '0001-01-01T00:00:00'"></span> PM
                                                 </div>
                                                 <div class="col-md-2 name"> TO : </div>
-                                                <div class="col-md-4 value">
+                                                <div class="col-md-2 value">
                                                     <span data-bind="text: moment(Pickup().DateClose()).format('hh:mm'), visible: Pickup().DateClose() != '0001-01-01T00:00:00'"></span> PM
                                                 </div>
                                             </div>
@@ -355,13 +372,13 @@
                                                     <i class="icon-trash"></i>
                                                 </a>
                                                 <!--ko ifnot: Produk().IsInternational-->
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="click: $root.printNddConnote, css: { 'disabled': $root.entity().Payment().IsPickupScheduled() != true } ">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="click: $root.printNddConnote, css: { 'disabled': $root.entity().Payment().IsPickupScheduled() != true || !ConNote() } ">
                                                     <i class="icon-printer"></i>
                                                 </a>
                                                 <!--<a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Thermal Lable" data-bind="click: $root.printLableConnote, css: { 'disabled': !ConNote() && !$root.entity().Payment().IsPickupScheduled() }">
                                                     <i class="icon-film"></i>
                                                 </a>-->
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Download Thermal Lable *.pdf" data-bind="click: $root.downloadLableConnotePDF, css: { 'disabled': $root.entity().Payment().IsPickupScheduled() != true }">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Download Thermal Lable *.pdf" data-bind="click: $root.downloadLableConnotePDF, css: { 'disabled': $root.entity().Payment().IsPickupScheduled() != true || !ConNote() }">
                                                     <i class="fa fa-file-pdf-o"></i>
                                                 </a>
                                                 <!--ko if: Produk().Est().IsBorneo-->
@@ -371,13 +388,13 @@
                                                 <!--/ko-->
                                                 <!--/ko-->
                                                 <!--ko if: Produk().IsInternational-->
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="click: $root.printEmsConnote, css: { 'disabled': $root.entity().Payment().IsPickupScheduled() != true } ">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="click: $root.printEmsConnote, css: { 'disabled': $root.entity().Payment().IsPickupScheduled() != true || !ConNote() } ">
                                                     <i class="icon-printer"></i>
                                                 </a>
-                                                <!--<a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Thermal Lable" data-bind="click: $root.printLableConnote, css: { 'disabled': !ConNote() && !$root.entity().Payment().IsPickupScheduled() }">
+                                                <!--<a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Thermal Lable" data-bind="click: $root.printLableConnote, css: { 'disabled': !ConNote() && !$root.entity().Payment().IsPickupScheduled() || !ConNote() }">
                                                     <i class="icon-film"></i>
                                                 </a>-->
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Download Thermal Lable *.pdf" data-bind="click: $root.downloadLableConnotePDF, css: { 'disabled': $root.entity().Payment().IsPickupScheduled() != true }">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Download Thermal Lable *.pdf" data-bind="click: $root.downloadLableConnotePDF, css: { 'disabled': $root.entity().Payment().IsPickupScheduled() != true || !ConNote() }">
                                                     <i class="fa fa-file-pdf-o"></i>
                                                 </a>
                                                 <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Commercial Invoice" data-bind="click: $root.printCommercialInvoice, css: { 'disabled': !ConNote() }">

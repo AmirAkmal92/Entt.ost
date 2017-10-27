@@ -208,7 +208,7 @@ objectbuilders.app],
             selectedCountryMaxWeight = ko.observable(),
             method = ko.observable('none'),
             isHasInsurance = ko.observable(false),
-            selectPod = ko.observable('cod'),
+            selectPod = ko.observable(''),
             partial = partial || {},
             headers = {},
             isBorneo = ko.observable(false),
@@ -545,11 +545,8 @@ objectbuilders.app],
                             if (consignment().Produk().ValueAddedDeclaredValue() > 2000 && consignment().Produk().ValueAddedDeclaredValue() <= 3000) {
                                 consignment().Produk().ValueAddedValue(0.70);
                             }
-                            if (consignment().Produk().ValueAddedDeclaredValue() > 3000 && consignment().Produk().ValueAddedDeclaredValue() <= 4000) {
+                            if (consignment().Produk().ValueAddedDeclaredValue() > 3000) {
                                 consignment().Produk().ValueAddedValue(0.80);
-                            }
-                            if (consignment().Produk().ValueAddedDeclaredValue() > 4000) {
-                                consignment().Produk().ValueAddedValue(0);
                             }
                         }
                         if (consignment().Produk().Est().ValueAddedService() == 'etiqa' && consignment().Produk().Est().ValueAddedServicePackage() == 'normal') {
@@ -606,6 +603,9 @@ objectbuilders.app],
                             }
                         }
                     });
+            },
+            launchInsuranceInfoDialog = function () {
+                $("#info-dialog").modal("show");
             };
 
         var vm = {
@@ -627,7 +627,8 @@ objectbuilders.app],
             selectedCountryMaxWeight: selectedCountryMaxWeight,
             method: method,
             isHasInsurance: isHasInsurance,
-            selectPod: selectPod
+            selectPod: selectPod,
+            launchInsuranceInfoDialog: launchInsuranceInfoDialog
         };
         return vm;
     });

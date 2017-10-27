@@ -64,9 +64,9 @@
                                     <div class="col-md-9">
                                         <select class="form-control input-sm" id="c28f91ae-ae5d-448e-991f-5b4065d3464f" data-bind="options: estProductService, optionsText: 'Category', optionsValue: 'CategoryCode', value: consignment().Produk().ItemCategory"></select>
                                         <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == false && consignment().Produk().ItemCategory() == '01'"><small><i>Document maximum weight is 2.00kg</i></small></span>
-                                        <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == false && consignment().Produk().ItemCategory() == '02'"><small><i>Merchandise weigth from 0.001 to <span data-bind="text: $root.selectedCountryMaxWeight().toFixed(2)"></span>kg</i></small></span>
+                                        <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == false && consignment().Produk().ItemCategory() == '02'"><small><i>Merchandise weigth start with 2.001kg and above</i></small></span>
                                         <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == true && consignment().Produk().ItemCategory() == '01'"><small><i>Document maximum weight is 1.00kg</i></small></span>
-                                        <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == true && consignment().Produk().ItemCategory() == '02'"><small><i>Merchandise weigth from 0.001 to <span data-bind="text: $root.selectedCountryMaxWeight().toFixed(2)"></span>kg</i></small></span>
+                                        <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == true && consignment().Produk().ItemCategory() == '02'"><small><i>Merchandise weigth start with 2.001kg and above</i></small></span>
                                     </div>
                                 </div>
                                 <div class="form-group " data-bind="visible:true">
@@ -198,7 +198,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="row" data-bind="visible: $root.isHasInsurance(), foreach: $data.AdditionalService">
                                             <!--ko if: $index() == 0-->
                                             <label class="col-md-3 control-label">
@@ -213,7 +212,7 @@
                                                         <label for="ValueAddedService1_1">
                                                             <span></span>
                                                             <span class="check"></span>
-                                                            <span class="box"></span><i>Zurich Insurance</i>
+                                                            <span class="box"></span><i>Zurich Takaful</i>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -236,6 +235,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row" data-bind="visible: $root.isHasInsurance()">
+                                    <label class="col-md-3 control-label"><small>&nbsp;</small></label>
+                                    <div class="col-md-9" style="margin-top: -15px;">
+                                        <span class="help-block" data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'zurich'" style="margin-top: -5px;margin-bottom: 10px;"><small><i>Item covered for Zurich Takaful is up to RM4000 only</i></small></span>
+                                        <span class="help-block" data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'zurich'" style="margin-bottom: 10px;"><small>Click <a data-bind="click: $root.launchInsuranceInfoDialog">here</a> for Zurich Takaful exclusion list.</small></span>
+                                        <span class="help-block" data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'etiqa'" style="margin-bottom: 10px;"><small>Click <a data-bind="click: $root.launchInsuranceInfoDialog">here</a> for Etiqa Insurance exclusion list.</small></span>
+                                    </div>
+                                </div>
                                 <div class="form-group" data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'etiqa'">
                                     <label data-i18n="Addon Method" class="col-md-3 control-label"><small>Insurance Package</small></label>
                                     <div class="col-md-9">
@@ -244,6 +251,7 @@
                                             <option value="normal">Normal Item</option>
                                             <option value="valuable">Valuable Item</option>
                                         </select>
+                                        <span class="help-block" data-bind="if: consignment().Produk().Est().ValueAddedServicePackage() == 'valuable'"><small><i>Only available for mobile phone and airline ticket</i></small></span>
                                     </div>
                                 </div>
                                 <div class="form-group" data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'zurich' || (consignment().Produk().Est().ValueAddedService() == 'etiqa' && consignment().Produk().Est().ValueAddedServicePackage() == 'normal') || (consignment().Produk().Est().ValueAddedService() == 'etiqa' && consignment().Produk().Est().ValueAddedServicePackage() == 'valuable')">
@@ -262,7 +270,8 @@
                                             <input class="form-control" type="text" placeholder="" data-bind="money: consignment().Produk().ValueAddedValue" data-rule-number="true" name="Produk.ValueAddedValue" disabled />
                                         </div>
                                         <div class="form-control-focus"> </div>
-                                        <span class="help-block"><small>Insured Value (RM)</small></span>
+                                        <span class="help-block" data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'zurich'"><small>Contribution Amount (RM)</small></span>
+                                        <span class="help-block" data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'etiqa'"><small>Premium Amount (RM)</small></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -278,11 +287,11 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-3 control-label">
-                                        <small>Receiver Reference No. </small>
+                                        <small>Recipient Reference No. </small>
                                     </div>
                                     <div class="col-md-9">
                                         <input class="form-control input-sm" type="text"
-                                               placeholder="Receiver Reference No."
+                                               placeholder="Recipient Reference No."
                                                data-bind="value: consignment().Produk().Est().ReceiverReferenceNo"
                                                name="Produk.ReceiverReferenceNo" />
                                     </div>
@@ -322,54 +331,51 @@
                                     </div>
                                 </div>
 
-                                <div data-bind="visible: $root.method() == 'pod'">
+                                <!--<div data-bind="visible: $root.method() == 'pod'">-->
+                                <div data-bind="visible: consignment().Penerima().Address().Country() == 'MY'">
                                     <div class="row">
-                                        <div class="form-group form-checkboxes" data-bind="if: consignment().Penerima().Address().Country() == 'MY'">
-                                            <label class="col-md-3 control-label" for="form_control_1">
-                                                <small>Payment on Delivery</small>
-                                            </label>
-                                            <div class="col-md-4 md-radio-inline">
+                                        <!--<div class="form-group form-checkboxes" data-bind="if: consignment().Penerima().Address().Country() == 'MY'">-->
+                                        <label class="col-md-3 control-label" for="form_control_1">
+                                            <small>Payment on Delivery</small>
+                                        </label>
+                                        <div class="col-md-4">
+                                            <div class="md-checkbox-inline">
                                                 <div class="md-radio">
                                                     <input type="radio" id="radio1" name="radioPod" value="cod" class="md-check" data-bind="checked: $root.selectPod">
                                                     <label for="radio1">
                                                         <span></span>
                                                         <span class="check"></span>
-                                                        <span class="box"></span><small></small>
+                                                        <span class="box"></span><i>Cash on Delivery</i>
                                                     </label>
                                                 </div>
-                                                <label class="control-label" for="form_control_2">
-                                                    <small>Cash on Delivery</small>
-                                                </label>
                                             </div>
-                                            <div class="col-md-4 md-radio-inline">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="md-checkbox-inline">
                                                 <div class="md-radio">
                                                     <input type="radio" id="radio2" name="radioPod" value="ccod" class="md-check" data-bind="checked: $root.selectPod">
                                                     <label for="radio2">
                                                         <span></span>
                                                         <span class="check"></span>
-                                                        <span class="box"></span><small></small>
+                                                        <span class="box"></span><i>Creditcard on Delivery</i>
                                                     </label>
                                                 </div>
-                                                <label class="control-label" for="form_control_2">
-                                                    <small>Creditcard on Delivery</small>
-                                                </label>
                                             </div>
                                         </div>
+                                        <!--</div>-->
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <div class="col-md-3">&nbsp;</div>
-                                            <div class="col-md-8">
-                                                <input class="form-control input-sm" type="text"
-                                                       placeholder="Creditcard on Delivery Amount"
-                                                       data-bind="value: consignment().Produk().Est().CcodAmount, visible: $root.selectPod() == 'ccod'"
-                                                       name="Produk.CcodAmount" data-rule-number="true" data-rule-min="0" />
-                                                <input class="form-control input-sm" type="text"
-                                                       placeholder="Cash on Delivery Amount"
-                                                       data-bind="value: consignment().Produk().Est().CodAmount, visible: $root.selectPod() == 'cod'"
-                                                       name="Produk.CodAmount" data-rule-number="true" data-rule-min="0" />
-                                                <span class="help-block"><small><i>Receiver have to pay as the amount stated above</i></small></span>
-                                            </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">&nbsp;</div>
+                                        <div class="col-md-9">
+                                            <input class="form-control input-sm" type="text"
+                                                   placeholder="Creditcard on Delivery Amount (RM)"
+                                                   data-bind="value: consignment().Produk().Est().CcodAmount, visible: $root.selectPod() == 'ccod'"
+                                                   name="Produk.CcodAmount" data-rule-number="true" data-rule-min="0" />
+                                            <input class="form-control input-sm" type="text"
+                                                   placeholder="Cash on Delivery Amount (RM)"
+                                                   data-bind="value: consignment().Produk().Est().CodAmount, visible: $root.selectPod() == 'cod'"
+                                                   name="Produk.CodAmount" data-rule-number="true" data-rule-min="0" />
+                                            <span class="help-block" data-bind="visible: $root.selectPod()"><small><i>Amount to be paid by recipient</i></small></span>
                                         </div>
                                     </div>
                                 </div>
@@ -444,6 +450,26 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="info-dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'zurich'">Zurich Takaful</h4>
+                <h4 class="modal-title" data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'etiqa'">Etiqa Insurance</h4>
+            </div>
+            <div class="modal-body">
+                <img data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'zurich'" style="height: 38em;" alt="" src="../../images/contract_customers_exclusion_listing.png" />
+                <img data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'etiqa'" style="height: 29em;" alt="" src="../../images/etiqa_insurance_exclusion_list.png" />
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-circle btn-outline yellow-casablanca" data-dismiss="modal">
+                    Close
+                </a>
             </div>
         </div>
     </div>
