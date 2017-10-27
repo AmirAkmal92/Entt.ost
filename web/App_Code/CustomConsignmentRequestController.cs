@@ -667,6 +667,13 @@ namespace web.sph.App_Code
 
             UserProfile userProfile = await GetDesignation();
 
+            if (userProfile.Designation == "No contract customer")
+            {
+                LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(item.Id);
+                if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + item.Id);
+                item = lo.Source;
+            }
+
             if ((userProfile.Designation == "No contract customer" && item.Payment.IsPaid)
                 || (userProfile.Designation == "Contract customer" && !item.Payment.IsPaid))
             {
