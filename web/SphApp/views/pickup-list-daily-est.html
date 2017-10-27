@@ -69,7 +69,6 @@
                 </tr>
             </thead>
             <tbody data-bind="foreach :list">
-                <!--ko if: Pickup.Number != null-->
                 <tr data-bind="">
                     <td data-bind="text:ReferenceNo"></td>
                     <td data-bind="text:Pickup.Number"></td>
@@ -155,12 +154,11 @@
                                     </td>
                                     <td><span data-bind="text: Produk.Price"></span></td>
                                 </tr>
-                                <!--/ko-->                                
+                                <!--/ko-->
                             </tbody>
                         </table>
                     </td>
                 </tr>
-                <!--/ko-->                
             </tbody>
         </table>
         <img src="/Images/spinner-md.gif" alt="loading" class="absolute-center" data-bind="visible: isBusy" />

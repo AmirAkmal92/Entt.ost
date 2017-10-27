@@ -8,7 +8,33 @@ define([objectbuilders.datacontext, objectbuilders.app], function (context, app)
         dateTo = ko.observable(moment().format('YYYY-MM-DD')),
         hasNextPage = ko.observable(false),
         hasPreviousPage = ko.observable(false),
-        query = "/api/consigment-requests/pickup-daily-list-for-est",
+        query = "/consignment-request/custom-search",
+        elasticsearchQuery = {
+            "filter": {
+                "bool": {
+                    "must": [
+                        {
+                            "term": {
+                                "Designation": "Contract customer"
+                            }
+                        },
+                        {
+                            "term": {
+                                "Pickup.IsPickedUp": "false"
+                            }
+                        }
+                    ],
+                    "must_not": [],
+                    "should": [
+                        {
+                            "exists": {
+                                "field": "Pickup.Number"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
         executedQuery = ko.observable(),
         list = ko.observableArray([]),
         firstPage = function () {
@@ -77,9 +103,12 @@ define([objectbuilders.datacontext, objectbuilders.app], function (context, app)
         activate = function () {
             url = ko.unwrap(query) + "?page=" + page() + "&size=" + size();
             if (executedQuery() != null) url += "&q=" + executedQuery();
+            var data = ko.toJSON(elasticsearchQuery);
             return $.ajax({
                 url: url,
-                method: "GET",
+                data: data,
+                method: "POST",
+                contentType: "application/json; charset=utf-8",
                 cache: false
             })
             .then(function (lo) {
