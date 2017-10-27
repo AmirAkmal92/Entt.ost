@@ -168,8 +168,8 @@
                         <address style="font-size: 11px;line-height: 2;margin-top: 6px;margin-bottom: 0px !important;">
                             @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
                             {
-                                <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</b></span><br />
-                                <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span><br />
+                                <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedValue))</b></span><br />
+                                <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedDeclaredValue))</b></span><br />
                                 <span class="text-uppercase" style="padding-left: 69px;"><b>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
                             }
                             else
@@ -258,7 +258,7 @@
                         <address style="font-size: 9pt;margin-top: -3px;margin-bottom: 0px !important;">
                             <span class="text-uppercase"><b>1</b></span>
                             <span class="text-uppercase" style="padding-left: 13px;"><b>@Html.Raw(Model.consignment.Produk.Description.Substring(0, Model.consignment.Produk.Description.Length > 14 ? 14 : Model.consignment.Produk.Description.Length))</b></span>
-                            <span class="text-uppercase pull-right" style="padding-right: 13px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span>
+                            <span class="text-uppercase pull-right" style="padding-right: 13px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedDeclaredValue))</b></span>
                         </address>
                     </td>
                     <td class="td-hide">col-19</td>
@@ -312,7 +312,7 @@
                 @*======== ROW 16 ======*@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td rowspan="2" colspan="5"><b style="font-size: 28px;">@Html.Raw(Model.consignment.Bill.RoutingCode)</b></td>
+                    <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;">@Html.Raw(Model.consignment.Bill.RoutingCode)</b></td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 17 ======*@
@@ -509,8 +509,8 @@
                         <address style="font-size: 11px;line-height: 2;margin-top: 6px;margin-bottom: 0px !important;">
                             @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
                             {
-                                <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</b></span><br />
-                                <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span><br />
+                                <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedValue))</b></span><br />
+                                <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedDeclaredValue))</b></span><br />
                                 <span class="text-uppercase" style="padding-left: 69px;"><b>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
                             }
                             else
@@ -599,7 +599,7 @@
                         <address style="font-size: 9pt;margin-top: -3px;margin-bottom: 0px !important;">
                             <span class="text-uppercase"><b>1</b></span>
                             <span class="text-uppercase" style="padding-left: 13px;"><b>@Html.Raw(Model.consignment.Produk.Description.Substring(0, Model.consignment.Produk.Description.Length > 14 ? 14 : Model.consignment.Produk.Description.Length))</b></span>
-                            <span class="text-uppercase pull-right" style="padding-right: 13px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span>
+                            <span class="text-uppercase pull-right" style="padding-right: 13px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedDeclaredValue))</b></span>
                         </address>
                     </td>
                     <td class="td-hide">col-19</td>
@@ -653,7 +653,7 @@
                 @*======== ROW 16 ======*@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td rowspan="2" colspan="5"><b style="font-size: 28px;">@Html.Raw(Model.consignment.Bill.RoutingCode)</b></td>
+                    <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;">@Html.Raw(Model.consignment.Bill.RoutingCode)</b></td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 17 ======*@
@@ -855,8 +855,8 @@
                                 <address style="font-size: 11px;line-height: 2;margin-top: 6px;margin-bottom: 0px !important;">
                                     @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
                                     {
-                                        <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</b></span><br />
-                                        <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span><br />
+                                        <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedValue))</b></span><br />
+                                        <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedDeclaredValue))</b></span><br />
                                         <span class="text-uppercase" style="padding-left: 69px;"><b>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
                                     }
                                     else
@@ -945,7 +945,7 @@
                                 <address style="font-size: 9pt;margin-top: -3px;margin-bottom: 0px !important;">
                                     <span class="text-uppercase"><b>1</b></span>
                                     <span class="text-uppercase" style="padding-left: 13px;"><b>@Html.Raw(Model.consignment.Produk.Description.Substring(0, Model.consignment.Produk.Description.Length > 14 ? 14 : Model.consignment.Produk.Description.Length))</b></span>
-                                    <span class="text-uppercase pull-right" style="padding-right: 13px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span>
+                                    <span class="text-uppercase pull-right" style="padding-right: 13px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedDeclaredValue))</b></span>
                                 </address>
                             </td>
                             <td class="td-hide">col-19</td>
@@ -999,7 +999,7 @@
                         @*======== ROW 16 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td rowspan="2" colspan="5"><b style="font-size: 28px;">@Html.Raw(Model.consignment.Bill.RoutingCode)</b></td>
+                            <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;">@Html.Raw(Model.consignment.Bill.RoutingCode)</b></td>
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 17 ======*@
@@ -1196,8 +1196,8 @@
                                 <address style="font-size: 11px;line-height: 2;margin-top: 6px;margin-bottom: 0px !important;">
                                     @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
                                     {
-                                        <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedValue)</b></span><br />
-                                        <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span><br />
+                                        <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedValue))</b></span><br />
+                                        <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedDeclaredValue))</b></span><br />
                                         <span class="text-uppercase" style="padding-left: 69px;"><b>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
                                     }
                                     else
@@ -1286,7 +1286,7 @@
                                 <address style="font-size: 9pt;margin-top: -3px;margin-bottom: 0px !important;">
                                     <span class="text-uppercase"><b>1</b></span>
                                     <span class="text-uppercase" style="padding-left: 13px;"><b>@Html.Raw(Model.consignment.Produk.Description.Substring(0, Model.consignment.Produk.Description.Length > 14 ? 14 : Model.consignment.Produk.Description.Length))</b></span>
-                                    <span class="text-uppercase pull-right" style="padding-right: 13px;"><b><span>RM</span>@Html.Raw(Model.consignment.Produk.ValueAddedDeclaredValue)</b></span>
+                                    <span class="text-uppercase pull-right" style="padding-right: 13px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedDeclaredValue))</b></span>
                                 </address>
                             </td>
                             <td class="td-hide">col-19</td>
@@ -1340,7 +1340,7 @@
                         @*======== ROW 16 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td rowspan="2" colspan="5"><b style="font-size: 28px;">@Html.Raw(Model.consignment.Bill.RoutingCode)</b></td>
+                            <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;">@Html.Raw(Model.consignment.Bill.RoutingCode)</b></td>
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 17 ======*@
