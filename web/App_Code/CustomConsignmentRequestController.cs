@@ -1196,6 +1196,7 @@ namespace web.sph.App_Code
             var ws = excel.Workbook.Worksheets["branchcode"];
             if (null == ws) return Ok(new { success = false, status = "Cannot open Worksheet Pickup Manifest" });
 
+            // TODO: implement paging logic
             var queryString = $"size=100&q=Pickup.DateReady:[\"{start.ToString("yyyy-MM-dd")}\" TO \"{end.ToString("yyyy-MM-dd")}\"]";
 
             m_ostBaseUrl.DefaultRequestHeaders.Clear();
@@ -1354,6 +1355,68 @@ namespace web.sph.App_Code
             await Task.Delay(1500);
             return Accepted(status);
         }
+
+        [HttpPost]
+        [Route("custom-search")]
+        public async Task<IHttpActionResult> CustomSearch([RawBody]string query,
+                            [FromUri(Name = "q")]string q = null,
+                            [FromUri(Name = "page")]int page = 1,
+                            [FromUri(Name = "size")]int size = 20)
+        {
+            var queryString = $"from={size * (page - 1)}&size={size}";
+            if (!string.IsNullOrWhiteSpace(q))
+                queryString += $"&q={q}";
+
+            var repos = ObjectBuilder.GetObject<IReadonlyRepository<ConsigmentRequest>>();
+            var response = await repos.SearchAsync(query, queryString);
+            var json = JObject.Parse(response);
+            var count = json.SelectToken("$.hits.total").Value<int>();
+
+            var list = from f in json.SelectToken("$.hits.hits")
+                       let webId = f.SelectToken("_source.WebId").Value<string>()
+                       let id = f.SelectToken("_id").Value<string>()
+                       let link = $"\"link\" :{{ \"href\" :\"{ConfigurationManager.BaseUrl}/api/consigment-requests/{id}\"}}"
+                       select f.SelectToken("_source").ToString().Replace($"{webId}\"", $"{webId}\"," + link);
+
+            var links = new List<object>();
+            var nextLink = new
+            {
+                method = "GET",
+                rel = "next",
+                href = $"{ConfigurationManager.BaseUrl}/consignment-request/search/?page={page + 1}&size={size}",
+                desc = "Issue a GET request to get the next page of the result"
+            };
+            var previousLink = new
+            {
+                method = "GET",
+                rel = "previous",
+                href = $"{ConfigurationManager.BaseUrl}/consignment-request/search/?page={page - 1}&size={size}",
+                desc = "Issue a GET request to get the previous page of the result"
+            };
+            var hasNextPage = count > size * page;
+            var hasPreviousPage = page > 1;
+            if (hasPreviousPage)
+            {
+                links.Add(previousLink);
+            }
+            if (hasNextPage)
+            {
+                links.Add(nextLink);
+
+            }
+
+            var result = new
+            {
+                _results = list.Select(x => JObject.Parse(x)),
+                _count = json.SelectToken("$.hits.total").Value<int>(),
+                _page = page,
+                _links = links.ToArray(),
+                _size = size
+            };
+
+            return Ok(result);
+        }
+
 
         public string GetRoutingCode(string postCode)
         {
