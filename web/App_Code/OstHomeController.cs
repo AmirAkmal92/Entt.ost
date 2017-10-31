@@ -197,7 +197,7 @@ namespace web.sph.App_Code
             var path = Path.GetTempFileName() + ".pdf";
             var response = (HttpWebResponse)request.GetResponse();
             var responseStream = response.GetResponseStream();
-            var fileStream = System.IO.File.Create($@"web/Content/Files/Thermal_Label_{connote.ConNote}.pdf"); //Generate template file
+            var fileStream = System.IO.File.Create(System.Web.HttpContext.Current.Server.MapPath($"~/Content/Files/Thermal_Label_{connote.ConNote}.pdf")); //Generate template file
             var fileTempStream = System.IO.File.Create(path); //Generate temporary file
             responseStream.CopyTo(fileStream);
             responseStream.Close();
@@ -242,7 +242,7 @@ namespace web.sph.App_Code
                 var zplCode = "";
                 foreach (var itemHasConnote in item.Consignments)
                 {
-                    if (countConnote <= 50)
+                    if (countConnote < 50)
                     {
                         zplCode += LabelConnoteDetails(item, itemHasConnote);
                     }
@@ -268,7 +268,7 @@ namespace web.sph.App_Code
                 var path = Path.GetTempFileName() + ".pdf";
                 var response = (HttpWebResponse)request.GetResponse();
                 var responseStream = response.GetResponseStream();
-                var fileStream = System.IO.File.Create($@"web/Content/Files/Thermal_Label_{item.UserId}.pdf"); //Generate template file
+                var fileStream = System.IO.File.Create(System.Web.HttpContext.Current.Server.MapPath($"~/Content/Files/Thermal_Label_{item.UserId}.pdf")); //Generate template file
                 var fileTempStream = System.IO.File.Create(path); //Generate temporary file
                 responseStream.CopyTo(fileStream);
                 responseStream.Close();
