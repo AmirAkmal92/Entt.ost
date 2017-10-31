@@ -883,6 +883,31 @@ namespace web.sph.App_Code
                         consignment.Produk.ItemCategory = "02"; //default to "Merchandise"
                         consignment.Produk.IsInternational = (consignment.Penerima.Address.Country == "MY") ? false : true;
 
+                        if (item.Designation == "Contract customer")
+                        {
+                            consignment.Produk.Est.ShipperReferenceNo = ws.Cells[$"AH{row}"].GetValue<string>();
+                            consignment.Produk.Est.ReceiverReferenceNo = ws.Cells[$"AI{row}"].GetValue<string>();
+
+                            var productEstCod = ws.Cells[$"AF{row}"].GetValue<string>();
+                            if (!string.IsNullOrEmpty(productEstCod))
+                            {
+                                decimal number;
+                                if (Decimal.TryParse(productEstCod, out number))
+                                {
+                                    consignment.Produk.Est.CodAmount = number;
+                                }
+                            }
+                            var productEstCcod = ws.Cells[$"AG{row}"].GetValue<string>();
+                            if (!string.IsNullOrEmpty(productEstCcod) && consignment.Produk.Est.CodAmount == 0)
+                            {
+                                decimal number;
+                                if (Decimal.TryParse(productEstCcod, out number))
+                                {
+                                    consignment.Produk.Est.CcodAmount = number;
+                                }
+                            }
+                        }
+
                         row++;
                         senderPostcode = ws.Cells[$"M{row}"].GetValue<string>();
                         receiverPostcode = ws.Cells[$"Z{row}"].GetValue<string>();
@@ -940,10 +965,15 @@ namespace web.sph.App_Code
 
         [HttpPost]
         [Route("export-consignments")]
-        public IHttpActionResult ExportConsignments([FromBody]List<Consignment> consignments)
+        public async Task<IHttpActionResult> ExportConsignments([FromBody]List<Consignment> consignments)
         {
             var temp = Path.GetTempFileName() + ".xlsx";
-            System.IO.File.Copy(System.Web.HttpContext.Current.Server.MapPath("~/Content/Files/consignment_list_format_template.xlsx"), temp, true);
+            UserProfile userProfile = await GetDesignation();
+
+            if (userProfile.Designation == "No contract customer")
+                System.IO.File.Copy(System.Web.HttpContext.Current.Server.MapPath("~/Content/Files/consignment_list_format_template.xlsx"), temp, true);
+            else
+                System.IO.File.Copy(System.Web.HttpContext.Current.Server.MapPath("~/Content/Files/consignment_list_format_template_est.xlsx"), temp, true);
 
             var file = new FileInfo(temp);
             var excel = new ExcelPackage(file);
@@ -991,6 +1021,10 @@ namespace web.sph.App_Code
                     ws.Cells[row + i, 29].Value = string.Empty;
                     ws.Cells[row + i, 30].Value = string.Empty;
                     ws.Cells[row + i, 31].Value = string.Empty;
+                    ws.Cells[row + i, 32].Value = string.Empty;
+                    ws.Cells[row + i, 33].Value = string.Empty;
+                    ws.Cells[row + i, 34].Value = string.Empty;
+                    ws.Cells[row + i, 35].Value = string.Empty;
                 }
             }
 
@@ -1289,7 +1323,7 @@ namespace web.sph.App_Code
                         ws.Cells[row, 14].Value = string.Format("{0:F2}", consignment.Produk.Price);
                         row++;
                         consignmentIndexNumber++;
-                    }                    
+                    }
                 }
             }
 

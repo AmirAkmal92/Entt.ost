@@ -213,6 +213,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     });
                 } else {
                     require(['viewmodels/import.consignments.dialog', 'durandal/app'], function (dialog, app2) {
+                        dialog.item().designation(ko.unwrap(entity().Designation));
                         app2.showDialog(dialog)
                             .done(function (result) {
                                 tcs.resolve(result);
