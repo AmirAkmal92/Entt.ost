@@ -3,13 +3,21 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" data-bind="click : cancelClick">&times;</button>
-                <h4><span data-bind="text: Consignment().ConNote">Header</span></h4>
+                <h4>Consignment Details</h4>
             </div>
             <div class="modal-body">
                 <div class="row" data-bind="with: Consignment">
+                    <div class="col-md-12">
+                        <h5>Consignment Note</h5>
+                        <hr />
+                        <address class="well">
+                            <span data-bind="text: ConNote">ConNote</span>
+                        </address>
+                    </div>
                     <div class="col-md-4">
                         <h5>Sender</h5>
-                        <address data-bind="with: Pemberi">
+                        <hr />
+                        <address class="well" data-bind="with: Pemberi">
                             <span data-bind="text: ContactPerson">ContactPerson</span><br />
                             <!--ko if: CompanyName() != ''--><span data-bind="text: CompanyName">CompanyName</span><br /><!--/ko-->
                             <div data-bind="with: ContactInformation">
@@ -30,7 +38,8 @@
                     </div>
                     <div class="col-md-4">
                         <h5>Recipient</h5>
-                        <address data-bind="with: Penerima">
+                        <hr />
+                        <address class="well" data-bind="with: Penerima">
                             <span data-bind="text: ContactPerson">ContactPerson</span><br />
                             <!--ko if: CompanyName() != ''--><span data-bind="text: CompanyName">CompanyName</span><br /><!--/ko-->
                             <div data-bind="with: ContactInformation">
@@ -51,7 +60,8 @@
                     </div>
                     <div class="col-md-4">
                         <h5>Product</h5>
-                        <address data-bind="with: Produk">
+                        <hr />
+                        <address class="well" data-bind="with: Produk">
                             <!--ko if: ItemCategory() === '01'--><span>Document</span><br /><!--/ko-->
                             <!--ko if: ItemCategory() === '02'--><span>Merchandise</span><br /><!--/ko-->
                             <span data-bind="text: Weight">Weight</span> kg
