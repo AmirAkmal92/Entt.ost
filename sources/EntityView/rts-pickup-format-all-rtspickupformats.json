@@ -194,7 +194,7 @@
   "IconStoreId": "",
   "EntityDefinitionId": "rts-pickup-format",
   "Name": "All RtsPickupFormats",
-  "Route": "all-rts-pickup-formats",
+  "Route": "rts-pickup-formats-all",
   "Note": "",
   "IsPublished": true,
   "Visibilty": "",
@@ -209,6 +209,6 @@
   "Id": "rts-pickup-format-all-rtspickupformats",
   "CreatedDate": "2017-08-25T16:07:30.045278+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-08-25T16:17:08.9846437+08:00",
+  "ChangedDate": "2017-11-01T12:09:58.182252+08:00",
   "WebId": "dd1aeef8-8296-42ab-975c-0c88615a70c7"
 }
