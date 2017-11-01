@@ -61,6 +61,17 @@ define([objectbuilders.datacontext, objectbuilders.app], function (context, app)
             executedQuery(null);
             activate();
         },
+        showConsignmentDetailsDialog = function (consignment) {
+            require(['viewmodels/show.consignment.details.dialog', 'durandal/app'], function (dialog, app2) {
+                dialog.Consignment(new bespoke.Ost_consigmentRequest.domain.Consignment(consignment));
+                app2.showDialog(dialog)
+                    .done(function (result) {
+                        if (!result) return;
+                        if (result === "OK") {
+                        }
+                    });
+            });
+        },
         activate = function () {
             elasticsearchQuery.filter.bool.should.push(
                 { "exists": { "field": "Designation" } }
@@ -120,5 +131,6 @@ define([objectbuilders.datacontext, objectbuilders.app], function (context, app)
         clearSearch: clearSearch,
         hasNextPage: hasNextPage,
         hasPreviousPage: hasPreviousPage,
+        showConsignmentDetailsDialog: showConsignmentDetailsDialog,
     };
 });
