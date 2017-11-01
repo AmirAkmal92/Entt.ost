@@ -1,0 +1,75 @@
+<section class="view-model-modal" id="show-consignment-details-dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" data-bind="click : cancelClick">&times;</button>
+                <h4><span data-bind="text: Consignment().ConNote">Header</span></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" data-bind="with: Consignment">
+                    <div class="col-md-4">
+                        <h5>Sender</h5>
+                        <address data-bind="with: Pemberi">
+                            <span data-bind="text: ContactPerson">ContactPerson</span><br />
+                            <!--ko if: CompanyName() != ''--><span data-bind="text: CompanyName">CompanyName</span><br /><!--/ko-->
+                            <div data-bind="with: ContactInformation">
+                                <span data-bind="text: Email">Email</span><br />
+                                <span data-bind="text: ContactNumber">ContactNumber</span>
+                            </div>
+                            <div data-bind="with: Address">
+                                <br /><span data-bind="text: Address1">Address1</span>
+                                &nbsp;<span data-bind="text: Address2">Address2</span>
+                                <!--ko if: Address3() != undefined--><br /><span data-bind="text: Address3">Address3</span><!--/ko-->
+                                <!--ko if: Address4() != undefined-->&nbsp;<span data-bind="text: Address4">Address4</span><!--/ko-->
+                                <br /><span data-bind="text: Postcode">Postcode</span>
+                                &nbsp;<span data-bind="text: City">City</span>
+                                <br /><span data-bind="text: State">State</span>
+                                &nbsp;<span data-bind="text: Country">Country</span>
+                            </div>
+                        </address>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Recipient</h5>
+                        <address data-bind="with: Penerima">
+                            <span data-bind="text: ContactPerson">ContactPerson</span><br />
+                            <!--ko if: CompanyName() != ''--><span data-bind="text: CompanyName">CompanyName</span><br /><!--/ko-->
+                            <div data-bind="with: ContactInformation">
+                                <span data-bind="text: Email">Email</span><br />
+                                <span data-bind="text: ContactNumber">ContactNumber</span>
+                            </div>
+                            <div data-bind="with: Address">
+                                <br /><span data-bind="text: Address1">Address1</span>
+                                &nbsp;<span data-bind="text: Address2">Address2</span>
+                                <!--ko if: Address3() != undefined--><br /><span data-bind="text: Address3">Address3</span><!--/ko-->
+                                <!--ko if: Address4() != undefined-->&nbsp;<span data-bind="text: Address4">Address4</span><!--/ko-->
+                                <br /><span data-bind="text: Postcode">Postcode</span>
+                                &nbsp;<span data-bind="text: City">City</span>
+                                <br /><span data-bind="text: State">State</span>
+                                &nbsp;<span data-bind="text: Country">Country</span>
+                            </div>
+                        </address>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Product</h5>
+                        <address data-bind="with: Produk">
+                            <!--ko if: ItemCategory() === '01'--><span>Document</span><br /><!--/ko-->
+                            <!--ko if: ItemCategory() === '02'--><span>Merchandise</span><br /><!--/ko-->
+                            <span data-bind="text: Weight">Weight</span> kg
+                            <br />
+                            <span data-bind="text: Width">Width</span> cm
+                            &nbsp;x&nbsp;
+                            <span data-bind="text: Length">Length</span> cm
+                            &nbsp;x&nbsp;
+                            <span data-bind="text: Height">Height</span> cm
+                            <br />
+                            <!--ko if: Price() != undefined-->RM <span data-bind="text: Price">0.00</span><!--/ko-->
+                        </address>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-bind="click : cancelClick">Close</button>
+            </div>
+        </div>
+    </div>
+</section>

@@ -40,5 +40,11 @@
     "originalName": "export.tallysheet.dialog",
     "jsDiff": null,
     "htmlDiff": null
+  },
+  {
+    "name": "show.consignment.details.dialog",
+    "originalName": null,
+    "jsDiff": null,
+    "htmlDiff": null
   }
 ]
