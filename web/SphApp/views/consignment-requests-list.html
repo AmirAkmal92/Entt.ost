@@ -65,6 +65,7 @@
                     <th>Quantity</th>
                     <th>Weight (kg)</th>
                     <th>Consignments</th>
+                    <th>Designation</th>
                 </tr>
             </thead>
             <tbody data-bind="foreach :list">
@@ -97,9 +98,14 @@
                     <td data-bind="text:Pickup.TotalWeight.toFixed(2)"></td>
                     <td>
                         <!--ko foreach: Consignments-->
-                        <span data-bind="text: ConNote"></span>&nbsp;
+                        <!--ko if: ConNote != undefined-->
+                        <a class="btn btn-xs btn-default" href="#" data-bind="click: $root.showConsignmentDetailsDialog">
+                            <span data-bind="text: ConNote"></span>
+                        </a>&nbsp;
+                        <!--/ko-->
                         <!--/ko-->
                     </td>
+                    <td data-bind="text: Designation"></td>
                 </tr>
             </tbody>
         </table>
