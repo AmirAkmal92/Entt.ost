@@ -160,7 +160,7 @@
                     <td rowspan="3" colspan="5" style="padding-bottom: 13px !important;">
                         <address style="padding-left: 22px;font-size: 11px;line-height: 1.6;margin-top: 6px;margin-bottom: 0px !important;">
                             <span class="text-uppercase"><b>@Html.Raw(Model.pickupDate.ToShortDateString())</b></span><br />
-                            <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Produk.ItemCategory)</b></span><br />
+                            <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Produk.ItemCategory == "01" ? "Document" : "Merchandise")</b></span><br />
                             <span class="text-uppercase" style="padding-left: 10px;"><b>@Html.Raw(Model.consignment.Produk.Weight) kg</b></span><br />
                         </address>
                     </td>
@@ -168,15 +168,35 @@
                         <address style="font-size: 11px;line-height: 2;margin-top: 6px;margin-bottom: 0px !important;">
                             @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
                             {
-                                <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedValue))</b></span><br />
+                                <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 5px;">
+                                    @if (Model.consignment.Produk.Est.ValueAddedService == "zurich")
+                                    {
+                                        <span>Contribution Amount </span>
+                                    }
+                                    else
+                                    {
+                                        <span>Premium Amount </span>
+                                    }
+                                    <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedValue))</b>
+                                </span><br />
                                 <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedDeclaredValue))</b></span><br />
-                                <span class="text-uppercase" style="padding-left: 69px;"><b>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
                             }
                             else
                             {
                                 <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
                                 <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
-                                <span class="text-uppercase" style="padding-left: 69px;">&nbsp;</span><br />
+                            }
+                            @if (Model.consignment.Produk.Est.CodAmount > 0 && Model.consignment.Produk.Est.CcodAmount == 0)
+                            {
+                                <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">Cash on Delivery  <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.Est.CodAmount))</b></span><br />
+                            }
+                            else if (Model.consignment.Produk.Est.CcodAmount > 0 && Model.consignment.Produk.Est.CodAmount == 0)
+                            {
+                                <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">Credit Card on Delivery  <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.Est.CcodAmount))</b></span><br />
+                            }
+                            else
+                            {
+                                <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">&nbsp;</span>
                             }
                         </address>
                     </td>
@@ -501,7 +521,7 @@
                     <td rowspan="3" colspan="5" style="padding-bottom: 13px !important;">
                         <address style="padding-left: 22px;font-size: 11px;line-height: 1.6;margin-top: 6px;margin-bottom: 0px !important;">
                             <span class="text-uppercase"><b>@Html.Raw(Model.pickupDate.ToShortDateString())</b></span><br />
-                            <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Produk.ItemCategory)</b></span><br />
+                            <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Produk.ItemCategory == "01" ? "Document" : "Merchandise")</b></span><br />
                             <span class="text-uppercase" style="padding-left: 10px;"><b>@Html.Raw(Model.consignment.Produk.Weight) kg</b></span><br />
                         </address>
                     </td>
@@ -509,15 +529,35 @@
                         <address style="font-size: 11px;line-height: 2;margin-top: 6px;margin-bottom: 0px !important;">
                             @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
                             {
-                                <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedValue))</b></span><br />
+                                <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 5px;">
+                                    @if (Model.consignment.Produk.Est.ValueAddedService == "zurich")
+                                    {
+                                        <span>Contribution Amount </span>
+                                    }
+                                    else
+                                    {
+                                        <span>Premium Amount </span>
+                                    }
+                                    <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedValue))</b>
+                                </span><br />
                                 <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedDeclaredValue))</b></span><br />
-                                <span class="text-uppercase" style="padding-left: 69px;"><b>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
                             }
                             else
                             {
                                 <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
                                 <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
-                                <span class="text-uppercase" style="padding-left: 69px;">&nbsp;</span><br />
+                            }
+                            @if (Model.consignment.Produk.Est.CodAmount > 0 && Model.consignment.Produk.Est.CcodAmount == 0)
+                            {
+                                <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">Cash on Delivery  <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.Est.CodAmount))</b></span><br />
+                            }
+                            else if (Model.consignment.Produk.Est.CcodAmount > 0 && Model.consignment.Produk.Est.CodAmount == 0)
+                            {
+                                <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">Credit Card on Delivery  <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.Est.CcodAmount))</b></span><br />
+                            }
+                            else
+                            {
+                                <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">&nbsp;</span>
                             }
                         </address>
                     </td>
@@ -847,7 +887,7 @@
                             <td rowspan="3" colspan="5" style="padding-bottom: 13px !important;">
                                 <address style="padding-left: 22px;font-size: 11px;line-height: 1.6;margin-top: 6px;margin-bottom: 0px !important;">
                                     <span class="text-uppercase"><b>@Html.Raw(Model.pickupDate.ToShortDateString())</b></span><br />
-                                    <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Produk.ItemCategory)</b></span><br />
+                                    <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Produk.ItemCategory == "01" ? "Document" : "Merchandise")</b></span><br />
                                     <span class="text-uppercase" style="padding-left: 10px;"><b>@Html.Raw(Model.consignment.Produk.Weight) kg</b></span><br />
                                 </address>
                             </td>
@@ -855,15 +895,35 @@
                                 <address style="font-size: 11px;line-height: 2;margin-top: 6px;margin-bottom: 0px !important;">
                                     @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
                                     {
-                                        <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedValue))</b></span><br />
+                                        <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 5px;">
+                                            @if (Model.consignment.Produk.Est.ValueAddedService == "zurich")
+                                            {
+                                                <span>Contribution Amount </span>
+                                            }
+                                            else
+                                            {
+                                                <span>Premium Amount </span>
+                                            }
+                                            <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedValue))</b>
+                                        </span><br />
                                         <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedDeclaredValue))</b></span><br />
-                                        <span class="text-uppercase" style="padding-left: 69px;"><b>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
                                     }
                                     else
                                     {
                                         <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
                                         <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
-                                        <span class="text-uppercase" style="padding-left: 69px;">&nbsp;</span><br />
+                                    }
+                                    @if (Model.consignment.Produk.Est.CodAmount > 0 && Model.consignment.Produk.Est.CcodAmount == 0)
+                                    {
+                                        <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">Cash on Delivery  <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.Est.CodAmount))</b></span><br />
+                                    }
+                                    else if (Model.consignment.Produk.Est.CcodAmount > 0 && Model.consignment.Produk.Est.CodAmount == 0)
+                                    {
+                                        <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">Credit Card on Delivery  <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.Est.CcodAmount))</b></span><br />
+                                    }
+                                    else
+                                    {
+                                        <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">&nbsp;</span>
                                     }
                                 </address>
                             </td>
@@ -1188,7 +1248,7 @@
                             <td rowspan="3" colspan="5" style="padding-bottom: 13px !important;">
                                 <address style="padding-left: 22px;font-size: 11px;line-height: 1.6;margin-top: 6px;margin-bottom: 0px !important;">
                                     <span class="text-uppercase"><b>@Html.Raw(Model.pickupDate.ToShortDateString())</b></span><br />
-                                    <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Produk.ItemCategory)</b></span><br />
+                                    <span class="text-uppercase"><b>@Html.Raw(Model.consignment.Produk.ItemCategory == "01" ? "Document" : "Merchandise")</b></span><br />
                                     <span class="text-uppercase" style="padding-left: 10px;"><b>@Html.Raw(Model.consignment.Produk.Weight) kg</b></span><br />
                                 </address>
                             </td>
@@ -1196,15 +1256,35 @@
                                 <address style="font-size: 11px;line-height: 2;margin-top: 6px;margin-bottom: 0px !important;">
                                     @if (Model.consignment.Produk.ValueAddedDeclaredValue != 0)
                                     {
-                                        <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span class="text-uppercase" style="padding-left: 72px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedValue))</b></span><br />
+                                        <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 5px;">
+                                            @if (Model.consignment.Produk.Est.ValueAddedService == "zurich")
+                                            {
+                                                <span>Contribution Amount </span>
+                                            }
+                                            else
+                                            {
+                                                <span>Premium Amount </span>
+                                            }
+                                            <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedValue))</b>
+                                        </span><br />
                                         <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.ValueAddedDeclaredValue))</b></span><br />
-                                        <span class="text-uppercase" style="padding-left: 69px;"><b>@Html.Raw(Model.consignment.Produk.ValueAddedCode)</b></span><br />
                                     }
                                     else
                                     {
                                         <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
                                         <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
-                                        <span class="text-uppercase" style="padding-left: 69px;">&nbsp;</span><br />
+                                    }
+                                    @if (Model.consignment.Produk.Est.CodAmount > 0 && Model.consignment.Produk.Est.CcodAmount == 0)
+                                    {
+                                        <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">Cash on Delivery  <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.Est.CodAmount))</b></span><br />
+                                    }
+                                    else if (Model.consignment.Produk.Est.CcodAmount > 0 && Model.consignment.Produk.Est.CodAmount == 0)
+                                    {
+                                        <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">Credit Card on Delivery  <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.Est.CcodAmount))</b></span><br />
+                                    }
+                                    else
+                                    {
+                                        <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">&nbsp;</span>
                                     }
                                 </address>
                             </td>
@@ -1237,7 +1317,7 @@
                             <td class="td-hide">col-02</td>
                             <td class="td-hide">col-03</td>
                             @if (Model.designation == "Contract customer")
-                    {
+                            {
                                 <td colspan="10" style="padding-left: 30px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ReceiverReferenceNo)</b></span></td>
                             }
                             else
@@ -1426,7 +1506,7 @@
             senderPhoneNum = Model.consignment.Pemberi.ContactInformation.ContactNumber,                                                //08
             senderEmail = Model.consignment.Pemberi.ContactInformation.Email,                                                           //09
             senderRefNo = Model.referenceNo,                                                                                            //10
-            customerAccNum = (Model.designation == "Contract customer") ? Model.accountNo : "",                                         //11    
+            customerAccNum = (Model.designation == "Contract customer") ? Model.accountNo : "",                                         //11
             recipientPhoneNum = Model.consignment.Penerima.ContactInformation.ContactNumber,                                            //12
             recipientEmail = Model.consignment.Penerima.ContactInformation.Email,                                                       //13
             weight = Model.consignment.Produk.Weight.ToString("0.00"),                                                                  //14
