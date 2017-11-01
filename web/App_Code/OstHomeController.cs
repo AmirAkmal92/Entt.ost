@@ -228,7 +228,7 @@ namespace web.sph.App_Code
                 var itemsToRemove = new ConsigmentRequest();
                 foreach (var temp in item.Consignments)
                 {
-                    if (temp.ConNote == null)
+                    if (temp.ConNote == null || temp.Produk.IsInternational)
                     {
                         itemsToRemove.Consignments.Add(temp);
                     }
@@ -271,8 +271,8 @@ namespace web.sph.App_Code
                 var fileStream = System.IO.File.Create(System.Web.HttpContext.Current.Server.MapPath($"~/Content/Files/Thermal_Label_{item.UserId}.pdf")); //Generate template file
                 var fileTempStream = System.IO.File.Create(path); //Generate temporary file
                 responseStream.CopyTo(fileStream);
-                responseStream.Close();
                 fileStream.Close();
+                responseStream.Close();
                 fileTempStream.Close();
 
                 try
@@ -475,9 +475,10 @@ namespace web.sph.App_Code
             zplCode += "^FD" + itemHasConnote.ConNote.ToUpper() + "^FS";
             zplCode += "^FT28,429^AQ^FH^FDDARIPADA :^FS";
             zplCode += "^FT27,208^AQ^FH^FDMAKLUMAT ITEM^FS";
+            zplCode += "^FT325,307^AP^FH^FD" + (itemHasConnote.Produk.ValueAddedDeclaredValue != 0 ? "Insurance :      YES" : "") + "^FS^FT500,307^AP^FH^FD" + (itemHasConnote.Produk.ValueAddedDeclaredValue != 0 ? ("Value : RM " + itemHasConnote.Produk.ValueAddedDeclaredValue) : "") + "^FS";
             zplCode += "^FT325,284^AP^FH^FDKeterangan :^FS";
             zplCode += "^FT325,261^AP^FH^FDJenis :^FS";
-            zplCode += "^FT421,282^AP^FH^FD" + (itemHasConnote.Produk.IsInternational ? internationalDescription : itemHasConnote.Produk.Description).ToUpper() + "^FS";
+            zplCode += "^FT421,284^AP^FH^FD" + (itemHasConnote.Produk.IsInternational ? internationalDescription : itemHasConnote.Produk.Description).ToUpper() + "^FS";
             zplCode += "^FT325,238^AP^FH^FDProduk :^FS";
             zplCode += "^FT421,261^AP^FH^FD" + itemCategory + "^FS";
             zplCode += "^FT325,211^AQ^FH^FDRUJ. TRANSAKSI : " + item.ReferenceNo.ToUpper() + "^FS";
@@ -505,6 +506,7 @@ namespace web.sph.App_Code
             zplCode += "^FT31,1127^AP^FH^FD" + itemHasConnote.Penerima.Address.City.ToUpper() + "^FS";
             zplCode += "^FT31,1148^AP^FH^FD" + itemHasConnote.Penerima.Address.State.ToUpper() + "^FS";
             zplCode += "^FT31,1169^AP^FH^FD" + itemHasConnote.Penerima.Address.Postcode + "^FS";
+            zplCode += "^FT309,1169^AP^FH^FD" + (itemHasConnote.Produk.ValueAddedDeclaredValue != 0 ? ("Value : RM " + itemHasConnote.Produk.ValueAddedDeclaredValue) : "") + "^FS^FT168,1169^AP^FH^FD" + (itemHasConnote.Produk.ValueAddedDeclaredValue != 0 ? "Insurance : YES" : "") + "^FS";
             zplCode += "^FT309,1191^AP^FH^FD" + textChargeOnDeliveryPPLCopy + "^FS";
             zplCode += "^FT168,1191^AP^FH^FDTel2 : " + itemHasConnote.Penerima.ContactInformation.AlternativeContactNumber + "^FS";
             zplCode += "^FT33,1191^AP^FH^FDTel : " + itemHasConnote.Penerima.ContactInformation.ContactNumber + "^FS";

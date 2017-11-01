@@ -375,9 +375,6 @@
                                                 <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="click: $root.printNddConnote, css: { 'disabled': $root.entity().Payment().IsPickupScheduled() != true || !ConNote() } ">
                                                     <i class="icon-printer"></i>
                                                 </a>
-                                                <!--<a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Thermal Lable" data-bind="click: $root.printLableConnote, css: { 'disabled': !ConNote() && !$root.entity().Payment().IsPickupScheduled() }">
-                                                    <i class="icon-film"></i>
-                                                </a>-->
                                                 <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Download Thermal Lable *.pdf" data-bind="click: $root.downloadLableConnotePDF, css: { 'disabled': $root.entity().Payment().IsPickupScheduled() != true || !ConNote() }">
                                                     <i class="fa fa-file-pdf-o"></i>
                                                 </a>
@@ -390,12 +387,6 @@
                                                 <!--ko if: Produk().IsInternational-->
                                                 <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="click: $root.printEmsConnote, css: { 'disabled': $root.entity().Payment().IsPickupScheduled() != true || !ConNote() } ">
                                                     <i class="icon-printer"></i>
-                                                </a>
-                                                <!--<a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Thermal Lable" data-bind="click: $root.printLableConnote, css: { 'disabled': !ConNote() && !$root.entity().Payment().IsPickupScheduled() || !ConNote() }">
-                                                    <i class="icon-film"></i>
-                                                </a>-->
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Download Thermal Lable *.pdf" data-bind="click: $root.downloadLableConnotePDF, css: { 'disabled': $root.entity().Payment().IsPickupScheduled() != true || !ConNote() }">
-                                                    <i class="fa fa-file-pdf-o"></i>
                                                 </a>
                                                 <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Commercial Invoice" data-bind="click: $root.printCommercialInvoice, css: { 'disabled': !ConNote() }">
                                                     <i class="icon-notebook"></i>

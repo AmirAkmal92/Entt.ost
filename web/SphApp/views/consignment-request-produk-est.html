@@ -64,9 +64,9 @@
                                     <div class="col-md-9">
                                         <select class="form-control input-sm" id="c28f91ae-ae5d-448e-991f-5b4065d3464f" data-bind="options: estProductService, optionsText: 'Category', optionsValue: 'CategoryCode', value: consignment().Produk().ItemCategory"></select>
                                         <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == false && consignment().Produk().ItemCategory() == '01'"><small><i>Document maximum weight is 2.00kg</i></small></span>
-                                        <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == false && consignment().Produk().ItemCategory() == '02'"><small><i>Merchandise weigth start with 2.001kg and above</i></small></span>
+                                        <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == false && consignment().Produk().ItemCategory() == '02'"><small><i>Merchandise weight start with 2.001kg and above</i></small></span>
                                         <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == true && consignment().Produk().ItemCategory() == '01'"><small><i>Document maximum weight is 1.00kg</i></small></span>
-                                        <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == true && consignment().Produk().ItemCategory() == '02'"><small><i>Merchandise weigth start with 2.001kg and above</i></small></span>
+                                        <span class="help-block" data-bind="if: consignment().Produk().IsInternational() == true && consignment().Produk().ItemCategory() == '02'"><small><i>Merchandise weigth from 0.001 to <span data-bind="text: $root.selectedCountryMaxWeight().toFixed(2)"></span>kg</i></small></span>
                                     </div>
                                 </div>
                                 <div class="form-group " data-bind="visible:true">
@@ -205,7 +205,7 @@
                                             </label>
                                             <!--/ko-->
                                             <!--ko if: name == "Zurich Insurance"-->
-                                            <div class="col-md-4">
+                                            <div class="col-md-4" data-bind="visible: $root.consignment().Penerima().Address().Country() == 'MY'">
                                                 <div class="md-checkbox-inline">
                                                     <div class="md-radio">
                                                         <input type="radio" id="ValueAddedService1_1" name="ValueAddedService1" value="zurich" data-bind="checked: $root.consignment().Produk().Est().ValueAddedService" />
