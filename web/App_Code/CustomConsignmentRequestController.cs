@@ -1064,6 +1064,11 @@ namespace web.sph.App_Code
                 ws.Cells[row, 30].Value = consignment.Produk.Height;
                 ws.Cells[row, 31].Value = consignment.Produk.Description;
 
+                ws.Cells[row, 32].Value = consignment.Produk.Est.CodAmount;
+                ws.Cells[row, 33].Value = consignment.Produk.Est.CcodAmount;
+                ws.Cells[row, 34].Value = consignment.Produk.Est.ShipperReferenceNo;
+                ws.Cells[row, 35].Value = consignment.Produk.Est.ReceiverReferenceNo;
+
                 row++;
             }
 
