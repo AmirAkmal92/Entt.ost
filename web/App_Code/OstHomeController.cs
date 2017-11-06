@@ -181,7 +181,7 @@ namespace web.sph.App_Code
                     break;
                 }
             }
-            string zplCode = LabelConnoteDetails(item, connote);
+            string zplCode = GetLabelConnoteZplCode(item, connote);
             byte[] zpl = Encoding.UTF8.GetBytes(zplCode);
             var request = (HttpWebRequest)WebRequest.Create("http://api.labelary.com/v1/printers/8dpmm/labels/4x6/0/"); //TODO make it variable
             request.Method = "POST";
@@ -244,7 +244,7 @@ namespace web.sph.App_Code
                 {
                     if (countConnote < 50)
                     {
-                        zplCode += LabelConnoteDetails(item, itemHasConnote);
+                        zplCode += GetLabelConnoteZplCode(item, itemHasConnote);
                     }
                     else
                     {
@@ -254,40 +254,40 @@ namespace web.sph.App_Code
                 }
 
                 byte[] zpl = Encoding.UTF8.GetBytes(zplCode);
-                var request = (HttpWebRequest)WebRequest.Create("http://api.labelary.com/v1/printers/8dpmm/labels/4x6/"); //TODO make it variable
-                request.Method = "POST";
-                request.Accept = "application/pdf";
-                //request.Accept = "image/png"; //Get image output
-                request.ContentType = "application/x-www-form-urlencoded";
-                request.ContentLength = zpl.Length;
+                    var request = (HttpWebRequest)WebRequest.Create("http://api.labelary.com/v1/printers/8dpmm/labels/4x6/"); //TODO make it variable
+                    request.Method = "POST";
+                    request.Accept = "application/pdf";
+                    //request.Accept = "image/png"; //Get image output
+                    request.ContentType = "application/x-www-form-urlencoded";
+                    request.ContentLength = zpl.Length;
 
-                var requestStream = request.GetRequestStream();
-                requestStream.Write(zpl, 0, zpl.Length);
-                requestStream.Close();
+                    var requestStream = request.GetRequestStream();
+                    requestStream.Write(zpl, 0, zpl.Length);
+                    requestStream.Close();
 
-                var path = Path.GetTempFileName() + ".pdf";
-                var response = (HttpWebResponse)request.GetResponse();
-                var responseStream = response.GetResponseStream();
-                var fileStream = System.IO.File.Create(System.Web.HttpContext.Current.Server.MapPath($"~/Content/Files/Thermal_Label_{item.UserId}.pdf")); //Generate template file
-                var fileTempStream = System.IO.File.Create(path); //Generate temporary file
-                responseStream.CopyTo(fileStream);
-                fileStream.Close();
-                responseStream.Close();
-                fileTempStream.Close();
+                    var path = Path.GetTempFileName() + ".pdf";
+                    var response = (HttpWebResponse)request.GetResponse();
+                    var responseStream = response.GetResponseStream();
+                    var fileStream = System.IO.File.Create(System.Web.HttpContext.Current.Server.MapPath($"~/Content/Files/Thermal_Label_{item.UserId}.pdf")); //Generate template file
+                    var fileTempStream = System.IO.File.Create(path); //Generate temporary file
+                    responseStream.CopyTo(fileStream);
+                    fileStream.Close();
+                    responseStream.Close();
+                    fileTempStream.Close();
 
-                try
-                {
-                    System.IO.File.Copy(fileStream.Name, fileTempStream.Name, true);
+                    try
+                    {
+                        System.IO.File.Copy(fileStream.Name, fileTempStream.Name, true);
+                    }
+                    catch (Exception e)
+                    {
+                        return Json(new { success = false, status = e.Message });
+                    }
+                        return Json(new { success = true, status = "OK", path = Path.GetFileName(path) });
                 }
-                catch (Exception e)
-                {
-                    return Json(new { success = false, status = e.Message });
-                }
-                return Json(new { success = true, status = "OK", path = Path.GetFileName(path) });
-            }
             return Json(new { success = false, status = "Error" });
         }
-
+        
         [HttpPut]
         [Route("print-lable/consignment-requests/{crId}/consignments/{cId}")]
         public async Task<ActionResult> Lable(string crId, string cId)
@@ -304,7 +304,7 @@ namespace web.sph.App_Code
                 }
             }
 
-            string zplCode = LabelConnoteDetails(item, connote);
+            string zplCode = GetLabelConnoteZplCode(item, connote);
 
             //Send direct to printer. Suitable for stand-alone EziSend offline. Not for online EziSend.
             //Set printer name here
@@ -357,7 +357,7 @@ namespace web.sph.App_Code
 
                 foreach (var itemHasConnote in item.Consignments)
                 {
-                    string zplCode = LabelConnoteDetails(item, itemHasConnote);
+                    string zplCode = GetLabelConnoteZplCode(item, itemHasConnote);
 
                     //Send direct to printer. Suitable for stand-alone EziSend offline. Not for online EziSend.
                     //Set printer name here
@@ -402,36 +402,11 @@ namespace web.sph.App_Code
             return request;
         }
 
-        private static string LabelConnoteDetails(ConsigmentRequest item, Consignment itemHasConnote)
+        private static string GetLabelConnoteZplCode(ConsigmentRequest item, Consignment itemHasConnote)
         {
-            var dataMatrixModel = new DataMatrixModel //TODO: Refractor
-            {
-                versionHeader = "A1",                                                                                               //01
-                connoteNum = itemHasConnote.ConNote,                                                                                //02
-                recipientPostcode = itemHasConnote.Penerima.Address.Postcode,                                                       //03
-                countryCode = itemHasConnote.Penerima.Address.Country,                                                              //04
-                productCode = (itemHasConnote.Produk.IsInternational) ? "80000001" : "80000000",                                    //05
-                parentConnote = (itemHasConnote.IsMps) ? itemHasConnote.ConNote : "",                                               //06
-                mpsIndicator = (itemHasConnote.IsMps) ? "02" : "01",                                                                //07
-                senderPhoneNum = itemHasConnote.Pemberi.ContactInformation.ContactNumber,                                           //08
-                senderEmail = itemHasConnote.Pemberi.ContactInformation.Email,                                                      //09
-                senderRefNo = item.ReferenceNo,                                                                                     //10
-                customerAccNum = (item.Designation == "Contract customer") ? item.UserId : "",                                      //11
-                recipientPhoneNum = itemHasConnote.Penerima.ContactInformation.ContactNumber,                                       //12
-                recipientEmail = itemHasConnote.Penerima.ContactInformation.Email,                                                  //13
-                weight = itemHasConnote.Produk.Weight.ToString("0.00"),                                                             //14
-                dimensionVol = $"{itemHasConnote.Produk.Length.ToString("0")}" +                                                    //15
-                                               $"x{itemHasConnote.Produk.Width.ToString("0")}" +
-                                               $"x{itemHasConnote.Produk.Height.ToString("0")}",
-                codAmount = itemHasConnote.Produk.Est.CodAmount > 0 ? itemHasConnote.Produk.Est.CodAmount.ToString("0.00") : "",    //16
-                ccodAmount = itemHasConnote.Produk.Est.CcodAmount > 0 ? itemHasConnote.Produk.Est.CcodAmount.ToString("0.00") : "", //17
-                valueAdded = itemHasConnote.Produk.ValueAddedValue.ToString("0"),                                                   //18
-                itemCategory = itemHasConnote.Produk.ItemCategory,                                                                  //19
-                amountPaid = item.Payment.TotalPrice.ToString("0"),                                                                 //20
-                zone = (itemHasConnote.Produk.IsInternational) ? "" : "02",                                                         //21
-            };
+            DataMatrixModel dataMatrixModel = GetDataMatrix2DBarCodeModel(item, itemHasConnote);
 
-            var dataMatrixCode = $"{dataMatrixModel.versionHeader}_5e{dataMatrixModel.connoteNum}_5e{dataMatrixModel.recipientPostcode}_5e{dataMatrixModel.countryCode}_5e{dataMatrixModel.productCode}_5e{dataMatrixModel.parentConnote}_5e{dataMatrixModel.mpsIndicator}_5e" +
+            var dataMatrixCodeThermal = $"{dataMatrixModel.versionHeader}_5e{dataMatrixModel.connoteNum}_5e{dataMatrixModel.recipientPostcode}_5e{dataMatrixModel.countryCode}_5e{dataMatrixModel.productCode}_5e{dataMatrixModel.parentConnote}_5e{dataMatrixModel.mpsIndicator}_5e" +
                                  $"{dataMatrixModel.senderPhoneNum}_5e{dataMatrixModel.senderEmail}_5e{dataMatrixModel.senderRefNo}_5e{dataMatrixModel.customerAccNum}_5e{dataMatrixModel.recipientPhoneNum}_5e{dataMatrixModel.recipientEmail}_5e{dataMatrixModel.weight}_5e{dataMatrixModel.dimensionVol}_5e" +
                                  $"{dataMatrixModel.codAmount}_5e{dataMatrixModel.ccodAmount}_5e{dataMatrixModel.valueAdded}_5e{dataMatrixModel.itemCategory}_5e{dataMatrixModel.amountPaid}_5e{dataMatrixModel.zone}";
 
@@ -454,7 +429,7 @@ namespace web.sph.App_Code
             zplCode += "^LL1242";
             zplCode += "^LS0";
             zplCode += "^FT27,644^AQ^FH^FDKEPADA :^FS";
-            zplCode += "^FT27,672^AQ^FH^FD" + (!String.IsNullOrEmpty(itemHasConnote.Penerima.CompanyName) ? itemHasConnote.Penerima.CompanyName.ToUpper() : "") + "^FS";
+            zplCode += "^FT27,672^AQ^FH^FD" + itemHasConnote.Penerima.ContactPerson.ToUpper() + "^FS";
             zplCode += "^FT27,700^AQ^FH^FD" + (itemHasConnote.Penerima.Address.Address1 + ", " + itemHasConnote.Penerima.Address.Address2).ToUpper() + "^FS";
             zplCode += "^FT27,728^AQ^FH^FD" + (!String.IsNullOrEmpty(penerimaAddressLine2) ? penerimaAddressLine2.ToUpper() : "") + "^FS";
             zplCode += "^FT27,756^AQ^FH^FD" + itemHasConnote.Penerima.Address.City.ToUpper() + "^FS";
@@ -518,9 +493,40 @@ namespace web.sph.App_Code
             zplCode += "^FT262,1040^AQ^FH^FDSalinan Pejabat^FS";
             zplCode += "^FT31,970^AQ^FH^FD" + textChargeOnDeliveryCustCopy + "^FS";
             zplCode += "^BY128,128^FT620,848^BXN,4,200,0,0,1,~";
-            zplCode += "^FH^FD" + dataMatrixCode + "^FS";
+            zplCode += "^FH^FD" + dataMatrixCodeThermal + "^FS";
             zplCode += "^PQ1,0,1,Y^XZ";
             return zplCode;
+        }
+
+        private static DataMatrixModel GetDataMatrix2DBarCodeModel(ConsigmentRequest item, Consignment itemHasConnote)
+        {
+            var dataMatrixModel = new DataMatrixModel
+            {
+                versionHeader = "A1",                                                                                               //01
+                connoteNum = itemHasConnote.ConNote,                                                                                //02
+                recipientPostcode = itemHasConnote.Penerima.Address.Postcode,                                                       //03
+                countryCode = itemHasConnote.Penerima.Address.Country,                                                              //04
+                productCode = (itemHasConnote.Produk.IsInternational) ? "80000001" : "80000000",                                    //05
+                parentConnote = (itemHasConnote.IsMps) ? itemHasConnote.ConNote : "",                                               //06
+                mpsIndicator = (itemHasConnote.IsMps) ? "02" : "01",                                                                //07
+                senderPhoneNum = itemHasConnote.Pemberi.ContactInformation.ContactNumber,                                           //08
+                senderEmail = itemHasConnote.Pemberi.ContactInformation.Email,                                                      //09
+                senderRefNo = item.ReferenceNo,                                                                                     //10
+                customerAccNum = (item.Designation == "Contract customer") ? item.UserId : "",                                      //11
+                recipientPhoneNum = itemHasConnote.Penerima.ContactInformation.ContactNumber,                                       //12
+                recipientEmail = itemHasConnote.Penerima.ContactInformation.Email,                                                  //13
+                weight = itemHasConnote.Produk.Weight.ToString("0.00"),                                                             //14
+                dimensionVol = $"{itemHasConnote.Produk.Length.ToString("0")}" +                                                    //15
+                                                                       $"x{itemHasConnote.Produk.Width.ToString("0")}" +
+                                                                       $"x{itemHasConnote.Produk.Height.ToString("0")}",
+                codAmount = itemHasConnote.Produk.Est.CodAmount > 0 ? itemHasConnote.Produk.Est.CodAmount.ToString("0.00") : "",    //16
+                ccodAmount = itemHasConnote.Produk.Est.CcodAmount > 0 ? itemHasConnote.Produk.Est.CcodAmount.ToString("0.00") : "", //17
+                valueAdded = itemHasConnote.Produk.ValueAddedValue.ToString("0"),                                                   //18
+                itemCategory = itemHasConnote.Produk.ItemCategory,                                                                  //19
+                amountPaid = item.Payment.TotalPrice.ToString("0"),                                                                 //20
+                zone = (itemHasConnote.Produk.IsInternational) ? "" : "02",                                                         //21
+            };
+            return dataMatrixModel;
         }
 
         public class RawPrinterHelper
