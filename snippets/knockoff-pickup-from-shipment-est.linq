@@ -22,7 +22,7 @@
 
 async Task Main()
 {
-	var statusOnlyNoPost = false;
+	var statusOnlyNoPost = true;
 
 	var rtsBaseUrl = "http://rx.pos.com.my";
 	var rtsAdminToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHBvcy5jb20ubXkiLCJzdWIiOiI2MzYzODk1NjI1NzE1OTY2NTFjNDkwNzRjZSIsIm5iZiI6MTUxOTIyODI1NywiaWF0IjoxNTAzMzMwNjU3LCJleHAiOjE2MDkzNzI4MDAsImF1ZCI6IlBvc0VudHQifQ.-LxvJ8J4bS1xogV3gIoBtMkqlr1h1zP71FUhFA9MuxE";
@@ -39,7 +39,7 @@ async Task Main()
 	Console.WriteLine("-------------------- GET CONSIGNMENT REQUESTS --------------------");
 	var consignmentRequests = await GetConsignmentRequests(ostBaseUrl, ostClient);
 	Console.WriteLine($"Consignment Requests count: {consignmentRequests.Count} .....");
-	//consignmentRequests.Dump();
+	consignmentRequests.Dump();
 	Console.WriteLine("");
 	Console.WriteLine("");
 	Console.WriteLine("");
@@ -116,7 +116,7 @@ async Task Main()
 					BranchCode = pickupEvent.LocationId
 				};
 				await PostRtsPickupFormat(rtsPickupFormat, ostBaseUrl, ostClient, statusOnlyNoPost);
-				await Task.Delay(10000);
+				await Task.Delay(1000);
 			}
 		}
 		else
@@ -166,7 +166,7 @@ async Task Main()
 					BranchCode = statEvent.LocationId
 				};
 				await PostRtsPickupFormat(rtsPickupFormat, ostBaseUrl, ostClient, statusOnlyNoPost);
-				await Task.Delay(10000);
+				await Task.Delay(1000);
 			}
 		}
 		consignmentRequestsIndexCount++;
