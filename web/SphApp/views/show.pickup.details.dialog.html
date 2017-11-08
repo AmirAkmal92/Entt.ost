@@ -1,0 +1,67 @@
+<section class="view-model-modal" id="show-pickup-details-dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" data-bind="click : cancelClick">&times;</button>
+                <h4>Pickup Details</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" data-bind="with: Pickup">
+                    <div class="col-md-12">
+                        <h5>Pickup Number</h5>
+                        <hr />
+                        <address class="well">
+                            <span data-bind="text: Number">Number</span>
+                        </address>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Contacts</h5>
+                        <hr />
+                        <address class="well">
+                            <span data-bind="text: ContactPerson">ContactPerson</span><br />
+                            <!--ko if: CompanyName() != ''--><span data-bind="text: CompanyName">CompanyName</span><br /><!--/ko-->
+                            <div data-bind="with: ContactInformation">
+                                <span data-bind="text: Email">Email</span><br />
+                                <span data-bind="text: ContactNumber">ContactNumber</span>
+                            </div>
+                        </address>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Address</h5>
+                        <hr />
+                        <address class="well">
+                            <div data-bind="with: Address">
+                                <span data-bind="text: Address1">Address1</span>
+                                &nbsp;<span data-bind="text: Address2">Address2</span>
+                                <!--ko if: Address3() != undefined--><br /><span data-bind="text: Address3">Address3</span><!--/ko-->
+                                <!--ko if: Address4() != undefined-->&nbsp;<span data-bind="text: Address4">Address4</span><!--/ko-->
+                                <br /><span data-bind="text: Postcode">Postcode</span>
+                                &nbsp;<span data-bind="text: City">City</span>
+                                <br /><span data-bind="text: State">State</span>
+                                &nbsp;<span data-bind="text: Country">Country</span>
+                            </div>
+                        </address>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Details</h5>
+                        <hr />
+                        <address class="well">
+                            <span data-bind="date:{ value: DateReady, format:'YYYY-MM-DD'}"></span>
+                            <br />
+                            <span data-bind="date:{ value: DateReady, format:'HH:mm'}"></span>
+                            &minus;
+                            <span data-bind="date:{ value: DateClose, format:'HH:mm'}"></span>
+                            <br />
+                            <!--ko if: TotalWeight() != undefined--><span data-bind="text: TotalWeight().toFixed(2)"></span> kg<!--/ko-->
+                            <br />
+                            <span data-bind="text: TotalQuantity"></span> item
+                        </address>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-bind="click : cancelClick">Close</button>
+            </div>
+        </div>
+    </div>
+</section>
