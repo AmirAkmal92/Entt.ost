@@ -1,24 +1,54 @@
 <h1>Consignment Requests List</h1>
 <br /><br /><br />
 <div class="row">
-    <div class="col-md-4 well well-sm">
+    <div class="col-md-6 well well-sm">
         <form>
             <div class="form-group">
-                <label class="col-md-4" for="DateFrom">Pickup Date From</label>
-                <div class="col-md-8">
-                    <input class="form-control" id="DateFrom" name="DateFrom" data-bind="value: dateFrom" placeholder="Date" aria-required="true" />
+                <label class="col-md-3">Date</label>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="checkbox">
+                                <input type="checkbox" data-bind="checked: useDate" /> Use Date
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" data-bind="visible: useDate">
+                        <div class="col-md-6">
+                            Date From
+                            <input class="form-control" id="DateFrom" name="DateFrom" data-bind="value: dateFrom" placeholder="Date" aria-required="true" />
+                        </div>
+                        <div class="col-md-6">
+                            Date To
+                            <input class="form-control" id="DateTo" name="DateTo" data-bind="value: dateTo" placeholder="Date" aria-required="true" />
+                        </div>
+                    </div>
                     <br />
-                    <!--<label id="DateFrom-error" class="error text-danger" for="DateFrom" style="display:none"></label>-->
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-4" for="DateTo">Pickup Date To</label>
-                <div class="col-md-8">
-                    <input class="form-control" id="DateTo" name="DateTo" data-bind="value: dateTo" placeholder="Date" aria-required="true" />
-                    <br />
-                    <!--<label id="DateTo-error" class="error text-danger" for="DateTo" style="display:none"></label>-->
+                <label class="col-md-3">Field</label>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="checkbox">
+                                <input type="checkbox" data-bind="checked: useField" /> Use Field
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" data-bind="visible: useField">
+                        <div class="col-md-6">
+                            Field Type
+                            <select class="form-control col-md-5" data-bind="options: availableQueries, optionsText: 'fieldName', optionsValue: 'fieldText', value: fieldType"></select>
+                        </div>
+                        <div class="col-md-6">
+                            Field Value
+                            <input type="text" class="form-control col-md-5" name="ConNote" data-bind="value: fieldValue" placeholder="Field Value" />
+                        </div>
+                    </div>
                 </div>
             </div>
+            <br />
             <button class="btn btn-primary" type="button" data-bind="click: search">Search</button>
             <button class="btn btn-default" type="button" data-bind="click: clearSearch">Clear</button>
         </form>
@@ -58,10 +88,8 @@
                     <th>ReferenceNo</th>
                     <th>User Id</th>
                     <th>Pickup No</th>
-                    <th>Contact Person</th>
                     <th>Pickup Address</th>
                     <th>Pickup Date</th>
-                    <th>Pickup Time</th>
                     <th>Quantity</th>
                     <th>Weight (kg)</th>
                     <th>Consignments</th>
@@ -72,27 +100,34 @@
                 <tr data-bind="">
                     <td data-bind="text:ReferenceNo"></td>
                     <td data-bind="text:UserId"></td>
-                    <td data-bind="text:Pickup.Number"></td>
-                    <td>
-                        <span data-bind="text: Pickup.ContactPerson"></span>
-                        <br />
-                        <span data-bind="text: Pickup.ContactInformation.ContactNumber"></span>
+                    <td>                        
+                        <!--ko if: Pickup.Number != undefined-->
+                        <a class="btn btn-xs btn-default" href="#" data-bind="click: $root.showPickupDetailsDialog">
+                            <span data-bind="text: Pickup.Number"></span>
+                        </a>
+                        <!--/ko-->
                     </td>
                     <td>
-                        <span data-bind="text: Pickup.Address.Address1"></span>
-                        &nbsp;<span data-bind="text: Pickup.Address.Address2"></span>
-                        &nbsp;<span data-bind="text: Pickup.Address.Address3"></span>
-                        &nbsp;<span data-bind="text: Pickup.Address.Address4"></span>
-                        &nbsp;<span data-bind="text: Pickup.Address.Postcode"></span>
-                        &nbsp;<span data-bind="text: Pickup.Address.City"></span>
-                        &nbsp;<span data-bind="text: Pickup.Address.State"></span>
-                        &nbsp;<span data-bind="text: Pickup.Address.Country"></span>
+                        <!--ko if: Pickup.Number != undefined-->
+                        <p>
+                            <span data-bind="text: Pickup.ContactPerson"></span>
+                            &nbsp;(<span data-bind="text: Pickup.ContactInformation.ContactNumber"></span>)
+                        </p>
+                        <br />
+                        <p class="address">
+                            <span data-bind="text: Pickup.Address.Address1"></span>
+                            &nbsp;<span data-bind="text: Pickup.Address.Address2"></span>
+                            &nbsp;<span data-bind="text: Pickup.Address.Address3"></span>
+                            <!--ko if: Pickup.Address.Address3 != ""-->&nbsp;<span data-bind="text: Pickup.Address.Address4"></span><!--/ko-->
+                            <!--ko if: Pickup.Address.Address4 != ""-->&nbsp;<span data-bind="text: Pickup.Address.Postcode"></span><!--/ko-->
+                            &nbsp;<span data-bind="text: Pickup.Address.City"></span>
+                            &nbsp;<span data-bind="text: Pickup.Address.State"></span>
+                            &nbsp;<span data-bind="text: Pickup.Address.Country"></span>
+                        </p>
+                        <!--/ko-->
                     </td>
                     <td>
                         <span data-bind="date:{ value: Pickup.DateReady, format:'YYYY-MM-DD'}"></span>
-                    </td>
-                    <td>
-                        <span data-bind="date:{ value: Pickup.DateReady, format:'HH:mm'}"></span>-<span data-bind="date:{ value: Pickup.DateClose, format:'HH:mm'}"></span>
                     </td>
                     <td data-bind="text:Consignments.length"></td>
                     <td data-bind="text:Pickup.TotalWeight.toFixed(2)"></td>

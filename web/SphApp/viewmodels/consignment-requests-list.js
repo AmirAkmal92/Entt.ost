@@ -3,28 +3,51 @@ define([objectbuilders.datacontext, objectbuilders.app], function (context, app)
         page = ko.observable(1),
         size = ko.observable(20),
         count = ko.observable(0),
-        availablePageSize = ko.observableArray([10, 20, 30, 50]),
+        availablePageSize = ko.observableArray([10, 20, 30, 50, 100]),
+        useDate = ko.observable(false),
         dateFrom = ko.observable(moment().format('YYYY-MM-DD')),
         dateTo = ko.observable(moment().format('YYYY-MM-DD')),
+        useField = ko.observable(false),
+        fieldType = ko.observable(),
+        fieldValue = ko.observable(),
         hasNextPage = ko.observable(false),
         hasPreviousPage = ko.observable(false),
-        executedQuery = ko.observable(),
         list = ko.observableArray([]),
         query = "/consignment-request/custom-search",
+        availableQueries = ko.observableArray([
+            { "fieldName": "Reference No", "fieldText": "ReferenceNo" },
+            { "fieldName": "User Id", "fieldText": "UserId" },
+            { "fieldName": "Pickup No", "fieldText": "Pickup.Number" },
+            { "fieldName": "Pickup Date", "fieldText": "Pickup.DateReady" },
+            { "fieldName": "Connote No", "fieldText": "Consignments.ConNote" },
+            { "fieldName": "Designation", "fieldText": "Designation" }
+        ]),
         elasticsearchQuery = {
+            "query": {
+                "bool": {
+                    "must": [],
+                    "must_not": []
+                }
+            },
             "filter": {
                 "bool": {
-                    "must": [
-                        //push conditions in
-                    ],
+                    "must": [],
                     "must_not": [
-                        //push conditions in
-                    ],
-                    "should": [
-                        //push conditions in
+                        {
+                            "missing": {
+                                "field": "Designation"
+                            }
+                        }
                     ]
                 }
-            }
+            },
+            "sort": [
+                {
+                    "ChangedDate": {
+                        "order": "desc"
+                    }
+                }
+            ]
         },
         firstPage = function () {
             page(1);
@@ -47,18 +70,43 @@ define([objectbuilders.datacontext, objectbuilders.app], function (context, app)
             window.location.reload(true);
         },
         search = function () {
-            if (dateFrom() == null || dateTo() == null
-                || dateFrom() == '' || dateTo() == '') {
-                console.log("Invalid search parameters.");
-            } else {
-                executedQuery("Pickup.DateReady:[" + dateFrom() + " TO " + dateTo() + "]");
-                activate();
+            elasticsearchQuery.query.bool.must = [];
+            elasticsearchQuery.query.bool.must_not = [];
+            if (useDate()) {
+                if (dateFrom() == null || dateTo() == null
+                    || dateFrom() == '' || dateTo() == '') {
+                    console.log("Invalid search parameters.");
+                    return;
+                } else {
+                    elasticsearchQuery.query.bool.must.push(
+                        { "range": { "ChangedDate": { "from": `${dateFrom()}`, "to": `${dateTo()}` } } }
+                    );
+                }
             }
+            if (useField()) {
+                if (fieldType() != undefined && fieldValue() != undefined) {
+                    if (fieldType() == "Pickup.DateReady") {
+                        elasticsearchQuery.query.bool.must.push(
+                            { "range": { [`${fieldType()}`]: { "gte": `${fieldValue()}`, "lte": `${fieldValue()}` } } }
+                        );
+                    } else {
+                        elasticsearchQuery.query.bool.must.push(
+                            { "term": { [`${fieldType()}`]: `${fieldValue()}` } }
+                        );
+                    }
+                }
+            }
+            activate();
         },
         clearSearch = function () {
+            useDate(false);
             dateFrom(moment().format('YYYY-MM-DD'));
             dateTo(moment().format('YYYY-MM-DD'));
-            executedQuery(null);
+            useField(false);
+            fieldType(null);
+            fieldValue(null);
+            elasticsearchQuery.query.bool.must_not = [];
+            elasticsearchQuery.query.bool.must = [];
             activate();
         },
         showConsignmentDetailsDialog = function (consignment) {
@@ -72,13 +120,19 @@ define([objectbuilders.datacontext, objectbuilders.app], function (context, app)
                     });
             });
         },
+        showPickupDetailsDialog = function (consignmentRequest) {
+            require(['viewmodels/show.pickup.details.dialog', 'durandal/app'], function (dialog, app2) {
+                dialog.Pickup(new bespoke.Ost_consigmentRequest.domain.Pickup(consignmentRequest.Pickup));
+                app2.showDialog(dialog)
+                    .done(function (result) {
+                        if (!result) return;
+                        if (result === "OK") {
+                        }
+                    });
+            });
+        },
         activate = function () {
-            elasticsearchQuery.filter.bool.should.push(
-                { "exists": { "field": "Designation" } }
-            );
-
             url = ko.unwrap(query) + "?page=" + page() + "&size=" + size();
-            if (executedQuery() != null) url += "&q=" + executedQuery();
             var data = ko.toJSON(elasticsearchQuery);
             return $.ajax({
                 url: url,
@@ -122,8 +176,12 @@ define([objectbuilders.datacontext, objectbuilders.app], function (context, app)
         size: size,
         count: count,
         availablePageSize: availablePageSize,
+        useDate: useDate,
         dateFrom: dateFrom,
         dateTo: dateTo,
+        useField: useField,
+        fieldType: fieldType,
+        fieldValue: fieldValue,
         nextPage: nextPage,
         previousPage: previousPage,
         reloadPage: reloadPage,
@@ -132,5 +190,7 @@ define([objectbuilders.datacontext, objectbuilders.app], function (context, app)
         hasNextPage: hasNextPage,
         hasPreviousPage: hasPreviousPage,
         showConsignmentDetailsDialog: showConsignmentDetailsDialog,
+        showPickupDetailsDialog: showPickupDetailsDialog,
+        availableQueries: availableQueries,
     };
 });
