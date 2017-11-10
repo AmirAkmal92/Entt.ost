@@ -147,7 +147,26 @@ objectbuilders.config, objectbuilders.app, objectbuilders.system, "services/_ko.
                 }).then(function (result) {
                     if (result.success) {
                         return app.showMessage("User Contact details have been successfully saved.", "OST", ["Close"]).done(function () {
-                            //
+                            if (entity().Profile().Address().Address3() == "") {
+                                entity().Profile().Address().Address3(null);
+                            }
+                            if (entity().Profile().Address().Address4() == "") {
+                                entity().Profile().Address().Address4(null);
+                            }
+
+                            if (entity().BillingAddress().Address().Address3() == "") {
+                                entity().BillingAddress().Address().Address3(null);
+                            }
+                            if (entity().BillingAddress().Address().Address4() == "") {
+                                entity().BillingAddress().Address().Address4(null);
+                            }
+
+                            if (entity().PickupAddress().Address().Address3() == "") {
+                                entity().PickupAddress().Address().Address3(null);
+                            }
+                            if (entity().PickupAddress().Address().Address4() == "") {
+                                entity().PickupAddress().Address().Address4(null);
+                            }
                         });
                     }
                 });
