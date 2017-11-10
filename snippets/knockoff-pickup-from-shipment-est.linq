@@ -29,8 +29,8 @@ async Task Main()
 	var rtsClient = new HttpClient();
 	rtsClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", rtsAdminToken);
 
-	//var ostBaseUrl = "http://localhost:50230";
-	//var ostAdminToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHlvdXJjb21wYW55LmNvbSIsInN1YiI6IjYzNjIwNDQ2NTgyNzk2MDA0NDYwOGNjMzdjIiwibmJmIjoxNTAwNDU5MzgzLCJpYXQiOjE0ODQ4MjA5ODMsImV4cCI6MTUxNDY3ODQwMCwiYXVkIjoiT3N0In0.qIA-b-0XTI_GpgMCGJC1yAAtw04UoPaNYoxMSXeBrPk";
+	//	var ostBaseUrl = "http://localhost:50230";
+	//	var ostAdminToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHlvdXJjb21wYW55LmNvbSIsInN1YiI6IjYzNjIwNDQ2NTgyNzk2MDA0NDYwOGNjMzdjIiwibmJmIjoxNTAwNDU5MzgzLCJpYXQiOjE0ODQ4MjA5ODMsImV4cCI6MTUxNDY3ODQwMCwiYXVkIjoiT3N0In0.qIA-b-0XTI_GpgMCGJC1yAAtw04UoPaNYoxMSXeBrPk";
 	var ostBaseUrl = "https://ezisend.poslaju.com.my";
 	var ostAdminToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHlvdXJjb21wYW55LmNvbSIsInN1YiI6IjYzNjI1ODg3Nzc4NjYwMDg3NTVmMTgxMDQ0IiwibmJmIjoxNTA2MTU5Nzc5LCJpYXQiOjE0OTAyNjIxNzksImV4cCI6MTc2NzEzOTIwMCwiYXVkIjoiT3N0In0.DBMfLcyIdXsOl65p34hA7MOhUFimpGJYXGRn4-alfBI";
 	var ostClient = new HttpClient();
@@ -39,16 +39,15 @@ async Task Main()
 	Console.WriteLine("-------------------- GET CONSIGNMENT REQUESTS --------------------");
 	var consignmentRequests = await GetConsignmentRequests(ostBaseUrl, ostClient);
 	Console.WriteLine($"Consignment Requests count: {consignmentRequests.Count} .....");
-	consignmentRequests.Dump();
-	Console.WriteLine("");
+	//	consignmentRequests.Dump();
 	Console.WriteLine("");
 	Console.WriteLine("");
 
 	var consignmentRequestsIndexCount = 1;
 	foreach (var consignmentRequest in consignmentRequests)
-	{
+	{		
 		var connotes = new List<string>();
-		
+
 		Console.WriteLine("");
 		Console.WriteLine($"({consignmentRequestsIndexCount}) {consignmentRequest.Id}");
 		Console.WriteLine("");
@@ -77,6 +76,7 @@ async Task Main()
 		else
 		{
 			Console.WriteLine("Pickup Not Set. Get details from default pickup address...");
+			Console.WriteLine("");
 			Console.WriteLine("-------------------- GET USER DETAIL --------------------");
 			userDetail = await GetUserDetail(consignmentRequest.UserId, ostBaseUrl, ostClient);
 			if (userDetail.UserId.Equals(consignmentRequest.UserId))
@@ -86,7 +86,8 @@ async Task Main()
 				Console.WriteLine($"Company Name: {userDetail.PickupAddress.CompanyName}");
 			}
 		}
-		
+
+		Console.WriteLine("");
 		Console.WriteLine($"Check Pickup status for: {strOfConnotes}");
 		Console.WriteLine($"Connotes Count: {consignmentRequest.Consignments.Count}");
 		Console.WriteLine("");
@@ -116,7 +117,7 @@ async Task Main()
 					BranchCode = pickupEvent.LocationId
 				};
 				await PostRtsPickupFormat(rtsPickupFormat, ostBaseUrl, ostClient, statusOnlyNoPost);
-				await Task.Delay(1000);
+				if (!statusOnlyNoPost) await Task.Delay(500);
 			}
 		}
 		else
@@ -139,7 +140,7 @@ async Task Main()
 					pickupNoFromConsole = Console.ReadLine();
 				}
 			}
-			
+
 			foreach (var statEvent in statEvents)
 			{
 				Console.WriteLine("");
@@ -166,7 +167,7 @@ async Task Main()
 					BranchCode = statEvent.LocationId
 				};
 				await PostRtsPickupFormat(rtsPickupFormat, ostBaseUrl, ostClient, statusOnlyNoPost);
-				await Task.Delay(1000);
+				if (!statusOnlyNoPost) await Task.Delay(500);
 			}
 		}
 		consignmentRequestsIndexCount++;
@@ -202,30 +203,30 @@ private static async Task<UserDetail> GetUserDetail(string userId, string ostBas
 private static async Task<List<ConsigmentRequest>> GetConsignmentRequests(string ostBaseUrl, HttpClient ostClient)
 {
 	var query = $@"{{
-    ""filter"": {{
-      ""query"": {{
-         ""bool"": {{
-            ""must"": [
-				{{
-                    ""term"": {{
-                       ""Payment.IsPaid"": false
-                    }}
-                }},
-                {{
-                    ""term"": {{
-                       ""Payment.IsConNoteReady"": true
-                    }}
-                }},
-                {{
-                    ""term"": {{
-                       ""Pickup.IsPickedUp"": false
-                    }}
-                }}
-            ]
-         }}
-      }}
-   }}
-}}";
+		""filter"": {{
+			""bool"": {{
+            	""must"": [
+					{{
+						""term"": {{
+                       		""Designation"": ""Contract customer""
+						}}
+                	}},
+                	{{
+                    	""term"": {{
+                       		""Payment.IsConNoteReady"": true
+                    	}}
+                	}},
+                	{{
+                    	""term"": {{
+                       		""Pickup.IsPickedUp"": false
+                    	}}
+                	}}
+            	]
+			}}
+   		}},
+   		""from"": 0,
+   		""size"": 100
+	}}";
 
 	var content = new StringContent(query.ToString(), Encoding.UTF8, "application/json");
 	var requestUri = new Uri($"{ostBaseUrl}/api/consigment-requests/search");
@@ -258,27 +259,27 @@ private static async Task<List<ConsigmentRequest>> GetConsignmentRequests(string
 private static async Task<List<Bespoke.PosEntt.Pickups.Domain.Pickup>> GetPickupEvents(string stringOfConnotes, string rtsBaseUrl, HttpClient rtsClient)
 {
 	var query = $@"{{
-   ""query"": {{
-       ""bool"": {{
-           ""must"": [              
-              {{
-                  ""terms"": {{
-                        ""ConsignmentNo"": {stringOfConnotes}                     
-                  }}
-              }}
-           ]
-        }}
-   }},
-   ""from"": 0,
-   ""size"": 1000,
-   ""sort"": [
-      {{
-         ""CreatedDate"": {{
-            ""order"": ""desc""
-         }}
-      }}
-   ]
-}}";
+   		""query"": {{
+       		""bool"": {{
+           		""must"": [              
+              		{{
+                  		""terms"": {{
+                        	""ConsignmentNo"": {stringOfConnotes}                     
+                  		}}
+              		}}
+           		]
+        	}}
+   		}},
+   		""from"": 0,
+   		""size"": 1000,
+   		""sort"": [
+      		{{
+         		""CreatedDate"": {{
+            		""order"": ""desc""
+         		}}
+      		}}
+   		]
+	}}";
 
 	var content = new StringContent(query.ToString(), Encoding.UTF8, "application/json");
 	var requestUri = new Uri($"{rtsBaseUrl}/api/rts-dashboard/pickup");
@@ -311,27 +312,27 @@ private static async Task<List<Bespoke.PosEntt.Pickups.Domain.Pickup>> GetPickup
 private static async Task<List<Bespoke.PosEntt.Stats.Domain.Stat>> GetStatEvents(string stringOfConnotes, string rtsBaseUrl, HttpClient rtsClient)
 {
 	var query = $@"{{
-   ""query"": {{
-       ""bool"": {{
-           ""must"": [              
-              {{
-                  ""terms"": {{
-                        ""ConsignmentNo"": {stringOfConnotes}                     
-                  }}
-              }}
-           ]
-        }}
-   }},
-   ""from"": 0,
-   ""size"": 1000,
-   ""sort"": [
-      {{
-         ""CreatedDate"": {{
-            ""order"": ""desc""
-         }}
-      }}
-   ]
-}}";
+		""query"": {{
+       		""bool"": {{
+           		""must"": [              
+              		{{
+                  		""terms"": {{
+                        	""ConsignmentNo"": {stringOfConnotes}                     
+                  		}}
+              		}}
+           		]
+        	}}
+   		}},
+   		""from"": 0,
+   		""size"": 1000,
+   		""sort"": [
+      		{{
+         		""CreatedDate"": {{
+            		""order"": ""desc""
+         		}}
+      		}}
+   		]
+	}}";
 
 	var content = new StringContent(query.ToString(), Encoding.UTF8, "application/json");
 	var requestUri = new Uri($"{rtsBaseUrl}/api/rts-dashboard/stat");

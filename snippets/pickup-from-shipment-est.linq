@@ -17,13 +17,13 @@
 async Task Main()
 {
 	var consignmentRequestId = "05f4d666-e8e5-4e85-8f73-2011dce64c3d";
-	var rtsBaseUrl = "https://ezisend.poslaju.com.my/";
-	var rtsAdminToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHlvdXJjb21wYW55LmNvbSIsInN1YiI6IjYzNjI1ODg3Nzc4NjYwMDg3NTVmMTgxMDQ0IiwibmJmIjoxNTA2MTU5Nzc5LCJpYXQiOjE0OTAyNjIxNzksImV4cCI6MTc2NzEzOTIwMCwiYXVkIjoiT3N0In0.DBMfLcyIdXsOl65p34hA7MOhUFimpGJYXGRn4-alfBI";
-	rtsBaseUrl = "http://localhost:50230/";
-	rtsAdminToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHlvdXJjb21wYW55LmNvbSIsInN1YiI6IjYzNjIwNDQ2NTgyNzk2MDA0NDYwOGNjMzdjIiwibmJmIjoxNTAwNDU5MzgzLCJpYXQiOjE0ODQ4MjA5ODMsImV4cCI6MTUxNDY3ODQwMCwiYXVkIjoiT3N0In0.qIA-b-0XTI_GpgMCGJC1yAAtw04UoPaNYoxMSXeBrPk";
+	var ostBaseUrl = "https://ezisend.poslaju.com.my/";
+	var ostAdminToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHlvdXJjb21wYW55LmNvbSIsInN1YiI6IjYzNjI1ODg3Nzc4NjYwMDg3NTVmMTgxMDQ0IiwibmJmIjoxNTA2MTU5Nzc5LCJpYXQiOjE0OTAyNjIxNzksImV4cCI6MTc2NzEzOTIwMCwiYXVkIjoiT3N0In0.DBMfLcyIdXsOl65p34hA7MOhUFimpGJYXGRn4-alfBI";
+	ostBaseUrl = "http://localhost:50230/";
+	ostAdminToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHlvdXJjb21wYW55LmNvbSIsInN1YiI6IjYzNjIwNDQ2NTgyNzk2MDA0NDYwOGNjMzdjIiwibmJmIjoxNTAwNDU5MzgzLCJpYXQiOjE0ODQ4MjA5ODMsImV4cCI6MTUxNDY3ODQwMCwiYXVkIjoiT3N0In0.qIA-b-0XTI_GpgMCGJC1yAAtw04UoPaNYoxMSXeBrPk";
 
-	var ostClient = new HttpClient { BaseAddress = new Uri(rtsBaseUrl) };
-	ostClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", rtsAdminToken);
+	var ostClient = new HttpClient { BaseAddress = new Uri(ostBaseUrl) };
+	ostClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ostAdminToken);
 	ostClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
 	var consignmentRequest = await GetConsigmentRequest(consignmentRequestId, ostClient);
@@ -96,11 +96,11 @@ async Task Main()
 	}
 }
 
-async Task<ConsigmentRequest> GetConsigmentRequest(string id, HttpClient rtsClient)
+async Task<ConsigmentRequest> GetConsigmentRequest(string id, HttpClient ostClient)
 {
 	var item = new ConsigmentRequest();
 
-	var response = await rtsClient.GetAsync($"/api/consigment-requests/{id}");
+	var response = await ostClient.GetAsync($"/api/consigment-requests/{id}");
 	Console.WriteLine($"RequestUri: {response.RequestMessage.RequestUri}");
 	Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
 	if (!response.IsSuccessStatusCode)
@@ -125,11 +125,11 @@ async Task<ConsigmentRequest> GetConsigmentRequest(string id, HttpClient rtsClie
 	return item;
 }
 
-async Task PostRtsPickupFormat(RtsPickupFormat item, HttpClient rtsClient)
+async Task PostRtsPickupFormat(RtsPickupFormat item, HttpClient ostClient)
 {
 	var json = JsonConvert.SerializeObject(item);
 	var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-	var response = await rtsClient.PostAsync("/api/rts-pickup-formats", content);
+	var response = await ostClient.PostAsync("/api/rts-pickup-formats", content);
 	Console.WriteLine($"RequestUri: {response.RequestMessage.RequestUri}");
 	Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
 	if (!response.IsSuccessStatusCode)
