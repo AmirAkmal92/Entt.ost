@@ -46,6 +46,8 @@ namespace web.sph.App_Code
                     break;
                 }
             }
+            connote.Pemberi.Address.Postcode = int.Parse(connote.Pemberi.Address.Postcode).ToString("D5");
+            connote.Penerima.Address.Postcode = int.Parse(connote.Penerima.Address.Postcode).ToString("D5");
             UserProfile userProfile = await GetDesignation();
             var pcm = new printConnoteModel
             {
@@ -74,6 +76,7 @@ namespace web.sph.App_Code
                     break;
                 }
             }
+            connote.Pemberi.Address.Postcode = int.Parse(connote.Pemberi.Address.Postcode).ToString("D5");
             UserProfile userProfile = await GetDesignation();
             var pcm = new printConnoteModel
             {
@@ -151,6 +154,11 @@ namespace web.sph.App_Code
                 var itemsToRemove = new ConsigmentRequest();
                 foreach (var temp in item.Consignments)
                 {
+                    temp.Pemberi.Address.Postcode = int.Parse(temp.Pemberi.Address.Postcode).ToString("D5");
+                    if (!temp.Produk.IsInternational)
+                    {
+                        temp.Penerima.Address.Postcode = int.Parse(temp.Penerima.Address.Postcode).ToString("D5");
+                    }
                     if (temp.ConNote == null)
                     {
                         itemsToRemove.Consignments.Add(temp);
@@ -175,6 +183,11 @@ namespace web.sph.App_Code
             var connote = new Consignment();
             foreach (var consignment in item.Consignments)
             {
+                consignment.Pemberi.Address.Postcode = int.Parse(consignment.Pemberi.Address.Postcode).ToString("D5");
+                if (!consignment.Produk.IsInternational)
+                {
+                    consignment.Penerima.Address.Postcode = int.Parse(consignment.Penerima.Address.Postcode).ToString("D5");
+                }
                 if (consignment.WebId == cId)
                 {
                     connote = consignment;
@@ -228,6 +241,11 @@ namespace web.sph.App_Code
                 var itemsToRemove = new ConsigmentRequest();
                 foreach (var temp in item.Consignments)
                 {
+                    temp.Pemberi.Address.Postcode = int.Parse(temp.Pemberi.Address.Postcode).ToString("D5");
+                    if (!temp.Produk.IsInternational)
+                    {
+                        temp.Penerima.Address.Postcode = int.Parse(temp.Penerima.Address.Postcode).ToString("D5");
+                    }
                     if (temp.ConNote == null || temp.Produk.IsInternational)
                     {
                         itemsToRemove.Consignments.Add(temp);
@@ -240,20 +258,20 @@ namespace web.sph.App_Code
                 }
 
                 var zplCode = "";
-                foreach (var itemHasConnote in item.Consignments)
-                {
+                    foreach (var itemHasConnote in item.Consignments)
+                    {
                     if (countConnote < 50)
                     {
-                        zplCode += GetLabelConnoteZplCode(item, itemHasConnote);
+                            zplCode += GetLabelConnoteZplCode(item, itemHasConnote);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        countConnote++;
                     }
-                    else
-                    {
-                        break;
-                    }
-                    countConnote++;
-                }
 
-                byte[] zpl = Encoding.UTF8.GetBytes(zplCode);
+                    byte[] zpl = Encoding.UTF8.GetBytes(zplCode);
                     var request = (HttpWebRequest)WebRequest.Create("http://api.labelary.com/v1/printers/8dpmm/labels/4x6/"); //TODO make it variable
                     request.Method = "POST";
                     request.Accept = "application/pdf";
@@ -283,11 +301,11 @@ namespace web.sph.App_Code
                     {
                         return Json(new { success = false, status = e.Message });
                     }
-                        return Json(new { success = true, status = "OK", path = Path.GetFileName(path) });
-                }
+                return Json(new { success = true, status = "OK", path = Path.GetFileName(path) });
+            }
             return Json(new { success = false, status = "Error" });
         }
-        
+
         [HttpPut]
         [Route("print-lable/consignment-requests/{crId}/consignments/{cId}")]
         public async Task<ActionResult> Lable(string crId, string cId)

@@ -1373,29 +1373,49 @@ namespace web.sph.App_Code
         public async Task<IHttpActionResult> GetAndSaveRoutingCode(ConsigmentRequest item)
         {
             var status = "OK";
+            var success = true;
             var connote = new Consignment();
             foreach (var consignment in item.Consignments)
             {
                 if (consignment.Bill.RoutingCode == null && !consignment.Produk.IsInternational)
                 {
                     connote = consignment;
-                    var originRoutingCode = GetRoutingCode(item.Pickup.Address.Postcode);
-                    var newOriginRoutingCode = originRoutingCode.Substring(5, 3);
-                    var destinationRoutingCode = GetRoutingCode(connote.Penerima.Address.Postcode);
-                    connote.Bill.RoutingCode = $"{newOriginRoutingCode} - {destinationRoutingCode}";
+                    string newOriginRoutingCode;
+                    var originRoutingCode = await GetRoutingCode(item.Pickup.Address.Postcode);
+                    if (!string.IsNullOrEmpty(originRoutingCode))
+                    {
+                        newOriginRoutingCode = originRoutingCode.Substring(5, 3);
+
+                        var destinationRoutingCode = await GetRoutingCode(connote.Penerima.Address.Postcode);
+                        if (!string.IsNullOrEmpty(destinationRoutingCode))
+                        {
+                            connote.Bill.RoutingCode = $"{newOriginRoutingCode} - {destinationRoutingCode}";
+
+                            await SaveConsigmentRequest(item);
+                        }
+                        else
+                        {
+                            success = false;
+                            status = "Recipient postcode invalid";
+                        }
+                    }
+                    else
+                    {
+                        success = false;
+                        status = "Pickup postcode invalid";
+                    }
                 }
             }
-            try
+
+            var result = new
             {
-                await SaveConsigmentRequest(item);
-            }
-            catch (Exception)
-            {
-                status = "FAIL";
-                throw;
-            }
+                success = success,
+                status = status,
+                id = item.Id,
+            };
+
             await Task.Delay(1500);
-            return Accepted(status);
+            return Accepted(result);
         }
 
         [HttpPost]
@@ -1460,12 +1480,18 @@ namespace web.sph.App_Code
         }
 
 
-        public string GetRoutingCode(string postCode)
+        public async Task<string> GetRoutingCode(string postCode)
         {
+            var routingCode = string.Empty;
             var requestUri = $"{m_clientBromApi.BaseAddress}/branches/postcode/{postCode}/routing-code/";
-            var response = m_clientBromApi.GetStringAsync(requestUri).Result;
-            var routeCode = JObject.Parse(response).SelectToken("$.RouteCode");
-            return routeCode.ToString();
+            var response = await m_clientBromApi.GetAsync(requestUri);
+            if (response.IsSuccessStatusCode)
+            {
+                var output = await response.Content.ReadAsStringAsync();
+                routingCode = JObject.Parse(output).SelectToken("$.RouteCode").ToString();
+
+            }
+            return routingCode;
         }
 
         public static decimal GstCalculation(decimal value, int rounded = 2)
