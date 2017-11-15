@@ -153,6 +153,9 @@ objectbuilders.config, objectbuilders.app, objectbuilders.system, "services/_ko.
                             if (entity().Profile().Address().Address4() == "") {
                                 entity().Profile().Address().Address4(null);
                             }
+                            if (entity().Profile().ContactInformation().AlternativeContactNumber() == "") {
+                                entity().Profile().ContactInformation().AlternativeContactNumber(null);
+                            }
 
                             if (entity().BillingAddress().Address().Address3() == "") {
                                 entity().BillingAddress().Address().Address3(null);
@@ -160,12 +163,18 @@ objectbuilders.config, objectbuilders.app, objectbuilders.system, "services/_ko.
                             if (entity().BillingAddress().Address().Address4() == "") {
                                 entity().BillingAddress().Address().Address4(null);
                             }
+                            if (entity().BillingAddress().ContactInformation().AlternativeContactNumber() == "") {
+                                entity().BillingAddress().ContactInformation().AlternativeContactNumber(null);
+                            }
 
                             if (entity().PickupAddress().Address().Address3() == "") {
                                 entity().PickupAddress().Address().Address3(null);
                             }
                             if (entity().PickupAddress().Address().Address4() == "") {
                                 entity().PickupAddress().Address().Address4(null);
+                            }
+                            if (entity().PickupAddress().ContactInformation().AlternativeContactNumber() == "") {
+                                entity().PickupAddress().ContactInformation().AlternativeContactNumber(null);
                             }
                         });
                     }
