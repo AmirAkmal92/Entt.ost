@@ -29,7 +29,7 @@
             </div>
             <div class="portlet-body">
                 <div class="clearfix">
-                    <div class="panel panel-danger">
+                    <div class="panel panel-danger table-scrollable">
                         <style>
                             .btn-success {
                                 color: #fff;
@@ -47,11 +47,11 @@
                             <thead>
                                 <tr>
                                     <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Order No</strong></th>
-                                    <th class="hidden-xs bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Pickup Number</strong></th>
-                                    <th class="hidden-xs bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Tracking Number</strong></th>
-                                    <th class="hidden-xs bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Parcel</strong></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Pickup Number</strong></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Tracking Number</strong></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Parcel</strong></th>
                                     <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Total Price</strong></th>
-                                    <th class="hidden-xs bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Date</strong></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Date</strong></th>
                                     <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Action</strong></th>
                                 </tr>
                             </thead>
@@ -62,17 +62,17 @@
                                             <span data-bind="text: ReferenceNo"></span>
                                         </a>
                                     </td>
-                                    <td class="hidden-xs" data-bind="text: Pickup.Number"></td>
-                                    <td class="hidden-xs">
+                                    <td data-bind="text: Pickup.Number"></td>
+                                    <td>
                                         <!--ko foreach: Consignments-->
                                         <span data-bind="text: ConNote"></span>&nbsp;
                                         <!--/ko-->
                                     </td>
-                                    <td class="hidden-xs" data-bind="text:Consignments.length"></td>
+                                    <td data-bind="text:Consignments.length"></td>
                                     <td>
                                         RM &nbsp;&nbsp;&nbsp;<span data-bind="text:Payment.TotalPrice.toFixed(2)"></span>
                                     </td>
-                                    <td class="hidden-xs" data-bind="date:{ value:ChangedDate, format:&#39;D/M/YYYY HH:mm&#39;}"></td>
+                                    <td data-bind="date:{ value:ChangedDate, format:&#39;D/M/YYYY HH:mm&#39;}"></td>
                                     <td>
                                         <center>
                                             <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Track &amp; Trace" data-bind="click: $root.partial.showParcelTrackTrace">

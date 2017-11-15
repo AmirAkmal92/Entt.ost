@@ -44,7 +44,7 @@
             </div>
             <div class="portlet-body">
                 <div class="clearfix">
-                    <div class="panel">
+                    <div class="panel panel-danger table-scrollable">
                         <style>
                             .btn-success {
                                 color: #fff;
@@ -69,8 +69,8 @@
                                         &nbsp;
                                     </th>
                                     <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Contact Person</strong></th>
-                                    <th class="hidden-xs bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Email</strong></th>
-                                    <th class="hidden-xs bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Company Name</strong></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Email</strong></th>
+                                    <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Company Name</strong></th>
                                     <th class="hidden-xs bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Group</strong></th>
                                 </tr>
                             </thead>
@@ -85,14 +85,14 @@
                                             <span data-bind="text: ContactPerson"></span>
                                         </a>
                                     </td>
-                                    <td class="hidden-xs" data-bind="text: ContactInformation.Email"></td>
-                                    <td class="hidden-xs" data-bind="text:CompanyName"></td>
+                                    <td data-bind="text: ContactInformation.Email"></td>
+                                    <td data-bind="text:CompanyName"></td>
                                     <td class="hidden-xs" data-bind="text:Groups"></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <img src="/assets/admin/layouts/layout/img/loading.gif" alt="loading" class="absolute-center" style="display: none;">
+                    <!--<img src="/assets/admin/layouts/layout/img/loading.gif" alt="loading" class="absolute-center" style="display: none;">-->
                 </div>
             </div>
         </div>

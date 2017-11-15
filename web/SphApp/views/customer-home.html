@@ -388,7 +388,7 @@
                     <div class="portlet-body">
                         <div class="clearfix">
                             <!--ko if: $root.config.profile.Designation == "No contract customer"-->
-                            <div class="panel panel-danger">
+                            <div class="panel panel-danger table-scrollable">
                                 <table class="table table-striped table-bordered table-advance table-hover">
                                     <thead>
                                         <tr>
@@ -423,13 +423,13 @@
                             </div>
                             <!--/ko-->
                             <!--ko if: $root.config.profile.Designation == "Contract customer"-->
-                            <div class="panel panel-danger">
+                            <div class="panel panel-danger table-scrollable">
                                 <table class="table table-striped table-bordered table-advance table-hover">
                                     <thead>
                                         <tr>
                                             <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><center><strong> # </strong></center></th>
                                             <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong> Pickup Number </strong></th>
-                                            <th class="hidden-xs bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Tracking Number</strong></th>
+                                            <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Tracking Number</strong></th>
                                             <th class="hidden-xs bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><strong>Parcel</strong></th>
                                             <th class="bg-yellow-casablanca bg-font-yellow-casablanca bold uppercase"><center><strong> Date </strong></center></th>
                                         </tr>
@@ -440,7 +440,7 @@
                                         <tr>
                                             <td> <center><span data-bind="text: $index() + 1"></span> </center></td>
                                             <td> <span data-bind="text: Pickup.Number"></span> </td>
-                                            <td class="hidden-xs">
+                                            <td>
                                                 <!--ko foreach: Consignments-->
                                                 <span data-bind="text: ConNote"></span>&nbsp;
                                                 <!--/ko-->

@@ -14,8 +14,8 @@ define([objectbuilders.datacontext, objectbuilders.logger], function (context, l
             $element = $(element),
             $filterInput = $("<input data-toggle=\"tooltip\" title=\"" + tooltip + "\" type=\"search\" class=\"search-query input-medium form-control\" placeholder=\"" + placeholder + "\">"),
             $serverLoadButton = $("<a href='/#' title='Carian server'><i class='add-on icon-search'></i><a>"),
-            $form = $("<form class='form-search row'>" +
-                "   <div class='input-group pull-right' style='width:300px'>" +
+            $form = $("<form class='form-search'>" +
+                "   <div class='input-group pull-right'>" +
                 '       <div class="input-icon">' +
                 '           <i class="fa fa-search fa-fw"></i>'+
                 "           <span class='input-group-btn'>" +
