@@ -76,23 +76,6 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                             }
                         }
                         crCart.activate();
-                        var data = ko.mapping.toJSON(entity);
-                        if (entity().Pickup().DateClose() < moment().format()) {
-                            if (entity().Pickup().Number() != null) {
-                                context.put(data, "/consignment-request/renew-pickup/" + ko.unwrap(entity().Id))
-                                    .fail(function (response) {
-                                        console.log("Sorry, but we cannot renew pickup schedule for the Consignment Request with Id : " + ko.unwrap(entity().Id));
-                                    })
-                                    .then(function (result) {
-                                        console.log(result);
-                                        if (result.success) {
-                                            activate(ko.unwrap(entity().Id));
-                                        } else {
-                                            console.log(result.status);
-                                        }
-                                    });
-                            }
-                        }
                     }, function (e) {
                         if (e.status == 404) {
                             app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "OST", ["Close"])
