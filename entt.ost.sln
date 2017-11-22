@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "e.soc.posting", "sources\e.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rts.pickup.knockoff", "sources\rts.pickup.knockoff\rts.pickup.knockoff.csproj", "{AB636062-080A-4F2E-902D-762FC1C4CF54}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ezisend.clear.expired.pickup", "sources\ezisend.clear.expired.pickup\ezisend.clear.expired.pickup.csproj", "{F73046AA-805D-4F97-8842-FF92A100F5D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{AB636062-080A-4F2E-902D-762FC1C4CF54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB636062-080A-4F2E-902D-762FC1C4CF54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB636062-080A-4F2E-902D-762FC1C4CF54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F73046AA-805D-4F97-8842-FF92A100F5D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F73046AA-805D-4F97-8842-FF92A100F5D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F73046AA-805D-4F97-8842-FF92A100F5D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F73046AA-805D-4F97-8842-FF92A100F5D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
