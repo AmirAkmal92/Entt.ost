@@ -1,0 +1,67 @@
+{
+  "$type": "Bespoke.Sph.Domain.QueryEndpoint, domain.sph",
+  "ControllerName": "ConsigmentRequestAllEstShippingCartQueryEndpoint",
+  "FilterCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Filter, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Designation",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "Value": "Contract customer",
+          "Name": "Contract customer",
+          "Note": "",
+          "WebId": "aa30d835-467b-4b12-99e7-fcba49f0490c"
+        },
+        "WebId": "eb98aed3-6207-41d7-c505-8ad836d38613"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.Filter, domain.sph",
+        "Term": "Pickup.IsPickedUp",
+        "Operator": "Eq",
+        "Field": {
+          "$type": "Bespoke.Sph.Domain.ConstantField, domain.sph",
+          "TypeName": "System.String, mscorlib",
+          "Value": "false",
+          "Name": "false",
+          "Note": "",
+          "WebId": "dfaf0845-9600-43e8-fdaf-0086d72f5a3f"
+        },
+        "WebId": "00537799-1135-4c8f-b5d2-d588f431801c"
+      }
+    ]
+  },
+  "SortCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Sort, domain.sph]], domain.sph",
+    "$values": [
+      {
+        "$type": "Bespoke.Sph.Domain.Sort, domain.sph",
+        "Path": "ChangedDate",
+        "Direction": "Desc",
+        "WebId": "d8b0ef74-4f75-49ee-de33-181207ca54ef"
+      }
+    ]
+  },
+  "MemberCollection": {
+    "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
+    "$values": []
+  },
+  "CacheProfile": "",
+  "Name": "AllEstShippingCart",
+  "Route": "all-est-shipping-cart",
+  "IsReturnSource": "",
+  "Entity": "ConsigmentRequest",
+  "Note": "",
+  "IsPublished": true,
+  "Resource": "consigment-requests",
+  "CacheFilter": null,
+  "CreatedBy": "admin",
+  "Id": "consigment-request-all-est-shipping-cart",
+  "CreatedDate": "2017-11-22T12:39:26.3732296+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-11-22T12:44:33.1619122+08:00",
+  "WebId": "fd9b4563-9b03-41d3-f660-e228011e3b6b"
+}
