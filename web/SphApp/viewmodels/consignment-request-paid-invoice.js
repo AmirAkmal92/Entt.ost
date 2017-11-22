@@ -16,6 +16,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             domInsuranceTotal = ko.observable(0.0),
             domFuelSurchargeTotal = ko.observable(0.0),
             domHandlingSurchargeTotal = ko.observable(0.0),
+            domPosCovTotal = ko.observable(0.0),
 
             headers = {},
             activate = function (entityId) {
@@ -57,6 +58,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     domesticFuelSurchargeTotal = 0.0,
                     domesticGstTotal = 0.0,
                     domesticInsuranceTotal = 0.0,
+                    domesticPosCovTotal = 0.0;
 
                     internationalGrandTotal = 0.0,
                     internationalSubTotal = 0.0,
@@ -65,7 +67,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     internationalFuelSurchargeTotal = 0.0,
                     internationalGstTotal = 0.0,
                     internationalInsuranceTotal = 0.0;
-
+                    
                 _.each(entity().Consignments(), function (z) {
 
                     _.each(z.Bill().AddOnsA(), function (a) {
@@ -76,6 +78,13 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                         } else {
                             if (a.Code() === 'V29') {
                                 domesticInsuranceTotal += a.Charge();
+                            }
+                        }
+                    });
+                    _.each(z.Bill().AddOnsB(), function (b) {
+                        if (!z.Produk().IsInternational()) {
+                            if (b.Code() === 'V33') {
+                                domesticPosCovTotal += b.Charge();
                             }
                         }
                     });
@@ -105,6 +114,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 domInsuranceTotal(domesticInsuranceTotal);
                 domFuelSurchargeTotal(domesticFuelSurchargeTotal);
                 domHandlingSurchargeTotal(domesticHandlingSurchargeTotal);
+                domPosCovTotal(domesticPosCovTotal);
             },
             calculateDomesticAndInternational = function () {
                 var domesticTotalPrice = 0;
@@ -173,6 +183,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             totalInternationalNoGst: totalInternationalNoGst,
             totalInternationalGst: totalInternationalGst,
             intInsuranceTotal: intInsuranceTotal,
+            domPosCovTotal: domPosCovTotal,
             intFuelSurchargeTotal: intFuelSurchargeTotal,
             intHandlingSurchargeTotal: intHandlingSurchargeTotal,
             domInsuranceTotal: domInsuranceTotal,
