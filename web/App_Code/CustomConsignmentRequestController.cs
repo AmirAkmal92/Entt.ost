@@ -1169,11 +1169,6 @@ namespace web.sph.App_Code
                 resultSuccess = false;
                 resultStatus = "Consignment not found";
             }
-            if (!item.Payment.IsConNoteReady)
-            {
-                resultSuccess = false;
-                resultStatus = "Consignment note was not generated";
-            }
 
             if (resultSuccess)
             {
