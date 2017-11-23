@@ -171,7 +171,7 @@
                                     <!-- /ko -->
                                     <tr>
                                         <td colspan="3">* Pickup Charge</td>
-                                            <td><span class="pull-right">5.00</span></td>
+                                        <td><span class="pull-right">5.00</span></td>
                                     </tr>
                                     <tr data-bind="visible: $root.intHandlingSurchargeTotal() > 0">
                                         <td colspan="3"># International Handling Surcharge</td>
@@ -196,7 +196,11 @@
                                     <tr data-bind="visible: $root.domInsuranceTotal() > 0">
                                         <td colspan="3">* Ezisend Insurance - General</td>
                                         <td><span class="pull-right" data-bind="text: $root.domInsuranceTotal().toFixed(2)"></span></td>
-                                    </tr>                                  
+                                    </tr>
+                                    <tr data-bind="visible: $root.domPosCovTotal() > 0">
+                                        <td colspan="3">* Pos Coverage</td>
+                                        <td><span class="pull-right" data-bind="text: $root.domPosCovTotal().toFixed(2)"></span></td>
+                                    </tr>
                                     <tr>
                                         <td colspan="4">&nbsp;</td>
                                     </tr>

@@ -77,12 +77,12 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                         gstPrice = result;
                         totalDomesticNoGst(domesticTotalPrice);
                         totalDomesticGst(gstPrice);
-                        var totalDom = (((gstPrice * 100) + (domesticTotalPrice * 100)) / 100);
+                        var totalDom = (((gstPrice * 1000) + (domesticTotalPrice * 1000)) / 1000);
                         totalDomestic(totalDom);
                         totalInternational(internationalTotalPrice);
                         totalInternationalNoGst(internationalSubTotalPrice);
                         totalInternationalGst(internationalGstTotal);
-                        grandTotal((((totalDomestic() * 100) + (totalInternationalNoGst() * 100) + (totalInternationalGst() * 100) + (5.30 * 100)) / 100));
+                        grandTotal((((totalDomestic() * 1000) + (totalInternationalNoGst() * 1000) + (totalInternationalGst() * 1000) + (5.30 * 1000)) / 1000));
                         if (grandTotal() != entity().Payment().TotalPrice()) {
                             app.showMessage("Sorry, but we cannot process your Payment for the Order Summary with Id  : " + id(), "OST", ["Close"]).done(function () {
                                 return router.navigate("consignment-request-summary/" + id());
