@@ -53,6 +53,9 @@ $env:RX_OST_AdminToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRta
 $env:RX_OST_SapFolder = "C:\temp"
 $env:RX_OST_ESocFolder = "C:\temp"
 
+$env:RX_OST_RtsBaseUrl = "http://10.1.3.141"
+$env:RX_OST_RtsAdminToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQGJlc3Bva2UuY29tLm15Iiwic3ViIjoiNjM2Mjk1MDY0NDg4MTQxNjEyOTM0Zjk2NTEiLCJuYmYiOjE1MDk3Nzg0NDksImlhdCI6MTQ5Mzg4MDg0OSwiZXhwIjoxNjA5MzcyODAwLCJhdWQiOiJQb3NFbnR0In0.2xo6v2yiWpGMY1BnuErIFTrFBpJHrOVqwkbJEuqjxLs"
+
 $computerName = $env:COMPUTERNAME
 if((Test-Path("env.ost.$computerName.ps1")) -eq $true){
     & ".\env.ost.$computerName.ps1";

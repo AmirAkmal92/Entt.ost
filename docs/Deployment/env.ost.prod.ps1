@@ -38,6 +38,11 @@
 #>
 
 <#
+[Environment]::SetEnvironmentVariable("RX_OST_RtsBaseUrl", "http://rx.pos.com.my", "Machine")
+[Environment]::SetEnvironmentVariable("RX_OST_RtsAdminToken", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHBvcy5jb20ubXkiLCJzdWIiOiI2MzYzODk1NjI1NzE1OTY2NTFjNDkwNzRjZSIsIm5iZiI6MTUxOTIyODI1NywiaWF0IjoxNTAzMzMwNjU3LCJleHAiOjE2MDkzNzI4MDAsImF1ZCI6IlBvc0VudHQifQ.-LxvJ8J4bS1xogV3gIoBtMkqlr1h1zP71FUhFA9MuxE", "Machine")
+#>
+
+<#
 # Payment Gateway
 [Environment]::SetEnvironmentVariable("RX_OST_PaymentGatewayApplicationId", "OST", "Machine")
 [Environment]::SetEnvironmentVariable("RX_OST_PaymentGatewayBaseUrl", "https://ezipay.pos.com.my", "Machine")
