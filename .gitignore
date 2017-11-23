@@ -45,3 +45,5 @@ env.ost.*.ps1
 /sources/snb.register.ezisend/obj/Debug
 /sources/ezisend.clear.expired.pickup/bin/Debug
 /sources/ezisend.clear.expired.pickup/obj/Debug
+/sources/ezisend.fetch.pickup/bin/Debug
+/sources/ezisend.fetch.pickup/obj/Debug
