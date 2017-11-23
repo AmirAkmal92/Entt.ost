@@ -596,6 +596,7 @@ objectbuilders.app],
                     })
                     .then(function (result) {
                         if (result) {
+                            context.put("", "/consignment-request/get-and-save-routing-code/" + id());
                             if (config.profile.Designation == "Contract customer") {
                                 router.navigate("consignment-request-cart-est/" + id());
                             } else {

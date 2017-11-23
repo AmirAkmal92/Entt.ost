@@ -375,6 +375,7 @@ objectbuilders.app],
                     })
                     .then(function (result) {
                         if (result) {
+                            context.put("", "/consignment-request/get-and-save-routing-code/" + crid());
                             router.navigate("consignment-request-cart/" + crid());
                         }
                     });

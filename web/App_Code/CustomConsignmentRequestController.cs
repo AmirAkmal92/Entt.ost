@@ -1154,48 +1154,55 @@ namespace web.sph.App_Code
         }
 
         [HttpPut]
-        [Route("get-routing-code")]
-        public async Task<IHttpActionResult> GetAndSaveRoutingCode(ConsigmentRequest item)
+        [Route("get-and-save-routing-code/{id}")]
+        public async Task<IHttpActionResult> GetAndSaveRoutingCode(string id)
         {
-            var status = "OK";
-            var success = true;
-            var connote = new Consignment();
-            foreach (var consignment in item.Consignments)
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
+            if (null == lo.Source) return NotFound("Cannot find ConsigmentRequest with Id/ReferenceNo:" + id);
+            var item = lo.Source;
+
+            var resultStatus = "OK";
+            var resultSuccess = true;
+
+            if (item.Consignments.Count == 0)
             {
-                if (consignment.Bill.RoutingCode == null && !consignment.Produk.IsInternational)
+                resultSuccess = false;
+                resultStatus = "Consignment not found";
+            }
+            if (!item.Payment.IsConNoteReady)
+            {
+                resultSuccess = false;
+                resultStatus = "Consignment note was not generated";
+            }
+
+            if (resultSuccess)
+            {
+                foreach (var consignment in item.Consignments)
                 {
-                    connote = consignment;
-                    string newOriginRoutingCode;
-                    var originRoutingCode = await GetRoutingCode(item.Pickup.Address.Postcode);
-                    if (!string.IsNullOrEmpty(originRoutingCode))
+                    if (consignment.Bill.RoutingCode == null && !consignment.Produk.IsInternational)
                     {
-                        newOriginRoutingCode = originRoutingCode.Substring(5, 3);
-
-                        var destinationRoutingCode = await GetRoutingCode(connote.Penerima.Address.Postcode);
-                        if (!string.IsNullOrEmpty(destinationRoutingCode))
+                        string newOriginRoutingCode;
+                        var originRoutingCode = await GetRoutingCode(item.Pickup.Address.Postcode);
+                        if (!string.IsNullOrEmpty(originRoutingCode))
                         {
-                            connote.Bill.RoutingCode = $"{newOriginRoutingCode} - {destinationRoutingCode}";
+                            newOriginRoutingCode = originRoutingCode.Substring(5, 3);
 
-                            await SaveConsigmentRequest(item);
+                            var destinationRoutingCode = await GetRoutingCode(consignment.Penerima.Address.Postcode);
+                            if (!string.IsNullOrEmpty(destinationRoutingCode))
+                            {
+                                consignment.Bill.RoutingCode = $"{newOriginRoutingCode} - {destinationRoutingCode}";
+                            }
                         }
-                        else
-                        {
-                            success = false;
-                            status = "Recipient postcode invalid";
-                        }
-                    }
-                    else
-                    {
-                        success = false;
-                        status = "Pickup postcode invalid";
                     }
                 }
+
+                await SaveConsigmentRequest(item);
             }
 
             var result = new
             {
-                success = success,
-                status = status,
+                success = resultSuccess,
+                status = resultStatus,
                 id = item.Id,
             };
 
@@ -1454,7 +1461,6 @@ namespace web.sph.App_Code
             {
                 var output = await response.Content.ReadAsStringAsync();
                 routingCode = JObject.Parse(output).SelectToken("$.RouteCode").ToString();
-
             }
             return routingCode;
         }

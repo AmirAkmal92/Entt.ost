@@ -70,11 +70,6 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                             }
                         }
                         entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
-                        for (var i = 0; i < entity().Consignments().length; i++) {
-                            if (!entity().Consignments()[i].Produk().IsInternational() && entity().Consignments()[i].Bill().RoutingCode() == undefined) {
-                                context.put(ko.mapping.toJSON(entity), "/consignment-request/get-routing-code");
-                            }
-                        }
                         crCart.activate();
                     }, function (e) {
                         if (e.status == 404) {
@@ -428,6 +423,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                                     app.showMessage(dialogMessage, "OST", ["Close"]).done(function () {
                                         if (result.success) {
                                             activate(id());
+                                            context.put("", "/consignment-request/get-and-save-routing-code/" + ko.unwrap(entity().Id));
                                         }
                                     });
                                 });

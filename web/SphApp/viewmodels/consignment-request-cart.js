@@ -229,6 +229,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                                         app.showMessage(dialogMessage, "OST", ["Close"]).done(function () {
                                             if (result.success) {
                                                 activate(id());
+                                                context.put("", "/consignment-request/get-and-save-routing-code/" + ko.unwrap(entity().Id));
                                             }
                                         });
                                     });
