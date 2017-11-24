@@ -51,6 +51,7 @@
             <br />
             <button class="btn btn-primary" type="button" data-bind="click: search">Search</button>
             <button class="btn btn-default" type="button" data-bind="click: clearSearch">Clear</button>
+            <i class="fa fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i>
         </form>
     </div>
     <div class="col-md-8">&nbsp;</div>
@@ -88,6 +89,7 @@
                     <th>ReferenceNo</th>
                     <th>User Id</th>
                     <th>Pickup No</th>
+                    <td>&nbsp;</td>
                     <th>Pickup Address</th>
                     <th>Pickup Date</th>
                     <th>Quantity</th>
@@ -108,6 +110,9 @@
                         <!--/ko-->
                     </td>
                     <td>
+                        <span><i class="fa fa-check-square-o" data-bind="visible: Pickup.IsPickedUp"></i></span>
+                    </td>
+                    <td>
                         <!--ko if: Pickup.Number != undefined-->
                         <p>
                             <span data-bind="text: Pickup.ContactPerson"></span>
@@ -126,7 +131,7 @@
                         </p>
                         <!--/ko-->
                     </td>
-                    <td>
+                    <td>                        
                         <span data-bind="date:{ value: Pickup.DateReady, format:'YYYY-MM-DD'}"></span>
                     </td>
                     <td data-bind="text:Consignments.length"></td>

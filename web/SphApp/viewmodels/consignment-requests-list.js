@@ -133,6 +133,7 @@ define([objectbuilders.datacontext, objectbuilders.app], function (context, app)
             });
         },
         activate = function () {
+            isBusy(true);
             url = ko.unwrap(query) + "?page=" + page() + "&size=" + size();
             var data = ko.toJSON(elasticsearchQuery);
             return $.ajax({
@@ -141,13 +142,13 @@ define([objectbuilders.datacontext, objectbuilders.app], function (context, app)
                 method: "POST",
                 contentType: "application/json; charset=utf-8",
                 cache: false
-            })
-                .then(function (lo) {
-                    list(lo._results);
-                    count(lo._count);
-                    hasNextPage(count() > size() * page());
-                    hasPreviousPage(page() > 1);
-                });
+            }).then(function (lo) {
+                list(lo._results);
+                count(lo._count);
+                hasNextPage(count() > size() * page());
+                hasPreviousPage(page() > 1);
+                isBusy(false);
+            });
         },
         attached = function (view) {
             $('#pager-page-size').change(function () {
