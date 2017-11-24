@@ -1,0 +1,54 @@
+<h1 data-i18n="Rts Pickup Format Details">Rts Pickup Format Details</h1>
+<div id="error-list" class="row" data-bind="visible:errors().length">
+    <!-- ko foreach : errors -->
+    <div class="col-sm-8 col-sm-offset-2 alert alert-dismissable alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <i class="fa fa-exclamation"></i>
+        <span data-bind="text:Message"></span>
+    </div>
+    <div class="col-sm-2"></div>
+    <!-- /ko-->
+</div>
+<div class="row">
+    <div class="col-sm-8">
+<form class="form-horizontal" data-bind="with : entity" id="rts-pickup-format-details-form">
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Pickup No</label>
+        <span class="col-md-8" data-bind="text: PickupNo"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Account No</label>
+        <span class="col-md-8" data-bind="text: AccountNo"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Consignment No</label>
+        <span class="col-md-8" data-bind="text: ConsignmentNo"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Actual Dimensional Weight</label>
+        <span class="col-md-8" data-bind="text: ActualDimensionalWeight"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Actual Weight</label>
+        <span class="col-md-8" data-bind="text: ActualWeight"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Branch Code</label>
+        <span class="col-md-8" data-bind="text: BranchCode"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Courier Name</label>
+        <span class="col-md-8" data-bind="text: CourierName"></span>
+    </div>
+    <div class="form-group" data-bind="visible:true">
+        <label class="col-md-4">Courier Id</label>
+        <span class="col-md-8" data-bind="text: CourierId"></span>
+    </div>
+<div class="form-group" data-bind="visible:true">
+    <label class="col-md-4">Pickup Date Time</label>
+    <span class="col-md-8" data-bind="date: PickupDateTime"></span>
+</div></form>
+    </div>
+    <div class="col-sm-4">
+    </div>
+</div>

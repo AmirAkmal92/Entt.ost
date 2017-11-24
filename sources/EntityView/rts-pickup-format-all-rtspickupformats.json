@@ -46,30 +46,13 @@
         "Path": "ConsignmentNo",
         "Header": "Consignment No",
         "Sort": "",
-        "IsLinkColumn": false,
-        "FormRoute": null,
+        "IsLinkColumn": true,
+        "FormRoute": "rts-pickup-format-details",
         "IconCssClass": "",
         "IconStoreId": "",
         "Format": "text:{0}",
         "RouteValueField": "",
         "WebId": "a0b4264d-8697-488d-ed67-8abb977b4bc4"
-      },
-      {
-        "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
-        "ConditionalFormattingCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "Path": "PickupDateTime",
-        "Header": "Pickup Date Time",
-        "Sort": "",
-        "IsLinkColumn": false,
-        "FormRoute": null,
-        "IconCssClass": "",
-        "IconStoreId": "",
-        "Format": "date:{{ value:{0}, format:'D/M/YYYY HH:mm'}}",
-        "RouteValueField": "",
-        "WebId": "824ee901-3fc8-411d-b4f2-dd3b2670c151"
       },
       {
         "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
@@ -145,16 +128,16 @@
           "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
           "$values": []
         },
-        "Path": "ParentConsignmentNo",
-        "Header": "Parent Consignment No",
+        "Path": "PickupDateTime",
+        "Header": "Pickup Date Time",
         "Sort": "",
         "IsLinkColumn": false,
         "FormRoute": null,
         "IconCssClass": "",
         "IconStoreId": "",
-        "Format": "text:{0}",
+        "Format": "date:{{ value:{0}, format:'D/M/YYYY HH:mm'}}",
         "RouteValueField": "",
-        "WebId": "e82ee5a6-03e5-4b08-8a2a-718a47c2f383"
+        "WebId": "824ee901-3fc8-411d-b4f2-dd3b2670c151"
       },
       {
         "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
@@ -162,16 +145,16 @@
           "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
           "$values": []
         },
-        "Path": "TotalBaby",
-        "Header": "Total Baby",
+        "Path": "ChangedDate",
+        "Header": "Changed Date",
         "Sort": "",
         "IsLinkColumn": false,
         "FormRoute": null,
         "IconCssClass": "",
         "IconStoreId": "",
-        "Format": "text:{0}",
+        "Format": "date:{{ value:{0}, format:'D/M/YYYY HH:mm'}}",
         "RouteValueField": "",
-        "WebId": "0b215e24-d99e-44a3-b206-8c8da4967c33"
+        "WebId": "7a6a9107-9de6-4885-fcf7-b7c5100baace"
       }
     ]
   },
@@ -209,6 +192,6 @@
   "Id": "rts-pickup-format-all-rtspickupformats",
   "CreatedDate": "2017-08-25T16:07:30.045278+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-11-01T12:09:58.182252+08:00",
+  "ChangedDate": "2017-11-24T17:02:00.547369+08:00",
   "WebId": "dd1aeef8-8296-42ab-975c-0c88615a70c7"
 }

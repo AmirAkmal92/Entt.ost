@@ -7,27 +7,29 @@
                     <th>Account No</th>
                     <th>Pickup No</th>
                     <th>Consignment No</th>
-                    <th>Pickup Date Time</th>
                     <th>Actual Weight</th>
                     <th>Branch Code</th>
                     <th>Courier Id</th>
                     <th>Courier Name</th>
-                    <th>Parent Consignment No</th>
-                    <th>Total Baby</th>
+                    <th>Pickup Date Time</th>
+                    <th>Changed Date</th>
                 </tr>
             </thead>
             <tbody data-bind="foreach :list">
                 <tr data-bind="">
                     <td data-bind="text:AccountNo"></td>
                     <td data-bind="text:PickupNo"></td>
-                    <td data-bind="text:ConsignmentNo"></td>
-                    <td data-bind="date:{ value:PickupDateTime, format:&#39;D/M/YYYY HH:mm&#39;}"></td>
+                    <td>
+                        <a data-bind="attr : {href:'#rts-pickup-format-details' + '/' + Id, title:'Consignment No' }">
+                                                        <span data-bind="text:ConsignmentNo"></span>
+                        </a>
+                    </td>
                     <td data-bind="text:ActualWeight"></td>
                     <td data-bind="text:BranchCode"></td>
                     <td data-bind="text:CourierId"></td>
                     <td data-bind="text:CourierName"></td>
-                    <td data-bind="text:ParentConsignmentNo"></td>
-                    <td data-bind="text:TotalBaby"></td>
+                    <td data-bind="date:{ value:PickupDateTime, format:&#39;D/M/YYYY HH:mm&#39;}"></td>
+                    <td data-bind="date:{ value:ChangedDate, format:&#39;D/M/YYYY HH:mm&#39;}"></td>
                 </tr>
             </tbody>
         </table>
