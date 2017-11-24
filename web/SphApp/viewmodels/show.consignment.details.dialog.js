@@ -1,5 +1,5 @@
-define([objectbuilders.datacontext, objectbuilders.dialog, objectbuilders.system,],
-    function (context, dialog, system) {
+define([objectbuilders.datacontext, objectbuilders.dialog, objectbuilders.system, objectbuilders.app],
+    function (context, dialog, system, app) {
         var ConsignmentRequestId = ko.observable(),
             Consignment = ko.observable(new bespoke.Ost_consigmentRequest.domain.Consignment(system.guid())),
             printA4 = function (item) {
@@ -24,6 +24,21 @@ define([objectbuilders.datacontext, objectbuilders.dialog, objectbuilders.system
                         }
                     });
             },
+            showRtsPickupFormatDetails = function (item) {
+                return $.ajax({
+                    url: "/api/rts-pickup-formats/consignment-no/" + item.ConNote(),
+                    method: "GET",
+                    cache: false
+                }).done(function (rPFList) {
+                    console.log(rPFList);
+                    if (rPFList._count == 0) {                        
+                        app.showMessage("No pickup event can be found for " + item.ConNote() + ".", "OST", ["Close"])
+                    } else {
+                        //get the first one                        
+                        window.open("/sph#rts-pickup-format-details/" + rPFList._results[0].Id);
+                    }
+                });
+            },
             okClick = function (data, ev) {
                 dialog.close(this, "OK");
             },
@@ -34,8 +49,9 @@ define([objectbuilders.datacontext, objectbuilders.dialog, objectbuilders.system
         var vm = {
             ConsignmentRequestId: ConsignmentRequestId,
             Consignment: Consignment,
-            printThermal: printThermal,
             printA4: printA4,
+            printThermal: printThermal,
+            showRtsPickupFormatDetails: showRtsPickupFormatDetails,
             okClick: okClick,
             cancelClick: cancelClick
         };
