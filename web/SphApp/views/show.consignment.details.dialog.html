@@ -12,6 +12,10 @@
                         <hr />
                         <address class="well">
                             <span data-bind="text: ConNote">ConNote</span>
+                            <div class="pull-right">
+                                <span data-bind="click: $root.printA4" title="Print A4 Connote"><i class="icon-printer"></i></span>
+                                <span data-bind="click: $root.printThermal" title="Download Thermal Connote"><i class="fa fa-file-pdf-o"></i></span>
+                            </div>
                         </address>
                     </div>
                     <div class="col-md-4">
@@ -72,7 +76,13 @@
                             &nbsp;x&nbsp;
                             <span data-bind="text: Height">Height</span> cm
                             <br />
-                            <!--ko if: Price() != undefined-->RM <span data-bind="text: Price">0.00</span><!--/ko-->
+                            <!--ko if: Price() != undefined-->RM <span data-bind="text: Price">0.00</span> (price)<!--/ko-->
+                            <span data-bind="with: Est">
+                                <!--ko if: ShipperReferenceNo() != undefined--><span data-bind="text: ShipperReferenceNo">ShipperReferenceNo</span> (shipper ref #)<br /><!--/ko-->
+                                <!--ko if: ReceiverReferenceNo() != undefined--><span data-bind="text: ReceiverReferenceNo">ReceiverReferenceNo</span> (receiver ref #)<br /><!--/ko-->
+                                <!--ko if: CodAmount() != undefined-->RM <span data-bind="text: CodAmount">0.00</span> (cod)<!--/ko-->
+                                <!--ko if: CcodAmount() != undefined-->RM <span data-bind="text: CcodAmount">0.00</span> (ccod)<!--/ko-->
+                            </span>
                         </address>
                     </div>
                 </div>

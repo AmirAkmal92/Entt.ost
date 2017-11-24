@@ -134,7 +134,7 @@
                     <td>
                         <!--ko foreach: Consignments-->
                         <!--ko if: ConNote != undefined-->
-                        <a class="btn btn-xs btn-default" href="#" data-bind="click: $root.showConsignmentDetailsDialog">
+                        <a class="btn btn-xs btn-default" href="#" data-bind="click: $root.showConsignmentDetailsDialog.bind($data, $parent.Id)">
                             <span data-bind="text: ConNote"></span>
                         </a>&nbsp;
                         <!--/ko-->

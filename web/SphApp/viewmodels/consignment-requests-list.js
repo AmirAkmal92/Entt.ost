@@ -109,8 +109,9 @@ define([objectbuilders.datacontext, objectbuilders.app], function (context, app)
             elasticsearchQuery.query.bool.must = [];
             activate();
         },
-        showConsignmentDetailsDialog = function (consignment) {
+        showConsignmentDetailsDialog = function (cRId, consignment) {
             require(['viewmodels/show.consignment.details.dialog', 'durandal/app'], function (dialog, app2) {
+                dialog.ConsignmentRequestId(cRId);
                 dialog.Consignment(new bespoke.Ost_consigmentRequest.domain.Consignment(consignment));
                 app2.showDialog(dialog)
                     .done(function (result) {
