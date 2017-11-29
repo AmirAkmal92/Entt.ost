@@ -311,15 +311,19 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     });
             },
             downloadLableConnotePDFAll = function (data) {
-                var textButton, textGrandTotal, pageSize = 50;
+                var textButton, textGrandTotal, pageSize = 50, total = 0, countInt = 0;
+                for (var i = 0; i < data.Consignments().length; i++) {
+                    if (data.Consignments()[i].Produk().IsInternational()) { countInt += 1; }
+                }
+                total = data.Consignments().length - countInt;
                 firstOfPage((pageSize * pageNumber()) + 1);
                 pageNumber(pageNumber() + 1);
-                if (pageNumber() < Math.ceil(data.Consignments().length / pageSize)) {
+                if (pageNumber() < Math.ceil(total / pageSize)) {
                     totalPerPage(pageSize * pageNumber());
-                    textGrandTotal = data.Consignments().length;
+                    textGrandTotal = total;
                     textButton = "Proceed";
                 } else {
-                    totalPerPage(data.Consignments().length);
+                    totalPerPage(total);
                     textGrandTotal = "Final Batch";
                     textButton = "Close";
                 }
@@ -333,12 +337,12 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                             if (result.success) {
                                 window.open("/print-excel/file-path-pdf/" + result.path + "/file-name/" + data.UserId() + "_" + firstOfPage() + "_" + totalPerPage());
                                 toggleShowBusyLoadingDialog("Done");
-                                app.showMessage("Successfully Generated " + firstOfPage() + " - " + totalPerPage() + " of " + textGrandTotal + " Labels *.pdf.", "OST", [textButton]).done(function () {
-                                    if (pageNumber() < Math.ceil(data.Consignments().length / pageSize)) {
+                                app.showMessage("Successfully Generated " + firstOfPage() + " - " + totalPerPage() + " of " + textGrandTotal + " Thermal Labels", "OST", [textButton]).done(function () {
+                                    if (pageNumber() < Math.ceil(total / pageSize)) {
                                         setTimeout(downloadLableConnotePDFAll(data), 1500);
                                     } else {
-                                        pageNumber(0);
-                                        totalPerPage(0);
+                                        pageNumber(0),
+                                        totalPerPage(0),
                                         firstOfPage(0);
                                     }
                                 });
