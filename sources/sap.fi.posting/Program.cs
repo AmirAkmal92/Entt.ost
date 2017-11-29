@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -13,9 +14,9 @@ namespace sap.fi.posting
 {
     class Program
     {
-        private string m_ostBaseUrl;
-        private string m_ostAdminToken;
-        private string m_ostSapFolder;
+        private readonly string m_ostBaseUrl;
+        private readonly string m_ostAdminToken;
+        private readonly string m_ostSapFolder;
 
         public Program()
         {
@@ -24,10 +25,10 @@ namespace sap.fi.posting
             m_ostSapFolder = ConfigurationManager.GetEnvironmentVariable("SapFolder") ?? @"C:\temp";
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var startDate = string.Empty;
-            var endDate = string.Empty;
+            string startDate;
+            string endDate;
             if (args.Length < 2)
             {
                 startDate = $"{DateTime.Today.AddDays(-1):yyyy-MM-dd}";
@@ -61,82 +62,72 @@ namespace sap.fi.posting
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
 
-            bool requestInvoice = true;
-            int invoiceCount = 0;
-            int invoicePage = 1;
-            int invoiceSize = 20;
+            var requestInvoice = true;
+            var invoicePage = 1;
+            var invoiceSize = 20;
 
             while (requestInvoice)
             {
                 var requestUri = new Uri($"{m_ostBaseUrl}/api/consigment-requests/paid-all-within-range/{startDate}/{endDate}/?size={invoiceSize}&page={invoicePage}");
                 var response = await client.GetAsync(requestUri);
-                var output = string.Empty;
+                string output;
+                Console.WriteLine($"RequestUri: {requestUri}");
+                Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase}");
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine($"RequestUri: {requestUri.ToString()}");
-                    Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
                     output = await response.Content.ReadAsStringAsync();
                 }
                 else
                 {
-                    Console.WriteLine($"RequestUri: {requestUri.ToString()}");
-                    Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase.ToString()}");
                     return;
                 }
 
                 var json = JObject.Parse(output).SelectToken("_results");
-                foreach (var jtok in json)
-                {
-                    var consigmentRequest = jtok.ToJson().DeserializeFromJson<ConsigmentRequest>();
-                    consigmentRequests.Add(consigmentRequest);
-                }
+                consigmentRequests.AddRange(json.Select(jtok => jtok.ToJson().DeserializeFromJson<ConsigmentRequest>()));
                 Console.WriteLine($"Invoice count: {consigmentRequests.Count} .....");
 
-                invoiceCount = JObject.Parse(output).SelectToken("_count").Value<int>();
+                var invoiceCount = JObject.Parse(output).SelectToken("_count").Value<int>();
                 invoicePage = JObject.Parse(output).SelectToken("_page").Value<int>();
                 invoiceSize = JObject.Parse(output).SelectToken("_size").Value<int>();
-                if ((invoicePage * invoiceSize) >= invoiceCount)
+                if (invoicePage * invoiceSize >= invoiceCount)
                 {
                     requestInvoice = false;
                 }
                 invoicePage++;
             }
 
-            int sequenceNumberCount = 1;
+            var sequenceNumberCount = 1;
             foreach (var consigmentRequest in consigmentRequests)
             {
-                decimal domesticGrandTotal = 0;
                 decimal domesticSubTotal = 0;
                 decimal domesticBaseRateTotal = 0;
                 decimal domesticHandlingSurchargeTotal = 0;
                 decimal domesticFuelSurchargeTotal = 0;
                 decimal domesticGstTotal = 0;
                 decimal domesticInsuranceTotal = 0;
-                int domesticProductCount = 0;
-                int domesticInsuranceProductCount = 0;
+                decimal domesticInsurancePosCoverageTotal = 0;
+                var domesticProductCount = 0;
+                var domesticInsuranceProductCount = 0;
 
-                decimal internationalGrandTotal = 0;
                 decimal internationalSubTotal = 0;
                 decimal internationalBaseRateTotal = 0;
                 decimal internationalHandlingSurchargeTotal = 0;
                 decimal internationalFuelSurchargeTotal = 0;
                 decimal internationalGstTotal = 0;
                 decimal internationalInsuranceTotal = 0;
-                int internationalProductCount = 0;
-                int internationalInsuranceProductCount = 0;
+                var internationalProductCount = 0;
+                var internationalInsuranceProductCount = 0;
 
                 foreach (var consigment in consigmentRequest.Consignments)
                 {
                     if (consigment.Produk.IsInternational)
                     {
-                        internationalGrandTotal += consigment.Bill.Total;
-                        internationalSubTotal += consigment.Bill.SubTotal3; ;
+                        internationalSubTotal += consigment.Bill.SubTotal3;
                         internationalBaseRateTotal += consigment.Bill.BaseRate;
                         internationalProductCount += 1;
                     }
                     else
                     {
-                        domesticGrandTotal += consigment.Bill.Total;
                         domesticSubTotal += consigment.Bill.SubTotal3;
                         domesticBaseRateTotal += consigment.Bill.BaseRate;
                         domesticProductCount += 1;
@@ -165,7 +156,6 @@ namespace sap.fi.posting
                                 domesticHandlingSurchargeTotal += c.Charge;
                             }
                         }
-
                     }
                     foreach (var d in consigment.Bill.AddOnsD)
                     {
@@ -183,37 +173,40 @@ namespace sap.fi.posting
                                 domesticGstTotal += d.Charge;
                             }
                         }
-
                     }
                     foreach (var a in consigment.Bill.AddOnsA)
                     {
                         if (consigment.Produk.IsInternational)
                         {
-                            if (a.Code.Equals("V29") || a.Name.Equals("Ezisend Insurance - General"))
-                            {
-                                internationalInsuranceTotal += a.Charge;
-                                internationalInsuranceProductCount += 1;
-                            }
+                            if (!a.Code.Equals("V29") && !a.Name.Equals("Ezisend Insurance - General")) continue;
+                            internationalInsuranceTotal += a.Charge;
+                            internationalInsuranceProductCount += 1;
                         }
                         else
                         {
-                            if (a.Code.Equals("V29") || a.Name.Equals("Ezisend Insurance - General"))
-                            {
-                                domesticInsuranceTotal += a.Charge;
-                                domesticInsuranceProductCount += 1;
-                            }
+                            if (!a.Code.Equals("V29") && !a.Name.Equals("Ezisend Insurance - General")) continue;
+                            domesticInsuranceTotal += a.Charge;
+                            domesticInsuranceProductCount += 1;
                         }
-
+                    }
+                    foreach (var b in consigment.Bill.AddOnsB)
+                    {
+                        if (consigment.Produk.IsInternational) continue;
+                        if (b.Code.Equals("V33") || b.Name.Equals("Pos Coverage"))
+                        {
+                            domesticInsurancePosCoverageTotal += b.Charge;
+                        }
                     }
                 }
 
                 //Locally calculate GST to avoid rounding #6275
-                domesticGstTotal = GstCalculation(domesticSubTotal, 2);
+                domesticGstTotal = GstCalculation(domesticSubTotal);
                 internationalGstTotal = 0;
 
-                decimal pickupCharge = 5.00m;
-                decimal pickupChargeGst = Decimal.Multiply(pickupCharge, 0.06m);
+                const decimal pickupCharge = 5.00m;
+                var pickupChargeGst = decimal.Multiply(pickupCharge, 0.06m);
 
+                var quantity = domesticProductCount + internationalProductCount;
                 var domesticAndInternationalProductTotal = new SapFiDelimited()
                 {
                     DocumentDate = consigmentRequest.CreatedDate,
@@ -224,17 +217,19 @@ namespace sap.fi.posting
                     Reference = "OST",
                     DocumentHeaderText = string.Empty,
                     PostingKey = "40",
-                    AccountNumber = "273608",
+                    AccountNumber = "273621",
                     //Amount = domesticGrandTotal + internationalGrandTotal + pickupCharge + pickupChargeGst, //Locally calculate GST to avoid rounding #6275
                     Amount = domesticSubTotal + domesticGstTotal + internationalSubTotal + internationalGstTotal + pickupCharge + pickupChargeGst,
                     CostCenter = "11523003",
-                    Quantity = domesticProductCount + internationalProductCount,
+                    Quantity = quantity,
                     TaxCode = "OS",
                     Assignment = consigmentRequest.ReferenceNo,
                     ReferenceKey = "MP00003",
-                    Text = "1RHB Online",
+                    Text = "1Alliance Online",
                     SequenceNumber = sequenceNumberCount
                 };
+
+                quantity = 1;
                 var domesticAndInternationalPickupTotal = new SapFiDelimited()
                 {
                     DocumentDate = consigmentRequest.CreatedDate,
@@ -248,13 +243,15 @@ namespace sap.fi.posting
                     AccountNumber = "620301",
                     Amount = pickupCharge,
                     CostCenter = "11523003",
-                    Quantity = 1,
+                    Quantity = quantity,
                     TaxCode = "SR",
                     Assignment = consigmentRequest.ReferenceNo,
                     ReferenceKey = "C305101",
-                    Text = "1Courier Pickup Service",
+                    Text = $"{quantity}Courier Pickup Service",
                     SequenceNumber = sequenceNumberCount
                 };
+
+                quantity = domesticProductCount;
                 var domesticProductBaseRate = new SapFiDelimited()
                 {
                     DocumentDate = consigmentRequest.CreatedDate,
@@ -268,13 +265,15 @@ namespace sap.fi.posting
                     AccountNumber = "620102",
                     Amount = domesticBaseRateTotal,
                     CostCenter = "11523003",
-                    Quantity = domesticProductCount,
+                    Quantity = quantity,
                     TaxCode = "SR",
                     Assignment = consigmentRequest.ReferenceNo,
                     ReferenceKey = "C001101",
-                    Text = "1Next Day Delivery (NDD)",
+                    Text = $"{quantity}Next Day Delivery (NDD)",
                     SequenceNumber = sequenceNumberCount
                 };
+
+                quantity = domesticProductCount;
                 var domesticProductHandlingSurcharge = new SapFiDelimited()
                 {
                     DocumentDate = consigmentRequest.CreatedDate,
@@ -288,13 +287,15 @@ namespace sap.fi.posting
                     AccountNumber = "620102",
                     Amount = domesticHandlingSurchargeTotal,
                     CostCenter = "11523003",
-                    Quantity = domesticProductCount,
+                    Quantity = quantity,
                     TaxCode = "SR",
                     Assignment = consigmentRequest.ReferenceNo,
                     ReferenceKey = "C501101",
-                    Text = "1Domestic Handling Surcharge - OD",
+                    Text = $"{quantity}Domestic Handling Surcharge - OD",
                     SequenceNumber = sequenceNumberCount
                 };
+
+                quantity = domesticProductCount;
                 var domesticProductFuelSurcharge = new SapFiDelimited()
                 {
                     DocumentDate = consigmentRequest.CreatedDate,
@@ -308,13 +309,15 @@ namespace sap.fi.posting
                     AccountNumber = "620402",
                     Amount = domesticFuelSurchargeTotal,
                     CostCenter = "11523003",
-                    Quantity = domesticProductCount,
+                    Quantity = quantity,
                     TaxCode = "SR",
                     Assignment = consigmentRequest.ReferenceNo,
                     ReferenceKey = "C500101",
-                    Text = "1Domestic Fuel Surcharge - OD",
+                    Text = $"{quantity}Domestic Fuel Surcharge - OD",
                     SequenceNumber = sequenceNumberCount
                 };
+
+                quantity = domesticInsuranceProductCount + internationalInsuranceProductCount;
                 var domesticAndInternationalProductInsurance = new SapFiDelimited()
                 {
                     DocumentDate = consigmentRequest.CreatedDate,
@@ -328,13 +331,15 @@ namespace sap.fi.posting
                     AccountNumber = "515921",
                     Amount = domesticInsuranceTotal + internationalInsuranceTotal,
                     CostCenter = "11523003",
-                    Quantity = domesticInsuranceProductCount + internationalInsuranceProductCount,
+                    Quantity = quantity,
                     TaxCode = "SR",
                     Assignment = consigmentRequest.ReferenceNo,
                     ReferenceKey = "C306102",
-                    Text = "1Ezisend Insurance - General",
+                    Text = $"{quantity}Ezisend Insurance - General",
                     SequenceNumber = sequenceNumberCount
                 };
+
+                quantity = domesticProductCount + 1;
                 var domesticProductGst = new SapFiDelimited()
                 {
                     DocumentDate = consigmentRequest.CreatedDate,
@@ -348,13 +353,37 @@ namespace sap.fi.posting
                     AccountNumber = "542402",
                     Amount = domesticGstTotal + pickupChargeGst,
                     CostCenter = "11523003",
-                    Quantity = domesticProductCount + 1,
+                    Quantity = quantity,
                     TaxCode = "SR",
                     Assignment = consigmentRequest.ReferenceNo,
                     ReferenceKey = "GSTS102",
-                    Text = "1GST Output Tax - Cus",
+                    Text = $"{quantity}GST Output Tax - Cus",
                     SequenceNumber = sequenceNumberCount
                 };
+
+                quantity = domesticProductCount;
+                var domesticProductPosCoverage = new SapFiDelimited()
+                {
+                    DocumentDate = consigmentRequest.CreatedDate,
+                    PostingDate = consigmentRequest.Payment.Date,
+                    DocumentType = "XN",
+                    Currency = "MYR",
+                    ExchangeRate = string.Empty,
+                    Reference = "OST",
+                    DocumentHeaderText = string.Empty,
+                    PostingKey = "50",
+                    AccountNumber = "631404",
+                    Amount = domesticInsurancePosCoverageTotal,
+                    CostCenter = "11523003",
+                    Quantity = quantity,
+                    TaxCode = "SR",
+                    Assignment = consigmentRequest.ReferenceNo,
+                    ReferenceKey = "C025100",
+                    Text = $"{quantity}Pos Coverage",
+                    SequenceNumber = sequenceNumberCount
+                };
+
+                quantity = internationalProductCount;
                 var internationalProductBaseRate = new SapFiDelimited()
                 {
                     DocumentDate = consigmentRequest.CreatedDate,
@@ -368,13 +397,15 @@ namespace sap.fi.posting
                     AccountNumber = "620104",
                     Amount = internationalBaseRateTotal,
                     CostCenter = "11523003",
-                    Quantity = internationalProductCount,
+                    Quantity = quantity,
                     TaxCode = "ZR",
                     Assignment = consigmentRequest.ReferenceNo,
                     ReferenceKey = "C002101",
-                    Text = "1Express Mail Service (EMS)",
+                    Text = $"{quantity}Express Mail Service (EMS)",
                     SequenceNumber = sequenceNumberCount
                 };
+
+                quantity = internationalProductCount;
                 var internationalProductHandlingSurcharge = new SapFiDelimited()
                 {
                     DocumentDate = consigmentRequest.CreatedDate,
@@ -388,13 +419,15 @@ namespace sap.fi.posting
                     AccountNumber = "620104",
                     Amount = internationalHandlingSurchargeTotal,
                     CostCenter = "11523003",
-                    Quantity = internationalProductCount,
+                    Quantity = quantity,
                     TaxCode = "ZR",
                     Assignment = consigmentRequest.ReferenceNo,
                     ReferenceKey = "C002103",
-                    Text = "1International Handling Surcharge - OD",
+                    Text = $"{quantity}International Handling Surcharge - OD",
                     SequenceNumber = sequenceNumberCount
                 };
+
+                quantity = internationalProductCount;
                 var internationalProductFuelSurcharge = new SapFiDelimited()
                 {
                     DocumentDate = consigmentRequest.CreatedDate,
@@ -408,11 +441,11 @@ namespace sap.fi.posting
                     AccountNumber = "620404",
                     Amount = internationalFuelSurchargeTotal,
                     CostCenter = "11523003",
-                    Quantity = internationalProductCount,
+                    Quantity = quantity,
                     TaxCode = "ZR",
                     Assignment = consigmentRequest.ReferenceNo,
                     ReferenceKey = "C002102",
-                    Text = "1International Fuel Surcharge - OD",
+                    Text = $"{quantity}International Fuel Surcharge - OD",
                     SequenceNumber = sequenceNumberCount
                 };
 
@@ -455,6 +488,10 @@ namespace sap.fi.posting
                 if (domesticProductGst.Amount > 0)
                 {
                     sapFiFile.Add(domesticProductGst);
+                }
+                if (domesticProductPosCoverage.Amount > 0)
+                {
+                    sapFiFile.Add(domesticProductPosCoverage);
                 }
 
                 sequenceNumberCount++;
