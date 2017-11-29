@@ -229,12 +229,13 @@ namespace web.sph.App_Code
         }
 
         [HttpPut]
-        [Route("print-all-lable-download/consignment-requests/{crId}")]
-        public async Task<ActionResult> AllLableDownload(string crId)
+        [Route("print-all-lable-download/consignment-requests/{crId}/page/{page}")]
+        public async Task<ActionResult> AllLableDownload(string crId, int page)
         {
             LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(crId);
             var item = lo.Source;
-            var countConnote = 0;
+            var size = 50;
+            var countConnote = (size * (page - 1));
 
             if (item.Designation == "Contract customer")
             {
@@ -258,54 +259,47 @@ namespace web.sph.App_Code
                 }
 
                 var zplCode = "";
-                    foreach (var itemHasConnote in item.Consignments)
-                    {
-                    if (countConnote < 50)
-                    {
-                            zplCode += GetLabelConnoteZplCode(item, itemHasConnote);
-                        }
-                        else
-                        {
-                            break;
-                        }
-                        countConnote++;
-                    }
 
-                    byte[] zpl = Encoding.UTF8.GetBytes(zplCode);
-                    var request = (HttpWebRequest)WebRequest.Create("http://api.labelary.com/v1/printers/8dpmm/labels/4x6/"); //TODO make it variable
-                    request.Method = "POST";
-                    request.Accept = "application/pdf";
-                    //request.Accept = "image/png"; //Get image output
-                    request.ContentType = "application/x-www-form-urlencoded";
-                    request.ContentLength = zpl.Length;
+                for (int i = countConnote; i < item.Consignments.Count && i < page * size; i++)
+                {
+                    zplCode += GetLabelConnoteZplCode(item, item.Consignments[i]);
+                }
 
-                    var requestStream = request.GetRequestStream();
-                    requestStream.Write(zpl, 0, zpl.Length);
-                    requestStream.Close();
+                byte[] zpl = Encoding.UTF8.GetBytes(zplCode);
+                var request = (HttpWebRequest)WebRequest.Create("http://api.labelary.com/v1/printers/8dpmm/labels/4x6/"); //TODO make it variable
+                request.Method = "POST";
+                request.Accept = "application/pdf";
+                //request.Accept = "image/png"; //Get image output
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = zpl.Length;
 
-                    var path = Path.GetTempFileName() + ".pdf";
-                    var response = (HttpWebResponse)request.GetResponse();
-                    var responseStream = response.GetResponseStream();
-                    var fileStream = System.IO.File.Create(System.Web.HttpContext.Current.Server.MapPath($"~/Content/Files/Thermal_Label_{item.UserId}.pdf")); //Generate template file
-                    var fileTempStream = System.IO.File.Create(path); //Generate temporary file
-                    responseStream.CopyTo(fileStream);
-                    fileStream.Close();
-                    responseStream.Close();
-                    fileTempStream.Close();
+                var requestStream = request.GetRequestStream();
+                requestStream.Write(zpl, 0, zpl.Length);
+                requestStream.Close();
 
-                    try
-                    {
-                        System.IO.File.Copy(fileStream.Name, fileTempStream.Name, true);
-                    }
-                    catch (Exception e)
-                    {
-                        return Json(new { success = false, status = e.Message });
-                    }
+                var path = Path.GetTempFileName() + ".pdf";
+                var response = (HttpWebResponse)request.GetResponse();
+                var responseStream = response.GetResponseStream();
+                var fileStream = System.IO.File.Create(System.Web.HttpContext.Current.Server.MapPath($"~/Content/Files/Thermal_Label_{item.UserId}.pdf")); //Generate template file
+                var fileTempStream = System.IO.File.Create(path); //Generate temporary file
+                responseStream.CopyTo(fileStream);
+                fileStream.Close();
+                responseStream.Close();
+                fileTempStream.Close();
+
+                try
+                {
+                    System.IO.File.Copy(fileStream.Name, fileTempStream.Name, true);
+                }
+                catch (Exception e)
+                {
+                    return Json(new { success = false, status = e.Message });
+                }
                 return Json(new { success = true, status = "OK", path = Path.GetFileName(path) });
             }
             return Json(new { success = false, status = "Error" });
         }
-
+        
         [HttpPut]
         [Route("print-lable/consignment-requests/{crId}/consignments/{cId}")]
         public async Task<ActionResult> Lable(string crId, string cId)

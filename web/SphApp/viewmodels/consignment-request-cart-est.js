@@ -8,6 +8,9 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             page = ko.observable(0),
             size = ko.observable(20),
             count = ko.observable(0),
+            pageNumber = ko.observable(0),
+            totalPerPage = ko.observable(0),
+            firstOfPage = ko.observable(0),
             availablePageSize = ko.observableArray([10, 20, 50, 100]),
             errors = ko.observableArray(),
             sumWeight = ko.observable(0.00),
@@ -292,22 +295,8 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             printCommercialInvoice = function (data) {
                 window.open('/ost/print-commercial-invoice/consignment-requests/' + id() + '/consignments/' + data.WebId());
             },
-            printLableConnote = function (data) {
-                toggleShowBusyLoadingDialog("Submitting Lable to Thermal Printer");
-                context.put("", "/ost/print-lable/consignment-requests/" + id() + "/consignments/" + data.WebId() + "").always(function () {
-                    toggleShowBusyLoadingDialog("Done");
-                    app.showMessage("Lable successfully submitted to Thermal Printer.", "OST", ["Close"]);
-                });
-            },
-            printAllLableConnote = function (data) {
-                toggleShowBusyLoadingDialog("Submitting Lable to Thermal Printer");
-                context.put("", "/ost/print-all-lable/consignment-requests/" + id() + "").always(function () {
-                    toggleShowBusyLoadingDialog("Done");
-                    app.showMessage("Lable successfully submitted to Thermal Printer.", "OST", ["Close"]);
-                });
-            },
             downloadLableConnotePDF = function (data) {
-                toggleShowBusyLoadingDialog("Generating Lable to *.pdf file");
+                toggleShowBusyLoadingDialog("Generating Thermal Label");
                 context.put("", "/ost/print-lable-download/consignment-requests/" + id() + "/consignments/" + data.WebId())
                     .fail(function (response) {
                         logger.error("There are errors in your entity, !!!");
@@ -322,16 +311,37 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     });
             },
             downloadLableConnotePDFAll = function (data) {
-                toggleShowBusyLoadingDialog("Generating All Lable to *.pdf file");
-                context.put("", "/ost/print-all-lable-download/consignment-requests/" + id())
+                var textButton, textGrandTotal, pageSize = 50;
+                firstOfPage((pageSize * pageNumber()) + 1);
+                pageNumber(pageNumber() + 1);
+                if (pageNumber() < Math.ceil(data.Consignments().length / pageSize)) {
+                    totalPerPage(pageSize * pageNumber());
+                    textGrandTotal = data.Consignments().length;
+                    textButton = "Proceed";
+                } else {
+                    totalPerPage(data.Consignments().length);
+                    textGrandTotal = "Final Batch";
+                    textButton = "Close";
+                }
+                toggleShowBusyLoadingDialog("Generating " + firstOfPage() + " - " + totalPerPage() + " of " + textGrandTotal + " Thermal Labels");
+                context.put("", "/ost/print-all-lable-download/consignment-requests/" + id() + "/page/" + pageNumber())
                     .fail(function (response) {
                         logger.error("There are errors in your entity, !!!");
                     })
                     .then(function (result) {
                         if (result.status === "OK") {
                             if (result.success) {
-                                window.open("/print-excel/file-path-pdf/" + result.path + "/file-name/" + data.UserId());
+                                window.open("/print-excel/file-path-pdf/" + result.path + "/file-name/" + data.UserId() + "_" + firstOfPage() + "_" + totalPerPage());
                                 toggleShowBusyLoadingDialog("Done");
+                                app.showMessage("Successfully Generated " + firstOfPage() + " - " + totalPerPage() + " of " + textGrandTotal + " Labels *.pdf.", "OST", [textButton]).done(function () {
+                                    if (pageNumber() < Math.ceil(data.Consignments().length / pageSize)) {
+                                        setTimeout(downloadLableConnotePDFAll(data), 1500);
+                                    } else {
+                                        pageNumber(0);
+                                        totalPerPage(0);
+                                        firstOfPage(0);
+                                    }
+                                });
                             }
                         }
                     });
@@ -534,8 +544,6 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             printNddConnote: printNddConnote,
             printEmsConnote: printEmsConnote,
             printCommercialInvoice: printCommercialInvoice,
-            printLableConnote: printLableConnote,
-            printAllLableConnote: printAllLableConnote,
             downloadLableConnotePDF: downloadLableConnotePDF,
             downloadLableConnotePDFAll: downloadLableConnotePDFAll,
             toggleShowBusyLoadingDialog: toggleShowBusyLoadingDialog,

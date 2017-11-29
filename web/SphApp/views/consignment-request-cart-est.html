@@ -62,10 +62,10 @@
                                 </li>
                                 <li data-bind="css: { 'disabled': !Payment().IsPickupScheduled() }">
                                     <a data-bind="visible: Payment().IsPickupScheduled(), click: $root.downloadLableConnotePDFAll">
-                                        <i class="fa fa-file-pdf-o"></i> Download All Thermal Lables
+                                        <i class="fa fa-file-pdf-o"></i> Download All Thermal Labels
                                     </a>
                                     <a data-bind="visible: !Payment().IsPickupScheduled()" style="color: darkgrey;">
-                                        <i class="fa fa-file-pdf-o" style="color: darkgrey;"></i> Download All Thermal Lables
+                                        <i class="fa fa-file-pdf-o" style="color: darkgrey;"></i> Download All Thermal Labels
                                     </a>
                                 </li>
                                 <li data-bind="css: { 'disabled': !Payment().IsConNoteReady() }">
@@ -367,7 +367,7 @@
                                                 <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Print Consignment Note" data-bind="click: $root.printNddConnote, css: { 'disabled': $root.entity().Payment().IsPickupScheduled() != true || !ConNote() } ">
                                                     <i class="icon-printer"></i>
                                                 </a>
-                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Download Thermal Lable *.pdf" data-bind="click: $root.downloadLableConnotePDF, css: { 'disabled': $root.entity().Payment().IsPickupScheduled() != true || !ConNote() }">
+                                                <a class="btn btn-circle btn-icon-only btn-outline yellow-casablanca" title="Download Thermal Label" data-bind="click: $root.downloadLableConnotePDF, css: { 'disabled': $root.entity().Payment().IsPickupScheduled() != true || !ConNote() }">
                                                     <i class="fa fa-file-pdf-o"></i>
                                                 </a>
                                                 <!--ko if: Produk().Est().IsBorneo-->
