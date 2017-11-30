@@ -20,6 +20,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             pickupReadyMM = ko.observable(),
             pickupCloseHH = ko.observable(),
             pickupCloseMM = ko.observable(),
+            hasIntParcel = ko.observable(false),
             selectedConsignments = ko.observableArray([]),
             checkAll = ko.observable(false),
             errorNum = ko.observable(-1),
@@ -30,6 +31,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 //validate Personal Details, Default Billing Address, Default Pickup Address
                 var goToDashboard = false;
                 var userDetail = ko.observable();
+                hasIntParcel(false);
                 checkAll(false);
                 firstPage();
                 errorNum(-1);
@@ -271,6 +273,12 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                                         context.put(data, "/consignment-request/get-and-save-zones/" + ko.unwrap(entity().Id) + "").always(function () {
                                             toggleShowBusyLoadingDialog("Done");
                                             router.activeItem().activate(id());
+                                            for (var i = 0; i < entity().Consignments().length; i++) {
+                                                if (entity().Consignments()[i].Produk().IsInternational()) {
+                                                    hasIntParcel(true);
+                                                    break;
+                                                }
+                                            }
                                         });
                                     });
                                 } else {
@@ -342,8 +350,8 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                                         setTimeout(downloadLableConnotePDFAll(data), 1500);
                                     } else {
                                         pageNumber(0),
-                                        totalPerPage(0),
-                                        firstOfPage(0);
+                                            totalPerPage(0),
+                                            firstOfPage(0);
                                     }
                                 });
                             }
@@ -563,6 +571,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             pickupReadyMM: pickupReadyMM,
             pickupCloseHH: pickupCloseHH,
             pickupCloseMM: pickupCloseMM,
+            hasIntParcel: hasIntParcel,
             selectedConsignments: selectedConsignments,
             checkAll: checkAll,
             errorNum: errorNum,

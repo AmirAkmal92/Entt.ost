@@ -102,6 +102,10 @@
                             <a class="alert-link" data-bind="attr: { href: 'ost#consignment-request-pickup/' + Id() }"> Click here</a>
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
                         </div>
+                        <div class="alert alert-warning" data-bind="visible: $root.hasIntParcel">
+                            <i class="fa fa-warning fa-lg"></i> For international postings, kindly print commercial invoice for custom purposes.
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                        </div>
                         <div class="portlet box yellow" style="border: 1px solid #ff6a00;background-color: transparent;">
                             <div class="portlet-title" style="background-color: #ff6a00;">
                                 <div class="caption">
