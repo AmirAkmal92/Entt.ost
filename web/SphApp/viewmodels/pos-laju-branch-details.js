@@ -72,7 +72,7 @@ function(context, logger, router, system, validation, eximp, dialog, watcher, co
             var data = ko.mapping.toJSON(entity),
                 tcs = new $.Deferred();
 
-            context.post(data, "/api/pos-laju-branches/", headers)
+            context.put(data, "/api/pos-laju-branches/" + ko.unwrap(entity().Id) + "", headers)
                 .fail(function(response) {
                 var result = response.responseJSON;
                 errors.removeAll();
