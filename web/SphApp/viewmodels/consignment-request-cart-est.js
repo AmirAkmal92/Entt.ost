@@ -321,7 +321,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             downloadLableConnotePDFAll = function (data) {
                 var textButton, textGrandTotal, pageSize = 50, total = 0, countInt = 0;
                 for (var i = 0; i < data.Consignments().length; i++) {
-                    if (data.Consignments()[i].Produk().IsInternational()) { countInt += 1; }
+                    if (data.Consignments()[i].ConNote() == null || data.Consignments()[i].Produk().IsInternational()) { countInt += 1; }
                 }
                 total = data.Consignments().length - countInt;
                 firstOfPage((pageSize * pageNumber()) + 1);

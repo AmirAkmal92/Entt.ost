@@ -238,7 +238,7 @@
                                 <div class="row" data-bind="visible: $root.isHasInsurance()">
                                     <label class="col-md-3 control-label"><small>&nbsp;</small></label>
                                     <div class="col-md-9" style="margin-top: -15px;">
-                                        <span class="help-block" data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'zurich'" style="margin-top: -5px;margin-bottom: 10px;"><small><i>Item covered for Zurich Takaful is up to RM4000 only</i></small></span>
+                                        <span class="help-block" data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'zurich' && consignment().Produk().ValueAddedDeclaredValue() > 4000.00" style="margin-top: -5px; margin-bottom: 10px;"><small><i>Item covered for Zurich Takaful is up to RM4000 only</i></small></span>
                                         <span class="help-block" data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'zurich'" style="margin-bottom: 10px;"><small>Click <a data-bind="click: $root.launchInsuranceInfoDialog">here</a> for Zurich Takaful exclusion list.</small></span>
                                         <span class="help-block" data-bind="visible: consignment().Produk().Est().ValueAddedService() == 'etiqa'" style="margin-bottom: 10px;"><small>Click <a data-bind="click: $root.launchInsuranceInfoDialog">here</a> for Etiqa Insurance exclusion list.</small></span>
                                     </div>
