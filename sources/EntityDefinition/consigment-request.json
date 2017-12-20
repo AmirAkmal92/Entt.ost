@@ -628,6 +628,30 @@
               "WebId": "1f6e9719-3b67-4a63-aa47-1607176d6a5f"
             },
             {
+              "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+              "TypeName": "System.String, mscorlib",
+              "IsNullable": false,
+              "IsNotIndexed": false,
+              "IsAnalyzed": false,
+              "IsFilterable": false,
+              "IsExcludeInAll": false,
+              "Boost": 0,
+              "FullName": null,
+              "PropertyAttribute": null,
+              "MemberCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "FieldPermissionCollection": {
+                "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+                "$values": []
+              },
+              "Name": "PostcodeParent",
+              "AllowMultiple": false,
+              "DefaultValue": null,
+              "WebId": "3f96f55b-f47d-4c91-84fa-91c8df2d7bd0"
+            },
+            {
               "$type": "Bespoke.Sph.Domain.ValueObjectMember, domain.sph",
               "MemberCollection": {
                 "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
@@ -4137,6 +4161,6 @@
   "Id": "consigment-request",
   "CreatedDate": "2016-10-29T07:26:06.8492482+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-10-23T15:04:41.2425811+08:00",
+  "ChangedDate": "2017-12-05T12:00:23.4073183+08:00",
   "WebId": "b8808d89-54c8-4d91-8396-7627974f1138"
 }
