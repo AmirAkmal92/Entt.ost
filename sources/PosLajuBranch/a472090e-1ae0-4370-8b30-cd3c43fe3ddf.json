@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "4802",
+  "Name": "Rawang",
+  "PostcodeFrom": "44200",
+  "PostcodeTo": "44299",
+  "PostcodeParent": "48000",
+  "Email": "KPPoslajuRawang@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "a472090e-1ae0-4370-8b30-cd3c43fe3ddf",
+  "CreatedDate": "2017-12-20T12:14:58.126086+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:58.126086+08:00",
+  "WebId": "d9b54918-281d-4567-817a-cd8d7fc43fa9"
+}

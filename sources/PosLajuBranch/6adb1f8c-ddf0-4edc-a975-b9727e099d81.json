@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "6815",
+  "Name": "Batu Caves",
+  "PostcodeFrom": "68100",
+  "PostcodeTo": "68199",
+  "PostcodeParent": "68100",
+  "Email": "plbtcaves.pickup@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "6adb1f8c-ddf0-4edc-a975-b9727e099d81",
+  "CreatedDate": "2017-12-20T12:14:59.6354181+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:59.6274124+08:00",
+  "WebId": "2f043f89-1a48-41b3-8676-c482da105a7b"
+}

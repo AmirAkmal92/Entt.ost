@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "9601",
+  "Name": "Sibu",
+  "PostcodeFrom": "96000",
+  "PostcodeTo": "96099",
+  "PostcodeParent": "96000",
+  "Email": "KPPoslajuSibu@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "9a922372-18a8-4897-a53f-4afc71dc8cd6",
+  "CreatedDate": "2017-12-20T12:15:01.1474836+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:15:01.1474836+08:00",
+  "WebId": "7398f578-2db3-42a1-a800-38d4c39b5517"
+}

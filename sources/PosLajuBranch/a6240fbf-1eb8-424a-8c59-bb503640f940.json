@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "4272",
+  "Name": "Banting",
+  "PostcodeFrom": "42610",
+  "PostcodeTo": "42619",
+  "PostcodeParent": "42700",
+  "Email": "poslajubanting@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "a6240fbf-1eb8-424a-8c59-bb503640f940",
+  "CreatedDate": "2017-12-20T12:14:58.0021566+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:58.0011577+08:00",
+  "WebId": "dd76d0e7-322f-4873-ac41-7f7262798376"
+}

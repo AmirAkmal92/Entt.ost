@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "0500",
+  "Name": "Alor Setar",
+  "PostcodeFrom": "6500",
+  "PostcodeTo": "6549",
+  "PostcodeParent": "05670",
+  "Email": "KPPoslajuAlorSetar@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "41c4811b-9e77-4d5f-8109-9334152492bb",
+  "CreatedDate": "2017-12-20T12:14:55.8076092+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:55.8066087+08:00",
+  "WebId": "a8011194-014f-40ec-b580-2bde70116e3f"
+}

@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "9100",
+  "Name": "Tawau",
+  "PostcodeFrom": "91000",
+  "PostcodeTo": "91099",
+  "PostcodeParent": "91000",
+  "Email": "KPPoslajuTawau@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "c30ba4be-f13a-435b-a5ed-128fd4588725",
+  "CreatedDate": "2017-12-20T12:15:01.003382+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:15:01.0023815+08:00",
+  "WebId": "6ce1aa0b-0645-4575-924d-e3c8dd806181"
+}

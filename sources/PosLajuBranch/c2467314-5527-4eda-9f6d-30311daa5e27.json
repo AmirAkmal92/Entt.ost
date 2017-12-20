@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "7500",
+  "Name": "Melaka",
+  "PostcodeFrom": "76200",
+  "PostcodeTo": "76299",
+  "PostcodeParent": "75350",
+  "Email": "KPPoslajuMelaka@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "c2467314-5527-4eda-9f6d-30311daa5e27",
+  "CreatedDate": "2017-12-20T12:15:00.2458487+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:15:00.2378435+08:00",
+  "WebId": "45ba2306-3912-498b-86d2-0d7347e76d9b"
+}

@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "3300",
+  "Name": "Kuala Kangsar",
+  "PostcodeFrom": "33000",
+  "PostcodeTo": "33099",
+  "PostcodeParent": "33000",
+  "Email": "poslajukkangsar@poslaju.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "d5fd981e-d75f-4163-ae39-300e78abbdb7",
+  "CreatedDate": "2017-12-20T12:14:57.7319653+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:57.7279621+08:00",
+  "WebId": "7573d7f7-104c-4a6f-8bd4-d6c494f3b96f"
+}

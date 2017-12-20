@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "0607",
+  "Name": "Jitra",
+  "PostcodeFrom": "6010",
+  "PostcodeTo": "6019",
+  "PostcodeParent": "06000",
+  "Email": "poslajujitra@poslaju.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "10348d3c-49ad-469b-a200-33e278b029d6",
+  "CreatedDate": "2017-12-20T12:14:55.6454945+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:55.6184761+08:00",
+  "WebId": "204f9607-6b19-49a3-a12e-1bfc417f3ad4"
+}

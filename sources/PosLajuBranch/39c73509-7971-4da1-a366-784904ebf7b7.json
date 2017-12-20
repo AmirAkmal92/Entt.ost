@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "3000",
+  "Name": "Ipoh",
+  "PostcodeFrom": "30000",
+  "PostcodeTo": "30999",
+  "PostcodeParent": "30000",
+  "Email": "KPPoslajuIpoh@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "39c73509-7971-4da1-a366-784904ebf7b7",
+  "CreatedDate": "2017-12-20T12:14:57.5298232+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:57.5218172+08:00",
+  "WebId": "652f5b73-c127-4e01-a8e2-2d49146c0f76"
+}

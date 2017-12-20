@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "3501",
+  "Name": "Tapah",
+  "PostcodeFrom": "31900",
+  "PostcodeTo": "31949",
+  "PostcodeParent": "35000",
+  "Email": "poslajutph@poslaju.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "8011c755-4662-4a98-9ab7-7e12388fafc2",
+  "CreatedDate": "2017-12-20T12:14:57.6008735+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:57.5988717+08:00",
+  "WebId": "b3f847c9-794f-40f7-b714-1876fbe009b6"
+}

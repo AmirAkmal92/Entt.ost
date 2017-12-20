@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "0805",
+  "Name": "Sungai Petani",
+  "PostcodeFrom": "8000",
+  "PostcodeTo": "8099",
+  "PostcodeParent": "08000",
+  "Email": "KPPoslajuSg.Petani@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "8bdab48f-a334-43d2-891d-27007d4aa8b3",
+  "CreatedDate": "2017-12-20T12:14:55.8776594+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:55.8746562+08:00",
+  "WebId": "50bbfbd5-e924-48d3-976e-a7885426a36a"
+}

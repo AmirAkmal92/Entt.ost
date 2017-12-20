@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "3600",
+  "Name": "Teluk Intan",
+  "PostcodeFrom": "36110",
+  "PostcodeTo": "36199",
+  "PostcodeParent": "36000",
+  "Email": "KPPoslajuTelukIntan@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "c9365da3-7b3c-4e2b-8828-b36ee35b8fb9",
+  "CreatedDate": "2017-12-20T12:14:57.9210996+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:57.9201028+08:00",
+  "WebId": "284f08f7-2ed3-4afe-b3bd-17119bedbc03"
+}

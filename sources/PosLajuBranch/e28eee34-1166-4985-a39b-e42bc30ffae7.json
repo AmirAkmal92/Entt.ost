@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "4709",
+  "Name": "Kota Damansara",
+  "PostcodeFrom": "48050",
+  "PostcodeTo": "48099",
+  "PostcodeParent": "47000",
+  "Email": "plkdkp@poslaju.com.my",
+  "AllowPickup": true,
+  "CreatedBy": "admin",
+  "Id": "e28eee34-1166-4985-a39b-e42bc30ffae7",
+  "CreatedDate": "2017-12-20T12:14:58.2996138+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:58.2996138+08:00",
+  "WebId": "1d580bc1-32d5-40a4-bf63-bb9b1440db9f"
+}

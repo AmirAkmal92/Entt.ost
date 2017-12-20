@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "6225",
+  "Name": "Putrajaya",
+  "PostcodeFrom": "63000",
+  "PostcodeTo": "63199",
+  "PostcodeParent": "62250",
+  "Email": "poslajuputrajaya@poslaju.com.my",
+  "AllowPickup": true,
+  "CreatedBy": "admin",
+  "Id": "c9dd58f2-d97c-4b54-9b2b-876dbc4d1a17",
+  "CreatedDate": "2017-12-20T12:14:59.4743043+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:59.4703011+08:00",
+  "WebId": "46eb9257-4d70-421c-8e39-1753a522edd0"
+}

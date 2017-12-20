@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "3400",
+  "Name": "Taiping",
+  "PostcodeFrom": "34600",
+  "PostcodeTo": "34649",
+  "PostcodeParent": "34000",
+  "Email": "KPPoslajuTaiping@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "8d4d2955-1025-4a5f-9ad5-015f23e1456c",
+  "CreatedDate": "2017-12-20T12:14:57.7930085+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:57.7930085+08:00",
+  "WebId": "6d6d55c6-33d9-4fd4-8dbe-6eaf7dd55810"
+}

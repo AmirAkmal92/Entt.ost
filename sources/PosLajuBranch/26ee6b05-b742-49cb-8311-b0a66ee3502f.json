@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "9000",
+  "Name": "Sandakan",
+  "PostcodeFrom": "90000",
+  "PostcodeTo": "90099",
+  "PostcodeParent": "90000",
+  "Email": "KPPoslajuSandakan@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "26ee6b05-b742-49cb-8311-b0a66ee3502f",
+  "CreatedDate": "2017-12-20T12:15:00.9733621+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:15:00.9733621+08:00",
+  "WebId": "4f23d936-65fc-408c-bc30-4921c8aa6735"
+}

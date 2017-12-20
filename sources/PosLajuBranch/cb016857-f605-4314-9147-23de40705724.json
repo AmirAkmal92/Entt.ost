@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "0700",
+  "Name": "Langkawi",
+  "PostcodeFrom": "7000",
+  "PostcodeTo": "7999",
+  "PostcodeParent": "07000",
+  "Email": "KPPoslajuLangkawi@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "cb016857-f605-4314-9147-23de40705724",
+  "CreatedDate": "2017-12-20T12:14:55.8346284+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:55.8336279+08:00",
+  "WebId": "7ec0eaee-397f-4857-879e-0ebe4eb89486"
+}

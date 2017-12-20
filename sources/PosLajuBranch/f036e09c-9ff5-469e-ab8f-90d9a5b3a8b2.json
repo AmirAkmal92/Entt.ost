@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "4715",
+  "Name": "Puchong",
+  "PostcodeFrom": "47500",
+  "PostcodeTo": "47599",
+  "PostcodeParent": "47150",
+  "Email": "plpuchong_pickup@pos.com.my",
+  "AllowPickup": true,
+  "CreatedBy": "admin",
+  "Id": "f036e09c-9ff5-469e-ab8f-90d9a5b3a8b2",
+  "CreatedDate": "2017-12-20T12:14:58.2685922+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:58.2675912+08:00",
+  "WebId": "7e802cb2-2cc6-426a-bf98-1b6c4206a46a"
+}

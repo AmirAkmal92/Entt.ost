@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "8500 ",
+  "Name": "Segamat",
+  "PostcodeFrom": "85000",
+  "PostcodeTo": "85099",
+  "PostcodeParent": "85000",
+  "Email": "KPPSegamat@poslaju.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "735e43db-9376-4243-9d9c-5c367ec8fcc7",
+  "CreatedDate": "2017-12-20T12:15:00.8612827+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:15:00.8602814+08:00",
+  "WebId": "9fad8c85-2c86-46f6-bb22-98e7a9981777"
+}

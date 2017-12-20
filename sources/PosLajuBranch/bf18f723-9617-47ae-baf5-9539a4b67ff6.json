@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "3201",
+  "Name": "Sitiawan",
+  "PostcodeFrom": "32100",
+  "PostcodeTo": "32199",
+  "PostcodeParent": "32000",
+  "Email": "KPPoslajuSitiawan@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "bf18f723-9617-47ae-baf5-9539a4b67ff6",
+  "CreatedDate": "2017-12-20T12:14:57.6919371+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:57.6799286+08:00",
+  "WebId": "e027a3f0-70b7-4b29-88ce-a20211565860"
+}

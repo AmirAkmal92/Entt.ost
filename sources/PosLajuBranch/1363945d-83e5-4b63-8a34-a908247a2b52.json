@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "2400",
+  "Name": "Chukai",
+  "PostcodeFrom": "24300",
+  "PostcodeTo": "24399",
+  "PostcodeParent": "24000",
+  "Email": "poslajuchukai@poslaju.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "1363945d-83e5-4b63-8a34-a908247a2b52",
+  "CreatedDate": "2017-12-20T12:14:56.8443399+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:56.8313309+08:00",
+  "WebId": "1747e545-8497-478e-a0f9-e93f529a8e06"
+}

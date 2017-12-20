@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "7005",
+  "Name": "Seremban",
+  "PostcodeFrom": "71600",
+  "PostcodeTo": "71699",
+  "PostcodeParent": "70450",
+  "Email": "KPPoslajuSeremban@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "98893d2f-93df-4744-8971-21091dafd369",
+  "CreatedDate": "2017-12-20T12:14:59.8678724+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:59.8665841+08:00",
+  "WebId": "eabf673f-e54d-4b35-b3ef-a6a736cfac95"
+}

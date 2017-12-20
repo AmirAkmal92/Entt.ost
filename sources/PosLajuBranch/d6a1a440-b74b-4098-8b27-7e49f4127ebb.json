@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "4332",
+  "Name": "Balakong",
+  "PostcodeFrom": "43400",
+  "PostcodeTo": "43499",
+  "PostcodeParent": "43300",
+  "Email": "plbalakong@poslaju.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "d6a1a440-b74b-4098-8b27-7e49f4127ebb",
+  "CreatedDate": "2017-12-20T12:14:58.0665675+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:58.065567+08:00",
+  "WebId": "b002c091-9500-4927-9444-af89c46a73e7"
+}

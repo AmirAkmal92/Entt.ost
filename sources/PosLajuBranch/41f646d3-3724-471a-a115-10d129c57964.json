@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "2662",
+  "Name": "Pekan",
+  "PostcodeFrom": "26600",
+  "PostcodeTo": "26689",
+  "PostcodeParent": "26600",
+  "Email": "plpekan.kp@poslaju.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "41f646d3-3724-471a-a115-10d129c57964",
+  "CreatedDate": "2017-12-20T12:14:57.0634942+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:57.0504848+08:00",
+  "WebId": "316b0f12-dab9-4e5f-848e-170974bb9240"
+}

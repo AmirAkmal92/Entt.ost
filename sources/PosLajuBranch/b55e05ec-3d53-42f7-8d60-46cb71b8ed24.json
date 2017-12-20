@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "8600",
+  "Name": "Kluang",
+  "PostcodeFrom": "86000",
+  "PostcodeTo": "86099",
+  "PostcodeParent": "86000",
+  "Email": "KPPoslajuKluang@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "b55e05ec-3d53-42f7-8d60-46cb71b8ed24",
+  "CreatedDate": "2017-12-20T12:15:00.8883007+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:15:00.8872998+08:00",
+  "WebId": "cd609bac-ba39-4146-b63b-c925f8f23847"
+}

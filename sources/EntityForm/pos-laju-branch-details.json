@@ -246,15 +246,15 @@
             "WebId": null
           },
           "Name": null,
-          "Label": "Pickup Id",
+          "Label": "Postcode Parent",
           "Tooltip": null,
-          "Path": "PickupId",
+          "Path": "PostcodeParent",
           "IsRequired": false,
           "Size": "input-large",
           "CssClass": "",
           "Visible": "true",
           "Enable": "true",
-          "ElementId": "1514bef7-db51-405d-dade-169da48fbd2e",
+          "ElementId": "77f8dc9e-5b8e-48a9-a8b3-f5b9327cba2a",
           "HelpText": null,
           "UseDisplayTemplate": false,
           "ToolboxIconClass": null,
@@ -267,7 +267,7 @@
           "InputColMd": null,
           "InputColSm": null,
           "InputColXs": null,
-          "WebId": "94fb7033-03c6-44d5-fc5f-ca1ef126ec70"
+          "WebId": "1d75aea8-d0bb-41a5-c19d-a5c98c2f0f38"
         },
         {
           "$type": "Bespoke.Sph.Domain.CheckBox, domain.sph",
@@ -362,7 +362,7 @@
   "OperationSuccessNavigateUrl": "pos-laju-branch-all",
   "OperationSuccessCallback": null,
   "OperationFailureCallback": null,
-  "OperationMethod": "post",
+  "OperationMethod": "put",
   "DeleteOperation": "default",
   "DeleteOperationSuccessMesage": "Successfully Deleted",
   "DeleteOperationSuccessNavigateUrl": "pos-laju-branch-all",
@@ -370,6 +370,6 @@
   "Id": "pos-laju-branch-details",
   "CreatedDate": "2016-11-03T10:21:30.2343343+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-07-18T13:03:59.8500781+08:00",
+  "ChangedDate": "2017-12-20T12:07:50.6393708+08:00",
   "WebId": "b666ee17-8d31-46f5-99a3-cdb49a2bf84b"
 }

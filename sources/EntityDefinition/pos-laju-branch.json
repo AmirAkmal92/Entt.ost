@@ -105,6 +105,30 @@
         "IsNullable": false,
         "IsNotIndexed": false,
         "IsAnalyzed": false,
+        "IsFilterable": true,
+        "IsExcludeInAll": false,
+        "Boost": 3,
+        "FullName": null,
+        "PropertyAttribute": null,
+        "MemberCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "FieldPermissionCollection": {
+          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
+          "$values": []
+        },
+        "Name": "PostcodeParent",
+        "AllowMultiple": false,
+        "DefaultValue": null,
+        "WebId": "f7f7ccc2-59f1-4496-bd1a-ada97368e01e"
+      },
+      {
+        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
+        "TypeName": "System.String, mscorlib",
+        "IsNullable": false,
+        "IsNotIndexed": false,
+        "IsAnalyzed": false,
         "IsFilterable": false,
         "IsExcludeInAll": false,
         "Boost": 1,
@@ -122,30 +146,6 @@
         "AllowMultiple": false,
         "DefaultValue": null,
         "WebId": "889f4672-0166-4fa1-b415-1ac0c941796a"
-      },
-      {
-        "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
-        "TypeName": "System.String, mscorlib",
-        "IsNullable": false,
-        "IsNotIndexed": false,
-        "IsAnalyzed": false,
-        "IsFilterable": false,
-        "IsExcludeInAll": false,
-        "Boost": 2,
-        "FullName": null,
-        "PropertyAttribute": null,
-        "MemberCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.Member, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "FieldPermissionCollection": {
-          "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.FieldPermission, domain.sph]], domain.sph",
-          "$values": []
-        },
-        "Name": "PickupId",
-        "AllowMultiple": false,
-        "DefaultValue": null,
-        "WebId": "8c6464cb-d7a3-410f-d998-28f1e0cdd5ad"
       },
       {
         "$type": "Bespoke.Sph.Domain.SimpleMember, domain.sph",
@@ -218,6 +218,6 @@
   "Id": "pos-laju-branch",
   "CreatedDate": "2016-11-03T10:21:30.2343343+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-07-18T12:37:04.6993706+08:00",
+  "ChangedDate": "2017-12-07T10:52:47.5443957+08:00",
   "WebId": "22245fde-4d0b-43f9-8802-fd03801ad935"
 }

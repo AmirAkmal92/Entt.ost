@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "5222",
+  "Name": "Kepong",
+  "PostcodeFrom": "52100",
+  "PostcodeTo": "52199",
+  "PostcodeParent": "52200",
+  "Email": "pl_kepong@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "a4a58b0b-b23e-467d-8c21-55257c02f517",
+  "CreatedDate": "2017-12-20T12:14:58.8058336+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:58.8048331+08:00",
+  "WebId": "92d84b15-13ef-493f-81f5-c7e46df9ee6f"
+}

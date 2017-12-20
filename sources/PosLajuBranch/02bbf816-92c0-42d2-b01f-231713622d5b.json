@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "7185",
+  "Name": "Nilai",
+  "PostcodeFrom": "64000",
+  "PostcodeTo": "64099",
+  "PostcodeParent": "71800",
+  "Email": "KPPoslajuNilai@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "02bbf816-92c0-42d2-b01f-231713622d5b",
+  "CreatedDate": "2017-12-20T12:14:59.55737+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:59.5503583+08:00",
+  "WebId": "057020ab-5cc7-4316-a661-5290531e8241"
+}

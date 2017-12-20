@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "4609",
+  "Name": "Petaling Jaya",
+  "PostcodeFrom": "47300",
+  "PostcodeTo": "47399",
+  "PostcodeParent": "46100",
+  "Email": "KPPoslajuPetalingJaya@pos.com.my",
+  "AllowPickup": true,
+  "CreatedBy": "admin",
+  "Id": "a45822d9-07f1-404e-b466-097b88c297d6",
+  "CreatedDate": "2017-12-20T12:14:58.2535818+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:58.2535818+08:00",
+  "WebId": "71e43407-ad41-4999-b683-0c208dd7ca30"
+}

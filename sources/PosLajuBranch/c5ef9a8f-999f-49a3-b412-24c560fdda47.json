@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "0901",
+  "Name": "Kulim",
+  "PostcodeFrom": "9000",
+  "PostcodeTo": "9009",
+  "PostcodeParent": "09000",
+  "Email": "KPPoslajuKulim@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "c5ef9a8f-999f-49a3-b412-24c560fdda47",
+  "CreatedDate": "2017-12-20T12:14:55.90568+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:55.9006754+08:00",
+  "WebId": "3bed2c12-fc6b-4e39-908e-dfd372e8490f"
+}

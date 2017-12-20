@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "8170",
+  "Name": "Pasir Gudang",
+  "PostcodeFrom": "81700",
+  "PostcodeTo": "81749",
+  "PostcodeParent": "81700",
+  "Email": "KPPasirGudang@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "d5c93a8a-bf53-4a47-aced-a39414c9da65",
+  "CreatedDate": "2017-12-20T12:15:00.6431281+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:15:00.642128+08:00",
+  "WebId": "427ef2e1-ad89-487d-b75c-af882db3bb66"
+}

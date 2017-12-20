@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "9870",
+  "Name": "Limbang",
+  "PostcodeFrom": "98700",
+  "PostcodeTo": "98749",
+  "PostcodeParent": "98700",
+  "Email": "poslaju.limbang@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "8d16ac12-7c0c-457c-8aa1-89f46b8c26a8",
+  "CreatedDate": "2017-12-20T12:15:01.2325442+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:15:01.2315433+08:00",
+  "WebId": "33edb478-91c5-4757-941d-56386f94d2ee"
+}

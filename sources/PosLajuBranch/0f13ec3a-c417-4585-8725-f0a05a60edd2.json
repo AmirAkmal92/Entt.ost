@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "2804",
+  "Name": "Temerloh",
+  "PostcodeFrom": "27400",
+  "PostcodeTo": "27499",
+  "PostcodeParent": "28000",
+  "Email": "KPPoslajuTemerloh@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "0f13ec3a-c417-4585-8725-f0a05a60edd2",
+  "CreatedDate": "2017-12-20T12:14:57.2176032+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:57.2096+08:00",
+  "WebId": "8df0036b-1a7e-4a44-967e-364aa361de47"
+}

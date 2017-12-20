@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "2000",
+  "Name": "Kuala Terengganu",
+  "PostcodeFrom": "21300",
+  "PostcodeTo": "21399",
+  "PostcodeParent": "20300",
+  "Email": "KhidmatPelangganPoslajuKualaTerengganu@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "73036b8e-7f49-4920-8fba-f6d194980ac1",
+  "CreatedDate": "2017-12-20T12:14:56.6542067+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:56.6522045+08:00",
+  "WebId": "3cef50b8-a7ad-4ca0-a66e-dea4f9a26e43"
+}

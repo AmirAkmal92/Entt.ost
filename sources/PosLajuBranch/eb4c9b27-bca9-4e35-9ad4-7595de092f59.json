@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "2510",
+  "Name": "Kuantan",
+  "PostcodeFrom": "26100",
+  "PostcodeTo": "26139",
+  "PostcodeParent": "25200",
+  "Email": "plkuantan_pickup@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "eb4c9b27-bca9-4e35-9ad4-7595de092f59",
+  "CreatedDate": "2017-12-20T12:14:56.9664264+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:56.9594212+08:00",
+  "WebId": "db6ccec7-7e10-4013-8e85-c2ae38db9cac"
+}

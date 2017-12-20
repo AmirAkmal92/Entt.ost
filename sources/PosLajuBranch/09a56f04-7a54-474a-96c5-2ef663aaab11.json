@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "1000",
+  "Name": "Pulau Pinang",
+  "PostcodeFrom": "10000",
+  "PostcodeTo": "11999",
+  "PostcodeParent": "10300",
+  "Email": "KPPoslajuPulauPinang@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "09a56f04-7a54-474a-96c5-2ef663aaab11",
+  "CreatedDate": "2017-12-20T12:14:55.9647205+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:55.9627183+08:00",
+  "WebId": "a4c212ea-8e8d-4b88-84ba-58e18f8ac28c"
+}

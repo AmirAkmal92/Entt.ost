@@ -10,23 +10,7 @@
   },
   "SetterActionChildCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.SetterActionChild, domain.sph]], domain.sph",
-    "$values": [
-      {
-        "$type": "Bespoke.Sph.Domain.SetterActionChild, domain.sph",
-        "Path": "Id",
-        "Field": {
-          "$type": "Bespoke.Sph.Domain.DocumentField, domain.sph",
-          "XPath": "",
-          "NamespacePrefix": "",
-          "TypeName": "",
-          "Path": "PickupId",
-          "Name": "PickupId",
-          "Note": "",
-          "WebId": "f4229fd6-8c29-4cd4-c47c-1a9e59e8d648"
-        },
-        "WebId": "b07bc5e4-0ad4-4e26-ea16-44cd9d80a1f9"
-      }
-    ]
+    "$values": []
   },
   "PatchPathCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.PatchSetter, domain.sph]], domain.sph",
@@ -46,11 +30,11 @@
   "Entity": "PosLajuBranch",
   "Resource": "pos-laju-branches",
   "IsPublished": true,
-  "IsConflictDetectionEnabled": false,
+  "IsConflictDetectionEnabled": true,
   "CreatedBy": "admin",
   "Id": "pos-laju-branch-default",
   "CreatedDate": "2016-11-03T10:24:46.6285104+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2016-11-03T10:51:28.5614575+08:00",
+  "ChangedDate": "2017-12-20T12:03:39.5555238+08:00",
   "WebId": "332f93d8-bdcf-43df-e3da-c7512fa9cdd3"
 }

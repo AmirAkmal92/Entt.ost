@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "9345",
+  "Name": "Kuching",
+  "PostcodeFrom": "93000",
+  "PostcodeTo": "93999",
+  "PostcodeParent": "93350",
+  "Email": "plkuching_pickup@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "02b08c2b-f687-47e4-a0b1-f826d785cfd6",
+  "CreatedDate": "2017-12-20T12:15:01.05542+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:15:01.05542+08:00",
+  "WebId": "f63fa5e0-cd88-4fb7-8f47-1b2ed59d98e2"
+}

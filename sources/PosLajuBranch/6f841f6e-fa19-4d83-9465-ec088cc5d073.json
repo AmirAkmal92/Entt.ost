@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "9610",
+  "Name": "Sarikei",
+  "PostcodeFrom": "96100",
+  "PostcodeTo": "96149",
+  "PostcodeParent": "96100",
+  "Email": "KPPoslajuSarikei@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "6f841f6e-fa19-4d83-9465-ec088cc5d073",
+  "CreatedDate": "2017-12-20T12:15:01.1685003+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:15:01.1674985+08:00",
+  "WebId": "8b49cd7b-e8cb-4a6a-acf5-4d529adee303"
+}

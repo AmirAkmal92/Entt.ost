@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "4501",
+  "Name": "Kuala Selangor",
+  "PostcodeFrom": "45400",
+  "PostcodeTo": "45499",
+  "PostcodeParent": "45000",
+  "Email": "poslaju.kselangor@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "4c6fe238-e7c6-4072-87a6-ea2391db4c42",
+  "CreatedDate": "2017-12-20T12:14:58.1735254+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:58.1735254+08:00",
+  "WebId": "3c78268c-dbd7-421e-8330-67e3948b97ae"
+}

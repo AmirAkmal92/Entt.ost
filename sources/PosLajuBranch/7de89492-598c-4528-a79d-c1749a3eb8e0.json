@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "8135",
+  "Name": "Johor Bahru",
+  "PostcodeFrom": "81400",
+  "PostcodeTo": "81439",
+  "PostcodeParent": "80350",
+  "Email": "KPPoslajuJB@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "7de89492-598c-4528-a79d-c1749a3eb8e0",
+  "CreatedDate": "2017-12-20T12:15:00.5720787+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:15:00.5700773+08:00",
+  "WebId": "cc6df04f-e7a9-4323-97b6-78d6184f895d"
+}

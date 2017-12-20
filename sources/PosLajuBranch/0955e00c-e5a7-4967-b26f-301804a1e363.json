@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "9500",
+  "Name": "Sri Aman",
+  "PostcodeFrom": "95800",
+  "PostcodeTo": "95899",
+  "PostcodeParent": "95000",
+  "Email": "poslaju.sriaman@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "0955e00c-e5a7-4967-b26f-301804a1e363",
+  "CreatedDate": "2017-12-20T12:15:01.1284708+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:15:01.1274695+08:00",
+  "WebId": "b41767a8-7cb2-4463-b479-635e41aa6c6f"
+}

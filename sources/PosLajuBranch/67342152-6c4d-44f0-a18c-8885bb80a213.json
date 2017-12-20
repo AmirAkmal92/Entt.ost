@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "5613",
+  "Name": "Cheras",
+  "PostcodeFrom": "55300",
+  "PostcodeTo": "55399",
+  "PostcodeParent": "56100",
+  "Email": "plcheras_pickup@pos.com.my",
+  "AllowPickup": true,
+  "CreatedBy": "admin",
+  "Id": "67342152-6c4d-44f0-a18c-8885bb80a213",
+  "CreatedDate": "2017-12-20T12:14:59.0109784+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:58.9999704+08:00",
+  "WebId": "1952e2fa-ed51-4bea-a95e-7bdd985f4bf7"
+}

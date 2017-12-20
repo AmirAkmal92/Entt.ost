@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "8400",
+  "Name": "Muar",
+  "PostcodeFrom": "84200",
+  "PostcodeTo": "84299",
+  "PostcodeParent": "84000",
+  "Email": "KPPoslajuMuar@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "6f251788-edf8-4bcb-a9b0-d8239af80e7e",
+  "CreatedDate": "2017-12-20T12:15:00.8432696+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:15:00.8422687+08:00",
+  "WebId": "d9822438-72f3-4148-8d5c-7b668c706a1e"
+}

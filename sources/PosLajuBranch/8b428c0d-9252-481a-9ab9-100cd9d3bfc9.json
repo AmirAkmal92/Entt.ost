@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "2200",
+  "Name": "Jerteh",
+  "PostcodeFrom": "22000",
+  "PostcodeTo": "22099",
+  "PostcodeParent": "22000",
+  "Email": "poslajujerteh@poslaju.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "8b428c0d-9252-481a-9ab9-100cd9d3bfc9",
+  "CreatedDate": "2017-12-20T12:14:56.7072427+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:56.7032407+08:00",
+  "WebId": "2ede2a81-33d0-4a3c-8798-6d3f45a6c965"
+}

@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "4300",
+  "Name": "Bandar Baru Bangi",
+  "PostcodeFrom": "43500",
+  "PostcodeTo": "43599",
+  "PostcodeParent": "43650",
+  "Email": "KPPoslajuBBBangi@pos.com.my",
+  "AllowPickup": true,
+  "CreatedBy": "admin",
+  "Id": "3103fd0f-38ce-48a4-a611-e0f1f256f1ca",
+  "CreatedDate": "2017-12-20T12:14:58.0750502+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:58.0740493+08:00",
+  "WebId": "e2985253-ff1f-47c5-83d1-7ecd0be43680"
+}

@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "1851",
+  "Name": "Machang",
+  "PostcodeFrom": "17000",
+  "PostcodeTo": "17099",
+  "PostcodeParent": "18500",
+  "Email": "plmachang_kp@poslaju.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "4364fdac-fbea-4757-b690-dbbe8043a5be",
+  "CreatedDate": "2017-12-20T12:14:56.4520634+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:56.4420555+08:00",
+  "WebId": "76b756f0-f9f3-461f-870f-f02098fc2467"
+}

@@ -94,8 +94,8 @@
           "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[Bespoke.Sph.Domain.ConditionalFormatting, domain.sph]], domain.sph",
           "$values": []
         },
-        "Path": "PickupId",
-        "Header": "Pickup Id",
+        "Path": "PostcodeParent",
+        "Header": "Postcode Parent",
         "Sort": "",
         "IsLinkColumn": false,
         "FormRoute": null,
@@ -103,7 +103,7 @@
         "IconStoreId": "",
         "Format": "text:{0}",
         "RouteValueField": "",
-        "WebId": "48d6a93f-0754-427a-c2e4-8fcea9c1019d"
+        "WebId": "bc19128f-3dcd-43f3-ca54-83baababeb5a"
       },
       {
         "$type": "Bespoke.Sph.Domain.ViewColumn, domain.sph",
@@ -158,6 +158,6 @@
   "Id": "pos-laju-branch-all",
   "CreatedDate": "2016-11-03T10:21:30.2343343+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-07-18T12:51:36.8838344+08:00",
+  "ChangedDate": "2017-12-07T10:47:46.9635114+08:00",
   "WebId": "3bcc9815-a0a5-4de4-b24d-eb74fdfc6c73"
 }

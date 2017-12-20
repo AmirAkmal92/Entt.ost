@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "9700",
+  "Name": "Bintulu",
+  "PostcodeFrom": "97000",
+  "PostcodeTo": "97099",
+  "PostcodeParent": "97000",
+  "Email": "KPPoslajuBintulu@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "2a0f9f68-cbb3-4429-b28c-328ca4523497",
+  "CreatedDate": "2017-12-20T12:15:01.1795066+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:15:01.1785061+08:00",
+  "WebId": "9e3790a0-b6d9-4963-bcbd-e51ca79c32c3"
+}

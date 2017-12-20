@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "7102",
+  "Name": "Port Dickson",
+  "PostcodeFrom": "71050",
+  "PostcodeTo": "71099",
+  "PostcodeParent": "71010",
+  "Email": "plpdickson.kp@poslaju.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "40002ece-c741-46e1-bb87-03e2b15cb737",
+  "CreatedDate": "2017-12-20T12:14:59.7334872+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:59.7304865+08:00",
+  "WebId": "e4fe1e74-a4fb-41d7-a3b8-f66c098ed87c"
+}

@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "0100",
+  "Name": "Kangar",
+  "PostcodeFrom": "1000",
+  "PostcodeTo": "1999",
+  "PostcodeParent": "01000",
+  "Email": "KPPoslajuKangar@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "6e9681cd-cddc-4239-87cb-9ff6d00e925d",
+  "CreatedDate": "2017-12-20T12:17:49.8633379+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:17:49.9013676+08:00",
+  "WebId": "c9053e28-0ddf-4476-81f7-45d2ef7efef4"
+}

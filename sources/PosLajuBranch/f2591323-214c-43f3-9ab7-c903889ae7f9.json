@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "1400",
+  "Name": "Bukit Mertajam",
+  "PostcodeFrom": "14200",
+  "PostcodeTo": "14289",
+  "PostcodeParent": "14000",
+  "Email": "KPPoslajuBukitMertajam@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "f2591323-214c-43f3-9ab7-c903889ae7f9",
+  "CreatedDate": "2017-12-20T12:14:56.2078913+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:56.2048915+08:00",
+  "WebId": "1606a896-278b-4955-9a40-a26e3085cd2c"
+}

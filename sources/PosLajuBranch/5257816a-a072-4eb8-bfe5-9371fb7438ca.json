@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "1200",
+  "Name": "Butterworth",
+  "PostcodeFrom": "13500",
+  "PostcodeTo": "13599",
+  "PostcodeParent": "12100",
+  "Email": "KPPoslajuButterworth@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "5257816a-a072-4eb8-bfe5-9371fb7438ca",
+  "CreatedDate": "2017-12-20T12:14:56.0687939+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:56.0627893+08:00",
+  "WebId": "54ecbe17-01aa-412d-a35a-d788b5d1e8b6"
+}

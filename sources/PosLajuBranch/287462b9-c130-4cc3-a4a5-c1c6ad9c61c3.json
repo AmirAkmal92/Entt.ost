@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "9800",
+  "Name": "Miri",
+  "PostcodeFrom": "98000",
+  "PostcodeTo": "98049",
+  "PostcodeParent": "98000",
+  "Email": "KPPoslajuMiri@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "287462b9-c130-4cc3-a4a5-c1c6ad9c61c3",
+  "CreatedDate": "2017-12-20T12:15:01.1985202+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:15:01.1975193+08:00",
+  "WebId": "22b76e60-0b4f-477c-8ede-f75e7f181941"
+}

@@ -1,0 +1,16 @@
+{
+  "$type": "Bespoke.Ost.PosLajuBranchBranches.Domain.PosLajuBranch, Ost.PosLajuBranch",
+  "BranchCode": "2870",
+  "Name": "Bentong",
+  "PostcodeFrom": "28600",
+  "PostcodeTo": "28699",
+  "PostcodeParent": "28700 ",
+  "Email": "poslaju.bentong@pos.com.my",
+  "AllowPickup": false,
+  "CreatedBy": "admin",
+  "Id": "af78cc98-f79e-4288-b76b-1c9718ac07a6",
+  "CreatedDate": "2017-12-20T12:14:57.432755+08:00",
+  "ChangedBy": "admin",
+  "ChangedDate": "2017-12-20T12:14:57.423753+08:00",
+  "WebId": "92388c38-d2f0-40aa-b515-a94d2b6acf05"
+}
