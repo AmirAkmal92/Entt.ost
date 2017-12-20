@@ -223,7 +223,7 @@ objectbuilders.app],
                 if (!$("#consignment-request-produk-form").valid()) {
                     return;
                 }
-                return context.get("ost/snb-services/products/?from=" + consignment().Pemberi().Address().Postcode()
+                return context.get("ost/snb-services/products/?from=" + entity().Pickup().PostcodeParent()
                     + "&to=" + consignment().Penerima().Address().Postcode()
                     + "&country=" + consignment().Penerima().Address().Country()
                     + "&weight=" + consignment().Produk().Weight()

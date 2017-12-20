@@ -278,6 +278,7 @@ function (context, logger, router, system, validation, eximp, dialog, watcher, c
         getPickupAvailability = function (postcode) {
             context.get("/consignment-request/get-pickup-availability/" + postcode)
                 .then(function (result) {
+                    entity().Pickup().PostcodeParent(result.PostcodeParent);
                     isPoscodeValid(true);
                     console.log(result);
                 }, function (e) {
