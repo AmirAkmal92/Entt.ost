@@ -291,7 +291,7 @@ objectbuilders.app],
                                 Width: consignment().Produk().Width(),
                                 Length: consignment().Produk().Length(),
                                 Height: consignment().Produk().Height(),
-                                SenderPostcode: consignment().Pemberi().Address().Postcode(),
+                                SenderPostcode: entity().Pickup().PostcodeParent(),
                                 SenderCountry: consignment().Pemberi().Address().Country(),
                                 ReceiverPostcode: consignment().Penerima().Address().Postcode(),
                                 ReceiverCountry: consignment().Penerima().Address().Country()
