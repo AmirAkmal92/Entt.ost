@@ -7,6 +7,7 @@ using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -42,12 +43,12 @@ namespace web.sph.App_Code
             {
                 if (consignment.WebId == cId)
                 {
+                    consignment.Pemberi.Address.Postcode = int.Parse(Regex.Replace(consignment.Pemberi.Address.Postcode, @"\D", "")).ToString("D5");
+                    consignment.Penerima.Address.Postcode = int.Parse(Regex.Replace(consignment.Penerima.Address.Postcode, @"\D", "")).ToString("D5");
                     connote = consignment;
                     break;
                 }
             }
-            connote.Pemberi.Address.Postcode = int.Parse(connote.Pemberi.Address.Postcode).ToString("D5");
-            connote.Penerima.Address.Postcode = int.Parse(connote.Penerima.Address.Postcode).ToString("D5");
             UserProfile userProfile = await GetDesignation();
             var pcm = new printConnoteModel
             {
@@ -76,7 +77,7 @@ namespace web.sph.App_Code
                     break;
                 }
             }
-            connote.Pemberi.Address.Postcode = int.Parse(connote.Pemberi.Address.Postcode).ToString("D5");
+            connote.Pemberi.Address.Postcode = int.Parse(Regex.Replace(connote.Pemberi.Address.Postcode, @"\D", "")).ToString("D5");
             UserProfile userProfile = await GetDesignation();
             var pcm = new printConnoteModel
             {
@@ -154,10 +155,10 @@ namespace web.sph.App_Code
                 var itemsToRemove = new ConsigmentRequest();
                 foreach (var temp in item.Consignments)
                 {
-                    temp.Pemberi.Address.Postcode = int.Parse(temp.Pemberi.Address.Postcode).ToString("D5");
+                    temp.Pemberi.Address.Postcode = int.Parse(Regex.Replace(temp.Pemberi.Address.Postcode, @"\D", "")).ToString("D5");
                     if (!temp.Produk.IsInternational)
                     {
-                        temp.Penerima.Address.Postcode = int.Parse(temp.Penerima.Address.Postcode).ToString("D5");
+                        temp.Penerima.Address.Postcode = int.Parse(Regex.Replace(temp.Penerima.Address.Postcode, @"\D", "")).ToString("D5");
                     }
                     if (temp.ConNote == null)
                     {
@@ -183,13 +184,19 @@ namespace web.sph.App_Code
             var connote = new Consignment();
             foreach (var consignment in item.Consignments)
             {
-                consignment.Pemberi.Address.Postcode = int.Parse(consignment.Pemberi.Address.Postcode).ToString("D5");
-                if (!consignment.Produk.IsInternational)
-                {
-                    consignment.Penerima.Address.Postcode = int.Parse(consignment.Penerima.Address.Postcode).ToString("D5");
-                }
                 if (consignment.WebId == cId)
                 {
+                    consignment.Pemberi.Address.Postcode = int.Parse(Regex.Replace(consignment.Pemberi.Address.Postcode, @"\D", "")).ToString("D5");
+                    if (!consignment.Produk.IsInternational)
+                    {
+                        consignment.Penerima.Address.Postcode = int.Parse(Regex.Replace(consignment.Penerima.Address.Postcode, @"\D", "")).ToString("D5");
+                    }
+                    consignment.Penerima.Address.Address1 = consignment.Penerima.Address.Address1.Substring(0, consignment.Penerima.Address.Address1.Length > 20 ? 20 : consignment.Penerima.Address.Address1.Length);
+                    consignment.Penerima.Address.Address2 = consignment.Penerima.Address.Address2.Substring(0, consignment.Penerima.Address.Address2.Length > 20 ? 20 : consignment.Penerima.Address.Address2.Length);
+                    if (!String.IsNullOrEmpty(consignment.Penerima.Address.Address3))
+                        consignment.Penerima.Address.Address3 = consignment.Penerima.Address.Address3.Substring(0, consignment.Penerima.Address.Address3.Length > 20 ? 20 : consignment.Penerima.Address.Address3.Length);
+                    if (!String.IsNullOrEmpty(consignment.Penerima.Address.Address4))
+                        consignment.Penerima.Address.Address4 = consignment.Penerima.Address.Address4.Substring(0, consignment.Penerima.Address.Address4.Length > 20 ? 20 : consignment.Penerima.Address.Address4.Length);
                     connote = consignment;
                     break;
                 }
@@ -242,11 +249,17 @@ namespace web.sph.App_Code
                 var itemsToRemove = new ConsigmentRequest();
                 foreach (var temp in item.Consignments)
                 {
-                    temp.Pemberi.Address.Postcode = int.Parse(temp.Pemberi.Address.Postcode).ToString("D5");
+                    temp.Pemberi.Address.Postcode = int.Parse(Regex.Replace(temp.Pemberi.Address.Postcode, @"\D", "")).ToString("D5");
                     if (!temp.Produk.IsInternational)
                     {
-                        temp.Penerima.Address.Postcode = int.Parse(temp.Penerima.Address.Postcode).ToString("D5");
+                        temp.Penerima.Address.Postcode = int.Parse(Regex.Replace(temp.Penerima.Address.Postcode, @"\D", "")).ToString("D5");
                     }
+                    temp.Penerima.Address.Address1 = temp.Penerima.Address.Address1.Substring(0, temp.Penerima.Address.Address1.Length > 20 ? 20 : temp.Penerima.Address.Address1.Length);
+                    temp.Penerima.Address.Address2 = temp.Penerima.Address.Address2.Substring(0, temp.Penerima.Address.Address2.Length > 20 ? 20 : temp.Penerima.Address.Address2.Length);
+                    if (!String.IsNullOrEmpty(temp.Penerima.Address.Address3))
+                        temp.Penerima.Address.Address3 = temp.Penerima.Address.Address3.Substring(0, temp.Penerima.Address.Address3.Length > 20 ? 20 : temp.Penerima.Address.Address3.Length);
+                    if (!String.IsNullOrEmpty(temp.Penerima.Address.Address4))
+                        temp.Penerima.Address.Address4 = temp.Penerima.Address.Address4.Substring(0, temp.Penerima.Address.Address4.Length > 20 ? 20 : temp.Penerima.Address.Address4.Length);
                     if (temp.ConNote == null || temp.Produk.IsInternational)
                     {
                         itemsToRemove.Consignments.Add(temp);
@@ -299,7 +312,7 @@ namespace web.sph.App_Code
             }
             return Json(new { success = false, status = "Error" });
         }
-        
+
         [HttpPut]
         [Route("print-lable/consignment-requests/{crId}/consignments/{cId}")]
         public async Task<ActionResult> Lable(string crId, string cId)

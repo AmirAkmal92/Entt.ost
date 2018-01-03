@@ -14,6 +14,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -657,7 +658,7 @@ namespace web.sph.App_Code
                         consignment.Penerima.Address.City = ws.Cells[$"W{row}"].GetValue<string>();
                         consignment.Penerima.Address.State = ws.Cells[$"X{row}"].GetValue<string>();
                         consignment.Penerima.Address.Country = ws.Cells[$"Y{row}"].GetValue<string>();
-                        consignment.Penerima.Address.Postcode = ws.Cells[$"Z{row}"].GetValue<string>();
+                        consignment.Penerima.Address.Postcode = (consignment.Penerima.Address.Country == "MY") ? Regex.Replace(ws.Cells[$"Z{row}"].GetValue<string>(), @"\D", "") : ws.Cells[$"Z{row}"].GetValue<string>();
 
                         // assign product information
                         consignment.Produk.Weight = Convert.ToDecimal(productWeigth, CultureInfo.InvariantCulture);
