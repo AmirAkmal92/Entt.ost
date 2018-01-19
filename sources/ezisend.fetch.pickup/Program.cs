@@ -15,13 +15,13 @@ namespace ezisend.fetch.pickup
 {
     class Program
     {
-        private readonly bool m_doPosting;
+        private const int MaxFetch = 500;//maximum fetch pickups per request
+        private const bool DoPosting = true;//posting switch;
         private readonly HttpClient m_ostClient;
         private readonly HttpClient m_rtsClient;
 
         public Program()
         {
-            m_doPosting = true;//posting switch
             var ostBaseUrl = ConfigurationManager.GetEnvironmentVariable("BaseUrl") ?? "https://ezisend.poslaju.com.my";
             var ostAdminToken = ConfigurationManager.GetEnvironmentVariable("AdminToken") ?? "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHlvdXJjb21wYW55LmNvbSIsInN1YiI6IjYzNjI1ODg3Nzc4NjYwMDg3NTVmMTgxMDQ0IiwibmJmIjoxNTA2MTU5Nzc5LCJpYXQiOjE0OTAyNjIxNzksImV4cCI6MTc2NzEzOTIwMCwiYXVkIjoiT3N0In0.DBMfLcyIdXsOl65p34hA7MOhUFimpGJYXGRn4-alfBI";
             var rtsBaseUrl = ConfigurationManager.GetEnvironmentVariable("RtsBaseUrl") ?? "http://rx.pos.com.my";
@@ -53,7 +53,10 @@ namespace ezisend.fetch.pickup
             var consigmentRequests = await GetConsignmentRequest();
             foreach (var consigmentRequest in consigmentRequests)
             {
-                var connotes = (from consignment in consigmentRequest.Consignments where !string.IsNullOrEmpty(consignment.ConNote) select consignment.ConNote).ToList();
+                var connotes =
+                (from consignment in consigmentRequest.Consignments
+                    where !string.IsNullOrEmpty(consignment.ConNote)
+                    select consignment.ConNote).Take(MaxFetch).ToList();
 
                 var stringOfConnotes = JsonConvert.SerializeObject(connotes);
                 Console.WriteLine(string.Empty);
@@ -67,7 +70,7 @@ namespace ezisend.fetch.pickup
                 foreach (var pickup in pickups)
                 {
                     var rtsPickupFormat = CreateRtsPickupFormatFromPickup(pickup);
-                    await PostRtsPickupFormat(rtsPickupFormat, m_doPosting);
+                    await PostRtsPickupFormat(rtsPickupFormat, DoPosting);
                 }
             }
         }
@@ -168,7 +171,7 @@ namespace ezisend.fetch.pickup
         {
             Console.WriteLine($"Creating: {pickup.ConsignmentNo} {pickup.PickupNo} {pickup.AccountNo}");
 
-            return new RtsPickupFormat()
+            return new RtsPickupFormat
             {
                 PickupNo = pickup.PickupNo,
                 AccountNo = pickup.AccountNo,
