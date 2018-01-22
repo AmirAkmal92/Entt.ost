@@ -943,8 +943,10 @@ namespace web.sph.App_Code
                     ws.Cells[row, 14].Value = volumetricWeight;
                     ws.Cells[row, 15].Value = consignment.Bill.VolumetricWeight;
                     ws.Cells[row, 16].Value = productDescription;
-                    ws.Cells[row, 17].Value = consignment.Produk.Est.ShipperReferenceNo;
-                    ws.Cells[row, 18].Value = consignment.Produk.Est.ReceiverReferenceNo;
+                    ws.Cells[row, 17].Value = consignment.Produk.Est.CodAmount;
+                    ws.Cells[row, 18].Value = consignment.Produk.Est.CcodAmount;
+                    ws.Cells[row, 19].Value = consignment.Produk.Est.ShipperReferenceNo;
+                    ws.Cells[row, 20].Value = consignment.Produk.Est.ReceiverReferenceNo;
                 }
 
                 row++;
