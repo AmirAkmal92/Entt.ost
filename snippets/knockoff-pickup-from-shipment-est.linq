@@ -22,8 +22,10 @@
 
 async Task Main()
 {
+	//PLEASE SET ACCORDINGLY!!!
 	var statusOnlyNoPost = true;
-
+    var maxFetch = 500;
+	
 	var rtsBaseUrl = "http://rx.pos.com.my";
 	var rtsAdminToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHBvcy5jb20ubXkiLCJzdWIiOiI2MzYzODk1NjI1NzE1OTY2NTFjNDkwNzRjZSIsIm5iZiI6MTUxOTIyODI1NywiaWF0IjoxNTAzMzMwNjU3LCJleHAiOjE2MDkzNzI4MDAsImF1ZCI6IlBvc0VudHQifQ.-LxvJ8J4bS1xogV3gIoBtMkqlr1h1zP71FUhFA9MuxE";
 	var rtsClient = new HttpClient();
@@ -45,7 +47,10 @@ async Task Main()
 
 	var consignmentRequestsIndexCount = 1;
 	foreach (var consignmentRequest in consignmentRequests)
-	{		
+	{
+
+		//if (consignmentRequest.Id != "60dd0994-a8ef-4422-a6ae-2807b41f863b") continue;
+		//if (consignmentRequest.UserId != "8800506914") continue;
 		var connotes = new List<string>();
 
 		Console.WriteLine("");
@@ -59,7 +64,7 @@ async Task Main()
 				connotes.Add(consignment.ConNote);
 			}
 		}
-		var strOfConnotes = JsonConvert.SerializeObject(connotes);
+		var strOfConnotes = JsonConvert.SerializeObject(connotes.Take(maxFetch));
 		Console.WriteLine($"Reference Number: {consignmentRequest.ReferenceNo}");
 		Console.WriteLine($"Acount Number: {consignmentRequest.UserId}");
 
