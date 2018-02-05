@@ -1,7 +1,9 @@
 define(['services/datacontext', 'services/logger', 'plugins/router', objectbuilders.system, objectbuilders.config],
     function (context, logger, router, system, config) {
         var isBusy = ko.observable(true),
-            consignmentRequest = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
+            parcelCount = ko.observable(),
+            cartId = ko.observable(),
+            consignmentRequest = new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid()),
             activate = function () {
                 //return context.get("/api/consigment-requests/unpaid/")
                 return $.ajax({
@@ -12,15 +14,19 @@ define(['services/datacontext', 'services/logger', 'plugins/router', objectbuild
                     //console.log(crList);
                     if (crList._count == 0) {
                         //create new cart
-                        consignmentRequest().UserId(config.userName);
-                        consignmentRequest().Designation(config.profile.Designation);
+                        consignmentRequest.UserId(config.userName);
+                        consignmentRequest.Designation(config.profile.Designation);
                         var data = ko.mapping.toJSON(consignmentRequest);
                         context.post(data, "/api/consigment-requests/").done(function (result) {
-                            consignmentRequest().Id(result.id);
+                            cartId(result.id);
+                            parcelCount("0");
                         });
                     } else {
                         //get the first one
-                        consignmentRequest(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(crList._results[0]));
+                        context.get("/consignment-request/get-total-consignment/" + ko.unwrap(crList._results[0].Id)).done(function (result) {
+                            cartId(result.id);
+                            parcelCount(result.totalConsignment);
+                        });
                     }
                 });
             },
@@ -29,7 +35,8 @@ define(['services/datacontext', 'services/logger', 'plugins/router', objectbuild
             };
         var vm = {
             isBusy: isBusy,
-            consignmentRequest: consignmentRequest,
+            parcelCount: parcelCount,
+            cartId: cartId,
             activate: activate,
             attached: attached,
             config: config

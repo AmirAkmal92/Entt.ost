@@ -61,7 +61,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                         crCart.activate();
                         if (entity().Payment().IsPaid()) {
                             app.showMessage("Shipment has been paid. You may proceed to new Shipment now.", "OST", ["Close"]).done(function () {
-                                return router.navigate("consignment-request-cart/" + crCart.consignmentRequest().Id());
+                                return router.navigate("consignment-request-cart/" + crCart.cartId());
                             });
                         } else {
                             if (entity().Pickup().DateReady() === "0001-01-01T00:00:00" || entity().Pickup().DateClose() === "0001-01-01T00:00:00") {

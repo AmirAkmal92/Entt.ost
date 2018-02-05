@@ -1149,6 +1149,16 @@ namespace web.sph.App_Code
         }
 
         [HttpGet]
+        [Route("get-total-consignment/{id}")]
+        public async Task<IHttpActionResult> GetTotalConsignmentAsync(string id)
+        {
+            LoadData<ConsigmentRequest> lo = await GetConsigmentRequest(id);
+            if (null == lo.Source) return Ok(new { success = false, status = "FAIL" });
+            var item = lo.Source;
+            return Ok(new { success = true, status = "OK", id = item.Id, totalConsignment = $"{item.Consignments.Count()}" });
+        }
+
+        [HttpGet]
         [Route("calculate-gst/{value}/{rounded}")]
         public IHttpActionResult CalculateGst(decimal value = 0.00m, int rounded = 2)
         {

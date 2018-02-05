@@ -321,7 +321,7 @@
                                     </div>
                                     <div class="actions">
                                         <div class="btn-group">
-                                            <a class="btn btn-circle yellow-casablanca" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + ko.unwrap($root.crShippingCart().Id) + '/consignments/0' } ">
+                                            <a class="btn btn-circle yellow-casablanca" data-bind="attr: { href: 'ost#consignment-request-pemberi/' + $root.crCart.cartId() + '/consignments/0' } ">
                                                 <i class="fa fa-paper-plane"></i> Send Parcel
                                             </a>
                                         </div>
@@ -331,12 +331,12 @@
                                     <div class="mt-element-step">
                                         <div class="row step-default">
                                             <div class="col-md-12 bg-grey mt-step-col active" style="background-color:#ff6a00!important;">
-                                                <div class="mt-step-number first bg-white font-grey"><span data-bind="text: $root.crShippingCart().Consignments().length" style="color:#ff6a00!important;">0</span></div>
+                                                <div class="mt-step-number first bg-white font-grey"><span data-bind="text: $root.crCart.parcelCount" style="color:#ff6a00!important;">0</span></div>
                                                 <div class="mt-step-title uppercase font-grey-cascade">
-                                                    <!--ko if: $root.crShippingCart().Consignments.length > 1-->
+                                                    <!--ko if: $root.crCart.parcelCount() > 1-->
                                                     items
                                                     <!--/ko-->
-                                                    <!--ko ifnot: $root.crShippingCart().Consignments.length > 1-->
+                                                    <!--ko ifnot: $root.crCart.parcelCount() > 1-->
                                                     item
                                                     <!--/ko-->
                                                 </div>

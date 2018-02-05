@@ -7,7 +7,6 @@ objectbuilders.config, objectbuilders.app, objectbuilders.system, "services/_ko.
             entity = ko.observable(),
             availableCountries = ko.observableArray(),
             availableCountriesCount = 0,
-            crShippingCart = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
             consignmentRequestsHistory = ko.observableArray(),
             query = "/api/consigment-requests/paid",
             list = ko.observableArray([]),
@@ -219,7 +218,7 @@ objectbuilders.config, objectbuilders.app, objectbuilders.system, "services/_ko.
                 }
             },
             compositionComplete = function () {
-                crShippingCart(crCart.consignmentRequest());
+
             };
 
         var vm = {
@@ -231,6 +230,7 @@ objectbuilders.config, objectbuilders.app, objectbuilders.system, "services/_ko.
             query: query,
             list: list,
             partial: partial,
+            crCart: crCart,
             launchUserDetailProfileDialog: launchUserDetailProfileDialog,
             launchUserDetailBillingAddressDialog: launchUserDetailBillingAddressDialog,
             launchUserDetailPickupAddressDialog: launchUserDetailPickupAddressDialog,
@@ -244,7 +244,6 @@ objectbuilders.config, objectbuilders.app, objectbuilders.system, "services/_ko.
             copyUserDetailProfilePickupAddress: copyUserDetailProfilePickupAddress,
             availableCountries: availableCountries,
             optionsAfterRenderCountry: optionsAfterRenderCountry,
-            crShippingCart: crShippingCart,
             consignmentRequestsHistory: consignmentRequestsHistory,
             activate: activate,
             attached: attached,
