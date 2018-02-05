@@ -83,7 +83,7 @@
                     <td class="td-hide">col-02</td>
                     <td class="td-hide">col-03</td>
                     @if (Model.designation == "Contract customer")
-            {
+                    {
                         <td colspan="10" style="padding-left: 16px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ShipperReferenceNo)</b></span><span style="padding-right:34px !important;" class="pull-right"><b>Account No. @Html.Raw(Model.accountNo)</b></span></td>
                     }
                     else
@@ -229,7 +229,7 @@
                     <td class="td-hide">col-02</td>
                     <td class="td-hide">col-03</td>
                     @if (Model.designation == "Contract customer")
-            {
+                    {
                         <td colspan="10" style="padding-left: 30px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ReceiverReferenceNo)</b></span></td>
                     }
                     else
@@ -312,21 +312,20 @@
                 @*======== ROW 14 ======*@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td class="td-hide">col-19</td>
-                    <td class="td-hide">col-20</td>
-                    <td class="td-hide">col-21</td>
-                    <td class="td-hide">col-22</td>
-                    <td class="td-hide">col-23</td>
+                    @if (Model.consignment.Produk.Est.CodAmount > 0 && Model.consignment.Produk.Est.CcodAmount == 0)
+                    {
+                        <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;"><span>COD : RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.Est.CodAmount))</b></td> }
+                    else if (Model.consignment.Produk.Est.CcodAmount > 0 && Model.consignment.Produk.Est.CodAmount == 0)
+                    {
+                        <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;"><span>CCOD : RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.Est.CcodAmount))</b></td> }
+                    else
+                    {
+                        <td rowspan="2" colspan="5">&nbsp;</td>}
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 15 ======*@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td class="td-hide">col-19</td>
-                    <td class="td-hide">col-20</td>
-                    <td class="td-hide">col-21</td>
-                    <td class="td-hide">col-22</td>
-                    <td class="td-hide">col-23</td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 16 ======*@
@@ -444,7 +443,7 @@
                     <td class="td-hide">col-02</td>
                     <td class="td-hide">col-03</td>
                     @if (Model.designation == "Contract customer")
-            {
+                    {
                         <td colspan="10" style="padding-left: 16px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ShipperReferenceNo)</b></span><span style="padding-right:34px !important;" class="pull-right"><b>Account No. @Html.Raw(Model.accountNo)</b></span></td>
                     }
                     else
@@ -590,7 +589,7 @@
                     <td class="td-hide">col-02</td>
                     <td class="td-hide">col-03</td>
                     @if (Model.designation == "Contract customer")
-            {
+                    {
                         <td colspan="10" style="padding-left: 30px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ReceiverReferenceNo)</b></span></td>
                     }
                     else
@@ -673,21 +672,20 @@
                 @*======== ROW 14 ======*@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td class="td-hide">col-19</td>
-                    <td class="td-hide">col-20</td>
-                    <td class="td-hide">col-21</td>
-                    <td class="td-hide">col-22</td>
-                    <td class="td-hide">col-23</td>
+                    @if (Model.consignment.Produk.Est.CodAmount > 0 && Model.consignment.Produk.Est.CcodAmount == 0)
+                    {
+                        <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;"><span>COD : RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.Est.CodAmount))</b></td> }
+                    else if (Model.consignment.Produk.Est.CcodAmount > 0 && Model.consignment.Produk.Est.CodAmount == 0)
+                    {
+                        <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;"><span>CCOD : RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.Est.CcodAmount))</b></td> }
+                    else
+                    {
+                        <td rowspan="2" colspan="5">&nbsp;</td>}
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 15 ======*@
                 <tr>
                     <td class="td-hide">col-01</td>
-                    <td class="td-hide">col-19</td>
-                    <td class="td-hide">col-20</td>
-                    <td class="td-hide">col-21</td>
-                    <td class="td-hide">col-22</td>
-                    <td class="td-hide">col-23</td>
                     <td class="td-hide">col-24</td>
                 </tr>
                 @*======== ROW 16 ======*@
@@ -956,7 +954,7 @@
                             <td class="td-hide">col-02</td>
                             <td class="td-hide">col-03</td>
                             @if (Model.designation == "Contract customer")
-                    {
+                            {
                                 <td colspan="10" style="padding-left: 30px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ReceiverReferenceNo)</b></span></td>
                             }
                             else
@@ -1039,21 +1037,20 @@
                         @*======== ROW 14 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td class="td-hide">col-19</td>
-                            <td class="td-hide">col-20</td>
-                            <td class="td-hide">col-21</td>
-                            <td class="td-hide">col-22</td>
-                            <td class="td-hide">col-23</td>
+                            @if (Model.consignment.Produk.Est.CodAmount > 0 && Model.consignment.Produk.Est.CcodAmount == 0)
+                            {
+                                <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;"><span>COD : RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.Est.CodAmount))</b></td> }
+                            else if (Model.consignment.Produk.Est.CcodAmount > 0 && Model.consignment.Produk.Est.CodAmount == 0)
+                            {
+                                <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;"><span>CCOD : RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.Est.CcodAmount))</b></td> }
+                            else
+                            {
+                                <td rowspan="2" colspan="5">&nbsp;</td>}
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 15 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td class="td-hide">col-19</td>
-                            <td class="td-hide">col-20</td>
-                            <td class="td-hide">col-21</td>
-                            <td class="td-hide">col-22</td>
-                            <td class="td-hide">col-23</td>
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 16 ======*@
@@ -1171,7 +1168,7 @@
                             <td class="td-hide">col-02</td>
                             <td class="td-hide">col-03</td>
                             @if (Model.designation == "Contract customer")
-                    {
+                            {
                                 <td colspan="10" style="padding-left: 16px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(Model.consignment.Produk.Est.ShipperReferenceNo)</b></span><span style="padding-right:34px !important;" class="pull-right"><b>Account No. @Html.Raw(Model.accountNo)</b></span></td>
                             }
                             else
@@ -1400,21 +1397,20 @@
                         @*======== ROW 14 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td class="td-hide">col-19</td>
-                            <td class="td-hide">col-20</td>
-                            <td class="td-hide">col-21</td>
-                            <td class="td-hide">col-22</td>
-                            <td class="td-hide">col-23</td>
+                            @if (Model.consignment.Produk.Est.CodAmount > 0 && Model.consignment.Produk.Est.CcodAmount == 0)
+                            {
+                                <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;"><span>COD : RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.Est.CodAmount))</b></td> }
+                            else if (Model.consignment.Produk.Est.CcodAmount > 0 && Model.consignment.Produk.Est.CodAmount == 0)
+                            {
+                                <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;"><span>CCOD : RM</span>@Html.Raw(String.Format("{0:F2}", Model.consignment.Produk.Est.CcodAmount))</b></td> }
+                            else
+                            {
+                                <td rowspan="2" colspan="5">&nbsp;</td>}
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 15 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td class="td-hide">col-19</td>
-                            <td class="td-hide">col-20</td>
-                            <td class="td-hide">col-21</td>
-                            <td class="td-hide">col-22</td>
-                            <td class="td-hide">col-23</td>
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 16 ======*@

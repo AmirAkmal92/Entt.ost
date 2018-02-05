@@ -898,7 +898,7 @@
                             <td class="td-hide">col-03</td>
                             <td class="td-hide">col-04</td>
                             @if (Model.Designation == "Contract customer")
-                    {
+                            {
                                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.UserId)</span></td>
                             }
                             else
@@ -1631,7 +1631,7 @@
                             <td class="td-hide">col-03</td>
                             <td class="td-hide">col-04</td>
                             @if (Model.Designation == "Contract customer")
-                    {
+                            {
                                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.UserId)</span></td>
                             }
                             else
@@ -2363,7 +2363,7 @@
                             <td class="td-hide">col-03</td>
                             <td class="td-hide">col-04</td>
                             @if (Model.Designation == "Contract customer")
-                    {
+                            {
                                 <td colspan="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>@Html.Raw(Model.UserId)</span></td>
                             }
                             else
@@ -3110,35 +3110,35 @@
                                 <address style="font-size: 11px;line-height: 2;margin-top: 6px;margin-bottom: 0px !important;">
                                     @if (item.Produk.ValueAddedDeclaredValue != 0)
                                     {
-                                    <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 5px;">
-                                        @if (item.Produk.Est.ValueAddedService == "zurich")
+                                        <span class="text-uppercase" style="padding-left: 51px;"><b>YES</b></span><span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 5px;">
+                                            @if (item.Produk.Est.ValueAddedService == "zurich")
                                             {
-                                    <span>Contribution Amount </span>
+                                                <span>Contribution Amount </span>
                                             }
                                             else
                                             {
-                                    <span>Premium Amount </span>
+                                                <span>Premium Amount </span>
                                             }
-                                        <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", item.Produk.ValueAddedValue))</b>
-                                    </span><br />
-                                    <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", item.Produk.ValueAddedDeclaredValue))</b></span><br />
+                                            <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", item.Produk.ValueAddedValue))</b>
+                                        </span><br />
+                                        <span class="text-uppercase" style="padding-left: 145px;"><b><span>RM</span>@Html.Raw(String.Format("{0:F2}", item.Produk.ValueAddedDeclaredValue))</b></span><br />
                                     }
                                     else
                                     {
-                                    <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
-                                    <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
+                                        <span class="text-uppercase" style="padding-left: 53px;"><b>NIL</b></span><br />
+                                        <span class="text-uppercase" style="padding-left: 145px;">&nbsp;</span><br />
                                     }
                                     @if (item.Produk.Est.CodAmount > 0 && item.Produk.Est.CcodAmount == 0)
                                     {
-                                    <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">Cash on Delivery  <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", item.Produk.Est.CodAmount))</b></span><br />
+                                        <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">Cash on Delivery  <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", item.Produk.Est.CodAmount))</b></span><br />
                                     }
                                     else if (item.Produk.Est.CcodAmount > 0 && item.Produk.Est.CodAmount == 0)
                                     {
-                                    <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">Credit Card on Delivery  <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", item.Produk.Est.CcodAmount))</b></span><br />
+                                        <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">Credit Card on Delivery  <b><span>RM</span>@Html.Raw(String.Format("{0:F2}", item.Produk.Est.CcodAmount))</b></span><br />
                                     }
                                     else
                                     {
-                                    <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">&nbsp;</span>
+                                        <span style="position: absolute;font-size: 10px;font-weight: 700;color: #484848;margin-top: 1.5px;margin-left: 19px;">&nbsp;</span>
                                     }
                                 </address>
                             </td>
@@ -3254,21 +3254,20 @@
                         @*======== ROW 14 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td class="td-hide">col-19</td>
-                            <td class="td-hide">col-20</td>
-                            <td class="td-hide">col-21</td>
-                            <td class="td-hide">col-22</td>
-                            <td class="td-hide">col-23</td>
+                            @if (item.Produk.Est.CodAmount > 0 && item.Produk.Est.CcodAmount == 0)
+                            {
+                                <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;"><span>COD : RM</span>@Html.Raw(String.Format("{0:F2}", item.Produk.Est.CodAmount))</b></td> }
+                            else if (item.Produk.Est.CcodAmount > 0 && item.Produk.Est.CodAmount == 0)
+                            {
+                                <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;"><span>CCOD : RM</span>@Html.Raw(String.Format("{0:F2}", item.Produk.Est.CcodAmount))</b></td> }
+                            else
+                            {
+                                <td rowspan="2" colspan="5">&nbsp;</td>}
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 15 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td class="td-hide">col-19</td>
-                            <td class="td-hide">col-20</td>
-                            <td class="td-hide">col-21</td>
-                            <td class="td-hide">col-22</td>
-                            <td class="td-hide">col-23</td>
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 16 ======*@
@@ -3386,7 +3385,7 @@
                             <td class="td-hide">col-02</td>
                             <td class="td-hide">col-03</td>
                             @if (Model.Designation == "Contract customer")
-                    {
+                            {
                                 <td colspan="10" style="padding-left: 16px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(item.Produk.Est.ShipperReferenceNo)</b></span><span style="padding-right:34px !important;" class="pull-right"><b>Account No. @Html.Raw(Model.UserId)</b></span></td>
                             }
                             else
@@ -3532,7 +3531,7 @@
                             <td class="td-hide">col-02</td>
                             <td class="td-hide">col-03</td>
                             @if (Model.Designation == "Contract customer")
-                    {
+                            {
                                 <td colspan="10" style="padding-left: 30px !important; font-size: 10pt !important;"><span><b>Ref No. @Html.Raw(item.Produk.Est.ReceiverReferenceNo)</b></span></td>
                             }
                             else
@@ -3615,21 +3614,20 @@
                         @*======== ROW 14 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td class="td-hide">col-19</td>
-                            <td class="td-hide">col-20</td>
-                            <td class="td-hide">col-21</td>
-                            <td class="td-hide">col-22</td>
-                            <td class="td-hide">col-23</td>
+                            @if (item.Produk.Est.CodAmount > 0 && item.Produk.Est.CcodAmount == 0)
+                            {
+                                <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;"><span>COD : RM</span>@Html.Raw(String.Format("{0:F2}", item.Produk.Est.CodAmount))</b></td> }
+                            else if (item.Produk.Est.CcodAmount > 0 && item.Produk.Est.CodAmount == 0)
+                            {
+                                <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;"><span>CCOD : RM</span>@Html.Raw(String.Format("{0:F2}", item.Produk.Est.CcodAmount))</b></td> }
+                            else
+                            {
+                                <td rowspan="2" colspan="5">&nbsp;</td>}
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 15 ======*@
                         <tr>
                             <td class="td-hide">col-01</td>
-                            <td class="td-hide">col-19</td>
-                            <td class="td-hide">col-20</td>
-                            <td class="td-hide">col-21</td>
-                            <td class="td-hide">col-22</td>
-                            <td class="td-hide">col-23</td>
                             <td class="td-hide">col-24</td>
                         </tr>
                         @*======== ROW 16 ======*@
@@ -3722,7 +3720,7 @@
                                 <td rowspan="5" colspan="9">
                                     <svg id="barcode-baby-@Html.Raw(countBabyBarcodeBarcode)"></svg><br />
                                     @if (item.IsMps)
-                        {
+                                    {
                                         <span style="padding-left: 70px;font-size: 13px !important;"><b>Master : @Html.Raw(item.ConNote)  @Html.Raw(countBabyBarcodeBarcode) / @Html.Raw(item.BabyConnotesTotal)</b></span>
                                     }
                                     else
@@ -3983,21 +3981,20 @@
                             @*======== ROW 14 ======*@
                             <tr>
                                 <td class="td-hide">col-01</td>
-                                <td class="td-hide">col-19</td>
-                                <td class="td-hide">col-20</td>
-                                <td class="td-hide">col-21</td>
-                                <td class="td-hide">col-22</td>
-                                <td class="td-hide">col-23</td>
+                                @if (item.Produk.Est.CodAmount > 0 && item.Produk.Est.CcodAmount == 0)
+                                {
+                                    <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;"><span>COD : RM</span>@Html.Raw(String.Format("{0:F2}", item.Produk.Est.CodAmount))</b></td> }
+                                else if (item.Produk.Est.CcodAmount > 0 && item.Produk.Est.CodAmount == 0)
+                                {
+                                    <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;"><span>CCOD : RM</span>@Html.Raw(String.Format("{0:F2}", item.Produk.Est.CcodAmount))</b></td> }
+                                else
+                                {
+                                    <td rowspan="2" colspan="5">&nbsp;</td>}
                                 <td class="td-hide">col-24</td>
                             </tr>
                             @*======== ROW 15 ======*@
                             <tr>
                                 <td class="td-hide">col-01</td>
-                                <td class="td-hide">col-19</td>
-                                <td class="td-hide">col-20</td>
-                                <td class="td-hide">col-21</td>
-                                <td class="td-hide">col-22</td>
-                                <td class="td-hide">col-23</td>
                                 <td class="td-hide">col-24</td>
                             </tr>
                             @*======== ROW 16 ======*@
@@ -4083,7 +4080,7 @@
                                 <td rowspan="5" colspan="9">
                                     <svg id="barcode-baby-@Html.Raw(countBabyBarcodeBarcode)"></svg><br />
                                     @if (item.IsMps)
-                        {
+                                    {
                                         <span style="padding-left: 70px;font-size: 13px !important;"><b>Master : @Html.Raw(item.ConNote)  @Html.Raw(countBabyBarcodeBarcode) / @Html.Raw(item.BabyConnotesTotal)</b></span>
                                     }
                                     else
@@ -4344,21 +4341,20 @@
                             @*======== ROW 14 ======*@
                             <tr>
                                 <td class="td-hide">col-01</td>
-                                <td class="td-hide">col-19</td>
-                                <td class="td-hide">col-20</td>
-                                <td class="td-hide">col-21</td>
-                                <td class="td-hide">col-22</td>
-                                <td class="td-hide">col-23</td>
+                                @if (item.Produk.Est.CodAmount > 0 && item.Produk.Est.CcodAmount == 0)
+                                {
+                                    <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;"><span>COD : RM</span>@Html.Raw(String.Format("{0:F2}", item.Produk.Est.CodAmount))</b></td> }
+                                else if (item.Produk.Est.CcodAmount > 0 && item.Produk.Est.CodAmount == 0)
+                                {
+                                    <td rowspan="2" colspan="5"><b style="font-size: 28px;margin-left: -40px;"><span>CCOD : RM</span>@Html.Raw(String.Format("{0:F2}", item.Produk.Est.CcodAmount))</b></td> }
+                                else
+                                {
+                                    <td rowspan="2" colspan="5">&nbsp;</td>}
                                 <td class="td-hide">col-24</td>
                             </tr>
                             @*======== ROW 15 ======*@
                             <tr>
                                 <td class="td-hide">col-01</td>
-                                <td class="td-hide">col-19</td>
-                                <td class="td-hide">col-20</td>
-                                <td class="td-hide">col-21</td>
-                                <td class="td-hide">col-22</td>
-                                <td class="td-hide">col-23</td>
                                 <td class="td-hide">col-24</td>
                             </tr>
                             @*======== ROW 16 ======*@
@@ -4441,8 +4437,8 @@
     <!-- END CORE PLUGINS -->
 
     <script type="text/javascript">
-        @{ count = 1; }
-        @foreach (var item in Model.Consignments)
+@{ count = 1; }
+@foreach (var item in Model.Consignments)
         {
             var dataMatrixModel = new web.sph.App_Code.DataMatrixModel
             {
@@ -4474,55 +4470,55 @@
             var textParent = $@"{dataMatrixModel.versionHeader}^{dataMatrixModel.connoteNum}^{dataMatrixModel.recipientPostcode}^{dataMatrixModel.countryCode}^{dataMatrixModel.productCode}^{dataMatrixModel.parentConnote}^{dataMatrixModel.mpsIndicator}^{dataMatrixModel.senderPhoneNum}^{dataMatrixModel.senderEmail}^{dataMatrixModel.senderRefNo}^{dataMatrixModel.customerAccNum}^{dataMatrixModel.recipientPhoneNum}^{dataMatrixModel.recipientEmail}^{dataMatrixModel.weight}^{dataMatrixModel.dimensionVol}^{dataMatrixModel.codAmount}^{dataMatrixModel.ccodAmount}^{dataMatrixModel.valueAdded}^{dataMatrixModel.itemCategory}^{dataMatrixModel.amountPaid}^{dataMatrixModel.zone}";
             if (item.Produk.IsInternational)
             {
-                <text>
-                JsBarcode('#barcode-' + '@Html.Raw(count)', '@Html.Raw(item.ConNote)', {
-                    width: 2,
-                    height: 39
-                });
+<text>
+        JsBarcode('#barcode-' + '@Html.Raw(count)', '@Html.Raw(item.ConNote)', {
+            width: 2,
+            height: 39
+        });
 
-                $("#bcTargetInt-1-" + "@Html.Raw(count)").barcode("@Html.Raw(textParent)", "datamatrix", { showHRI: false, moduleSize: 3 });
-                $("#bcTargetInt-2-" + "@Html.Raw(count)").barcode("@Html.Raw(textParent)", "datamatrix", { showHRI: false, moduleSize: 3 });
-                $("#bcTargetInt-3-" + "@Html.Raw(count)").barcode("@Html.Raw(textParent)", "datamatrix", { showHRI: false, moduleSize: 3 });
-                $("#bcTargetInt-4-" + "@Html.Raw(count)").barcode("@Html.Raw(textParent)", "datamatrix", { showHRI: false, moduleSize: 3 });
-                </text>
-            }
-            else
-            {
-                <text>
-                //NDD - Parent
-                $("#bcTarget1-" + "@Html.Raw(count)").barcode("@Html.Raw(textParent)", "datamatrix", { showHRI: false, moduleSize: 3 });
-                $("#bcTarget2-" + "@Html.Raw(count)").barcode("@Html.Raw(textParent)", "datamatrix", { showHRI: false, moduleSize: 3 });
+        $("#bcTargetInt-1-" + "@Html.Raw(count)").barcode("@Html.Raw(textParent)", "datamatrix", { showHRI: false, moduleSize: 3 });
+        $("#bcTargetInt-2-" + "@Html.Raw(count)").barcode("@Html.Raw(textParent)", "datamatrix", { showHRI: false, moduleSize: 3 });
+        $("#bcTargetInt-3-" + "@Html.Raw(count)").barcode("@Html.Raw(textParent)", "datamatrix", { showHRI: false, moduleSize: 3 });
+        $("#bcTargetInt-4-" + "@Html.Raw(count)").barcode("@Html.Raw(textParent)", "datamatrix", { showHRI: false, moduleSize: 3 });
+</text>
+    }
+    else
+    {
+<text>
+        //NDD - Parent
+        $("#bcTarget1-" + "@Html.Raw(count)").barcode("@Html.Raw(textParent)", "datamatrix", { showHRI: false, moduleSize: 3 });
+        $("#bcTarget2-" + "@Html.Raw(count)").barcode("@Html.Raw(textParent)", "datamatrix", { showHRI: false, moduleSize: 3 });
 
-                JsBarcode('#barcode-' + '@Html.Raw(count)', '@Html.Raw(item.ConNote)', {
-                    textPosition: "top",
-                    textMargin: 5,
-                    width: 2,
-                    height: 50
-                });
-                </text>
+        JsBarcode('#barcode-' + '@Html.Raw(count)', '@Html.Raw(item.ConNote)', {
+            textPosition: "top",
+            textMargin: 5,
+            width: 2,
+            height: 50
+        });
+</text>
 
-                var countBabyBarcodeBarcode = 2;
-                foreach (var babyConnote in item.BabyConnotes)
-                {
-                    <text>
-                    //NDD - Baby
-                    @{var textBaby = $@"{dataMatrixModel.versionHeader}^{babyConnote}^{dataMatrixModel.recipientPostcode}^{dataMatrixModel.countryCode}^{dataMatrixModel.productCode}^{dataMatrixModel.parentConnote}^{dataMatrixModel.mpsIndicator}^{dataMatrixModel.senderPhoneNum}^{dataMatrixModel.senderEmail}^{dataMatrixModel.senderRefNo}^{dataMatrixModel.customerAccNum}^{dataMatrixModel.recipientPhoneNum}^{dataMatrixModel.recipientEmail}^{dataMatrixModel.weight}^{dataMatrixModel.dimensionVol}^{dataMatrixModel.codAmount}^{dataMatrixModel.ccodAmount}^{dataMatrixModel.valueAdded}^{dataMatrixModel.itemCategory}^{dataMatrixModel.amountPaid}^{dataMatrixModel.zone}";}
+        var countBabyBarcodeBarcode = 2;
+        foreach (var babyConnote in item.BabyConnotes)
+        {
+<text>
+        //NDD - Baby
+@{var textBaby = $@"{dataMatrixModel.versionHeader}^{babyConnote}^{dataMatrixModel.recipientPostcode}^{dataMatrixModel.countryCode}^{dataMatrixModel.productCode}^{dataMatrixModel.parentConnote}^{dataMatrixModel.mpsIndicator}^{dataMatrixModel.senderPhoneNum}^{dataMatrixModel.senderEmail}^{dataMatrixModel.senderRefNo}^{dataMatrixModel.customerAccNum}^{dataMatrixModel.recipientPhoneNum}^{dataMatrixModel.recipientEmail}^{dataMatrixModel.weight}^{dataMatrixModel.dimensionVol}^{dataMatrixModel.codAmount}^{dataMatrixModel.ccodAmount}^{dataMatrixModel.valueAdded}^{dataMatrixModel.itemCategory}^{dataMatrixModel.amountPaid}^{dataMatrixModel.zone}";}
 
-                    $("#bcTarget1-baby-" + "@Html.Raw(countBabyBarcodeBarcode)").barcode("@Html.Raw(textBaby)", "datamatrix", { showHRI: false, moduleSize: 3 });
-                    $("#bcTarget2-baby-" + "@Html.Raw(countBabyBarcodeBarcode)").barcode("@Html.Raw(textBaby)", "datamatrix", { showHRI: false, moduleSize: 3 });
+        $("#bcTarget1-baby-" + "@Html.Raw(countBabyBarcodeBarcode)").barcode("@Html.Raw(textBaby)", "datamatrix", { showHRI: false, moduleSize: 3 });
+        $("#bcTarget2-baby-" + "@Html.Raw(countBabyBarcodeBarcode)").barcode("@Html.Raw(textBaby)", "datamatrix", { showHRI: false, moduleSize: 3 });
 
-                    JsBarcode('#barcode-baby-' + '@Html.Raw(countBabyBarcodeBarcode)', '@Html.Raw(babyConnote)', {
-                        textPosition: "top",
-                        textMargin: 5,
-                        width: 2,
-                        height: 50
-                    });
-                    </text>
-                    countBabyBarcodeBarcode++;
-                }
-            }
-            count++;
-        }
+        JsBarcode('#barcode-baby-' + '@Html.Raw(countBabyBarcodeBarcode)', '@Html.Raw(babyConnote)', {
+            textPosition: "top",
+            textMargin: 5,
+            width: 2,
+            height: 50
+        });
+</text>
+        countBabyBarcodeBarcode++;
+    }
+}
+count++;
+}
         window.print();
     </script>
 </body>
