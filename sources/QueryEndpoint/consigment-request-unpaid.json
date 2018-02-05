@@ -47,7 +47,12 @@
   },
   "MemberCollection": {
     "$type": "Bespoke.Sph.Domain.ObjectCollection`1[[System.String, mscorlib]], domain.sph",
-    "$values": []
+    "$values": [
+      "Id",
+      "UserId",
+      "ReferenceNo",
+      "Designation"
+    ]
   },
   "CacheProfile": "",
   "Name": "Unpaid",
@@ -62,6 +67,6 @@
   "Id": "consigment-request-unpaid",
   "CreatedDate": "2017-02-14T12:15:11.6179879+08:00",
   "ChangedBy": "admin",
-  "ChangedDate": "2017-07-14T09:35:48.3505913+08:00",
+  "ChangedDate": "2018-01-10T18:54:22.7646448+08:00",
   "WebId": "ef3a624b-dce6-4c73-a383-12c3739c9b9b"
 }
