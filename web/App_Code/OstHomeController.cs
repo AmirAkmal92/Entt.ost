@@ -191,12 +191,12 @@ namespace web.sph.App_Code
                     {
                         consignment.Penerima.Address.Postcode = int.Parse(Regex.Replace(consignment.Penerima.Address.Postcode, @"\D", "")).ToString("D5");
                     }
-                    consignment.Penerima.Address.Address1 = consignment.Penerima.Address.Address1.Substring(0, consignment.Penerima.Address.Address1.Length > 20 ? 20 : consignment.Penerima.Address.Address1.Length);
-                    consignment.Penerima.Address.Address2 = consignment.Penerima.Address.Address2.Substring(0, consignment.Penerima.Address.Address2.Length > 20 ? 20 : consignment.Penerima.Address.Address2.Length);
+                    consignment.Penerima.Address.Address1 = consignment.Penerima.Address.Address1.Substring(0, consignment.Penerima.Address.Address1.Length > 36 ? 36 : consignment.Penerima.Address.Address1.Length);
+                    consignment.Penerima.Address.Address2 = consignment.Penerima.Address.Address2.Substring(0, consignment.Penerima.Address.Address2.Length > 36 ? 36 : consignment.Penerima.Address.Address2.Length);
                     if (!String.IsNullOrEmpty(consignment.Penerima.Address.Address3))
-                        consignment.Penerima.Address.Address3 = consignment.Penerima.Address.Address3.Substring(0, consignment.Penerima.Address.Address3.Length > 20 ? 20 : consignment.Penerima.Address.Address3.Length);
+                        consignment.Penerima.Address.Address3 = consignment.Penerima.Address.Address3.Substring(0, consignment.Penerima.Address.Address3.Length > 30 ? 30 : consignment.Penerima.Address.Address3.Length);
                     if (!String.IsNullOrEmpty(consignment.Penerima.Address.Address4))
-                        consignment.Penerima.Address.Address4 = consignment.Penerima.Address.Address4.Substring(0, consignment.Penerima.Address.Address4.Length > 20 ? 20 : consignment.Penerima.Address.Address4.Length);
+                        consignment.Penerima.Address.Address4 = consignment.Penerima.Address.Address4.Substring(0, consignment.Penerima.Address.Address4.Length > 30 ? 30 : consignment.Penerima.Address.Address4.Length);
                     connote = consignment;
                     break;
                 }
@@ -254,12 +254,12 @@ namespace web.sph.App_Code
                     {
                         temp.Penerima.Address.Postcode = int.Parse(Regex.Replace(temp.Penerima.Address.Postcode, @"\D", "")).ToString("D5");
                     }
-                    temp.Penerima.Address.Address1 = temp.Penerima.Address.Address1.Substring(0, temp.Penerima.Address.Address1.Length > 20 ? 20 : temp.Penerima.Address.Address1.Length);
-                    temp.Penerima.Address.Address2 = temp.Penerima.Address.Address2.Substring(0, temp.Penerima.Address.Address2.Length > 20 ? 20 : temp.Penerima.Address.Address2.Length);
+                    temp.Penerima.Address.Address1 = temp.Penerima.Address.Address1.Substring(0, temp.Penerima.Address.Address1.Length > 36 ? 36 : temp.Penerima.Address.Address1.Length);
+                    temp.Penerima.Address.Address2 = temp.Penerima.Address.Address2.Substring(0, temp.Penerima.Address.Address2.Length > 36 ? 36 : temp.Penerima.Address.Address2.Length);
                     if (!String.IsNullOrEmpty(temp.Penerima.Address.Address3))
-                        temp.Penerima.Address.Address3 = temp.Penerima.Address.Address3.Substring(0, temp.Penerima.Address.Address3.Length > 20 ? 20 : temp.Penerima.Address.Address3.Length);
+                        temp.Penerima.Address.Address3 = temp.Penerima.Address.Address3.Substring(0, temp.Penerima.Address.Address3.Length > 30 ? 30 : temp.Penerima.Address.Address3.Length);
                     if (!String.IsNullOrEmpty(temp.Penerima.Address.Address4))
-                        temp.Penerima.Address.Address4 = temp.Penerima.Address.Address4.Substring(0, temp.Penerima.Address.Address4.Length > 20 ? 20 : temp.Penerima.Address.Address4.Length);
+                        temp.Penerima.Address.Address4 = temp.Penerima.Address.Address4.Substring(0, temp.Penerima.Address.Address4.Length > 30 ? 30 : temp.Penerima.Address.Address4.Length);
                     if (temp.ConNote == null || temp.Produk.IsInternational)
                     {
                         itemsToRemove.Consignments.Add(temp);
