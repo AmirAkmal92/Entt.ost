@@ -1,7 +1,7 @@
 define(["services/datacontext", "services/logger", "plugins/router", "services/system",
     "services/chart", objectbuilders.config, objectbuilders.app, "viewmodels/_consignment-request-cart",
-    "services/app", "plugins/dialog"],
-    function (context, logger, router, system, chart, config, app, crCart, app2, dialog) {
+    "services/app", "plugins/dialog", "services/kendoCustomEstCart"],
+    function (context, logger, router, system, chart, config, app, crCart, app2, dialog, kendoCustom) {
 
         var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
             isBusy = ko.observable(false),
@@ -24,6 +24,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             selectedConsignments = ko.observableArray([]),
             checkAll = ko.observable(false),
             errorNum = ko.observable(-1),
+            crKendoList = null,
             id = ko.observable(),
             headers = {},
             activate = function (entityId) {
@@ -58,6 +59,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     }
                 });
                 //return context.get("/api/consigment-requests/" + entityId)
+                toggleShowBusyLoadingDialog("Initialize shipment.");
                 return $.ajax({
                     url: "/api/consigment-requests/" + entityId,
                     method: "GET",
@@ -75,7 +77,24 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                             }
                         }
                         entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
+
+                        crKendoList = entity().Consignments()
+                            .map(b => {
+                                return {
+                                    Id: id(),
+                                    SenderName: b.Pemberi().ContactPerson(),
+                                    RecipientName: b.Penerima().ContactPerson(),
+                                    ProductWeight: b.Produk().Weight().toFixed(1),
+                                    ConNote: b.ConNote(),
+                                    WebId: b.WebId()
+                                };
+                            });
+
                         crCart.activate();
+
+                        createTableKendo(entity);
+
+                        toggleShowBusyLoadingDialog("Done");
                     }, function (e) {
                         if (e.status == 404) {
                             app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "OST", ["Close"])
@@ -86,6 +105,10 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     });
             },
             defaultCommand = function () {
+                toggleShowBusyLoadingDialog("Updating data");
+                //generate new guid for versioning detection
+                entity().WebId(system.guid());
+
                 var data = ko.mapping.toJSON(entity),
                     tcs = new $.Deferred();
 
@@ -106,12 +129,37 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                         tcs.resolve(false);
                     })
                     .then(function (result) {
-                        logger.info(result.message);
-                        entity().Id(result.id);
-                        errors.removeAll();
-                        tcs.resolve(result);
+                        context.get("/api/consigment-requests/" + id())
+                            .done(function (crList) {
+                                if (crList.WebId == entity().WebId()) {
+                                    toggleShowBusyLoadingDialog("Done");
+                                    logger.info(result.message);
+                                    entity().Id(result.id);
+                                    errors.removeAll();
+                                    tcs.resolve(result);
+                                }
+                                else {
+                                    window.setTimeout(getCrList(result, tcs), 200);
+                                }
+                            });
                     });
                 return tcs.promise();
+            },
+            getCrList = function (result, tcs) {
+                context.get("/api/consigment-requests/" + id())
+                    .done(function (crList) {
+                        if (crList.WebId == entity().WebId()) {
+                            toggleShowBusyLoadingDialog("Done");
+                            logger.info(result.message);
+                            entity().Id(result.id);
+                            errors.removeAll();
+                            tcs.resolve(result);
+                            return tcs.promise();
+                        }
+                        else {
+                            window.setTimeout(getCrList(result, tcs), 200);
+                        }
+                    });
             },
             deleteConsignment = function (consignment) {
                 return app.showMessage("Are you sure you want to remove parcel? This action cannot be undone.", "OST", ["Yes", "No"])
@@ -434,7 +482,9 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                             if (!result) return;
                             if (result === "OK") {
                                 var storeId = ko.unwrap(dialog.item().storeId);
+                                toggleShowBusyLoadingDialog("Process...");
                                 context.post("{}", "/consignment-request/import-consignments/" + id() + "/store-id/" + storeId).done(function (result) {
+                                    toggleShowBusyLoadingDialog("Done");
                                     console.log(result);
                                     var dialogMessage = "File successfully imported.";
                                     dialogMessage += " " + result.status;
@@ -445,7 +495,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                                     app.showMessage(dialogMessage, "OST", ["Close"]).done(function () {
                                         if (result.success) {
                                             activate(id());
-                                            context.put("", "/consignment-request/get-and-save-routing-code/" + ko.unwrap(entity().Id));
+                                            //context.put("", "/consignment-request/get-and-save-routing-code/" + ko.unwrap(entity().Id));
                                         }
                                     });
                                 });
@@ -507,9 +557,68 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             toggleShowPickupScheduler = function () {
                 showPickupScheduler(!showPickupScheduler());
             },
+            createTableKendo = function (entity) {
+
+            },
             attached = function (view) {
                 size.subscribe(function () {
                     activate(id());
+                });
+
+                $(view).on("click", ".k-grid-get-connote", function () {
+                    $(".k-grid-get-connote").removeAttr("href");
+                    alert("Generate Consignment Number");
+                });
+
+                $(view).on("click", ".delete-consignment", function () {
+                    alert($(".delete-consignment").attr('id'));
+                    //crKendoList.remove(a => a.WebId)
+                    $(".delete-consignment").removeAttr("href");
+                    alert("delete");
+                });
+
+                return $("#grid").kendoGrid({
+                    dataSource: {
+                        data: crKendoList,
+                        schema: {
+                            model: {
+                                fields: {
+                                    WebId: { type: "string" }
+                                }
+                            }
+                        },
+                        pageSize: 20
+                    },
+                    height: 550,
+                    scrollable: true,
+                    pageable: {
+                        input: true,
+                        numeric: false,
+                        refresh: true
+                    },
+                    rowTemplate: kendoCustom.template,
+                    columns: [
+                        {
+                            field: "SenderName", title: 'Sender Name',
+                            filterable: {
+                                cell: { enabled: true, delay: 1500 }
+                            },
+                        },
+                        { field: "RecipientName", title: 'Recipient Name' },
+                        { field: "ProductWeight", title: 'Product Weight' },
+                        { field: "ConNote", title: 'Consignment Number' },
+                        { title: "Action" }
+                    ],
+                    toolbar: [
+                        {
+                            text: "Get Consignment No",
+                            className: "k-grid-get-connote btn btn-circle yellow-casablanca"
+                        },
+                        {
+                            text: "Delete",
+                            className: "k-grid-filter btn btn-circle yellow-casablanca"
+                        }
+                    ]
                 });
             },
             compositionComplete = function () {
@@ -583,7 +692,8 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             nextPage: nextPage,
             previousPage: previousPage,
             saveCommand: saveCommand,
-            submitPickup: submitPickup
+            submitPickup: submitPickup,
+            crKendoList: crKendoList
         };
         return vm;
     });
