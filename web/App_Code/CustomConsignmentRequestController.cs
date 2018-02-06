@@ -713,6 +713,9 @@ namespace web.sph.App_Code
 
                     resultStatus = $"{countAddedConsignment} parcel(s) added.";
 
+                    //generate new guid for versioning detection
+                    item.WebId = Guid.NewGuid().ToString();
+
                     try
                     {
                         await SaveConsigmentRequest(item);
@@ -732,7 +735,15 @@ namespace web.sph.App_Code
             else
             {
                 resultSuccess = false;
-                resultStatus = "Consignment Request has been paid";
+                resultStatus = "Consignment Request has been paid / already picked up";
+            }
+            //TODO: Need to be finalized
+            var dataSaved = await ConsignmentRequestSaved(item);
+
+            if (!dataSaved)
+            {
+                resultSuccess = false;
+                resultStatus = $"Worksheet Consignments in {doc.FileName}, cannot been save.";
             }
 
             var result = new
@@ -747,6 +758,33 @@ namespace web.sph.App_Code
             // wait until the worker process it
             await Task.Delay(1500);
             return Accepted(result);
+        }
+
+        private async Task<bool> ConsignmentRequestSaved(ConsigmentRequest item)
+        {
+            var countWhile = 0;
+
+            while (true)
+            {
+                if (countWhile > 600) //600
+                    break;
+
+                //using c# stop watch decide if proses takes too long
+                countWhile += 1;
+                LoadData<ConsigmentRequest> cr = await GetConsigmentRequest(item.Id);
+                if (null == cr.Source) break;
+                var consignmentRequest = cr.Source;
+
+                if (consignmentRequest.WebId == item.WebId)
+                    break;
+                else
+                    await Task.Delay(200);
+            }
+
+            if (countWhile > 600)
+                return false;
+            else
+                return true;
         }
 
         [HttpPost]
