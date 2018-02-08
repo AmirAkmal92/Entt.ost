@@ -5,6 +5,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -64,7 +66,9 @@ namespace ezisend.fetch.pickup
                 Console.WriteLine($"Acount Number: {consigmentRequest.UserId}");
                 Console.WriteLine($"Connote(s) ({connotes.Count})/({consigmentRequest.Consignments.Count}): {stringOfConnotes}");
 
-                var pickups = await GetPickupEvents(stringOfConnotes);
+                if (connotes.Count() <= 0) continue;
+                var pickups = await SearchEnttAcceptanceAsync(connotes);
+
                 if (pickups.Count <= 0) continue;
                 Console.WriteLine($"Pickup(s) ({pickups.Count}):");
                 foreach (var pickup in pickups)
@@ -167,6 +171,49 @@ namespace ezisend.fetch.pickup
             return pickups;
         }
 
+        private async Task<List<Bespoke.PosEntt.Pickups.Domain.Pickup>> SearchEnttAcceptanceAsync(List<string> listOfConnotes)
+        {
+            var searchConnotes = String.Join(", ", from s in listOfConnotes select String.Format("'{0}'", s));
+            Console.WriteLine(searchConnotes);
+            var connString = @"Data Source=10.1.16.124;Initial Catalog=Entt;User Id=sa;Password=P@ssw0rd";
+            var conn = new SqlConnection(connString);
+            var code = string.Empty;
+            var query = $"SELECT [ConsignmentNo],[DateTime],[LocationId],[ShipperAccountNo],[PickupNo],[Parent],[TotalBaby],[TotalWeight],[TotalDimWeight],[CourierId],[CourierName] FROM [Entt].[Entt].[Acceptance] WITH (NOLOCK) WHERE ConsignmentNo IN ({searchConnotes})";
+            var list = new List<Bespoke.PosEntt.Pickups.Domain.Pickup>();
+            Console.WriteLine(query);
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                if (conn.State != ConnectionState.Open)
+                    conn.Open();
+                using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    while (reader.Read())
+                    {
+                        var totalBaby = DBNull.Value != reader[6] ? int.Parse(reader[6].ToString()) : 0;
+                        var totalWeight = DBNull.Value != reader[7] ? decimal.Parse(reader[7].ToString()) : 0m;
+                        var totalDimWeight = DBNull.Value != reader[8] ? decimal.Parse(reader[8].ToString()) : 0m;
+                        Console.WriteLine(reader[0].ToString());
+                        var pickup = new Bespoke.PosEntt.Pickups.Domain.Pickup
+                        {
+                            ConsignmentNo = reader[0].ToString(),
+                            Date = DateTime.Parse(reader[1].ToString()).Date,
+                            Time = DateTime.Parse(reader[1].ToString()),
+                            LocationId = DBNull.Value != reader[2] ? reader[2].ToString() : string.Empty,
+                            AccountNo = DBNull.Value != reader[3] ? reader[3].ToString() : string.Empty,
+                            PickupNo = DBNull.Value != reader[4] ? reader[4].ToString() : string.Empty,
+                            TotalBaby = totalBaby,
+                            TotalWeight = totalWeight,
+                            TotalDimWeight = totalDimWeight,
+                            CourierId = DBNull.Value != reader[9] ? reader[9].ToString() : string.Empty
+                        };
+                        list.Add(pickup);
+                    }
+                }
+            }
+            await Task.Delay(1500);
+            return list;
+        }
+
         private static RtsPickupFormat CreateRtsPickupFormatFromPickup(Bespoke.PosEntt.Pickups.Domain.Pickup pickup)
         {
             Console.WriteLine($"Creating: {pickup.ConsignmentNo} {pickup.PickupNo} {pickup.AccountNo}");
@@ -190,7 +237,7 @@ namespace ezisend.fetch.pickup
         private async Task<bool> PostRtsPickupFormat(RtsPickupFormat rtsPickupFormat, bool doPosting)
         {
             if (!doPosting) return true;
-            Console.WriteLine($"Posting: {rtsPickupFormat.ConsignmentNo}{rtsPickupFormat.PickupNo} {rtsPickupFormat.AccountNo}");
+            Console.WriteLine($"Posting: {rtsPickupFormat.ConsignmentNo} {rtsPickupFormat.PickupNo} {rtsPickupFormat.AccountNo}");
 
             var json = JsonConvert.SerializeObject(rtsPickupFormat);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -208,6 +255,7 @@ namespace ezisend.fetch.pickup
             var output = await response.Content.ReadAsStringAsync();
             var rtsPickupFormatId = JObject.Parse(output).SelectToken("$.id").Value<string>();
             Console.WriteLine($"Posted: {rtsPickupFormatId}");
+            Console.WriteLine("");
 
             return true;
         }
