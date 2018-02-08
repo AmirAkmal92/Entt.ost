@@ -38,11 +38,6 @@ objectbuilders.app],
                                 "None": true,
                                 "isTrue": false
                             }
-                            //{
-                            //    "name": "DO Acknowledgement",
-                            //    "None": true,
-                            //    "isTrue": false
-                            //}
                         ]
                     },
                     {
@@ -412,6 +407,9 @@ objectbuilders.app],
                             // From 0.001 to selectedCountryMaxWeight kg
                             if (newWeight > selectedCountryMaxWeight()) {
                                 consignment().Produk().Weight(selectedCountryMaxWeight());
+                            }
+                            if (newWeight < 2.001) {
+                                consignment().Produk().Weight(2.001);
                             }
                             if (newWeight <= 0) {
                                 consignment().Produk().Weight(null);
