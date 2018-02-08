@@ -342,6 +342,20 @@ namespace web.sph.App_Code
             return Ok(branch);
         }
 
+        [HttpGet]
+        [Route("validate-postcode/{postcode}")]
+        public async Task<IHttpActionResult> ValidatePostcode(int postcode)
+        {
+            var queryString = $"/branches/customer-postcode/{postcode}";
+            var response = await m_clientBromApi.GetAsync(queryString);
+
+            var output = string.Empty;
+            if (response.IsSuccessStatusCode) output = await response.Content.ReadAsStringAsync();
+            else return NotFound();
+
+            return Json(output);
+        }
+
         [HttpPut]
         [Route("propose-pickup/{id}")]
         public async Task<IHttpActionResult> ProposePickup(string id,
