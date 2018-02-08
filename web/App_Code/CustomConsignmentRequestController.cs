@@ -680,7 +680,29 @@ namespace web.sph.App_Code
                         consignment.Produk.Length = Convert.ToDecimal(productLength, CultureInfo.InvariantCulture);
                         consignment.Produk.Height = Convert.ToDecimal(productHeigth, CultureInfo.InvariantCulture);
                         consignment.Produk.Description = productDescription;
-                        consignment.Produk.ItemCategory = "02"; //default to "Merchandise"
+
+                        if (consignment.Penerima.Address.Country == "MY")
+                        {
+                            if (consignment.Produk.Weight >= 0.1m && consignment.Produk.Weight <= 2m)
+                            {
+                                consignment.Produk.ItemCategory = "01";
+                            }
+                            else if (consignment.Produk.Weight >= 2.001m && consignment.Produk.Weight <= 999.999m)
+                            {
+                                consignment.Produk.ItemCategory = "02";
+                            }
+                        }
+                        else
+                        {
+                            if (consignment.Produk.Weight <= 1m)
+                            {
+                                consignment.Produk.ItemCategory = "01";
+                            }
+                            else if (consignment.Produk.Weight >= 0.001m && consignment.Produk.Weight <= 30m)
+                            {
+                                consignment.Produk.ItemCategory = "02";
+                            }
+                        }
                         consignment.Produk.IsInternational = (consignment.Penerima.Address.Country == "MY") ? false : true;
 
                         if (item.Designation == "Contract customer" && !consignment.Produk.IsInternational)
