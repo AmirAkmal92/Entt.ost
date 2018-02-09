@@ -55,7 +55,6 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     }
                 });
                 //return context.get("/api/consigment-requests/" + entityId)
-                toggleShowBusyLoadingDialog("Initialize shipment.");
                 return $.ajax({
                     url: "/api/consigment-requests/" + entityId,
                     method: "GET",
@@ -77,7 +76,6 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
 
                         updateDataSource(entity);
 
-                        toggleShowBusyLoadingDialog("Done");
                     }, function (e) {
                         if (e.status == 404) {
                             app.showMessage("Sorry, but we cannot find any ConsigmentRequest with location : " + "/api/consigment-requests/" + entityId, "OST", ["Close"])
@@ -134,11 +132,13 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     },
                     height: 550,
                     pageable: {
-                        input: false,
-                        numeric: true,
-                        refresh: false,
-                        size: true
-                    },
+                        pageSizes: [10, 25, 50, 100],
+                        buttonCount: 5,
+                        message: {
+                            empty: 'No Data',
+                            allPages: 'All'
+                        }
+                    }, 
                     sortable: true,
                     rowTemplate: kendoCustom.template,
                     columns: [
@@ -155,15 +155,13 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                         { field: "ProductWeight", title: 'Product Weight', width: 200 },
                         { field: "ConNote", title: 'Consignment Number', width: 200 },
                         { title: 'Cod / Ccod', width: 150 },
-                        { title: "Action", width: 300 }
+                        { title: "Action", width: 200 }
                     ]
                 });
                 crCart.activate();
             },
             defaultCommand = function () {
                 toggleShowBusyLoadingDialog("Updating data");
-                //generate new guid for versioning detection
-                entity().WebId(system.guid());
 
                 var data = ko.mapping.toJSON(entity),
                     tcs = new $.Deferred();
