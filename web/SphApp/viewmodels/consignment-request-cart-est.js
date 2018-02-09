@@ -3,15 +3,11 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
     "services/app", "plugins/dialog", "services/kendoCustomEstCart"],
     function (context, logger, router, system, chart, config, app, crCart, app2, dialog, kendoCustom) {
 
-        var entity = ko.observable(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(system.guid())),
+        var entity = ko.observable(),
             isBusy = ko.observable(false),
-            page = ko.observable(0),
-            size = ko.observable(20),
-            count = ko.observable(0),
             pageNumber = ko.observable(0),
             totalPerPage = ko.observable(0),
             firstOfPage = ko.observable(0),
-            availablePageSize = ko.observableArray([10, 20, 50, 100]),
             errors = ko.observableArray(),
             sumWeight = ko.observable(0.00),
             sumConsignment = ko.observable(0),
@@ -35,7 +31,6 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 var userDetail = ko.observable();
                 hasIntParcel(false);
                 checkAll(false);
-                firstPage();
                 errorNum(-1);
                 $.ajax({
                     url: "/api/user-details/user-profile",
@@ -77,26 +72,10 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                                 headers["If-Modified-Since"] = lastModified;
                             }
                         }
+
                         entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(b[0] || b));
 
-                        crKendoList = entity().Consignments()
-                            .map(b => {
-                                return {
-                                    Id: id(),
-                                    SenderName: b.Pemberi().ContactPerson(),
-                                    RecipientName: b.Penerima().ContactPerson(),
-                                    ProductWeight: (b.Produk().Weight() > 0) ? b.Produk().Weight().toFixed(1) : "",
-                                    ConNote: (b.ConNote() === undefined) ? "" : b.ConNote(),
-                                    CodAmount: (b.Produk().Est().CodAmount() > 0) ? b.Produk().Est().CodAmount().toFixed(2) : "",
-                                    CcodAmount: (b.Produk().Est().CcodAmount() > 0) ? b.Produk().Est().CcodAmount().toFixed(2) : "",
-                                    IsPickupScheduled: (entity().Payment().IsPickupScheduled() === true) ? "true" : "false",
-                                    IsInternational: (b.Produk().IsInternational() === undefined) ? "false" : "true",
-                                    IsBorneo: (b.Produk().Est().IsBorneo() === undefined) ? "false" : "true",
-                                    WebId: b.WebId()
-                                };
-                            });
-
-                        crCart.activate();
+                        updateDataSource(entity);
 
                         toggleShowBusyLoadingDialog("Done");
                     }, function (e) {
@@ -107,6 +86,79 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                                 });
                         }
                     });
+            },
+            updateDataSource = function (entity) {
+                crKendoList = entity().Consignments()
+                    .map(b => {
+                        return {
+                            Id: id(),
+                            SenderName: b.Pemberi().ContactPerson(),
+                            RecipientName: b.Penerima().ContactPerson(),
+                            ProductWeight: (b.Produk().Weight() > 0) ? b.Produk().Weight().toFixed(1) : "",
+                            ConNote: (b.ConNote() === undefined) ? "" : b.ConNote(),
+                            CodAmount: (b.Produk().Est().CodAmount() > 0) ? b.Produk().Est().CodAmount().toFixed(2) : "",
+                            CcodAmount: (b.Produk().Est().CcodAmount() > 0) ? b.Produk().Est().CcodAmount().toFixed(2) : "",
+                            IsPickupScheduled: (entity().Payment().IsPickupScheduled() === true) ? "true" : "false",
+                            IsInternational: (b.Produk().IsInternational() === undefined) ? "false" : "true",
+                            IsBorneo: (b.Produk().Est().IsBorneo() === undefined) ? "false" : "true",
+                            WebId: b.WebId()
+                        };
+                    });
+            },
+            getLatesCr = function () {
+                return context.get("/api/consigment-requests/" + id())
+                    .done(function (result) {
+                        entity(new bespoke.Ost_consigmentRequest.domain.ConsigmentRequest(result[0] || result));
+                        updateDataSource(entity);
+                        createKendoGrid();
+                    });
+            },
+            createKendoGrid = function () {
+                $("#grid").kendoGrid({
+                    dataSource: {
+                        data: crKendoList,
+                        schema: {
+                            model: {
+                                fields: {
+                                    SenderName: { type: "string" },
+                                    RecipientName: { type: "string" },
+                                    ProductWeight: { type: "decimal" },
+                                    ConNote: { type: "string" },
+                                    CodAmount: { type: "decimal" },
+                                    CcodAmount: { type: "decimal" },
+                                    WebId: { type: "string" }
+                                }
+                            }
+                        },
+                        pageSize: 20
+                    },
+                    height: 550,
+                    pageable: {
+                        input: false,
+                        numeric: true,
+                        refresh: false,
+                        size: true
+                    },
+                    sortable: true,
+                    rowTemplate: kendoCustom.template,
+                    columns: [
+                        {
+                            headerTemplate: '<label><input type=\'checkbox\' class=\'checkAll\' id=\'checkAll\'/></label>',
+                            width: 50
+                        },
+                        {
+                            field: "SenderName", title: 'Sender Name',
+                            filterable: true,
+                            width: 300
+                        },
+                        { field: "RecipientName", title: 'Recipient Name', width: 300 },
+                        { field: "ProductWeight", title: 'Product Weight', width: 200 },
+                        { field: "ConNote", title: 'Consignment Number', width: 200 },
+                        { title: 'Cod / Ccod', width: 150 },
+                        { title: "Action", width: 300 }
+                    ]
+                });
+                crCart.activate();
             },
             defaultCommand = function () {
                 toggleShowBusyLoadingDialog("Updating data");
@@ -133,66 +185,22 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                         tcs.resolve(false);
                     })
                     .then(function (result) {
-                        context.get("/api/consigment-requests/" + id())
-                            .done(function (crList) {
-                                if (crList.WebId == entity().WebId()) {
-                                    toggleShowBusyLoadingDialog("Done");
-                                    logger.info(result.message);
-                                    entity().Id(result.id);
-                                    errors.removeAll();
-                                    tcs.resolve(result);
-                                }
-                                else {
-                                    window.setTimeout(getCrList(result, tcs), 200);
-                                }
-                            });
+                        toggleShowBusyLoadingDialog("Done");
+                        logger.info(result.message);
+                        entity().Id(result.id);
+                        errors.removeAll();
+                        tcs.resolve(result);
                     });
                 return tcs.promise();
-            },
-            getCrList = function (result, tcs) {
-                context.get("/api/consigment-requests/" + id())
-                    .done(function (crList) {
-                        if (crList.WebId == entity().WebId()) {
-                            toggleShowBusyLoadingDialog("Done");
-                            logger.info(result.message);
-                            entity().Id(result.id);
-                            errors.removeAll();
-                            tcs.resolve(result);
-                            return tcs.promise();
-                        }
-                        else {
-                            window.setTimeout(getCrList(result, tcs), 200);
-                        }
-                    });
             },
             deleteConsignment = function (consignment) {
                 return defaultCommand().then(function (result) {
                     if (result.success) {
                         app.showMessage("Parcel has been successfully removed.", "OST", ["Close"]).done(function () {
-                            //activate(id());
+                            getLatesCr();
                         });
                     }
                 });
-            },
-            firstPage = function () {
-                page(0);
-                count(0);
-            },
-            nextPage = function () {
-                var tmpCount = count();
-                count(page() * size());
-                if (count() + size() > entity().Consignments().length) {
-                    count(tmpCount);
-                } else {
-                    page(page() + 1);
-                    count(page() * size());
-                }
-            },
-            previousPage = function () {
-                if (page() >= 1) {
-                    page(page() - 1);
-                    count(page() * size());
-                }
             },
             deleteConsignments = function () {
                 let grid = $("#grid").data("kendoGrid"),
@@ -212,7 +220,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                             return defaultCommand().then(function (result) {
                                 if (result.success) {
                                     app.showMessage("Parcels has been successfully removed.", "OST", ["Close"]).done(function () {
-                                        //activate(id());
+                                        getLatesCr();
                                     });
                                 }
                             });
@@ -312,30 +320,32 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                         return context.put(data, "/consignment-request/generate-con-notes-est/" + ko.unwrap(entity().Id) + "")
                             .fail(function (response) {
                                 app.showMessage("Sorry, but we cannot process tracking number for the Order with Id : " + ko.unwrap(entity().Id), "OST", ["Close"]).done(function () {
-                                    router.activeItem().activate(result.id);
+                                    getLatesCr();
                                 });
                             })
                             .then(function (result) {
                                 toggleShowBusyLoadingDialog("Done");
                                 console.log(result);
                                 if (result.success) {
-                                    app.showMessage("Tracking number(s) successfully generated.", "OST", ["Close"]).done(function () {
-                                        toggleShowBusyLoadingDialog("Finalizing");
-                                        context.put(data, "/consignment-request/get-and-save-zones/" + ko.unwrap(entity().Id) + "").always(function () {
+                                    app.showMessage("Tracking number(s) successfully generated.", "OST", ["Close"])
+                                        .done(function () {
+                                            toggleShowBusyLoadingDialog("Finalizing");
+                                            context.put(data, "/consignment-request/get-and-save-zones/" + ko.unwrap(entity().Id) + "")
+                                            .always(function () {
                                             toggleShowBusyLoadingDialog("Done");
-                                            router.activeItem().activate(id());
+                                            getLatesCr();
                                             for (var i = 0; i < entity().Consignments().length; i++) {
                                                 if (entity().Consignments()[i].Produk().IsInternational()) {
                                                     hasIntParcel(true);
                                                     break;
                                                 }
                                             }
+                                          });
                                         });
-                                    });
                                 } else {
                                     console.log(result.status);
                                     app.showMessage("Sorry, but we cannot process tracking number for the Order with Id : " + result.id, "OST", ["Close"]).done(function () {
-                                        router.activeItem().activate(result.id);
+                                        getLatesCr();
                                     });
                                 }
                             });
@@ -465,7 +475,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                         console.log(result);
                         if (result.success) {
                             app.showMessage("Pickup successfully scheduled.", "OST", ["Close"]).done(function () {
-                                router.activeItem().activate(result.id);
+                                getLatesCr();
                             });
                         } else {
                             console.log(result.status);
@@ -497,8 +507,8 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                                     }
                                     app.showMessage(dialogMessage, "OST", ["Close"]).done(function () {
                                         if (result.success) {
-                                            activate(id());
-                                            //context.put("", "/consignment-request/get-and-save-routing-code/" + ko.unwrap(entity().Id));
+                                            getLatesCr();
+                                            context.put("", "/consignment-request/get-and-save-routing-code/" + ko.unwrap(entity().Id));
                                         }
                                     });
                                 });
@@ -561,13 +571,6 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                 showPickupScheduler(!showPickupScheduler());
             },
             attached = function (view) {
-                size.subscribe(function () {
-                    activate(id());
-                });
-
-                entity().Consignments.subscribe(function () {
-                    console.log("removing consignment");
-                });
 
                 $(view).on("click", ".delete-consignment", function (e) {
                     let webid = $(this).data('webid'),
@@ -621,13 +624,6 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                         printNddConnote(data);
                 });
 
-                $(view).on("click", ".reload-kendo", function () {
-                    alert("refresh");
-                    var grid = $("#grid").data("kendoGrid");
-                    //grid.dataSource.pageSize(3);
-                    //grid.refresh();
-                });
-
                 $(view).on("click", ".print-thermal", function () {
                     let webid = $(this).data('webid'),
                         data = entity().Consignments().find(a => a.WebId() === webid);
@@ -642,50 +638,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                     printCommercialInvoice(data);
                 });
 
-                return $("#grid").kendoGrid({
-                    dataSource: {
-                        data: crKendoList,
-                        schema: {
-                            model: {
-                                fields: {
-                                    SenderName: { type: "string" },
-                                    RecipientName: { type: "string" },
-                                    ProductWeight: { type: "decimal" },
-                                    ConNote: { type: "string" },
-                                    CodAmount: { type: "decimal" },
-                                    CcodAmount: { type: "decimal" },
-                                    WebId: { type: "string" }
-                                }
-                            }
-                        },
-                        pageSize: 20
-                    },
-                    height: 550,
-                    pageable: {
-                        input: false,
-                        numeric: true,
-                        refresh: true,
-                        size: true
-                    },
-                    sortable: true,
-                    rowTemplate: kendoCustom.template,
-                    columns: [
-                        {
-                            headerTemplate: '<label><input type=\'checkbox\' class=\'checkAll\' id=\'checkAll\'/></label>',
-                            width: 50
-                        },
-                        {
-                            field: "SenderName", title: 'Sender Name',
-                            filterable: true,
-                            width: 300
-                        },
-                        { field: "RecipientName", title: 'Recipient Name', width: 300 },
-                        { field: "ProductWeight", title: 'Product Weight', width: 200 },
-                        { field: "ConNote", title: 'Consignment Number', width: 200 },
-                        { title: 'Cod / Ccod', width: 150 },
-                        { title: "Action", width: 300 }
-                    ]
-                });
+                createKendoGrid();
             },
             compositionComplete = function () {
 
@@ -751,12 +704,6 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
             checkAll: checkAll,
             errorNum: errorNum,
             isBusy: isBusy,
-            page: page,
-            size: size,
-            count: count,
-            availablePageSize: availablePageSize,
-            nextPage: nextPage,
-            previousPage: previousPage,
             saveCommand: saveCommand,
             submitPickup: submitPickup,
             crKendoList: crKendoList
