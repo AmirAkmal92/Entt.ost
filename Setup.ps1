@@ -4,8 +4,8 @@
        [string]$Port = 50230,
        [string]$SqlServer = "ProjectsV13",
        [string]$DatabaseName = "Ost",
-       [string]$RabbitMqUserName = "guest",
-       [string]$RabbitMqPassword = "guest",
+       [string]$RabbitMqUserName = "ost_user",
+       [string]$RabbitMqPassword = "ost_password",
        [string]$RabbitMqBase = "$PWD\rabbitmq_base",
        [string]$ElasticSearchHost = "http://localhost:9200",
        [string]$ElasticSearchUserName = "",
@@ -148,6 +148,8 @@ Write-Host "Waiting for the rabbitmq to starts"
 sleep -Seconds 30
 
 & .\rabbitmq_server\sbin\rabbitmqctl.bat add_vhost "$ApplicationName"
+& .\rabbitmq_server\sbin\rabbitmqctl.bat add_user "$RabbitMqUserName" "$RabbitMqPassword"
+& .\rabbitmq_server\sbin\rabbitmqctl.bat set_user_tags "$RabbitMqUserName" administrator
 & .\rabbitmq_server\sbin\rabbitmqctl.bat set_permissions -p "$ApplicationName" $RabbitMqUserName ".*" ".*" ".*"
 & .\rabbitmq_server\sbin\rabbitmq-plugins.bat enable "rabbitmq_management"
 
