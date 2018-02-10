@@ -138,7 +138,7 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                             empty: 'No Data',
                             allPages: 'All'
                         }
-                    }, 
+                    },
                     sortable: true,
                     rowTemplate: kendoCustom.template,
                     columns: [
@@ -146,16 +146,12 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                             headerTemplate: '<label><input type=\'checkbox\' class=\'checkAll\' id=\'checkAll\'/></label>',
                             width: 50
                         },
-                        {
-                            field: "SenderName", title: 'Sender Name',
-                            filterable: true,
-                            width: 300
-                        },
-                        { field: "RecipientName", title: 'Recipient Name', width: 300 },
-                        { field: "ProductWeight", title: 'Product Weight', width: 200 },
-                        { field: "ConNote", title: 'Consignment Number', width: 200 },
-                        { title: 'Cod / Ccod', width: 150 },
-                        { title: "Action", width: 200 }
+                        { field: "SenderName", title: 'Sender Name', width: 300, sortable: true, headerAttributes: { 'class':'kendo-header'} },
+                        { field: "RecipientName", title: 'Recipient Name', width: 300, sortable: true },
+                        { field: "ProductWeight", title: 'Product Weight', width: 200, sortable: true },
+                        { field: "ConNote", title: 'Consignment Number', width: 200, sortable: true },
+                        { title: 'Cod / Ccod', width: 150, sortable: true },
+                        { title: "Action", width: 200, sortable: false }
                     ]
                 });
                 crCart.activate();
@@ -329,16 +325,16 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                                         .done(function () {
                                             toggleShowBusyLoadingDialog("Finalizing");
                                             context.put(data, "/consignment-request/get-and-save-zones/" + ko.unwrap(entity().Id) + "")
-                                            .always(function () {
-                                            toggleShowBusyLoadingDialog("Done");
-                                            getLatesCr();
-                                            for (var i = 0; i < entity().Consignments().length; i++) {
-                                                if (entity().Consignments()[i].Produk().IsInternational()) {
-                                                    hasIntParcel(true);
-                                                    break;
-                                                }
-                                            }
-                                          });
+                                                .always(function () {
+                                                    toggleShowBusyLoadingDialog("Done");
+                                                    getLatesCr();
+                                                    for (var i = 0; i < entity().Consignments().length; i++) {
+                                                        if (entity().Consignments()[i].Produk().IsInternational()) {
+                                                            hasIntParcel(true);
+                                                            break;
+                                                        }
+                                                    }
+                                                });
                                         });
                                 } else {
                                     console.log(result.status);
