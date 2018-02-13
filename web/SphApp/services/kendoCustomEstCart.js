@@ -2,6 +2,7 @@
 
     const template = `<tr data-uid="#= WebId #">
                     <td><input type="checkbox" class="selected-consignment #:ConNote==\"\"? \"\" : \"disabled\"#" #:ConNote==\"\"? \"\" : \"disabled\"# name="check-consignment-#:WebId#" data-webid="#:WebId#" data-checked="false"><br></td>
+                    <td>#= ++record #</td> 
                     <td>#: SenderName #</td> 
                     <td>#: (RecipientName === undefined) ? "" :  RecipientName #</td>
                     <td> <span>#:ProductWeight# kg</span> 

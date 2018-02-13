@@ -140,12 +140,16 @@ define(["services/datacontext", "services/logger", "plugins/router", "services/s
                         }
                     },
                     sortable: true,
+                    dataBinding: function () {
+                        record = (this.dataSource.page() - 1) * this.dataSource.pageSize();
+                    },
                     rowTemplate: kendoCustom.template,
                     columns: [
                         {
                             headerTemplate: '<label><input type=\'checkbox\' class=\'checkAll\' id=\'checkAll\'/></label>',
                             width: 50
                         },
+                        { headerTemplate: '#', width: 80     },
                         { field: "SenderName", title: 'Sender Name', width: 300, sortable: true, headerAttributes: { 'class':'kendo-header'} },
                         { field: "RecipientName", title: 'Recipient Name', width: 300, sortable: true },
                         { field: "ProductWeight", title: 'Product Weight', width: 200, sortable: true },
