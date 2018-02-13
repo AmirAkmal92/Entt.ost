@@ -409,7 +409,7 @@ objectbuilders.app],
                                 consignment().Produk().Weight(selectedCountryMaxWeight());
                             }
                             if (newWeight < 2.001) {
-                                consignment().Produk().Weight(2.001);
+                                return consignment().Produk().Weight(2.001);
                             }
                             if (newWeight <= 0) {
                                 consignment().Produk().Weight(null);
