@@ -346,7 +346,7 @@ namespace web.sph.App_Code
         [Route("validate-postcode/{postcode}")]
         public async Task<IHttpActionResult> ValidatePostcode(int postcode)
         {
-            var queryString = $"{m_clientBromApi.BaseAddress}/branches/customer-postcode/{postcode}";
+            var queryString = $"{m_clientBromApi.BaseAddress}/branches/postcode/{postcode}/routing-code";
             var response = await m_clientBromApi.GetAsync(queryString);
 
             var output = string.Empty;
