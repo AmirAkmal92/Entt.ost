@@ -125,17 +125,17 @@ async Task Main()
 				if (!statusOnlyNoPost) await Task.Delay(500);
 			}
 		}
-		else
-		{
-			Console.WriteLine("Pickup Events not found. Get details from stat events...");
-			Console.WriteLine($"Check Pickup status for: {strOfConnotes}");
-			Console.WriteLine($"Connotes Count: {consignmentRequest.Consignments.Count}");
-			Console.WriteLine("");
-			Console.WriteLine("-------------------- GET STAT EVENTS --------------------");
-			var statEvents = await GetStatEvents(strOfConnotes, rtsBaseUrl, rtsClient);
-			Console.WriteLine($"Pickup Events count: {statEvents.Count} .....");
-			statEvents.Dump();
-			Console.WriteLine("");
+//		else
+//		{
+//			Console.WriteLine("Pickup Events not found. Get details from stat events...");
+//			Console.WriteLine($"Check Pickup status for: {strOfConnotes}");
+//			Console.WriteLine($"Connotes Count: {consignmentRequest.Consignments.Count}");
+//			Console.WriteLine("");
+//			Console.WriteLine("-------------------- GET STAT EVENTS --------------------");
+//			var statEvents = await GetStatEvents(strOfConnotes, rtsBaseUrl, rtsClient);
+//			Console.WriteLine($"Pickup Events count: {statEvents.Count} .....");
+//			statEvents.Dump();
+//			Console.WriteLine("");
 
 //			if (statEvents.Count > 0)
 //			{
@@ -174,7 +174,7 @@ async Task Main()
 //				await PostRtsPickupFormat(rtsPickupFormat, ostBaseUrl, ostClient, statusOnlyNoPost);
 //				if (!statusOnlyNoPost) await Task.Delay(500);
 //			}
-		}
+//		}
 		consignmentRequestsIndexCount++;
 	}
 }
