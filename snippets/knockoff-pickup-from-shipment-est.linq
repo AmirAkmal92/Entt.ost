@@ -24,7 +24,9 @@ async Task Main()
 {
 	//PLEASE SET ACCORDINGLY!!!
 	var statusOnlyNoPost = true;
-	var maxFetch = 500;
+	var maxFetch = 1000;	
+	//USE THIS WITH CAUTION!!!
+	//Changed RtsPickupFormat's PickupNo must not belong to other accounts
 	var correctAccountNo = false;
 
 	var rtsBaseUrl = "http://rx.pos.com.my";
