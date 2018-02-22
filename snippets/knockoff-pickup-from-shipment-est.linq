@@ -24,8 +24,9 @@ async Task Main()
 {
 	//PLEASE SET ACCORDINGLY!!!
 	var statusOnlyNoPost = true;
-    var maxFetch = 500;
-	
+	var maxFetch = 500;
+	var correctAccountNo = false;
+
 	var rtsBaseUrl = "http://rx.pos.com.my";
 	var rtsAdminToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbmlzdHJhdG9ycyIsImNhbl9lZGl0X2VudGl0eSIsImNhbl9lZGl0X3dvcmtmbG93IiwiZGV2ZWxvcGVycyJdLCJlbWFpbCI6ImFkbWluQHBvcy5jb20ubXkiLCJzdWIiOiI2MzYzODk1NjI1NzE1OTY2NTFjNDkwNzRjZSIsIm5iZiI6MTUxOTIyODI1NywiaWF0IjoxNTAzMzMwNjU3LCJleHAiOjE2MDkzNzI4MDAsImF1ZCI6IlBvc0VudHQifQ.-LxvJ8J4bS1xogV3gIoBtMkqlr1h1zP71FUhFA9MuxE";
 	var rtsClient = new HttpClient();
@@ -121,60 +122,68 @@ async Task Main()
 					CourierName = string.Empty, //?
 					BranchCode = pickupEvent.LocationId
 				};
+				if (correctAccountNo)
+				{
+					if (rtsPickupFormat.AccountNo != consignmentRequest.UserId)
+					{
+						Console.WriteLine($">>>Changing account number from {rtsPickupFormat.AccountNo} -> {consignmentRequest.UserId} for connote {rtsPickupFormat.ConsignmentNo}");
+						rtsPickupFormat.AccountNo = consignmentRequest.UserId;
+					}
+				}
 				await PostRtsPickupFormat(rtsPickupFormat, ostBaseUrl, ostClient, statusOnlyNoPost);
 				if (!statusOnlyNoPost) await Task.Delay(500);
 			}
 		}
-//		else
-//		{
-//			Console.WriteLine("Pickup Events not found. Get details from stat events...");
-//			Console.WriteLine($"Check Pickup status for: {strOfConnotes}");
-//			Console.WriteLine($"Connotes Count: {consignmentRequest.Consignments.Count}");
-//			Console.WriteLine("");
-//			Console.WriteLine("-------------------- GET STAT EVENTS --------------------");
-//			var statEvents = await GetStatEvents(strOfConnotes, rtsBaseUrl, rtsClient);
-//			Console.WriteLine($"Pickup Events count: {statEvents.Count} .....");
-//			statEvents.Dump();
-//			Console.WriteLine("");
+		//		else
+		//		{
+		//			Console.WriteLine("Pickup Events not found. Get details from stat events...");
+		//			Console.WriteLine($"Check Pickup status for: {strOfConnotes}");
+		//			Console.WriteLine($"Connotes Count: {consignmentRequest.Consignments.Count}");
+		//			Console.WriteLine("");
+		//			Console.WriteLine("-------------------- GET STAT EVENTS --------------------");
+		//			var statEvents = await GetStatEvents(strOfConnotes, rtsBaseUrl, rtsClient);
+		//			Console.WriteLine($"Pickup Events count: {statEvents.Count} .....");
+		//			statEvents.Dump();
+		//			Console.WriteLine("");
 
-//			if (statEvents.Count > 0)
-//			{
-//				if (string.IsNullOrEmpty(consignmentRequest.Pickup.Number))
-//				{
-//					Console.WriteLine($"Please insert Pickup Number for Reference Number: {consignmentRequest.ReferenceNo}");
-//					pickupNoFromConsole = Console.ReadLine();
-//				}
-//			}
+		//			if (statEvents.Count > 0)
+		//			{
+		//				if (string.IsNullOrEmpty(consignmentRequest.Pickup.Number))
+		//				{
+		//					Console.WriteLine($"Please insert Pickup Number for Reference Number: {consignmentRequest.ReferenceNo}");
+		//					pickupNoFromConsole = Console.ReadLine();
+		//				}
+		//			}
 
-//			foreach (var statEvent in statEvents)
-//			{
-//				Console.WriteLine("");
-//				Console.WriteLine("-------------------- POST RTS PICKUP FORMAT (by STAT EVENTS) --------------------");
-//
-//				var text = statEvent.Comment;
-//				string[] words = text.Split('|');
-//				var text2 = words[1].Replace(" ", string.Empty);
-//				string[] words2 = text2.Split('=');
-//				var berat = words2[1].Replace(" ", string.Empty);
-//				var beratDecimal = Convert.ToDecimal(berat);
-//
-//				var rtsPickupFormat = new RtsPickupFormat
-//				{
-//					PickupNo = (!string.IsNullOrEmpty(consignmentRequest.Pickup.Number)) ? consignmentRequest.Pickup.Number : pickupNoFromConsole,
-//					AccountNo = consignmentRequest.UserId,
-//					ConsignmentNo = statEvent.ConsignmentNo,
-//					ParentConsignmentNo = string.Empty, //?
-//					TotalBaby = 0,
-//					PickupDateTime = statEvent.Date.AddHours(statEvent.Time.Hour).AddMinutes(statEvent.Time.Minute).AddSeconds(statEvent.Time.Second),
-//					ActualWeight = beratDecimal,
-//					CourierId = statEvent.CourierId,
-//					CourierName = string.Empty, //?
-//					BranchCode = statEvent.LocationId
-//				};
-//				await PostRtsPickupFormat(rtsPickupFormat, ostBaseUrl, ostClient, statusOnlyNoPost);
-//				if (!statusOnlyNoPost) await Task.Delay(500);
-//			}
-//		}
+		//			foreach (var statEvent in statEvents)
+		//			{
+		//				Console.WriteLine("");
+		//				Console.WriteLine("-------------------- POST RTS PICKUP FORMAT (by STAT EVENTS) --------------------");
+		//
+		//				var text = statEvent.Comment;
+		//				string[] words = text.Split('|');
+		//				var text2 = words[1].Replace(" ", string.Empty);
+		//				string[] words2 = text2.Split('=');
+		//				var berat = words2[1].Replace(" ", string.Empty);
+		//				var beratDecimal = Convert.ToDecimal(berat);
+		//
+		//				var rtsPickupFormat = new RtsPickupFormat
+		//				{
+		//					PickupNo = (!string.IsNullOrEmpty(consignmentRequest.Pickup.Number)) ? consignmentRequest.Pickup.Number : pickupNoFromConsole,
+		//					AccountNo = consignmentRequest.UserId,
+		//					ConsignmentNo = statEvent.ConsignmentNo,
+		//					ParentConsignmentNo = string.Empty, //?
+		//					TotalBaby = 0,
+		//					PickupDateTime = statEvent.Date.AddHours(statEvent.Time.Hour).AddMinutes(statEvent.Time.Minute).AddSeconds(statEvent.Time.Second),
+		//					ActualWeight = beratDecimal,
+		//					CourierId = statEvent.CourierId,
+		//					CourierName = string.Empty, //?
+		//					BranchCode = statEvent.LocationId
+		//				};
+		//				await PostRtsPickupFormat(rtsPickupFormat, ostBaseUrl, ostClient, statusOnlyNoPost);
+		//				if (!statusOnlyNoPost) await Task.Delay(500);
+		//			}
+		//		}
 		consignmentRequestsIndexCount++;
 	}
 }
