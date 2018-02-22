@@ -233,6 +233,35 @@ namespace rts.pickup.knockoff
             return createNewPickup;
         }
 
+        private async Task<ConsigmentRequest> GetConsigmentRequest(string id)
+        {
+            var item = new ConsigmentRequest();
+
+            m_ostBaseUrl.DefaultRequestHeaders.Clear();
+            m_ostBaseUrl.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", m_ostAdminToken);
+            var requestUri = $"{m_ostBaseUrl.BaseAddress}/api/consigment-requests/{id}";
+            var response = await m_ostBaseUrl.GetAsync(requestUri);
+
+            Console.WriteLine($"RequestUri: {response.RequestMessage.RequestUri}");
+            Console.WriteLine($"Status: {(int)response.StatusCode} {response.ReasonPhrase}");
+            if (!response.IsSuccessStatusCode)
+            {
+                return item;
+            }
+            var output = await response.Content.ReadAsStringAsync();
+            try
+            {
+                item = JObject.Parse(output).ToObject<ConsigmentRequest>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+                return item;
+            }
+
+            return item;
+        }
+
         private async Task<List<ConsigmentRequest>> GetConsignmentRequestByAccountNoAsync(string accountNo, string consignmentNo, string isPickedUp)
         {
             m_ostBaseUrl.DefaultRequestHeaders.Clear();
@@ -390,9 +419,27 @@ namespace rts.pickup.knockoff
             Console.WriteLine($"");
             Console.WriteLine($". . .Saving Changes Consignment Request (Shipment). . .");
             Console.WriteLine($". . .Saving Changes Consignment Request (Pickup). . .");
+
+            Console.WriteLine($". . .Delay 5 seconds. . .");
+            await Task.Delay(5000);
             Console.WriteLine($"");
 
-            await Task.Delay(3000);
+            var wait = true;
+            var count = 0;
+            while (wait)
+            {
+                if (count >= 18) wait = false; //3 minutes max wait!
+                var latest = await GetConsigmentRequest(shipment.Id);
+                if (latest.Consignments.Count > shipment.Consignments.Count)
+                {
+                    Console.WriteLine($". . .Delay 10 seconds more. . .");
+                    await Task.Delay(10000);
+                }
+                else wait = false;
+                count++;
+            }
+
+            Console.WriteLine($"");
         }
 
         private async Task<List<RtsPickupFormat>> GetRtsPickupFormats()
@@ -461,7 +508,7 @@ namespace rts.pickup.knockoff
 
             try
             {
-                
+
                 var query = $@"{{
     ""filter"":{{
         ""bool"": {{
