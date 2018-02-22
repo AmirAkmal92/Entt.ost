@@ -112,14 +112,6 @@
       "instancesCount": 1,
       "prefetchCount": 1,
       "priority": 0,
-      "queueName": "persistence",
-      "fullName": "Bespoke.Sph.Persistence.PersistenceContextSubscriber",
-      "assembly": "subscriber.persistence"
-    },
-    {
-      "instancesCount": 1,
-      "prefetchCount": 1,
-      "priority": 0,
       "queueName": "report_delivery_scheduler",
       "fullName": "Bespoke.Sph.ReportDeliverySubscriptions.ReportDeliverySubscriber",
       "assembly": "subscriber.report.delivery"
