@@ -467,7 +467,7 @@ namespace web.sph.App_Code
             zplCode += "^FO7,401^GB794,0,1^FS";
             zplCode += "^FT382,648^AQ^FH^FDRUJ. PENERIMA : " + (!String.IsNullOrEmpty(itemHasConnote.Produk.Est.ReceiverReferenceNo) ? itemHasConnote.Produk.Est.ReceiverReferenceNo.ToUpper() : "") + "^FS";
             zplCode += "^FT558,432^AQ^FH^FD" + item.UserId + "^FS";
-            zplCode += "^FT540,986^AU,48,124^FH^FD" + itemHasConnote.Penerima.Address.Postcode + "^FS";
+            zplCode += "^FT540,963^AU,48,124^FH^FD" + itemHasConnote.Penerima.Address.Postcode + "^FS";
             zplCode += "^FT28,901^AQ^FH^FDTEL : " + itemHasConnote.Penerima.ContactInformation.ContactNumber + "^FS";
             zplCode += "^FT26,954^AQ^FH^FDPOSKOD : ^FS";
             zplCode += "^FT254,901^AQ^FH^FDTEL2 : " + itemHasConnote.Penerima.ContactInformation.AlternativeContactNumber + "^FS";
@@ -517,7 +517,7 @@ namespace web.sph.App_Code
             zplCode += "^FT180,378^AV^FH^FD" + routingCode + "^FS";
             zplCode += "^FS^FT434,1194^AT^FH^FT392,571^AT^FH^FD" + textChargeOnDeliveryPPLCopy + "^FS";
             zplCode += "^FT262,1040^AQ^FH^FDSalinan Pejabat^FS";
-            zplCode += "^FS^FT150,1000^AT^FH^FD*" + itemHasConnote.ConNote.ToUpper() + "*^FS";
+            zplCode += "^FS^FT150,956^AT^FH^FD*" + itemHasConnote.ConNote.ToUpper() + "*^FS";
             zplCode += "^BY128,128^FT620,920^BXN,4,200,0,0,1,~";
             zplCode += "^FH^FD" + dataMatrixCodeThermal + "^FS";
             zplCode += "^PQ1,0,1,Y^XZ";
