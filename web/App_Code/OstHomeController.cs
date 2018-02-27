@@ -191,12 +191,12 @@ namespace web.sph.App_Code
                     {
                         consignment.Penerima.Address.Postcode = int.Parse(Regex.Replace(consignment.Penerima.Address.Postcode, @"\D", "")).ToString("D5");
                     }
-                    consignment.Penerima.Address.Address1 = consignment.Penerima.Address.Address1.Substring(0, consignment.Penerima.Address.Address1.Length > 36 ? 36 : consignment.Penerima.Address.Address1.Length);
-                    consignment.Penerima.Address.Address2 = consignment.Penerima.Address.Address2.Substring(0, consignment.Penerima.Address.Address2.Length > 36 ? 36 : consignment.Penerima.Address.Address2.Length);
+                    consignment.Penerima.Address.Address1 = consignment.Penerima.Address.Address1.Substring(0, consignment.Penerima.Address.Address1.Length > 45 ? 45 : consignment.Penerima.Address.Address1.Length);
+                    consignment.Penerima.Address.Address2 = consignment.Penerima.Address.Address2.Substring(0, consignment.Penerima.Address.Address2.Length > 45 ? 45 : consignment.Penerima.Address.Address2.Length);
                     if (!String.IsNullOrEmpty(consignment.Penerima.Address.Address3))
-                        consignment.Penerima.Address.Address3 = consignment.Penerima.Address.Address3.Substring(0, consignment.Penerima.Address.Address3.Length > 30 ? 30 : consignment.Penerima.Address.Address3.Length);
+                        consignment.Penerima.Address.Address3 = consignment.Penerima.Address.Address3.Substring(0, consignment.Penerima.Address.Address3.Length > 35 ? 35 : consignment.Penerima.Address.Address3.Length);
                     if (!String.IsNullOrEmpty(consignment.Penerima.Address.Address4))
-                        consignment.Penerima.Address.Address4 = consignment.Penerima.Address.Address4.Substring(0, consignment.Penerima.Address.Address4.Length > 30 ? 30 : consignment.Penerima.Address.Address4.Length);
+                        consignment.Penerima.Address.Address4 = consignment.Penerima.Address.Address4.Substring(0, consignment.Penerima.Address.Address4.Length > 35 ? 35 : consignment.Penerima.Address.Address4.Length);
                     connote = consignment;
                     break;
                 }
@@ -471,7 +471,7 @@ namespace web.sph.App_Code
             zplCode += "^FT28,901^AQ^FH^FDTEL : " + itemHasConnote.Penerima.ContactInformation.ContactNumber + "^FS";
             zplCode += "^FT26,954^AQ^FH^FDPOSKOD : ^FS";
             zplCode += "^FT254,901^AQ^FH^FDTEL2 : " + itemHasConnote.Penerima.ContactInformation.AlternativeContactNumber + "^FS";
-            zplCode += "^BY2,3,74^FT475,1191^BCN,,Y,N";
+            zplCode += "^BY2,3,74^FT455,1191^BCN,,Y,N";
             zplCode += "^FD" + itemHasConnote.ConNote.ToUpper() + "^FS";
             zplCode += "^BY2,3,110^FT423,148^BCN,,Y,N";
             zplCode += "^FD" + itemHasConnote.ConNote.ToUpper() + "^FS";
