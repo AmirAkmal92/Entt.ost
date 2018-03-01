@@ -17,7 +17,7 @@ namespace ezisend.fetch.pickup
 {
     class Program
     {
-        private const int MaxFetch = 500;//maximum fetch pickups per request
+        //private const int MaxFetch = 500;//maximum fetch pickups per request
         private const bool DoPosting = true;//posting switch;
         private readonly HttpClient m_ostClient;
         private readonly HttpClient m_rtsClient;
@@ -57,8 +57,9 @@ namespace ezisend.fetch.pickup
             {
                 var connotes =
                 (from consignment in consigmentRequest.Consignments
-                    where !string.IsNullOrEmpty(consignment.ConNote)
-                    select consignment.ConNote).Take(MaxFetch).ToList();
+                     where !string.IsNullOrEmpty(consignment.ConNote)
+                    //select consignment.ConNote).Take(MaxFetch).ToList(); //MaxFetch is only for querying to ES
+                    select consignment.ConNote).ToList();
 
                 var stringOfConnotes = JsonConvert.SerializeObject(connotes);
                 Console.WriteLine(string.Empty);
@@ -66,7 +67,7 @@ namespace ezisend.fetch.pickup
                 Console.WriteLine($"Acount Number: {consigmentRequest.UserId}");
                 Console.WriteLine($"Connote(s) ({connotes.Count})/({consigmentRequest.Consignments.Count}): {stringOfConnotes}");
 
-                if (connotes.Count() <= 0) continue;
+                if (!connotes.Any()) continue;
                 var pickups = await SearchEnttAcceptanceAsync(connotes);
 
                 if (pickups.Count <= 0) continue;
