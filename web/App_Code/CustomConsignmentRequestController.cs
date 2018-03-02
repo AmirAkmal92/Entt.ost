@@ -600,7 +600,7 @@ namespace web.sph.App_Code
             var store = ObjectBuilder.GetObject<IBinaryStore>();
             var doc = await store.GetContentAsync(storeId);
             if (null == doc) return NotFound($"Cannot find file in {storeId}");
-
+            bool hasRow = true, allRequired = false;
             var ext = Path.GetExtension(doc.FileName).ToLower();
             if (ext != ".xlsx")
             {
@@ -626,60 +626,101 @@ namespace web.sph.App_Code
                 {
                     var row = 2;
                     var countAddedConsignment = 0;
-                    var senderPostcode = ws.Cells[$"M{row}"].GetValue<string>();
-                    var receiverPostcode = ws.Cells[$"Z{row}"].GetValue<string>();
-                    var productWeigth = ws.Cells[$"AA{row}"].GetValue<string>();
-                    var productWidth = ws.Cells[$"AB{row}"].GetValue<string>();
-                    var productLength = ws.Cells[$"AC{row}"].GetValue<string>();
-                    var productHeigth = ws.Cells[$"AD{row}"].GetValue<string>();
-                    var productDescription = ws.Cells[$"AE{row}"].GetValue<string>();
-                    var hasRow = !string.IsNullOrEmpty(senderPostcode) && !string.IsNullOrEmpty(receiverPostcode)
-                        && !string.IsNullOrEmpty(productWeigth) && !string.IsNullOrEmpty(productWidth)
-                        && !string.IsNullOrEmpty(productLength) && !string.IsNullOrEmpty(productHeigth)
-                        && !string.IsNullOrEmpty(productDescription);
+                    //Get all required field.
+                    var PemberiContactPerson = ws.Cells[$"A{row}"].GetValue<string>();
+                    var PemberiEmail = ws.Cells[$"C{row}"].GetValue<string>();
+                    var PemberiContactNumber = ws.Cells[$"D{row}"].GetValue<string>();
+                    var PemberiAddress1 = ws.Cells[$"F{row}"].GetValue<string>();
+                    var PemberiAddress2 = ws.Cells[$"G{row}"].GetValue<string>();
+                    var PemberiCity = ws.Cells[$"J{row}"].GetValue<string>();
+                    var PemberiState = ws.Cells[$"K{row}"].GetValue<string>();
+                    var PemberiCountry = ws.Cells[$"L{row}"].GetValue<string>();
+                    var PemberiPostcode = ws.Cells[$"M{row}"].GetValue<string>();
+                    var PenerimaContactPerson = ws.Cells[$"N{row}"].GetValue<string>();
+                    var PenerimaEmail = ws.Cells[$"P{row}"].GetValue<string>();
+                    var PenerimaContactNumber = ws.Cells[$"Q{row}"].GetValue<string>();
+                    var PenerimaAddress1 = ws.Cells[$"S{row}"].GetValue<string>();
+                    var PenerimaAddress2 = ws.Cells[$"T{row}"].GetValue<string>();
+                    var PenerimaCity = ws.Cells[$"W{row}"].GetValue<string>();
+                    var PenerimaState = ws.Cells[$"X{row}"].GetValue<string>();
+                    var PenerimaCountry = ws.Cells[$"Y{row}"].GetValue<string>();
+                    var PenerimaPostcode = ws.Cells[$"Z{row}"].GetValue<string>();
+                    var ProdukWeight = ws.Cells[$"AA{row}"].GetValue<string>();
+                    var ProdukWidth = ws.Cells[$"AB{row}"].GetValue<string>();
+                    var ProdukLength = ws.Cells[$"AC{row}"].GetValue<string>();
+                    var ProdukHeigth = ws.Cells[$"AD{row}"].GetValue<string>();
+                    var ProdukDescription = ws.Cells[$"AE{row}"].GetValue<string>();
 
-                    while (hasRow)
+                    hasRow = !string.IsNullOrEmpty(PemberiContactPerson) && !string.IsNullOrEmpty(PemberiEmail)
+                        && !string.IsNullOrEmpty(PemberiContactNumber) && !string.IsNullOrEmpty(PemberiAddress1)
+                        && !string.IsNullOrEmpty(PemberiAddress2) && !string.IsNullOrEmpty(PemberiCity)
+                        && !string.IsNullOrEmpty(PemberiState) && !string.IsNullOrEmpty(PemberiCountry)
+                        && !string.IsNullOrEmpty(PemberiPostcode)
+                        && !string.IsNullOrEmpty(PenerimaContactPerson) && !string.IsNullOrEmpty(PenerimaEmail)
+                        && !string.IsNullOrEmpty(PenerimaContactNumber) && !string.IsNullOrEmpty(PenerimaAddress1)
+                        && !string.IsNullOrEmpty(PenerimaAddress2) && !string.IsNullOrEmpty(PenerimaCity)
+                        && !string.IsNullOrEmpty(PenerimaState) && !string.IsNullOrEmpty(PenerimaCountry)
+                        && !string.IsNullOrEmpty(PenerimaPostcode)
+                        && !string.IsNullOrEmpty(ProdukWeight) && !string.IsNullOrEmpty(ProdukWidth)
+                        && !string.IsNullOrEmpty(ProdukLength) && !string.IsNullOrEmpty(ProdukHeigth)
+                        && !string.IsNullOrEmpty(ProdukDescription);
+
+                    allRequired = !string.IsNullOrEmpty(PemberiContactPerson) || !string.IsNullOrEmpty(PemberiEmail)
+                        || !string.IsNullOrEmpty(PemberiContactNumber) || !string.IsNullOrEmpty(PemberiAddress1)
+                        || !string.IsNullOrEmpty(PemberiAddress2) || !string.IsNullOrEmpty(PemberiCity)
+                        || !string.IsNullOrEmpty(PemberiState) || !string.IsNullOrEmpty(PemberiCountry)
+                        || !string.IsNullOrEmpty(PemberiPostcode)
+                        || !string.IsNullOrEmpty(PenerimaContactPerson) || !string.IsNullOrEmpty(PenerimaEmail)
+                        || !string.IsNullOrEmpty(PenerimaContactNumber) || !string.IsNullOrEmpty(PenerimaAddress1)
+                        || !string.IsNullOrEmpty(PenerimaAddress2) || !string.IsNullOrEmpty(PenerimaCity)
+                        || !string.IsNullOrEmpty(PenerimaState) || !string.IsNullOrEmpty(PenerimaCountry)
+                        || !string.IsNullOrEmpty(PenerimaPostcode)
+                        || !string.IsNullOrEmpty(ProdukWeight) || !string.IsNullOrEmpty(ProdukWidth)
+                        || !string.IsNullOrEmpty(ProdukLength) || !string.IsNullOrEmpty(ProdukHeigth)
+                        || !string.IsNullOrEmpty(ProdukDescription);
+
+                    while (hasRow && allRequired)
                     {
                         var consignment = new Consignment();
 
                         consignment.WebId = Guid.NewGuid().ToString();
 
                         // assign sender information
-                        consignment.Pemberi.ContactPerson = ws.Cells[$"A{row}"].GetValue<string>();
+                        consignment.Pemberi.ContactPerson = PemberiContactPerson;
                         consignment.Pemberi.CompanyName = ws.Cells[$"B{row}"].GetValue<string>();
-                        consignment.Pemberi.ContactInformation.Email = ws.Cells[$"C{row}"].GetValue<string>();
-                        consignment.Pemberi.ContactInformation.ContactNumber = ws.Cells[$"D{row}"].GetValue<string>();
+                        consignment.Pemberi.ContactInformation.Email = PemberiEmail;
+                        consignment.Pemberi.ContactInformation.ContactNumber = PemberiContactNumber;
                         consignment.Pemberi.ContactInformation.AlternativeContactNumber = ws.Cells[$"E{row}"].GetValue<string>();
-                        consignment.Pemberi.Address.Address1 = ws.Cells[$"F{row}"].GetValue<string>();
-                        consignment.Pemberi.Address.Address2 = ws.Cells[$"G{row}"].GetValue<string>();
+                        consignment.Pemberi.Address.Address1 = PemberiAddress1;
+                        consignment.Pemberi.Address.Address2 = PemberiAddress2;
                         consignment.Pemberi.Address.Address3 = ws.Cells[$"H{row}"].GetValue<string>();
                         consignment.Pemberi.Address.Address4 = ws.Cells[$"I{row}"].GetValue<string>();
-                        consignment.Pemberi.Address.City = ws.Cells[$"J{row}"].GetValue<string>();
-                        consignment.Pemberi.Address.State = ws.Cells[$"K{row}"].GetValue<string>();
-                        consignment.Pemberi.Address.Country = ws.Cells[$"L{row}"].GetValue<string>();
-                        consignment.Pemberi.Address.Postcode = senderPostcode;
+                        consignment.Pemberi.Address.City = PemberiCity;
+                        consignment.Pemberi.Address.State = PemberiState;
+                        consignment.Pemberi.Address.Country = PemberiCountry;
+                        consignment.Pemberi.Address.Postcode = PemberiPostcode;
 
                         // assign receiver information
-                        consignment.Penerima.ContactPerson = ws.Cells[$"N{row}"].GetValue<string>();
+                        consignment.Penerima.ContactPerson = PenerimaContactPerson;
                         consignment.Penerima.CompanyName = ws.Cells[$"O{row}"].GetValue<string>();
-                        consignment.Penerima.ContactInformation.Email = ws.Cells[$"P{row}"].GetValue<string>();
-                        consignment.Penerima.ContactInformation.ContactNumber = ws.Cells[$"Q{row}"].GetValue<string>();
+                        consignment.Penerima.ContactInformation.Email = PenerimaEmail;
+                        consignment.Penerima.ContactInformation.ContactNumber = PenerimaContactNumber;
                         consignment.Penerima.ContactInformation.AlternativeContactNumber = ws.Cells[$"R{row}"].GetValue<string>();
-                        consignment.Penerima.Address.Address1 = ws.Cells[$"S{row}"].GetValue<string>();
-                        consignment.Penerima.Address.Address2 = ws.Cells[$"T{row}"].GetValue<string>();
+                        consignment.Penerima.Address.Address1 = PenerimaAddress1;
+                        consignment.Penerima.Address.Address2 = PenerimaAddress2;
                         consignment.Penerima.Address.Address3 = ws.Cells[$"U{row}"].GetValue<string>();
                         consignment.Penerima.Address.Address4 = ws.Cells[$"V{row}"].GetValue<string>();
-                        consignment.Penerima.Address.City = ws.Cells[$"W{row}"].GetValue<string>();
-                        consignment.Penerima.Address.State = ws.Cells[$"X{row}"].GetValue<string>();
-                        consignment.Penerima.Address.Country = ws.Cells[$"Y{row}"].GetValue<string>();
-                        consignment.Penerima.Address.Postcode = (consignment.Penerima.Address.Country == "MY") ? Regex.Replace(ws.Cells[$"Z{row}"].GetValue<string>(), @"\D", "") : ws.Cells[$"Z{row}"].GetValue<string>();
+                        consignment.Penerima.Address.City = PenerimaCity;
+                        consignment.Penerima.Address.State = PenerimaState;
+                        consignment.Penerima.Address.Country = PenerimaCountry;
+                        consignment.Penerima.Address.Postcode = (consignment.Penerima.Address.Country == "MY") ? Regex.Replace(PenerimaPostcode, @"\D", "") : PenerimaPostcode;
 
                         // assign product information
-                        consignment.Produk.Weight = Convert.ToDecimal(productWeigth, CultureInfo.InvariantCulture);
-                        consignment.Produk.Width = Convert.ToDecimal(productWidth, CultureInfo.InvariantCulture);
-                        consignment.Produk.Length = Convert.ToDecimal(productLength, CultureInfo.InvariantCulture);
-                        consignment.Produk.Height = Convert.ToDecimal(productHeigth, CultureInfo.InvariantCulture);
-                        consignment.Produk.Description = productDescription;
+                        consignment.Produk.Weight = Convert.ToDecimal(ProdukWeight, CultureInfo.InvariantCulture);
+                        consignment.Produk.Width = Convert.ToDecimal(ProdukWidth, CultureInfo.InvariantCulture);
+                        consignment.Produk.Length = Convert.ToDecimal(ProdukLength, CultureInfo.InvariantCulture);
+                        consignment.Produk.Height = Convert.ToDecimal(ProdukHeigth, CultureInfo.InvariantCulture);
+                        consignment.Produk.Description = ProdukDescription;
 
                         if (consignment.Penerima.Address.Country == "MY")
                         {
@@ -731,35 +772,82 @@ namespace web.sph.App_Code
                         }
 
                         row++;
-                        senderPostcode = ws.Cells[$"M{row}"].GetValue<string>();
-                        receiverPostcode = ws.Cells[$"Z{row}"].GetValue<string>();
-                        productWeigth = ws.Cells[$"AA{row}"].GetValue<string>();
-                        productWidth = ws.Cells[$"AB{row}"].GetValue<string>();
-                        productLength = ws.Cells[$"AC{row}"].GetValue<string>();
-                        productHeigth = ws.Cells[$"AD{row}"].GetValue<string>();
-                        productDescription = ws.Cells[$"AE{row}"].GetValue<string>();
-                        hasRow = !string.IsNullOrEmpty(senderPostcode) && !string.IsNullOrEmpty(receiverPostcode)
-                           && !string.IsNullOrEmpty(productWeigth) && !string.IsNullOrEmpty(productWidth)
-                           && !string.IsNullOrEmpty(productLength) && !string.IsNullOrEmpty(productHeigth)
-                           && !string.IsNullOrEmpty(productDescription);
+
+                        PemberiContactPerson = ws.Cells[$"A{row}"].GetValue<string>();
+                        PemberiEmail = ws.Cells[$"C{row}"].GetValue<string>();
+                        PemberiContactNumber = ws.Cells[$"D{row}"].GetValue<string>();
+                        PemberiAddress1 = ws.Cells[$"F{row}"].GetValue<string>();
+                        PemberiAddress2 = ws.Cells[$"G{row}"].GetValue<string>();
+                        PemberiCity = ws.Cells[$"J{row}"].GetValue<string>();
+                        PemberiState = ws.Cells[$"K{row}"].GetValue<string>();
+                        PemberiCountry = ws.Cells[$"L{row}"].GetValue<string>();
+                        PemberiPostcode = ws.Cells[$"M{row}"].GetValue<string>();
+                        PenerimaContactPerson = ws.Cells[$"N{row}"].GetValue<string>();
+                        PenerimaEmail = ws.Cells[$"P{row}"].GetValue<string>();
+                        PenerimaContactNumber = ws.Cells[$"Q{row}"].GetValue<string>();
+                        PenerimaAddress1 = ws.Cells[$"S{row}"].GetValue<string>();
+                        PenerimaAddress2 = ws.Cells[$"T{row}"].GetValue<string>();
+                        PenerimaCity = ws.Cells[$"W{row}"].GetValue<string>();
+                        PenerimaState = ws.Cells[$"X{row}"].GetValue<string>();
+                        PenerimaCountry = ws.Cells[$"Y{row}"].GetValue<string>();
+                        PenerimaPostcode = ws.Cells[$"Z{row}"].GetValue<string>();
+                        ProdukWeight = ws.Cells[$"AA{row}"].GetValue<string>();
+                        ProdukWidth = ws.Cells[$"AB{row}"].GetValue<string>();
+                        ProdukLength = ws.Cells[$"AC{row}"].GetValue<string>();
+                        ProdukHeigth = ws.Cells[$"AD{row}"].GetValue<string>();
+                        ProdukDescription = ws.Cells[$"AE{row}"].GetValue<string>();
+
+                        hasRow = !string.IsNullOrEmpty(PemberiContactPerson) && !string.IsNullOrEmpty(PemberiEmail)
+                            && !string.IsNullOrEmpty(PemberiContactNumber) && !string.IsNullOrEmpty(PemberiAddress1)
+                            && !string.IsNullOrEmpty(PemberiAddress2) && !string.IsNullOrEmpty(PemberiCity)
+                            && !string.IsNullOrEmpty(PemberiState) && !string.IsNullOrEmpty(PemberiCountry)
+                            && !string.IsNullOrEmpty(PemberiPostcode)
+                            && !string.IsNullOrEmpty(PenerimaContactPerson) && !string.IsNullOrEmpty(PenerimaEmail)
+                            && !string.IsNullOrEmpty(PenerimaContactNumber) && !string.IsNullOrEmpty(PenerimaAddress1)
+                            && !string.IsNullOrEmpty(PenerimaAddress2) && !string.IsNullOrEmpty(PenerimaCity)
+                            && !string.IsNullOrEmpty(PenerimaState) && !string.IsNullOrEmpty(PenerimaCountry)
+                            && !string.IsNullOrEmpty(PenerimaPostcode)
+                            && !string.IsNullOrEmpty(ProdukWeight) && !string.IsNullOrEmpty(ProdukWidth)
+                            && !string.IsNullOrEmpty(ProdukLength) && !string.IsNullOrEmpty(ProdukHeigth)
+                            && !string.IsNullOrEmpty(ProdukDescription);
+
+                        allRequired = !string.IsNullOrEmpty(PemberiContactPerson) || !string.IsNullOrEmpty(PemberiEmail)
+                            || !string.IsNullOrEmpty(PemberiContactNumber) || !string.IsNullOrEmpty(PemberiAddress1)
+                            || !string.IsNullOrEmpty(PemberiAddress2) || !string.IsNullOrEmpty(PemberiCity)
+                            || !string.IsNullOrEmpty(PemberiState) || !string.IsNullOrEmpty(PemberiCountry)
+                            || !string.IsNullOrEmpty(PemberiPostcode)
+                            || !string.IsNullOrEmpty(PenerimaContactPerson) || !string.IsNullOrEmpty(PenerimaEmail)
+                            || !string.IsNullOrEmpty(PenerimaContactNumber) || !string.IsNullOrEmpty(PenerimaAddress1)
+                            || !string.IsNullOrEmpty(PenerimaAddress2) || !string.IsNullOrEmpty(PenerimaCity)
+                            || !string.IsNullOrEmpty(PenerimaState) || !string.IsNullOrEmpty(PenerimaCountry)
+                            || !string.IsNullOrEmpty(PenerimaPostcode)
+                            || !string.IsNullOrEmpty(ProdukWeight) || !string.IsNullOrEmpty(ProdukWidth)
+                            || !string.IsNullOrEmpty(ProdukLength) || !string.IsNullOrEmpty(ProdukHeigth)
+                            || !string.IsNullOrEmpty(ProdukDescription);
 
                         item.Consignments.Add(consignment);
                         countAddedConsignment += 1;
                     }
 
-                    resultStatus = $"{countAddedConsignment} parcel(s) added.";
-
                     //generate new guid for versioning detection
                     item.WebId = Guid.NewGuid().ToString();
-
-                    try
+                    if (!hasRow && !allRequired)
                     {
-                        await SaveConsigmentRequest(item);
+                        resultStatus = $"{countAddedConsignment} parcel(s) added.";
+                        try
+                        {
+                            await SaveConsigmentRequest(item);
+                        }
+                        catch (Exception e)
+                        {
+                            resultSuccess = false;
+                            resultStatus = $"{e.Message}.";
+                        }
                     }
-                    catch (Exception e)
+                    else
                     {
                         resultSuccess = false;
-                        resultStatus = $"{e.Message}.";
+                        resultStatus = $"Parcel number {countAddedConsignment + 1} has problem.";
                     }
                 }
                 else
@@ -773,13 +861,17 @@ namespace web.sph.App_Code
                 resultSuccess = false;
                 resultStatus = "Consignment Request has been paid / already picked up";
             }
-            //TODO: Need to be finalized
-            var dataSaved = await ConsignmentRequestSaved(item);
 
-            if (!dataSaved)
+            if (!hasRow && !allRequired)
             {
-                resultSuccess = false;
-                resultStatus = $"Worksheet Consignments in {doc.FileName}, cannot been save.";
+                //TODO: Need to be finalized
+                var dataSaved = await ConsignmentRequestSaved(item);
+
+                if (!dataSaved)
+                {
+                    resultSuccess = false;
+                    resultStatus = $"Worksheet Consignments in {doc.FileName}, cannot been save.";
+                }
             }
 
             var result = new
