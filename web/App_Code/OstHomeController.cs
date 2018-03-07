@@ -249,26 +249,25 @@ namespace web.sph.App_Code
                 var itemsToRemove = new ConsigmentRequest();
                 foreach (var temp in item.Consignments)
                 {
-                    temp.Pemberi.Address.Postcode = int.Parse(Regex.Replace(temp.Pemberi.Address.Postcode, @"\D", "")).ToString("D5");
-                    if (!temp.Produk.IsInternational)
-                    {
-                        temp.Penerima.Address.Postcode = int.Parse(Regex.Replace(temp.Penerima.Address.Postcode, @"\D", "")).ToString("D5");
-                    }
-                    temp.Penerima.Address.Address1 = temp.Penerima.Address.Address1.Substring(0, temp.Penerima.Address.Address1.Length > 36 ? 36 : temp.Penerima.Address.Address1.Length);
-                    temp.Penerima.Address.Address2 = temp.Penerima.Address.Address2.Substring(0, temp.Penerima.Address.Address2.Length > 36 ? 36 : temp.Penerima.Address.Address2.Length);
-                    if (!String.IsNullOrEmpty(temp.Penerima.Address.Address3))
-                        temp.Penerima.Address.Address3 = temp.Penerima.Address.Address3.Substring(0, temp.Penerima.Address.Address3.Length > 30 ? 30 : temp.Penerima.Address.Address3.Length);
-                    if (!String.IsNullOrEmpty(temp.Penerima.Address.Address4))
-                        temp.Penerima.Address.Address4 = temp.Penerima.Address.Address4.Substring(0, temp.Penerima.Address.Address4.Length > 30 ? 30 : temp.Penerima.Address.Address4.Length);
-                    if (temp.ConNote == null || temp.Produk.IsInternational)
-                    {
-                        itemsToRemove.Consignments.Add(temp);
-                    }
+                    if (temp.ConNote == null || temp.Produk.IsInternational) itemsToRemove.Consignments.Add(temp);
                 }
 
                 foreach (var itemRemove in itemsToRemove.Consignments)
                 {
                     item.Consignments.Remove(itemRemove);
+                }
+
+                foreach (var csg in item.Consignments)
+                {
+                    csg.Pemberi.Address.Postcode = int.Parse(Regex.Replace(csg.Pemberi.Address.Postcode, @"\D", "")).ToString("D5");
+                    if (!csg.Produk.IsInternational)
+                        csg.Penerima.Address.Postcode = int.Parse(Regex.Replace(csg.Penerima.Address.Postcode, @"\D", "")).ToString("D5");
+                    csg.Penerima.Address.Address1 = csg.Penerima.Address.Address1.Substring(0, csg.Penerima.Address.Address1.Length > 36 ? 36 : csg.Penerima.Address.Address1.Length);
+                    csg.Penerima.Address.Address2 = csg.Penerima.Address.Address2.Substring(0, csg.Penerima.Address.Address2.Length > 36 ? 36 : csg.Penerima.Address.Address2.Length);
+                    if (!String.IsNullOrEmpty(csg.Penerima.Address.Address3))
+                        csg.Penerima.Address.Address3 = csg.Penerima.Address.Address3.Substring(0, csg.Penerima.Address.Address3.Length > 30 ? 30 : csg.Penerima.Address.Address3.Length);
+                    if (!String.IsNullOrEmpty(csg.Penerima.Address.Address4))
+                        csg.Penerima.Address.Address4 = csg.Penerima.Address.Address4.Substring(0, csg.Penerima.Address.Address4.Length > 30 ? 30 : csg.Penerima.Address.Address4.Length);
                 }
 
                 var zplCode = "";
