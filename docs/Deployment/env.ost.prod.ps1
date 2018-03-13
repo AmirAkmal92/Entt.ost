@@ -53,6 +53,9 @@
 [Environment]::SetEnvironmentVariable("RX_OST_SnbWebApi", "http://10.1.1.119:9002/api", "Machine")
 [Environment]::SetEnvironmentVariable("RX_OST_SnbWebApp", "http://10.1.1.119:9001", "Machine")
 
+#Brom
+[Environment]::SetEnvironmentVariable("RX_OST_BromApi", "http://10.1.3.71:81", "Machine")
+
 # SDS for CMS, PSS & Track&Trace
 [Environment]::SetEnvironmentVariable("RX_OST_SdsBaseUrl", "https://apis.pos.com.my", "Machine")
 [Environment]::SetEnvironmentVariable("RX_OST_SdsApi_GenerateConnote", "apigateway/as01/api/genconnote/v1", "Machine")
