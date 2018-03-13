@@ -724,7 +724,7 @@ namespace web.sph.App_Code
 
                         if (consignment.Penerima.Address.Country == "MY")
                         {
-                            if (consignment.Produk.Weight >= 0.1m && consignment.Produk.Weight <= 2m)
+                            if (consignment.Produk.Weight >= 0.001m && consignment.Produk.Weight <= 2m)
                             {
                                 consignment.Produk.ItemCategory = "01";
                             }
@@ -847,7 +847,7 @@ namespace web.sph.App_Code
                     else
                     {
                         resultSuccess = false;
-                        resultStatus = $"Parcel number {countAddedConsignment + 1} has problem.";
+                        resultStatus = $"Parcel number {countAddedConsignment + 1} has data problem.";
                     }
                 }
                 else
