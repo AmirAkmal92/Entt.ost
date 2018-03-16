@@ -208,9 +208,21 @@ namespace web.sph.App_Code
                 for (var i = 0; i < decodedEmail.Length; i++)
                 {
                     var frontEmail = tempEmail[0];
-                    var changeFront = frontEmail.Substring(2, (frontEmail.Length - 3));
-                    var hashedFront = Regex.Replace(changeFront, @"[\w]", "*");
-                    string frontEmailAfter = frontEmail.Substring(0, 2) + hashedFront + frontEmail.Substring(frontEmail.Length - 1);
+                    var changeFront = "";
+                    var hashedFront = "";
+                    var frontEmailAfter = "";
+                    if (frontEmail.Length > 3)
+                    {
+                        changeFront = frontEmail.Substring(2, (frontEmail.Length - 3));
+                        hashedFront = Regex.Replace(changeFront, @"[\w]", "*");
+                        frontEmailAfter = frontEmail.Substring(0, 2) + hashedFront + frontEmail.Substring(frontEmail.Length - 1);
+                    }
+                    else
+                    {
+                        changeFront = frontEmail.Substring(1, (frontEmail.Length - 1));
+                        hashedFront = Regex.Replace(changeFront, @"[\w]", "*");
+                        frontEmailAfter = frontEmail.Substring(0, 0) + hashedFront + frontEmail.Substring(frontEmail.Length - 1);
+                    }
 
                     var endEmail = tempEmail[1];
                     var changeEnd = endEmail.Substring(2, (endEmail.Length - 4));
