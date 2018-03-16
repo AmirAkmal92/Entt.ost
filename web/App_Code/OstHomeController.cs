@@ -505,7 +505,7 @@ namespace web.sph.App_Code
             zplCode += "^FT29,542^AP^FH^FD" + itemHasConnote.Pemberi.Address.State.ToUpper() + "^FS";
             zplCode += "^FT29,563^AP^FH^FD" + itemHasConnote.Pemberi.Address.Postcode + "^FS";
             zplCode += "^FT31,1043^AP^FH^FDKepada:^FS";
-            zplCode += "^FT31,1064^AP^FH^FD" + (!String.IsNullOrEmpty(itemHasConnote.Penerima.CompanyName) ? itemHasConnote.Penerima.CompanyName.ToUpper() : "") + "^FS";
+            zplCode += "^FT31,1064^AP^FH^FD" + (!String.IsNullOrEmpty(itemHasConnote.Penerima.ContactPerson) ? itemHasConnote.Penerima.ContactPerson.ToUpper() : "") + "^FS";
             zplCode += "^FT31,1085^AP^FH^FD" + (itemHasConnote.Penerima.Address.Address1 + ", " + itemHasConnote.Penerima.Address.Address2).ToUpper() + "^FS";
             zplCode += "^FT31,1106^AP^FH^FD" + (!String.IsNullOrEmpty(penerimaAddressLine2) ? penerimaAddressLine2.ToUpper() : "") + "^FS";
             zplCode += "^FT31,1127^AP^FH^FD" + itemHasConnote.Penerima.Address.City.ToUpper() + "^FS";
